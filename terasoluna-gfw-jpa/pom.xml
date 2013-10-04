@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>terasoluna-gfw-parent</artifactId>
+        <groupId>org.terasoluna.gfw</groupId>
+        <version>1.0.0.RELEASE</version>
+        <relativePath>../terasoluna-parent/pom.xml</relativePath>
+    </parent>
+    <artifactId>terasoluna-gfw-jpa</artifactId>
+    <description>Functionalities about JPA for TERASOLUNA Global Framework</description>
+    <url>http://terasoluna.org</url>
+
+    <dependencies>
+        <!-- == Begin JPA == -->
+        <!-- Hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+        </dependency>
+        <!-- JPA API 2.0 -->
+        <dependency>
+            <groupId>org.hibernate.javax.persistence</groupId>
+            <artifactId>hibernate-jpa-2.0-api</artifactId>
+        </dependency>
+        <!-- == End JPA == -->
+
+        <!-- == Begin Spring == -->
+        <!-- Spring Data -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+        </dependency>
+        <!-- == End Spring == -->
+
+        <!-- == Begin Joda-Time == -->
+        <dependency>
+            <groupId>org.jadira.usertype</groupId>
+            <artifactId>usertype.core</artifactId>
+        </dependency>
+        <!-- == End Joda-Time == -->
+
+        <!-- == Begin Other JavaEE/SE APIs == -->
+        <dependency>
+            <groupId>javax.transaction</groupId>
+            <artifactId>jta</artifactId>
+        </dependency>
+        <!-- == End Other JavaEE/SE APIs == -->
+    </dependencies>
+
+</project>

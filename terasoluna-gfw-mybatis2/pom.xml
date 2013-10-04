@@ -1,0 +1,32 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>terasoluna-gfw-parent</artifactId>
+        <groupId>org.terasoluna.gfw</groupId>
+        <version>1.0.0.RELEASE</version>
+        <relativePath>../terasoluna-parent/pom.xml</relativePath>
+    </parent>
+    <artifactId>terasoluna-gfw-mybatis2</artifactId>
+    <description>Functionalities about MyBatis2 for TERASOLUNA Global Framework</description>
+    <url>http://terasoluna.org</url>
+
+    <dependencies>
+        <dependency>
+            <groupId>jp.terasoluna.fw</groupId>
+            <artifactId>terasoluna-dao</artifactId>
+            <version>2.0.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>jp.terasoluna.fw</groupId>
+            <artifactId>terasoluna-ibatis</artifactId>
+            <version>2.0.5.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>2.3.5</version>
+        </dependency>
+    </dependencies>
+
+</project>

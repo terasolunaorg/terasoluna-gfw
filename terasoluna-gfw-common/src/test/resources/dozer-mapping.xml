@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net
+          http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<configuration>
+		<date-format>yyyy/MM/dd HH:mm:ss:SS</date-format>
+
+		<custom-converters> <!-- these are always bi-directional -->
+			<converter
+				type="org.terasoluna.gfw.common.bean.customconverter.StringToJodaDateTimeConverter">
+				<class-a>java.lang.String</class-a>
+				<class-b>org.joda.time.DateTime</class-b>
+			</converter>
+		</custom-converters>
+
+		<copy-by-references>
+			<copy-by-reference>
+		org.terasoluna.gfw.common.bean.beans.copybyref.*
+			</copy-by-reference>
+		</copy-by-references>
+
+	</configuration>
+
+	<mapping map-id="mapidStringToUtilDateMapping">
+		<class-a>org.terasoluna.gfw.common.bean.beans.EventStringDateBean
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.beans.Event
+		</class-b>
+		<field>
+			<a date-format="yyyy/MM/dd HH:mm:ss:SS">date</a>
+			<b>date</b>
+		</field>
+	</mapping>
+
+	<mapping map-id="mapidStringToSqlDateTime">
+		<class-a>org.terasoluna.gfw.common.bean.beans.StringToDateSourceBean
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.beans.StringToDateTargetBean
+		</class-b>
+		<field>
+			<a date-format="yyyy/MM/dd">sqlDate</a>
+			<b>sqlDate</b>
+		</field>
+		<field>
+			<a date-format="HH:mm:ss">sqlTime</a>
+			<b>sqlTime</b>
+		</field>
+	</mapping>
+
+	<mapping map-id="mapidTitleFieldExclusion">
+		<class-a>org.terasoluna.gfw.common.bean.beans.Event
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.beans.EventCreateForm
+		</class-b>
+		<field-exclude>
+			<a>title</a>
+			<b>title</b>
+		</field-exclude>
+	</mapping>
+
+	<mapping map-id="mapidIgnoreNullSourceFields" map-null="false">
+		<class-a>org.terasoluna.gfw.common.bean.beans.Event
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.beans.EventCreateForm
+		</class-b>
+	</mapping>
+
+	<mapping map-id="testConvert006" map-empty-string="false"
+		map-null="false">
+		<class-a>org.terasoluna.gfw.common.bean.beans.Event
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.beans.EventCreateForm
+		</class-b>
+	</mapping>
+
+	<mapping map-id="testConvert008_1">
+		<class-a>org.terasoluna.gfw.common.bean.beans.Person
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.beans.PersonUpdateForm
+		</class-b>
+		<field-exclude>
+			<a>firstname</a>
+			<b>firstname</b>
+		</field-exclude>
+		<field-exclude>
+			<a>lastname</a>
+			<b>lastname</b>
+		</field-exclude>
+	</mapping>
+
+	<mapping map-id="testConvert008_2">
+		<class-a>org.terasoluna.gfw.common.bean.beans.Person
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.beans.PersonUpdateForm
+		</class-b>
+		<field-exclude>
+			<a>firstname</a>
+			<b>firstname</b>
+		</field-exclude>
+	</mapping>
+
+	<mapping map-id="testConvert009" map-null="false">
+		<class-a>org.terasoluna.gfw.common.bean.beans.Person
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.beans.PersonUpdateForm
+		</class-b>
+		<field-exclude>
+			<a>lastname</a>
+			<b>lastname</b>
+		</field-exclude>
+	</mapping>
+
+	<mapping map-id="testCopy_BeanToBean_ExcludeNull" map-null="false">
+		<class-a>org.terasoluna.gfw.common.bean.DozerBeanConverterTestFromS2UtilBeanUtilTest.MyClass
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.DozerBeanConverterTestFromS2UtilBeanUtilTest.MyClass2
+		</class-b>
+	</mapping>
+
+	<mapping map-id="testCopyBeanToBean_excludes">
+		<class-a>org.terasoluna.gfw.common.bean.DozerBeanConverterTestFromS2UtilBeanUtilTest.MyClass
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.DozerBeanConverterTestFromS2UtilBeanUtilTest.MyClass2
+		</class-b>
+		<field-exclude>
+			<a>bbb</a>
+			<b>bbb</b>
+		</field-exclude>
+	</mapping>
+
+	<mapping map-id="testDeepMapping">
+		<class-a> org.terasoluna.gfw.common.bean.beans.Document
+		</class-a>
+		<class-b> org.terasoluna.gfw.common.bean.beans.NestedBean2
+		</class-b>
+		<field>
+			<a>id</a>
+			<b>nest.id</b>
+		</field>
+		<field>
+			<a>tags</a>
+			<b>nest.tags</b>
+		</field>
+	</mapping>
+
+	<mapping map-id="defaultCopy">
+		<class-a>org.terasoluna.gfw.common.bean.beans.PersonFormBean
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.beans.PersonEntityBean
+		</class-b>
+		<field>
+			<a>inputId</a>
+			<b>dbId</b>
+		</field>
+		<field>
+			<a>inputName</a>
+			<b>dbName</b>
+		</field>
+		<field>
+			<a>inputAddress</a>
+			<b>dbAddress</b>
+		</field>
+		<field>
+			<a>inputDob</a>
+			<b>dbDob</b>
+		</field>
+		<field>
+			<a>inputLargeId</a>
+			<b>dbLargeId</b>
+		</field>
+	</mapping>
+
+	<mapping map-id="CopyByRefPattern">
+		<class-a>org.terasoluna.gfw.common.bean.beans.PersonFormBean
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.beans.PersonEntityBean
+		</class-b>
+		<field copy-by-reference="true">
+			<a>inputId</a>
+			<b>dbId</b>
+		</field>
+		<field copy-by-reference="true">
+			<a>inputName</a>
+			<b>dbName</b>
+		</field>
+		<field copy-by-reference="true">
+			<a>inputAddress</a>
+			<b>dbAddress</b>
+		</field>
+		<field copy-by-reference="true">
+			<a>inputDob</a>
+			<b>dbDob</b>
+		</field>
+		<field copy-by-reference="true">
+			<a>inputLargeId</a>
+			<b>dbLargeId</b>
+		</field>
+	</mapping>
+
+	<mapping map-id="CopyByValuePattern">
+		<class-a>org.terasoluna.gfw.common.bean.beans.PersonFormBean
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.beans.PersonEntityBean
+		</class-b>
+		<field copy-by-reference="false">
+			<a>inputId</a>
+			<b>dbId</b>
+		</field>
+		<field copy-by-reference="false">
+			<a>inputName</a>
+			<b>dbName</b>
+		</field>
+		<field copy-by-reference="false">
+			<a>inputAddress</a>
+			<b>dbAddress</b>
+		</field>
+		<field copy-by-reference="false">
+			<a>inputDob</a>
+			<b>dbDob</b>
+		</field>
+		<field copy-by-reference="false">
+			<a>inputLargeId</a>
+			<b>dbLargeId</b>
+		</field>
+	</mapping>
+
+	<mapping type="one-way">
+		<class-a>org.terasoluna.gfw.common.bean.beans.OnewaySource
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.beans.OnewayTarget
+		</class-b>
+		<field>
+			<a>sourceId</a>
+			<b>targetId</b>
+		</field>
+		<field>
+			<a>sourceName</a>
+			<b>targetName</b>
+		</field>
+	</mapping>
+
+	<mapping type="one-way">
+		<class-a>org.terasoluna.gfw.common.bean.beans.OnewaySourceSameFieldName
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.beans.OnewayTargetSameFieldName
+		</class-b>
+	</mapping>
+
+	<mapping>
+		<class-a>org.terasoluna.gfw.common.bean.beans.OnewaySource</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.beans.NestedBean2</class-b>
+		<field>
+			<a>sourceId</a>
+			<b>nest.id</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>org.terasoluna.gfw.common.bean.beans.StringToDateTargetBean
+		</class-a>
+		<class-b>org.terasoluna.gfw.common.bean.beans.EventJodaDateBean
+		</class-b>
+		<field>
+			<a>sqlDate</a>
+			<b>date</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a> org.terasoluna.gfw.common.bean.beans.StringListSrcBean
+		</class-a>
+		<class-b> org.terasoluna.gfw.common.bean.beans.StringListDestBean
+		</class-b>
+		<field>
+			<a>srcList</a>
+			<b>destList</b>
+		</field>
+	</mapping>
+
+	<mapping map-id="listMappingNonCumulative">
+		<class-a> org.terasoluna.gfw.common.bean.beans.StringListSrcBean
+		</class-a>
+		<class-b> org.terasoluna.gfw.common.bean.beans.StringListDestBean
+		</class-b>
+		<field relationship-type="non-cumulative">
+			<a>srcList</a>
+			<b>destList</b>
+		</field>
+	</mapping>
+
+	<mapping map-id="listMappingRemoveOrphans">
+		<class-a> org.terasoluna.gfw.common.bean.beans.StringListSrcBean
+		</class-a>
+		<class-b> org.terasoluna.gfw.common.bean.beans.StringListDestBean
+		</class-b>
+		<field remove-orphans="true">
+			<a>srcList</a>
+			<b>destList</b>
+		</field>
+	</mapping>
+
+	<mapping map-id="removeOrphansMappingAndNonCumulative">
+		<class-a> org.terasoluna.gfw.common.bean.beans.StringListSrcBean
+		</class-a>
+		<class-b> org.terasoluna.gfw.common.bean.beans.StringListDestBean
+		</class-b>
+		<field relationship-type="non-cumulative" remove-orphans="true">
+			<a>srcList</a>
+			<b>destList</b>
+		</field>
+	</mapping>
+
+	<mapping map-id="listMappingCopyByReference">
+		<class-a> org.terasoluna.gfw.common.bean.beans.StringListSrcBean
+		</class-a>
+		<class-b> org.terasoluna.gfw.common.bean.beans.StringListDestBean
+		</class-b>
+		<field copy-by-reference="true">
+			<a>srcList</a>
+			<b>destList</b>
+		</field>
+	</mapping>
+
+	<mapping map-id="arrayToListMapping">
+		<class-a> org.terasoluna.gfw.common.bean.beans.StringArraySrcBean
+		</class-a>
+		<class-b> org.terasoluna.gfw.common.bean.beans.StringListDestBean
+		</class-b>
+		<field relationship-type="non-cumulative" remove-orphans="true">
+			<a>arr</a>
+			<b>destList</b>
+		</field>
+	</mapping>
+
+	<mapping map-id="participantMappingNonCumulative">
+		<class-a> org.terasoluna.gfw.common.bean.beans.Participants
+		</class-a>
+		<class-b> org.terasoluna.gfw.common.bean.beans.Participants
+		</class-b>
+		<field relationship-type="non-cumulative">
+			<a>personList</a>
+			<b>personList</b>
+		</field>
+	</mapping>
+
+	<mapping map-id="participantMappingNonCumulativeAndRemoveOrphans">
+		<class-a> org.terasoluna.gfw.common.bean.beans.Participants
+		</class-a>
+		<class-b> org.terasoluna.gfw.common.bean.beans.Participants
+		</class-b>
+		<field remove-orphans="true" relationship-type="non-cumulative">
+			<a>personList</a>
+			<b>personList</b>
+		</field>
+	</mapping>
+
+    <mapping map-id="participantMappingCumulativeAndRemoveOrphans">
+        <class-a> org.terasoluna.gfw.common.bean.beans.Participants
+        </class-a>
+        <class-b> org.terasoluna.gfw.common.bean.beans.Participants
+        </class-b>
+        <field remove-orphans="true">
+            <a>personList</a>
+            <b>personList</b>
+        </field>
+    </mapping>	
+</mappings> 

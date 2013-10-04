@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+    version="2.1">
+
+    <description>TERASOLUNA Framework JSP Tag Library</description>
+    <tlib-version>3.0</tlib-version>
+    <short-name>t</short-name>
+    <uri>http://terasoluna.org/tags</uri>
+
+    <tag>
+        <description>JSP tag that provides pagination functionality</description>
+        <name>pagination</name>
+        <tag-class>org.terasoluna.gfw.web.pagination.PaginationTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <description>Page object</description>
+            <name>page</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Path template of pagination</description>
+            <name>pathTmpl</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Query path</description>
+            <name>queryTmpl</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Maximum display count</description>
+            <name>maxDisplayCount</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Outer tag of HTML that make up pagination</description>
+            <name>outerElement</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Value of "class" attribute of outer tag of pagination</description>
+            <name>outerElementClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Inner tag of HTML that make up pagination</description>
+            <name>innerElement</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Display text of the link of back to the top</description>
+            <name>firstLinkText</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Display text of the link of back to previous</description>
+            <name>previousLinkText</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Display text of the link to proceed to the next</description>
+            <name>nextLinkText</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Display text of the link to forward to the last page</description>
+            <name>lastLinkText</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Anchor link which is set when the link is disabled.</description>
+            <name>disabledHref</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Class name that enables the link</description>
+            <name>activeClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Class name that enables the link</description>
+            <name>disabledClass</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Set HTML escaping for this tag, as a boolean
+                value. Overrides the
+                default HTML escaping setting for the current page.</description>
+            <name>htmlEscape</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+
+    <tag>
+        <description><![CDATA[
+            Tag for displaying messages in panel format in JSP page.
+            
+            Creates display tag, converts the object which is set in pageContext to String and sets this string inside the tag. 
+            This tag displays the contents of org.terasoluna.gfw.common.message.ResultMessages by default. However, String or List<string> set in Model can also be displayed using this tag. 
+            
+            When messagesPanel is set to use ResultMessages (default).
+            
+            By default values, configuration elements of messagesPanel are set to following values.
+                panelElement is "div".
+                panelClassName is "alert".
+                panelTypeClassPrefix is "alert-".
+                messagesType is "null".
+                outerElement is "ul".
+                innerElement is "li".
+            
+            All the above elements can be given non-default values. 
+            
+            Tag for displaying messages in panel format in JSP page
+
+            Example:
+            
+                <t:messagesPanel />
+            
+            Resulting Output must be
+            
+                <div class="alert alert-success"><ul><li>Hello World!!</li></ul></div>
+            
+            By default, a combination of, ``alert`` and any one of ``alert-success,alert-info,alert-warn,alert-error`` classes of bootstrap, is used in ``messagesPanel`` 
+            the suffix after ``alert-`` is specified using ``type`` of ResultMessages 
+            
+            When the message is in String and messagesPanel is using default values
+            
+            Configuration example:
+            
+                <t:messagesPanel messagesAttributeName="textMessage" />
+            
+            Result:
+            
+                <div class="alert"><ul><li>textMessage</li></ul></div>
+             
+            
+            When the message is in String and messagesPanel is using non-default values
+            
+            Case of not using ResultMessages: 
+            
+            Message pattern: 
+             
+            Configuration example:
+            
+                <t:messagesPanel messagesAttributeName="textMessage" panelClassName="notice"
+                panelTypeClassPrefix="" />
+             
+            Result:
+            
+                <div class="notice"><ul><li>textMessage</li></ul></div>
+        ]]></description>
+        <name>messagesPanel</name>
+        <tag-class>org.terasoluna.gfw.web.message.MessagesPanelTag</tag-class>
+        <body-content>JSP</body-content>
+        <attribute>
+            <description>
+            Set attribute name of message. default is "ResultMessages"
+            </description>
+            <name>messagesAttributeName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+            Set CSS class name of this panel. default is "alert"
+            </description>
+            <name>panelClassName</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+            Set prefix class name of the message. default is "alert-"
+            </description>
+            <name>panelTypeClassPrefix</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+            Set HTML element of this panel, default is "div"
+            </description>
+            <name>panelElement</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+            Set outer HTML element of messages in this panel. default is "ul"
+            </description>
+            <name>outerElement</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+            Set inner HTML element of messages in this panel.default is "li"
+            </description>
+            <name>innerElement</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+            Set message type of this panel explicitly. default is "null" (means that use type of ResultMessages).
+            </description>
+            <name>messagesType</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <example>
+        <![CDATA[
+        
+        
+        ]]></example>
+    </tag>
+
+    <tag>
+        <description>A Tag that renders transaction token in a hidden tag</description>
+        <name>transaction</name>
+        <tag-class>org.terasoluna.gfw.web.token.transaction.TransactionTokenTag</tag-class>
+        <body-content>JSP</body-content>
+    </tag>
+</taglib>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="validator"
+        class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />
+
+    <bean id="CD_GENDER" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+        <property name="map">
+            <map>
+                <entry key="M" value="Male" />
+                <entry key="F" value="Female" />
+            </map>
+        </property>
+    </bean>
+    <bean id="CD_LANG" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+        <property name="map">
+            <map>
+                <entry key="JP" value="Japanese" />
+                <entry key="EN" value="ENGLISH" />
+            </map>
+        </property>
+    </bean>
+    <bean id="CD_MULTIPLES_OF_3"
+        class="org.terasoluna.gfw.common.codelist.NumberRangeCodeList">
+        <property name="from" value="0" />
+        <property name="to" value="12" />
+        <property name="interval" value="3" />
+    </bean>
+    <bean id="CD_EVEN"
+        class="org.terasoluna.gfw.common.codelist.NumberRangeCodeList">
+        <property name="from" value="0" />
+        <property name="to" value="12" />
+        <property name="interval" value="2" />
+    </bean>
+</beans>
