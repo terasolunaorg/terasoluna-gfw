@@ -81,8 +81,8 @@ public class NumberRangeCodeList extends AbstractCodeList implements
     @Override
     public void afterPropertiesSet() {
         Assert.isTrue(interval > 0, "interval should be greater than 0");
-        Assert.hasLength(valueFormat, "valueFormat must be empty");
-        Assert.hasLength(labelFormat, "labelFormat must be empty");
+        Assert.hasLength(valueFormat, "valueFormat must not be empty");
+        Assert.hasLength(labelFormat, "labelFormat must not be empty");
 
         LinkedHashMap<String, String> numbers = new LinkedHashMap<String, String>();
         if (from <= to) {
