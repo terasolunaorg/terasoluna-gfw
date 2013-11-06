@@ -262,7 +262,7 @@
                 <enabled>false</enabled>
             </snapshots>
             <id>terasoluna-gfw-releases</id>
-            <url>http://54.248.227.230/nexus/content/repositories/terasoluna-gfw-releases/</url>
+            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
         </repository>
         <repository>
             <releases>
@@ -272,7 +272,7 @@
                 <enabled>true</enabled>
             </snapshots>
             <id>terasoluna-gfw-snapshots</id>
-            <url>http://54.248.227.230/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
+            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
         </repository>
         <repository>
             <releases>
@@ -282,7 +282,7 @@
                 <enabled>false</enabled>
             </snapshots>
             <id>terasoluna-gfw-3rdparty</id>
-            <url>http://54.248.227.230/nexus/content/repositories/terasoluna-gfw-3rdparty/</url>
+            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/</url>
         </repository>
     </repositories>
     <pluginRepositories>
@@ -931,11 +931,11 @@
     <distributionManagement>
         <repository>
             <id>terasoluna-gfw-releases</id>
-            <url>http://54.248.227.230/nexus/content/repositories/terasoluna-gfw-releases/</url>
+            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
         </repository>
         <snapshotRepository>
             <id>terasoluna-gfw-snapshots</id>
-            <url>http://54.248.227.230/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
+            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
         </snapshotRepository>
     </distributionManagement>
     <properties>
