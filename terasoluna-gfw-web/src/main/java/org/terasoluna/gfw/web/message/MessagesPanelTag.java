@@ -29,7 +29,7 @@ import org.terasoluna.gfw.common.message.ResultMessage;
 import org.terasoluna.gfw.common.message.ResultMessageType;
 import org.terasoluna.gfw.common.message.ResultMessageUtils;
 import org.terasoluna.gfw.common.message.ResultMessages;
-import org.terasoluna.gfw.web.util.EscapeUtils;
+import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
 
 /**
  * Tag for displaying messages in panel format in JSP page<br>
@@ -197,9 +197,9 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	private String messagesType = null;
 	
 	/**
-	 * Flag to indicate whether html escaping is to be enabled or not
+	 * Flag to indicate whether html escaping is to be disabled or not
 	 */
-	private Boolean htmlEscapingEnabled = new Boolean("true");
+	private Boolean disableHtmlEscape = Boolean.FALSE;
 	
 	/**
 	 * Creates TagWriter
@@ -340,10 +340,10 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 			if (StringUtils.hasText(innerElement)) {
 				tagWriter.startTag(innerElement); // <li>
 			}
-			if(htmlEscapingEnabled) {
-				tagWriter.appendValue(EscapeUtils.htmlEscape(getText(message)));
+			if(disableHtmlEscape) {
+			    tagWriter.appendValue(getText(message));
 			} else {
-				tagWriter.appendValue(getText(message));
+			    tagWriter.appendValue(HtmlEscapeUtils.htmlEscape(getText(message)));
 			}
 
 			if (StringUtils.hasText(innerElement)) {
@@ -555,16 +555,15 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	 * IF set to true, html escaping is enabled. 
 	 * Default value is true.
 	 * 
-	 * @param htmlEscapingEnabled
-	 *            value of htmlEscapingEnabled
+	 * @param disableHtmlEscape
+	 *            value of disableHtmlEscape
 	 */
-	public void setHtmlEscapingEnabled(String htmlEscapingEnabled) {
-		if(StringUtils.hasText(htmlEscapingEnabled)) {
-			if(htmlEscapingEnabled.equalsIgnoreCase("true") || 
-			        htmlEscapingEnabled.equalsIgnoreCase("false")) {
-				this.htmlEscapingEnabled = Boolean.valueOf(htmlEscapingEnabled);
+	public void setDisableHtmlEscape(String disableHtmlEscape) {
+		if(StringUtils.hasText(disableHtmlEscape)) {
+			if(disableHtmlEscape.equalsIgnoreCase("true") || 
+			        disableHtmlEscape.equalsIgnoreCase("false")) {
+				this.disableHtmlEscape = Boolean.valueOf(disableHtmlEscape);
 			}
 		}
 	}
-
 }
