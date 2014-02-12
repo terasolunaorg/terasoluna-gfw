@@ -37,6 +37,8 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockPageContext;
 import org.springframework.mock.web.MockServletContext;
+import org.springframework.test.annotation.ExpectedException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.form.TagWriter;
 import org.terasoluna.gfw.common.message.ResultMessage;
@@ -578,7 +580,7 @@ public class MessagesPanelTagTest {
 
     /**
      * Set default messages attribute name & ResultMessages.fromText().<br>
-     * check that message text is escaped if htmlEscapingEnabled is set to null.
+     * check that message text gets escaped if htmlEscapingEnabled is set to null.
      */
     @Test
     public void test31() throws Exception {
@@ -593,7 +595,7 @@ public class MessagesPanelTagTest {
 
     /**
      * Set default messages attribute name & ResultMessages.fromText().<br>
-     * check that message text is escaped if htmlEscapingEnabled is set to empty string.
+     * check that message text gets escaped if htmlEscapingEnabled is set to empty string.
      */
     @Test
     public void test32() throws Exception {
@@ -604,6 +606,18 @@ public class MessagesPanelTagTest {
         String expected = "<div class=\"alert alert-error\"><ul><li>&lt;div&gt;</li></ul></div>";
         assertThat(getOutput(), is(expected));
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+    }
+
+    /**
+     * Set default messages attribute name & ResultMessages.fromText().<br>
+     * check that JspTagException occurs if htmlEscapingEnabled is set to unexpected String.
+     */
+    @Test(expected = JspTagException.class)
+    public void test33() throws Exception {
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
+                ResultMessages.error().add(ResultMessage.fromText("<div>")));
+        tag.setDisableHtmlEscape("aaaa");
+        tag.doStartTag();
     }
 
     protected String getOutput() {

@@ -229,7 +229,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 			throw new JspTagException(
 					"At least one out of panelElement, outerElement, innerElement should be set");
 		}
-
+		
 		TagWriter tagWriter = createTagWriter();
 
 		Object messages = this.pageContext.findAttribute(messagesAttributeName);
@@ -558,12 +558,15 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	 * @param disableHtmlEscape
 	 *            value of disableHtmlEscape
 	 */
-	public void setDisableHtmlEscape(String disableHtmlEscape) {
+	public void setDisableHtmlEscape(String disableHtmlEscape) throws JspException {
 		if(StringUtils.hasText(disableHtmlEscape)) {
 			if(disableHtmlEscape.equalsIgnoreCase("true") || 
 			        disableHtmlEscape.equalsIgnoreCase("false")) {
 				this.disableHtmlEscape = Boolean.valueOf(disableHtmlEscape);
-			}
-		}
+			} else {
+	            throw new JspTagException(
+	                    "The value of disableHtmlEscape must be either true or false");
+	        }
+		} 
 	}
 }
