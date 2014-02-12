@@ -31,6 +31,7 @@ import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.util.HtmlUtils;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
 
 /**
  * Class of functions of EL pattern.
@@ -89,7 +90,7 @@ public final class Functions {
     }
 
     /**
-     * escape html tags in the given string. *
+     * escape html tags in the given string.
      * <p>
      * target characters to escape are following <br>
      * &lt; ====&gt; &amp;lt;<br>
@@ -103,38 +104,7 @@ public final class Functions {
      * @see HtmlUtils#htmlEscape(String)
      */
     public static String h(Object input) {
-        if (input == null) {
-            return "";
-        }
-        String str = null;
-        if (input.getClass().isArray()) {
-            Class<?> clazz = input.getClass().getComponentType();
-            if (clazz == String.class) {
-                str = Arrays.toString((Object[]) input);
-            } else if (clazz == boolean.class) {
-                str = Arrays.toString((boolean[]) input);
-            } else if (clazz == char.class) {
-                str = Arrays.toString((char[]) input);
-            } else if (clazz == int.class) {
-                str = Arrays.toString((int[]) input);
-            } else if (clazz == long.class) {
-                str = Arrays.toString((long[]) input);
-            } else if (clazz == byte.class) {
-                str = Arrays.toString((byte[]) input);
-            } else if (clazz == short.class) {
-                str = Arrays.toString((short[]) input);
-            } else if (clazz == float.class) {
-                str = Arrays.toString((float[]) input);
-            } else if (clazz == double.class) {
-                str = Arrays.toString((double[]) input);
-            } else {
-                str = Arrays.toString((Object[]) input);
-            }
-        } else {
-            str = input.toString();
-        }
-
-        return HtmlUtils.htmlEscape(str);
+        return HtmlEscapeUtils.htmlEscape(input);
     }
 
     /**

@@ -546,8 +546,67 @@ public class MessagesPanelTagTest {
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
     }
 
+    /**
+     * Set default messages attribute name & ResultMessages.fromText().<br>
+     * check that message text gets escaped if htmlEscapingEnabled is set to true.
+     */
+    @Test
+    public void test29() throws Exception {
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
+                ResultMessages.error().add(ResultMessage.fromText("<div>")));
+        tag.setDisableHtmlEscape("true");
+        int ret = tag.doStartTag();
+        String expected = "<div class=\"alert alert-error\"><ul><li><div></li></ul></div>";
+        assertThat(getOutput(), is(expected));
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+    }
+
+    /**
+     * Set default messages attribute name & ResultMessages.fromText().<br>
+     * check that message text is not escaped if htmlEscapingEnabled is set to false.
+     */
+    @Test
+    public void test30() throws Exception {
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
+                ResultMessages.error().add(ResultMessage.fromText("<div>")));
+        tag.setDisableHtmlEscape("false");
+        int ret = tag.doStartTag();
+        String expected = "<div class=\"alert alert-error\"><ul><li>&lt;div&gt;</li></ul></div>";
+        assertThat(getOutput(), is(expected));
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+    }
+
+    /**
+     * Set default messages attribute name & ResultMessages.fromText().<br>
+     * check that message text is escaped if htmlEscapingEnabled is set to null.
+     */
+    @Test
+    public void test31() throws Exception {
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
+                ResultMessages.error().add(ResultMessage.fromText("<div>")));
+        tag.setDisableHtmlEscape(null);
+        int ret = tag.doStartTag();
+        String expected = "<div class=\"alert alert-error\"><ul><li>&lt;div&gt;</li></ul></div>";
+        assertThat(getOutput(), is(expected));
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+    }
+
+    /**
+     * Set default messages attribute name & ResultMessages.fromText().<br>
+     * check that message text is escaped if htmlEscapingEnabled is set to empty string.
+     */
+    @Test
+    public void test32() throws Exception {
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
+                ResultMessages.error().add(ResultMessage.fromText("<div>")));
+        tag.setDisableHtmlEscape("");
+        int ret = tag.doStartTag();
+        String expected = "<div class=\"alert alert-error\"><ul><li>&lt;div&gt;</li></ul></div>";
+        assertThat(getOutput(), is(expected));
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+    }
+
     protected String getOutput() {
         return this.writer.toString();
     }
-
 }
