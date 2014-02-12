@@ -33,6 +33,28 @@ import java.util.Map;
  * @since 1.1.0
  */
 public class EnumCodeList extends AbstractCodeList {
+
+    /**
+     * interface of item in codelist
+     *
+     * @since 1.1.0
+     */
+    public static interface CodeListItem {
+        /**
+         * Returns the label of item
+         *
+         * @return label of the item
+         */
+        String getCodeLabel();
+
+        /**
+         * Returns the value of item
+         *
+         * @return value of the item
+         */
+        String getCodeValue();
+    }
+
     /**
      * a map holds values and labels of codelist actually.
      */

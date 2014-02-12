@@ -24,7 +24,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class EnumCodeListTest {
-    public static enum OrderStatus implements CodeListItem {
+    public static enum OrderStatus implements EnumCodeList.CodeListItem {
         RECEIVED("1", "Received"), SENT("2", "Sent"), CANCELLED("3",
                 "Cancelled");
 
