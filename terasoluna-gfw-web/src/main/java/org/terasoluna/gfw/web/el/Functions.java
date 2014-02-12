@@ -31,7 +31,7 @@ import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.util.HtmlUtils;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
-import org.terasoluna.gfw.web.util.EscapeUtils;
+import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
 
 /**
  * Class of functions of EL pattern.
@@ -104,7 +104,7 @@ public final class Functions {
      * @see HtmlUtils#htmlEscape(String)
      */
     public static String h(Object input) {
-        return EscapeUtils.htmlEscape(input);
+        return HtmlEscapeUtils.htmlEscape(input);
     }
 
     /**

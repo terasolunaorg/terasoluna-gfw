@@ -22,7 +22,7 @@ import org.springframework.web.util.HtmlUtils;
 /**
  * utility class about HTML Escape processing
  */
-public final class EscapeUtils {
+public final class HtmlEscapeUtils {
 
     /**
      * Default Constructor.
@@ -30,7 +30,7 @@ public final class EscapeUtils {
      * do nothing.
      * </p>
      */
-    private EscapeUtils() {
+    private HtmlEscapeUtils() {
         // do nothing.
     }
 
@@ -46,7 +46,7 @@ public final class EscapeUtils {
      * </p>
      * @param input string to escape
      * @return escaped string. returns empty string if <code>value</code> is <code>null</code> or empty string.
-     * @see HtmlUtils#htmlEscape(String)
+     * @see HtmlEscapeUtils#htmlEscape(String)
      */
     public static String htmlEscape(Object input) {
         if (input == null) {

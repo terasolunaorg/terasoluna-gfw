@@ -554,9 +554,9 @@ public class MessagesPanelTagTest {
     public void test29() throws Exception {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
                 ResultMessages.error().add(ResultMessage.fromText("<div>")));
-        tag.setHtmlEscapingEnabled("true");
+        tag.setDisableHtmlEscape("true");
         int ret = tag.doStartTag();
-        String expected = "<div class=\"alert alert-error\"><ul><li>&lt;div&gt;</li></ul></div>";
+        String expected = "<div class=\"alert alert-error\"><ul><li><div></li></ul></div>";
         assertThat(getOutput(), is(expected));
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
     }
@@ -569,9 +569,9 @@ public class MessagesPanelTagTest {
     public void test30() throws Exception {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
                 ResultMessages.error().add(ResultMessage.fromText("<div>")));
-        tag.setHtmlEscapingEnabled("false");
+        tag.setDisableHtmlEscape("false");
         int ret = tag.doStartTag();
-        String expected = "<div class=\"alert alert-error\"><ul><li><div></li></ul></div>";
+        String expected = "<div class=\"alert alert-error\"><ul><li>&lt;div&gt;</li></ul></div>";
         assertThat(getOutput(), is(expected));
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
     }
@@ -584,7 +584,7 @@ public class MessagesPanelTagTest {
     public void test31() throws Exception {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
                 ResultMessages.error().add(ResultMessage.fromText("<div>")));
-        tag.setHtmlEscapingEnabled(null);
+        tag.setDisableHtmlEscape(null);
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-error\"><ul><li>&lt;div&gt;</li></ul></div>";
         assertThat(getOutput(), is(expected));
@@ -599,7 +599,7 @@ public class MessagesPanelTagTest {
     public void test32() throws Exception {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
                 ResultMessages.error().add(ResultMessage.fromText("<div>")));
-        tag.setHtmlEscapingEnabled("");
+        tag.setDisableHtmlEscape("");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-error\"><ul><li>&lt;div&gt;</li></ul></div>";
         assertThat(getOutput(), is(expected));
