@@ -21,7 +21,6 @@ import static org.hamcrest.CoreMatchers.*;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -390,6 +389,32 @@ public class FunctionsTest {
                 query,
                 is("age=10&date=2000-01-01&list=a,b,%E3%81%82&name=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86"));
         assertThat(Functions.query(new Person()), is("age=&date=&list=&name="));
+    }
+
+    @Test
+    public void testQuery04_url_encoding_for_queryString() {
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        // Specify a characters(#[]) that cannot use in the query on RFC3986.
+        // See http://tools.ietf.org/html/rfc3986#section-3.4.
+        map.put("key#1", "value#1");
+        map.put("key[2", "value[2");
+        map.put("key]3", "value]3");
+        // Specify a characters(&=+) that must be escaped in the query on general web server.
+        map.put("key&4", "value&4");
+        map.put("key=5", "value=5");
+        map.put("key+6", "value+6");
+
+        String actualQuery = Functions.query(map);
+
+        StringBuilder expectedQuery = new StringBuilder();
+        expectedQuery.append("key%231=value%231"); // #
+        expectedQuery.append("&").append("key%5B2=value%5B2"); // [
+        expectedQuery.append("&").append("key%5D3=value%5D3"); // ]
+        expectedQuery.append("&").append("key%264=value%264"); // &
+        expectedQuery.append("&").append("key%3D5=value%3D5"); // =
+        expectedQuery.append("&").append("key%2B6=value%2B6"); // +
+
+        assertThat(actualQuery, is(expectedQuery.toString()));
     }
 
     @Test
