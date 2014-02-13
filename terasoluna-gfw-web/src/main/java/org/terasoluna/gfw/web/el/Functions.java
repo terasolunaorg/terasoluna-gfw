@@ -16,7 +16,6 @@
 package org.terasoluna.gfw.web.el;
 
 import java.beans.PropertyDescriptor;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -177,7 +176,7 @@ public final class Functions {
      * query string is encoded with "UTF-8".
      * </p>
      * @param map map
-     * @return query string. if map is not empty, return query string of start with "&". ex) &name1=value&name2=value&...
+     * @return query string. if map is not empty, return query string. ex) name1=value&name2=value&...
      */
     public static String mapToQuery(Map<String, Object> map) {
         return mapToQuery(map, null);
@@ -190,7 +189,7 @@ public final class Functions {
      * </p>
      * @param map map
      * @param beanWrapper beanWrapper which has the definition of each field.
-     * @return query string. if map is not empty, return query string of start with "&". ex) &name1=value&name2=value&...
+     * @return query string. if map is not empty, return query string. ex) name1=value&name2=value&...
      */
     public static String mapToQuery(Map<String, Object> map,
             BeanWrapper beanWrapper) {
@@ -202,17 +201,19 @@ public final class Functions {
         for (Map.Entry<String, Object> e : map.entrySet()) {
             String name = e.getKey();
             Object value = e.getValue();
-            builder.path("&" + name + "={" + name + "}");
+            builder.queryParam(name, "{" + name + "}");
             TypeDescriptor sourceType;
             if (beanWrapper != null) {
                 sourceType = beanWrapper.getPropertyTypeDescriptor(name);
             } else {
                 sourceType = TypeDescriptor.forObject(value);
             }
-            uriVariables.put(name,
-                    CONVERSION_SERVICE.convert(value, sourceType, STRING_DESC));
+            uriVariables.put(name, CONVERSION_SERVICE.convert(value,
+                    sourceType, STRING_DESC));
         }
-        return builder.buildAndExpand(uriVariables).encode().toString();
+        String query = builder.buildAndExpand(uriVariables).encode().toString();
+        // remove the beginning symbol character('?') of the query string.
+        return query.substring(1);
     }
 
     /**
@@ -252,11 +253,7 @@ public final class Functions {
             }
             query = mapToQuery(map, beanWrapper);
         }
-        if (query.startsWith("&")) {
-            return query.substring(1);
-        } else {
-            return query;
-        }
+        return query;
     }
 
     /**
