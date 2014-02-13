@@ -21,7 +21,6 @@ import static org.hamcrest.CoreMatchers.*;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -390,6 +389,24 @@ public class FunctionsTest {
                 query,
                 is("age=10&date=2000-01-01&list=a,b,%E3%81%82&name=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86"));
         assertThat(Functions.query(new Person()), is("age=&date=&list=&name="));
+    }
+
+    @Test
+    public void testQuery04_url_encoding_for_reserved_character_of_queryString_and_fragment() {
+        // Tested using typical reserved characters.
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        map.put("key&1", "value&1");// contains separator character(&) of query items.
+        map.put("key=2", "value=2");// contains separator character(=) of key-value.
+        map.put("key#3", "value#3");// contains fragment starting character(#).
+
+        String actualQuery = Functions.query(map);
+
+        StringBuilder expectedQuery = new StringBuilder();
+        expectedQuery.append("key%261=value%261");
+        expectedQuery.append("&").append("key%3D2=value%3D2");
+        expectedQuery.append("&").append("key%233=value%233");
+
+        assertThat(actualQuery, is(expectedQuery.toString()));
     }
 
     @Test
