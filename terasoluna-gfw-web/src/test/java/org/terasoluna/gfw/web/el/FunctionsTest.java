@@ -392,19 +392,27 @@ public class FunctionsTest {
     }
 
     @Test
-    public void testQuery04_url_encoding_for_reserved_character_of_queryString_and_fragment() {
-        // Tested using typical reserved characters.
+    public void testQuery04_url_encoding_for_queryString() {
         Map<String, Object> map = new LinkedHashMap<String, Object>();
-        map.put("key&1", "value&1");// contains separator character(&) of query items.
-        map.put("key=2", "value=2");// contains separator character(=) of key-value.
-        map.put("key#3", "value#3");// contains fragment starting character(#).
+        // Specify a characters(#[]) that cannot use in the query on RFC3986.
+        // See http://tools.ietf.org/html/rfc3986#section-3.4.
+        map.put("key#1", "value#1");
+        map.put("key[2", "value[2");
+        map.put("key]3", "value]3");
+        // Specify a characters(&=+) that must be escaped in the query on general web server.
+        map.put("key&4", "value&4");
+        map.put("key=5", "value=5");
+        map.put("key+6", "value+6");
 
         String actualQuery = Functions.query(map);
 
         StringBuilder expectedQuery = new StringBuilder();
-        expectedQuery.append("key%261=value%261");
-        expectedQuery.append("&").append("key%3D2=value%3D2");
-        expectedQuery.append("&").append("key%233=value%233");
+        expectedQuery.append("key%231=value%231"); // #
+        expectedQuery.append("&").append("key%5B2=value%5B2"); // [
+        expectedQuery.append("&").append("key%5D3=value%5D3"); // ]
+        expectedQuery.append("&").append("key%264=value%264"); // &
+        expectedQuery.append("&").append("key%3D5=value%3D5"); // =
+        expectedQuery.append("&").append("key%2B6=value%2B6"); // +
 
         assertThat(actualQuery, is(expectedQuery.toString()));
     }
