@@ -109,61 +109,59 @@
 
     <tag>
         <description><![CDATA[
-            Tag for displaying messages in panel format in JSP page.
-            
-            Creates display tag, converts the object which is set in pageContext to String and sets this string inside the tag. 
-            This tag displays the contents of org.terasoluna.gfw.common.message.ResultMessages by default. However, String or List<string> set in Model can also be displayed using this tag. 
-            
-            When messagesPanel is set to use ResultMessages (default).
-            
-            By default values, configuration elements of messagesPanel are set to following values.
-                panelElement is "div".
-                panelClassName is "alert".
-                panelTypeClassPrefix is "alert-".
-                messagesType is "null".
-                outerElement is "ul".
-                innerElement is "li".
-            
-            All the above elements can be given non-default values. 
-            
             Tag for displaying messages in panel format in JSP page
 
-            Example:
-            
-                <t:messagesPanel />
-            
-            Resulting Output must be
-            
-                <div class="alert alert-success"><ul><li>Hello World!!</li></ul></div>
-            
-            By default, a combination of, ``alert`` and any one of ``alert-success,alert-info,alert-warn,alert-error`` classes of bootstrap, is used in ``messagesPanel`` 
-            the suffix after ``alert-`` is specified using ``type`` of ResultMessages 
-            
-            When the message is in String and messagesPanel is using default values
-            
-            Configuration example:
-            
-                <t:messagesPanel messagesAttributeName="textMessage" />
-            
-            Result:
-            
-                <div class="alert"><ul><li>textMessage</li></ul></div>
-             
-            
-            When the message is in String and messagesPanel is using non-default values
-            
-            Case of not using ResultMessages: 
-            
-            Message pattern: 
-             
-            Configuration example:
-            
-                <t:messagesPanel messagesAttributeName="textMessage" panelClassName="notice"
-                panelTypeClassPrefix="" />
-             
-            Result:
-            
-                <div class="notice"><ul><li>textMessage</li></ul></div>
+			Creates display tag, converts the object which is set in pageContext to String and sets this string inside the tag 
+			This tag displays the contents of org.terasoluna.gfw.common.message.ResultMessages by default. However, String or List<string> set in Model can also be displayed using this tag 
+			
+			when messagesPanel is set to use ResultMessages (default) 
+			
+			By default, configuration elements of messagesPanel are set to following values
+			panelElement is "div"
+			panelClassName is "alert"
+			panelTypeClassPrefix is "alert-"
+			messagesType is "null"
+			outerElement is "ul"
+			innerElement is "li"
+			disableHtmlEscape is "false"
+			
+			All the above elements can be given non-default values. 
+			
+			Example
+			
+			 <t:messagesPanel />
+			 
+			Resulting Output will be
+			
+			 <div class="alert alert-success"><ul><li>Hello World!!</li></ul></div>
+			 
+			By default, a combination of, ``alert`` and any one of ``alert-success,alert-info,alert-warn,alert-error`` classes of bootstrap, is used in ``messagesPanel`` 
+			the suffix after ``alert-`` is specified using ``type`` of ResultMessages 
+			
+			When the message is in String and messagesPanel is using default values
+			
+			Configuration example:
+			
+			 <t:messagesPanel messagesAttributeName="textMessage" />
+			
+			Result:
+			
+			 <div class="alert"><ul><li>textMessage</li></ul></div>
+			
+			When the message is in String and messagesPanel is using non-default values
+			
+			This is the case of not using ResultMessages: 
+			
+			   Message pattern 
+			 
+			Configuration example:
+			
+			 <t:messagesPanel messagesAttributeName="textMessage" panelClassName="notice"
+			 panelTypeClassPrefix="" />
+			
+			Result:
+			
+			 <div class="notice"><ul><li>textMessage</li></ul></div>
         ]]></description>
         <name>messagesPanel</name>
         <tag-class>org.terasoluna.gfw.web.message.MessagesPanelTag</tag-class>
@@ -221,6 +219,14 @@
             Set message type of this panel explicitly. default is "null" (means that use type of ResultMessages).
             </description>
             <name>messagesType</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+            Set disableHtmlEscape to disable html escaping functionality of this tag. default is set to "false" (means that html escaping is done by default. Set it to true to disable escaping).
+            </description>
+            <name>disableHtmlEscape</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

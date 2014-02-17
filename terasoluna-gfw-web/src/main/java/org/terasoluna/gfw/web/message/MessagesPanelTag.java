@@ -53,6 +53,7 @@ import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
  * {@link #messagesType} is "null"<br>
  * {@link #outerElement} is "ul"<br>
  * {@link #innerElement} is "li"<br>
+ * {@link #disableHtmlEscape} is "false"<br>
  * <br>
  * All the above elements can be given non-default values.
  * </p>
@@ -550,10 +551,11 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	}
 	
 	/**
-	 * Sets the value for HtmlEscapingEnabled property.
+	 * Sets the value for disableHtmlEscape property.
 	 * <p>
-	 * IF set to true, html escaping is enabled. 
-	 * Default value is true.
+	 * IF set to true, html escaping is disabled. <br>
+	 * By default, disableHtmlEscape is set to <code>false</code>. This means <br>
+	 * html escaping is not disabled and will be performed by default. 
 	 * 
 	 * @param disableHtmlEscape
 	 *            value of disableHtmlEscape
@@ -565,7 +567,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 				this.disableHtmlEscape = Boolean.valueOf(disableHtmlEscape);
 			} else {
 	            throw new JspTagException(
-	                    "The value of disableHtmlEscape must be either true or false");
+	                    "The value of disableHtmlEscape must be either true or false.");
 	        }
 		} 
 	}
