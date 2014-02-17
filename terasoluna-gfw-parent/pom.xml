@@ -974,8 +974,8 @@
         <org.lazyluke.version>0.2.7</org.lazyluke.version>
         <!-- == Spring Framework == -->
         <org.springframework-version>3.2.4.RELEASE</org.springframework-version>
-        <org.springframework.data.spring-data-jpa.version>1.4.1.RELEASE</org.springframework.data.spring-data-jpa.version>
-        <org.springframework.data.version>1.6.1.RELEASE</org.springframework.data.version>
+        <org.springframework.data.spring-data-jpa.version>1.4.3.RELEASE</org.springframework.data.spring-data-jpa.version>
+        <org.springframework.data.version>1.6.3.RELEASE</org.springframework.data.version>
         <org.springframework.security.version>3.1.4.RELEASE</org.springframework.security.version>
         <!-- == Tiles == -->
         <org.apache.tiles.version>2.2.2</org.apache.tiles.version>
