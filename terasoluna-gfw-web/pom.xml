@@ -76,6 +76,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
         </dependency>
+        
+        <!-- Spring OXM -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-oxm</artifactId>
+        </dependency>
         <!-- == End Spring == -->
 
         <!-- == Begin Tomcat == -->
