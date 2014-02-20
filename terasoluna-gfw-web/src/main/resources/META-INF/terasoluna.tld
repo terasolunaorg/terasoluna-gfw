@@ -26,8 +26,14 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-            <description>Query path</description>
+            <description>Query template of pagination</description>
             <name>queryTmpl</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>Query of search criteria</description>
+            <name>criteriaQuery</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>

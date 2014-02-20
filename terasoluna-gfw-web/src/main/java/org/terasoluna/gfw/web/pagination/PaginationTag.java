@@ -41,9 +41,14 @@ public class PaginationTag extends HtmlEscapingAwareTag {
     private String pathTmpl = PaginationInfo.DEFAULT_PATH_TEMPLATE;
 
     /**
-     * Query path
+     * Query template of pagination
      */
     private String queryTmpl = PaginationInfo.DEFAULT_QUERY_TEMPLATE;
+
+    /**
+     * Query of search criteria
+     */
+    private String criteriaQuery;
 
     /**
      * Maximum display count
@@ -129,7 +134,7 @@ public class PaginationTag extends HtmlEscapingAwareTag {
 
             TagWriter tagWriter = createTagWriter();
 
-            PaginationInfo info = new PaginationInfo(p, pathTmpl, queryTmpl, maxDisplayCount);
+            PaginationInfo info = new PaginationInfo(p, pathTmpl, queryTmpl, criteriaQuery, maxDisplayCount);
             BeginAndEnd be = info.getBeginAndEnd();
 
             startOuterElement(tagWriter);
@@ -329,6 +334,7 @@ public class PaginationTag extends HtmlEscapingAwareTag {
         this.page = null;
         this.pathTmpl = null;
         this.queryTmpl = null;
+        this.criteriaQuery = null;
         this.outerElement = null;
         this.outerElementClass = null;
         this.innerElement = null;
@@ -358,11 +364,19 @@ public class PaginationTag extends HtmlEscapingAwareTag {
     }
 
     /**
-     * Set query path<br>
+     * Set query template of pagination<br>
      * @param queryTmpl
      */
     public void setQueryTmpl(String queryTmpl) {
         this.queryTmpl = queryTmpl;
+    }
+
+    /**
+     * Set query of search criteria<br>
+     * @param criteriaQuery
+     */
+    public void setCriteriaQuery(String criteriaQuery) {
+        this.criteriaQuery = criteriaQuery;
     }
 
     /**
