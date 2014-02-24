@@ -34,7 +34,7 @@
                 Allowed parameter(query variable) is {page} / {size} / {sortOrderProperty} / {sortOrderDirection}.&#xA;&#xA;
 
                 Search criteria should not be specified in "queryTmpl" attribute, because double URL-encoded.
-                Therefore, search criteria should be specify to "queryCriteria" attribute.&#xA;&#xA;
+                Therefore, search criteria should be specify to "criteriaQuery" attribute.&#xA;&#xA;
                 
                 [Default value]&#xA;
                 page={page}&amp;size={size}&#xA;&#xA;
