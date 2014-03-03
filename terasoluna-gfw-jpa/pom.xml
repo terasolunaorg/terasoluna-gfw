@@ -44,12 +44,6 @@
         </dependency>
         <!-- == End Joda-Time == -->
 
-        <!-- == Begin Other JavaEE/SE APIs == -->
-        <dependency>
-            <groupId>javax.transaction</groupId>
-            <artifactId>jta</artifactId>
-        </dependency>
-        <!-- == End Other JavaEE/SE APIs == -->
     </dependencies>
 
 </project>
