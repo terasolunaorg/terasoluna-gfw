@@ -352,7 +352,7 @@ public class PaginationInfoTest {
 
     @Test
     public void issue12_testGetPageUrl_criteriaQueryIsEmpty() {
-        PaginationInfo info = new PaginationInfo(page, pathTmpl, queryTmpl, "", 10);
+        PaginationInfo info = new PaginationInfo(page, pathTmpl, queryTmpl, "", false, 10);
 
         // expected
         String expectedURL = "terasoluna?value=test&page=0&size=5";
@@ -364,7 +364,7 @@ public class PaginationInfoTest {
 
     @Test
     public void issue12_testGetPageUrl_criteriaQueryIsSpecified() {
-        PaginationInfo info = new PaginationInfo(page, pathTmpl, queryTmpl, "a=%2B", 10);
+        PaginationInfo info = new PaginationInfo(page, pathTmpl, queryTmpl, "a=%2B", false, 10);
 
         // expected
         String expectedURL = "terasoluna?value=test&page=0&size=5&a=%2B";
@@ -376,7 +376,7 @@ public class PaginationInfoTest {
 
     @Test
     public void issue12_testGetPageUrl_criteriaQueryIsSpecified_startWithQuestionMark() {
-        PaginationInfo info = new PaginationInfo(page, pathTmpl, queryTmpl, "?a=%2B", 10);
+        PaginationInfo info = new PaginationInfo(page, pathTmpl, queryTmpl, "?a=%2B", false, 10);
 
         // expected
         String expectedURL = "terasoluna?value=test&page=1&size=5&a=%2B";
@@ -389,7 +389,7 @@ public class PaginationInfoTest {
 
     @Test
     public void issue12_testGetPageUrl_criteriaQueryIsSpecified_startWithAndMark() {
-        PaginationInfo info = new PaginationInfo(page, pathTmpl, queryTmpl, "&a=%2B", 10);
+        PaginationInfo info = new PaginationInfo(page, pathTmpl, queryTmpl, "&a=%2B", false, 10);
 
         // expected
         String expectedURL = "terasoluna?value=test&page=2&size=5&a=%2B";
@@ -402,13 +402,26 @@ public class PaginationInfoTest {
 
     @Test
     public void issue12_testGetPageUrl_criteriaQueryIsSpecified_queryTmplNotSpecified() {
-        PaginationInfo info = new PaginationInfo(page, "/{page}/{size}", null, "a=%2B", 10);
+        PaginationInfo info = new PaginationInfo(page, "/{page}/{size}", null, "a=<>&\"'a1", false, 10);
 
         // expected
-        String expectedURL = "/3/5?a=%2B";
+        String expectedURL = "/3/5?a=&lt;&gt;&amp;&quot;&#39;a1";
 
         // assert
         // That the question-mark(?) is append
         assertThat(info.getPageUrl(3), is(expectedURL));
     }
+
+    @Test
+    public void issue12_testGetPageUrl_disableHtmlEscapeOfCriteriaQueryIsTrue_queryTmplNotSpecified() {
+        PaginationInfo info = new PaginationInfo(page, "/{page}/{size}", null, "a=<>&\"'a1", true, 10);
+
+        // expected
+        String expectedURL = "/3/5?a=<>&\"'a1";
+
+        // assert
+        // That the question-mark(?) is append
+        assertThat(info.getPageUrl(3), is(expectedURL));
+    }
+
 }
