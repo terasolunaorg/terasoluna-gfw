@@ -22,8 +22,10 @@ import java.util.Map;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
+import org.springframework.util.StringUtils;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
 
 /**
  * Holds all the information required by the {@code PaginationTag} to display pagination functionality. <br>
@@ -82,7 +84,7 @@ public class PaginationInfo {
     public static final String DEFAULT_PATH_TEMPLATE = "";
 
     /**
-     * Default query path
+     * Default query template of pagination
      */
     public static final String DEFAULT_QUERY_TEMPLATE = "page={page}&size={size}";
 
@@ -182,14 +184,20 @@ public class PaginationInfo {
     private final int current;
 
     /**
-     * URL path
+     * Path template of pagination
      */
     private final String pathTmpl;
 
     /**
-     * URL for page number and display count
+     * Query template of pagination
      */
     private final String queryTmpl;
+
+    /**
+     * Query of search criteria
+     * @since 1.0.1
+     */
+    private final String criteriaQuery;
 
     /**
      * Max page number
@@ -204,19 +212,62 @@ public class PaginationInfo {
     /**
      * Constructor. Initializes the properties with the arguments passed<br>
      * @param page
-     * @param pathTmpl path template
-     * @param queryTmpl query template
+     * @param pathTmpl path template of pagination
+     * @param queryTmpl query template of pagination
      * @param maxDisplayCount max display count
      */
     public PaginationInfo(Page<?> page, String pathTmpl, String queryTmpl,
+            int maxDisplayCount) {
+        this(page, pathTmpl, queryTmpl, null, false, maxDisplayCount);
+    }
+
+    /**
+     * Constructor. Initializes the properties with the arguments passed<br>
+     * @param page
+     * @param pathTmpl path template of pagination
+     * @param queryTmpl query template of pagination
+     * @param criteriaQuery Query of search criteria
+     * @param disableHtmlEscapeOfCriteriaQuery Flag to indicate whether html escaping of criteriaQuery is to be disabled or
+     *            not.IF set to true, html escaping of criteriaQuery is disabled.
+     * @param maxDisplayCount max display count
+     * @since 1.0.1
+     */
+    public PaginationInfo(Page<?> page, String pathTmpl, String queryTmpl,
+            String criteriaQuery, boolean disableHtmlEscapeOfCriteriaQuery,
             int maxDisplayCount) {
         this.page = page;
         this.current = page.getNumber();
         this.pathTmpl = pathTmpl;
         this.queryTmpl = queryTmpl;
+        if (disableHtmlEscapeOfCriteriaQuery) {
+            this.criteriaQuery = removeHeadDelimiterOfQueryString(criteriaQuery);
+        } else {
+            this.criteriaQuery = HtmlEscapeUtils
+                    .htmlEscape(removeHeadDelimiterOfQueryString(criteriaQuery));
+        }
         this.maxDisplayCount = maxDisplayCount;
         this.pageUri = UriComponentsBuilder.fromPath(pathTmpl).query(queryTmpl)
                 .build();
+    }
+
+    /**
+     * Remove the delimiter of query string that exists at the head.
+     * <p>
+     * Target delimiter is '?' or '&'.
+     * </p>
+     * @param queryString query string
+     * @return query string that removed delimiter at the head.
+     * @since 1.0.1
+     */
+    private String removeHeadDelimiterOfQueryString(String queryString) {
+        if (!StringUtils.hasLength(queryString)) {
+            return queryString;
+        }
+        if (queryString.startsWith("?") || queryString.startsWith("&")) {
+            return queryString.substring(1);
+        } else {
+            return queryString;
+        }
     }
 
     /**
@@ -258,19 +309,28 @@ public class PaginationInfo {
     }
 
     /**
-     * Fetches the path template<br>
-     * @return String path template
+     * Fetches the path template of pagination<br>
+     * @return String path template of pagination
      */
     public String getPathTmpl() {
         return pathTmpl;
     }
 
     /**
-     * Fetches the query template<br>
-     * @return String URL of page number and display count
+     * Fetches the query template of pagination<br>
+     * @return String query template of pagination
      */
     public String getQueryTmpl() {
         return queryTmpl;
+    }
+
+    /**
+     * Fetches the query of search criteria <br>
+     * @return String query of search criteria
+     * @since 1.0.1
+     */
+    public String getCriteriaQuery() {
+        return criteriaQuery;
     }
 
     /**
@@ -297,7 +357,17 @@ public class PaginationInfo {
     public String getPageUrl(int pageIndex) {
         Map<String, Object> attr = createAttributeMap(pageIndex,
                 page.getSize(), page.getSort());
-        return pageUri.expand(attr).encode().toString();
+        StringBuilder pageUriBuilder = new StringBuilder(pageUri.expand(attr)
+                .encode().toUriString());
+        if (StringUtils.hasLength(criteriaQuery)) {
+            if (pageUri.getQueryParams().isEmpty()) {
+                pageUriBuilder.append("?");
+            } else {
+                pageUriBuilder.append("&");
+            }
+            pageUriBuilder.append(criteriaQuery);
+        }
+        return pageUriBuilder.toString();
     }
 
     /**
