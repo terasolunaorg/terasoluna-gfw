@@ -201,7 +201,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	/**
 	 * Flag to indicate whether html escaping is to be disabled or not
 	 */
-	private boolean disableHtmlEscape = Boolean.FALSE;
+	private boolean disableHtmlEscape;
 	
 	/**
 	 * Creates TagWriter

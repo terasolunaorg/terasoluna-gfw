@@ -56,7 +56,7 @@ public class PaginationTag extends RequestContextAwareTag {
      * Flag to indicate whether html escaping of criteriaQuery is to be disabled or not
      * @since 1.0.1
      */
-    private boolean disableHtmlEscapeOfCriteriaQuery = Boolean.FALSE;
+    private boolean disableHtmlEscapeOfCriteriaQuery;
 
     /**
      * Maximum display count
