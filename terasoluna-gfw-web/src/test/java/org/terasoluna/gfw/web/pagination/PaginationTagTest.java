@@ -575,7 +575,7 @@ public class PaginationTagTest {
         String expected = "<ul class=\"all\"><li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li><li class=\"disabled\"><a href=\"#\">&lt;</a></li><li class=\"active\"><a href=\"?page=0&size=10\">1</a></li><li><a href=\"?page=1&size=10\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li><a href=\"?page=5&size=10\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=1&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
         assertThat(getOutput(), is(expected));
     }
-    
+
     @Test
     public void testDoStartTagInternal_disabledHref_is_empty() throws Exception {
         Page<String> page = mock(Page.class);
@@ -594,34 +594,224 @@ public class PaginationTagTest {
         String expected = "<ul><li class=\"disabled\">&lt;&lt;</li><li class=\"disabled\">&lt;</li><li class=\"active\"><a href=\"?page=0&size=10\">1</a></li><li><a href=\"?page=1&size=10\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li><a href=\"?page=5&size=10\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=1&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
         assertThat(getOutput(), is(expected));
     }
-    
+
+    @Test
+    public void issue12_testDoStartTagInternal_criteriaQuery_specified() throws Exception {
+        Page<String> page = mock(Page.class);
+        // set mock behavior
+        when(page.getNumber()).thenReturn(0);
+        when(page.getSize()).thenReturn(10);
+        when(page.getTotalPages()).thenReturn(100);
+        when(page.getTotalElements()).thenReturn(1000L);
+
+        tag.setPage(page);
+        tag.setMaxDisplayCount(3);
+        tag.setCriteriaQuery("a=%2B&b=+&c=%3D&d=%26");
+        tag.setDisableHtmlEscapeOfCriteriaQuery("false");
+
+        int ret = tag.doStartTagInternal();
+
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+
+        StringBuilder expected = new StringBuilder();
+        String expectedCriteriaQuery = "&a=%2B&amp;b=+&amp;c=%3D&amp;d=%26";
+        expected.append("<ul>");
+        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;</a></li>");
+        expected.append("<li class=\"active\"><a href=\"?page=0&size=10"
+                + expectedCriteriaQuery + "\">1</a></li>");
+        expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
+                + "\">2</a></li>");
+        expected.append("<li><a href=\"?page=2&size=10" + expectedCriteriaQuery
+                + "\">3</a></li>");
+        expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
+                + "\">&gt;</a></li>");
+        expected.append("<li><a href=\"?page=99&size=10"
+                + expectedCriteriaQuery + "\">&gt;&gt;</a></li>");
+        expected.append("</ul>");
+
+        // That the and-mark(&) is add
+        // That the criteria query is not encode
+        assertThat(getOutput(), is(expected.toString()));
+    }
+
+    @Test
+    public void issue12_testDoStartTagInternal_criteriaQuery_specified_startWith_questionMark() throws Exception {
+        Page<String> page = mock(Page.class);
+        // set mock behavior
+        when(page.getNumber()).thenReturn(0);
+        when(page.getSize()).thenReturn(10);
+        when(page.getTotalPages()).thenReturn(100);
+        when(page.getTotalElements()).thenReturn(1000L);
+
+        tag.setPage(page);
+        tag.setMaxDisplayCount(3);
+        tag.setCriteriaQuery("?a=%2B&b=+&c=%3D&d=%26");
+        tag.setDisableHtmlEscapeOfCriteriaQuery(null);
+
+        int ret = tag.doStartTagInternal();
+
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+
+        StringBuilder expected = new StringBuilder();
+        String expectedCriteriaQuery = "&a=%2B&amp;b=+&amp;c=%3D&amp;d=%26";
+        expected.append("<ul>");
+        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;</a></li>");
+        expected.append("<li class=\"active\"><a href=\"?page=0&size=10"
+                + expectedCriteriaQuery + "\">1</a></li>");
+        expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
+                + "\">2</a></li>");
+        expected.append("<li><a href=\"?page=2&size=10" + expectedCriteriaQuery
+                + "\">3</a></li>");
+        expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
+                + "\">&gt;</a></li>");
+        expected.append("<li><a href=\"?page=99&size=10"
+                + expectedCriteriaQuery + "\">&gt;&gt;</a></li>");
+        expected.append("</ul>");
+
+        // That the question-mark(?) is remove
+        assertThat(getOutput(), is(expected.toString()));
+    }
+
+    @Test
+    public void issue12_testDoStartTagInternal_disableHtmlEscapeOfCriteriaQuery_specified_true() throws Exception {
+        Page<String> page = mock(Page.class);
+        // set mock behavior
+        when(page.getNumber()).thenReturn(0);
+        when(page.getSize()).thenReturn(10);
+        when(page.getTotalPages()).thenReturn(100);
+        when(page.getTotalElements()).thenReturn(1000L);
+
+        tag.setPage(page);
+        tag.setMaxDisplayCount(3);
+        tag.setCriteriaQuery("&a=%2B&b=+&c=%3D&d=%26&e=<>\"'");
+        tag.setDisableHtmlEscapeOfCriteriaQuery("true");
+
+        int ret = tag.doStartTagInternal();
+
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+
+        StringBuilder expected = new StringBuilder();
+        String expectedCriteriaQuery = "&a=%2B&b=+&c=%3D&d=%26&e=<>\"'";
+        expected.append("<ul>");
+        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;</a></li>");
+        expected.append("<li class=\"active\"><a href=\"?page=0&size=10"
+                + expectedCriteriaQuery + "\">1</a></li>");
+        expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
+                + "\">2</a></li>");
+        expected.append("<li><a href=\"?page=2&size=10" + expectedCriteriaQuery
+                + "\">3</a></li>");
+        expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
+                + "\">&gt;</a></li>");
+        expected.append("<li><a href=\"?page=99&size=10"
+                + expectedCriteriaQuery + "\">&gt;&gt;</a></li>");
+        expected.append("</ul>");
+
+        // That the and-mark(&) is remove
+        assertThat(getOutput(), is(expected.toString()));
+    }
+
+    @Test
+    public void issue12_testDoStartTagInternal_criteriaQuery_specified_queryImpl_notSpecified() throws Exception {
+        Page<String> page = mock(Page.class);
+        // set mock behavior
+        when(page.getNumber()).thenReturn(0);
+        when(page.getSize()).thenReturn(10);
+        when(page.getTotalPages()).thenReturn(100);
+        when(page.getTotalElements()).thenReturn(1000L);
+
+        tag.setPage(page);
+        tag.setMaxDisplayCount(3);
+        tag.setPathTmpl("/{page}/{size}");
+        tag.setQueryTmpl(null);
+        tag.setCriteriaQuery("a=b");
+
+        int ret = tag.doStartTagInternal();
+
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+
+        StringBuilder expected = new StringBuilder();
+        expected.append("<ul>");
+        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;</a></li>");
+        expected.append("<li class=\"active\"><a href=\"/0/10?a=b\">1</a></li>");
+        expected.append("<li><a href=\"/1/10?a=b\">2</a></li>");
+        expected.append("<li><a href=\"/2/10?a=b\">3</a></li>");
+        expected.append("<li><a href=\"/1/10?a=b\">&gt;</a></li>");
+        expected.append("<li><a href=\"/99/10?a=b\">&gt;&gt;</a></li>");
+        expected.append("</ul>");
+
+        // That the question-mark(?) is add
+        assertThat(getOutput(), is(expected.toString()));
+    }
+
+    @Test
+    public void issue12_testDoStartTagInternal_criteriaQuery_specified_startWith_andMark() throws Exception {
+        Page<String> page = mock(Page.class);
+        // set mock behavior
+        when(page.getNumber()).thenReturn(0);
+        when(page.getSize()).thenReturn(10);
+        when(page.getTotalPages()).thenReturn(100);
+        when(page.getTotalElements()).thenReturn(1000L);
+
+        tag.setPage(page);
+        tag.setMaxDisplayCount(3);
+        tag.setCriteriaQuery("&a=%2B&b=+&c=%3D&d=%26");
+
+        int ret = tag.doStartTagInternal();
+
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+
+        StringBuilder expected = new StringBuilder();
+        String expectedCriteriaQuery = "&a=%2B&amp;b=+&amp;c=%3D&amp;d=%26";
+        expected.append("<ul>");
+        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;</a></li>");
+        expected.append("<li class=\"active\"><a href=\"?page=0&size=10"
+                + expectedCriteriaQuery + "\">1</a></li>");
+        expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
+                + "\">2</a></li>");
+        expected.append("<li><a href=\"?page=2&size=10" + expectedCriteriaQuery
+                + "\">3</a></li>");
+        expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
+                + "\">&gt;</a></li>");
+        expected.append("<li><a href=\"?page=99&size=10"
+                + expectedCriteriaQuery + "\">&gt;&gt;</a></li>");
+        expected.append("</ul>");
+
+        // That the and-mark(&) is remove
+        assertThat(getOutput(), is(expected.toString()));
+    }
+
     @Test
     public void testDoStartTagInternal_disabledHref_and_firstLinkText_are_empty() throws Exception {
     }
-    
-//    @Test
-//    public void testWriteAnchor01() throws Exception {
-//    }
-//
-//    @Test
-//    public void testStartOuterElement01() throws Exception {
-//    }
-//
-//    @Test
-//    public void testEndOuterElement01() throws Exception {
-//    }
-//
-//    @Test
-//    public void testWritePageLink01() throws Exception {
-//    }
-//
-//    @Test
-//    public void testWriteFirstAndPreviousLink01() throws Exception {
-//    }
-//
-//    @Test
-//    public void testWriteNextAndLastLink01() throws Exception {
-//    }
+
+    // @Test
+    // public void testWriteAnchor01() throws Exception {
+    // }
+    //
+    // @Test
+    // public void testStartOuterElement01() throws Exception {
+    // }
+    //
+    // @Test
+    // public void testEndOuterElement01() throws Exception {
+    // }
+    //
+    // @Test
+    // public void testWritePageLink01() throws Exception {
+    // }
+    //
+    // @Test
+    // public void testWriteFirstAndPreviousLink01() throws Exception {
+    // }
+    //
+    // @Test
+    // public void testWriteNextAndLastLink01() throws Exception {
+    // }
 
     @Test
     public void testSetters() {
