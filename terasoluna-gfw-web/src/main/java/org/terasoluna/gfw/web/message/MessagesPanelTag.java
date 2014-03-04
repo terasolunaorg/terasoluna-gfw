@@ -30,6 +30,7 @@ import org.terasoluna.gfw.common.message.ResultMessageType;
 import org.terasoluna.gfw.common.message.ResultMessageUtils;
 import org.terasoluna.gfw.common.message.ResultMessages;
 import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
+import org.terasoluna.gfw.web.util.JspTagUtils;
 
 /**
  * Tag for displaying messages in panel format in JSP page<br>
@@ -200,7 +201,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	/**
 	 * Flag to indicate whether html escaping is to be disabled or not
 	 */
-	private Boolean disableHtmlEscape = Boolean.FALSE;
+	private boolean disableHtmlEscape;
 	
 	/**
 	 * Creates TagWriter
@@ -560,15 +561,9 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	 * @param disableHtmlEscape
 	 *            value of disableHtmlEscape
 	 */
-	public void setDisableHtmlEscape(String disableHtmlEscape) throws JspException {
-		if(StringUtils.hasText(disableHtmlEscape)) {
-			if(disableHtmlEscape.equalsIgnoreCase("true") || 
-			        disableHtmlEscape.equalsIgnoreCase("false")) {
-				this.disableHtmlEscape = Boolean.valueOf(disableHtmlEscape);
-			} else {
-	            throw new JspTagException(
-	                    "The value of disableHtmlEscape must be either true or false.");
-	        }
-		} 
-	}
+    public void setDisableHtmlEscape(String disableHtmlEscape) throws JspException {
+        this.disableHtmlEscape = JspTagUtils.toBoolean(disableHtmlEscape,
+                false, "disableHtmlEscape");
+    }
+
 }

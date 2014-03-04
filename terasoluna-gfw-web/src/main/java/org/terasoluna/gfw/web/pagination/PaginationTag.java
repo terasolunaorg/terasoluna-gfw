@@ -19,16 +19,17 @@ import javax.servlet.jsp.JspException;
 
 import org.springframework.data.domain.Page;
 import org.springframework.util.StringUtils;
-import org.springframework.web.servlet.tags.HtmlEscapingAwareTag;
+import org.springframework.web.servlet.tags.RequestContextAwareTag;
 import org.springframework.web.servlet.tags.form.TagWriter;
 import org.terasoluna.gfw.web.pagination.PaginationInfo.BeginAndEnd;
+import org.terasoluna.gfw.web.util.JspTagUtils;
 
 /**
  * JSP tag that provides pagination functionality<br>
  * <p>
  * </p>
  */
-public class PaginationTag extends HtmlEscapingAwareTag {
+public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Page object
@@ -41,9 +42,21 @@ public class PaginationTag extends HtmlEscapingAwareTag {
     private String pathTmpl = PaginationInfo.DEFAULT_PATH_TEMPLATE;
 
     /**
-     * Query path
+     * Query template of pagination
      */
     private String queryTmpl = PaginationInfo.DEFAULT_QUERY_TEMPLATE;
+
+    /**
+     * Query of search criteria
+     * @since 1.0.1
+     */
+    private String criteriaQuery;
+
+    /**
+     * Flag to indicate whether html escaping of criteriaQuery is to be disabled or not
+     * @since 1.0.1
+     */
+    private boolean disableHtmlEscapeOfCriteriaQuery;
 
     /**
      * Maximum display count
@@ -129,7 +142,8 @@ public class PaginationTag extends HtmlEscapingAwareTag {
 
             TagWriter tagWriter = createTagWriter();
 
-            PaginationInfo info = new PaginationInfo(p, pathTmpl, queryTmpl, maxDisplayCount);
+            PaginationInfo info = new PaginationInfo(p, pathTmpl, queryTmpl, criteriaQuery, disableHtmlEscapeOfCriteriaQuery, maxDisplayCount);
+
             BeginAndEnd be = info.getBeginAndEnd();
 
             startOuterElement(tagWriter);
@@ -329,6 +343,8 @@ public class PaginationTag extends HtmlEscapingAwareTag {
         this.page = null;
         this.pathTmpl = null;
         this.queryTmpl = null;
+        this.criteriaQuery = null;
+        this.disableHtmlEscapeOfCriteriaQuery = false;
         this.outerElement = null;
         this.outerElementClass = null;
         this.innerElement = null;
@@ -358,11 +374,36 @@ public class PaginationTag extends HtmlEscapingAwareTag {
     }
 
     /**
-     * Set query path<br>
+     * Set query template of pagination<br>
      * @param queryTmpl
      */
     public void setQueryTmpl(String queryTmpl) {
         this.queryTmpl = queryTmpl;
+    }
+
+    /**
+     * Set query of search criteria<br>
+     * @param criteriaQuery
+     * @since 1.0.1
+     */
+    public void setCriteriaQuery(String criteriaQuery) {
+        this.criteriaQuery = criteriaQuery;
+    }
+
+    /**
+     * Sets the value for disableHtmlEscapeOfCriteriaQuery property.
+     * <p>
+     * IF set to true, html escaping of criteriaQuery is disabled. <br>
+     * By default, disableHtmlEscapeOfCriteriaQuery is set to <code>false</code>. This means <br>
+     * html escaping is enable and will be performed by default.
+     * @param disableHtmlEscapeOfCriteriaQuery value of disableHtmlEscapeOfCriteriaQuery
+     * @since 1.0.1
+     */
+    public void setDisableHtmlEscapeOfCriteriaQuery(
+            String disableHtmlEscapeOfCriteriaQuery) throws JspException {
+        this.disableHtmlEscapeOfCriteriaQuery = JspTagUtils.toBoolean(
+                disableHtmlEscapeOfCriteriaQuery, false,
+                "disableHtmlEscapeOfCriteriaQuery");
     }
 
     /**

@@ -26,8 +26,51 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
-            <description>Query path</description>
+            <description>
+                <![CDATA[
+                Query template of pagination.&#xA;&#xA;
+
+                This attribute is used to specify a template query of pagination.
+                Allowed parameter(query variable) is {page} / {size} / {sortOrderProperty} / {sortOrderDirection}.&#xA;&#xA;
+
+                Search criteria should not be specified in "queryTmpl" attribute, because double URL-encoded.
+                Therefore, search criteria should be specify to "criteriaQuery" attribute.&#xA;&#xA;
+                
+                [Default value]&#xA;
+                page={page}&amp;size={size}&#xA;&#xA;
+
+                [For example]&#xA;
+                queryTmpl="page={page}&amp;size={size}&amp;sort={sortOrderProperty},{sortOrderDirection}"
+                ]]>
+            </description>
             <name>queryTmpl</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[
+                Query of search criteria.(since 1.0.1)&#xA;&#xA;
+                
+                This attribute is used to specify a URL-encoded query of search criteria.&#xA;&#xA;
+                
+                [For example]&#xA;
+                criteriaQuery="${f:query(searchCriteriaForm)}"
+                ]]>
+            </description>
+            <name>criteriaQuery</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[
+                Set disableHtmlEscapeOfCriteriaQuery to disable html escaping of criteriaQuery.(since 1.0.1)&#xA;&#xA;
+                
+                Default is set to "false" (means that html escaping is done by default. Set it to true to disable escaping).
+                ]]>
+            </description>
+            <name>disableHtmlEscapeOfCriteriaQuery</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
@@ -94,14 +137,6 @@
         <attribute>
             <description>Class name that enables the link</description>
             <name>disabledClass</name>
-            <required>false</required>
-            <rtexprvalue>true</rtexprvalue>
-        </attribute>
-        <attribute>
-            <description>Set HTML escaping for this tag, as a boolean
-                value. Overrides the
-                default HTML escaping setting for the current page.</description>
-            <name>htmlEscape</name>
             <required>false</required>
             <rtexprvalue>true</rtexprvalue>
         </attribute>
