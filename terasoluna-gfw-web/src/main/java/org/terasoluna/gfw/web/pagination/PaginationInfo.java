@@ -25,6 +25,7 @@ import org.springframework.data.domain.Sort.Order;
 import org.springframework.util.StringUtils;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
 
 /**
  * Holds all the information required by the {@code PaginationTag} to display pagination functionality. <br>
@@ -217,7 +218,7 @@ public class PaginationInfo {
      */
     public PaginationInfo(Page<?> page, String pathTmpl, String queryTmpl,
             int maxDisplayCount) {
-        this(page, pathTmpl, queryTmpl, null, maxDisplayCount);
+        this(page, pathTmpl, queryTmpl, null, false, maxDisplayCount);
     }
 
     /**
@@ -226,16 +227,24 @@ public class PaginationInfo {
      * @param pathTmpl path template of pagination
      * @param queryTmpl query template of pagination
      * @param criteriaQuery Query of search criteria
+     * @param disableHtmlEscapeOfCriteriaQuery Flag to indicate whether html escaping of criteriaQuery is to be disabled or
+     *            not.IF set to true, html escaping of criteriaQuery is disabled.
      * @param maxDisplayCount max display count
      * @since 1.0.1
      */
     public PaginationInfo(Page<?> page, String pathTmpl, String queryTmpl,
-            String criteriaQuery, int maxDisplayCount) {
+            String criteriaQuery, boolean disableHtmlEscapeOfCriteriaQuery,
+            int maxDisplayCount) {
         this.page = page;
         this.current = page.getNumber();
         this.pathTmpl = pathTmpl;
         this.queryTmpl = queryTmpl;
-        this.criteriaQuery = removeHeadDelimiterOfQueryString(criteriaQuery);
+        if (disableHtmlEscapeOfCriteriaQuery) {
+            this.criteriaQuery = removeHeadDelimiterOfQueryString(criteriaQuery);
+        } else {
+            this.criteriaQuery = HtmlEscapeUtils
+                    .htmlEscape(removeHeadDelimiterOfQueryString(criteriaQuery));
+        }
         this.maxDisplayCount = maxDisplayCount;
         this.pageUri = UriComponentsBuilder.fromPath(pathTmpl).query(queryTmpl)
                 .build();
