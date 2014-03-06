@@ -33,6 +33,12 @@
             <plugin>
                 <groupId>com.google.code.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
+                <configuration>
+                  <excludes>
+                      <exclude>src/main/java/org/springframework/**</exclude>
+                      <exclude>src/test/java/org/springframework/**</exclude>
+                  </excludes>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
