@@ -2,6 +2,8 @@
 
 The common library of Terasoluna Global Framework is a library of useful and obstrusive common functionalities.
 
+[![Build Status](https://travis-ci.org/terasolunaorg/terasoluna-gfw.png?branch=master)](https://travis-ci.org/terasolunaorg/terasoluna-gfw)
+
 ## Projects of Common Library
 
 The following project are included in Terasoluna Global Framework Common Library.
