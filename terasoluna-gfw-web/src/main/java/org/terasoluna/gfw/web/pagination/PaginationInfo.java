@@ -161,7 +161,7 @@ public class PaginationInfo {
     /**
      * Anchor link which is set when the link is disabled.
      */
-    public static final String DEFAULT_DISABLED_HREF = "#";
+    public static final String DEFAULT_DISABLED_HREF = "javascript:void(0)";
 
     /**
      * Class name that enables the link
