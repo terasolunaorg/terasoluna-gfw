@@ -214,9 +214,10 @@ public class PaginationTag extends RequestContextAwareTag {
         tagWriter.startTag(innerElement); // <li>
         if (info.isCurrent(page)) {
             tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR, activeClass);
+            writeAnchor(tagWriter, disabledHref, String.valueOf(page + 1)); // a
+        } else {
+            writeAnchor(tagWriter, info.getPageUrl(page), String.valueOf(page + 1)); // a
         }
-
-        writeAnchor(tagWriter, info.getPageUrl(page), String.valueOf(page + 1)); // a
 
         tagWriter.endTag(); // </li>
     }
