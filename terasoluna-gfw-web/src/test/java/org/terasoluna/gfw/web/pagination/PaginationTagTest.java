@@ -108,7 +108,7 @@ public class PaginationTagTest {
         int ret = tag.doStartTagInternal();
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        String expected = "<ul><li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li><li class=\"disabled\"><a href=\"#\">&lt;</a></li><li class=\"active\"><a href=\"?page=0&size=10\">1</a></li><li><a href=\"?page=1&size=10\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li><a href=\"?page=5&size=10\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=1&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
+        String expected = "<ul><li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;&lt;</a></li><li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;</a></li><li class=\"active\"><a href=\"javascript:void(0)\">1</a></li><li><a href=\"?page=1&size=10\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li><a href=\"?page=5&size=10\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=1&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
         assertThat(getOutput(), is(expected));
     }
 
@@ -137,7 +137,7 @@ public class PaginationTagTest {
         int ret = tag.doStartTagInternal();
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        String expected = "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=0&size=10\">&lt;</a></li><li><a href=\"?page=0&size=10\">1</a></li><li class=\"active\"><a href=\"?page=1&size=10\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li><a href=\"?page=5&size=10\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=2&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
+        String expected = "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=0&size=10\">&lt;</a></li><li><a href=\"?page=0&size=10\">1</a></li><li class=\"active\"><a href=\"javascript:void(0)\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li><a href=\"?page=5&size=10\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=2&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
         assertThat(getOutput(), is(expected));
     }
 
@@ -166,7 +166,7 @@ public class PaginationTagTest {
         int ret = tag.doStartTagInternal();
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        String expected = "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=4&size=10\">&lt;</a></li><li><a href=\"?page=0&size=10\">1</a></li><li><a href=\"?page=1&size=10\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li class=\"active\"><a href=\"?page=5&size=10\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=6&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
+        String expected = "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=4&size=10\">&lt;</a></li><li><a href=\"?page=0&size=10\">1</a></li><li><a href=\"?page=1&size=10\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li class=\"active\"><a href=\"javascript:void(0)\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=6&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
         assertThat(getOutput(), is(expected));
     }
 
@@ -195,7 +195,7 @@ public class PaginationTagTest {
         int ret = tag.doStartTagInternal();
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        String expected = "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=19&size=10\">&lt;</a></li><li><a href=\"?page=15&size=10\">16</a></li><li><a href=\"?page=16&size=10\">17</a></li><li><a href=\"?page=17&size=10\">18</a></li><li><a href=\"?page=18&size=10\">19</a></li><li><a href=\"?page=19&size=10\">20</a></li><li class=\"active\"><a href=\"?page=20&size=10\">21</a></li><li><a href=\"?page=21&size=10\">22</a></li><li><a href=\"?page=22&size=10\">23</a></li><li><a href=\"?page=23&size=10\">24</a></li><li><a href=\"?page=24&size=10\">25</a></li><li><a href=\"?page=21&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
+        String expected = "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=19&size=10\">&lt;</a></li><li><a href=\"?page=15&size=10\">16</a></li><li><a href=\"?page=16&size=10\">17</a></li><li><a href=\"?page=17&size=10\">18</a></li><li><a href=\"?page=18&size=10\">19</a></li><li><a href=\"?page=19&size=10\">20</a></li><li class=\"active\"><a href=\"javascript:void(0)\">21</a></li><li><a href=\"?page=21&size=10\">22</a></li><li><a href=\"?page=22&size=10\">23</a></li><li><a href=\"?page=23&size=10\">24</a></li><li><a href=\"?page=24&size=10\">25</a></li><li><a href=\"?page=21&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
         assertThat(getOutput(), is(expected));
     }
 
@@ -224,7 +224,7 @@ public class PaginationTagTest {
         int ret = tag.doStartTagInternal();
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        String expected = "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=94&size=10\">&lt;</a></li><li><a href=\"?page=90&size=10\">91</a></li><li><a href=\"?page=91&size=10\">92</a></li><li><a href=\"?page=92&size=10\">93</a></li><li><a href=\"?page=93&size=10\">94</a></li><li><a href=\"?page=94&size=10\">95</a></li><li class=\"active\"><a href=\"?page=95&size=10\">96</a></li><li><a href=\"?page=96&size=10\">97</a></li><li><a href=\"?page=97&size=10\">98</a></li><li><a href=\"?page=98&size=10\">99</a></li><li><a href=\"?page=99&size=10\">100</a></li><li><a href=\"?page=96&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
+        String expected = "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=94&size=10\">&lt;</a></li><li><a href=\"?page=90&size=10\">91</a></li><li><a href=\"?page=91&size=10\">92</a></li><li><a href=\"?page=92&size=10\">93</a></li><li><a href=\"?page=93&size=10\">94</a></li><li><a href=\"?page=94&size=10\">95</a></li><li class=\"active\"><a href=\"javascript:void(0)\">96</a></li><li><a href=\"?page=96&size=10\">97</a></li><li><a href=\"?page=97&size=10\">98</a></li><li><a href=\"?page=98&size=10\">99</a></li><li><a href=\"?page=99&size=10\">100</a></li><li><a href=\"?page=96&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
         assertThat(getOutput(), is(expected));
     }
 
@@ -253,7 +253,7 @@ public class PaginationTagTest {
         int ret = tag.doStartTagInternal();
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        String expected = "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=98&size=10\">&lt;</a></li><li><a href=\"?page=90&size=10\">91</a></li><li><a href=\"?page=91&size=10\">92</a></li><li><a href=\"?page=92&size=10\">93</a></li><li><a href=\"?page=93&size=10\">94</a></li><li><a href=\"?page=94&size=10\">95</a></li><li><a href=\"?page=95&size=10\">96</a></li><li><a href=\"?page=96&size=10\">97</a></li><li><a href=\"?page=97&size=10\">98</a></li><li><a href=\"?page=98&size=10\">99</a></li><li class=\"active\"><a href=\"?page=99&size=10\">100</a></li><li class=\"disabled\"><a href=\"#\">&gt;</a></li><li class=\"disabled\"><a href=\"#\">&gt;&gt;</a></li></ul>";
+        String expected = "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=98&size=10\">&lt;</a></li><li><a href=\"?page=90&size=10\">91</a></li><li><a href=\"?page=91&size=10\">92</a></li><li><a href=\"?page=92&size=10\">93</a></li><li><a href=\"?page=93&size=10\">94</a></li><li><a href=\"?page=94&size=10\">95</a></li><li><a href=\"?page=95&size=10\">96</a></li><li><a href=\"?page=96&size=10\">97</a></li><li><a href=\"?page=97&size=10\">98</a></li><li><a href=\"?page=98&size=10\">99</a></li><li class=\"active\"><a href=\"javascript:void(0)\">100</a></li><li class=\"disabled\"><a href=\"javascript:void(0)\">&gt;</a></li><li class=\"disabled\"><a href=\"javascript:void(0)\">&gt;&gt;</a></li></ul>";
         assertThat(getOutput(), is(expected));
     }
 
@@ -358,7 +358,7 @@ public class PaginationTagTest {
         int ret = tag.doStartTagInternal();
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        String expected = "<ul><li><a href=\"?p=0&s=10\">&lt;&lt;</a></li><li><a href=\"?p=19&s=10\">&lt;</a></li><li><a href=\"?p=15&s=10\">16</a></li><li><a href=\"?p=16&s=10\">17</a></li><li><a href=\"?p=17&s=10\">18</a></li><li><a href=\"?p=18&s=10\">19</a></li><li><a href=\"?p=19&s=10\">20</a></li><li class=\"active\"><a href=\"?p=20&s=10\">21</a></li><li><a href=\"?p=21&s=10\">22</a></li><li><a href=\"?p=22&s=10\">23</a></li><li><a href=\"?p=23&s=10\">24</a></li><li><a href=\"?p=24&s=10\">25</a></li><li><a href=\"?p=21&s=10\">&gt;</a></li><li><a href=\"?p=99&s=10\">&gt;&gt;</a></li></ul>";
+        String expected = "<ul><li><a href=\"?p=0&s=10\">&lt;&lt;</a></li><li><a href=\"?p=19&s=10\">&lt;</a></li><li><a href=\"?p=15&s=10\">16</a></li><li><a href=\"?p=16&s=10\">17</a></li><li><a href=\"?p=17&s=10\">18</a></li><li><a href=\"?p=18&s=10\">19</a></li><li><a href=\"?p=19&s=10\">20</a></li><li class=\"active\"><a href=\"javascript:void(0)\">21</a></li><li><a href=\"?p=21&s=10\">22</a></li><li><a href=\"?p=22&s=10\">23</a></li><li><a href=\"?p=23&s=10\">24</a></li><li><a href=\"?p=24&s=10\">25</a></li><li><a href=\"?p=21&s=10\">&gt;</a></li><li><a href=\"?p=99&s=10\">&gt;&gt;</a></li></ul>";
         assertThat(getOutput(), is(expected));
     }
 
@@ -388,7 +388,7 @@ public class PaginationTagTest {
         int ret = tag.doStartTagInternal();
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        String expected = "<ul><li><a href=\"p/0/10/\">&lt;&lt;</a></li><li><a href=\"p/19/10/\">&lt;</a></li><li><a href=\"p/15/10/\">16</a></li><li><a href=\"p/16/10/\">17</a></li><li><a href=\"p/17/10/\">18</a></li><li><a href=\"p/18/10/\">19</a></li><li><a href=\"p/19/10/\">20</a></li><li class=\"active\"><a href=\"p/20/10/\">21</a></li><li><a href=\"p/21/10/\">22</a></li><li><a href=\"p/22/10/\">23</a></li><li><a href=\"p/23/10/\">24</a></li><li><a href=\"p/24/10/\">25</a></li><li><a href=\"p/21/10/\">&gt;</a></li><li><a href=\"p/99/10/\">&gt;&gt;</a></li></ul>";
+        String expected = "<ul><li><a href=\"p/0/10/\">&lt;&lt;</a></li><li><a href=\"p/19/10/\">&lt;</a></li><li><a href=\"p/15/10/\">16</a></li><li><a href=\"p/16/10/\">17</a></li><li><a href=\"p/17/10/\">18</a></li><li><a href=\"p/18/10/\">19</a></li><li><a href=\"p/19/10/\">20</a></li><li class=\"active\"><a href=\"javascript:void(0)\">21</a></li><li><a href=\"p/21/10/\">22</a></li><li><a href=\"p/22/10/\">23</a></li><li><a href=\"p/23/10/\">24</a></li><li><a href=\"p/24/10/\">25</a></li><li><a href=\"p/21/10/\">&gt;</a></li><li><a href=\"p/99/10/\">&gt;&gt;</a></li></ul>";
         assertThat(getOutput(), is(expected));
     }
 
@@ -419,7 +419,7 @@ public class PaginationTagTest {
         int ret = tag.doStartTagInternal();
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        String expected = "<ul><li><a href=\"?page=0&size=10&sort=id&desc=DESC\">&lt;&lt;</a></li><li><a href=\"?page=19&size=10&sort=id&desc=DESC\">&lt;</a></li><li><a href=\"?page=15&size=10&sort=id&desc=DESC\">16</a></li><li><a href=\"?page=16&size=10&sort=id&desc=DESC\">17</a></li><li><a href=\"?page=17&size=10&sort=id&desc=DESC\">18</a></li><li><a href=\"?page=18&size=10&sort=id&desc=DESC\">19</a></li><li><a href=\"?page=19&size=10&sort=id&desc=DESC\">20</a></li><li class=\"active\"><a href=\"?page=20&size=10&sort=id&desc=DESC\">21</a></li><li><a href=\"?page=21&size=10&sort=id&desc=DESC\">22</a></li><li><a href=\"?page=22&size=10&sort=id&desc=DESC\">23</a></li><li><a href=\"?page=23&size=10&sort=id&desc=DESC\">24</a></li><li><a href=\"?page=24&size=10&sort=id&desc=DESC\">25</a></li><li><a href=\"?page=21&size=10&sort=id&desc=DESC\">&gt;</a></li><li><a href=\"?page=99&size=10&sort=id&desc=DESC\">&gt;&gt;</a></li></ul>";
+        String expected = "<ul><li><a href=\"?page=0&size=10&sort=id&desc=DESC\">&lt;&lt;</a></li><li><a href=\"?page=19&size=10&sort=id&desc=DESC\">&lt;</a></li><li><a href=\"?page=15&size=10&sort=id&desc=DESC\">16</a></li><li><a href=\"?page=16&size=10&sort=id&desc=DESC\">17</a></li><li><a href=\"?page=17&size=10&sort=id&desc=DESC\">18</a></li><li><a href=\"?page=18&size=10&sort=id&desc=DESC\">19</a></li><li><a href=\"?page=19&size=10&sort=id&desc=DESC\">20</a></li><li class=\"active\"><a href=\"javascript:void(0)\">21</a></li><li><a href=\"?page=21&size=10&sort=id&desc=DESC\">22</a></li><li><a href=\"?page=22&size=10&sort=id&desc=DESC\">23</a></li><li><a href=\"?page=23&size=10&sort=id&desc=DESC\">24</a></li><li><a href=\"?page=24&size=10&sort=id&desc=DESC\">25</a></li><li><a href=\"?page=21&size=10&sort=id&desc=DESC\">&gt;</a></li><li><a href=\"?page=99&size=10&sort=id&desc=DESC\">&gt;&gt;</a></li></ul>";
         assertThat(getOutput(), is(expected));
     }
 
@@ -448,7 +448,7 @@ public class PaginationTagTest {
         int ret = tag.doStartTagInternal();
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        String expected = "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=19&size=10\">&lt;</a></li><li><a href=\"?page=18&size=10\">19</a></li><li><a href=\"?page=19&size=10\">20</a></li><li class=\"active\"><a href=\"?page=20&size=10\">21</a></li><li><a href=\"?page=21&size=10\">22</a></li><li><a href=\"?page=22&size=10\">23</a></li><li><a href=\"?page=21&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
+        String expected = "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=19&size=10\">&lt;</a></li><li><a href=\"?page=18&size=10\">19</a></li><li><a href=\"?page=19&size=10\">20</a></li><li class=\"active\"><a href=\"javascript:void(0)\">21</a></li><li><a href=\"?page=21&size=10\">22</a></li><li><a href=\"?page=22&size=10\">23</a></li><li><a href=\"?page=21&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
         assertThat(getOutput(), is(expected));
     }
 
@@ -479,7 +479,7 @@ public class PaginationTagTest {
         int ret = tag.doStartTagInternal();
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        String expected = "<span><a href=\"?page=0&size=10\">&lt;&lt;</a></span><span><a href=\"?page=19&size=10\">&lt;</a></span><span><a href=\"?page=15&size=10\">16</a></span><span><a href=\"?page=16&size=10\">17</a></span><span><a href=\"?page=17&size=10\">18</a></span><span><a href=\"?page=18&size=10\">19</a></span><span><a href=\"?page=19&size=10\">20</a></span><span class=\"active\"><a href=\"?page=20&size=10\">21</a></span><span><a href=\"?page=21&size=10\">22</a></span><span><a href=\"?page=22&size=10\">23</a></span><span><a href=\"?page=23&size=10\">24</a></span><span><a href=\"?page=24&size=10\">25</a></span><span><a href=\"?page=21&size=10\">&gt;</a></span><span><a href=\"?page=99&size=10\">&gt;&gt;</a></span>";
+        String expected = "<span><a href=\"?page=0&size=10\">&lt;&lt;</a></span><span><a href=\"?page=19&size=10\">&lt;</a></span><span><a href=\"?page=15&size=10\">16</a></span><span><a href=\"?page=16&size=10\">17</a></span><span><a href=\"?page=17&size=10\">18</a></span><span><a href=\"?page=18&size=10\">19</a></span><span><a href=\"?page=19&size=10\">20</a></span><span class=\"active\"><a href=\"javascript:void(0)\">21</a></span><span><a href=\"?page=21&size=10\">22</a></span><span><a href=\"?page=22&size=10\">23</a></span><span><a href=\"?page=23&size=10\">24</a></span><span><a href=\"?page=24&size=10\">25</a></span><span><a href=\"?page=21&size=10\">&gt;</a></span><span><a href=\"?page=99&size=10\">&gt;&gt;</a></span>";
         assertThat(getOutput(), is(expected));
     }
 
@@ -512,7 +512,7 @@ public class PaginationTagTest {
                 .replaceAll(Pattern.quote("\""), "\\\\\""));
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        String expected = "<p><span><a href=\"?page=0&size=10\">&lt;&lt;</a></span><span><a href=\"?page=19&size=10\">&lt;</a></span><span><a href=\"?page=15&size=10\">16</a></span><span><a href=\"?page=16&size=10\">17</a></span><span><a href=\"?page=17&size=10\">18</a></span><span><a href=\"?page=18&size=10\">19</a></span><span><a href=\"?page=19&size=10\">20</a></span><span class=\"active\"><a href=\"?page=20&size=10\">21</a></span><span><a href=\"?page=21&size=10\">22</a></span><span><a href=\"?page=22&size=10\">23</a></span><span><a href=\"?page=23&size=10\">24</a></span><span><a href=\"?page=24&size=10\">25</a></span><span><a href=\"?page=21&size=10\">&gt;</a></span><span><a href=\"?page=99&size=10\">&gt;&gt;</a></span></p>";
+        String expected = "<p><span><a href=\"?page=0&size=10\">&lt;&lt;</a></span><span><a href=\"?page=19&size=10\">&lt;</a></span><span><a href=\"?page=15&size=10\">16</a></span><span><a href=\"?page=16&size=10\">17</a></span><span><a href=\"?page=17&size=10\">18</a></span><span><a href=\"?page=18&size=10\">19</a></span><span><a href=\"?page=19&size=10\">20</a></span><span class=\"active\"><a href=\"javascript:void(0)\">21</a></span><span><a href=\"?page=21&size=10\">22</a></span><span><a href=\"?page=22&size=10\">23</a></span><span><a href=\"?page=23&size=10\">24</a></span><span><a href=\"?page=24&size=10\">25</a></span><span><a href=\"?page=21&size=10\">&gt;</a></span><span><a href=\"?page=99&size=10\">&gt;&gt;</a></span></p>";
         assertThat(getOutput(), is(expected));
     }
 
@@ -572,7 +572,7 @@ public class PaginationTagTest {
         int ret = tag.doStartTagInternal();
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        String expected = "<ul class=\"all\"><li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li><li class=\"disabled\"><a href=\"#\">&lt;</a></li><li class=\"active\"><a href=\"?page=0&size=10\">1</a></li><li><a href=\"?page=1&size=10\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li><a href=\"?page=5&size=10\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=1&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
+        String expected = "<ul class=\"all\"><li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;&lt;</a></li><li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;</a></li><li class=\"active\"><a href=\"javascript:void(0)\">1</a></li><li><a href=\"?page=1&size=10\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li><a href=\"?page=5&size=10\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=1&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
         assertThat(getOutput(), is(expected));
     }
 
@@ -591,7 +591,7 @@ public class PaginationTagTest {
         int ret = tag.doStartTagInternal();
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        String expected = "<ul><li class=\"disabled\">&lt;&lt;</li><li class=\"disabled\">&lt;</li><li class=\"active\"><a href=\"?page=0&size=10\">1</a></li><li><a href=\"?page=1&size=10\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li><a href=\"?page=5&size=10\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=1&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
+        String expected = "<ul><li class=\"disabled\">&lt;&lt;</li><li class=\"disabled\">&lt;</li><li class=\"active\">1</li><li><a href=\"?page=1&size=10\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li><a href=\"?page=5&size=10\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=1&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
         assertThat(getOutput(), is(expected));
     }
 
@@ -616,10 +616,9 @@ public class PaginationTagTest {
         StringBuilder expected = new StringBuilder();
         String expectedCriteriaQuery = "&a=%2B&amp;b=+&amp;c=%3D&amp;d=%26";
         expected.append("<ul>");
-        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
-        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;</a></li>");
-        expected.append("<li class=\"active\"><a href=\"?page=0&size=10"
-                + expectedCriteriaQuery + "\">1</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;&lt;</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;</a></li>");
+        expected.append("<li class=\"active\"><a href=\"javascript:void(0)\">1</a></li>");
         expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
                 + "\">2</a></li>");
         expected.append("<li><a href=\"?page=2&size=10" + expectedCriteriaQuery
@@ -656,10 +655,9 @@ public class PaginationTagTest {
         StringBuilder expected = new StringBuilder();
         String expectedCriteriaQuery = "&a=%2B&amp;b=+&amp;c=%3D&amp;d=%26";
         expected.append("<ul>");
-        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
-        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;</a></li>");
-        expected.append("<li class=\"active\"><a href=\"?page=0&size=10"
-                + expectedCriteriaQuery + "\">1</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;&lt;</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;</a></li>");
+        expected.append("<li class=\"active\"><a href=\"javascript:void(0)\">1</a></li>");
         expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
                 + "\">2</a></li>");
         expected.append("<li><a href=\"?page=2&size=10" + expectedCriteriaQuery
@@ -695,10 +693,9 @@ public class PaginationTagTest {
         StringBuilder expected = new StringBuilder();
         String expectedCriteriaQuery = "&a=%2B&b=+&c=%3D&d=%26&e=<>\"'";
         expected.append("<ul>");
-        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
-        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;</a></li>");
-        expected.append("<li class=\"active\"><a href=\"?page=0&size=10"
-                + expectedCriteriaQuery + "\">1</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;&lt;</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;</a></li>");
+        expected.append("<li class=\"active\"><a href=\"javascript:void(0)\">1</a></li>");
         expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
                 + "\">2</a></li>");
         expected.append("<li><a href=\"?page=2&size=10" + expectedCriteriaQuery
@@ -734,9 +731,9 @@ public class PaginationTagTest {
 
         StringBuilder expected = new StringBuilder();
         expected.append("<ul>");
-        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
-        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;</a></li>");
-        expected.append("<li class=\"active\"><a href=\"/0/10?a=b\">1</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;&lt;</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;</a></li>");
+        expected.append("<li class=\"active\"><a href=\"javascript:void(0)\">1</a></li>");
         expected.append("<li><a href=\"/1/10?a=b\">2</a></li>");
         expected.append("<li><a href=\"/2/10?a=b\">3</a></li>");
         expected.append("<li><a href=\"/1/10?a=b\">&gt;</a></li>");
@@ -767,10 +764,9 @@ public class PaginationTagTest {
         StringBuilder expected = new StringBuilder();
         String expectedCriteriaQuery = "&a=%2B&amp;b=+&amp;c=%3D&amp;d=%26";
         expected.append("<ul>");
-        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
-        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;</a></li>");
-        expected.append("<li class=\"active\"><a href=\"?page=0&size=10"
-                + expectedCriteriaQuery + "\">1</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;&lt;</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;</a></li>");
+        expected.append("<li class=\"active\"><a href=\"javascript:void(0)\">1</a></li>");
         expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
                 + "\">2</a></li>");
         expected.append("<li><a href=\"?page=2&size=10" + expectedCriteriaQuery
