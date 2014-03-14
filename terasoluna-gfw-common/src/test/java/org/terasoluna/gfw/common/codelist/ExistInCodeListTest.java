@@ -23,14 +23,13 @@ import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
-//import javax.inject.Inject;
+import javax.inject.Inject;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.terasoluna.gfw.common.codelist.ExistInCodeList;
@@ -38,8 +37,8 @@ import org.terasoluna.gfw.common.codelist.ExistInCodeList;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
 public class ExistInCodeListTest {
-    // @Inject
-    @Autowired
+
+    @Inject
     Validator validator;
 
     @Before
@@ -269,6 +268,21 @@ public class ExistInCodeListTest {
             assertThat(iterator.next(), is("number must be multiples of 3"));
         }
     }
+
+    @Test
+    public void issue16_testMessage() {
+        Person p = new Person();
+        p.gender = "X"; // invalid value
+        p.lang = "JP";
+        Set<ConstraintViolation<Person>> result = validator.validate(p);
+        assertThat(result.size(), is(1));
+        ConstraintViolation<Person> error = result.iterator().next();
+        assertThat(
+                error.getMessageTemplate(),
+                is("{org.terasoluna.gfw.common.codelist.ExistInCodeList.message}"));
+        assertThat(error.getMessage(), is("Does not exist in CD_GENDER"));
+    }
+
 }
 
 class Person {

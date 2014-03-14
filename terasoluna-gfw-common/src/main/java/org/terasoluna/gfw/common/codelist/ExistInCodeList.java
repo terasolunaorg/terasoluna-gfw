@@ -59,7 +59,7 @@ public @interface ExistInCodeList {
      * Error message or message key
      * @return error message or message key
      */
-    String message() default "{org.terasoluna.gfw.common.codelist.ExistInCodeList}";
+    String message() default "{org.terasoluna.gfw.common.codelist.ExistInCodeList.message}";
 
     /**
      * Bean ID of the codelist in which check the value<br>
