@@ -193,6 +193,7 @@ public class ResultMessagesTest {
         assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
     }
 
+    @SuppressWarnings("deprecation")
     @Test
     public void testWarn() {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
@@ -240,4 +241,17 @@ public class ResultMessagesTest {
         assertThat(messages.getType(), is((ResultMessageType) DANGER));
         assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
     }
+
+    @Test
+    public void issue24_testWarning() {
+        ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
+        ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
+
+        ResultMessages messages = ResultMessages.warning().add("foo", "aa").add(
+                "bar", "bb");
+
+        assertThat(messages.getType(), is((ResultMessageType) WARNING));
+        assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
+    }
+
 }

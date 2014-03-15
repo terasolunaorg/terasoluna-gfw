@@ -76,9 +76,13 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * </p>
  * <p>
  * By default, a combination of, ``alert`` and any one of
- * ``alert-success,alert-info,alert-warn,alert-error`` classes of bootstrap, is
+ * ``alert-success,alert-info,alert-warn(*1),alert-warning(*2),alert-error`` classes of bootstrap, is
  * used in ``messagesPanel`` <br>
  * the suffix after ``alert-`` is specified using ``type`` of ResultMessages
+ * </p>
+ * <p>
+ * *1: deprecated form 1.1.0<br>
+ * *2: added from 1.1.0
  * </p>
  * <p>
  * <b>When the message is in {@code String} and {@code messagesPanel} is using
