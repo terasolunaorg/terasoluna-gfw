@@ -984,7 +984,7 @@
         <ch.qos.logback.version>1.0.13</ch.qos.logback.version>
         <org.lazyluke.version>0.2.7</org.lazyluke.version>
         <!-- == Spring Framework == -->
-        <org.springframework-version>3.2.4.RELEASE</org.springframework-version>
+        <org.springframework-version>3.2.8.RELEASE</org.springframework-version>
         <org.springframework.data.spring-data-jpa.version>1.4.3.RELEASE</org.springframework.data.spring-data-jpa.version>
         <org.springframework.data.version>1.6.4.RELEASE</org.springframework.data.version>
         <org.springframework.security.version>3.1.4.RELEASE</org.springframework.security.version>
