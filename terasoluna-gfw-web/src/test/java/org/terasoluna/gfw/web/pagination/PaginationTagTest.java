@@ -743,6 +743,111 @@ public class PaginationTagTest {
         // That the question-mark(?) is add
         assertThat(getOutput(), is(expected.toString()));
     }
+    
+    @Test
+    public void issue13_14_testDoStartTagInternal_linkOfCurrentPage_specified_true() throws Exception {
+        Page<String> page = mock(Page.class);
+        // set mock behavior
+        when(page.getNumber()).thenReturn(0);
+        when(page.getSize()).thenReturn(10);
+        when(page.getTotalPages()).thenReturn(100);
+        when(page.getTotalElements()).thenReturn(1000L);
+
+        tag.setPage(page);
+        tag.setMaxDisplayCount(3);
+        tag.setPathTmpl("/{page}/{size}");
+        tag.setQueryTmpl(null);
+        tag.setCriteriaQuery("a=b");
+        tag.setEnableLinkOfCurrentPage("true");
+
+        int ret = tag.doStartTagInternal();
+
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+
+        StringBuilder expected = new StringBuilder();
+        expected.append("<ul>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;&lt;</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;</a></li>");
+        expected.append("<li class=\"active\"><a href=\"/0/10?a=b\">1</a></li>");
+        expected.append("<li><a href=\"/1/10?a=b\">2</a></li>");
+        expected.append("<li><a href=\"/2/10?a=b\">3</a></li>");
+        expected.append("<li><a href=\"/1/10?a=b\">&gt;</a></li>");
+        expected.append("<li><a href=\"/99/10?a=b\">&gt;&gt;</a></li>");
+        expected.append("</ul>");
+
+        // That the current link is enabled
+        assertThat(getOutput(), is(expected.toString()));
+    }
+    
+    @Test
+    public void issue13_14_testDoStartTagInternal_linkOfCurrentPage_specified_false() throws Exception {
+        Page<String> page = mock(Page.class);
+        // set mock behavior
+        when(page.getNumber()).thenReturn(0);
+        when(page.getSize()).thenReturn(10);
+        when(page.getTotalPages()).thenReturn(100);
+        when(page.getTotalElements()).thenReturn(1000L);
+
+        tag.setPage(page);
+        tag.setMaxDisplayCount(3);
+        tag.setPathTmpl("/{page}/{size}");
+        tag.setQueryTmpl(null);
+        tag.setCriteriaQuery("a=b");
+        tag.setEnableLinkOfCurrentPage("false");
+
+        int ret = tag.doStartTagInternal();
+
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+
+        StringBuilder expected = new StringBuilder();
+        expected.append("<ul>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;&lt;</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;</a></li>");
+        expected.append("<li class=\"active\"><a href=\"javascript:void(0)\">1</a></li>");
+        expected.append("<li><a href=\"/1/10?a=b\">2</a></li>");
+        expected.append("<li><a href=\"/2/10?a=b\">3</a></li>");
+        expected.append("<li><a href=\"/1/10?a=b\">&gt;</a></li>");
+        expected.append("<li><a href=\"/99/10?a=b\">&gt;&gt;</a></li>");
+        expected.append("</ul>");
+
+        // That the current link is enabled
+        assertThat(getOutput(), is(expected.toString()));
+    }
+    
+    @Test
+    public void issue13_14_testDoStartTagInternal_linkOfCurrentPage_isEmpty() throws Exception {
+        Page<String> page = mock(Page.class);
+        // set mock behavior
+        when(page.getNumber()).thenReturn(0);
+        when(page.getSize()).thenReturn(10);
+        when(page.getTotalPages()).thenReturn(100);
+        when(page.getTotalElements()).thenReturn(1000L);
+
+        tag.setPage(page);
+        tag.setMaxDisplayCount(3);
+        tag.setPathTmpl("/{page}/{size}");
+        tag.setQueryTmpl(null);
+        tag.setCriteriaQuery("a=b");
+        tag.setEnableLinkOfCurrentPage("");
+
+        int ret = tag.doStartTagInternal();
+
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+
+        StringBuilder expected = new StringBuilder();
+        expected.append("<ul>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;&lt;</a></li>");
+        expected.append("<li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;</a></li>");
+        expected.append("<li class=\"active\"><a href=\"javascript:void(0)\">1</a></li>");
+        expected.append("<li><a href=\"/1/10?a=b\">2</a></li>");
+        expected.append("<li><a href=\"/2/10?a=b\">3</a></li>");
+        expected.append("<li><a href=\"/1/10?a=b\">&gt;</a></li>");
+        expected.append("<li><a href=\"/99/10?a=b\">&gt;&gt;</a></li>");
+        expected.append("</ul>");
+
+        // That the current link is enabled
+        assertThat(getOutput(), is(expected.toString()));
+    }
 
     @Test
     public void issue12_testDoStartTagInternal_criteriaQuery_specified_startWith_andMark() throws Exception {
@@ -823,6 +928,7 @@ public class PaginationTagTest {
             tag1.setDisabledHref("");
             tag1.setActiveClass("");
             tag1.setDisabledClass("");
+            tag1.setEnableLinkOfCurrentPage("");
         } catch (Exception ex) {
             ex.printStackTrace();
             fail();
