@@ -19,18 +19,18 @@ The following project are included in Terasoluna Global Framework Common Library
     <td>Yes</td>
     <td>
     <pre>
-     * Comprehensive Common Exception Handling Mechanism
-	 	* General exception class (designed as per the needs of this mechanism)
-	 	* Exception Logger
-	 	* Exception Codes
-	 	* Interceptor to output exception log
-	 * Improvised System Time handling mechanism
-	 * Codelist functionality
-	 * Improvised Message handling mechasim
-	 * Query excaping utilities for SQL, JPQL
-	 * Sequencer classes
-        </pre>
-	</td>
+* Comprehensive Common Exception Handling Mechanism
+  * General exception class (designed as per the needs of this mechanism)
+  * Exception Logger
+  * Exception Codes
+  * Interceptor to output exception log
+* Improvised System Time handling mechanism
+* Codelist functionality
+* Improvised Message handling mechasim
+* Query excaping utilities for SQL, JPQL
+* Sequencer classes
+     </pre>
+    </td>
   </tr>
   <tr>
     <td>2</td>
@@ -38,31 +38,31 @@ The following project are included in Terasoluna Global Framework Common Library
     <td>Yes</td>
     <td>
     <pre>
-      * Transaction Token Mechanism (Mechanism to prevent double submit)
-	  * Common Exception Handler
-	  * Interceptor to load Codelist
-	  * Download View
-	  * Group of Servlet filters to output log of information in MDC
-		* Servlet filter parent class
-		* Servlet filter to output tracking Id
-		* Servlet filter to clear MDC
-	  * Group of EL functions
-		* Counter-measure for Cross-Site-Scripting
-		* URL encoding functionality
-		* Creating query parameters from JavaBean
-	  * JSP tag to display pagination
-	  * JSP tag to display output messages after request processes
-	</pre>  
+* Transaction Token Mechanism (Mechanism to prevent double submit)
+* Common Exception Handler
+* Interceptor to load Codelist
+* Download View
+* Group of Servlet filters to output log of information in MDC
+  * Servlet filter parent class
+  * Servlet filter to output tracking Id
+  * Servlet filter to clear MDC
+* Group of EL functions
+  * Counter-measure for Cross-Site-Scripting
+  * URL encoding functionality
+  * Creating query parameters from JavaBean
+* JSP tag to display pagination
+* JSP tag to display output messages after request processes
+    </pre>
     </td>
   </tr>
   <tr>
-    <td>3</td><td>terasoluna-gfw-jpa</td><td>Maven dependency definition for using JPA</td><td>No</td><td><pre>Recommended dependency definition</pre></td>
+    <td>3</td><td>terasoluna-gfw-jpa</td><td>Maven dependency definition for using JPA</td><td>No</td><td><pre>* Recommended dependency definition</pre></td>
   </tr>
   <tr>
-    <td>4</td><td>terasoluna-gfw-mybatis2</td><td>Maven dependency definition for using mybatis2</td><td>No</td><td><pre>Recommended dependency definition</pre></td>
+    <td>4</td><td>terasoluna-gfw-mybatis2</td><td>Maven dependency definition for using mybatis2</td><td>No</td><td><pre>* Recommended dependency definition</pre></td>
   </tr>
   <tr>
-    <td>5</td><td>terasoluna-gfw-security-core</td><td>Maven dependency definition for using spring-security (other than web)</td><td>No</td><td><pre>Recommended dependency definition</pre></td>
+    <td>5</td><td>terasoluna-gfw-security-core</td><td>Maven dependency definition for using spring-security (other than web)</td><td>No</td><td><pre>* Recommended dependency definition</pre></td>
   </tr>
   <tr>
     <td>6</td>
@@ -71,9 +71,9 @@ The following project are included in Terasoluna Global Framework Common Library
     <td>yes</td>
     <td>
     <pre>
-      * Servlet filter to output the authenticated username in log
-      * Redirect handler to counter-measure open redirect vulnerablibility
-	  * CSRF counter-measure
+* Servlet filter to output the authenticated username in log
+* Redirect handler to counter-measure open redirect vulnerablibility
+* CSRF counter-measure
     </pre>
     </td>
   </tr>
@@ -98,77 +98,77 @@ Irrespective of above two ways, first define the repositories in the pom file.
 
 (The below is required in the both the type of settings.)
 
-	<repositories>
-	    <repository>
-	        <releases>
-	            <enabled>true</enabled>
-	        </releases>
-	        <snapshots>
-	            <enabled>false</enabled>
-	        </snapshots>
-	        <id>terasoluna-gfw-releases</id>
-	        <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
-	    </repository>
-	    <repository>
-	        <releases>
-	            <enabled>true</enabled>
-	        </releases>
-	        <snapshots>
-	            <enabled>false</enabled>
-	        </snapshots>
-	        <id>terasoluna-gfw-3rdparty</id>
-	        <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/</url>
-	    </repository>
-	</repositories>
+    <repositories>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>terasoluna-gfw-releases</id>
+            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
+        </repository>
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>terasoluna-gfw-3rdparty</id>
+            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/</url>
+        </repository>
+    </repositories>
 
 #### Using parent
 
 Define parent project in pom file
 
-	<parent>
-	  <groupId>org.terasoluna.gfw</groupId>
-	  <artifactId>terasoluna-gfw-parent</artifactId>
-	  <version>1.0.0.RELEASE</version>
-	</parent>
+    <parent>
+      <groupId>org.terasoluna.gfw</groupId>
+      <artifactId>terasoluna-gfw-parent</artifactId>
+      <version>1.0.0.RELEASE</version>
+    </parent>
 
 After adding above, add the following dependency definitions. 
 (Only the required ones.)
 
-	<dependency>
-	    <groupId>org.terasoluna.gfw</groupId>
-	    <artifactId>terasoluna-gfw-web</artifactId>
-	</dependency>
+    <dependency>
+        <groupId>org.terasoluna.gfw</groupId>
+        <artifactId>terasoluna-gfw-web</artifactId>
+    </dependency>
 
-	<!-- OPTIONAL -->
-	<dependency>
-	    <groupId>org.terasoluna.gfw</groupId>
-	    <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
-	    <type>pom</type>
-	</dependency>
-	<!-- OPTIONAL -->
-	<dependency>
-	    <groupId>org.terasoluna.gfw</groupId>
-	    <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
-	    <type>pom</type>
-	</dependency
+    <!-- OPTIONAL -->
+    <dependency>
+        <groupId>org.terasoluna.gfw</groupId>
+        <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
+        <type>pom</type>
+    </dependency>
+    <!-- OPTIONAL -->
+    <dependency>
+        <groupId>org.terasoluna.gfw</groupId>
+        <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
+        <type>pom</type>
+    </dependency
 
-	<!-- If Spring Security is to be used -->
-	<dependency>
-	    <groupId>org.terasoluna.gfw</groupId>
-	    <artifactId>terasoluna-gfw-security-web</artifactId>
-	</dependency>
+    <!-- If Spring Security is to be used -->
+    <dependency>
+        <groupId>org.terasoluna.gfw</groupId>
+        <artifactId>terasoluna-gfw-security-web</artifactId>
+    </dependency>
 
-	<!-- If JPA is to be used -->
-	<dependency>
-	    <groupId>org.terasoluna.gfw</groupId>
-	    <artifactId>terasoluna-gfw-jpa</artifactId>
-	</dependency>
+    <!-- If JPA is to be used -->
+    <dependency>
+        <groupId>org.terasoluna.gfw</groupId>
+        <artifactId>terasoluna-gfw-jpa</artifactId>
+    </dependency>
 
-	<!-- If MyBatis2 is to be used -->
-	<dependency>
-	    <groupId>org.terasoluna.gfw</groupId>
-	    <artifactId>terasoluna-gfw-mybatis2</artifactId>
-	</dependency>
+    <!-- If MyBatis2 is to be used -->
+    <dependency>
+        <groupId>org.terasoluna.gfw</groupId>
+        <artifactId>terasoluna-gfw-mybatis2</artifactId>
+    </dependency>
 
 There is no need of settings related to version. 
 
@@ -180,47 +180,47 @@ Add the following dependency definitions.
 
 (Only the required ones.)
 
-	<dependency>
-	    <groupId>org.terasoluna.gfw</groupId>
-	    <artifactId>terasoluna-gfw-web</artifactId>
-	</dependency>
+    <dependency>
+        <groupId>org.terasoluna.gfw</groupId>
+        <artifactId>terasoluna-gfw-web</artifactId>
+    </dependency>
 
-	<!-- OPTIONAL -->
-	<dependency>
-	    <groupId>org.terasoluna.gfw</groupId>
-	    <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
-	    <version>1.0.0.RELEASE</version>
-	    <type>pom</type>
-	</dependency>
+    <!-- OPTIONAL -->
+    <dependency>
+        <groupId>org.terasoluna.gfw</groupId>
+        <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
+        <version>1.0.0.RELEASE</version>
+        <type>pom</type>
+    </dependency>
 
-	<!-- OPTIONAL -->
-	<dependency>
-	    <groupId>org.terasoluna.gfw</groupId>
-	    <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
-	    <version>1.0.0.RELEASE</version>
-	    <type>pom</type>
-	</dependency
+    <!-- OPTIONAL -->
+    <dependency>
+        <groupId>org.terasoluna.gfw</groupId>
+        <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
+        <version>1.0.0.RELEASE</version>
+        <type>pom</type>
+    </dependency
 
-	<!-- If Spring Security is to be used -->
-	<dependency>
-	    <groupId>org.terasoluna.gfw</groupId>
-	    <artifactId>terasoluna-gfw-security-web</artifactId>
-	    <version>1.0.0.RELEASE</version>
-	</dependency>
+    <!-- If Spring Security is to be used -->
+    <dependency>
+        <groupId>org.terasoluna.gfw</groupId>
+        <artifactId>terasoluna-gfw-security-web</artifactId>
+        <version>1.0.0.RELEASE</version>
+    </dependency>
 
-	<!-- If JPA is to be used -->
-	<dependency>
-	    <groupId>org.terasoluna.gfw</groupId>
-	    <artifactId>terasoluna-gfw-jpa</artifactId>
-	    <version>1.0.0.RELEASE</version>
-	</dependency>
+    <!-- If JPA is to be used -->
+    <dependency>
+        <groupId>org.terasoluna.gfw</groupId>
+        <artifactId>terasoluna-gfw-jpa</artifactId>
+        <version>1.0.0.RELEASE</version>
+    </dependency>
 
-	<!-- If MyBatis2 is to be used -->
-	<dependency>
-	    <groupId>org.terasoluna.gfw</groupId>
-	    <artifactId>terasoluna-gfw-mybatis2</artifactId>
-	    <version>1.0.0.RELEASE</version>
-	</dependency>
+    <!-- If MyBatis2 is to be used -->
+    <dependency>
+        <groupId>org.terasoluna.gfw</groupId>
+        <artifactId>terasoluna-gfw-mybatis2</artifactId>
+        <version>1.0.0.RELEASE</version>
+    </dependency>
 
 Apart from the above mentioned settings, plugin related settings must also be done in pom file as per the requirements.
 

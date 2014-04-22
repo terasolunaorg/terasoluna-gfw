@@ -8,7 +8,8 @@
         <relativePath>../terasoluna-parent/pom.xml</relativePath>
     </parent>
     <artifactId>terasoluna-gfw-jpa</artifactId>
-    <description>Functionalities about JPA for TERASOLUNA Global Framework</description>
+    <name>TERASOLUNA Global Framework for JPA</name>
+    <description>Maven dependency definition for using JPA</description>
     <url>http://terasoluna.org</url>
 
     <dependencies>
