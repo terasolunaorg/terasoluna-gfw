@@ -11,7 +11,7 @@
     <artifactId>terasoluna-gfw-security-web</artifactId>
     <packaging>jar</packaging>
     <name>TERASOLUNA Global Framework for web security</name>
-    <description>Web functionalities about security for TERASOLUNA Global Framework</description>
+    <description>Web functionalities related to security for TERASOLUNA Global Framework</description>
     <url>http://terasoluna.org</url>
     <licenses>
         <license>

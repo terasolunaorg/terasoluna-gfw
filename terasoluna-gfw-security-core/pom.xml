@@ -9,7 +9,7 @@
     </parent>
     <artifactId>terasoluna-gfw-security-core</artifactId>
     <name>TERASOLUNA Global Framework for security</name>
-    <description>Core functionalities about security for TERASOLUNA Global Framework</description>
+    <description>Core functionalities related to security for TERASOLUNA Global Framework</description>
     <url>http://terasoluna.org</url>
     <licenses>
         <license>
