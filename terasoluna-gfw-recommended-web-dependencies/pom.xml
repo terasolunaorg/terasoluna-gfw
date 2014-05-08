@@ -8,7 +8,6 @@
         <relativePath>../terasoluna-parent/pom.xml</relativePath>
     </parent>
     <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
-    <name>${project.artifactId}</name>
     <packaging>pom</packaging>
     <name>TERASOLUNA Global Framework recommended dependencies for web</name>
     <description>Useful libraries for web recommended by TERASOLUNA Global Framework</description>
