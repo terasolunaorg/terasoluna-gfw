@@ -10,8 +10,8 @@
     </parent>
     <artifactId>terasoluna-gfw-security-web</artifactId>
     <packaging>jar</packaging>
-    <name>${project.artifactId}</name>
-    <description>Web functionalities abount security for TERASOLUNA Global Framework</description>
+    <name>TERASOLUNA Global Framework for web security</name>
+    <description>Web functionalities related to security for TERASOLUNA Global Framework</description>
     <url>http://terasoluna.org</url>
     <licenses>
         <license>
