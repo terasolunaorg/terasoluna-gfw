@@ -9,7 +9,7 @@
     </parent>
     <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
     <packaging>pom</packaging>
-    <name>${project.artifactId}</name>
+    <name>TERASOLUNA Global Framework recommended dependencies</name>
     <description>Useful libraries recommended by TERASOLUNA Global Framework</description>
     <url>http://terasoluna.org</url>
 

@@ -4,10 +4,10 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-parent</artifactId>
-    <packaging>pom</packaging>
-    <name>TERASOLUNA Global Framework Parent POM</name>
     <version>1.0.1-SNAPSHOT</version>
-    <description>TERASOLUNA Global Framework Parent POM</description>
+    <packaging>pom</packaging>
+    <name>TERASOLUNA Global Framework Parent</name>
+    <description>The parent of TERASOLUNA Global Framework</description>
     <url>http://terasoluna.org</url>
     <inceptionYear>2013</inceptionYear>
     <licenses>
@@ -438,7 +438,6 @@
                 <version>${org.codehaus.jackson.version}</version>
             </dependency>
             <!-- == End Jackson == -->
-
 
             <!-- == Begin JPA == -->
             <!-- Hibernate -->
