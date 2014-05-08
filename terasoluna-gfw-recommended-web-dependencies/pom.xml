@@ -10,7 +10,8 @@
     <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
     <name>${project.artifactId}</name>
     <packaging>pom</packaging>
-    <description>Useful libraries about web depelopment  recommended by TERASOLUNA Global Framework</description>
+    <name>TERASOLUNA Global Framework recommended dependencies for web</name>
+    <description>Useful libraries for web recommended by TERASOLUNA Global Framework</description>
     <url>http://terasoluna.org</url>
 
     <dependencies>
