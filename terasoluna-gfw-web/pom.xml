@@ -10,7 +10,7 @@
     </parent>
     <artifactId>terasoluna-gfw-web</artifactId>
     <packaging>jar</packaging>
-    <name>${project.artifactId}</name>
+    <name>TERASOLUNA Global Framework for web</name>
     <description>Web functionalities for TERASOLUNA Global Framework</description>
     <url>http://terasoluna.org</url>
     <licenses>
