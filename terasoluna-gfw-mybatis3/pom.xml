@@ -28,7 +28,7 @@
     </dependencies>
     
     <properties>
-        <org.mybatis.version>3.2.5</org.mybatis.version>
+        <org.mybatis.version>3.2.7</org.mybatis.version>
         <org.mybatis.spring.version>1.2.2</org.mybatis.spring.version>
     </properties>
 
