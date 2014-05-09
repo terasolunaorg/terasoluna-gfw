@@ -10,8 +10,8 @@
     </parent>
     <artifactId>terasoluna-gfw-common</artifactId>
     <packaging>jar</packaging>
-    <name>${project.artifactId}</name>
-    <description>Common functionalities for TERASOLUNA Global Framework</description>
+    <name>TERASOLUNA Global Framework Common Library</name>
+    <description>Functionality that can be used in general and not just related to the web</description>
     <url>http://terasoluna.org</url>
     <licenses>
         <license>
