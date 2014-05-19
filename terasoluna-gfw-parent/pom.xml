@@ -586,7 +586,7 @@
                 <version>${org.springframework.data.version}</version>
                 <exclusions>
                     <exclusion>
-                        <artifactId>spring-beanss</artifactId>
+                        <artifactId>spring-beans</artifactId>
                         <groupId>org.springframework</groupId>
                     </exclusion>
                     <exclusion>
@@ -959,7 +959,6 @@
         <org.hibernate.javax.persistence.version>1.0.1.Final</org.hibernate.javax.persistence.version>
         <org.hibernate.version>4.2.3.Final</org.hibernate.version>
         <!-- == BeanValidation == -->
-        <javax.validation.version>1.0.0.Final</javax.validation.version>
         <org.hibernate.hibernate-validator.version>4.3.1.Final</org.hibernate.hibernate-validator.version>
         <jboss-logging.version>3.1.0.GA</jboss-logging.version>
         <!-- == Logging == -->
