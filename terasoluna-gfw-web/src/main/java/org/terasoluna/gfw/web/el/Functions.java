@@ -27,7 +27,6 @@ import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
-import org.springframework.web.util.HtmlUtils;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
