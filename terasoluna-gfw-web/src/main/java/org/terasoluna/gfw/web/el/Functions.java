@@ -100,7 +100,7 @@ public final class Functions {
      * </p>
      * @param input string to escape
      * @return escaped string. returns empty string if <code>value</code> is <code>null</code> or empty string.
-     * @see HtmlUtils#htmlEscape(String)
+     * @see HtmlEscapeUtils#htmlEscape(String)
      */
     public static String h(Object input) {
         return HtmlEscapeUtils.htmlEscape(input);
