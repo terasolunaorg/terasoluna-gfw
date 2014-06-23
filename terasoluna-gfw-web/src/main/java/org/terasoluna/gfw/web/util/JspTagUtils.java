@@ -29,7 +29,7 @@ import org.springframework.util.StringUtils;
  * </p>
  * @since 1.0.1
  */
-public class JspTagUtils {
+public final class JspTagUtils {
 
     /**
      * Default Constructor.
