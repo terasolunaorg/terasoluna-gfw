@@ -5,7 +5,7 @@
         <artifactId>terasoluna-gfw-parent</artifactId>
         <groupId>org.terasoluna.gfw</groupId>
         <version>1.1.0-SNAPSHOT</version>
-        <relativePath>../terasoluna-parent/pom.xml</relativePath>
+        <relativePath>../terasoluna-gfw-parent/pom.xml</relativePath>
     </parent>
     <artifactId>terasoluna-gfw-mybatis3</artifactId>
     <name>TERASOLUNA Global Framework for MyBatis3</name>
