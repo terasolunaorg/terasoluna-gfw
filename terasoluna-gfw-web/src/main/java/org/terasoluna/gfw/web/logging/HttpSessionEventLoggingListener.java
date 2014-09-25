@@ -35,7 +35,6 @@ import org.slf4j.LoggerFactory;
  */
 public class HttpSessionEventLoggingListener implements HttpSessionListener,
                                             HttpSessionAttributeListener,
-                                            HttpSessionBindingListener,
                                             HttpSessionActivationListener {
 
     /**
