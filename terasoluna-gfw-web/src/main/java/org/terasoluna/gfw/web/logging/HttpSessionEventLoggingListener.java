@@ -76,38 +76,6 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
     }
 
     /**
-     * Logging when object is bind to the session.
-     * <p>
-     * Session ID, name of the object that got bind to session, value of the object must be logged.
-     * </p>
-     * @see javax.servlet.http.HttpSessionBindingListener#valueBound(javax.servlet.http.HttpSessionBindingEvent)
-     */
-    @Override
-    public void valueBound(HttpSessionBindingEvent event) {
-        if (logger.isDebugEnabled()) {
-            HttpSession session = event.getSession();
-            logger.debug("SESSIONID#{} valueBound : {}={}", new Object[] {
-                    session.getId(), event.getName(), event.getValue() });
-        }
-    }
-
-    /**
-     * Logging when some object gets unbind from the session.
-     * <p>
-     * Session ID, name of the object that got unbind from session, value of the object must be logged.
-     * </p>
-     * @see javax.servlet.http.HttpSessionBindingListener#valueUnbound(javax.servlet.http.HttpSessionBindingEvent)
-     */
-    @Override
-    public void valueUnbound(HttpSessionBindingEvent event) {
-        if (logger.isDebugEnabled()) {
-            HttpSession session = event.getSession();
-            logger.debug("SESSIONID#{} valueUnbound : {}={}", new Object[] {
-                    session.getId(), event.getName(), event.getValue() });
-        }
-    }
-
-    /**
      * Logging when some attribute gets added to the session.
      * <p>
      * Session ID, name of the object in which attribute is added and value of the object gets logged.
