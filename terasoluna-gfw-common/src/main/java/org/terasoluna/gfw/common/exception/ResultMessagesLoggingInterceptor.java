@@ -18,7 +18,6 @@ package org.terasoluna.gfw.common.exception;
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.beans.factory.InitializingBean;
-import org.terasoluna.gfw.common.message.ResultMessages;
 
 /**
  * Interceptor class for logging {@link ResultMessages}.

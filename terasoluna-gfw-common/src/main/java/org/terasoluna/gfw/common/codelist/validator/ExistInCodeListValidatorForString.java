@@ -15,9 +15,6 @@
  */
 package org.terasoluna.gfw.common.codelist.validator;
 
-import org.terasoluna.gfw.common.codelist.CodeList;
-import org.terasoluna.gfw.common.codelist.ExistInCodeList;
-
 /**
  * Concrete validation implementation class for {@link ExistInCodeList} custom annotation.
  * <p>
