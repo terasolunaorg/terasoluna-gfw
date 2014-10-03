@@ -19,8 +19,6 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
 
-import org.joda.time.DateTime;
-
 /**
  * Abstract implementation of {@link DateFactory}.
  * <p>
