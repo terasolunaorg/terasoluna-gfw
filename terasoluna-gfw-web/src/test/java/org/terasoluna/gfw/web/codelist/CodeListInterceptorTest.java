@@ -16,6 +16,7 @@
 package org.terasoluna.gfw.web.codelist;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.mock;
@@ -276,16 +277,10 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do assert.
-        List<CodeList> expectedCodeLists = new ArrayList<CodeList>();
-        expectedCodeLists.add(getApplicationContext().getBean(
-                "A_simpleI18nCodeList", CodeList.class));
-        expectedCodeLists.add(getApplicationContext().getBean(
-                "A_numberRangeCodeList", CodeList.class));
-        expectedCodeLists.add(getApplicationContext().getBean(
-                "A_simpleMapCodeList", CodeList.class));
-
-        assertThat(testTarget.getCodeLists().toString(), is(expectedCodeLists
-                .toString()));
+        assertThat(testTarget.getCodeLists(), is(containsInAnyOrder(
+                getApplicationContext().getBean("A_simpleI18nCodeList", CodeList.class),
+                getApplicationContext().getBean("A_numberRangeCodeList", CodeList.class),
+                getApplicationContext().getBean("A_simpleMapCodeList", CodeList.class))));
 
     }
 
