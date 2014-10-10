@@ -277,15 +277,10 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do assert.
-        List<CodeList> expectedCodeLists = new ArrayList<CodeList>();
-        expectedCodeLists.add(getApplicationContext().getBean(
-                "A_simpleI18nCodeList", CodeList.class));
-        expectedCodeLists.add(getApplicationContext().getBean(
-                "A_numberRangeCodeList", CodeList.class));
-        expectedCodeLists.add(getApplicationContext().getBean(
-                "A_simpleMapCodeList", CodeList.class));
-
-        assertThat(testTarget.getCodeLists(), is(containsInAnyOrder(expectedCodeLists.toArray())));
+        assertThat(testTarget.getCodeLists(), is(containsInAnyOrder(
+                getApplicationContext().getBean("A_simpleI18nCodeList", CodeList.class),
+                getApplicationContext().getBean("A_numberRangeCodeList", CodeList.class),
+                getApplicationContext().getBean("A_simpleMapCodeList", CodeList.class))));
 
     }
 
