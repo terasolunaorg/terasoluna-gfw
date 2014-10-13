@@ -83,7 +83,7 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
      * transactionTokensPerTokenName indicates the number of transactionTokens that can be stored in the session for each <br>
      * tokenName at a time.
      * </p>
-     * @param transactionTokensPerTokenName(must be greater than 0)
+     * @param transactionTokenSizePerTokenName Allowed number of tokens for each tokenName(must be greater than 0)
      * @throws IllegalArgumentException sizePerTokenName is (less than or equals 0)
      */
     public HttpSessionTransactionTokenStore(int transactionTokenSizePerTokenName) {
@@ -142,7 +142,7 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
      * This value corresponding to the same transactionToken instance can be fetched only once. Once the value is fetched, its
      * value is cleared from the session. For all further invocations to this method for the same transactionToken instance,
      * <code>null</code> will be returned.
-     * @see org.terasoluna.gfw.web.token.transaction.TransactionTokenStore#getCurrentValueAndReset(org.terasoluna.gfw.web.token.transaction.TransactionToken)
+     * @see org.terasoluna.gfw.web.token.transaction.TransactionTokenStore#getAndClear(org.terasoluna.gfw.web.token.transaction.TransactionToken)
      * @throws IllegalArgumentException generator is null
      */
     @Override

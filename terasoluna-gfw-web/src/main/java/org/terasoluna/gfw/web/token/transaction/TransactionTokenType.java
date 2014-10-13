@@ -21,7 +21,7 @@ package org.terasoluna.gfw.web.token.transaction;
 public enum TransactionTokenType {
 
     /**
-     * A {@link TransactionToken} of type {@link NONE} is created when {@link TransactionTokenCheck} annotation is not found for
+     * A {@link TransactionToken} of type {@link #NONE} is created when {@link TransactionTokenCheck} annotation is not found for
      * a particular handlerMethod. In this case, the token check functionality is not invoked
      */
     NONE(false, false),

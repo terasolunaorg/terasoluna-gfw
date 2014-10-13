@@ -18,12 +18,12 @@ package org.terasoluna.gfw.common.exception;
 import org.terasoluna.gfw.common.exception.ExceptionLevel;
 
 /**
- * Provides Functionality to determine the {@link ExceptionLevel} based on the specified {@Link Exception} instance <br>
+ * Provides Functionality to determine the {@link ExceptionLevel} based on the specified {@link Exception} instance <br>
  */
 public interface ExceptionLevelResolver {
     
 	/**
-	 * Determines the {@link ExceptionLevel} based on the instance of {@Link Exception} <br> 
+	 * Determines the {@link ExceptionLevel} based on the instance of {@link Exception} <br>
 	 * passed as an argument <br>
 	 * @param ex Exception class
 	 * @return level of exception

@@ -75,12 +75,12 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * A read lock does not block other read locks. 
      * </p>
      * <p>
-     * A {@link LockedCallBack} instance passed as argument to this method. It represents a method call of the {@link Map}.<br>
+     * A {@link LockedCallback} instance passed as argument to this method. It represents a method call of the {@link Map}.<br>
      * A read lock is first acquired over the {@code Map} and then using {@code callback}, method represented by {@code callback} <br>
      * is executed.
      * </p>
      * 
-     * @param callback An instance of {@link LockedCallBack} which represents a method call of {@link Map}
+     * @param callback An instance of {@link LockedCallback} which represents a method call of {@link Map}
      * @return the return value of the method represented by {@code callback}
      */
     public <T> T withReadLock(LockedCallback<T> callback) {
@@ -103,12 +103,12 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * acquired while the resource is write locked. A write lock blocks other write locks as well as read locks. <br>
      * </p>
      * <p>
-     * A {@link LockedCallBack} instance passed as argument to this method. It represents a method call of the {@link Map}.<br>
+     * A {@link LockedCallback} instance passed as argument to this method. It represents a method call of the {@link Map}.<br>
      * A read lock is first acquired over the {@code Map} and then using {@code callback}, method represented by {@code callback} <br>
      * is executed.<br>
      * </p>
      * 
-     * @param callback An instance of {@link LockedCallBack} which represents a method call of {@link Map}
+     * @param callback An instance of {@link LockedCallback} which represents a method call of {@link Map}
      * @return the return value of the method represented by {@code callback}
      */
     public <T> T withWriteLock(LockedCallback<T> callback) {
@@ -251,7 +251,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
     }
 
     /**
-     * A write locked call to {@code clear()} and {@link PutAll()} methods of {@link Map}
+     * A write locked call to {@code clear()} and {@link #putAll(java.util.Map)}} methods of {@link Map}
      * <p>
      * Clears the {@link Map} which is encapsulated in this class and loads it with new values of<br> 
      * the {@link Map} received as argument.
