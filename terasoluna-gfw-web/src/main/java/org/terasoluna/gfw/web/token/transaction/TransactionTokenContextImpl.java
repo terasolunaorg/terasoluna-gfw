@@ -89,7 +89,7 @@ public class TransactionTokenContextImpl implements TransactionTokenContext {
     }
 
     /**
-     * set resrveCommand to {@link ReserveCommand#REMOVE_TOKEN}
+     * set reserveCommand to {@link org.terasoluna.gfw.web.token.transaction.TransactionTokenContextImpl.ReserveCommand#REMOVE_TOKEN}
      * @see org.terasoluna.gfw.web.token.transaction.TransactionTokenContext#removeToken()
      */
     @Override
