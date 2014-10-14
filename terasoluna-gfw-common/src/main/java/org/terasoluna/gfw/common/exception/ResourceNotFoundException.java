@@ -42,7 +42,7 @@ public class ResourceNotFoundException extends
      * <p>
      * Takes multiple {@code String} messages as argument.
      * </p>
-     * @param message {@link ResultMessages} instance
+     * @param messages {@link ResultMessages} instance
      */
     public ResourceNotFoundException(ResultMessages messages) {
         super(messages);

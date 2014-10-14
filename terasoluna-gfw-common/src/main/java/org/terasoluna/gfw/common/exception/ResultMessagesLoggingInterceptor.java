@@ -20,7 +20,7 @@ import org.aopalliance.intercept.MethodInvocation;
 import org.springframework.beans.factory.InitializingBean;
 
 /**
- * Interceptor class for logging {@link ResultMessages}.
+ * Interceptor class for logging {@link org.terasoluna.gfw.common.message.ResultMessages}.
  * <p>
  * Please treat as an object of singleton, because this class is thread-safe.
  * </p>
@@ -72,7 +72,7 @@ public class ResultMessagesLoggingInterceptor implements MethodInterceptor,
     }
 
     /**
-     * If ResultMessagesNotificationException occurred, logging {@link ResultMessages}.
+     * If ResultMessagesNotificationException occurred, logging {@link org.terasoluna.gfw.common.message.ResultMessages}.
      * <p>
      * Detail Specification:
      * <ol>

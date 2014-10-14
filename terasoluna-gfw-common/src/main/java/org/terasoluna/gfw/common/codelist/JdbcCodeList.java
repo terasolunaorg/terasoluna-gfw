@@ -28,7 +28,7 @@ import org.springframework.util.Assert;
  * Initializes codelist information from a database using JDBC.
  * <p>
  * The results of {@link #querySql} are stored in the codelist. The column name of 'value' of codelist is set by
- * {@link #valueColumnl} and 'label' by {@link #labelColumn}.<br>
+ * {@link #valueColumn} and 'label' by {@link #labelColumn}.<br>
  * Each row is put to the codelist unless value or label of it is <code>null</code>.
  * </p>
  */

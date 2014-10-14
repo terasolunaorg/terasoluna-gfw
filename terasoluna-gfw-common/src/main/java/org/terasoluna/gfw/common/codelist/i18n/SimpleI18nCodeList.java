@@ -251,9 +251,9 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     /**
      * set table by rows ({@link Map}).<br>
      * <p>
-     * The key is {@link Locale} and the value is {@link Map} which represents {@link Codelist}.<br>
+     * The key is {@link Locale} and the value is {@link Map} which represents {@link CodeList}.<br>
      * </p>
-     * @param rows
+     * @param rows table by rows ({@link Map}) per locale
      */
     public void setRows(Map<Locale, Map<String, String>> rows) {
         checkTable();
@@ -273,9 +273,9 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     /**
      * set table by rows ({@link CodeList})<br>
      * <p>
-     * The key is {@link Locale} and the value is {@link Codelist}.<br>
+     * The key is {@link Locale} and the value is {@link CodeList}.<br>
      * </p>
-     * @param rows
+     * @param rows table by rows ({@link CodeList}) per locale
      */
     public void setRowsByCodeList(Map<Locale, CodeList> rows) {
         checkTable();
@@ -297,7 +297,7 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
      * <p>
      * The key is {@link Locale} and value is {@link Map}. <br>
      * </p>
-     * @param cols
+     * @param cols table by columns ({@link Map}) per locale
      */
     public void setColumns(Map<String, Map<Locale, String>> cols) {
         checkTable();

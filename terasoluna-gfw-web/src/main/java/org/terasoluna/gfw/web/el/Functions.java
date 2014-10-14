@@ -38,7 +38,7 @@ import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
  * <ul>
  * <li>Escaping HTML tag using {@code f:h}</li>
  * <li>Encoding URL using {@code f:u}</li>
- * <li>Replacing new line characters with {@code<br />} using {@code f:br}</li>
+ * <li>Replacing new line characters with {@code <br />} using {@code f:br}</li>
  * <li>Output only the specified characters {@code f:cut}</li>
  * <li>Output the link text in {@code <a>} tag using {@code f:link}</li>
  * <li>Build query string from the parameters using {@code f:query}</li>
@@ -99,7 +99,7 @@ public final class Functions {
      * </p>
      * @param input string to escape
      * @return escaped string. returns empty string if <code>value</code> is <code>null</code> or empty string.
-     * @see HtmlEscapeUtils#htmlEscape(String)
+     * @see HtmlEscapeUtils#htmlEscape(Object)
      */
     public static String h(Object input) {
         return HtmlEscapeUtils.htmlEscape(input);
@@ -323,12 +323,12 @@ public final class Functions {
     }
 
     /**
-     * escape html (by {@link h}) after escape js (by {@link js})<br>
+     * escape html (by {@link #h}) after escape js (by {@link #js})<br>
      * <p>
      * This is used to escape event handler (ex. onclick="callback('${f:hjs(xxxx)}')"). This function equals to
      * ${f:h(f:js(xxx))}.
      * </p>
-     * @param value string to escape
+     * @param input string to escape
      * @return escaped string. returns empty string if <code>value</code> is <code>null</code> or empty.
      */
     public static String hjs(String input) {

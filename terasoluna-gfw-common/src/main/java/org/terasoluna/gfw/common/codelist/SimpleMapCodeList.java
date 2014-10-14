@@ -31,7 +31,7 @@ public class SimpleMapCodeList extends AbstractCodeList {
 
     /**
      * Returns the codelist Information as a Map instance
-     * @param Map codelist information
+     * @return Map codelist information
      * @see org.terasoluna.gfw.common.codelist.CodeList#asMap()
      */
     @Override
