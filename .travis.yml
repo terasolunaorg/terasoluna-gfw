@@ -10,6 +10,7 @@ script:
   - mvn install -f terasoluna-gfw-common/pom.xml
   - mvn install -f terasoluna-gfw-jpa/pom.xml
   - mvn install -f terasoluna-gfw-mybatis2/pom.xml
+  - mvn install -f terasoluna-gfw-mybatis3/pom.xml
   - mvn install -f terasoluna-gfw-recommended-dependencies/pom.xml
   - mvn install -f terasoluna-gfw-recommended-web-dependencies/pom.xml
   - mvn install -f terasoluna-gfw-web/pom.xml
