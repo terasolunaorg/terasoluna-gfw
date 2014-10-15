@@ -31,8 +31,8 @@ public class TransactionTokenRequestDataValueProcessor extends
 
     /**
      * Returns a map containing the {@link TransactionToken} received in the request. <br>
-     * Request attribute containing the token string is {@link TransactionTokenInterceptor.NEXT_TOKEN}
-     * @see org.terasoluna.gfw.web.mvc.RequestDataValueProcessorAdaptor#getExtraHiddenFields(javax.servlet.http.HttpServletRequest)
+     * Request attribute containing the token string is {@link TransactionTokenInterceptor#NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME}
+     * @see org.terasoluna.gfw.web.mvc.support.RequestDataValueProcessorAdaptor#getExtraHiddenFields(javax.servlet.http.HttpServletRequest)
      */
     @Override
     public Map<String, String> getExtraHiddenFields(HttpServletRequest request) {

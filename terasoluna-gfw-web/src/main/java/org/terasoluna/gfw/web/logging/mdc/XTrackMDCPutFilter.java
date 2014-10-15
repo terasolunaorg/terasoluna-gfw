@@ -54,7 +54,7 @@ public class XTrackMDCPutFilter extends AbstractMDCPutFilter {
 
     /**
      * set attribute name to set MDC and HTTP Response Header<br>
-     * @param attibuteName attribute name
+     * @param attributeName attribute name
      */
     public void setAttributeName(String attributeName) {
         this.attributeName = attributeName;

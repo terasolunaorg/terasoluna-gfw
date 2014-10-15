@@ -216,7 +216,7 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
      * @param receivedToken
      * @param tokenStore
      * @param tokenInfo
-     * @return
+     * @return if valid token, return true
      */
     boolean validateToken(final TransactionToken receivedToken,
             final TransactionTokenStore tokenStore,

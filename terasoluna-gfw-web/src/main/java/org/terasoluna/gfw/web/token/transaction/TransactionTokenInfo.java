@@ -34,8 +34,6 @@ public class TransactionTokenInfo {
      * Constructor <br>
      * @param tokenName name part of the {@link TransactionToken} represented by this {@link TransactionTokenInfo} instance
      * @param tokenType type of the {@link TransactionToken} represented by this {@link TransactionTokenInfo} instance
-     * @param error error message to be displayed when token check fails
-     * @param errorStatus HttpStatus
      */
     public TransactionTokenInfo(final String tokenName,
             final TransactionTokenType tokenType) {

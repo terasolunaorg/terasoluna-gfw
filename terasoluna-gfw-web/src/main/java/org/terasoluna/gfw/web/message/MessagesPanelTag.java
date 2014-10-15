@@ -291,7 +291,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	 * </p>
 	 * 
 	 * @param tagWriter
-	 * @param message
+	 * @param messages
 	 * @throws JspException
 	 *             If {@link JspException} occurs in caller writeMessage
 	 */
@@ -332,7 +332,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	 * @param tagWriter
 	 * @param message
 	 * @throws JspException
-	 *             Occurs when {@link #JspTagException} occurs in case when
+	 *             Occurs when {@link JspTagException} occurs in case when
 	 *             nothing is set in the configuration of the tag that
 	 *             configures MessagePanel using tagWriter.
 	 */
