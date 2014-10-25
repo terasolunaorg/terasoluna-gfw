@@ -131,9 +131,4 @@
         <!-- == End Unit Test == -->
 
     </dependencies>
-    <properties>
-        <checkstyle.rule.xml>src/etc/checkstyle.xml</checkstyle.rule.xml>
-        <!-- <findbugs.includefilter.xml>src/etc/foo.xml</findbugs.includefilter.xml> -->
-        <!-- <findbugs.includefilter.xml>src/etc/bar.xml</findbugs.includefilter.xml> -->
-    </properties>
 </project>
