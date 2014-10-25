@@ -1008,5 +1008,8 @@
         <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
         <encoding>UTF-8</encoding>
         <java-version>1.6</java-version>
+        <checkstyle.rule.xml />
+        <findbugs.includefilter.xml />
+        <findbugs.excludefilter.xml />
     </properties>
 </project>
