@@ -75,12 +75,6 @@
         <!-- == End TERASOLUNA == -->
 
         <!-- == Begin Spring == -->
-        <!-- Spring MVC -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-
         <!-- Spring Security -->
         <dependency>
             <groupId>org.springframework.security</groupId>
@@ -106,24 +100,7 @@
             <version>7.0.40</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jsp-api</artifactId>
-            <version>7.0.40</version>
-            <scope>provided</scope>
-        </dependency>
         <!-- == End Tomcat == -->
-
-        <!-- == Begin Other JavaEE/SE APIs == -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-        </dependency>
-        <!-- == End Other JavaEE/SE APIs == -->
 
         <!-- == Begin Database == -->
         <!-- H2 (for test) -->
