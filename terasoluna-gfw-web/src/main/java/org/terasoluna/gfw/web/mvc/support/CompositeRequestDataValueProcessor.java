@@ -17,7 +17,7 @@ package org.terasoluna.gfw.web.mvc.support;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -113,7 +113,7 @@ public class CompositeRequestDataValueProcessor implements
      */
     @Override
     public Map<String, String> getExtraHiddenFields(HttpServletRequest request) {
-        Map<String, String> result = new HashMap<String, String>();
+        Map<String, String> result = new LinkedHashMap<String, String>();
         for (RequestDataValueProcessor processor : reversedProcessors) {
             Map<String, String> map = processor.getExtraHiddenFields(request);
             if (map != null) {
