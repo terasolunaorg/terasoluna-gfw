@@ -128,11 +128,9 @@
                         <encoding>${encoding}</encoding>
                         <docencoding>${encoding}</docencoding>
                         <locale>en</locale>
-                        <configuration>
-                            <archive>
-                                <addMavenDescriptor>false</addMavenDescriptor>
-                            </archive>
-                        </configuration>
+                        <archive>
+                            <addMavenDescriptor>false</addMavenDescriptor>
+                        </archive>
                     </configuration>
                     <executions>
                         <execution>
