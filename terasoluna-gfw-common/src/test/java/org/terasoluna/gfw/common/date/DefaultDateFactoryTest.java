@@ -19,25 +19,28 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeUtils;
 import org.junit.Test;
-import org.terasoluna.gfw.common.date.DefaultDateFactory;
 
 public class DefaultDateFactoryTest {
 
     @Test
     public void testNewDateTime() {
-        DefaultDateFactory factory = new DefaultDateFactory();
-        DateTime now = new DateTime();
-        DateTime result = factory.newDateTime();
 
-        assertThat(result.getYear(), is(now.getYear()));
-        assertThat(result.getMonthOfYear(), is(now.getMonthOfYear()));
-        assertThat(result.getDayOfMonth(), is(now.getDayOfMonth()));
-        assertThat(result.getHourOfDay(), is(now.getHourOfDay()));
-        assertThat(result.getMinuteOfHour(), is(now.getMinuteOfHour()));
-        assertThat(result.getSecondOfMinute(), is(now.getSecondOfMinute()));
-        assertThat(result.getMillisOfSecond() >= now.getMillisOfSecond(),
-                is(true));
+        DefaultDateFactory factory = new DefaultDateFactory();
+
+        long currentTimeMillis = System.currentTimeMillis();
+        DateTimeUtils.setCurrentMillisFixed(currentTimeMillis);
+
+        try {
+            DateTime result = factory.newDateTime();
+
+            assertThat(result.getMillis(), is(currentTimeMillis));
+
+        } finally {
+            DateTimeUtils.setCurrentMillisSystem();
+        }
+
     }
 
 }
