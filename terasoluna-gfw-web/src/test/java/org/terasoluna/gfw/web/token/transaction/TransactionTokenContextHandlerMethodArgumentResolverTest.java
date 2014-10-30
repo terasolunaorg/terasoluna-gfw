@@ -15,6 +15,7 @@
  */
 package org.terasoluna.gfw.web.token.transaction;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
@@ -29,9 +30,6 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.method.support.ModelAndViewContainer;
-import org.terasoluna.gfw.web.token.transaction.TransactionTokenContext;
-import org.terasoluna.gfw.web.token.transaction.TransactionTokenContextHandlerMethodArgumentResolver;
-import org.terasoluna.gfw.web.token.transaction.TransactionTokenInterceptor;
 
 /**
  * Test class for TransactionTokenContextHandlerMethodArgumentResolver
@@ -89,7 +87,7 @@ public class TransactionTokenContextHandlerMethodArgumentResolverTest {
         NativeWebRequest webRequest = mock(NativeWebRequest.class);
         WebDataBinderFactory binderFactory = mock(WebDataBinderFactory.class);
 
-        String str = new String("testResolveArgument01");
+        String str = "testResolveArgument01";
         when(
                 webRequest
                         .getAttribute(
@@ -105,6 +103,6 @@ public class TransactionTokenContextHandlerMethodArgumentResolverTest {
             e.printStackTrace();
         }
 
-        assertThat(result, is(String.class));
+        assertThat(result, is(instanceOf(String.class)));
     }
 }
