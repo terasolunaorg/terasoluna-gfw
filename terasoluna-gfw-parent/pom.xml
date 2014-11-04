@@ -964,7 +964,7 @@
         <ch.qos.logback.version>1.0.13</ch.qos.logback.version>
         <org.lazyluke.version>0.2.7</org.lazyluke.version>
         <!-- == Spring Framework == -->
-        <org.springframework-version>3.2.10.RELEASE</org.springframework-version>
+        <org.springframework-version>4.0.7.RELEASE</org.springframework-version>
         <org.springframework.data.spring-data-jpa.version>1.4.3.RELEASE</org.springframework.data.spring-data-jpa.version>
         <org.springframework.data.version>1.6.4.RELEASE</org.springframework.data.version>
         <org.springframework.security.version>3.2.5.RELEASE</org.springframework.security.version>
@@ -1000,6 +1000,7 @@
         <org.codehaus.mojo.emma-maven-plugin.version>1.0-alpha-3</org.codehaus.mojo.emma-maven-plugin.version>
         <org.codehaus.mojo.version>2.5</org.codehaus.mojo.version>
         <!-- == Other Properties== -->
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <archetype.test.skip>true</archetype.test.skip>
         <com.google.code.findbugs.version>1.3.9</com.google.code.findbugs.version>
