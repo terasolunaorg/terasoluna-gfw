@@ -317,20 +317,11 @@
                 <groupId>net.sf.dozer</groupId>
                 <artifactId>dozer</artifactId>
                 <version>${dozer.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-api</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-log4j12</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>jcl-over-slf4j</artifactId>
-                    </exclusion>
-                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>net.sf.dozer</groupId>
+                <artifactId>dozer-spring</artifactId>
+                <version>${dozer.version}</version>
             </dependency>
             <!-- == End Dozer== -->
 
@@ -465,7 +456,7 @@
         <terasoluna.gfw.version>1.1.0-SNAPSHOT</terasoluna.gfw.version>
         <terasoluna.gfw.batch.version>1.0.0-SNAPSHOT</terasoluna.gfw.batch.version>
         <!-- == Dozer== -->
-        <dozer.version>5.4.0</dozer.version>
+        <dozer.version>5.5.1</dozer.version>
         <!-- == Joda-Time == -->
         <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
         <jadira-usertype-core.version>3.0.0.GA</jadira-usertype-core.version>
