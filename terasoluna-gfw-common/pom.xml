@@ -24,14 +24,6 @@
         <plugins>
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
-                <configuration>
-                    <includes>
-                        <include>**/*Test.java</include>
-                    </includes>
-                    <excludes>
-                        <exclude>**/org/terasoluna/gfw/common/bean/*Test.java</exclude>
-                    </excludes>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -197,14 +189,6 @@
             <artifactId>mockito-all</artifactId>
         </dependency>
         <!-- == End Unit Test == -->
-
-        <!-- == Begin Dozer== -->
-        <dependency>
-            <groupId>net.sf.dozer</groupId>
-            <artifactId>dozer</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- == End Dozer== -->
 
     </dependencies>
 </project>
