@@ -335,20 +335,6 @@
                 <groupId>org.jadira.usertype</groupId>
                 <artifactId>usertype.core</artifactId>
                 <version>${jadira-usertype-core.version}</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.hibernate</groupId>
-                        <artifactId>hibernate-entitymanager</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.slf4j</groupId>
-                        <artifactId>slf4j-api</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.joda</groupId>
-                        <artifactId>joda-money</artifactId>
-                    </exclusion>
-                </exclusions>
             </dependency>
             <!-- == End Joda-Time == -->
 
@@ -459,7 +445,7 @@
         <dozer.version>5.5.1</dozer.version>
         <!-- == Joda-Time == -->
         <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
-        <jadira-usertype-core.version>3.0.0.GA</jadira-usertype-core.version>
+        <jadira-usertype-core.version>3.2.0.GA</jadira-usertype-core.version>
         <!-- == Hibernate == -->
         <jboss-logging.version>3.1.3.GA</jboss-logging.version>
         <jboss-logging-annotations.version>1.2.0.Final</jboss-logging-annotations.version>
