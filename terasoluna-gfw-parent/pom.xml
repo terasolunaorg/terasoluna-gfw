@@ -475,7 +475,7 @@
         <!-- == Logging == -->
         <org.lazyluke.version>0.2.7</org.lazyluke.version>
         <!-- == JUnit == -->
-        <selenium.version>2.34.0</selenium.version>
+        <selenium.version>2.44.0</selenium.version>
         <!-- == Maven Plugins == -->
         <maven-eclipse-plugin.version>2.6</maven-eclipse-plugin.version>
         <maven-jxr-plugin.version>2.3</maven-jxr-plugin.version>
