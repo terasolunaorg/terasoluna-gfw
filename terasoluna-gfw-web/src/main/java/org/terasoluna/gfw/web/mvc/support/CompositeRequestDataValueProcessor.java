@@ -46,6 +46,10 @@ public class CompositeRequestDataValueProcessor implements
      */
     private final List<RequestDataValueProcessor> reversedProcessors;
 
+    /**
+     * Helper for invoke the {@code processAction()} method of {@link RequestDataValueProcessor}.
+     * @since 1.0.2
+     */
     private final ProcessActionInvocationHelper processActionInvocationHelper;
 
     /**
@@ -89,10 +93,12 @@ public class CompositeRequestDataValueProcessor implements
 
     /**
      * Calls the {@code processAction()} method of all the {@link RequestDataValueProcessor} implementations <br>
-     * this class holds. This method is for compatibility with Spring 4.
+     * this class holds. This method is for compatibility with Spring 4 or higher.
      * @param action action of form tag. must not be null.
+     * @param method http method of form tag.
      * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processAction(javax.servlet.http.HttpServletRequest,
      *      java.lang.String, java.lang.String)
+     * @since 1.0.2
      */
     public String processAction(HttpServletRequest request, String action, String method) {
 
