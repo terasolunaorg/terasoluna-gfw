@@ -15,11 +15,12 @@
  */
 package org.terasoluna.gfw.web.mvc.support;
 
-import org.springframework.util.ReflectionUtils;
-import org.springframework.web.servlet.support.RequestDataValueProcessor;
+import java.lang.reflect.Method;
 
 import javax.servlet.http.HttpServletRequest;
-import java.lang.reflect.Method;
+
+import org.springframework.util.ReflectionUtils;
+import org.springframework.web.servlet.support.RequestDataValueProcessor;
 
 /**
  * Helper class for invoke the {@code processAction()} method of {@link RequestDataValueProcessor}.
@@ -45,13 +46,15 @@ class ProcessActionInvocationHelper {
      */
     ProcessActionInvocationHelper() {
         // Check Spring4's signature
-        Method targetProcessActionMethod = ReflectionUtils.findMethod(RequestDataValueProcessor.class, "processAction",
+        Method targetProcessActionMethod = ReflectionUtils.findMethod(
+                RequestDataValueProcessor.class, "processAction",
                 HttpServletRequest.class, String.class, String.class);
         boolean isLegacySignature = false;
 
         if (targetProcessActionMethod == null) {
             // Check Spring3's signature
-            targetProcessActionMethod = ReflectionUtils.findMethod(RequestDataValueProcessor.class, "processAction",
+            targetProcessActionMethod = ReflectionUtils.findMethod(
+                    RequestDataValueProcessor.class, "processAction",
                     HttpServletRequest.class, String.class);
             isLegacySignature = true;
         }
@@ -64,18 +67,23 @@ class ProcessActionInvocationHelper {
 
     /**
      * Invoke the {@code processAction()} method of specified {@link RequestDataValueProcessor}.
-     *
      * @param requestDataValueProcessor {@link RequestDataValueProcessor} of invocation target
      * @param request current request
      * @param action action path of from
      * @param method http method of from
      * @return action that returned from specified {@link RequestDataValueProcessor}
      */
-    String invokeProcessAction(RequestDataValueProcessor requestDataValueProcessor, HttpServletRequest request, String action, String method) {
+    String invokeProcessAction(
+            RequestDataValueProcessor requestDataValueProcessor,
+            HttpServletRequest request, String action, String method) {
         if (isLegacySignature) {
-            return (String) ReflectionUtils.invokeMethod(this.processActionMethod, requestDataValueProcessor, request, action);
+            return (String) ReflectionUtils.invokeMethod(
+                    this.processActionMethod, requestDataValueProcessor,
+                    request, action);
         } else {
-            return (String) ReflectionUtils.invokeMethod(this.processActionMethod, requestDataValueProcessor, request, action, method);
+            return (String) ReflectionUtils.invokeMethod(
+                    this.processActionMethod, requestDataValueProcessor,
+                    request, action, method);
         }
     }
 }
