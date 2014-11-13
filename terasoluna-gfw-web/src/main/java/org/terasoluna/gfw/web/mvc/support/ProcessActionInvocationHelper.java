@@ -38,28 +38,28 @@ class ProcessActionInvocationHelper {
     /**
      * Flag that indicate whether legacy signature.
      */
-    private final boolean isOldProcessAction;
+    private final boolean isLegacySignature;
 
     /**
      * Default constructor.
      */
-    public ProcessActionInvocationHelper() {
+    ProcessActionInvocationHelper() {
         // Check Spring4's signature
         Method targetProcessActionMethod = ReflectionUtils.findMethod(RequestDataValueProcessor.class, "processAction",
                 HttpServletRequest.class, String.class, String.class);
-        boolean isOld = false;
+        boolean isLegacySignature = false;
 
         if (targetProcessActionMethod == null) {
             // Check Spring3's signature
             targetProcessActionMethod = ReflectionUtils.findMethod(RequestDataValueProcessor.class, "processAction",
                     HttpServletRequest.class, String.class);
-            isOld = true;
+            isLegacySignature = true;
         }
         if (targetProcessActionMethod == null) {
             throw new IllegalStateException("'processActionMethod' is not found. Should never get here!");
         }
         this.processActionMethod = targetProcessActionMethod;
-        this.isOldProcessAction = isOld;
+        this.isLegacySignature = isLegacySignature;
     }
 
     /**
@@ -71,8 +71,8 @@ class ProcessActionInvocationHelper {
      * @param method http method of from
      * @return action that returned from specified {@link RequestDataValueProcessor}
      */
-    public String invokeProcessAction(RequestDataValueProcessor requestDataValueProcessor, HttpServletRequest request, String action, String method) {
-        if (isOldProcessAction) {
+    String invokeProcessAction(RequestDataValueProcessor requestDataValueProcessor, HttpServletRequest request, String action, String method) {
+        if (isLegacySignature) {
             return (String) ReflectionUtils.invokeMethod(this.processActionMethod, requestDataValueProcessor, request, action);
         } else {
             return (String) ReflectionUtils.invokeMethod(this.processActionMethod, requestDataValueProcessor, request, action, method);
