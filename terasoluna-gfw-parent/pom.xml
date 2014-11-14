@@ -907,11 +907,6 @@
                 <version>${terasoluna.gfw.version}</version>
                 <type>pom</type>
             </dependency>
-            <dependency>
-                <groupId>org.terasoluna.gfw</groupId>
-                <artifactId>terasoluna-gfw-batch</artifactId>
-                <version>${terasoluna.gfw.batch.version}</version>
-            </dependency>
             <!-- == End TERASOLUNA == -->
         </dependencies>
     </dependencyManagement>
@@ -928,7 +923,6 @@
     <properties>
         <!-- == TERASOLUNA == -->
         <terasoluna.gfw.version>1.0.2-SNAPSHOT</terasoluna.gfw.version>
-        <terasoluna.gfw.batch.version>1.0.0-SNAPSHOT</terasoluna.gfw.batch.version>
         <!-- == Google == -->
         <com.google.guava.version>13.0.1</com.google.guava.version>
         <!-- == Apache Commons == -->
