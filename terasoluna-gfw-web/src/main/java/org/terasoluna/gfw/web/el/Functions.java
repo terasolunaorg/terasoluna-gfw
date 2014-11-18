@@ -124,6 +124,7 @@ public final class Functions {
      * </p>
      * @param value string to encode
      * @return encoded string. returns empty string if <code>value</code> is <code>null</code> or empty.
+     * @see URLEncoder#encode(String, String)
      * @throws UnsupportedEncodingException 
      */
     public static String u(String value) throws UnsupportedEncodingException {
