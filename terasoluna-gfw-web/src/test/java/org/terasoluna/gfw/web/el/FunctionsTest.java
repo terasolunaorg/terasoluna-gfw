@@ -18,6 +18,7 @@ package org.terasoluna.gfw.web.el;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.Date;
@@ -268,15 +269,21 @@ public class FunctionsTest {
 
     @Test
     public void testU() {
-        assertThat(Functions.u(null), is(""));
-        assertThat(Functions.u(""), is(""));
-        assertThat(Functions.u("あいうえお"),
-                is("%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
-        assertThat(Functions.u("http://localhost:8080/spring"),
-                is("http://localhost:8080/spring"));
-        assertThat(
-                Functions.u("http://localhost:8080/あいうえお"),
-                is("http://localhost:8080/%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
+        try {
+			assertThat(Functions.u(null), is(""));
+			assertThat(Functions.u(""), is(""));
+			assertThat(Functions.u("あいうえお"),
+			        is("%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
+			assertThat(Functions.u("http://localhost:8080/spring"),
+			        is("http%3A%2F%2Flocalhost%3A8080%2Fspring"));
+			assertThat(
+			        Functions.u("name1=hoge&name2=hoge2"),
+			        is("name1%3Dhoge%26name2%3Dhoge2"));
+
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			fail();
+		}
     }
 
     @Test
