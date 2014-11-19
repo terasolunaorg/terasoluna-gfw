@@ -279,6 +279,99 @@ public class FunctionsTest {
     }
 
     @Test
+    public void testU_Colon(){
+        assertThat(Functions.u(":"), is("%3A"));
+    }
+
+    @Test
+    public void testU_Slash(){
+        assertThat(Functions.u("/"), is("%2F"));
+    }
+
+    @Test
+    public void testU_Hyphen(){
+        assertThat(Functions.u("-"), is("-"));
+    }
+
+    @Test
+    public void testU_UnderScore(){
+        assertThat(Functions.u("_"), is("_"));
+    }
+
+    @Test
+    public void testU_Tiled(){
+        assertThat(Functions.u("~"), is("%7E"));
+    }
+
+    @Test
+    public void testU_Question(){
+        assertThat(Functions.u("?"), is("%3F"));
+    }
+
+    @Test
+    public void testU_Sharp(){
+        assertThat(Functions.u("#"), is("%23"));
+    }
+
+    @Test
+    public void testU_Bracket(){
+        assertThat(Functions.u("["), is("%5B"));
+        assertThat(Functions.u("]"), is("%5D"));
+        assertThat(Functions.u("("), is("%28"));
+        assertThat(Functions.u(")"), is("%29"));
+    }
+
+    @Test
+    public void testU_AtMark(){
+        assertThat(Functions.u("@"), is("%40"));
+    }
+
+    @Test
+    public void testU_ExclamationMark(){
+        assertThat(Functions.u("!"), is("%21"));
+    }
+
+    @Test
+    public void testU_Dollar(){
+        assertThat(Functions.u("$"), is("%24"));
+    }
+
+    @Test
+    public void testU_Ampersand(){
+        assertThat(Functions.u("&"), is("%26"));
+    }
+
+    @Test
+    public void testU_SingleQuotes(){
+        assertThat(Functions.u("'"), is("%27"));
+    }
+
+    @Test
+    public void testU_Asterisk(){
+        assertThat(Functions.u("*"), is("*"));
+    }
+
+    @Test
+    public void testU_PlusSign(){
+        assertThat(Functions.u("+"), is("%2B"));
+    }
+
+    @Test
+    public void testU_Comma(){
+        assertThat(Functions.u(","), is("%2C"));
+    }
+    
+    @Test
+    public void testU_SemiColon(){
+        assertThat(Functions.u(";"), is("%3B"));
+    }
+    
+    @Test
+    public void testU_Equal(){
+        assertThat(Functions.u("="), is("%3D"));
+    }
+    
+    @Test
     public void testBr() {
         assertThat(Functions.br(null), is(""));
         assertThat(Functions.br(""), is(""));
