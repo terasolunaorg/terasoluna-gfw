@@ -18,7 +18,6 @@ package org.terasoluna.gfw.web.el;
 import java.beans.PropertyDescriptor;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -125,13 +124,17 @@ public final class Functions {
      * @param value string to encode
      * @return encoded string. returns empty string if <code>value</code> is <code>null</code> or empty.
      * @see URLEncoder#encode(String, String)
-     * @throws UnsupportedEncodingException 
      */
-    public static String u(String value) throws UnsupportedEncodingException {
+    public static String u(String value) {
         if (value == null || value.isEmpty()) {
             return "";
         }
-        return URLEncoder.encode(value,StandardCharsets.UTF_8.toString());
+        try {
+            return URLEncoder.encode(value, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            // Exception is not absolute occur.
+            return "";
+        }
     }
 
     /**
