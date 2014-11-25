@@ -21,11 +21,10 @@
         <name>terasoluna.org</name>
         <url>http://terasoluna.org</url>
     </organization>
-    <!-- Added the Spring IO-Platform as parent project -->
     <parent>
         <groupId>io.spring.platform</groupId>
         <artifactId>platform-bom</artifactId>
-        <version>1.0.3.RELEASE</version>
+        <version>1.1.0.BUILD-SNAPSHOT</version>
         <relativePath />
     </parent>
     <build>
@@ -289,6 +288,15 @@
             <id>terasoluna-gfw-3rdparty</id>
             <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/</url>
         </repository>
+        <!-- When apply the Spring IO platform 1.1.0.RELEASE, we remove the spring-snapshots repository. -->
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>http://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -339,12 +347,6 @@
             <!-- == End Joda-Time == -->
 
             <!-- == Begin Hibernate == -->
-            <!-- Hibernate Validator:3.1.1.GA / Hibernate ORM:3.1.3.GA(Apply)  -->
-            <dependency>
-                <groupId>org.jboss.logging</groupId>
-                <artifactId>jboss-logging</artifactId>
-                <version>${jboss-logging.version}</version>
-            </dependency>
             <!-- 1.2.0.Bata1 -> 1.2.0.Final -->
             <dependency>
                 <groupId>org.jboss.logging</groupId>
@@ -465,7 +467,6 @@
         <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
         <jadira-usertype-core.version>3.2.0.GA</jadira-usertype-core.version>
         <!-- == Hibernate == -->
-        <jboss-logging.version>3.1.3.GA</jboss-logging.version>
         <jboss-logging-annotations.version>1.2.0.Final</jboss-logging-annotations.version>
         <!-- == Logging == -->
         <org.lazyluke.version>0.2.7</org.lazyluke.version>
