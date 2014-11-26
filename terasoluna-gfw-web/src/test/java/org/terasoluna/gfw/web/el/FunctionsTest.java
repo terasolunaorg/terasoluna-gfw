@@ -373,7 +373,6 @@ public class FunctionsTest {
     
     @Test
     public void testUAndQuery_Kigo(){
-        // 特殊記号
         String inputKigo = "ho-._~:/?#[]@!$&'()*+,;=ge";
         String matcher = "name="+Functions.u(inputKigo);
         Map<String, Object> map = new LinkedHashMap<String, Object>();
@@ -385,7 +384,6 @@ public class FunctionsTest {
     
     @Test
     public void testUAndQuery_Space(){
-        // 空白
         String inputSpace = "ho ge";
         Map<String, Object> map = new LinkedHashMap<String, Object>();
         String matcher = "name="+Functions.u(inputSpace);
