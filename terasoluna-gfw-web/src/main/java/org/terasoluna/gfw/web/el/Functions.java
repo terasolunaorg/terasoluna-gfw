@@ -30,6 +30,7 @@ import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.util.UriUtils;
 import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
 
 /**
@@ -130,7 +131,7 @@ public final class Functions {
             return "";
         }
         try {
-            return URLEncoder.encode(value, "UTF-8");
+            return UriUtils.encodeQueryParam(value, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             // Exception is not absolute occur.
             return "";

@@ -273,19 +273,19 @@ public class FunctionsTest {
         assertThat(Functions.u("あいうえお"),
                 is("%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
         assertThat(Functions.u("http://localhost:8080/spring"),
-                is("http%3A%2F%2Flocalhost%3A8080%2Fspring"));
+                is("http://localhost:8080/spring"));
         assertThat(Functions.u("name1=hoge&name2=hoge2"),
                 is("name1%3Dhoge%26name2%3Dhoge2"));
     }
 
     @Test
     public void testU_Colon(){
-        assertThat(Functions.u(":"), is("%3A"));
+        assertThat(Functions.u(":"), is(":"));
     }
 
     @Test
     public void testU_Slash(){
-        assertThat(Functions.u("/"), is("%2F"));
+        assertThat(Functions.u("/"), is("/"));
     }
 
     @Test
@@ -300,12 +300,12 @@ public class FunctionsTest {
 
     @Test
     public void testU_Tiled(){
-        assertThat(Functions.u("~"), is("%7E"));
+        assertThat(Functions.u("~"), is("~"));
     }
 
     @Test
     public void testU_Question(){
-        assertThat(Functions.u("?"), is("%3F"));
+        assertThat(Functions.u("?"), is("?"));
     }
 
     @Test
@@ -317,23 +317,23 @@ public class FunctionsTest {
     public void testU_Bracket(){
         assertThat(Functions.u("["), is("%5B"));
         assertThat(Functions.u("]"), is("%5D"));
-        assertThat(Functions.u("("), is("%28"));
-        assertThat(Functions.u(")"), is("%29"));
+        assertThat(Functions.u("("), is("("));
+        assertThat(Functions.u(")"), is(")"));
     }
 
     @Test
     public void testU_AtMark(){
-        assertThat(Functions.u("@"), is("%40"));
+        assertThat(Functions.u("@"), is("@"));
     }
 
     @Test
     public void testU_ExclamationMark(){
-        assertThat(Functions.u("!"), is("%21"));
+        assertThat(Functions.u("!"), is("!"));
     }
 
     @Test
     public void testU_Dollar(){
-        assertThat(Functions.u("$"), is("%24"));
+        assertThat(Functions.u("$"), is("$"));
     }
 
     @Test
@@ -343,7 +343,7 @@ public class FunctionsTest {
 
     @Test
     public void testU_SingleQuotes(){
-        assertThat(Functions.u("'"), is("%27"));
+        assertThat(Functions.u("'"), is("'"));
     }
 
     @Test
@@ -358,17 +358,41 @@ public class FunctionsTest {
 
     @Test
     public void testU_Comma(){
-        assertThat(Functions.u(","), is("%2C"));
+        assertThat(Functions.u(","), is(","));
     }
     
     @Test
     public void testU_SemiColon(){
-        assertThat(Functions.u(";"), is("%3B"));
+        assertThat(Functions.u(";"), is(";"));
     }
     
     @Test
     public void testU_Equal(){
         assertThat(Functions.u("="), is("%3D"));
+    }
+    
+    @Test
+    public void testUAndQuery_Kigo(){
+        // 特殊記号
+        String inputKigo = "ho-._~:/?#[]@!$&'()*+,;=ge";
+        String matcher = "name="+Functions.u(inputKigo);
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        map.put("name", inputKigo);
+        String actual = Functions.query(map);
+        assertThat(actual, is(matcher));
+        
+    }
+    
+    @Test
+    public void testUAndQuery_Space(){
+        // 空白
+        String inputSpace = "ho ge";
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        String matcher = "name="+Functions.u(inputSpace);
+        map.put("name", inputSpace);
+        String actual = Functions.query(map);
+        assertThat(actual, is(matcher));
+        
     }
     
     @Test
