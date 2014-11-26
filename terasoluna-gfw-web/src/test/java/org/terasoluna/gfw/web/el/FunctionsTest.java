@@ -277,75 +277,35 @@ public class FunctionsTest {
         assertThat(
                 Functions.u("http://localhost:8080/あいうえお"),
                 is("http://localhost:8080/%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
-        assertThat(
-                Functions.u("http://localhost:8080/0123456789"),
-                is("http://localhost:8080/0123456789"));
-        assertThat(
-                Functions.u("-._~:/?@!$'()*,;"),
-                is("-._~:/?@!$'()*,;"));
-        assertThat(
-                Functions.u("spr&+=ing"),
-                is("spr%26%2B%3Ding"));
     }
 
     @Test
-    public void testU_Ampersand() {
+    public void testU_NoEncodingSymb() {
+        assertThat(Functions.u("/?:@-._~!$'()*,;"), is("/?:@-._~!$'()*,;"));
+    }
+
+    @Test
+    public void testU_ALPHA() {
+        assertThat(Functions.u("a"), is("a"));
+    }
+
+    @Test
+    public void testU_DIGIT() {
+        assertThat(Functions.u("0"), is("0"));
+    }
+
+    @Test
+    public void testU_EncodingDelimiter() {
+        assertThat(Functions.u("+"), is("%2B"));
+        assertThat(Functions.u("="), is("%3D"));
         assertThat(Functions.u("&"), is("%26"));
     }
 
     @Test
-    public void testU_Plus() {
-        assertThat(Functions.u("+"), is("%2B"));
-    }
-
-    @Test
-    public void testU_Equals() {
-        assertThat(Functions.u("="), is("%3D"));
-    }
-
-    @Test
-    public void testU_NumberSign() {
-        assertThat(Functions.u("#"), is("%23"));
-    }
-
-    @Test
-    public void testU_Bracket() {
-        assertThat(Functions.u("["), is("%5B"));
-        assertThat(Functions.u("]"), is("%5D"));
-        assertThat(Functions.u("{"), is("%7B"));
-        assertThat(Functions.u("}"), is("%7D"));
-        assertThat(Functions.u("<"), is("%3C"));
-        assertThat(Functions.u(">"), is("%3E"));
-    }
-
-    @Test
-    public void testU_Backslash() {
-        assertThat(Functions.u("\\"), is("%5C"));
-    }
-
-    @Test
-    public void testU_Backtick() {
-        assertThat(Functions.u("`"), is("%60"));
-    }
-
-    @Test
-    public void testU_QuotationMark() {
-        assertThat(Functions.u("\""), is("%22"));
-    }
-
-    @Test
-    public void testU_percent() {
+    public void testU_EncodingChar() {
         assertThat(Functions.u("%"), is("%25"));
-    }
-
-    @Test
-    public void testU_Caret() {
-        assertThat(Functions.u("^"), is("%5E"));
-    }
-
-    @Test
-    public void testU_VerticalBar() {
-        assertThat(Functions.u("|"), is("%7C"));
+        assertThat(Functions.u("あ"), is("%E3%81%82"));
+        assertThat(Functions.u("\n"), is("%0A"));
     }
 
     @Test
@@ -354,21 +314,65 @@ public class FunctionsTest {
     }
 
     @Test
-    public void testUAndQuery_Kigou() {
-        String inputKigo = "&+=#[]\\`\"%^|{}<>";
-        String matcher = "name=" + Functions.u(inputKigo);
+    public void testUAndQuery_NoEncodingSymb() {
+        String inputStr = "/?:@-._~!$'()*,;";
+        String matcher = "name=" + Functions.u(inputStr);
         Map<String, Object> map = new LinkedHashMap<String, Object>();
-        map.put("name", inputKigo);
+        map.put("name", inputStr);
         String actual = Functions.query(map);
         assertThat(actual, is(matcher));
     }
 
     @Test
-    public void testUAndQuery_Space() {
-        String inputSpace = "spr ing";
+    public void testUAndQuery_ALPHA() {
+        String inputStr = "a";
+        String matcher = "name=" + Functions.u(inputStr);
         Map<String, Object> map = new LinkedHashMap<String, Object>();
-        String matcher = "name=" + Functions.u(inputSpace);
-        map.put("name", inputSpace);
+        map.put("name", inputStr);
+        String actual = Functions.query(map);
+        assertThat(actual, is(matcher));
+    }
+
+    @Test
+    public void testUAndQuery_DIGIT() {
+        String inputStr = "0";
+        String matcher = "name=" + Functions.u(inputStr);
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        map.put("name", inputStr);
+        String actual = Functions.query(map);
+        assertThat(actual, is(matcher));
+    }
+    
+    @Test
+    public void testUAndQuery_EncodingDelimiter() {
+        String[] inputStr = {"+", "&", "="};
+        for(String str : inputStr){
+            String matcher = "name=" + Functions.u(str);
+            Map<String, Object> map = new LinkedHashMap<String, Object>();
+            map.put("name", str);
+            String actual = Functions.query(map);
+            assertThat(actual, is(matcher));
+        }
+    }
+
+    @Test
+    public void testUAndQuery_EncodingChar() {
+        String[] inputStr = {"%", "あ", "\n"};
+        for(String str : inputStr){
+            String matcher = "name=" + Functions.u(str);
+            Map<String, Object> map = new LinkedHashMap<String, Object>();
+            map.put("name", str);
+            String actual = Functions.query(map);
+            assertThat(actual, is(matcher));
+        }
+    }
+
+    @Test
+    public void testUAndQuery_Space() {
+        String inputStr = "spr ing";
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        String matcher = "name=" + Functions.u(inputStr);
+        map.put("name", inputStr);
         String actual = Functions.query(map);
         assertThat(actual, is(matcher));
     }
