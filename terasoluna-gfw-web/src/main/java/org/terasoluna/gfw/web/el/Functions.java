@@ -16,6 +16,8 @@
 package org.terasoluna.gfw.web.el;
 
 import java.beans.PropertyDescriptor;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -27,8 +29,8 @@ import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
-import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.util.UriUtils;
 import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
 
 /**
@@ -106,21 +108,34 @@ public final class Functions {
     }
 
     /**
-     * url encode the given string.
+     * Translates a string into {@code application/x-www-form-urlencoded}
+     * format using a specific encoding scheme. This method uses the
+     * supplied encoding scheme to obtain the bytes for unsafe
+     * characters.<br>
+     * Conforms to the specifications of the {@link java.net.URLEncoder}.
+     * 
      * <p>
-     * url is encoded with "UTF-8".
+     * <em><strong>Note:</strong> The <a href=
+     * "http://www.w3.org/TR/html40/appendix/notes.html#non-ascii-chars">
+     * World Wide Web Consortium Recommendation</a> states that
+     * UTF-8 should be used. Not doing so may introduce
+     * incompatibilities.</em>
+     * 
      * </p>
      * @param value string to encode
      * @return encoded string. returns empty string if <code>value</code> is <code>null</code> or empty.
-     * @see UriComponents#encode()
+     * @see URLEncoder#encode(String, String)
      */
     public static String u(String value) {
         if (value == null || value.isEmpty()) {
             return "";
         }
-        UriComponents components = UriComponentsBuilder.fromUriString(value)
-                .build().encode();
-        return components.toString();
+        try {
+            return UriUtils.encodeQueryParam(value, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            // Exception is not absolute occur.
+            return "";
+        }
     }
 
     /**
