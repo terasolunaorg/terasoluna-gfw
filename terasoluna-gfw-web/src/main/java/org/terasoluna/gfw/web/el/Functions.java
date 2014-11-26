@@ -16,6 +16,7 @@
 package org.terasoluna.gfw.web.el;
 
 import java.beans.PropertyDescriptor;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -27,8 +28,8 @@ import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
-import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.util.UriUtils;
 import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
 
 /**
@@ -106,21 +107,26 @@ public final class Functions {
     }
 
     /**
-     * url encode the given string.
+     * url encode the given string.<br>
+     * encoding based on RFC 3986.
      * <p>
      * url is encoded with "UTF-8".
      * </p>
      * @param value string to encode
-     * @return encoded string. returns empty string if <code>value</code> is <code>null</code> or empty.
-     * @see UriComponents#encode()
+     * @return encoded string based on RFC 3986. returns empty string if <code>value</code> is <code>null</code> or empty.
+     * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986  </a>3.4.Query
+     * @exception UnsupportedEncodingException(). Exception is not absolute occur.
      */
     public static String u(String value) {
         if (value == null || value.isEmpty()) {
             return "";
         }
-        UriComponents components = UriComponentsBuilder.fromUriString(value)
-                .build().encode();
-        return components.toString();
+        try {
+            return UriUtils.encodeQueryParam(value, "UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            // Exception is not absolute occur.
+            return value;
+        }
     }
 
     /**

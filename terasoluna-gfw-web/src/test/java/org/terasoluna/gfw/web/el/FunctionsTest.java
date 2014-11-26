@@ -277,6 +277,100 @@ public class FunctionsTest {
         assertThat(
                 Functions.u("http://localhost:8080/あいうえお"),
                 is("http://localhost:8080/%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
+        assertThat(
+                Functions.u("http://localhost:8080/0123456789"),
+                is("http://localhost:8080/0123456789"));
+        assertThat(
+                Functions.u("-._~:/?@!$'()*,;"),
+                is("-._~:/?@!$'()*,;"));
+        assertThat(
+                Functions.u("spr&+=ing"),
+                is("spr%26%2B%3Ding"));
+    }
+
+    @Test
+    public void testU_Ampersand() {
+        assertThat(Functions.u("&"), is("%26"));
+    }
+
+    @Test
+    public void testU_Plus() {
+        assertThat(Functions.u("+"), is("%2B"));
+    }
+
+    @Test
+    public void testU_Equals() {
+        assertThat(Functions.u("="), is("%3D"));
+    }
+
+    @Test
+    public void testU_NumberSign() {
+        assertThat(Functions.u("#"), is("%23"));
+    }
+
+    @Test
+    public void testU_Bracket() {
+        assertThat(Functions.u("["), is("%5B"));
+        assertThat(Functions.u("]"), is("%5D"));
+        assertThat(Functions.u("{"), is("%7B"));
+        assertThat(Functions.u("}"), is("%7D"));
+        assertThat(Functions.u("<"), is("%3C"));
+        assertThat(Functions.u(">"), is("%3E"));
+    }
+
+    @Test
+    public void testU_Backslash() {
+        assertThat(Functions.u("\\"), is("%5C"));
+    }
+
+    @Test
+    public void testU_Backtick() {
+        assertThat(Functions.u("`"), is("%60"));
+    }
+
+    @Test
+    public void testU_QuotationMark() {
+        assertThat(Functions.u("\""), is("%22"));
+    }
+
+    @Test
+    public void testU_percent() {
+        assertThat(Functions.u("%"), is("%25"));
+    }
+
+    @Test
+    public void testU_Caret() {
+        assertThat(Functions.u("^"), is("%5E"));
+    }
+
+    @Test
+    public void testU_VerticalBar() {
+        assertThat(Functions.u("|"), is("%7C"));
+    }
+
+    @Test
+    public void testU_Space() {
+        assertThat(Functions.u(" "), is("%20"));
+    }
+
+    @Test
+    public void testUAndQuery_Kigou() {
+        String inputKigo = "&+=#[]\\`\"%^|{}<>";
+        String matcher = "name=" + Functions.u(inputKigo);
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        map.put("name", inputKigo);
+        String actual = Functions.query(map);
+        assertThat(actual, is(matcher));
+    }
+
+    @Test
+    public void testUAndQuery_Space() {
+        String inputSpace = "spr ing";
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        String matcher = "name=" + Functions.u(inputSpace);
+        map.put("name", inputSpace);
+        String actual = Functions.query(map);
+        assertThat(actual, is(matcher));
     }
 
     @Test
