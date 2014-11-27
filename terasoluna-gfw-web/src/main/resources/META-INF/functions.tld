@@ -31,12 +31,34 @@
     </function>
 
     <function>
-        <description>url encode the given string with with "UTF-8"</description>
+        <description><![CDATA[url encode the given string with with "UTF-8".
+        This method is used to encode values in "query" string.
+         This function percent-encodes  "&", "+" , "=" and characters not used in query part in RFC 3986.]]></description>
         <name>u</name>
         <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
         <function-signature>java.lang.String u(java.lang.String)</function-signature>
         <example>
-        <![CDATA[]]>
+        <![CDATA[
+        / ====> /
+        ? ====> ?
+        a ====> a
+        0 ====> 0
+        - ====> -
+        . ====> .
+        _ ====> _
+        ~ ====> ~
+        ! ====> !
+        $ ====> $
+        & ====> %26
+        ' ====> '
+        ( ====> (
+        ) ====> )
+        * ====> *
+        + ====> %2B
+        ; ====> ;
+        = ====> %3D
+        あ ====> %E3%81%82
+        ]]>
         </example>
     </function>
 
