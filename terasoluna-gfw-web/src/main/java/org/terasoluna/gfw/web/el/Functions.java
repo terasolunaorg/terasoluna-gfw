@@ -107,15 +107,58 @@ public final class Functions {
     }
 
     /**
-     * url encode the given string.<br>
-     * encoding based on RFC 3986.
+     * url encode the given string based on RFC 3986.<br>
      * <p>
-     * url is encoded with "UTF-8".
+     * url is encoded with "UTF-8".<br>
+     * This method is used to encode values in "query" string.
+     *
+     * In <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>, "query" part in URI is defined as follows:
+     * <pre><code>
+     *  foo://example.com:8042/over/there?name=ferret#nose
+     *  \_/   \______________/\_________/ \_________/ \__/
+     *   |           |            |            |        |
+     *scheme     authority       path        query   fragment
+     * </code></pre>
+     *
+     *
+     *  and, "query" is defined as follows:
+     *     <pre><code>
+     *query         = *( pchar / "/" / "?" )
+     *pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
+     *unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
+     *sub-delims    = "!" / "$" / "&" / "'" / "(" / ")" / "*" / "+" / "," / ";" / "="
+     *pct-encoded   = "%" HEXDIG HEXDIG
+     *     </code></pre>
+     *
+     * In these characters, as a value of query parameter, <strong>"&", "+" , "=" are percent-encoded</strong>.
      * </p>
+     *
+     * <h3>sample</h3>
+     * <ul>
+     *     <li>/ ====&gt; /</li>
+     *     <li>? ====&gt; ?</li>
+     *     <li>a ====&gt; a</li>
+     *     <li>0 ====&gt; 0</li>
+     *     <li>- ====&gt; -</li>
+     *     <li>. ====&gt; .</li>
+     *     <li>_ ====&gt; _</li>
+     *     <li>~ ====&gt; ~</li>
+     *     <li>! ====&gt; !</li>
+     *     <li>$ ====&gt; $</li>
+     *     <li>& ====&gt; %26</li>
+     *     <li>' ====&gt; '</li>
+     *     <li>( ====&gt; (</li>
+     *     <li>) ====&gt; )</li>
+     *     <li>* ====&gt; *</li>
+     *     <li>+ ====&gt; %2B</li>
+     *     <li>; ====&gt; ;</li>
+     *     <li>= ====&gt; %3D</li>
+     *     <li>あ ====&gt; %E3%81%82</li>
+     * </ul>
+     * <p>Characters not listed above are percent-encoded.</p>
      * @param value string to encode
      * @return encoded string based on RFC 3986. returns empty string if <code>value</code> is <code>null</code> or empty.
-     * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986  </a>3.4.Query
-     * @exception UnsupportedEncodingException(). Exception is not absolute occur.
+     * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a> 3.4.Query
      */
     public static String u(String value) {
         if (value == null || value.isEmpty()) {
@@ -123,8 +166,8 @@ public final class Functions {
         }
         try {
             return UriUtils.encodeQueryParam(value, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
-            // Exception is not absolute occur.
+        } catch (UnsupportedEncodingException ignored) {
+            // This exception doesn't absolutely occur.
             return value;
         }
     }
