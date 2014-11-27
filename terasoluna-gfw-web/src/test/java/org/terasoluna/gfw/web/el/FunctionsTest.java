@@ -280,6 +280,104 @@ public class FunctionsTest {
     }
 
     @Test
+    public void testU_NoEncodingSymb() {
+        assertThat(Functions.u("/?:@-._~!$'()*,;"), is("/?:@-._~!$'()*,;"));
+    }
+
+    @Test
+    public void testU_ALPHA() {
+        assertThat(Functions.u("a"), is("a"));
+    }
+
+    @Test
+    public void testU_DIGIT() {
+        assertThat(Functions.u("0"), is("0"));
+    }
+
+    @Test
+    public void testU_EncodingDelimiter() {
+        assertThat(Functions.u("+"), is("%2B"));
+        assertThat(Functions.u("="), is("%3D"));
+        assertThat(Functions.u("&"), is("%26"));
+    }
+
+    @Test
+    public void testU_EncodingChar() {
+        assertThat(Functions.u("%"), is("%25"));
+        assertThat(Functions.u("あ"), is("%E3%81%82"));
+        assertThat(Functions.u("\n"), is("%0A"));
+    }
+
+    @Test
+    public void testU_Space() {
+        assertThat(Functions.u(" "), is("%20"));
+    }
+
+    @Test
+    public void testUAndQuery_NoEncodingSymb() {
+        String inputStr = "/?:@-._~!$'()*,;";
+        String matcher = "name=" + Functions.u(inputStr);
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        map.put("name", inputStr);
+        String actual = Functions.query(map);
+        assertThat(actual, is(matcher));
+    }
+
+    @Test
+    public void testUAndQuery_ALPHA() {
+        String inputStr = "a";
+        String matcher = "name=" + Functions.u(inputStr);
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        map.put("name", inputStr);
+        String actual = Functions.query(map);
+        assertThat(actual, is(matcher));
+    }
+
+    @Test
+    public void testUAndQuery_DIGIT() {
+        String inputStr = "0";
+        String matcher = "name=" + Functions.u(inputStr);
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        map.put("name", inputStr);
+        String actual = Functions.query(map);
+        assertThat(actual, is(matcher));
+    }
+    
+    @Test
+    public void testUAndQuery_EncodingDelimiter() {
+        String[] inputStr = {"+", "&", "="};
+        for(String str : inputStr){
+            String matcher = "name=" + Functions.u(str);
+            Map<String, Object> map = new LinkedHashMap<String, Object>();
+            map.put("name", str);
+            String actual = Functions.query(map);
+            assertThat(actual, is(matcher));
+        }
+    }
+
+    @Test
+    public void testUAndQuery_EncodingChar() {
+        String[] inputStr = {"%", "あ", "\n"};
+        for(String str : inputStr){
+            String matcher = "name=" + Functions.u(str);
+            Map<String, Object> map = new LinkedHashMap<String, Object>();
+            map.put("name", str);
+            String actual = Functions.query(map);
+            assertThat(actual, is(matcher));
+        }
+    }
+
+    @Test
+    public void testUAndQuery_Space() {
+        String inputStr = "spr ing";
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        String matcher = "name=" + Functions.u(inputStr);
+        map.put("name", inputStr);
+        String actual = Functions.query(map);
+        assertThat(actual, is(matcher));
+    }
+
+    @Test
     public void testBr() {
         assertThat(Functions.br(null), is(""));
         assertThat(Functions.br(""), is(""));

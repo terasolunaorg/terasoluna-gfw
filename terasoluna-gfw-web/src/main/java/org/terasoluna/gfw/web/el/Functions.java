@@ -16,6 +16,7 @@
 package org.terasoluna.gfw.web.el;
 
 import java.beans.PropertyDescriptor;
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -27,8 +28,8 @@ import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
-import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.web.util.UriUtils;
 import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
 
 /**
@@ -106,21 +107,69 @@ public final class Functions {
     }
 
     /**
-     * url encode the given string.
+     * url encode the given string based on RFC 3986.<br>
      * <p>
-     * url is encoded with "UTF-8".
+     * url is encoded with "UTF-8".<br>
+     * This method is used to encode values in "query" string.
+     *
+     * In <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>, "query" part in URI is defined as follows:
+     * <pre><code>
+     *  foo://example.com:8042/over/there?name=ferret#nose
+     *  \_/   \______________/\_________/ \_________/ \__/
+     *   |           |            |            |        |
+     *scheme     authority       path        query   fragment
+     * </code></pre>
+     *
+     *
+     *  and, "query" is defined as follows:
+     *     <pre><code>
+     *query         = *( pchar / "/" / "?" )
+     *pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
+     *unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
+     *sub-delims    = "!" / "$" / "&" / "'" / "(" / ")" / "*" / "+" / "," / ";" / "="
+     *pct-encoded   = "%" HEXDIG HEXDIG
+     *     </code></pre>
+     *
+     * In these characters, as a value of query parameter, <strong>"&", "+" , "=" are percent-encoded</strong>.
      * </p>
+     *
+     * <h3>sample</h3>
+     * <ul>
+     *     <li>/ ====&gt; /</li>
+     *     <li>? ====&gt; ?</li>
+     *     <li>a ====&gt; a</li>
+     *     <li>0 ====&gt; 0</li>
+     *     <li>- ====&gt; -</li>
+     *     <li>. ====&gt; .</li>
+     *     <li>_ ====&gt; _</li>
+     *     <li>~ ====&gt; ~</li>
+     *     <li>! ====&gt; !</li>
+     *     <li>$ ====&gt; $</li>
+     *     <li>& ====&gt; %26</li>
+     *     <li>' ====&gt; '</li>
+     *     <li>( ====&gt; (</li>
+     *     <li>) ====&gt; )</li>
+     *     <li>* ====&gt; *</li>
+     *     <li>+ ====&gt; %2B</li>
+     *     <li>; ====&gt; ;</li>
+     *     <li>= ====&gt; %3D</li>
+     *     <li>あ ====&gt; %E3%81%82</li>
+     * </ul>
+     * <p>Characters not listed above are percent-encoded.</p>
      * @param value string to encode
-     * @return encoded string. returns empty string if <code>value</code> is <code>null</code> or empty.
-     * @see UriComponents#encode()
+     * @return encoded string based on RFC 3986. returns empty string if <code>value</code> is <code>null</code> or empty.
+     * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a> 3.4.Query
      */
     public static String u(String value) {
         if (value == null || value.isEmpty()) {
             return "";
         }
-        UriComponents components = UriComponentsBuilder.fromUriString(value)
-                .build().encode();
-        return components.toString();
+        try {
+            return UriUtils.encodeQueryParam(value, "UTF-8");
+        } catch (UnsupportedEncodingException ignored) {
+            // This exception doesn't absolutely occur.
+            return value;
+        }
     }
 
     /**
