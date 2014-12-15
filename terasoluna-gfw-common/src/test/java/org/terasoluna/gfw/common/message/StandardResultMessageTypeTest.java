@@ -35,6 +35,7 @@ public class StandardResultMessageTypeTest {
         assertThat(StandardResultMessageType.DANGER.toString(), is("danger"));
     }
 
+    @SuppressWarnings("deprecation")
     @Test
     public void testWarn() {
         assertThat(StandardResultMessageType.WARN.getType(), is("warn"));
@@ -52,4 +53,12 @@ public class StandardResultMessageTypeTest {
         assertThat(StandardResultMessageType.SUCCESS.getType(), is("success"));
         assertThat(StandardResultMessageType.SUCCESS.toString(), is("success"));
     }
+
+    @Test
+    public void issue24_testWarning() {
+        assertThat(StandardResultMessageType.WARNING.getType(), is("warning"));
+        assertThat(StandardResultMessageType.WARNING.toString(), is("warning"));
+    }
+
+
 }

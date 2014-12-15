@@ -197,9 +197,21 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
     /**
      * factory method for warn messages.
      * @return warn messages
+     * @deprecated Instead of this method, please use {@link #warning()}. This
+     *             method will be removed in the future.
      */
+    @Deprecated
     public static ResultMessages warn() {
         return new ResultMessages(WARN);
+    }
+
+    /**
+     * factory method for warning messages.
+     * @return warning messages
+     * @since 1.1.0
+     */
+    public static ResultMessages warning() {
+        return new ResultMessages(WARNING);
     }
 
     /**
