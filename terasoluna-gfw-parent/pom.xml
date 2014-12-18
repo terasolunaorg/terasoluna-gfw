@@ -24,7 +24,7 @@
     <parent>
         <groupId>io.spring.platform</groupId>
         <artifactId>platform-bom</artifactId>
-        <version>1.1.0.BUILD-SNAPSHOT</version>
+        <version>1.1.0.RELEASE</version>
         <relativePath />
     </parent>
     <build>
@@ -288,15 +288,6 @@
             <id>terasoluna-gfw-3rdparty</id>
             <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/</url>
         </repository>
-        <!-- When apply the Spring IO platform 1.1.0.RELEASE, we remove the spring-snapshots repository. -->
-        <repository>
-            <id>spring-snapshots</id>
-            <name>Spring Snapshots</name>
-            <url>http://repo.spring.io/snapshot</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
     </repositories>
     <pluginRepositories>
         <pluginRepository>
@@ -347,7 +338,7 @@
             <!-- == End Joda-Time == -->
 
             <!-- == Begin Hibernate == -->
-            <!-- 1.2.0.Bata1 -> 1.2.0.Final -->
+            <!-- 1.2.0.Beta1 -> 1.2.0.Final -->
             <dependency>
                 <groupId>org.jboss.logging</groupId>
                 <artifactId>jboss-logging-annotations</artifactId>
