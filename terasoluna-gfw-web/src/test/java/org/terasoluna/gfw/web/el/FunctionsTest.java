@@ -19,14 +19,15 @@ import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.joda.time.DateTime;
 import org.junit.Test;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.terasoluna.gfw.web.el.Functions;
@@ -476,12 +477,12 @@ public class FunctionsTest {
     }
 
     @Test
-    public void testQuery03() {
+    public void testQuery03() throws Exception {
         Person p = new Person();
         p.setName("すずき いちろう");
         p.setAge(10);
-        p.setDate(new DateTime().withDate(2000, 1, 1).toDate());
         p.setList(Arrays.asList("a", "b", "あ"));
+        p.setDate(new SimpleDateFormat("yyyy-MM-dd").parse("2000-01-01"));
         String query = Functions.query(p);
         assertThat(
                 query,

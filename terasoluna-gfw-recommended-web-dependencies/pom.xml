@@ -24,13 +24,6 @@
             <artifactId>tiles-jsp</artifactId>
         </dependency>
         <!-- == End Tiles == -->
-
-        <!-- == Begin Joda-Time == -->
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time-jsptags</artifactId>
-        </dependency>
-        <!-- == End Joda-Time == -->
     </dependencies>
 
 </project>

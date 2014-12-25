@@ -20,9 +20,7 @@ import static org.hamcrest.CoreMatchers.*;
 
 import java.sql.Time;
 import java.sql.Timestamp;
-import org.joda.time.DateTime;
 import org.junit.Test;
-import org.terasoluna.gfw.common.date.DateConvertUtils;
 
 public class DateConvertUtilsTest {
 
