@@ -32,6 +32,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * Database is used to store the adjustment value to current system date. <br>
  * Depending on the settings, the adjustment value can also be cached. <br>
  * </P>
+ * @since 5.0.0
  */
 public class JdbcAdjustedJodaTimeDateFactory extends AbstractJodaTimeDateFactory implements
                                                                 InitializingBean {

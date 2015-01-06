@@ -33,6 +33,7 @@ import java.sql.Timestamp;
  * <li>
  * {@link java.sql.Time}</li>
  * </ul>
+ * @since 5.0.0
  */
 public interface ClassicDateFactory {
     /**

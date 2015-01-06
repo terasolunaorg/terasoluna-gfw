@@ -14,8 +14,7 @@
  * governing permissions and limitations under the License.
  */
 /**
- * date package with Joda-Time.
- *
- *
+ * date package with Joda-Time
+ * @since 5.0.0.
  */
 package org.terasoluna.gfw.common.date.jodatime;

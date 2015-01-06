@@ -21,6 +21,7 @@ import java.util.Calendar;
 
 /**
  * Utility methods for Date relation conversions.
+ * @since 5.0.0
  */
 public final class DateConvertUtils {
 

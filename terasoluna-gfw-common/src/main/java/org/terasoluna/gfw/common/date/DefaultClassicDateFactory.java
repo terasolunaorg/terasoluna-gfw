@@ -24,6 +24,7 @@ import java.util.Date;
  * <p>
  * This class returns current system date.
  * </p>
+ * @since 5.0.0
  */
 public class DefaultClassicDateFactory implements ClassicDateFactory {
 

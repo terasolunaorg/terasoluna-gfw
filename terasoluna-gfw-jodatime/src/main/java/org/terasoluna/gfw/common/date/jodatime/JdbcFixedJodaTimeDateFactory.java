@@ -29,6 +29,7 @@ import java.sql.Timestamp;
  * <P>
  * The {@link org.joda.time.DateTime} value which is to be returned as current system date is stored in database. <br>
  * </P>
+ * @since 5.0.0
  */
 public class JdbcFixedJodaTimeDateFactory extends AbstractJodaTimeDateFactory {
 

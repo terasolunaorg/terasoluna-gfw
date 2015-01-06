@@ -26,6 +26,7 @@ import java.util.Date;
  * {@link java.sql.Time} <br>
  * so all things that concrete classes do is to return current {@link org.joda.time.DateTime}.
  * </p>
+ * @since 5.0.0
  */
 public abstract class AbstractJodaTimeDateFactory extends DefaultClassicDateFactory implements JodaTimeDateFactory {
 

@@ -20,6 +20,7 @@ import org.joda.time.DateTime;
 /**
  * Default implementation of {@link org.terasoluna.gfw.common.date.jodatime.AbstractJodaTimeDateFactory}<br>
  * this class returns current system date as it is.
+ * @since 5.0.0
  */
 public class DefaultJodaTimeDateFactory extends AbstractJodaTimeDateFactory {
 
