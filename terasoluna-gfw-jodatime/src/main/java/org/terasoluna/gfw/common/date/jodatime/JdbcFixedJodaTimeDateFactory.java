@@ -66,7 +66,7 @@ public class JdbcFixedJodaTimeDateFactory extends AbstractJodaTimeDateFactory {
 
     /**
      * Sets JDBC Template from DataSource
-     * @param dataSource
+     * @param dataSource dataSource
      */
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -74,7 +74,7 @@ public class JdbcFixedJodaTimeDateFactory extends AbstractJodaTimeDateFactory {
 
     /** the current timestamp received as parameter.
      * Sets
-     * @param currentTimestampQuery
+     * @param currentTimestampQuery SQL to retrieve current timestamp
      */
     public void setCurrentTimestampQuery(String currentTimestampQuery) {
         this.currentTimestampQuery = currentTimestampQuery;
