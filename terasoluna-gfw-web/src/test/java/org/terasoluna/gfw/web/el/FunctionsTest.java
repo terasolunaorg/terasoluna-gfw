@@ -558,7 +558,7 @@ public class FunctionsTest {
 class Person {
     private String name;
 
-    @DateTimeFormat(pattern = "yyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date;
 
     private Integer age;
