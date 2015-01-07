@@ -8,6 +8,7 @@ jdk:
 script: 
   - mvn install -f terasoluna-gfw-parent/pom.xml
   - mvn install -f terasoluna-gfw-common/pom.xml
+  - mvn install -f terasoluna-gfw-jodatime/pom.xml
   - mvn install -f terasoluna-gfw-jpa/pom.xml
   - mvn install -f terasoluna-gfw-mybatis2/pom.xml
   - mvn install -f terasoluna-gfw-mybatis3/pom.xml
