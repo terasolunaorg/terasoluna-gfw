@@ -115,7 +115,7 @@ public class JdbcAdjustedDateFactory extends AbstractDateFactory implements
 
     /**
      * Sets JDBC Template from DataSource
-     * @param dataSource
+     * @param dataSource dataSource
      */
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -123,7 +123,7 @@ public class JdbcAdjustedDateFactory extends AbstractDateFactory implements
 
     /**
      * Sets JDBC Template
-     * @param jdbcTemplate
+     * @param jdbcTemplate jdbcTemplate
      */
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
