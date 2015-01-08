@@ -92,7 +92,7 @@ public class JdbcAdjustedDateFactory extends AbstractDateFactory implements
             adjustedValue = cachedAdjustedValue.get();
             logger.warn("adjusted value is null. use {}", adjustedValue);
         } else if (isUseCache()) {
-            logger.debug("cache adjustd value = {}", adjustedValue);
+            logger.debug("cache adjusted value = {}", adjustedValue);
             cachedAdjustedValue.set(adjustedValue);
         }
 
