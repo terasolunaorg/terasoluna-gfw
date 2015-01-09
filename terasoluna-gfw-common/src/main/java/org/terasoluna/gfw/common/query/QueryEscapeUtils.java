@@ -22,6 +22,11 @@ package org.terasoluna.gfw.common.query;
  * </p>
  */
 public final class QueryEscapeUtils {
+    private static final LikeConditionEscape WITH_FULL_WIDTH = LikeConditionEscape
+            .withFullWidthWildcardsEscape();
+
+    private static final LikeConditionEscape WITHOUT_FULL_WIDTH = LikeConditionEscape
+            .withoutFullWidthWildcardsEscape();
 
     /**
      * Default constructor.
@@ -31,11 +36,6 @@ public final class QueryEscapeUtils {
     }
 
     /**
-     * Escape character used in the pattern string of LIKE value. Escape character is '~'.
-     */
-    public static final char LIKE_ESC_CHAR = '~';
-
-    /**
      * <p>
      * Convert a search criteria string to the escaped string of LIKE condition.
      * </p>
@@ -43,59 +43,45 @@ public final class QueryEscapeUtils {
      * Conversion rules are as follows:
      * </p>
      * <ol>
-     * <li>Escape {@link #LIKE_ESC_CHAR} using {@link #LIKE_ESC_CHAR}.</li>
-     * <li>Escape '%' and '_' and '％' and '＿' using {@link #LIKE_ESC_CHAR}.</li>
+     * <li>Escape {@link LikeConditionEscape#LIKE_ESC_CHAR} using {@link LikeConditionEscape#LIKE_ESC_CHAR}.</li>
+     * <li>Escape '%' and '_' using {@link LikeConditionEscape#LIKE_ESC_CHAR}.</li>
      * </ol>
      * <p>
      * For example.<br>
+     * <p/>
      * 
      * <pre>
      * <code>
+     *
      * toLikeCondition("a")    -> "a"
      * toLikeCondition("a~")   -> "a~~"
      * toLikeCondition("a%")   -> "a~%"
      * toLikeCondition("a_")   -> "a~_"
      * toLikeCondition("_a%")  -> "~_a~%"
-     * toLikeCondition("a％")  -> "a~％"
-     * toLikeCondition("a＿")  -> "a~＿"
+     * toLikeCondition("a％")  -> "a％" (does not escape!)
+     * toLikeCondition("a＿")  -> "a＿" (does not escape!)
      * toLikeCondition(" ")    -> " "
      * toLikeCondition("")     -> ""
      * toLikeCondition(null)   -> null
      * </code>
      * </pre>
-     * 
+     * <p/>
      * </p>
      * <p>
      * return likeCondition of argument when condition is <code>null</code>.<br>
-     * Returned value is not appended "%" keyword.
+     * Returned value is not appended "%" keyword.<br>
+     * This method does not escape full-width wildcards since 1.0.2. <strong>If you escape '％' and '＿', use
+     * <code>QueryEscapeUtils.withFullWidth().toLikeCondition(condition)</code></strong>
      * </p>
      * @param condition search criteria string.
      * @param likeCondition instance of StringBuilder for storing a converted search criteria string. <br>
      *            if arguments is null, create new instance of StringBuilder and stored a converted search criteria string.
      * @return instance of StringBuilder that are stored a converted search criteria string.
+     * @see LikeConditionEscape#toLikeCondition(String, StringBuilder)
      */
     public static StringBuilder toLikeCondition(String condition,
             StringBuilder likeCondition) {
-        StringBuilder storingLikeCondition = likeCondition;
-        if (storingLikeCondition == null) {
-            storingLikeCondition = new StringBuilder();
-        }
-        if (condition == null) {
-            return storingLikeCondition;
-        }
-        for (int i = 0; i < condition.length(); i++) {
-            char c = condition.charAt(i);
-            if (c == LIKE_ESC_CHAR) {
-                storingLikeCondition.append(LIKE_ESC_CHAR);
-                storingLikeCondition.append(LIKE_ESC_CHAR);
-            } else if (c == '%' || c == '_' || c == '＿' || c == '％') {
-                storingLikeCondition.append(LIKE_ESC_CHAR);
-                storingLikeCondition.append(c);
-            } else {
-                storingLikeCondition.append(c);
-            }
-        }
-        return storingLikeCondition;
+        return WITHOUT_FULL_WIDTH.toLikeCondition(condition, likeCondition);
     }
 
     /**
@@ -109,12 +95,10 @@ public final class QueryEscapeUtils {
      * </p>
      * @param condition search criteria string.
      * @return converted search criteria string.
+     * @see LikeConditionEscape#toLikeCondition(String)
      */
     public static String toLikeCondition(String condition) {
-        if (condition == null) {
-            return null;
-        }
-        return toLikeCondition(condition, new StringBuilder()).toString();
+        return WITHOUT_FULL_WIDTH.toLikeCondition(condition);
     }
 
     /**
@@ -128,19 +112,16 @@ public final class QueryEscapeUtils {
      * </p>
      * @param condition search criteria string.
      * @return converted search criteria string.
+     * @see LikeConditionEscape#toStartingWithCondition(String)
      */
     public static String toStartingWithCondition(String condition) {
-        if (condition == null) {
-            return condition;
-        }
-        return toLikeCondition(condition, new StringBuilder()).append("%")
-                .toString();
+        return WITHOUT_FULL_WIDTH.toStartingWithCondition(condition);
     }
 
     /**
      * Convert a search criteria string to the escaped string of LIKE condition ,and append "%" keyword to the backward.
      * <p>
-     * Conversion rules see JavaDoc of {@link QueryEscapeUtils#toLikeCondition(String, StringBuilder)}.
+     * Conversion rules see JavaDoc of {@link LikeConditionEscape#toLikeCondition(String, StringBuilder)}.
      * </p>
      * <p>
      * return null when condition is <code>null</code>.<br>
@@ -148,12 +129,10 @@ public final class QueryEscapeUtils {
      * </p>
      * @param condition search criteria string.
      * @return converted search criteria string.
+     * @see LikeConditionEscape#toEndingWithCondition(String)
      */
     public static String toEndingWithCondition(String condition) {
-        if (condition == null) {
-            return condition;
-        }
-        return toLikeCondition(condition, new StringBuilder("%")).toString();
+        return WITHOUT_FULL_WIDTH.toEndingWithCondition(condition);
     }
 
     /**
@@ -167,13 +146,47 @@ public final class QueryEscapeUtils {
      * </p>
      * @param condition search criteria string.
      * @return converted search criteria string.
+     * @see LikeConditionEscape#toContainingCondition(String)
      */
     public static String toContainingCondition(String condition) {
-        if (condition == null) {
-            return condition;
-        }
-        return toLikeCondition(condition, new StringBuilder("%")).append("%")
-                .toString();
+        return WITHOUT_FULL_WIDTH.toContainingCondition(condition);
     }
 
+    /**
+     * <p>
+     * Returns {@link LikeConditionEscape} object to convert a search criteria string to the escaped string of LIKE condition.
+     * </p>
+     * <p>
+     * Conversion rules are as follows:
+     * </p>
+     * <ol>
+     * <li>Escape {@link LikeConditionEscape#LIKE_ESC_CHAR} using {@link LikeConditionEscape#LIKE_ESC_CHAR}.</li>
+     * <li>Escape '%' and '_' and '％' and '＿' using {@link LikeConditionEscape#LIKE_ESC_CHAR}.</li>
+     * </ol>
+     * <p>
+     * For example.<br>
+     * <p/>
+     * 
+     * <pre>
+     * <code>
+     * withFullWidth().toLikeCondition("a")    -> "a"
+     * withFullWidth().toLikeCondition("a~")   -> "a~~"
+     * withFullWidth().toLikeCondition("a%")   -> "a~%"
+     * withFullWidth().toLikeCondition("a_")   -> "a~_"
+     * withFullWidth().toLikeCondition("_a%")  -> "~_a~%"
+     * withFullWidth().toLikeCondition("a％")  -> "a~％" (escape!)
+     * withFullWidth().toLikeCondition("a＿")  -> "a~＿" (escape!)
+     * withFullWidth().toLikeCondition(" ")    -> " "
+     * withFullWidth().toLikeCondition("")     -> ""
+     * withFullWidth().toLikeCondition(null)   -> null
+     * </code>
+     * </pre>
+     * <p/>
+     * </p>
+     * @return LikeConditionEscape that escape full-width wildcards.
+     * @since 1.0.2
+     */
+    public static LikeConditionEscape withFullWidth() {
+        return WITH_FULL_WIDTH;
+    }
 }
