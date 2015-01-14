@@ -81,8 +81,8 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * the suffix after ``alert-`` is specified using ``type`` of ResultMessages
  * </p>
  * <p>
- * *1: deprecated form 1.1.0<br>
- * *2: added from 1.1.0
+ * *1: deprecated form 5.0.0<br>
+ * *2: added from 5.0.0
  * </p>
  * <p>
  * <b>When the message is in {@code String} and {@code messagesPanel} is using

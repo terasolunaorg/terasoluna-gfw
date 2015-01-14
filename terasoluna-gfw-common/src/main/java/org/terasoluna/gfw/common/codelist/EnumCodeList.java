@@ -30,14 +30,14 @@ import java.util.Map;
  * <br>
  * The result of {@link CodeListItem#getCodeLabel} is used as a label of codelist (means it is used as a value of map).
  *
- * @since 1.1.0
+ * @since 5.0.0
  */
 public class EnumCodeList extends AbstractCodeList {
 
     /**
      * interface of item in codelist
      *
-     * @since 1.1.0
+     * @since 5.0.0
      */
     public static interface CodeListItem {
         /**
