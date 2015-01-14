@@ -75,6 +75,18 @@
             <rtexprvalue>true</rtexprvalue>
         </attribute>
         <attribute>
+            <description>
+                <![CDATA[
+                Set enableLinkOfCurrentPage to enable link of current page.(since 1.1.0)&#xA;&#xA;
+                
+                Default is set to "false" (means that link of current page link is disabled).
+                ]]>
+            </description>
+            <name>enableLinkOfCurrentPage</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
             <description>Maximum display count</description>
             <name>maxDisplayCount</name>
             <required>false</required>
