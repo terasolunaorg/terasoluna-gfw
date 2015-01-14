@@ -60,7 +60,7 @@ public class PaginationTag extends RequestContextAwareTag {
     
     /**
      * Flag to enable the link of current page.
-     * @since 1.1.0
+     * @since 5.0.0
      */
     private boolean enableLinkOfCurrentPage;
 
@@ -424,7 +424,7 @@ public class PaginationTag extends RequestContextAwareTag {
      * By default, enableLinkOfCurrentPage is set to <code>false</code>. This means <br>
      * link of current page is disabled by default.
      * @param enableLinkOfCurrentPage value of enableLinkOfCurrentPage
-     * @since 1.1.0
+     * @since 5.0.0
      */
     public void setEnableLinkOfCurrentPage(
             String enableLinkOfCurrentPage) throws JspException {

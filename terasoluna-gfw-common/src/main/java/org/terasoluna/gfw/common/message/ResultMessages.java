@@ -208,7 +208,7 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
     /**
      * factory method for warning messages.
      * @return warning messages
-     * @since 1.1.0
+     * @since 5.0.0
      */
     public static ResultMessages warning() {
         return new ResultMessages(WARNING);

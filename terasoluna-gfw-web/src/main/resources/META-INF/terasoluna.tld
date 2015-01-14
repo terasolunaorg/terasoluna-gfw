@@ -77,7 +77,7 @@
         <attribute>
             <description>
                 <![CDATA[
-                Set enableLinkOfCurrentPage to enable link of current page.(since 1.1.0)&#xA;&#xA;
+                Set enableLinkOfCurrentPage to enable link of current page.(since 5.0.0)&#xA;&#xA;
                 
                 Default is set to "false" (means that link of current page link is disabled).
                 ]]>
