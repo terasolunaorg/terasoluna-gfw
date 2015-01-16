@@ -31,7 +31,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-orm-ibatis</artifactId>
-            <version>4.1.3_ibatis</version>
+            <version>4.1.4_ibatis</version>
         </dependency>
     </dependencies>
 
