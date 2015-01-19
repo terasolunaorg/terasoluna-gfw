@@ -18,8 +18,7 @@ package org.terasoluna.gfw.common.date;
 import org.terasoluna.gfw.common.date.jodatime.JdbcAdjustedJodaTimeDateFactory;
 
 /**
- * <strong>This class exists for backward compatibility with 1.0.x. Please use
- * {@link org.terasoluna.gfw.common.date.jodatime.JdbcAdjustedJodaTimeDateFactory} instead of this class.</strong>
+ * <strong>This class exists for backward compatibility with 1.0.x.</strong><br>
  * <br>
  * Concrete Implementation class of {@link DateFactory}.
  * <P>
@@ -27,6 +26,7 @@ import org.terasoluna.gfw.common.date.jodatime.JdbcAdjustedJodaTimeDateFactory;
  * Database is used to store the adjustment value to current system date. <br>
  * Depending on the settings, the adjustment value can also be cached. <br>
  * </P>
+ * @deprecated please use instead of this class. {@link org.terasoluna.gfw.common.date.jodatime.JdbcAdjustedJodaTimeDateFactory}
  */
 @Deprecated
 public class JdbcAdjustedDateFactory extends JdbcAdjustedJodaTimeDateFactory implements DateFactory {

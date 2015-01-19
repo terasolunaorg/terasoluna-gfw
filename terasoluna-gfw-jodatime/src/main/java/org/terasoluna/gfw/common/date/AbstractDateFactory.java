@@ -18,14 +18,15 @@ package org.terasoluna.gfw.common.date;
 import org.terasoluna.gfw.common.date.jodatime.AbstractJodaTimeDateFactory;
 
 /**
- * <strong>This class exists for backward compatibility with 1.0.x. Please use
- * {@link org.terasoluna.gfw.common.date.jodatime.AbstractJodaTimeDateFactory} instead of this class.</strong>
+ * <strong>This class exists for backward compatibility with 1.0.x.</strong><br>
+ * <br>
  * Abstract implementation of {@link DateFactory}.
  * <p>
  * This class converts from {@link org.joda.time.DateTime} to {@link java.util.Date}, {@link java.sql.Timestamp}, {@link java.sql.Date},
  * {@link java.sql.Time} <br>
  * so all things that concrete classes do is to return current {@link org.joda.time.DateTime}.
  * </p>
+ * @deprecated please use instead of this class. {@link org.terasoluna.gfw.common.date.jodatime.AbstractJodaTimeDateFactory}
  */
 @Deprecated
 public abstract class AbstractDateFactory extends AbstractJodaTimeDateFactory implements DateFactory {

@@ -33,7 +33,7 @@ import java.sql.Timestamp;
  */
 public class JdbcFixedJodaTimeDateFactory extends AbstractJodaTimeDateFactory {
 
-	/**
+    /**
      * JDBC Template used to access the database to fetch the adjustment value.
      */
     private JdbcTemplate jdbcTemplate;

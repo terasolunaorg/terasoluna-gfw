@@ -18,10 +18,11 @@ package org.terasoluna.gfw.common.date;
 import org.terasoluna.gfw.common.date.jodatime.DefaultJodaTimeDateFactory;
 
 /**
- * <strong>This class exists for backward compatibility with 1.0.x. Please use
- * {@link org.terasoluna.gfw.common.date.jodatime.DefaultJodaTimeDateFactory} instead of this class.</strong>
+ * <strong>This class exists for backward compatibility with 1.0.x.</strong><br>
+ * <br>
  * Default implementation of {@link DateFactory}<br>
  * this class returns current system date as it is.
+ * @deprecated please use instead of this class. {@link org.terasoluna.gfw.common.date.jodatime.DefaultJodaTimeDateFactory}
  */
 @Deprecated
 public class DefaultDateFactory extends DefaultJodaTimeDateFactory implements DateFactory {
