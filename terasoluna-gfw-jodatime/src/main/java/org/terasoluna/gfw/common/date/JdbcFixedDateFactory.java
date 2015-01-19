@@ -19,13 +19,13 @@ import org.joda.time.DateTime;
 import org.terasoluna.gfw.common.date.jodatime.JdbcFixedJodaTimeDateFactory;
 
 /**
- * <strong>This class exists for backward compatibility with 1.0.x. Please use
- * {@link org.terasoluna.gfw.common.date.jodatime.JdbcFixedJodaTimeDateFactory} instead of this class.</strong>
+ * <strong>This class exists for backward compatibility with 1.0.x.</strong><br>
  * <br>
  * Concrete Implementation class of {@link DateFactory}.
  * <P>
  * The {@link DateTime} value which is to be returned as current system date is stored in database. <br>
  * </P>
+ * @deprecated please use instead of this class. {@link org.terasoluna.gfw.common.date.jodatime.JdbcFixedJodaTimeDateFactory}
  */
 @Deprecated
 public class JdbcFixedDateFactory extends JdbcFixedJodaTimeDateFactory implements DateFactory {

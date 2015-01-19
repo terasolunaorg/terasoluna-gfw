@@ -18,8 +18,7 @@ package org.terasoluna.gfw.common.date;
 import org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory;
 
 /**
- * <strong>This class exists for backward compatibility with 1.0.x. Please use
- * {@link org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory} instead of this class.</strong>
+ * <strong>This class exists for backward compatibility with 1.0.x.</strong><br>
  * <br>
  * Interface that creates current system date.<br>
  * <p>
@@ -38,7 +37,8 @@ import org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory;
  * {@link java.sql.Time}</li>
  * </ul>
  * @see org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory
- */
+ * @deprecated please use instead of this class. {@link org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory}
+*/
 @Deprecated
 public interface DateFactory extends JodaTimeDateFactory {
 }
