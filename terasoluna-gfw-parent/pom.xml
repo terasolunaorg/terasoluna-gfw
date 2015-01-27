@@ -301,6 +301,18 @@
     </repositories>
     <dependencyManagement>
         <dependencies>
+            <!-- == Begin Mybatis == -->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${org.mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${org.mybatis.spring.version}</version>
+            </dependency>
+            <!-- == End Mybatis == -->
 
             <!-- == Begin Dozer== -->
             <dependency>
@@ -448,6 +460,9 @@
     <properties>
         <!-- == TERASOLUNA == -->
         <terasoluna.gfw.version>5.0.0-SNAPSHOT</terasoluna.gfw.version>
+        <!-- == MyBatis3 == -->
+        <org.mybatis.version>3.2.8</org.mybatis.version>
+        <org.mybatis.spring.version>1.2.2</org.mybatis.spring.version>
         <!-- == Dozer== -->
         <dozer.version>5.5.1</dozer.version>
         <!-- == Joda-Time == -->
