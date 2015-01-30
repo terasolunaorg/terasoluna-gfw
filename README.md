@@ -107,87 +107,93 @@ Irrespective of above two ways, first define the repositories in the pom file.
 
 (The below is required in the both the type of settings.)
 
-    <repositories>
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>terasoluna-gfw-releases</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
-        </repository>
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>terasoluna-gfw-3rdparty</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/</url>
-        </repository>
-    </repositories>
+``` xml
+<repositories>
+    <repository>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+        <id>terasoluna-gfw-releases</id>
+        <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
+    </repository>
+    <repository>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+        <id>terasoluna-gfw-3rdparty</id>
+        <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/</url>
+    </repository>
+</repositories>
+```
 
 #### Using parent
 
 Define parent project in pom file
 
-    <parent>
-      <groupId>org.terasoluna.gfw</groupId>
-      <artifactId>terasoluna-gfw-parent</artifactId>
-      <version>5.0.0.RELEASE</version>
-    </parent>
+``` xml
+<parent>
+  <groupId>org.terasoluna.gfw</groupId>
+  <artifactId>terasoluna-gfw-parent</artifactId>
+  <version>5.0.0.RELEASE</version>
+</parent>
+```
 
 After adding above, add the following dependency definitions. 
 (Only the required ones.)
 
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-web</artifactId>
-    </dependency>
-    <!-- OPTIONAL -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-jodatime</artifactId>
-        <type>pom</type>
-    <!-- OPTIONAL -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
-        <type>pom</type>
-    </dependency>
-    <!-- OPTIONAL -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
-        <type>pom</type>
-    </dependency
+``` xml
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-web</artifactId>
+</dependency>
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-jodatime</artifactId>
+    <type>pom</type>
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
+    <type>pom</type>
+</dependency>
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
+    <type>pom</type>
+</dependency
 
-    <!-- If Spring Security is to be used -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-security-web</artifactId>
-    </dependency>
-    
-    <!-- If MyBatis3 is to be used -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-mybatis3</artifactId>
-    </dependency>
+<!-- If Spring Security is to be used -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-security-web</artifactId>
+</dependency>
 
-    <!-- If JPA is to be used -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-jpa</artifactId>
-    </dependency>
+<!-- If MyBatis3 is to be used -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-mybatis3</artifactId>
+</dependency>
 
-    <!-- If MyBatis2 is to be used (NOT RECOMMENDED) -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-mybatis2</artifactId>
-    </dependency>
+<!-- If JPA is to be used -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-jpa</artifactId>
+</dependency>
+
+<!-- If MyBatis2 is to be used (NOT RECOMMENDED) -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-mybatis2</artifactId>
+</dependency>
+```
 
 There is no need of settings related to version. 
 
@@ -199,54 +205,56 @@ Add the following dependency definitions.
 
 (Only the required ones.)
 
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-web</artifactId>
-    </dependency>
+``` xml
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-web</artifactId>
+</dependency>
 
-    <!-- OPTIONAL -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
-        <version>5.0.0.RELEASE</version>
-        <type>pom</type>
-    </dependency>
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
+    <version>5.0.0.RELEASE</version>
+    <type>pom</type>
+</dependency>
 
-    <!-- OPTIONAL -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
-        <version>5.0.0.RELEASE</version>
-        <type>pom</type>
-    </dependency
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
+    <version>5.0.0.RELEASE</version>
+    <type>pom</type>
+</dependency
 
-    <!-- If Spring Security is to be used -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-security-web</artifactId>
-        <version>5.0.0.RELEASE</version>
-    </dependency>
-    
-    <!-- If MyBatis3 is to be used -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-mybatis3</artifactId>
-        <version>5.0.0.RELEASE</version>
-    </dependency>
-    
-    <!-- If JPA is to be used -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-jpa</artifactId>
-        <version>5.0.0.RELEASE</version>
-    </dependency>
+<!-- If Spring Security is to be used -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-security-web</artifactId>
+    <version>5.0.0.RELEASE</version>
+</dependency>
 
-    <!-- If MyBatis2 is to be used (NOT RECOMMENDED) -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-mybatis2</artifactId>
-        <version>5.0.0.RELEASE</version>
-    </dependency>
+<!-- If MyBatis3 is to be used -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-mybatis3</artifactId>
+    <version>5.0.0.RELEASE</version>
+</dependency>
+
+<!-- If JPA is to be used -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-jpa</artifactId>
+    <version>5.0.0.RELEASE</version>
+</dependency>
+
+<!-- If MyBatis2 is to be used (NOT RECOMMENDED) -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-mybatis2</artifactId>
+    <version>5.0.0.RELEASE</version>
+</dependency>
+```
 
 ## TERASOLUNA Global Framework
 
