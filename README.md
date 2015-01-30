@@ -83,7 +83,10 @@ The following project are included in TERASOLUNA Global Framework Common Library
 
 ### Using as a part of Template Blank Project
 
-In order to start using the common libaries, start with downloading Template Blank Project. Blank project already contains dependecies defined for TERASOLUNA Common Library.
+In order to start using the common libaries, start with downloading Template Blank Project. Blank project already contains dependecies defined for TERASOLUNA Common Library.Template Blank Projects are available from the following links:
+
+* https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank/tree/1.0.x (Recommended)
+* https://github.com/terasolunaorg/terasoluna-gfw-web-blank/tree/1.0.x
 
 ### Using maven
 
