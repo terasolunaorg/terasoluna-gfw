@@ -1,10 +1,10 @@
 # TERASOLUNA Global Framework Common Library
 
-The common library of Terasoluna Global Framework is a library of useful and obstrusive common functionalities.
+The common library of TERASOLUNA Global Framework is a library of useful and obstrusive common functionalities.
 
 ## Projects of Common Library
 
-The following project are included in Terasoluna Global Framework Common Library.
+The following project are included in TERASOLUNA Global Framework Common Library.
 
 <table>
   <tr>
@@ -81,7 +81,7 @@ The following project are included in Terasoluna Global Framework Common Library
 
 ### Using as a part of Template Blank Project
 
-In order to start using the common libaries, start with downloading Template Blank Project. Blank project already contains dependecies defined for Terasoluna Common Library.
+In order to start using the common libaries, start with downloading Template Blank Project. Blank project already contains dependecies defined for TERASOLUNA Common Library.
 
 ### Using maven
 
@@ -223,4 +223,4 @@ Add the following dependency definitions.
 Apart from the above mentioned settings, plugin related settings must also be done in pom file as per the requirements.
 
 ## License
-The Terasoluna Global Framework is released under Apache  License, Version 2.0.
+The TERASOLUNA Global Framework is released under Apache  License, Version 2.0.
