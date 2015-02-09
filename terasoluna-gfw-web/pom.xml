@@ -10,8 +10,8 @@
     </parent>
     <artifactId>terasoluna-gfw-web</artifactId>
     <packaging>jar</packaging>
-    <name>TERASOLUNA Global Framework for web</name>
-    <description>Web functionalities for TERASOLUNA Global Framework</description>
+    <name>TERASOLUNA Server Framework for Java (5.x) for web</name>
+    <description>Functionality that can be used on web</description>
     <url>http://terasoluna.org</url>
     <licenses>
         <license>

@@ -10,7 +10,7 @@
     </parent>
     <artifactId>terasoluna-gfw-jodatime</artifactId>
     <packaging>jar</packaging>
-    <name>TERASOLUNA Global Framework Common Library for Joda-Time</name>
+    <name>TERASOLUNA Server Framework for Java (5.x) Common Library for Joda-Time</name>
     <description>Functionality that can be used with Joda-Time</description>
     <url>http://terasoluna.org</url>
     <licenses>

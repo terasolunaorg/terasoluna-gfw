@@ -8,7 +8,7 @@
         <relativePath>../terasoluna-gfw-parent/pom.xml</relativePath>
     </parent>
     <artifactId>terasoluna-gfw-mybatis2</artifactId>
-    <name>TERASOLUNA Global Framework for MyBatis2</name>
+    <name>TERASOLUNA Server Framework for Java (5.x) for MyBatis2</name>
     <description>Maven dependency definition for using mybatis2</description>
     <url>http://terasoluna.org</url>
 

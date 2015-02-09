@@ -9,8 +9,8 @@
     </parent>
     <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
     <packaging>pom</packaging>
-    <name>TERASOLUNA Global Framework recommended dependencies</name>
-    <description>Useful libraries recommended by TERASOLUNA Global Framework</description>
+    <name>TERASOLUNA Server Framework for Java (5.x) recommended dependencies</name>
+    <description>Useful libraries recommended by TERASOLUNA Server Framework for Java (5.x)</description>
     <url>http://terasoluna.org</url>
 
     <dependencies>

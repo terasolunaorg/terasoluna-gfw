@@ -8,8 +8,8 @@
         <relativePath>../terasoluna-gfw-parent/pom.xml</relativePath>
     </parent>
     <artifactId>terasoluna-gfw-security-core</artifactId>
-    <name>TERASOLUNA Global Framework for security</name>
-    <description>Core functionalities related to security for TERASOLUNA Global Framework</description>
+    <name>TERASOLUNA Server Framework for Java (5.x) for security</name>
+    <description>Core functionalities related to security</description>
     <url>http://terasoluna.org</url>
     <licenses>
         <license>

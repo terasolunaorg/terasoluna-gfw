@@ -6,8 +6,8 @@
     <artifactId>terasoluna-gfw-parent</artifactId>
     <version>5.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>TERASOLUNA Global Framework Parent</name>
-    <description>The parent of TERASOLUNA Global Framework</description>
+    <name>TERASOLUNA Server Framework for Java (5.x) Parent</name>
+    <description>The parent of TERASOLUNA Server Framework for Java (5.x)</description>
     <url>http://terasoluna.org</url>
     <inceptionYear>2013</inceptionYear>
     <licenses>
