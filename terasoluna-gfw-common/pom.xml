@@ -10,7 +10,7 @@
     </parent>
     <artifactId>terasoluna-gfw-common</artifactId>
     <packaging>jar</packaging>
-    <name>TERASOLUNA Global Framework Common Library</name>
+    <name>TERASOLUNA Server Framework for Java (5.x) Common Library</name>
     <description>Functionality that can be used in general and not just related to the web</description>
     <url>http://terasoluna.org</url>
     <licenses>

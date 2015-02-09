@@ -10,8 +10,8 @@
     </parent>
     <artifactId>terasoluna-gfw-security-web</artifactId>
     <packaging>jar</packaging>
-    <name>TERASOLUNA Global Framework for web security</name>
-    <description>Web functionalities related to security for TERASOLUNA Global Framework</description>
+    <name>TERASOLUNA Server Framework for Java (5.x) for web security</name>
+    <description>Security functionality that can be used on web</description>
     <url>http://terasoluna.org</url>
     <licenses>
         <license>
