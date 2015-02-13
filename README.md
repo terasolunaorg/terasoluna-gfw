@@ -65,13 +65,10 @@ The following project are included in TERASOLUNA Server Framework for Java (5.x)
     <td>5</td><td>terasoluna-gfw-jpa</td><td>Maven dependency definition for JPA</td><td>No</td><td><pre>* Dependency definition for JPA</pre></td>
   </tr>
   <tr>
-    <td>6</td><td>terasoluna-gfw-mybatis2<br>(<strong>NOT RECOMMENDED</strong>)</td><td>Maven dependency definition for MyBatis2</td><td>No</td><td><pre>* Dependency definition for MyBatis2</pre></td>
+    <td>6</td><td>terasoluna-gfw-security-core</td><td>Maven dependency definition for using spring-security (other than web)</td><td>No</td><td><pre>* Dependency definition for Spring Security (other than web)</pre></td>
   </tr>
   <tr>
-    <td>7</td><td>terasoluna-gfw-security-core</td><td>Maven dependency definition for using spring-security (other than web)</td><td>No</td><td><pre>* Dependency definition for Spring Security (other than web)</pre></td>
-  </tr>
-  <tr>
-    <td>8</td>
+    <td>7</td>
     <td>terasoluna-gfw-security-web</td>
     <td>Maven dependency definition for using spring-security (web related) and components that extend spring-security</td>
     <td>yes</td>
@@ -187,12 +184,6 @@ After adding above, add the following dependency definitions.
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-jpa</artifactId>
 </dependency>
-
-<!-- If MyBatis2 is to be used (NOT RECOMMENDED) -->
-<dependency>
-    <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-mybatis2</artifactId>
-</dependency>
 ```
 
 There is no need of settings related to version. 
@@ -245,13 +236,6 @@ Add the following dependency definitions.
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-jpa</artifactId>
-    <version>5.0.0.RELEASE</version>
-</dependency>
-
-<!-- If MyBatis2 is to be used (NOT RECOMMENDED) -->
-<dependency>
-    <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-mybatis2</artifactId>
     <version>5.0.0.RELEASE</version>
 </dependency>
 ```
