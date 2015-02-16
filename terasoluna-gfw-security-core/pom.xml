@@ -4,7 +4,7 @@
     <parent>
         <artifactId>terasoluna-gfw-parent</artifactId>
         <groupId>org.terasoluna.gfw</groupId>
-        <version>5.0.0-SNAPSHOT</version>
+        <version>5.0.0.RELEASE</version>
         <relativePath>../terasoluna-gfw-parent/pom.xml</relativePath>
     </parent>
     <artifactId>terasoluna-gfw-security-core</artifactId>
