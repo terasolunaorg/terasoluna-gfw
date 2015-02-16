@@ -1,12 +1,12 @@
-# TERASOLUNA Global Framework Common Library
+# TERASOLUNA Server Framework for Java (5.x) Common Library
 
-The common library of Terasoluna Global Framework is a library of useful and obstrusive common functionalities.
+The common library of TERASOLUNA Server Framework for Java (5.x) is a library of useful and obstrusive common functionalities.
 
 [![Build Status](https://travis-ci.org/terasolunaorg/terasoluna-gfw.png?branch=master)](https://travis-ci.org/terasolunaorg/terasoluna-gfw)
 
 ## Projects of Common Library
 
-The following project are included in Terasoluna Global Framework Common Library.
+The following project are included in TERASOLUNA Server Framework for Java (5.x) Common Library.
 
 <table>
   <tr>
@@ -24,7 +24,7 @@ The following project are included in Terasoluna Global Framework Common Library
   * Exception Logger
   * Exception Codes
   * Interceptor to output exception log
-* Improvised System Time handling mechanism
+* Improvised System Time handling mechanism (using java.util.Date, java.sql.Date, java.sql.Time, java.sql.Timestamp)
 * Codelist functionality
 * Improvised Message handling mechasim
 * Query excaping utilities for SQL, JPQL
@@ -33,7 +33,10 @@ The following project are included in Terasoluna Global Framework Common Library
     </td>
   </tr>
   <tr>
-    <td>2</td>
+    <td>2</td><td>terasoluna-gfw-jodatime</td><td>Maven dependency definition and functionality using Joda Time</td><td>Yes</td><td><pre>* Improvised System Time handling mechanism (using org.joda.time.DateTime)</pre></td>
+  </tr>
+  <tr>
+    <td>3</td>
     <td>terasoluna-gfw-web</td><td>Functionalities that will be useful while developing a web application</td>
     <td>Yes</td>
     <td>
@@ -56,16 +59,16 @@ The following project are included in Terasoluna Global Framework Common Library
     </td>
   </tr>
   <tr>
-    <td>3</td><td>terasoluna-gfw-jpa</td><td>Maven dependency definition for using JPA</td><td>No</td><td><pre>* Recommended dependency definition</pre></td>
+    <td>4</td><td>terasoluna-gfw-mybatis3</td><td>Maven dependency definition for MyBatis3</td><td>No</td><td><pre>* Dependency definition for MyBatis3</pre></td>
   </tr>
   <tr>
-    <td>4</td><td>terasoluna-gfw-mybatis2</td><td>Maven dependency definition for using mybatis2</td><td>No</td><td><pre>* Recommended dependency definition</pre></td>
+    <td>5</td><td>terasoluna-gfw-jpa</td><td>Maven dependency definition for JPA</td><td>No</td><td><pre>* Dependency definition for JPA</pre></td>
   </tr>
   <tr>
-    <td>5</td><td>terasoluna-gfw-security-core</td><td>Maven dependency definition for using spring-security (other than web)</td><td>No</td><td><pre>* Recommended dependency definition</pre></td>
+    <td>6</td><td>terasoluna-gfw-security-core</td><td>Maven dependency definition for using spring-security (other than web)</td><td>No</td><td><pre>* Dependency definition for Spring Security (other than web)</pre></td>
   </tr>
   <tr>
-    <td>6</td>
+    <td>7</td>
     <td>terasoluna-gfw-security-web</td>
     <td>Maven dependency definition for using spring-security (web related) and components that extend spring-security</td>
     <td>yes</td>
@@ -73,7 +76,6 @@ The following project are included in Terasoluna Global Framework Common Library
     <pre>
 * Servlet filter to output the authenticated username in log
 * Redirect handler to counter-measure open redirect vulnerablibility
-* CSRF counter-measure
     </pre>
     </td>
   </tr>
@@ -83,7 +85,10 @@ The following project are included in Terasoluna Global Framework Common Library
 
 ### Using as a part of Template Blank Project
 
-In order to start using the common libaries, start with downloading Template Blank Project. Blank project already contains dependecies defined for Terasoluna Common Library.
+In order to start using the common libaries, start with downloading Template Blank Project. Blank project already contains dependecies defined for TERASOLUNA Server Framework for Java (5.x) Common Library. Template Blank Projects are available from the following links:
+
+* https://github.com/terasolunaorg/terasoluna-gfw-web-multi-blank (Recommended)
+* https://github.com/terasolunaorg/terasoluna-gfw-web-blank
 
 ### Using maven
 
@@ -98,77 +103,87 @@ Irrespective of above two ways, first define the repositories in the pom file.
 
 (The below is required in the both the type of settings.)
 
-    <repositories>
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>terasoluna-gfw-releases</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
-        </repository>
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>terasoluna-gfw-3rdparty</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/</url>
-        </repository>
-    </repositories>
+``` xml
+<repositories>
+    <repository>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+        <id>terasoluna-gfw-releases</id>
+        <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
+    </repository>
+    <repository>
+        <releases>
+            <enabled>true</enabled>
+        </releases>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+        <id>terasoluna-gfw-3rdparty</id>
+        <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/</url>
+    </repository>
+</repositories>
+```
 
 #### Using parent
 
 Define parent project in pom file
 
-    <parent>
-      <groupId>org.terasoluna.gfw</groupId>
-      <artifactId>terasoluna-gfw-parent</artifactId>
-      <version>1.0.1.RELEASE</version>
-    </parent>
+``` xml
+<parent>
+  <groupId>org.terasoluna.gfw</groupId>
+  <artifactId>terasoluna-gfw-parent</artifactId>
+  <version>5.0.0.RELEASE</version>
+</parent>
+```
 
 After adding above, add the following dependency definitions. 
 (Only the required ones.)
 
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-web</artifactId>
-    </dependency>
+``` xml
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-web</artifactId>
+</dependency>
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-jodatime</artifactId>
+    <type>pom</type>
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
+    <type>pom</type>
+</dependency>
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
+    <type>pom</type>
+</dependency
 
-    <!-- OPTIONAL -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
-        <type>pom</type>
-    </dependency>
-    <!-- OPTIONAL -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
-        <type>pom</type>
-    </dependency
+<!-- If Spring Security is to be used -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-security-web</artifactId>
+</dependency>
 
-    <!-- If Spring Security is to be used -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-security-web</artifactId>
-    </dependency>
+<!-- If MyBatis3 is to be used -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-mybatis3</artifactId>
+</dependency>
 
-    <!-- If JPA is to be used -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-jpa</artifactId>
-    </dependency>
-
-    <!-- If MyBatis2 is to be used -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-mybatis2</artifactId>
-    </dependency>
+<!-- If JPA is to be used -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-jpa</artifactId>
+</dependency>
+```
 
 There is no need of settings related to version. 
 
@@ -180,49 +195,53 @@ Add the following dependency definitions.
 
 (Only the required ones.)
 
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-web</artifactId>
-    </dependency>
+``` xml
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-web</artifactId>
+</dependency>
 
-    <!-- OPTIONAL -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
-        <version>1.0.1.RELEASE</version>
-        <type>pom</type>
-    </dependency>
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
+    <version>5.0.0.RELEASE</version>
+    <type>pom</type>
+</dependency>
 
-    <!-- OPTIONAL -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
-        <version>1.0.1.RELEASE</version>
-        <type>pom</type>
-    </dependency
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
+    <version>5.0.0.RELEASE</version>
+    <type>pom</type>
+</dependency
 
-    <!-- If Spring Security is to be used -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-security-web</artifactId>
-        <version>1.0.1.RELEASE</version>
-    </dependency>
+<!-- If Spring Security is to be used -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-security-web</artifactId>
+    <version>5.0.0.RELEASE</version>
+</dependency>
 
-    <!-- If JPA is to be used -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-jpa</artifactId>
-        <version>1.0.1.RELEASE</version>
-    </dependency>
+<!-- If MyBatis3 is to be used -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-mybatis3</artifactId>
+    <version>5.0.0.RELEASE</version>
+</dependency>
 
-    <!-- If MyBatis2 is to be used -->
-    <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-mybatis2</artifactId>
-        <version>1.0.1.RELEASE</version>
-    </dependency>
+<!-- If JPA is to be used -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-jpa</artifactId>
+    <version>5.0.0.RELEASE</version>
+</dependency>
+```
 
-Apart from the above mentioned settings, plugin related settings must also be done in pom file as per the requirements.
+## TERASOLUNA Global Framework
+
+The common library of TERASOLUNA Global Framework is maintained under [1.0.x](https://github.com/terasolunaorg/terasoluna-gfw/tree/1.0.x) branch.
 
 ## License
-The Terasoluna Global Framework is released under Apache  License, Version 2.0.
+The TERASOLUNA Server Framework for Java (5.x) is released under Apache  License, Version 2.0.
