@@ -76,7 +76,6 @@ The following project are included in TERASOLUNA Server Framework for Java (5.x)
     <pre>
 * Servlet filter to output the authenticated username in log
 * Redirect handler to counter-measure open redirect vulnerablibility
-* CSRF counter-measure
     </pre>
     </td>
   </tr>
