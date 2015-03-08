@@ -55,8 +55,6 @@ import org.terasoluna.gfw.common.exception.ResultMessagesNotificationException;
  *   &lt;property name=&quot;exceptionLogger&quot; ref=&quot;exceptionLogger&quot; /&gt;
  * &lt;/bean&gt;
  * </pre>
- * 
- * </p>
  */
 public class HandlerExceptionResolverLoggingInterceptor implements
                                                        MethodInterceptor,
@@ -122,7 +120,7 @@ public class HandlerExceptionResolverLoggingInterceptor implements
      * output, then output the log with ERROR level.</li>
      * <li></li>
      * </ul>
-     * </p>
+     *
      * @param invocation {@link MethodInvocation}
      * @return Object returned by target method of interceptor
      * @throws Throwable If error occurred in target method of interceptor
@@ -181,7 +179,7 @@ public class HandlerExceptionResolverLoggingInterceptor implements
     /**
      * Determines if the exception class is in the list of classes for which log is to be output.
      * @param ex Exception
-     * @return returns <code>true<code> if in the list.
+     * @return returns <code>true</code> if in the list.
      */
     protected boolean isTargetException(Exception ex) {
         if (ignoreExceptions == null) {

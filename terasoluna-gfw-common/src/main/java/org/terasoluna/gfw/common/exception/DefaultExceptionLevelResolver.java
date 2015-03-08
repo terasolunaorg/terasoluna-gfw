@@ -42,7 +42,7 @@ public class DefaultExceptionLevelResolver implements ExceptionLevelResolver {
     }
 
     /**
-     * Sets exception code resolution object. </p>
+     * Sets exception code resolution object.
      * @param exceptionCodeResolver Exception code resolution object
      */
     public void setExceptionCodeResolver(
@@ -61,7 +61,7 @@ public class DefaultExceptionLevelResolver implements ExceptionLevelResolver {
      * <li>"e", then ExceptionLevel.ERROR</li>
      * <li>Other than above, ExceptionLevel.ERROR</li>
      * </ul>
-     * </p>
+     *
      * @see org.terasoluna.gfw.common.exception.ExceptionLevelResolver#resolveExceptionLevel(java.lang.Exception)
      */
     public ExceptionLevel resolveExceptionLevel(Exception ex) {
