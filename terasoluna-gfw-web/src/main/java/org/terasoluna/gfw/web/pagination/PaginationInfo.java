@@ -279,7 +279,7 @@ public class PaginationInfo {
      * @param pageIndex index of page number (page index is start with 0).
      * @param size size of page.
      * @param sort Sort option for queries.
-     * @return Map<String, Object> instance of attributes
+     * @return Map&lt;String, Object&gt; instance of attributes
      */
     public static Map<String, Object> createAttributeMap(int pageIndex,
             int size, Sort sort) {
