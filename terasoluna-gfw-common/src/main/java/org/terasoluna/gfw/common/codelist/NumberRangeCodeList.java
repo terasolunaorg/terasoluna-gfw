@@ -76,7 +76,7 @@ public class NumberRangeCodeList extends AbstractCodeList implements
      * <code>to</code> must be more than <code>from</code>.
      * </p>
      * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
-     * @throws IllegalArgumentException when if from > to.
+     * @throws IllegalArgumentException when if from &gt; to.
      */
     @Override
     public void afterPropertiesSet() {

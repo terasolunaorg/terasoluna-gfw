@@ -66,27 +66,25 @@ public class LikeConditionEscape {
      * </ol>
      * <p>
      * For example.<br>
-     * <p/>
-     * 
+     *
      * <pre>
      * <code>
      *     
-     * toLikeCondition("a")    -> "a"
-     * toLikeCondition("a~")   -> "a~~"
-     * toLikeCondition("a%")   -> "a~%"
-     * toLikeCondition("a_")   -> "a~_"
-     * toLikeCondition("_a%")  -> "~_a~%"
-     * toLikeCondition("a％")  -> "a~％" (if escapeFullWithWildcards is true)
-     * toLikeCondition("a％")  -> "a％" (if escapeFullWithWildcards is false)
-     * toLikeCondition("a＿")  -> "a~＿" (if escapeFullWithWildcards is true)
-     * toLikeCondition("a＿")  -> "a＿" (if escapeFullWithWildcards is false)
-     * toLikeCondition(" ")    -> " "
-     * toLikeCondition("")     -> ""
-     * toLikeCondition(null)   -> null
+     * toLikeCondition("a")    -&gt; "a"
+     * toLikeCondition("a~")   -&gt; "a~~"
+     * toLikeCondition("a%")   -&gt; "a~%"
+     * toLikeCondition("a_")   -&gt; "a~_"
+     * toLikeCondition("_a%")  -&gt; "~_a~%"
+     * toLikeCondition("a％")  -&gt; "a~％" (if escapeFullWithWildcards is true)
+     * toLikeCondition("a％")  -&gt; "a％" (if escapeFullWithWildcards is false)
+     * toLikeCondition("a＿")  -&gt; "a~＿" (if escapeFullWithWildcards is true)
+     * toLikeCondition("a＿")  -&gt; "a＿" (if escapeFullWithWildcards is false)
+     * toLikeCondition(" ")    -&gt; " "
+     * toLikeCondition("")     -&gt; ""
+     * toLikeCondition(null)   -&gt; null
+     * toLikeCondition(null)   -&gt; null
      * </code>
      * </pre>
-     * <p/>
-     * </p>
      * <p>
      * return likeCondition of argument when condition is <code>null</code>.<br>
      * Returned value is not appended "%" keyword.

@@ -162,7 +162,7 @@ public class ResultMessage implements Serializable {
      * <li>the obj is the same instance as the current one. OR</li>
      * <li>if code AND text of the two instances are same respectively (including null values).</li>
      * </ul>
-     * </p>
+     *
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override

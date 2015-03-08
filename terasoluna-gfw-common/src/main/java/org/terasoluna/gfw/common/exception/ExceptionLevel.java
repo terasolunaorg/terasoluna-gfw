@@ -24,7 +24,7 @@ package org.terasoluna.gfw.common.exception;
  * <li> WARN </li>
  * <li> ERROR </li>
  * </ul>
- * </p>
+ *
  */
 public enum ExceptionLevel {
     INFO, WARN, ERROR
