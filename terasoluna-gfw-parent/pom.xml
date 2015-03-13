@@ -495,7 +495,7 @@
         <!-- == Logging == -->
         <org.lazyluke.version>0.2.7</org.lazyluke.version>
         <!-- == JUnit == -->
-        <selenium.version>2.44.0</selenium.version>
+        <selenium.version>2.45.0</selenium.version>
         <!-- == Tomcat == -->
         <tomcat.version>7.0.57</tomcat.version>
         <!-- == Maven Plugins == -->
