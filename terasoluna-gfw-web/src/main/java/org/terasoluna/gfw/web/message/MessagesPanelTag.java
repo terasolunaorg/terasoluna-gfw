@@ -65,7 +65,6 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * &lt;t:messagesPanel /&gt;<br>
  * </pre>
  * 
- * </p>
  * <p>
  * Resulting Output will be<br>
  * 
@@ -73,7 +72,6 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * &lt;div class=&quot;alert alert-success&quot;&gt;&lt;ul&gt;&lt;li&gt;Hello World!!&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;<br>
  * </pre>
  * 
- * </p>
  * <p>
  * By default, a combination of, ``alert`` and any one of
  * ``alert-success,alert-info,alert-warn(*1),alert-warning(*2),alert-error`` classes of bootstrap, is
@@ -96,7 +94,6 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * &lt;t:messagesPanel messagesAttributeName=&quot;textMessage&quot; /&gt;<br>
  * </pre>
  * 
- * </p>
  * <p>
  * Result:<br>
  * 
@@ -104,7 +101,6 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * &lt;div class=&quot;alert&quot;&gt;&lt;ul&gt;&lt;li&gt;textMessage&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
  * </pre>
  * 
- * </p>
  * <p>
  * <b>When the message is in {@code String} and {@code messagesPanel} is using
  * non-default values<br>
@@ -114,9 +110,6 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * This is the case of not using ResultMessages:
  * </p>
  * 
- * <pre>
- * <div class="row"> <div class="span12"> <h2>Message pattern</h2> <div class="alert alert-success">
- * </pre>
  * <p>
  * Configuration example:<br>
  * 
@@ -125,7 +118,6 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * panelTypeClassPrefix=&quot;&quot; /&gt;
  * </pre>
  * 
- * </p>
  * <p>
  * Result:<br>
  * 
@@ -133,7 +125,6 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * &lt;div class=&quot;notice&quot;&gt;&lt;ul&gt;&lt;li&gt;textMessage&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
  * </pre>
  * 
- * </p>
  */
 public class MessagesPanelTag extends RequestContextAwareTag {
 
@@ -494,7 +485,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	 * Sets the tag that configures MessagesPanel
 	 * <p>
 	 * Points to be careful:<br>
-	 * Only the tag name should be set. "<>" used while using the tag in HTML
+	 * Only the tag name should be set. "&lt;&gt;" used while using the tag in HTML
 	 * should not be included. For ex: "div"<br>
 	 * Specify the tag which have class property.
 	 * </p>
@@ -510,7 +501,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	 * Sets the outer tag which configures MessagesPanel tag
 	 * <p>
 	 * Points to be careful:<br>
-	 * Only the tag name should be set. "<>" used while using the tag in HTML
+	 * Only the tag name should be set. "&lt;&gt;" used while using the tag in HTML
 	 * should not be included. For ex: "span"<br>
 	 * </p>
 	 * 
@@ -525,7 +516,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	 * Sets the inner tag which configures MessagesPanel tag
 	 * <p>
 	 * Points to be careful:<br>
-	 * Only the tag name should be set. "<>" used while using the tag in HTML
+	 * Only the tag name should be set. "&lt;&gt;" used while using the tag in HTML
 	 * should not be included. For ex: "span"<br>
 	 * </p>
 	 * 

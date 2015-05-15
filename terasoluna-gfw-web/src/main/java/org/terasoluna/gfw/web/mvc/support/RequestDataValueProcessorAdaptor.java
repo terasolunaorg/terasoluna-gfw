@@ -29,8 +29,6 @@ public class RequestDataValueProcessorAdaptor implements
 
     /**
      * returns the action passed as argument as it is. This method is for compatibility with Spring 3.
-     * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processAction(javax.servlet.http.HttpServletRequest,
-     *      java.lang.String)
      */
     public String processAction(HttpServletRequest request, String action) {
         return action;
