@@ -73,8 +73,6 @@ public class CompositeRequestDataValueProcessor implements
      * Calls the {@code processAction()} method of all the {@link RequestDataValueProcessor} implementations <br>
      * this class holds. This method is for compatibility with Spring 3.
      * @param action action of form tag. must not be null.
-     * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processAction(javax.servlet.http.HttpServletRequest,
-     *      java.lang.String)
      */
     public String processAction(HttpServletRequest request, String action) {
 

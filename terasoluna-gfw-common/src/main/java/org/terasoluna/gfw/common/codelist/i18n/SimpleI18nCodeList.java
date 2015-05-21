@@ -39,7 +39,7 @@ import com.google.common.collect.Tables;
  * There are 3 ways to express the following table.
  * </p>
  * <table border=1>
- * <thead>code list table of week</thead>
+ * <caption>code list table of week</caption>
  * <tr>
  * <th>row=Locale,column=code</th>
  * <th>0</th>
