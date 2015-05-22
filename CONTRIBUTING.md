@@ -3,7 +3,6 @@
 This document describes how to contribute the terasoluna-gfw updates.
 
 The terasoluna-gfw is the common library of TERASOLUNA Server Framework for Java (5.x), and is Java projects for [Maven](https://maven.apache.org/).
-We build and test the terasoluna-gfw using the [Maven](https://maven.apache.org/).
 About running Maven, refer to the [Building a Project with Maven](https://maven.apache.org/run-maven/index.html).
 
 Contribution procedures are follows:
