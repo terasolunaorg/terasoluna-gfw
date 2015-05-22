@@ -239,6 +239,12 @@ Add the following dependency definitions.
 </dependency>
 ```
 
+## How to contribute
+
+**Contributing (bug report, pull request, any comments etc.) is welcome !!** Please see the [contributing guideline](CONTRIBUTING.md) for details.
+
+
+
 ## TERASOLUNA Global Framework
 
 The common library of TERASOLUNA Global Framework is maintained under [1.0.x](https://github.com/terasolunaorg/terasoluna-gfw/tree/1.0.x) branch.
