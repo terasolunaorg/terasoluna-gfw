@@ -2,10 +2,9 @@
 
 This document describes how to contribute the terasoluna-gfw updates.
 
-The terasoluna-gfw is mainly composed of Java and JSP.
-We build to executable files using the [Maven](https://maven.apache.org/) and test these on [Jenkins](https://jenkins-ci.org/) Server.
+The terasoluna-gfw is the common library of TERASOLUNA Server Framework for Java (5.x), and is Java projects for [Maven](https://maven.apache.org/).
+We build and test the terasoluna-gfw using the [Maven](https://maven.apache.org/).
 About running Maven, refer to the [Building a Project with Maven](https://maven.apache.org/run-maven/index.html).
-About using Jenkins Server, please contact the representative.
 
 Contribution procedures are follows:
 
@@ -16,7 +15,7 @@ Please create a new issue from [here](https://github.com/terasolunaorg/terasolun
 
 > **Note: Supported language**
 >
-> English or Japanese.
+> English only.
 
 * Please write the contribution overview into the title area.
 * Please write the contribution detail into the comment area.
@@ -26,7 +25,7 @@ Please create a new issue from [here](https://github.com/terasolunaorg/terasolun
  ## Description
  In Comment on org.terasoluna.gfw.web.codelist.CodeListInterceptor, there is a mistake in the below sentence.
 
- `"Adapter class for setting codelist in attribute of {@link HttpServletRequest}"`
+ `"Interceptor class for setting codelist in attribute of {@link HttpServletRequrst}"`
 
  ## Possible Solutions
  Modifying to `"Interceptor class for setting codelist in attribute of {@link HttpServletRequest}"`
@@ -77,13 +76,13 @@ git checkout -b issues/999_typo-in-CodeListInterceptor
 ```
 
 
-## Modify the terasoluna-gfw's files
+## Modify the terasoluna-gfw
 
-Please modify the terasoluna-gfw's files for contributing.
+Please modify the terasoluna-gfw for contributing.
 
 > **Note: Build and test**
 >
-> Please build to executable files and test using the [Jenkins](https://jenkins-ci.org/) Server and check result SUCCESS.
+> Please test terasoluna-gfw using the [Maven](https://maven.apache.org/) and check result SUCCESS.
 
 
 
@@ -102,7 +101,7 @@ Please commit a modification.
 e.g.)
 
 ```
-git commit -a -m "#999: Fixes typos in CodeListInterceptor.rst"
+git commit -a -m "#999: Fixes typos in CodeListInterceptor"
 ```
 
 
@@ -134,5 +133,5 @@ e.g.)
 
 | Area | Content |
 | ----- | --------- |
-| Title | #999: Fixes typos in CodeListInterceptor.rst |
+| Title | #999: Fixes typos in CodeListInterceptor |
 | Comment | Please review #999 . |
