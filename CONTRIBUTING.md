@@ -1,17 +1,18 @@
-# How to contribute the Development Guideline
+# How to contribute Development of the terasoluna-gfw
 
-This document describes how to contribute the Development Guideline updates.
+This document describes how to contribute the terasoluna-gfw updates.
 
-The Development Guideline is written by the reStructuredText format(`.rst`).
-We build to the HTML and PDF files using the [Sphinx](http://sphinx-doc.org/index.html).
-About Sphinx and reStructuredText format, refer to the [Sphinx documentation contents](http://sphinx-doc.org/contents.html).
+The terasoluna-gfw is mainly composed of Java and JSP.
+We build to executable files using the [Maven](https://maven.apache.org/) and test these on [Jenkins](https://jenkins-ci.org/) Server.
+About running Maven, refer to the [Building a Project with Maven](https://maven.apache.org/run-maven/index.html).
+About using Jenkins Server, please contact the representative.
 
 Contribution procedures are follows:
 
 
 ## Create a new issue
 
-Please create a new issue from [here](https://github.com/terasolunaorg/guideline/issues/new?body=%23%23%20Description%0D%0A%28%2A%2ARequired%2A%2A%3A%20Please%20write%20issue%20description%29%0D%0A%0D%0A%23%23%20Possible%20Solutions%0D%0A%28Optional%3A%20Please%20write%20solutions%20of%20this%20issue%20you%20think%29%0D%0A%0D%0A%23%23%20Affects%20Version%2Fs%0D%0A%28%2A%2ARequired%2A%2A%3A%20Please%20select%20affected%20versions%29%0D%0A%2A%205.0.0.RELEASE%0D%0A%2A%201.0.2.RELEASE%0D%0A%0D%0A%23%23%20Fix%20Version%2Fs%0D%0A%28To%20be%20written%20later%20by%20project%20member%29%0D%0A%0D%0A%23%23%20Issue%20Links%0D%0A%28Optional%3A%20Please%20link%20to%20related%20issues%29%0D%0A%2A%20%23%7Bissue%20no%7D%0D%0A%2A%20or%20external%20url) for contributing(bug report, improvement or new content), and get an issue number(tracking id).
+Please create a new issue from [here](https://github.com/terasolunaorg/terasoluna-gfw/issues/new?body=%23%23%20Description%0D%0A%28%2A%2ARequired%2A%2A%3A%20Please%20write%20issue%20description%29%0D%0A%0D%0A%23%23%20Possible%20Solutions%0D%0A%28Optional%3A%20Please%20write%20solutions%20of%20this%20issue%20you%20think%29%0D%0A%0D%0A%23%23%20Affects%20Version%2Fs%0D%0A%28%2A%2ARequired%2A%2A%3A%20Please%20select%20affected%20versions%29%0D%0A%2A%205.0.0.RELEASE%0D%0A%2A%201.0.2.RELEASE%0D%0A%0D%0A%23%23%20Fix%20Version%2Fs%0D%0A%28To%20be%20written%20later%20by%20project%20member%29%0D%0A%0D%0A%23%23%20Issue%20Links%0D%0A%28Optional%3A%20Please%20link%20to%20related%20issues%29%0D%0A%2A%20%23%7Bissue%20no%7D%0D%0A%2A%20or%20external%20url) for contributing(bug report, improvement or new content), and get an issue number(tracking id).
 
 > **Note: Supported language**
 >
@@ -23,12 +24,12 @@ Please create a new issue from [here](https://github.com/terasolunaorg/guideline
  e.g.)
  ```
  ## Description
- In section 2.4.1.2 Domain Layer, there is a mistake in the below sentence.
+ In Comment on org.terasoluna.gfw.web.codelist.CodeListInterceptor, there is a mistake in the below sentence.
 
- `"Domain layer is not so thick as compared to other layers and is reusable."`
+ `"Adapter class for setting codelist in attribute of {@link HttpServletRequest}"`
 
  ## Possible Solutions
- Modifying to `"Domain layer is independent from other layers and is reusable."`
+ Modifying to `"Interceptor class for setting codelist in attribute of {@link HttpServletRequest}"`
 
  ## Affects Version/s
  * 5.0.0.RELEASE
@@ -38,13 +39,12 @@ Please create a new issue from [here](https://github.com/terasolunaorg/guideline
  (To be written later by project member)
 
  ## Issue Links
- * #999
- * http://terasolunaorg.github.io/guideline/5.0.0.RELEASE/en/ImplementationAtEachLayer/DomainLayer.html
+ * https://github.com/terasolunaorg/terasoluna-gfw/issues/999
  ```
 
 ## Fork a repository
 
-Please fork the `terasolunaorg/guideline` into your account repository of GitHub.
+Please fork the `terasolunaorg/terasoluna-gfw` into your account repository of GitHub.
 
 * Click a "Fork" button on GitHub web user interface.
 
@@ -57,7 +57,7 @@ Please clone a forked repository into your local machine.
 e.g.)
 
 ```
-git clone https://github.com/{your account}/guideline.git
+git clone https://github.com/{your account}/terasoluna-gfw.git
 ```
 
 
@@ -73,17 +73,17 @@ e.g.)
 
 ```
 git checkout master
-git checkout -b issues/999_typo-in-REST
+git checkout -b issues/999_typo-in-CodeListInterceptor
 ```
 
 
-## Modify the Development Guideline
+## Modify the terasoluna-gfw's files
 
-Please modify the development guideline for contributing.
+Please modify the terasoluna-gfw's files for contributing.
 
-> **Note: Build to the HTML**
+> **Note: Build and test**
 >
-> If possible, please build to the HTML using the [Sphinx](http://sphinx-doc.org/index.html) and check your modification on the web browser. (Optional)
+> Please build to executable files and test using the [Jenkins](https://jenkins-ci.org/) Server and check result SUCCESS.
 
 
 
@@ -102,7 +102,7 @@ Please commit a modification.
 e.g.)
 
 ```
-git commit -a -m "#999: Fixes typos in REST.rst"
+git commit -a -m "#999: Fixes typos in CodeListInterceptor.rst"
 ```
 
 
@@ -113,7 +113,7 @@ Please push a work branch to the GitHub.
 e.g.)
 
 ```
-git push origin issues/999_typo-in-REST
+git push origin issues/999_typo-in-CodeListInterceptor
 ```
 
 
@@ -134,5 +134,5 @@ e.g.)
 
 | Area | Content |
 | ----- | --------- |
-| Title | #999: Fixes typos in REST.rst |
+| Title | #999: Fixes typos in CodeListInterceptor.rst |
 | Comment | Please review #999 . |
