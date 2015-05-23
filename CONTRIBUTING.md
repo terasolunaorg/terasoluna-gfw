@@ -79,10 +79,27 @@ git checkout -b issues/999_typo-in-CodeListInterceptor
 
 Please modify the terasoluna-gfw for contributing.
 
-> **Note: Build and test**
->
-> Please test terasoluna-gfw using the [Maven](https://maven.apache.org/) and check result SUCCESS.
 
+
+## Build projects and execute tests
+
+Please build all projects and execute all tests using the [Maven](https://maven.apache.org/).
+
+```
+cd {root directory of your local repository}
+mvn clean install -f terasoluna-gfw-parent/pom.xml
+mvn clean install -f terasoluna-gfw-common/pom.xml
+mvn clean install -f terasoluna-gfw-jodatime/pom.xml
+mvn clean install -f terasoluna-gfw-jpa/pom.xml
+mvn clean install -f terasoluna-gfw-mybatis3/pom.xml
+mvn clean install -f terasoluna-gfw-recommended-dependencies/pom.xml
+mvn clean install -f terasoluna-gfw-recommended-web-dependencies/pom.xml
+mvn clean install -f terasoluna-gfw-web/pom.xml
+mvn clean install -f terasoluna-gfw-security-core/pom.xml
+mvn clean install -f terasoluna-gfw-security-web/pom.xml
+```
+
+If a maven build result has failed, please modify a source code again.
 
 
 ## Commit a modification
@@ -122,7 +139,7 @@ For details, please refer to the [GitHub document-Creating a pull request-](http
 
 > **Note: Supported language**
 >
-> English or Japanese.
+> English only.
 
 * Please write the modification overview into the title area. (Default is commit comment or work branch name)
 * Please write the modification detail into the comment area. (If needed)
