@@ -193,6 +193,7 @@ Add the following dependency definitions.
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-web</artifactId>
+    <version>1.0.2.RELEASE</version>
 </dependency>
 
 <!-- OPTIONAL -->
