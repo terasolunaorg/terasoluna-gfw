@@ -85,18 +85,17 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter
     /**
      * Sets codelist to the attribute of {@link HttpServletRequest}
      * <p>
-     * Sets codelist to the attribute of {@link HttpServletRequest} after the execution of Controller is finished.
+     * Sets codelist to the attribute of {@link HttpServletRequest} before the execution of Controller.
      * </p>
-     * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#postHandle(javax.servlet.http.HttpServletRequest,
-     *      javax.servlet.http.HttpServletResponse, java.lang.Object, org.springframework.web.servlet.ModelAndView)
+     * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#preHandle(javax.servlet.http.HttpServletRequest,
+     *      javax.servlet.http.HttpServletResponse, java.lang.Object)
      */
     @Override
-    public void postHandle(HttpServletRequest request,
-            HttpServletResponse response, Object handler,
-            ModelAndView modelAndView) {
-
+    public boolean preHandle(HttpServletRequest request, 
+            HttpServletResponse response, Object handler) throws Exception {
+ 
         if (codeLists == null) {
-            return;
+            return true;
         }
 
         Locale locale = RequestContextUtils.getLocale(request);
@@ -113,8 +112,8 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter
                 request.setAttribute(attributeName, codeList.asMap());
             }
         }
-
-    }
+        return true;
+    }    
 
     /**
      * Returns the map of codelists which match to the specified locale.
