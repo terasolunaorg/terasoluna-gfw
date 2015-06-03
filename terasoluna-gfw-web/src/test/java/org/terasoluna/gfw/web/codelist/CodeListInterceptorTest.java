@@ -117,14 +117,14 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      * @throws Exception
      */
     @Test
-    public void testPostHandle_zero() throws Exception {
+    public void testPreHandle_zero() throws Exception {
 
         // do setup.
         testTarget.setApplicationContext(new StaticApplicationContext());
         testTarget.afterPropertiesSet();
 
         // do test.
-        testTarget.postHandle(mockRequest, mockResponse, null, modelAndView);
+        testTarget.preHandle(mockRequest, mockResponse, null);
 
         // do assert.
         assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
@@ -142,7 +142,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      * @throws Exception
      */
     @Test
-    public void testPostHandle_one() throws Exception {
+    public void testPreHandle_one() throws Exception {
 
         // do setup.
         StaticApplicationContext mockApplicationContext = new StaticApplicationContext();
@@ -156,7 +156,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do test.
-        testTarget.postHandle(mockRequest, mockResponse, null, modelAndView);
+        testTarget.preHandle(mockRequest, mockResponse, null);
 
         // do assert.
         Enumeration<String> actualAttributeNames = mockRequest
@@ -181,7 +181,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      * @throws Exception
      */
     @Test
-    public void testPostHandle_multi() throws Exception {
+    public void testPreHandle_multi() throws Exception {
 
         // do setup.
         mockRequest.addPreferredLocale(Locale.ENGLISH);
@@ -190,7 +190,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do test.
-        testTarget.postHandle(mockRequest, mockResponse, null, modelAndView);
+        testTarget.preHandle(mockRequest, mockResponse, null);
 
         // do assert.
         SimpleMapCodeList simpleMapCodeList = getApplicationContext().getBean(
