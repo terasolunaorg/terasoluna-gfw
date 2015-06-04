@@ -113,7 +113,7 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter
             }
         }
         return true;
-    }    
+    }
 
     /**
      * Returns the map of codelists which match to the specified locale.

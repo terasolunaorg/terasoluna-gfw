@@ -107,7 +107,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
     }
 
     /**
-     * [postHandle] Case of CodeList is zero.
+     * [preHandle] Case of CodeList is zero.
      * <p>
      * [Expected Result]
      * <ol>
@@ -124,15 +124,16 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do test.
-        testTarget.preHandle(mockRequest, mockResponse, null);
+        boolean expectedReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
 
         // do assert.
         assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
+        assertThat(expectedReturnValue, is(true));
 
     }
 
     /**
-     * [postHandle] Case of CodeList is one.
+     * [preHandle] Case of CodeList is one.
      * <p>
      * [Expected Result]
      * <ol>
@@ -156,7 +157,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do test.
-        testTarget.preHandle(mockRequest, mockResponse, null);
+        boolean expectedReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
 
         // do assert.
         Enumeration<String> actualAttributeNames = mockRequest
@@ -164,14 +165,14 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         assertThat(actualAttributeNames.hasMoreElements(), is(true));
         actualAttributeNames.nextElement();
         assertThat(actualAttributeNames.hasMoreElements(), is(false));
-
         assertThat(mockRequest.getAttribute("simpleMapCodeList").toString(),
-                is(simpleMapCodeList.asMap().toString()));
+                is(simpleMapCodeList.asMap().toString()));        
+        assertThat(expectedReturnValue, is(true));
 
     }
 
     /**
-     * [postHandle] Case of CodeList is one.
+     * [preHandle] Case of CodeList is one.
      * <p>
      * [Expected Result]
      * <ol>
@@ -190,7 +191,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do test.
-        testTarget.preHandle(mockRequest, mockResponse, null);
+        boolean expectedReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
 
         // do assert.
         SimpleMapCodeList simpleMapCodeList = getApplicationContext().getBean(
@@ -201,6 +202,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
                 is(simpleMapCodeList.asMap().toString()));
         assertThat(mockRequest.getAttribute("C_simpleI18nCodeList").toString(),
                 is(simpleI18nCodeList.asMap(Locale.ENGLISH).toString()));
+        assertThat(expectedReturnValue, is(true));
 
     }
 
