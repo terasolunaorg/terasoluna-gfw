@@ -124,11 +124,11 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do test.
-        boolean expectedReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
+        boolean actualReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
 
         // do assert.
         assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
-        assertThat(expectedReturnValue, is(true));
+        assertThat(actualReturnValue, is(true));
 
     }
 
@@ -157,7 +157,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do test.
-        boolean expectedReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
+        boolean actualReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
 
         // do assert.
         Enumeration<String> actualAttributeNames = mockRequest
@@ -167,7 +167,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         assertThat(actualAttributeNames.hasMoreElements(), is(false));
         assertThat(mockRequest.getAttribute("simpleMapCodeList").toString(),
                 is(simpleMapCodeList.asMap().toString()));        
-        assertThat(expectedReturnValue, is(true));
+        assertThat(actualReturnValue, is(true));
 
     }
 
@@ -191,7 +191,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do test.
-        boolean expectedReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
+        boolean actualReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
 
         // do assert.
         SimpleMapCodeList simpleMapCodeList = getApplicationContext().getBean(
@@ -202,12 +202,12 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
                 is(simpleMapCodeList.asMap().toString()));
         assertThat(mockRequest.getAttribute("C_simpleI18nCodeList").toString(),
                 is(simpleI18nCodeList.asMap(Locale.ENGLISH).toString()));
-        assertThat(expectedReturnValue, is(true));
+        assertThat(actualReturnValue, is(true));
 
     }
 
     /**
-     * [postHandle] Case of not call afterPropertiesSet.
+     * [preHandle] Case of not call afterPropertiesSet.
      * <p>
      * [Expected Result]
      * <ol>
@@ -217,13 +217,13 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      * @throws Exception
      */
     @Test
-    public void testPostHandle_not_call_afterPropertiesSet() throws Exception {
+    public void testPreHandle_not_call_afterPropertiesSet() throws Exception {
 
         // do setup.
         // do nothing.
 
         // do test.
-        testTarget.postHandle(mockRequest, mockResponse, null, modelAndView);
+        testTarget.preHandle(mockRequest, mockResponse, null);
 
         // do assert.
         assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
@@ -259,6 +259,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
     }
 
+    
     /**
      * [afterPropertiesSet] Case of codeListIdPattern is not null.
      * <p>
