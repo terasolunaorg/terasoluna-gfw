@@ -223,10 +223,11 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         // do nothing.
 
         // do test.
-        testTarget.preHandle(mockRequest, mockResponse, null);
+    	boolean actualReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
 
         // do assert.
         assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
+        assertThat(actualReturnValue, is(true));
 
     }
 
