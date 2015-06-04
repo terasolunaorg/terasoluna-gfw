@@ -33,7 +33,6 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.util.Assert;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import org.terasoluna.gfw.common.codelist.CodeList;
@@ -89,6 +88,7 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter
      * </p>
      * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#preHandle(javax.servlet.http.HttpServletRequest,
      *      javax.servlet.http.HttpServletResponse, java.lang.Object)
+     * @since 5.0.1
      */
     @Override
     public boolean preHandle(HttpServletRequest request, 
