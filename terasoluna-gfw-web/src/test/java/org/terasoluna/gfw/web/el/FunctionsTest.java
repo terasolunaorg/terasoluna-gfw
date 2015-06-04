@@ -517,6 +517,37 @@ public class FunctionsTest {
     }
 
     @Test
+    public void testQuery05_ignore_ConverterNotFoundException () {
+
+        Hoge2 hoge2 = new Hoge2();
+        Hoge1 hoge1 = new Hoge1();
+        hoge2.setName("ほげ2");
+        hoge1.setName("ほげ1");
+        hoge2.setHoge1(hoge1);
+        String query = Functions.query(hoge2);
+        assertThat(
+                query,
+                is("name=%E3%81%BB%E3%81%922"));
+    }
+
+    @Test
+    public void testQuery06_ignore_ConverterNotFoundException_in_multi_layer_case () {
+
+        Hoge3 hoge3 = new Hoge3();
+        Hoge2 hoge2 = new Hoge2();
+        Hoge1 hoge1 = new Hoge1();
+        hoge3.setName("ほげ3");
+        hoge2.setName("ほげ2");
+        hoge1.setName("ほげ1");
+        hoge3.setHoge2(hoge2);
+        hoge2.setHoge1(hoge1);
+        String query = Functions.query(hoge3);
+        assertThat(
+                query,
+                is("name=%E3%81%BB%E3%81%923"));
+    }
+
+    @Test
     public void testJs() {
         assertThat(Functions.js(null), is(""));
         assertThat(Functions.js(""), is(""));
@@ -597,3 +628,63 @@ class Person {
         this.list = list;
     }
 }
+
+
+
+class Hoge1 {
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+
+class Hoge2 {
+    private String name;
+
+    private Hoge1 hoge1;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Hoge1 getHoge1() {
+        return hoge1;
+    }
+
+    public void setHoge1(Hoge1 hoge1) {
+        this.hoge1 = hoge1;
+    }
+}
+
+class Hoge3 {
+    private String name;
+
+    private Hoge2 hoge2;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Hoge2 getHoge2() {
+        return hoge2;
+    }
+
+    public void setHoge2(Hoge2 hoge2) {
+        this.hoge2 = hoge2;
+    }
+
+}
+

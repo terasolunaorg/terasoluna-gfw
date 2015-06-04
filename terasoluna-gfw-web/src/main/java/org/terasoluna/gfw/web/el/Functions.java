@@ -25,6 +25,7 @@ import java.util.regex.Pattern;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.PropertyAccessorFactory;
+import org.springframework.core.convert.ConverterNotFoundException;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
@@ -246,15 +247,20 @@ public final class Functions {
         for (Map.Entry<String, Object> e : map.entrySet()) {
             String name = e.getKey();
             Object value = e.getValue();
-            builder.queryParam(name, "{" + name + "}");
             TypeDescriptor sourceType;
             if (beanWrapper != null) {
                 sourceType = beanWrapper.getPropertyTypeDescriptor(name);
             } else {
                 sourceType = TypeDescriptor.forObject(value);
             }
-            uriVariables.put(name, CONVERSION_SERVICE.convert(value,
-                    sourceType, STRING_DESC));
+            try {
+                uriVariables.put(name, CONVERSION_SERVICE.convert(value,
+                        sourceType, STRING_DESC));
+                builder.queryParam(name, "{" + name + "}");
+            } catch (ConverterNotFoundException cnfe){
+                // In using object which has nested field, DefaultFormattingConversionService#convert throws 
+                // ConverterNotFoundException even if the fields is not intended to use.
+            }
         }
         String query = builder.buildAndExpand(uriVariables).encode().toString();
         // remove the beginning symbol character('?') of the query string.
