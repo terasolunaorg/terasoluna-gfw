@@ -40,6 +40,8 @@ public class LikeConditionEscape {
 
     /**
      * Constructor to escape like condition in a query (including full-with wildcards).
+     *
+     * @return LikeConditionEscape instance for including full-with wildcards
      */
     public static LikeConditionEscape withFullWidthWildcardsEscape() {
         return new LikeConditionEscape(true);
@@ -47,6 +49,8 @@ public class LikeConditionEscape {
 
     /**
      * Constructor to escape like condition in a query (<strong>NOT</strong> including full-with wildcards).
+
+     * @return LikeConditionEscape instance for NOT including full-with wildcards
      */
     public static LikeConditionEscape withoutFullWidthWildcardsEscape() {
         return new LikeConditionEscape(false);

@@ -121,7 +121,7 @@ public class RedirectAuthenticationHandler extends
 
     /**
      * set RedirectStrategy to use if redirect path is specified as a request parameter. (default:"redirectTo")<br>
-     * @param redirectToRedirectStrategy
+     * @param redirectToRedirectStrategy RedirectStrategy to use if redirect path is specified as a request parameter
      */
     public void setRedirectToRedirectStrategy(
             RedirectStrategy redirectToRedirectStrategy) {

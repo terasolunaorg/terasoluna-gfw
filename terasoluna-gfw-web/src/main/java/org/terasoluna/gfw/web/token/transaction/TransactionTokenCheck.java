@@ -46,7 +46,6 @@ import java.lang.annotation.Target;
  * <p>
  * By default, if no namespace is defined and {@code value} attribute at method level is also not specified, "globalToken" is
  * used as {@code tokenName} for all the transaction tokens generated.
- * <p>
  */
 @Target({ ElementType.METHOD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
