@@ -102,10 +102,10 @@ public final class ResultMessageUtils {
      * </li>
      * <li>return text of <code>ResultMessage</code> even if it is <code>null</code></li>
      * </ol>
-     * @param message
-     * @param messageSource
+     * @param message ResultMessage instance
+     * @param messageSource a MessageSource instance for solving a complete message
      * @return message text
-     * @throws NoSuchMessageException
+     * @throws NoSuchMessageException If does not resolve a message
      */
     public static String resolveMessage(ResultMessage message,
             MessageSource messageSource) {

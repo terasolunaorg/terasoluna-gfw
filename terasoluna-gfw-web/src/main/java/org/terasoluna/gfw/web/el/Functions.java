@@ -155,7 +155,7 @@ public final class Functions {
      * <p>Characters not listed above are percent-encoded.</p>
      * @param value string to encode
      * @return encoded string based on RFC 3986. returns empty string if <code>value</code> is <code>null</code> or empty.
-     * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a> 3.4.Query
+     * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986 3.4.Query</a>
      */
     public static String u(String value) {
         if (value == null || value.isEmpty()) {

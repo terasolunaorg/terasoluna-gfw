@@ -285,8 +285,8 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	 * {@link #writeMessage(TagWriter, Object)} only once
 	 * </p>
 	 * 
-	 * @param tagWriter
-	 * @param messages
+	 * @param tagWriter a TegWriter instance
+	 * @param messages messages
 	 * @throws JspException
 	 *             If {@link JspException} occurs in caller writeMessage
 	 */
@@ -324,8 +324,8 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	 * applied around the message.<br>
 	 * </p>
 	 * 
-	 * @param tagWriter
-	 * @param message
+	 * @param tagWriter a TagWriter instance
+	 * @param message message
 	 * @throws JspException
 	 *             Occurs when {@link JspTagException} occurs in case when
 	 *             nothing is set in the configuration of the tag that
@@ -400,11 +400,9 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 
 	/**
 	 * converts the parameter to String and returns it.
-	 * <p>
-	 * </p>
-	 * 
-	 * @param message
-	 *            Object
+	 *
+	 * @param message message object
+	 * @return message string
 	 */
 	protected String getTextInOtherCase(Object message) {
 		return message.toString();
@@ -440,9 +438,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 
 	/**
 	 * Set the name of the model that stores the messages.
-	 * <p>
-	 * </p>
-	 * 
+	 *
 	 * @param messagesAttributeName
 	 *            Attribute name that is used to store messages
 	 */
@@ -455,9 +451,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	 * CSS class must be set. <br>
 	 * If this item is being set, it is assumed that
 	 * {@link #panelTypeClassPrefix} must be empty.
-	 * <p>
-	 * </p>
-	 * 
+	 *
 	 * @param panelClassName
 	 *            CSS class
 	 */
@@ -555,6 +549,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	 * 
 	 * @param disableHtmlEscape
 	 *            value of disableHtmlEscape
+	 * @throws JspException If value that is not true or false is specified.
 	 */
     public void setDisableHtmlEscape(String disableHtmlEscape) throws JspException {
         this.disableHtmlEscape = JspTagUtils.toBoolean(disableHtmlEscape,
