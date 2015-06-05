@@ -17,7 +17,7 @@ package org.terasoluna.gfw.common.sequencer;
 
 /**
  * Interface for Sequencing functionality
- * @param <T>
+ * @param <T> type of sequence value
  */
 public interface Sequencer<T> {
 
