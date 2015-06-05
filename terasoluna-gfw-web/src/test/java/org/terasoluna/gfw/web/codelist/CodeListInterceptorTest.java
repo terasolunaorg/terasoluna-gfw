@@ -43,11 +43,9 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.servlet.ModelAndView;
 import org.terasoluna.gfw.common.codelist.CodeList;
 import org.terasoluna.gfw.common.codelist.SimpleMapCodeList;
 import org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList;
-import org.terasoluna.gfw.web.codelist.CodeListInterceptor;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
@@ -79,11 +77,6 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      */
     private Appender<ILoggingEvent> mockAppender;
 
-    /**
-     * instance of model and view.
-     */
-    private ModelAndView modelAndView;
-
     @Before
     public void setUp() {
         this.testTarget = new CodeListInterceptor();
@@ -92,7 +85,6 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
         this.mockRequest = new MockHttpServletRequest();
         this.mockResponse = new MockHttpServletResponse();
-        this.modelAndView = new ModelAndView();
 
         @SuppressWarnings("unchecked")
         Appender<ILoggingEvent> mockAppender = mock(Appender.class);
