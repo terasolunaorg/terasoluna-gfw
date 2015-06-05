@@ -33,7 +33,6 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.util.Assert;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import org.terasoluna.gfw.common.codelist.CodeList;
@@ -85,18 +84,18 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter
     /**
      * Sets codelist to the attribute of {@link HttpServletRequest}
      * <p>
-     * Sets codelist to the attribute of {@link HttpServletRequest} after the execution of Controller is finished.
+     * Sets codelist to the attribute of {@link HttpServletRequest} before the execution of Controller.
      * </p>
-     * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#postHandle(javax.servlet.http.HttpServletRequest,
-     *      javax.servlet.http.HttpServletResponse, java.lang.Object, org.springframework.web.servlet.ModelAndView)
+     * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#preHandle(javax.servlet.http.HttpServletRequest,
+     *      javax.servlet.http.HttpServletResponse, java.lang.Object)
+     * @since 5.0.1
      */
     @Override
-    public void postHandle(HttpServletRequest request,
-            HttpServletResponse response, Object handler,
-            ModelAndView modelAndView) {
-
+    public boolean preHandle(HttpServletRequest request, 
+            HttpServletResponse response, Object handler) throws Exception {
+ 
         if (codeLists == null) {
-            return;
+            return true;
         }
 
         Locale locale = RequestContextUtils.getLocale(request);
@@ -113,7 +112,7 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter
                 request.setAttribute(attributeName, codeList.asMap());
             }
         }
-
+        return true;
     }
 
     /**

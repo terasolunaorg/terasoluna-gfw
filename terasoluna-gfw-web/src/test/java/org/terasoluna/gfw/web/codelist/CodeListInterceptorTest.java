@@ -43,11 +43,9 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.web.servlet.ModelAndView;
 import org.terasoluna.gfw.common.codelist.CodeList;
 import org.terasoluna.gfw.common.codelist.SimpleMapCodeList;
 import org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList;
-import org.terasoluna.gfw.web.codelist.CodeListInterceptor;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
@@ -79,11 +77,6 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      */
     private Appender<ILoggingEvent> mockAppender;
 
-    /**
-     * instance of model and view.
-     */
-    private ModelAndView modelAndView;
-
     @Before
     public void setUp() {
         this.testTarget = new CodeListInterceptor();
@@ -92,7 +85,6 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
         this.mockRequest = new MockHttpServletRequest();
         this.mockResponse = new MockHttpServletResponse();
-        this.modelAndView = new ModelAndView();
 
         @SuppressWarnings("unchecked")
         Appender<ILoggingEvent> mockAppender = mock(Appender.class);
@@ -107,7 +99,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
     }
 
     /**
-     * [postHandle] Case of CodeList is zero.
+     * [preHandle] Case of CodeList is zero.
      * <p>
      * [Expected Result]
      * <ol>
@@ -117,22 +109,23 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      * @throws Exception
      */
     @Test
-    public void testPostHandle_zero() throws Exception {
+    public void testPreHandle_zero() throws Exception {
 
         // do setup.
         testTarget.setApplicationContext(new StaticApplicationContext());
         testTarget.afterPropertiesSet();
 
         // do test.
-        testTarget.postHandle(mockRequest, mockResponse, null, modelAndView);
+        boolean actualReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
 
         // do assert.
         assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
+        assertThat(actualReturnValue, is(true));
 
     }
 
     /**
-     * [postHandle] Case of CodeList is one.
+     * [preHandle] Case of CodeList is one.
      * <p>
      * [Expected Result]
      * <ol>
@@ -142,7 +135,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      * @throws Exception
      */
     @Test
-    public void testPostHandle_one() throws Exception {
+    public void testPreHandle_one() throws Exception {
 
         // do setup.
         StaticApplicationContext mockApplicationContext = new StaticApplicationContext();
@@ -156,7 +149,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do test.
-        testTarget.postHandle(mockRequest, mockResponse, null, modelAndView);
+        boolean actualReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
 
         // do assert.
         Enumeration<String> actualAttributeNames = mockRequest
@@ -164,14 +157,14 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         assertThat(actualAttributeNames.hasMoreElements(), is(true));
         actualAttributeNames.nextElement();
         assertThat(actualAttributeNames.hasMoreElements(), is(false));
-
         assertThat(mockRequest.getAttribute("simpleMapCodeList").toString(),
-                is(simpleMapCodeList.asMap().toString()));
+                is(simpleMapCodeList.asMap().toString()));        
+        assertThat(actualReturnValue, is(true));
 
     }
 
     /**
-     * [postHandle] Case of CodeList is one.
+     * [preHandle] Case of CodeList is one.
      * <p>
      * [Expected Result]
      * <ol>
@@ -181,7 +174,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      * @throws Exception
      */
     @Test
-    public void testPostHandle_multi() throws Exception {
+    public void testPreHandle_multi() throws Exception {
 
         // do setup.
         mockRequest.addPreferredLocale(Locale.ENGLISH);
@@ -190,7 +183,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do test.
-        testTarget.postHandle(mockRequest, mockResponse, null, modelAndView);
+        boolean actualReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
 
         // do assert.
         SimpleMapCodeList simpleMapCodeList = getApplicationContext().getBean(
@@ -201,11 +194,12 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
                 is(simpleMapCodeList.asMap().toString()));
         assertThat(mockRequest.getAttribute("C_simpleI18nCodeList").toString(),
                 is(simpleI18nCodeList.asMap(Locale.ENGLISH).toString()));
+        assertThat(actualReturnValue, is(true));
 
     }
 
     /**
-     * [postHandle] Case of not call afterPropertiesSet.
+     * [preHandle] Case of not call afterPropertiesSet.
      * <p>
      * [Expected Result]
      * <ol>
@@ -215,16 +209,17 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      * @throws Exception
      */
     @Test
-    public void testPostHandle_not_call_afterPropertiesSet() throws Exception {
+    public void testPreHandle_not_call_afterPropertiesSet() throws Exception {
 
         // do setup.
         // do nothing.
 
         // do test.
-        testTarget.postHandle(mockRequest, mockResponse, null, modelAndView);
+    	boolean actualReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
 
         // do assert.
         assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
+        assertThat(actualReturnValue, is(true));
 
     }
 
@@ -257,6 +252,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
     }
 
+    
     /**
      * [afterPropertiesSet] Case of codeListIdPattern is not null.
      * <p>
