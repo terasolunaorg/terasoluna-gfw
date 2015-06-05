@@ -27,7 +27,7 @@ public final class DateConvertUtils {
     /**
      * Calendar default year.
      */
-    private static final int DEFUALT_YEAR = 1970;
+    private static final int DEFAULT_YEAR = 1970;
 
     /**
      * Default Constructor.
@@ -87,7 +87,7 @@ public final class DateConvertUtils {
         }
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
-        cal.set(Calendar.YEAR, DEFUALT_YEAR);
+        cal.set(Calendar.YEAR, DEFAULT_YEAR);
         cal.set(Calendar.MONTH, 0);
         cal.set(Calendar.DAY_OF_MONTH, 1);
         Time time = new Time(cal.getTimeInMillis());
