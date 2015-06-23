@@ -43,7 +43,7 @@ public final class DateConvertUtils {
      */
     public static Timestamp convertToTimestamp(java.util.Date date) {
         if (date == null) {
-            throw new IllegalArgumentException("date msut not be null");
+            throw new IllegalArgumentException("date must not be null");
         }
         Timestamp timestamp = new Timestamp(date.getTime());
         return timestamp;
@@ -60,7 +60,7 @@ public final class DateConvertUtils {
      */
     public static java.sql.Date convertToSqlDate(java.util.Date date) {
         if (date == null) {
-            throw new IllegalArgumentException("date msut not be null");
+            throw new IllegalArgumentException("date must not be null");
         }
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -83,7 +83,7 @@ public final class DateConvertUtils {
      */
     public static Time convertToTime(java.util.Date date) {
         if (date == null) {
-            throw new IllegalArgumentException("date msut not be null");
+            throw new IllegalArgumentException("date must not be null");
         }
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);

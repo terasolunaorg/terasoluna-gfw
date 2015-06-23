@@ -20,15 +20,27 @@ import static org.hamcrest.CoreMatchers.*;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class DateConvertUtilsTest {
 
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+
     @Test
-    public void testConvertToTimestamp01() throws Exception {
+    public void testConvertToTimestamp01() {
+
+        // setup a test data
         DateTime date = new DateTime(2012, 9, 3, 23, 7, 11, 100);
+
+        // testing
         Timestamp timestamp = DateConvertUtils
                 .convertToTimestamp(date.toDate());
+
+        // assertions
         DateTime result = new DateTime(timestamp.getTime());
         assertThat(result.getYear(), is(2012));
         assertThat(result.getMonthOfYear(), is(9));
@@ -39,16 +51,26 @@ public class DateConvertUtilsTest {
         assertThat(result.getMillisOfSecond(), is(100));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testConvertToTimestamp02() throws Exception {
+    @Test
+    public void testConvertToTimestamp02() {
+        // set up a exception assertion
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage(is("date must not be null"));
+
+        // testing
         DateConvertUtils.convertToTimestamp(null);
     }
 
     @Test
-    public void testConvertToSqlDate01() throws Exception {
+    public void testConvertToSqlDate01() {
+        // setup test data
         DateTime date = new DateTime(2012, 9, 3, 23, 7, 11, 100);
+
+        // testing
         java.sql.Date sqlDate = DateConvertUtils
                 .convertToSqlDate(date.toDate());
+
+        // assertion
         DateTime result = new DateTime(sqlDate.getTime());
         assertThat(result.getYear(), is(2012));
         assertThat(result.getMonthOfYear(), is(9));
@@ -59,15 +81,25 @@ public class DateConvertUtilsTest {
         assertThat(result.getMillisOfSecond(), is(0));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testConvertToSqlDate02() throws Exception {
+    @Test
+    public void testConvertToSqlDate02() {
+        // set up a exception assertion
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage(is("date must not be null"));
+
+        // testing
         DateConvertUtils.convertToSqlDate(null);
     }
 
     @Test
-    public void testConvertToTime01() throws Exception {
+    public void testConvertToTime01() {
+        // set up a test data
         DateTime date = new DateTime(2012, 9, 3, 23, 7, 11, 100);
+
+        // testing
         Time time = DateConvertUtils.convertToTime(date.toDate());
+
+        // assertion
         DateTime result = new DateTime(time.getTime());
         assertThat(result.getYear(), is(1970));
         assertThat(result.getMonthOfYear(), is(1));
@@ -78,8 +110,13 @@ public class DateConvertUtilsTest {
         assertThat(result.getMillisOfSecond(), is(100));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testConvertToTime02() throws Exception {
+    @Test
+    public void testConvertToTime02() {
+        // set up a exception assertion
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage(is("date must not be null"));
+
+        // testing
         DateConvertUtils.convertToTime(null);
     }
 
