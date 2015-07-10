@@ -16,6 +16,7 @@
 package org.terasoluna.gfw.web.pagination;
 
 import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.JspTagException;
 
 import org.springframework.data.domain.Page;
 import org.springframework.util.StringUtils;
@@ -26,8 +27,6 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
 
 /**
  * JSP tag that provides pagination functionality<br>
- * <p>
- * </p>
  */
 public class PaginationTag extends RequestContextAwareTag {
 
@@ -136,7 +135,7 @@ public class PaginationTag extends RequestContextAwareTag {
     /**
      * Renders a pagination link.
      * @return {@link javax.servlet.jsp.tagext.Tag#EVAL_BODY_INCLUDE}
-     * @throws Exception
+     * @throws Exception If fail a tag writing
      */
     @Override
     protected int doStartTagInternal() throws Exception {
@@ -169,7 +168,7 @@ public class PaginationTag extends RequestContextAwareTag {
      * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP page
      * @param href url of anchor
      * @param value text of anchor
-     * @throws JspException
+     * @throws JspException If fail a tag writing
      */
     protected void writeAnchor(TagWriter tagWriter, String href, String value) throws JspException {
         if (StringUtils.hasText(href)) {
@@ -185,7 +184,7 @@ public class PaginationTag extends RequestContextAwareTag {
     /**
      * Renders start tag.
      * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP page
-     * @throws JspException
+     * @throws JspException If fail a tag writing
      */
     protected void startOuterElement(TagWriter tagWriter) throws JspException {
         if (StringUtils.hasText(outerElement)) {
@@ -201,7 +200,7 @@ public class PaginationTag extends RequestContextAwareTag {
     /**
      * Renders end tag.<br>
      * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP page
-     * @throws JspException
+     * @throws JspException If fail a tag writing
      */
     protected void endOuterElement(TagWriter tagWriter) throws JspException {
         if (StringUtils.hasText(outerElement)) {
@@ -213,7 +212,8 @@ public class PaginationTag extends RequestContextAwareTag {
      * Renders page link.<br>
      * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP page
      * @param info {@code PaginationInfo} instance the holds all the information required by the {@code PaginationTag}
-     * @throws JspException
+     * @param page page position
+     * @throws JspException If fail a tag writing
      */
     protected void writePageLink(TagWriter tagWriter, PaginationInfo info,
             int page) throws JspException {
@@ -235,7 +235,7 @@ public class PaginationTag extends RequestContextAwareTag {
      * Renders link for going to the first page and previous page.<br>
      * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP page
      * @param info {@code PaginationInfo} instance the holds all the information required by the {@code PaginationTag}
-     * @throws JspException
+     * @throws JspException If fail a tag writing
      */
     protected void writeFirstAndPreviousLink(TagWriter tagWriter,
             PaginationInfo info) throws JspException {
@@ -291,7 +291,7 @@ public class PaginationTag extends RequestContextAwareTag {
      * Renders link for going to the next page and last page <br>
      * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP page
      * @param info {@code PaginationInfo} instance the holds all the information required by the {@code PaginationTag}
-     * @throws JspException
+     * @throws JspException If fail a tag writing
      */
     protected void writeNextAndLastLink(TagWriter tagWriter, PaginationInfo info) throws JspException {
         if (info.isLastPage()) {
@@ -370,7 +370,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Set page object<br>
-     * @param page
+     * @param page a Page instance
      */
     public void setPage(Object page) {
         this.page = page;
@@ -378,7 +378,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Set path template of pagination<br>
-     * @param pathTmpl
+     * @param pathTmpl Path template of pagination
      */
     public void setPathTmpl(String pathTmpl) {
         this.pathTmpl = pathTmpl;
@@ -386,7 +386,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Set query template of pagination<br>
-     * @param queryTmpl
+     * @param queryTmpl Query template of pagination
      */
     public void setQueryTmpl(String queryTmpl) {
         this.queryTmpl = queryTmpl;
@@ -394,7 +394,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Set query of search criteria<br>
-     * @param criteriaQuery
+     * @param criteriaQuery Query of search criteria
      * @since 1.0.1
      */
     public void setCriteriaQuery(String criteriaQuery) {
@@ -408,6 +408,7 @@ public class PaginationTag extends RequestContextAwareTag {
      * By default, disableHtmlEscapeOfCriteriaQuery is set to <code>false</code>. This means <br>
      * html escaping is enable and will be performed by default.
      * @param disableHtmlEscapeOfCriteriaQuery value of disableHtmlEscapeOfCriteriaQuery
+     * @throws JspException If value that is not true or false is specified.
      * @since 1.0.1
      */
     public void setDisableHtmlEscapeOfCriteriaQuery(
@@ -424,6 +425,7 @@ public class PaginationTag extends RequestContextAwareTag {
      * By default, enableLinkOfCurrentPage is set to <code>false</code>. This means <br>
      * link of current page is disabled by default.
      * @param enableLinkOfCurrentPage value of enableLinkOfCurrentPage
+     * @throws JspException If value that is not true or false is specified.
      * @since 5.0.0
      */
     public void setEnableLinkOfCurrentPage(
@@ -435,7 +437,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Set maximum display count<br>
-     * @param maxDisplayCount
+     * @param maxDisplayCount Maximum display count
      */
     public void setMaxDisplayCount(int maxDisplayCount) {
         this.maxDisplayCount = maxDisplayCount;
@@ -443,7 +445,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Set outer tag of HTML that make up pagination<br>
-     * @param outerElement
+     * @param outerElement Outer tag of HTML that make up pagination
      */
     public void setOuterElement(String outerElement) {
         this.outerElement = outerElement;
@@ -451,7 +453,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Set value of "class" attribute of outer tag of pagination <br>
-     * @param outerElementClass
+     * @param outerElementClass Value of "class" attribute of outer tag of pagination
      */
     public void setOuterElementClass(String outerElementClass) {
         this.outerElementClass = outerElementClass;
@@ -459,7 +461,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Set inner tag of HTML that make up pagination <br>
-     * @param innerElement
+     * @param innerElement Inner tag of HTML that make up pagination
      */
     public void setInnerElement(String innerElement) {
         this.innerElement = innerElement;
@@ -467,7 +469,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Set display text of the link of back to the top <br>
-     * @param firstLinkText
+     * @param firstLinkText Display text of the link of back to the top
      */
     public void setFirstLinkText(String firstLinkText) {
         this.firstLinkText = firstLinkText;
@@ -475,7 +477,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Set display text of the link of back to previous <br>
-     * @param previousLinkText
+     * @param previousLinkText Display text of the link of back to previous
      */
     public void setPreviousLinkText(String previousLinkText) {
         this.previousLinkText = previousLinkText;
@@ -483,7 +485,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Set display text of the link to proceed to the next <br>
-     * @param nextLinkText
+     * @param nextLinkText Display text of the link to proceed to the next
      */
     public void setNextLinkText(String nextLinkText) {
         this.nextLinkText = nextLinkText;
@@ -491,7 +493,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Set display text of the link to forward to the last page <br>
-     * @param lastLinkText
+     * @param lastLinkText Display text of the link to forward to the last page
      */
     public void setLastLinkText(String lastLinkText) {
         this.lastLinkText = lastLinkText;
@@ -499,7 +501,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Set anchor link which is set when the link is disabled. <br>
-     * @param disabledHref
+     * @param disabledHref Anchor link which is set when the link is disabled
      */
     public void setDisabledHref(String disabledHref) {
         this.disabledHref = disabledHref;
@@ -507,7 +509,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Set class name that enables the link <br>
-     * @param activeClass
+     * @param activeClass Class name that enables the link
      */
     public void setActiveClass(String activeClass) {
         this.activeClass = activeClass;
@@ -515,7 +517,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Set class name that enables the link <br>
-     * @param disabledClass
+     * @param disabledClass Class name that enables the link
      */
     public void setDisabledClass(String disabledClass) {
         this.disabledClass = disabledClass;

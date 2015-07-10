@@ -77,8 +77,8 @@ public class ResultMessage implements Serializable {
 
     /**
      * Constructor.<br>
-     * @param code code
-     * @param args args
+     * @param code message code
+     * @param args replacement values of message format
      * @param text default message
      */
     public ResultMessage(String code, Object[] args, String text) {
@@ -92,9 +92,9 @@ public class ResultMessage implements Serializable {
      * <p>
      * <code>text</code> is <code>null</code>
      * </p>
-     * @param code (must not be null)
-     * @param args
-     * @return message
+     * @param code message code (must not be null)
+     * @param args replacement values of message format
+     * @return ResultMessage instance
      */
     public static ResultMessage fromCode(String code, Object... args) {
         Assert.notNull(code, "code must not be null");
@@ -106,8 +106,8 @@ public class ResultMessage implements Serializable {
      * <p>
      * <code>code</code> is <code>null</code>
      * </p>
-     * @param text (must not be null)
-     * @return message
+     * @param text message tet (must not be null)
+     * @return ResultMessage instance
      */
     public static ResultMessage fromText(String text) {
         Assert.notNull(text, "text must not be null");

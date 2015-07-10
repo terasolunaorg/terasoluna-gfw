@@ -52,7 +52,7 @@ public class TransactionToken implements Serializable {
      * <p>
      * A valid <code>tokenString</code> should be in the following form: <code>tokenName~tokenKey~tokenValue</code>. <br>
      * By default an <code>~ (tilde)</code> is used as a separator for the tokenString
-     * @param tokenString
+     * @param tokenString token string
      */
     public TransactionToken(final String tokenString) {
         String tokenName = "";
@@ -76,9 +76,9 @@ public class TransactionToken implements Serializable {
      * <p>
      * Receives token name, key and value separately. All the three form to make the token string in the following format:
      * {@code tokenName~tokenKey~tokenValue}
-     * @param tokenName
-     * @param tokenKey
-     * @param tokenValue
+     * @param tokenName toke name
+     * @param tokenKey token key
+     * @param tokenValue toke value
      */
     public TransactionToken(final String tokenName, final String tokenKey,
             final String tokenValue) {
