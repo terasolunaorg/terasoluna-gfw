@@ -81,7 +81,7 @@ public abstract class AbstractMDCPutFilter extends OncePerRequestFilter {
 
     /**
      * cut the given string if the size of it is over {@link #maxMDCValueLength}<br>
-     * @param value
+     * @param value original value
      * @return cut value
      */
     protected String cutValue(String value) {

@@ -79,7 +79,7 @@ public class JdbcCodeList extends AbstractReloadableCodeList {
      * <strong>Note that 'fetch size' is set by default (depends on JDBC implementation). Default 'fetch size' cause slow
      * response possibly when the size of codelist is large. If you want to set fetch size, use
      * {@link #setJdbcTemplate(JdbcTemplate)} instead. </strong>
-     * @param dataSource
+     * @param dataSource DataSource instance for fetching code list records
      */
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -87,7 +87,7 @@ public class JdbcCodeList extends AbstractReloadableCodeList {
 
     /**
      * Sets JdbcTemplate
-     * @param jdbcTemplate
+     * @param jdbcTemplate JdbcTemplate instance for fetching code list records
      */
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
@@ -109,7 +109,7 @@ public class JdbcCodeList extends AbstractReloadableCodeList {
 
     /**
      * Setter method for labelColumn
-     * @param labelColumn
+     * @param labelColumn column name for fetch a code label
      */
     public void setLabelColumn(String labelColumn) {
         this.labelColumn = labelColumn;
@@ -117,7 +117,7 @@ public class JdbcCodeList extends AbstractReloadableCodeList {
 
     /**
      * Setter method for valueColumn
-     * @param valueColumn
+     * @param valueColumn column name for fetch code value
      */
     public void setValueColumn(String valueColumn) {
         this.valueColumn = valueColumn;
@@ -125,7 +125,7 @@ public class JdbcCodeList extends AbstractReloadableCodeList {
 
     /**
      * Setter method for querySql
-     * @param querySql
+     * @param querySql sql for fetching code list records from database
      */
     public void setQuerySql(String querySql) {
         this.querySql = querySql;
