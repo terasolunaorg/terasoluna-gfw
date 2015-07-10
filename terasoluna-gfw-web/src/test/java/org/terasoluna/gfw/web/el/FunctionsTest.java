@@ -15,22 +15,17 @@
  */
 package org.terasoluna.gfw.web.el;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
+import org.joda.time.LocalDate;
 import org.junit.Test;
+import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.terasoluna.gfw.web.el.Functions;
 
 public class FunctionsTest {
 
@@ -343,11 +338,11 @@ public class FunctionsTest {
         String actual = Functions.query(map);
         assertThat(actual, is(matcher));
     }
-    
+
     @Test
     public void testUAndQuery_EncodingDelimiter() {
-        String[] inputStr = {"+", "&", "="};
-        for(String str : inputStr){
+        String[] inputStr = { "+", "&", "=" };
+        for (String str : inputStr) {
             String matcher = "name=" + Functions.u(str);
             Map<String, Object> map = new LinkedHashMap<String, Object>();
             map.put("name", str);
@@ -358,8 +353,8 @@ public class FunctionsTest {
 
     @Test
     public void testUAndQuery_EncodingChar() {
-        String[] inputStr = {"%", "あ", "\n"};
-        for(String str : inputStr){
+        String[] inputStr = { "%", "あ", "\n" };
+        for (String str : inputStr) {
             String matcher = "name=" + Functions.u(str);
             Map<String, Object> map = new LinkedHashMap<String, Object>();
             map.put("name", str);
@@ -470,9 +465,13 @@ public class FunctionsTest {
         map.put("ja", "すずき いちろう");
         map.put("arr", new Object[] { "xxx", "yyy" });
         String query = Functions.query(map);
+        // Spec has been changed between 5.0.0 and 5.0.1
+        // 5.0.0 ... arr=xxx,yyy
+        // 5.0.1 ... arr[0]=xxx&arr[1]=yyy
+        // Either can be populated as { "xxx", "yyy" }
         assertThat(
                 query,
-                is("name=Ichiro%20Suzuki&ja=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86&arr=xxx,yyy"));
+                is("name=Ichiro%20Suzuki&ja=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86&arr%5B0%5D=xxx&arr%5B1%5D=yyy"));
         assertThat(Functions.query(new LinkedHashMap<String, Object>()), is(""));
     }
 
@@ -484,10 +483,17 @@ public class FunctionsTest {
         p.setList(Arrays.asList("a", "b", "あ"));
         p.setDate(new SimpleDateFormat("yyyy-MM-dd").parse("2000-01-01"));
         String query = Functions.query(p);
+        // Spec has been changed between 5.0.0 and 5.0.1
+        // 5.0.0 ... list=a,b,あ
+        // 5.0.1 ... list[0]=a&list[1]=b&list[2]=あ
+        // Either can be populated as { "a", "b", "あ" }
         assertThat(
                 query,
-                is("age=10&date=2000-01-01&list=a,b,%E3%81%82&name=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86"));
-        assertThat(Functions.query(new Person()), is("age=&date=&list=&name="));
+                is("age=10&date=2000-01-01&list%5B0%5D=a&list%5B1%5D=b&list%5B2%5D=%E3%81%82&name=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86"));
+        // Spec has been changed betwee 5.0.0 and 5.0.1
+        // 5.0.0 ... age=&date=&list=&name=
+        // 5.0.1 ... (empty)
+        assertThat(Functions.query(new Person()), is("")); // null property should not show as empty string value
     }
 
     @Test
@@ -514,6 +520,42 @@ public class FunctionsTest {
         expectedQuery.append("&").append("key%2B6=value%2B6"); // +
 
         assertThat(actualQuery, is(expectedQuery.toString()));
+    }
+
+    @Test
+    public void testQuery5_NestedFields() {
+        Person p1 = new Person();
+        p1.setName("山田");
+        p1.setAge(20);
+        p1.setDate(new LocalDate(2001, 1, 1).toDate());
+        Person p2 = new Person();
+        p2.setName("鈴木");
+        p2.setAge(30);
+        p2.setDate(new LocalDate(1991, 1, 1).toDate());
+        MeetingRegisterForm form = new MeetingRegisterForm();
+        form.setMeetingId(10);
+        form.setParticipants(Arrays.asList(p1, p2));
+        String q = Functions.query(form);
+        assertThat(q, is("meetingId=10" + "&participants%5B0%5D.age=20"
+                + "&participants%5B0%5D.date=2001-01-01"
+                + "&participants%5B0%5D.name=%E5%B1%B1%E7%94%B0"
+                + "&participants%5B1%5D.age=30"
+                + "&participants%5B1%5D.date=1991-01-01"
+                + "&participants%5B1%5D.name=%E9%88%B4%E6%9C%A8"));
+    }
+
+    @Test
+    public void test_Deprecated_mapToQuery() {
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        map.put("name", "Ichiro Suzuki");
+        map.put("age", 10);
+        map.put("list", Arrays.asList("xxx", "yyy"));
+        assertThat(Functions.mapToQuery(map, null),
+                is("name=Ichiro%20Suzuki&age=10&list=xxx,yyy"));
+        assertThat(
+                Functions.mapToQuery(map, new BeanWrapperImpl(new Person())),
+                is("name=Ichiro%20Suzuki&age=10&list=xxx,yyy"));
+
     }
 
     @Test
@@ -595,5 +637,27 @@ class Person {
 
     public void setList(List<String> list) {
         this.list = list;
+    }
+}
+
+class MeetingRegisterForm {
+    private Integer meetingId;
+
+    private List<Person> participants;
+
+    public Integer getMeetingId() {
+        return meetingId;
+    }
+
+    public void setMeetingId(Integer meetingId) {
+        this.meetingId = meetingId;
+    }
+
+    public List<Person> getParticipants() {
+        return participants;
+    }
+
+    public void setParticipants(List<Person> participants) {
+        this.participants = participants;
     }
 }
