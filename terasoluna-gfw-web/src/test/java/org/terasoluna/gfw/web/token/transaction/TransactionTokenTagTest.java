@@ -29,7 +29,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.PageContext;
 
-import org.apache.taglibs.standard.lang.jstl.test.PageContextImpl;
 import org.junit.Test;
 import org.springframework.web.servlet.tags.form.TagWriter;
 import org.terasoluna.gfw.web.token.transaction.TransactionToken;
@@ -49,7 +48,7 @@ public class TransactionTokenTagTest {
 
         // setup arguments
         TransactionTokenTag tag = new TransactionTokenTag();
-        PageContext pageContext = mock(PageContextImpl.class);
+        PageContext pageContext = mock(PageContext.class);
         tag.setPageContext(pageContext);
         HttpServletRequest request = mock(HttpServletRequest.class);
         StringWriter sw = new StringWriter();
@@ -83,7 +82,7 @@ public class TransactionTokenTagTest {
 
         // setup arguments
         TransactionTokenTag tag = new TransactionTokenTag();
-        PageContext pageContext = mock(PageContextImpl.class);
+        PageContext pageContext = mock(PageContext.class);
         tag.setPageContext(pageContext);
         HttpServletRequest request = mock(HttpServletRequest.class);
         TransactionToken token = new TransactionToken("tokenName", "tokenkey",
@@ -124,7 +123,7 @@ public class TransactionTokenTagTest {
 
         // setup arguments
         TransactionTokenTag tag = new TransactionTokenTag();
-        PageContext pageContext = mock(PageContextImpl.class);
+        PageContext pageContext = mock(PageContext.class);
         tag.setPageContext(pageContext);
         HttpServletRequest request = mock(HttpServletRequest.class);
         TransactionToken token = new TransactionToken("tokenName", "tokenkey",
