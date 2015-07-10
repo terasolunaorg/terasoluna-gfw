@@ -213,7 +213,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	 * 
 	 * @throws JspException
 	 *             In case when {@link JspException} is generated later in the
-	 *             chain when tag configured by MessagesPanel could not be
+	 *             chain when tag configured by messagesPanel could not be
 	 *             created
 	 * @see org.springframework.web.servlet.tags.RequestContextAwareTag#doStartTagInternal()
 	 */
@@ -329,7 +329,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	 * @throws JspException
 	 *             Occurs when {@link JspTagException} occurs in case when
 	 *             nothing is set in the configuration of the tag that
-	 *             configures MessagePanel using tagWriter.
+	 *             configures messagesPanel using tagWriter.
 	 */
 	protected void writeMessage(TagWriter tagWriter, Object message)
 			throws JspException {
@@ -447,7 +447,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	}
 
 	/**
-	 * Set the class that will configure the MessagesPanel tag. <br>
+	 * Set the class that will configure the messagesPanel tag. <br>
 	 * CSS class must be set. <br>
 	 * If this item is being set, it is assumed that
 	 * {@link #panelTypeClassPrefix} must be empty.
@@ -476,7 +476,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	}
 
 	/**
-	 * Sets the tag that configures MessagesPanel
+	 * Sets the tag that configures messagesPanel
 	 * <p>
 	 * Points to be careful:<br>
 	 * Only the tag name should be set. "&lt;&gt;" used while using the tag in HTML
@@ -492,7 +492,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	}
 
 	/**
-	 * Sets the outer tag which configures MessagesPanel tag
+	 * Sets the outer tag which configures messagesPanel tag
 	 * <p>
 	 * Points to be careful:<br>
 	 * Only the tag name should be set. "&lt;&gt;" used while using the tag in HTML
@@ -507,7 +507,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 	}
 
 	/**
-	 * Sets the inner tag which configures MessagesPanel tag
+	 * Sets the inner tag which configures messagesPanel tag
 	 * <p>
 	 * Points to be careful:<br>
 	 * Only the tag name should be set. "&lt;&gt;" used while using the tag in HTML
