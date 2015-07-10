@@ -43,8 +43,7 @@ public class RequestDataValueProcessorAdaptor implements
      * @param action the form action
      * @param method the form HTTP method
      * @return the action to use, possibly modified
-     * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processAction(javax.servlet.http.HttpServletRequest,
-     *      java.lang.String, java.lang.String)
+     * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processAction(HttpServletRequest, String)
      * @since 1.0.2
      */
     public String processAction(HttpServletRequest request, String action, String method) {

@@ -96,9 +96,9 @@ public class CompositeRequestDataValueProcessor implements
      * @param request the current request
      * @param action action of form tag. must not be null.
      * @param method http method of form tag.
-     * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processAction(javax.servlet.http.HttpServletRequest,
-     *      java.lang.String, java.lang.String)
+     * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processAction(HttpServletRequest, String)
      * @since 1.0.2
+     * @return the action to use, possibly modified
      */
     public String processAction(HttpServletRequest request, String action, String method) {
 
