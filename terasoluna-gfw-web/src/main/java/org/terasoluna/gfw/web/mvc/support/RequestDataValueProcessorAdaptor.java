@@ -29,6 +29,9 @@ public class RequestDataValueProcessorAdaptor implements
 
     /**
      * returns the action passed as argument as it is. This method is for compatibility with Spring 3.
+     * @param request the current request
+     * @param action the form action
+     * @return the action to use, possibly modified
      */
     public String processAction(HttpServletRequest request, String action) {
         return action;
@@ -36,6 +39,10 @@ public class RequestDataValueProcessorAdaptor implements
 
     /**
      * returns the action passed as argument as it is. This method is for compatibility with Spring 4.
+     * @param request the current request
+     * @param action the form action
+     * @param method the form HTTP method
+     * @return the action to use, possibly modified
      * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processAction(javax.servlet.http.HttpServletRequest,
      *      java.lang.String, java.lang.String)
      * @since 1.0.2
@@ -46,6 +53,11 @@ public class RequestDataValueProcessorAdaptor implements
 
     /**
      * returns the value passed as argument as it is.
+     * @param request the current request
+     * @param name the form field name
+     * @param value the form field value
+     * @param type the form field type ("text", "hidden", etc.)
+     * @return the form field value to use, possibly modified
      * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processFormFieldValue(javax.servlet.http.HttpServletRequest,
      *      java.lang.String, java.lang.String, java.lang.String)
      */
@@ -57,6 +69,8 @@ public class RequestDataValueProcessorAdaptor implements
 
     /**
      * returns null.
+     * @param request the current request
+     * @return additional hidden form fields to be added, or {@code null}
      * @see org.springframework.web.servlet.support.RequestDataValueProcessor#getExtraHiddenFields(javax.servlet.http.HttpServletRequest)
      */
     @Override
@@ -66,6 +80,9 @@ public class RequestDataValueProcessorAdaptor implements
 
     /**
      * Returns the url passed as argument as it is.
+     * @param request the current request
+     * @param url the URL value
+     * @return the URL to use, possibly modified
      * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processUrl(javax.servlet.http.HttpServletRequest,
      *      java.lang.String)
      */

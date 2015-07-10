@@ -24,7 +24,6 @@ import org.springframework.beans.factory.InitializingBean;
  * <p>
  * Please treat as an object of singleton, because this class is thread-safe.
  * </p>
- * <p>
  * <h2>Example of the Settings for inject a custom ExceptionLogger</h2><br>
  * <strong>[applicationContext.xml]</strong><br>
  * define bean of custom ExceptionLogger.

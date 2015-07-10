@@ -91,7 +91,7 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
 
     /**
      * add a ResultMessage
-     * @param message
+     * @param message ResultMessage instance
      * @return this result messages
      */
     public ResultMessages add(ResultMessage message) {
@@ -105,7 +105,7 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
 
     /**
      * add code to create and add ResultMessages
-     * @param code
+     * @param code message code
      * @return this result messages
      */
     public ResultMessages add(String code) {
@@ -119,8 +119,8 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
 
     /**
      * add code and args to create and add ResultMessages
-     * @param code
-     * @param args
+     * @param code message code
+     * @param args replacement values of message format
      * @return this result messages
      */
     public ResultMessages add(String code, Object... args) {

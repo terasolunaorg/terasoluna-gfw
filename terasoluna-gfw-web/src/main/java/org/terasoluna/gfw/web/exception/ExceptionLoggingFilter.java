@@ -39,7 +39,6 @@ import org.terasoluna.gfw.common.exception.ExceptionLogger;
  * <li>Fatal errors that occur within the boundary of SpringMVC (classed inherited from {@code java.lang.Error}).</li>
  * </ul>
  *
- * <p>
  * <h2>Example of the Settings for inject a custom ExceptionLogger</h2><br>
  * <strong>[applicationContext.xml]</strong><br>
  * define bean of custom ExceptionLogger and ExceptionLoggingFilter.

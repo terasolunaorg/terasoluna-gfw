@@ -211,7 +211,7 @@ public class PaginationInfo {
 
     /**
      * Constructor. Initializes the properties with the arguments passed<br>
-     * @param page
+     * @param page a Page instance
      * @param pathTmpl path template of pagination
      * @param queryTmpl query template of pagination
      * @param maxDisplayCount max display count
@@ -223,7 +223,7 @@ public class PaginationInfo {
 
     /**
      * Constructor. Initializes the properties with the arguments passed<br>
-     * @param page
+     * @param page a Page instance
      * @param pathTmpl path template of pagination
      * @param queryTmpl query template of pagination
      * @param criteriaQuery Query of search criteria

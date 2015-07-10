@@ -35,7 +35,6 @@ import org.terasoluna.gfw.common.exception.ResultMessagesNotificationException;
  * <p>
  * In this class, log level is changed as per the HTTP response code determined by {@code HandlerExceptionResolver}.
  * </p>
- * <p>
  * <h2>Example of the Settings for inject a custom ExceptionLogger</h2><br>
  * <strong>[applicationContext.xml]</strong><br>
  * define bean of custom ExceptionLogger.
