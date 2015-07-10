@@ -21,8 +21,7 @@ import java.security.SecureRandom;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * Class to generate the random string that can be used as value part of {@code TransactionToken}<br>
- * </p>
+ * Class to generate the random string that can be used as value part of {@code TransactionToken}
  */
 public class TokenStringGenerator {
 
