@@ -497,7 +497,7 @@
         <!-- == JUnit == -->
         <selenium.version>2.46.0</selenium.version>
         <!-- == Tomcat == -->
-        <tomcat.version>7.0.57</tomcat.version>
+        <tomcat.version>7.0.59</tomcat.version>
         <!-- == Maven Plugins == -->
         <maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
