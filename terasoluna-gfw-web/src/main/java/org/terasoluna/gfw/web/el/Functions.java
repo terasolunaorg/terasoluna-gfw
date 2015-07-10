@@ -15,16 +15,12 @@
  */
 package org.terasoluna.gfw.web.el;
 
-import java.beans.PropertyDescriptor;
 import java.io.UnsupportedEncodingException;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
-import org.springframework.beans.PropertyAccessorFactory;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
@@ -80,6 +76,11 @@ public final class Functions {
             .valueOf(String.class);
 
     /**
+     * converter from object to map
+     */
+    private static final ObjectToMapConverter OBJECT_TO_MAP_CONVERTER = new ObjectToMapConverter(CONVERSION_SERVICE);
+
+    /**
      * Default Constructor.
      */
     private Functions() {
@@ -108,51 +109,56 @@ public final class Functions {
      * url encode the given string based on RFC 3986.<br>
      * <p>
      * url is encoded with "UTF-8".<br>
-     * This method is used to encode values in "query" string.
+     * This method is used to encode values in "query" string. In <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>,
+     * "query" part in URI is defined as follows:
+     * 
+     * <pre>
+     * <code>
+     *   foo://example.com:8042/over/there?name=ferret#nose
+     *   \_/   \______________/\_________/ \_________/ \__/
+     *    |           |            |            |        |
+     * scheme     authority       path        query   fragment
+     *  </code>
+     * </pre>
      *
-     * In <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>, "query" part in URI is defined as follows:
-     * <pre><code>
-     *  foo://example.com:8042/over/there?name=ferret#nose
-     *  \_/   \______________/\_________/ \_________/ \__/
-     *   |           |            |            |        |
-     *scheme     authority       path        query   fragment
-     * </code></pre>
-     *
-     *
-     *  and, "query" is defined as follows:
-     *     <pre><code>
-     *query         = *( pchar / "/" / "?" )
-     *pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
-     *unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
-     *sub-delims    = "!" / "$" / "&amp;" / "'" / "(" / ")" / "*" / "+" / "," / ";" / "="
-     *pct-encoded   = "%" HEXDIG HEXDIG
-     *     </code></pre>
+     * and, "query" is defined as follows:
+     * 
+     * <pre>
+     * <code>
+     * query         = *( pchar / "/" / "?" )
+     * pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
+     * unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
+     * sub-delims    = "!" / "$" / "&amp;" / "'" / "(" / ")" / "*" / "+" / "," / ";" / "="
+     * pct-encoded   = "%" HEXDIG HEXDIG
+     *      </code>
+     * </pre>
      *
      * In these characters, as a value of query parameter, <strong>"&amp;", "+" , "=" are percent-encoded</strong>.
-     *
      * <h3>sample</h3>
      * <ul>
-     *     <li>/ ====&gt; /</li>
-     *     <li>? ====&gt; ?</li>
-     *     <li>a ====&gt; a</li>
-     *     <li>0 ====&gt; 0</li>
-     *     <li>- ====&gt; -</li>
-     *     <li>. ====&gt; .</li>
-     *     <li>_ ====&gt; _</li>
-     *     <li>~ ====&gt; ~</li>
-     *     <li>! ====&gt; !</li>
-     *     <li>$ ====&gt; $</li>
-     *     <li>&amp; ====&gt; %26</li>
-     *     <li>' ====&gt; '</li>
-     *     <li>( ====&gt; (</li>
-     *     <li>) ====&gt; )</li>
-     *     <li>* ====&gt; *</li>
-     *     <li>+ ====&gt; %2B</li>
-     *     <li>; ====&gt; ;</li>
-     *     <li>= ====&gt; %3D</li>
-     *     <li>あ ====&gt; %E3%81%82</li>
+     * <li>/ ====&gt; /</li>
+     * <li>? ====&gt; ?</li>
+     * <li>a ====&gt; a</li>
+     * <li>0 ====&gt; 0</li>
+     * <li>- ====&gt; -</li>
+     * <li>. ====&gt; .</li>
+     * <li>_ ====&gt; _</li>
+     * <li>~ ====&gt; ~</li>
+     * <li>! ====&gt; !</li>
+     * <li>$ ====&gt; $</li>
+     * <li>&amp; ====&gt; %26</li>
+     * <li>' ====&gt; '</li>
+     * <li>( ====&gt; (</li>
+     * <li>) ====&gt; )</li>
+     * <li>* ====&gt; *</li>
+     * <li>+ ====&gt; %2B</li>
+     * <li>; ====&gt; ;</li>
+     * <li>=====&gt; %3D</li>
+     * <li>あ ====&gt; %E3%81%82</li>
      * </ul>
-     * <p>Characters not listed above are percent-encoded.</p>
+     * <p>
+     * Characters not listed above are percent-encoded.
+     * </p>
      * @param value string to encode
      * @return encoded string based on RFC 3986. returns empty string if <code>value</code> is <code>null</code> or empty.
      * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986 3.4.Query</a>
@@ -220,43 +226,56 @@ public final class Functions {
      * <p>
      * query string is encoded with "UTF-8".
      * </p>
+     * @see ObjectToMapConverter
      * @param map map
      * @return query string. if map is not empty, return query string. ex) name1=value&amp;name2=value&amp;...
      */
     public static String mapToQuery(Map<String, Object> map) {
-        return mapToQuery(map, null);
+        if (map == null || map.isEmpty()) {
+            return "";
+        }
+        UriComponentsBuilder builder = UriComponentsBuilder.fromPath("");
+        for (Map.Entry<String, Object> e : map.entrySet()) {
+            String name = e.getKey();
+            Object value = e.getValue();
+            builder.queryParam(name, value);
+        }
+        String query = builder.build().encode().toString();
+        // remove the beginning symbol character('?') of the query string.
+        return query.substring(1);
     }
 
     /**
      * build query string from map with the specified {@link BeanWrapper}.
      * <p>
-     * query string is encoded with "UTF-8".
+     * query string is encoded with "UTF-8".<br>
+     * <strong>Use {@link #mapToQuery(Map)} instead of this method.</strong>
      * </p>
+     * @see ObjectToMapConverter
      * @param map map
      * @param beanWrapper beanWrapper which has the definition of each field.
      * @return query string. if map is not empty, return query string. ex) name1=value&amp;name2=value&amp;...
      */
+    @Deprecated
     public static String mapToQuery(Map<String, Object> map,
             BeanWrapper beanWrapper) {
         if (map == null || map.isEmpty()) {
             return "";
         }
         UriComponentsBuilder builder = UriComponentsBuilder.fromPath("");
-        Map<String, Object> uriVariables = new HashMap<String, Object>();
         for (Map.Entry<String, Object> e : map.entrySet()) {
             String name = e.getKey();
             Object value = e.getValue();
-            builder.queryParam(name, "{" + name + "}");
             TypeDescriptor sourceType;
             if (beanWrapper != null) {
                 sourceType = beanWrapper.getPropertyTypeDescriptor(name);
             } else {
                 sourceType = TypeDescriptor.forObject(value);
             }
-            uriVariables.put(name, CONVERSION_SERVICE.convert(value,
+            builder.queryParam(name, CONVERSION_SERVICE.convert(value,
                     sourceType, STRING_DESC));
         }
-        String query = builder.buildAndExpand(uriVariables).encode().toString();
+        String query = builder.build().encode().toString();
         // remove the beginning symbol character('?') of the query string.
         return query.substring(1);
     }
@@ -276,29 +295,10 @@ public final class Functions {
             return "";
         }
         Class<?> clazz = params.getClass();
-        if (clazz.isArray() || params instanceof Iterable
-                || BeanUtils.isSimpleValueType(clazz)) {
+        if (BeanUtils.isSimpleValueType(clazz)) {
             return "";
         }
-
-        String query;
-        if (params instanceof Map) {
-            query = mapToQuery((Map<String, Object>) params);
-        } else {
-            Map<String, Object> map = new LinkedHashMap<String, Object>();
-            BeanWrapper beanWrapper = PropertyAccessorFactory
-                    .forBeanPropertyAccess(params);
-            PropertyDescriptor[] pds = BeanUtils.getPropertyDescriptors(clazz);
-            for (PropertyDescriptor pd : pds) {
-                String name = pd.getName();
-                if (!"class".equals(name)) {
-                    Object value = beanWrapper.getPropertyValue(name);
-                    map.put(name, value);
-                }
-            }
-            query = mapToQuery(map, beanWrapper);
-        }
-        return query;
+        return mapToQuery((Map) OBJECT_TO_MAP_CONVERTER.convert(params));
     }
 
     /**
@@ -306,14 +306,14 @@ public final class Functions {
      * <p>
      * example
      * </p>
-     * 
+     *
      * <pre>
      * &lt;script type="text/javascript"&gt;
      *   var message = '${f:js(message)}';
      *   ...
      * &lt;/script&gt;
      * </pre>
-     * 
+     *
      * target characters to escape are following <br>
      * ' ====&gt; \'<br>
      * " ====&gt; \"<br>
@@ -323,7 +323,6 @@ public final class Functions {
      * &gt; ====&gt; \x3e<br>
      * 0x0D ====&gt; \r<br>
      * 0x0A ====&gt; \n<br>
-     *
      * @param value string to escape
      * @return escaped string. returns empty string if <code>value</code> is <code>null</code> or empty.
      */
