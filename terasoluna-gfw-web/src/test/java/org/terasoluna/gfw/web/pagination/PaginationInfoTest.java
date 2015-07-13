@@ -46,13 +46,35 @@ public class PaginationInfoTest {
 
     @Before
     public void setup() {
-        List<String> mockedList = new ArrayList<String>();
 
-        mockedList.add("terasoluna");
-
+        // Note:
+        // The page property of PageRequest is 0 start.
+        // For example:
+        //
+        // 0(1 page) : 1-5
+        // 1(2 page) : 6-10
+        // 2(3 page) : 11-15
+        // 3(4 page) : 16-20
+        // 4(5 page) : 21-25
+        // 5(6 page) : 26-30
+        // 6(7 page) : 31-35
+        // ...
         PageRequest pageable = new PageRequest(5, 5);
 
-        page = new PageImpl<String>(mockedList, pageable, 5L);
+        // set up the Page object for test.
+        //
+        // current page : 6 page (26-30)
+        // total page : 7 page (total : 31)
+        // (not first page and not last page)
+
+        // 5 dummy record for 6 page(26-30)
+        List<String> mockedList = new ArrayList<String>();
+        mockedList.add("terasoluna");
+        mockedList.add("terasoluna");
+        mockedList.add("terasoluna");
+        mockedList.add("terasoluna");
+        mockedList.add("terasoluna");
+        page = new PageImpl<String>(mockedList, pageable, 31L);
     }
 
     /**
@@ -315,10 +337,10 @@ public class PaginationInfoTest {
     }
 
     /**
-     * last page greater than current page end
+     * total pages is smaller than max display count
      */
     @Test
-    public void testGetBeginAndEnd_LastPageGreaterThanCurrentEnd() {
+    public void testGetBeginAndEnd_totalPagesIsSmallerThanMaxDisplayCount() {
         // create parameter
         int maxDisplayCount = 10;
 
@@ -329,14 +351,32 @@ public class PaginationInfoTest {
 
         // assert
         assertThat(endNumBig.getBegin(), is(0));
-        assertThat(endNumBig.getEnd(), is(0));
+        assertThat(endNumBig.getEnd(), is(6));
     }
 
     /**
-     * current page end greater than last page
+     * total pages is greater  than max display count
      */
     @Test
-    public void testGetBeginAndEnd_CurrentEndGreaterThanLastPage() {
+    public void testGetBeginAndEnd_totalPagesIsGreaterThanMaxDisplayCount() {
+        // create parameter
+        int maxDisplayCount = 3;
+
+        PaginationInfo info = new PaginationInfo(page, pathTmpl, queryTmpl, maxDisplayCount);
+
+        // run
+        BeginAndEnd endNumBig = info.getBeginAndEnd();
+
+        // assert
+        assertThat(endNumBig.getBegin(), is(4));
+        assertThat(endNumBig.getEnd(), is(6));
+    }
+
+    /**
+     * max display count is zero (page link that move to a specific page is not displayed)
+     */
+    @Test
+    public void testGetBeginAndEnd_maxDisplayCountIsZero() {
         // create parameter
         int maxDisplayCount = 0;
 
@@ -346,8 +386,8 @@ public class PaginationInfoTest {
         BeginAndEnd endNumBig = info.getBeginAndEnd();
 
         // assert
-        assertThat(endNumBig.getBegin(), is(1));
-        assertThat(endNumBig.getEnd(), is(0));
+        assertThat(endNumBig.getBegin(), is(5));
+        assertThat(endNumBig.getEnd(), is(4));
     }
 
     @Test
