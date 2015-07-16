@@ -38,7 +38,7 @@ import org.springframework.util.StringUtils;
  * <code>
  * class SearchUserForm {
  *   SearchUserCriteriaForm criteria;
- *   boolean rememberCriteria;
+ *   Boolean rememberCriteria;
  * }
  * </code>
  * </pre>
@@ -118,7 +118,9 @@ import org.springframework.util.StringUtils;
  * {@code criteria.name=suzuki&criteria.age=30&users[0].name=yamada&users[0].age=20&users[1].name=tanaka&users[1].age=50}
  * </p>
  * <p>
- * If the value of a property is {@code null}, that value is not converted.
+ * If the value of a property is {@code null}, add the reset parameter that start with {@code "_"} into map of return value.
+ * The reset mechanism is provided by Spring Web MVC.<br>
+ * e.g.) {@code "_rememberCriteria":"", "_criteria.name":"", "_criteria.age":""}
  * </p>
  * @since 5.0.1
  */
@@ -252,6 +254,8 @@ class ObjectToMapConverter {
      * </ul>
      * <p>
      * The value is formatted using {@link FormattingConversionService} is possible.
+     * If the value is {@code null}, add the reset parameter that start with {@code "_"} into the given map.
+     * The reset mechanism is provided by Spring Web MVC.
      * </p>
      * @param map map to add
      * @param prefix prefix of the key
@@ -262,12 +266,14 @@ class ObjectToMapConverter {
      */
     private boolean flatten(Map<String, String> map, String prefix,
             String name, Object value, TypeDescriptor sourceType) {
+        String key = StringUtils.isEmpty(prefix) ? name : prefix + "." + name;
         if (value == null) {
-            // skip flatten
+            String resetKey = "_" + key;
+            map.put(resetKey, "");
+            // the value has been flatten
             return true;
         }
         Class<?> clazz = value.getClass();
-        String key = StringUtils.isEmpty(prefix) ? name : prefix + "." + name;
         if (value instanceof Iterable) {
             if (StringUtils.isEmpty(name)) {
                 // skip flatten
