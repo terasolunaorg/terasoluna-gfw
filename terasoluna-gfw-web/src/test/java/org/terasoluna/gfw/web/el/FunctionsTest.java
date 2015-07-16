@@ -492,8 +492,8 @@ public class FunctionsTest {
                 is("age=10&date=2000-01-01&list%5B0%5D=a&list%5B1%5D=b&list%5B2%5D=%E3%81%82&name=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86"));
         // Spec has been changed betwee 5.0.0 and 5.0.1
         // 5.0.0 ... age=&date=&list=&name=
-        // 5.0.1 ... (empty)
-        assertThat(Functions.query(new Person()), is("")); // null property should not show as empty string value
+        // 5.0.1 ... _age=&_date=&_list=&_name=
+        assertThat(Functions.query(new Person()), is("_age=&_date=&_list=&_name=")); // null property should show reset parameter that start with "_"
     }
 
     @Test
@@ -538,9 +538,11 @@ public class FunctionsTest {
         String q = Functions.query(form);
         assertThat(q, is("meetingId=10" + "&participants%5B0%5D.age=20"
                 + "&participants%5B0%5D.date=2001-01-01"
+                + "&_participants%5B0%5D.list="
                 + "&participants%5B0%5D.name=%E5%B1%B1%E7%94%B0"
                 + "&participants%5B1%5D.age=30"
                 + "&participants%5B1%5D.date=1991-01-01"
+                + "&_participants%5B1%5D.list="
                 + "&participants%5B1%5D.name=%E9%88%B4%E6%9C%A8"));
     }
 
