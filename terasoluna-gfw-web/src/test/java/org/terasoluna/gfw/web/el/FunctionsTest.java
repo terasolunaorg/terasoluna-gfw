@@ -490,10 +490,12 @@ public class FunctionsTest {
         assertThat(
                 query,
                 is("age=10&date=2000-01-01&list%5B0%5D=a&list%5B1%5D=b&list%5B2%5D=%E3%81%82&name=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86"));
-        // Spec has been changed betwee 5.0.0 and 5.0.1
+        // Spec has been changed between 5.0.0 and 5.0.1
         // 5.0.0 ... age=&date=&list=&name=
-        // 5.0.1 ... (empty)
-        assertThat(Functions.query(new Person()), is("")); // null property should not show as empty string value
+        // 5.0.1 ... age=&date=
+        // Null property of CharSequence, Iterable, Map and any array should not show as empty string value.
+        // (In other words, Null Property of Other(e.g. Integer, Date, etc..) simple type should show as empty string value.)
+        assertThat(Functions.query(new Person()), is("age=&date="));
     }
 
     @Test

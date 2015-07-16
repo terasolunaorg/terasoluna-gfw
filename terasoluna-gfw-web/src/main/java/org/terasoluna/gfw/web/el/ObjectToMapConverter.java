@@ -262,12 +262,16 @@ class ObjectToMapConverter {
      */
     private boolean flatten(Map<String, String> map, String prefix,
             String name, Object value, TypeDescriptor sourceType) {
+
+        String key = StringUtils.isEmpty(prefix) ? name : prefix + "." + name;
+
         if (value == null) {
-            // skip flatten
+            flattenNullValue(map, key, sourceType);
+            // the null value has been flatten
             return true;
         }
+
         Class<?> clazz = value.getClass();
-        String key = StringUtils.isEmpty(prefix) ? name : prefix + "." + name;
         if (value instanceof Iterable) {
             if (StringUtils.isEmpty(name)) {
                 // skip flatten
@@ -298,6 +302,24 @@ class ObjectToMapConverter {
         }
         // the value has been flatten
         return true;
+    }
+
+    /**
+     * Add the pair of the given key and blank string to the given map,if simple property is {@code null}.
+     * @param map map to add
+     * @param key map key
+     * @param sourceType {@link TypeDescriptor} to use
+     */
+    private void flattenNullValue(Map<String, String> map, String key, TypeDescriptor sourceType) {
+        if (sourceType != null &&
+                !Iterable.class.isAssignableFrom(sourceType.getType()) &&
+                !Map.class.isAssignableFrom(sourceType.getType()) &&
+                !sourceType.getType().isArray() &&
+                !CharSequence.class.isAssignableFrom(sourceType.getType()) &&
+                (BeanUtils.isSimpleProperty(sourceType.getType())
+                        || conversionService.canConvert(sourceType, STRING_DESC))) {
+            map.put(key, "");
+        }
     }
 
     /**
