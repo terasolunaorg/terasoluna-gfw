@@ -122,7 +122,7 @@ import org.springframework.util.StringUtils;
  * </p>
  * @since 5.0.1
  */
-class ObjectToMapConverter {
+public class ObjectToMapConverter {
     /**
      * type descriptor of string for format a value.
      */
@@ -305,10 +305,19 @@ class ObjectToMapConverter {
     }
 
     /**
-     * Add the pair of the given key and blank string to the given map,if simple property is {@code null}.
+     * Add the pair of the given key and empty string to the given map,if simple property is {@code null}.
+     * <p>
+     * Null property <strong>is not added into the given map</strong> in the case of the following types:
+     * <ul>
+     * <li>{@link Iterable} (e.g. {@link List}, {@link Set}, etc...)</li>
+     * <li>{@link Map}</li>
+     * <li>Array (e.g. {@link String[]}, {@code int[]}, etc ...)</li>
+     * <li>{@link CharSequence} (e.g. {@link String}, {@link StringBuilder}, etc...)</li>
+     * <li>JavaBean (Type that return {@code false} from the {@link BeanUtils#isSimpleProperty(java.lang.Class)} and can not convert using the {@link #conversionService}) </li>
+     * </ul>
      * @param map map to add
      * @param key map key
-     * @param sourceType {@link TypeDescriptor} to use
+     * @param sourceType {@link TypeDescriptor} of null property
      */
     private void flattenNullValue(Map<String, String> map, String key, TypeDescriptor sourceType) {
         if (sourceType != null &&
