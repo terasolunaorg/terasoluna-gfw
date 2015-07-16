@@ -248,6 +248,27 @@ public class ObjectToMapConverterTest {
                 is(Collections.singletonMap("value1", "aaa")));
     }
 
+    @Test
+    public void test9_propertiesIsNull() {
+        NullValueForm9 form = new NullValueForm9();
+        NestedForm9 nestedForm = new NestedForm9();
+        form.setNestedForm2(nestedForm);
+        Map<String, String> map = converter.convert(form);
+
+        assertThat(map.size(), is(11));
+        assertThat(map, hasEntry("_string", ""));
+        assertThat(map, hasEntry("_integer", ""));
+        assertThat(map, hasEntry("_date", ""));
+        assertThat(map, hasEntry("_jodaLocalDate", ""));
+        assertThat(map, hasEntry("_customEnum", ""));
+        assertThat(map, hasEntry("_list", ""));
+        assertThat(map, hasEntry("_map", ""));
+        assertThat(map, hasEntry("_array", ""));
+        assertThat(map, hasEntry("_nestedForm1", ""));
+        assertThat(map, hasEntry("_nestedForm2.string", ""));
+        assertThat(map, hasEntry("_nestedForm2.integer", ""));
+    }
+
     public static class SearchUserForm0 {
         private String name;
 
@@ -731,4 +752,123 @@ public class ObjectToMapConverterTest {
             return value1;
         }
     }
+
+    public static class NullValueForm9 {
+        private String string;
+        private Integer integer;
+        private Date date;
+        private LocalDate jodaLocalDate;
+        private CustomEnum9 customEnum;
+        private List<String> list;
+        private Map<String,String> map;
+        private int[] array;
+        private NestedForm9 nestedForm1;
+        private NestedForm9 nestedForm2;
+
+        public String getString() {
+            return string;
+        }
+
+        public void setString(String string) {
+            this.string = string;
+        }
+
+        public Integer getInteger() {
+            return integer;
+        }
+
+        public void setInteger(Integer integer) {
+            this.integer = integer;
+        }
+
+        public Date getDate() {
+            return date;
+        }
+
+        public void setDate(Date date) {
+            this.date = date;
+        }
+
+        public LocalDate getJodaLocalDate() {
+            return jodaLocalDate;
+        }
+
+        public void setJodaLocalDate(LocalDate jodaLocalDate) {
+            this.jodaLocalDate = jodaLocalDate;
+        }
+
+        public CustomEnum9 getCustomEnum() {
+            return customEnum;
+        }
+
+        public void setCustomEnum(CustomEnum9 customEnum) {
+            this.customEnum = customEnum;
+        }
+
+        public List<String> getList() {
+            return list;
+        }
+
+        public void setList(List<String> list) {
+            this.list = list;
+        }
+
+        public Map<String, String> getMap() {
+            return map;
+        }
+
+        public void setMap(Map<String, String> map) {
+            this.map = map;
+        }
+
+        public int[] getArray() {
+            return array;
+        }
+
+        public void setArray(int[] array) {
+            this.array = array;
+        }
+
+        public NestedForm9 getNestedForm1() {
+            return nestedForm1;
+        }
+
+        public void setNestedForm1(NestedForm9 nestedForm1) {
+            this.nestedForm1 = nestedForm1;
+        }
+
+        public NestedForm9 getNestedForm2() {
+            return nestedForm2;
+        }
+
+        public void setNestedForm2(NestedForm9 nestedForm2) {
+            this.nestedForm2 = nestedForm2;
+        }
+    }
+
+    public enum CustomEnum9 {
+        VALUE1, VALUE2
+    }
+
+    public static class NestedForm9 {
+        private String string;
+        private Integer integer;
+
+        public String getString() {
+            return string;
+        }
+
+        public void setString(String string) {
+            this.string = string;
+        }
+
+        public Integer getInteger() {
+            return integer;
+        }
+
+        public void setInteger(Integer integer) {
+            this.integer = integer;
+        }
+    }
+
 }
