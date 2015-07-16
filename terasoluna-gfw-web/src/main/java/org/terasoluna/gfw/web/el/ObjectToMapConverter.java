@@ -170,10 +170,15 @@ class ObjectToMapConverter {
      * Convert the given Iterable to the flatten map
      * @param prefix prefix of the key
      * @param value iterable instance to convert
-     * @return converted map. all keys are prefixed with the given key
+     * @return converted map. all keys are prefixed with the given key.
+     * If given Iterable is empty, add the pair of the given name(prefix) and empty string into map of return value.
      */
     private Map<String, String> convert(String prefix, Iterable value) {
         Map<String, String> map = new LinkedHashMap<String, String>();
+        if (!value.iterator().hasNext()) {
+            map.put(prefix, "");
+            return map;
+        }
         int i = 0;
         for (Object o : value) {
             map.putAll(this.convert(prefix + "[" + (i++) + "]", o));

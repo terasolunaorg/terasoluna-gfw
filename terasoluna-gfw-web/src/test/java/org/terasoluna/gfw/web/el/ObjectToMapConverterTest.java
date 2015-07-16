@@ -269,6 +269,18 @@ public class ObjectToMapConverterTest {
         assertThat(map, hasEntry("_nestedForm2.integer", ""));
     }
 
+    @Test
+    public void test10_propertiesIsEmptyElement() {
+        EmptyElementForm10 form = new EmptyElementForm10();
+        Map<String, String> map = converter.convert(form);
+
+        assertThat(map.size(), is(4));
+        assertThat(map, hasEntry("list", ""));
+        assertThat(map, hasEntry("array", ""));
+        assertThat(map, hasEntry("nestedForm.list", ""));
+        assertThat(map, hasEntry("nestedForm.array", ""));
+    }
+
     public static class SearchUserForm0 {
         private String name;
 
@@ -870,5 +882,75 @@ public class ObjectToMapConverterTest {
             this.integer = integer;
         }
     }
+
+    public static class EmptyElementForm10 {
+        private List<String> list = Collections.emptyList();
+        private Map<String, String> map = Collections.emptyMap();
+        private int[] array = new int[0];
+        private NestedForm10 nestedForm = new NestedForm10();
+
+        public List<String> getList() {
+            return list;
+        }
+
+        public void setList(List<String> list) {
+            this.list = list;
+        }
+
+        public Map<String, String> getMap() {
+            return map;
+        }
+
+        public void setMap(Map<String, String> map) {
+            this.map = map;
+        }
+
+        public int[] getArray() {
+            return array;
+        }
+
+        public void setArray(int[] array) {
+            this.array = array;
+        }
+
+        public NestedForm10 getNestedForm() {
+            return nestedForm;
+        }
+
+        public void setNestedForm(NestedForm10 nestedForm) {
+            this.nestedForm = nestedForm;
+        }
+    }
+
+    public static class NestedForm10 {
+        private List<String> list = Collections.emptyList();
+        private Map<String, String> map = Collections.emptyMap();
+        private int[] array = new int[0];
+
+        public List<String> getList() {
+            return list;
+        }
+
+        public void setList(List<String> list) {
+            this.list = list;
+        }
+
+        public Map<String, String> getMap() {
+            return map;
+        }
+
+        public void setMap(Map<String, String> map) {
+            this.map = map;
+        }
+
+        public int[] getArray() {
+            return array;
+        }
+
+        public void setArray(int[] array) {
+            this.array = array;
+        }
+    }
+
 
 }
