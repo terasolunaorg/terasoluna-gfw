@@ -270,18 +270,27 @@ public class ObjectToMapConverterTest {
         form.setNestedForm2(nestedForm);
         Map<String, String> map = converter.convert(form);
 
-        assertThat(map.size(), is(11));
+        assertThat(map.size(), is(20));
         assertThat(map, hasEntry("_string", ""));
         assertThat(map, hasEntry("_integer", ""));
         assertThat(map, hasEntry("_date", ""));
         assertThat(map, hasEntry("_jodaLocalDate", ""));
         assertThat(map, hasEntry("_customEnum", ""));
         assertThat(map, hasEntry("_list", ""));
+        assertThat(map, hasEntry("_list2[0]", ""));
         assertThat(map, hasEntry("_map", ""));
+        assertThat(map, hasEntry("_map2[key]", ""));
         assertThat(map, hasEntry("_array", ""));
+        assertThat(map, hasEntry("_array2[0]", ""));
         assertThat(map, hasEntry("_nestedForm1", ""));
         assertThat(map, hasEntry("_nestedForm2.string", ""));
         assertThat(map, hasEntry("_nestedForm2.integer", ""));
+        assertThat(map, hasEntry("_nestedForm2.list", ""));
+        assertThat(map, hasEntry("_nestedForm2.list2[0]", ""));
+        assertThat(map, hasEntry("_nestedForm2.map", ""));
+        assertThat(map, hasEntry("_nestedForm2.map2[key]", ""));
+        assertThat(map, hasEntry("_nestedForm2.array", ""));
+        assertThat(map, hasEntry("_nestedForm2.array2[0]", ""));
     }
 
     @Test
@@ -787,8 +796,15 @@ public class ObjectToMapConverterTest {
         private LocalDate jodaLocalDate;
         private CustomEnum9 customEnum;
         private List<String> list;
-        private Map<String,String> map;
+        private List<String> list2 = new ArrayList<String>() {
+            {
+                add(null);
+            }
+        };
+        private Map<String, String> map;
+        private Map<String, String> map2 = Collections.singletonMap("key", null);
         private int[] array;
+        private String[] array2 = new String[]{null};
         private NestedForm9 nestedForm1;
         private NestedForm9 nestedForm2;
 
@@ -840,6 +856,14 @@ public class ObjectToMapConverterTest {
             this.list = list;
         }
 
+        public List<String> getList2() {
+            return list2;
+        }
+
+        public void setList2(List<String> list2) {
+            this.list2 = list2;
+        }
+
         public Map<String, String> getMap() {
             return map;
         }
@@ -848,12 +872,28 @@ public class ObjectToMapConverterTest {
             this.map = map;
         }
 
+        public Map<String, String> getMap2() {
+            return map2;
+        }
+
+        public void setMap2(Map<String, String> map2) {
+            this.map2 = map2;
+        }
+
         public int[] getArray() {
             return array;
         }
 
         public void setArray(int[] array) {
             this.array = array;
+        }
+
+        public String[] getArray2() {
+            return array2;
+        }
+
+        public void setArray2(String[] array2) {
+            this.array2 = array2;
         }
 
         public NestedForm9 getNestedForm1() {
@@ -880,6 +920,16 @@ public class ObjectToMapConverterTest {
     public static class NestedForm9 {
         private String string;
         private Integer integer;
+        private List<String> list;
+        private List<String> list2 = new ArrayList<String>() {
+            {
+                add(null);
+            }
+        };
+        private Map<String, String> map;
+        private Map<String, String> map2 = Collections.singletonMap("key", null);
+        private int[] array;
+        private String[] array2 = new String[]{null};
 
         public String getString() {
             return string;
@@ -896,6 +946,55 @@ public class ObjectToMapConverterTest {
         public void setInteger(Integer integer) {
             this.integer = integer;
         }
+
+        public List<String> getList() {
+            return list;
+        }
+
+        public void setList(List<String> list) {
+            this.list = list;
+        }
+
+        public List<String> getList2() {
+            return list2;
+        }
+
+        public void setList2(List<String> list2) {
+            this.list2 = list2;
+        }
+
+        public Map<String, String> getMap() {
+            return map;
+        }
+
+        public void setMap(Map<String, String> map) {
+            this.map = map;
+        }
+
+        public Map<String, String> getMap2() {
+            return map2;
+        }
+
+        public void setMap2(Map<String, String> map2) {
+            this.map2 = map2;
+        }
+
+        public int[] getArray() {
+            return array;
+        }
+
+        public void setArray(int[] array) {
+            this.array = array;
+        }
+
+        public String[] getArray2() {
+            return array2;
+        }
+
+        public void setArray2(String[] array2) {
+            this.array2 = array2;
+        }
+
     }
 
     public static class EmptyElementForm10 {
