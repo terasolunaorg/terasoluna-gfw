@@ -213,26 +213,41 @@ public class ObjectToMapConverterTest {
         assertThat(map, hasEntry("item.array4[1]", "e"));
         assertThat(map, hasEntry("item.array4[2]", "f"));
 
-        /*
-         * The following test will be passed after Spring IO Platform is updated because of SPR-12706 ArrayForm6 form = new
-         * ArrayForm6(); WebDataBinder binder = new WebDataBinder(form); binder.setConversionService(new
-         * DefaultFormattingConversionService()); binder.bind(new MutablePropertyValues(map));
-         * assertThat(form.getArray1().length, is(3)); assertThat(form.getArray1()[0], is(1)); assertThat(form.getArray1()[1],
-         * is(2)); assertThat(form.getArray1()[2], is(3)); assertThat(form.getArray2().length, is(2));
-         * assertThat(form.getArray2()[0], is(1.1)); assertThat(form.getArray2()[1], is(1.2));
-         * assertThat(form.getArray3().length, is(3)); assertThat(form.getArray3()[0], is((byte) 4));
-         * assertThat(form.getArray3()[1], is((byte) 5)); assertThat(form.getArray3()[2], is((byte) 6));
-         * assertThat(form.getArray4().length, is(3)); assertThat(form.getArray4()[0], is("a")); assertThat(form.getArray4()[1],
-         * is("b")); assertThat(form.getArray4()[2], is("c")); assertThat(form.getItem(), is(notNullValue()));
-         * assertThat(form.getItem().getArray1().length, is(3)); assertThat(form.getItem().getArray1()[0], is(11));
-         * assertThat(form.getItem().getArray1()[1], is(12)); assertThat(form.getItem().getArray1()[2], is(13));
-         * assertThat(form.getItem().getArray2().length, is(2)); assertThat(form.getItem().getArray2()[0], is(11.1));
-         * assertThat(form.getItem().getArray2()[1], is(11.2)); assertThat(form.getItem().getArray3().length, is(3));
-         * assertThat(form.getItem().getArray3()[0], is((byte) 14)); assertThat(form.getItem().getArray3()[1], is((byte) 15));
-         * assertThat(form.getItem().getArray3()[2], is((byte) 16)); assertThat(form.getItem().getArray4().length, is(3));
-         * assertThat(form.getItem().getArray4()[0], is("d")); assertThat(form.getItem().getArray4()[1], is("e"));
-         * assertThat(form.getItem().getArray4()[2], is("f"));
-         */
+        ArrayForm6 form = new ArrayForm6();
+        WebDataBinder binder = new WebDataBinder(form);
+        binder.setConversionService(new DefaultFormattingConversionService());
+        binder.bind(new MutablePropertyValues(map));
+        assertThat(form.getArray1().length, is(3));
+        assertThat(form.getArray1()[0], is(1));
+        assertThat(form.getArray1()[1], is(2));
+        assertThat(form.getArray1()[2], is(3));
+        assertThat(form.getArray2().length, is(2));
+        assertThat(form.getArray2()[0], is(1.1));
+        assertThat(form.getArray2()[1], is(1.2));
+        assertThat(form.getArray3().length, is(3));
+        assertThat(form.getArray3()[0], is((byte) 4));
+        assertThat(form.getArray3()[1], is((byte) 5));
+        assertThat(form.getArray3()[2], is((byte) 6));
+        assertThat(form.getArray4().length, is(3));
+        assertThat(form.getArray4()[0], is("a"));
+        assertThat(form.getArray4()[1], is("b"));
+        assertThat(form.getArray4()[2], is("c"));
+        assertThat(form.getItem(), is(notNullValue()));
+        assertThat(form.getItem().getArray1().length, is(3));
+        assertThat(form.getItem().getArray1()[0], is(11));
+        assertThat(form.getItem().getArray1()[1], is(12));
+        assertThat(form.getItem().getArray1()[2], is(13));
+        assertThat(form.getItem().getArray2().length, is(2));
+        assertThat(form.getItem().getArray2()[0], is(11.1));
+        assertThat(form.getItem().getArray2()[1], is(11.2));
+        assertThat(form.getItem().getArray3().length, is(3));
+        assertThat(form.getItem().getArray3()[0], is((byte) 14));
+        assertThat(form.getItem().getArray3()[1], is((byte) 15));
+        assertThat(form.getItem().getArray3()[2], is((byte) 16));
+        assertThat(form.getItem().getArray4().length, is(3));
+        assertThat(form.getItem().getArray4()[0], is("d"));
+        assertThat(form.getItem().getArray4()[1], is("e"));
+        assertThat(form.getItem().getArray4()[2], is("f"));
     }
 
     @SuppressWarnings("unchecked")
