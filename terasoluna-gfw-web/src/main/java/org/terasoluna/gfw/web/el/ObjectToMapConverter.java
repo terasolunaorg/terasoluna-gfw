@@ -175,13 +175,13 @@ class ObjectToMapConverter {
      */
     private Map<String, String> convert(String prefix, Iterable value) {
         Map<String, String> map = new LinkedHashMap<String, String>();
-        if (!value.iterator().hasNext()) {
+        Iterator iterator = value.iterator();
+        if (!iterator.hasNext()) {
             map.put(prefix, "");
             return map;
         }
-        int i = 0;
-        for (Object o : value) {
-            map.putAll(this.convert(prefix + "[" + (i++) + "]", o));
+        for (int i = 0; iterator.hasNext(); i++) {
+            map.putAll(this.convert(prefix + "[" + i + "]", iterator.next()));
         }
         return map;
     }
