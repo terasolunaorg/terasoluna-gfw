@@ -118,8 +118,9 @@ import org.springframework.util.StringUtils;
  * {@code criteria.name=suzuki&criteria.age=30&users[0].name=yamada&users[0].age=20&users[1].name=tanaka&users[1].age=50}
  * </p>
  * <p>
- * If the value of a property is {@code null}, add the reset parameter that start with {@code "_"} into map of return value.
- * The reset mechanism is provided by Spring Web MVC.<br>
+ * If the value of a property is {@code null}, the value is converted to an empty string and the key is prefixed with {@code "_"}.
+ * Request parameter that start with {@code "_"} is reset parameter provided by Spring Web MVC.
+ * If a reset parameter is specified, Spring Web MVC bind {@code null} to a property value.<br>
  * e.g.) {@code "_rememberCriteria":"", "_criteria.name":"", "_criteria.age":""}
  * </p>
  * @since 5.0.1
@@ -171,7 +172,7 @@ class ObjectToMapConverter {
      * @param prefix prefix of the key
      * @param value iterable instance to convert
      * @return converted map. all keys are prefixed with the given key.
-     * If given Iterable is empty, add the pair of the given name(prefix) and empty string into map of return value.
+     * If given Iterable is empty, the pair of the given name(prefix) and an empty string is added into map of return value.
      */
     private Map<String, String> convert(String prefix, Iterable value) {
         Map<String, String> map = new LinkedHashMap<String, String>();
@@ -259,8 +260,9 @@ class ObjectToMapConverter {
      * </ul>
      * <p>
      * The value is formatted using {@link FormattingConversionService} is possible.
-     * If the value is {@code null}, add the reset parameter that start with {@code "_"} into the given map.
-     * The reset mechanism is provided by Spring Web MVC.
+     * If the value of a property is {@code null}, the value is converted to an empty string and the key is prefixed with {@code "_"}.
+     * Request parameter that start with {@code "_"} is reset parameter provided by Spring Web MVC.
+     * If a reset parameter is specified, Spring Web MVC bind {@code null} to a property value.
      * </p>
      * @param map map to add
      * @param prefix prefix of the key
