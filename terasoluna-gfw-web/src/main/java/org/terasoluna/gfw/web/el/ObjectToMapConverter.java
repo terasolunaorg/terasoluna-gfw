@@ -197,6 +197,9 @@ class ObjectToMapConverter {
      * @see ObjectToMapConverter
      */
     public Map<String, String> convert(Object object) {
+        if (object == null) {
+            return Collections.emptyMap();
+        }
         return this.convert("", object);
     }
 
@@ -211,9 +214,6 @@ class ObjectToMapConverter {
      * @see ObjectToMapConverter
      */
     public Map<String, String> convert(String prefix, Object object) {
-        if (object == null) {
-            return Collections.emptyMap();
-        }
         Map<String, String> map = new LinkedHashMap<String, String>();
 
         // at first, try to flatten the given object
