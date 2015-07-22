@@ -111,7 +111,7 @@ public final class Functions {
      * url is encoded with "UTF-8".<br>
      * This method is used to encode values in "query" string. In <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>,
      * "query" part in URI is defined as follows:
-     * 
+     *
      * <pre>
      * <code>
      *   foo://example.com:8042/over/there?name=ferret#nose
@@ -122,7 +122,7 @@ public final class Functions {
      * </pre>
      *
      * and, "query" is defined as follows:
-     * 
+     *
      * <pre>
      * <code>
      * query         = *( pchar / "/" / "?" )
@@ -287,16 +287,16 @@ public final class Functions {
      * </p>
      * <p>
      * Note : About a {@link Map} property<br>
-     * In this method, {@code null} and an empty element are distinguished.
-     * Conversion rules are follows:
+     * In this method, {@code null} and empty element are distinguished explicitly.
+     * Conversion rules are as follows:
      * <ul>
-     * <li>If the value of a property is {@code null}, the value is converted to an empty string and the key is prefixed with {@code "_"}.(converted to a reset parameter provided by Spring Web MVC)</li>
-     * <li>If the value of a {@link Map} property is an empty element, the value is not converted.</li>
+     * <li>If the value of a property is {@code null}, it is converted to empty string and the key is prefixed with {@code "_"}.(converted to the reset parameter provided by Spring Web MVC)</li>
+     * <li>If the value of a {@link Map} property is empty element, it is not converted.</li>
      * </ul>
      * <br>
-     * But if this method is used after the {@code <form:form>} tag provided by Spring Web MVC, {@code null} is converted to an empty element in processing of {@code <form:form>} tag.
-     * As a result, {@code null} not converted to a reset parameter that start with {@code "_"}.
-     * In this case, this method can not guaranteed symmetry with the form binding provided by Spring Web MVC.
+     * But if this method is used after the {@code <form:form>} tag provided by Spring Web MVC, {@code null} is converted to empty element during the processing of {@code <form:form>} tag.
+     * As a result, {@code null} value is not converted to a reset parameter that start with {@code "_"}.
+     * In this case, this method does not guarantee the symmetry with the form binding provided by Spring Web MVC.
      * @see ObjectToMapConverter
      * @param params map or bean
      * @return query string. returns empty string if <code>params</code> is <code>null</code> or empty string or
