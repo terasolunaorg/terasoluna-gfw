@@ -14,7 +14,7 @@
         <description>
             <![CDATA[
             Escape html tags in the given string.
-            Target characters to escape are following: 
+            Target characters to escape are following:
             < ====> &lt;
             > ====> &gt;
             & ====> &amp;
@@ -102,12 +102,12 @@
             Note : About a Map property
             In this function, null and an empty element are distinguished. Conversion rules are follows:
 
-            * If the value of a property is null, the value is converted to an empty string and the key is prefixed with "_".(converted to a reset parameter provided by Spring Web MVC)
-            * If the value of a Map property is an empty element, the value is not converted.
+            * If the value of a property is null, the value is converted to empty string and the key is prefixed with "_".(converted to a reset parameter provided by Spring Web MVC)
+            * If the value of a Map property is empty element, it is not converted.
 
-            But if this function is used after the <form:form> tag provided by Spring Web MVC, null is converted to an empty element in processing of <form:form> tag.
-            As a result, null not converted to a reset parameter that start with "_".
-            In this case, this function can not guaranteed symmetry with the form binding provided by Spring Web MVC.
+            But if this function is used after the <form:form> tag provided by Spring Web MVC, null value is converted to empty element during the processing of <form:form> tag.
+            As a result, null value is not converted to a reset parameter that start with "_".
+            In this case, this function does not guarantee symmetry with the form binding provided by Spring Web MVC.
         ]]>
         </description>
         <name>query</name>
@@ -138,4 +138,3 @@ var message = '${f:js(message)}';
         ]]></example>
     </function>
 </taglib>
-
