@@ -14,7 +14,7 @@
         <description>
             <![CDATA[
             Escape html tags in the given string.
-            Target characters to escape are following: 
+            Target characters to escape are following:
             < ====> &lt;
             > ====> &gt;
             & ====> &amp;
@@ -93,7 +93,23 @@
     </function>
 
     <function>
-        <description>Build query string from map or bean. Query string is encoded with "UTF-8"</description>
+        <description>
+        <![CDATA[
+            Build query string from map or bean.
+
+            Query string is encoded with "UTF-8".
+
+            Note : About a Map property
+            In this function, null and an empty element are distinguished. Conversion rules are follows:
+
+            * If the value of a property is null, the value is converted to empty string and the key is prefixed with "_".(converted to a reset parameter provided by Spring Web MVC)
+            * If the value of a Map property is empty element, it is not converted.
+
+            But if this function is used after the <form:form> tag provided by Spring Web MVC, null value is converted to empty element during the processing of <form:form> tag.
+            As a result, null value is not converted to a reset parameter that start with "_".
+            In this case, this function does not guarantee symmetry with the form binding provided by Spring Web MVC.
+        ]]>
+        </description>
         <name>query</name>
         <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
         <function-signature>java.lang.String query(java.lang.Object)</function-signature>
@@ -122,4 +138,3 @@ var message = '${f:js(message)}';
         ]]></example>
     </function>
 </taglib>
-
