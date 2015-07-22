@@ -285,6 +285,19 @@ public final class Functions {
      * <p>
      * query string is encoded with "UTF-8".
      * </p>
+     * <p>
+     * Note : About a {@link Map} property<br>
+     * In this method, {@code null} and an empty element are distinguished.
+     * Conversion rules are follows:
+     * <ul>
+     * <li>If the value of a property is {@code null}, the value is converted to an empty string and the key is prefixed with {@code "_"}.(converted to a reset parameter provided by Spring Web MVC)</li>
+     * <li>If the value of a {@link Map} property is an empty element, the value is not converted.</li>
+     * </ul>
+     * <br>
+     * But if this method is used after the {@code <form:form>} tag provided by Spring Web MVC, {@code null} is converted to an empty element in processing of {@code <form:form>} tag.
+     * As a result, {@code null} not converted to a reset parameter that start with {@code "_"}.
+     * In this case, this method can not guaranteed symmetry with the form binding provided by Spring Web MVC.
+     * @see ObjectToMapConverter
      * @param params map or bean
      * @return query string. returns empty string if <code>params</code> is <code>null</code> or empty string or
      *         {@link Iterable} or {@link BeanUtils#isSimpleValueType(Class)}.

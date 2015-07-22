@@ -123,6 +123,16 @@ import org.springframework.util.StringUtils;
  * If a reset parameter is specified, Spring Web MVC bind {@code null} to a property value.<br>
  * e.g.) {@code "_rememberCriteria":"", "_criteria.name":"", "_criteria.age":""}
  * </p>
+ * <p>
+ * If the value of a {@link Iterable} or Array property is empty element, the value is converted to an empty string.
+ * If a empty string is specified, Spring Web MVC bind empty element to a property value.<br>
+ * e.g.) {@code "users":"", "criteria.name":"suzuki", "criteria.age":"30"}
+ * </p>
+ * <p>
+ * If the value of a {@link Map} property is empty element, the value is not converted.
+ * As a result, a property value will become a default value of server side implementation
+ * because Spring Web MVC not bind request parameter to a property value.
+ * </p>
  * @since 5.0.1
  */
 class ObjectToMapConverter {
