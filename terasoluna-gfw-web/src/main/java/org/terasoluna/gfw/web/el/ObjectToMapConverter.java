@@ -33,7 +33,7 @@ import org.springframework.util.StringUtils;
  * The converted Map can be populated to the original Object using {@link org.springframework.validation.DataBinder}.
  * </p>
  * <h3>Example1</h3>
- * 
+ *
  * <pre>
  * <code>
  * class SearchUserForm {
@@ -42,7 +42,7 @@ import org.springframework.util.StringUtils;
  * }
  * </code>
  * </pre>
- * 
+ *
  * <pre>
  * <code>
  * class SearchUserCriteriaForm {
@@ -56,7 +56,7 @@ import org.springframework.util.StringUtils;
  * "criteria.age":"20"}
  * </p>
  * <h3>Example2</h3>
- * 
+ *
  * <pre>
  * <code>
  * class BatchUpdateUserForm {
@@ -65,7 +65,7 @@ import org.springframework.util.StringUtils;
  * }
  * </code>
  * </pre>
- * 
+ *
  * <pre>
  * <code>
  * enum LogicalOperator {
@@ -73,7 +73,7 @@ import org.springframework.util.StringUtils;
  * }
  * </code>
  * </pre>
- * 
+ *
  * <pre>
  * <code>
  * class UpdateUserForm {
@@ -87,7 +87,7 @@ import org.springframework.util.StringUtils;
  * "criteria[0].age":"20", "criteria[1].name":"tanaka", "criteria[1].name":"50", "operator":"AND"}
  * </p>
  * <h3>Example3</h3>
- * 
+ *
  * <pre>
  * <code>class SearchAndBatchUpdateUserForm {
  *   SearchUserCriteriaForm criteria;
@@ -95,7 +95,7 @@ import org.springframework.util.StringUtils;
  * }
  * </code>
  * </pre>
- * 
+ *
  * <pre>
  * <code>
  * class SearchUserCriteriaForm {
@@ -104,7 +104,7 @@ import org.springframework.util.StringUtils;
  * }
  * </code>
  * </pre>
- * 
+ *
  * <pre>
  * <code>
  * class User {
@@ -122,6 +122,16 @@ import org.springframework.util.StringUtils;
  * Request parameter that start with {@code "_"} is reset parameter provided by Spring Web MVC.
  * If a reset parameter is specified, Spring Web MVC bind {@code null} to a property value.<br>
  * e.g.) {@code "_rememberCriteria":"", "_criteria.name":"", "_criteria.age":""}
+ * </p>
+ * <p>
+ * If the value of a {@link Iterable} or Array property is empty element, the value is converted to an empty string.
+ * If a empty string is specified, Spring Web MVC bind empty element to a property value.<br>
+ * e.g.) {@code "users":"", "criteria.name":"suzuki", "criteria.age":"30"}
+ * </p>
+ * <p>
+ * If the value of a {@link Map} property is empty element, it is not converted.
+ * As a result, the property value will be a default value of server side implementation
+ * because Spring Web MVC does not bind request parameter to the property value.
  * </p>
  * @since 5.0.1
  */
