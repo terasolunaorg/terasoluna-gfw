@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-parent</artifactId>
-    <version>5.0.1-SNAPSHOT</version>
+    <version>5.0.1.RELEASE</version>
     <packaging>pom</packaging>
     <name>TERASOLUNA Server Framework for Java (5.x) Parent</name>
     <description>The parent of TERASOLUNA Server Framework for Java (5.x)</description>
@@ -474,7 +474,7 @@
     </distributionManagement>
     <properties>
         <!-- == TERASOLUNA == -->
-        <terasoluna.gfw.version>5.0.1-SNAPSHOT</terasoluna.gfw.version>
+        <terasoluna.gfw.version>5.0.1.RELEASE</terasoluna.gfw.version>
         <!-- == Spring IO Platform == -->
         <io.spring.platform.version>1.1.3.RELEASE</io.spring.platform.version>
         <!-- == MyBatis3 == -->
