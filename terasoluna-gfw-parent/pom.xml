@@ -326,16 +326,6 @@
             <id>terasoluna-gfw-snapshots</id>
             <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
         </repository>
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>terasoluna-gfw-3rdparty</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/</url>
-        </repository>
     </repositories>
     <dependencyManagement>
         <dependencies>

@@ -115,16 +115,6 @@ Irrespective of above two ways, first define the repositories in the pom file.
         <id>terasoluna-gfw-releases</id>
         <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
     </repository>
-    <repository>
-        <releases>
-            <enabled>true</enabled>
-        </releases>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
-        <id>terasoluna-gfw-3rdparty</id>
-        <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-3rdparty/</url>
-    </repository>
 </repositories>
 ```
 
