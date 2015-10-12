@@ -27,8 +27,13 @@ public class FullHalfConverter {
 		Map<String, FullHalfPair> f = new HashMap<String, FullHalfPair>();
 		Map<String, FullHalfPair> h = new HashMap<String, FullHalfPair>();
 		for (FullHalfPair pair : pairSet) {
-			f.put(pair.fullwidth(), pair);
-			h.put(pair.halfwidth(), pair);
+			// first definition is prior
+			if (!f.containsKey(pair.fullwidth())) {
+				f.put(pair.fullwidth(), pair);
+			}
+			if (!h.containsKey(pair.halfwidth())) {
+				h.put(pair.halfwidth(), pair);
+			}
 		}
 		this.fullwidthMap = Collections.unmodifiableMap(f);
 		this.halfwidthMap = Collections.unmodifiableMap(h);
