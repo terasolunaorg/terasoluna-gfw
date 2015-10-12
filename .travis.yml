@@ -1,17 +1,23 @@
+sudo: false
 language: java
 jdk:
   - oraclejdk7
   - openjdk7
   - openjdk6
 
+cache:
+  directories:
+    - $HOME/.m2
+
+install: true
 
 script:
-  - mvn install -f terasoluna-gfw-parent/pom.xml
-  - mvn install -f terasoluna-gfw-common/pom.xml
-  - mvn install -f terasoluna-gfw-jpa/pom.xml
-  - mvn install -f terasoluna-gfw-mybatis2/pom.xml
-  - mvn install -f terasoluna-gfw-recommended-dependencies/pom.xml
-  - mvn install -f terasoluna-gfw-recommended-web-dependencies/pom.xml
-  - mvn install -f terasoluna-gfw-web/pom.xml
-  - mvn install -f terasoluna-gfw-security-core/pom.xml
-  - mvn install -f terasoluna-gfw-security-web/pom.xml
+  - mvn install -U -f terasoluna-gfw-parent/pom.xml
+  - mvn install -U -f terasoluna-gfw-common/pom.xml
+  - mvn install -U -f terasoluna-gfw-jpa/pom.xml
+  - mvn install -U -f terasoluna-gfw-mybatis2/pom.xml
+  - mvn install -U -f terasoluna-gfw-recommended-dependencies/pom.xml
+  - mvn install -U -f terasoluna-gfw-recommended-web-dependencies/pom.xml
+  - mvn install -U -f terasoluna-gfw-web/pom.xml
+  - mvn install -U -f terasoluna-gfw-security-core/pom.xml
+  - mvn install -U -f terasoluna-gfw-security-web/pom.xml
