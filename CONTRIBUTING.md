@@ -87,16 +87,7 @@ Please build all projects and execute all tests using the [Maven](https://maven.
 
 ```
 cd {root directory of your local repository}
-mvn clean install -f terasoluna-gfw-parent/pom.xml
-mvn clean install -f terasoluna-gfw-common/pom.xml
-mvn clean install -f terasoluna-gfw-jodatime/pom.xml
-mvn clean install -f terasoluna-gfw-jpa/pom.xml
-mvn clean install -f terasoluna-gfw-mybatis3/pom.xml
-mvn clean install -f terasoluna-gfw-recommended-dependencies/pom.xml
-mvn clean install -f terasoluna-gfw-recommended-web-dependencies/pom.xml
-mvn clean install -f terasoluna-gfw-web/pom.xml
-mvn clean install -f terasoluna-gfw-security-core/pom.xml
-mvn clean install -f terasoluna-gfw-security-web/pom.xml
+sh ./mvn-build-all.sh
 ```
 
 If a maven build result has failed, please modify a source code again.
