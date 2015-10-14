@@ -85,9 +85,18 @@ Please modify the terasoluna-gfw for contributing.
 
 Please build all projects and execute all tests using the [Maven](https://maven.apache.org/).
 
+**For Linux or Mac**
+
 ```
 cd {root directory of your local repository}
 sh ./mvn-build-all.sh
+```
+
+**For Windows**
+
+```
+cd {root directory of your local repository}
+mvn-build-all.bat
 ```
 
 If a maven build result has failed, please modify a source code again.
