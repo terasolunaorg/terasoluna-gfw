@@ -11,13 +11,4 @@ cache:
 
 install: true
 
-script:
-  - mvn install -U -f terasoluna-gfw-parent/pom.xml
-  - mvn install -U -f terasoluna-gfw-common/pom.xml
-  - mvn install -U -f terasoluna-gfw-jpa/pom.xml
-  - mvn install -U -f terasoluna-gfw-mybatis2/pom.xml
-  - mvn install -U -f terasoluna-gfw-recommended-dependencies/pom.xml
-  - mvn install -U -f terasoluna-gfw-recommended-web-dependencies/pom.xml
-  - mvn install -U -f terasoluna-gfw-web/pom.xml
-  - mvn install -U -f terasoluna-gfw-security-core/pom.xml
-  - mvn install -U -f terasoluna-gfw-security-web/pom.xml
+script: ./mvn-build-all.sh
