@@ -8,7 +8,7 @@
         <version>5.1.0-SNAPSHOT</version>
         <relativePath>../terasoluna-gfw-parent/pom.xml</relativePath>
     </parent>
-    <artifactId>terasoluna-gfw-ja</artifactId>
+    <artifactId>terasoluna-gfw-string</artifactId>
     <packaging>jar</packaging>
     <name>TERASOLUNA Server Framework for Java (5.x) Common Library for Joda-Time</name>
     <description>Functionality for Japanese</description>
