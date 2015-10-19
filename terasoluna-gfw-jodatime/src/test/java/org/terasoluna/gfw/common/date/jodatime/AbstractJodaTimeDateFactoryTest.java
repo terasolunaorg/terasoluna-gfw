@@ -84,7 +84,7 @@ public class AbstractJodaTimeDateFactoryTest {
     }
 }
 
-class StubDateFactory extends AbstractJodaTimeDateFactory{
+class StubDateFactory extends AbstractJodaTimeDateFactory {
     @Override
     public DateTime newDateTime() {
         return new DateTime(2012, 9, 3, 23, 7, 11, 100);

@@ -22,17 +22,19 @@ import java.util.Date;
 /**
  * Abstract implementation of {@link org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory}.
  * <p>
- * This class converts from {@link org.joda.time.DateTime} to {@link java.util.Date}, {@link java.sql.Timestamp}, {@link java.sql.Date},
- * {@link java.sql.Time} <br>
+ * This class converts from {@link org.joda.time.DateTime} to {@link java.util.Date}, {@link java.sql.Timestamp},
+ * {@link java.sql.Date}, {@link java.sql.Time} <br>
  * so all things that concrete classes do is to return current {@link org.joda.time.DateTime}.
  * </p>
  * @since 5.0.0
  */
-public abstract class AbstractJodaTimeDateFactory extends DefaultClassicDateFactory implements JodaTimeDateFactory {
+public abstract class AbstractJodaTimeDateFactory extends
+                                                 DefaultClassicDateFactory
+                                                                          implements
+                                                                          JodaTimeDateFactory {
 
     /**
      * Returns {@link java.util.Date} instance for the current date.
-     *
      * @return Date current date
      */
     @Override

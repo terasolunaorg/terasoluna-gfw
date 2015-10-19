@@ -60,5 +60,4 @@ public class StandardResultMessageTypeTest {
         assertThat(StandardResultMessageType.WARNING.toString(), is("warning"));
     }
 
-
 }

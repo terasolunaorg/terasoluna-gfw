@@ -247,8 +247,8 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
         ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
 
-        ResultMessages messages = ResultMessages.warning().add("foo", "aa").add(
-                "bar", "bb");
+        ResultMessages messages = ResultMessages.warning().add("foo", "aa")
+                .add("bar", "bb");
 
         assertThat(messages.getType(), is((ResultMessageType) WARNING));
         assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));

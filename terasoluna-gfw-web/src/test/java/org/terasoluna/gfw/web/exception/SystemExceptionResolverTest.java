@@ -146,7 +146,7 @@ public class SystemExceptionResolverTest {
         assertThat(mockResponse.getHeaderNames().isEmpty(), is(true));
 
     }
-    
+
     @Test
     public void testSetExceptionCode_exceptionCodeAttribute_is_null() {
 
@@ -174,7 +174,7 @@ public class SystemExceptionResolverTest {
         assertThat(mockResponse.getHeader("X-Exception-Code"), is("code001"));
 
     }
-    
+
     @Test
     public void testSetExceptionCode_exceptionCodeHeader_is_null() {
 
@@ -204,7 +204,7 @@ public class SystemExceptionResolverTest {
         assertThat(mockResponse.getHeaderNames().isEmpty(), is(true));
 
     }
-    
+
     @Test
     public void testSetResultMessages_BusinessException_flashMap_is_null() {
 
@@ -287,7 +287,6 @@ public class SystemExceptionResolverTest {
 
     }
 
-    
     @Test
     public void testSetExceptionInfo() {
 

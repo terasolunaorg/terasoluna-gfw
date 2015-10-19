@@ -493,7 +493,8 @@ public class FunctionsTest {
         // Spec has been changed betwee 5.0.0 and 5.0.1
         // 5.0.0 ... age=&date=&list=&name=
         // 5.0.1 ... _age=&_date=&_list=&_name=
-        assertThat(Functions.query(new Person()), is("_age=&_date=&_list=&_name=")); // null property should show reset parameter that start with "_"
+        assertThat(Functions.query(new Person()),
+                is("_age=&_date=&_list=&_name=")); // null property should show reset parameter that start with "_"
     }
 
     @Test

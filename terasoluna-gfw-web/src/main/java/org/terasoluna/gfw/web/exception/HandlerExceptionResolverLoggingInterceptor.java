@@ -119,7 +119,6 @@ public class HandlerExceptionResolverLoggingInterceptor implements
      * output, then output the log with ERROR level.</li>
      * <li></li>
      * </ul>
-     *
      * @param invocation {@link MethodInvocation}
      * @return Object returned by target method of interceptor
      * @throws Throwable If error occurred in target method of interceptor

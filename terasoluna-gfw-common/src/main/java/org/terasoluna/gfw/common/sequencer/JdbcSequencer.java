@@ -126,7 +126,8 @@ public class JdbcSequencer<T> implements Sequencer<T>, InitializingBean {
     public void afterPropertiesSet() throws IllegalArgumentException {
         Assert.notNull(jdbcTemplate, "jdbcTemplate must not be null");
         Assert.hasLength(nextValueQuery, "nextValueQuery must not be empty");
-        Assert.hasLength(currentValueQuery, "currentValueQuery must not be empty");
+        Assert.hasLength(currentValueQuery,
+                "currentValueQuery must not be empty");
         Assert.notNull(sequenceClass, "sequenceClass must not be null");
     }
 }

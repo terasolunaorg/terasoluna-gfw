@@ -25,8 +25,7 @@ public interface CodeList {
     /**
      * Returns the codelist as a Map.<br>
      * <p>
-     * Map must be unmodifiable.
-     * Key part of the map is "value" of the codelist.<br>
+     * Map must be unmodifiable. Key part of the map is "value" of the codelist.<br>
      * Value part of the map is "label" of the codelist<br>
      * </p>
      * @return Map codelist

@@ -85,8 +85,7 @@ public class TransactionTokenTagTest {
         PageContext pageContext = mock(PageContext.class);
         tag.setPageContext(pageContext);
         HttpServletRequest request = mock(HttpServletRequest.class);
-        TransactionToken token = new TransactionToken("tokenName", "tokenkey",
-                "tokenValue");
+        TransactionToken token = new TransactionToken("tokenName", "tokenkey", "tokenValue");
         StringWriter sw = new StringWriter();
         TagWriter tagWriter = new TagWriter(sw);
 
@@ -126,8 +125,7 @@ public class TransactionTokenTagTest {
         PageContext pageContext = mock(PageContext.class);
         tag.setPageContext(pageContext);
         HttpServletRequest request = mock(HttpServletRequest.class);
-        TransactionToken token = new TransactionToken("tokenName", "tokenkey",
-                "tokenValue");
+        TransactionToken token = new TransactionToken("tokenName", "tokenkey", "tokenValue");
         TagWriter tagWriter = mock(TagWriter.class);
 
         // mock behavior
