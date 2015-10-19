@@ -14,14 +14,15 @@
  * governing permissions and limitations under the License.
  */
 package org.terasoluna.gfw.common.exception;
+
 /**
  * Exception code
  */
 public interface ExceptionCodeProvider {
-	
+
     /**
      * Returns exception code.
      * @return String exception code
      */
-	String getCode();
+    String getCode();
 }

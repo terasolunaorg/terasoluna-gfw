@@ -791,21 +791,34 @@ public class ObjectToMapConverterTest {
 
     public static class NullValueForm9 {
         private String string;
+
         private Integer integer;
+
         private Date date;
+
         private LocalDate jodaLocalDate;
+
         private CustomEnum9 customEnum;
+
         private List<String> list;
+
         private List<String> list2 = new ArrayList<String>() {
             {
                 add(null);
             }
         };
+
         private Map<String, String> map;
-        private Map<String, String> map2 = Collections.singletonMap("key", null);
+
+        private Map<String, String> map2 = Collections
+                .singletonMap("key", null);
+
         private int[] array;
-        private String[] array2 = new String[]{null};
+
+        private String[] array2 = new String[] { null };
+
         private NestedForm9 nestedForm1;
+
         private NestedForm9 nestedForm2;
 
         public String getString() {
@@ -919,17 +932,25 @@ public class ObjectToMapConverterTest {
 
     public static class NestedForm9 {
         private String string;
+
         private Integer integer;
+
         private List<String> list;
+
         private List<String> list2 = new ArrayList<String>() {
             {
                 add(null);
             }
         };
+
         private Map<String, String> map;
-        private Map<String, String> map2 = Collections.singletonMap("key", null);
+
+        private Map<String, String> map2 = Collections
+                .singletonMap("key", null);
+
         private int[] array;
-        private String[] array2 = new String[]{null};
+
+        private String[] array2 = new String[] { null };
 
         public String getString() {
             return string;
@@ -999,8 +1020,11 @@ public class ObjectToMapConverterTest {
 
     public static class EmptyElementForm10 {
         private List<String> list = Collections.emptyList();
+
         private Map<String, String> map = Collections.emptyMap();
+
         private int[] array = new int[0];
+
         private NestedForm10 nestedForm = new NestedForm10();
 
         public List<String> getList() {
@@ -1038,7 +1062,9 @@ public class ObjectToMapConverterTest {
 
     public static class NestedForm10 {
         private List<String> list = Collections.emptyList();
+
         private Map<String, String> map = Collections.emptyMap();
+
         private int[] array = new int[0];
 
         public List<String> getList() {
@@ -1065,6 +1091,5 @@ public class ObjectToMapConverterTest {
             this.array = array;
         }
     }
-
 
 }

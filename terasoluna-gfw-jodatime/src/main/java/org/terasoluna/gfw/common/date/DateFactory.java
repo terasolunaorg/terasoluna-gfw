@@ -38,7 +38,7 @@ import org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory;
  * </ul>
  * @see org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory
  * @deprecated please use instead of this class. {@link org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory}
-*/
+ */
 @Deprecated
 public interface DateFactory extends JodaTimeDateFactory {
 }

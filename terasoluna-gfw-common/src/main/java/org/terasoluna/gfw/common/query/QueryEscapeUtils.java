@@ -51,7 +51,7 @@ public final class QueryEscapeUtils {
      *
      * <pre>
      * <code>
-     *
+     * 
      * toLikeCondition("a")    -&gt; "a"
      * toLikeCondition("a~")   -&gt; "a~~"
      * toLikeCondition("a%")   -&gt; "a~%"

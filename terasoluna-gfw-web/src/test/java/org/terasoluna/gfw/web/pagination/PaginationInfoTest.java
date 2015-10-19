@@ -355,7 +355,7 @@ public class PaginationInfoTest {
     }
 
     /**
-     * total pages is greater  than max display count
+     * total pages is greater than max display count
      */
     @Test
     public void testGetBeginAndEnd_totalPagesIsGreaterThanMaxDisplayCount() {

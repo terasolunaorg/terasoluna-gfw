@@ -40,7 +40,6 @@ import org.springframework.util.Assert;
  * </code>
  * </pre>
  * <hr>
- * 
  * Way3. if you want to set code (+ args) and message text (as default text used when code is not found)
  * 
  * <pre>
@@ -162,7 +161,6 @@ public class ResultMessage implements Serializable {
      * <li>the obj is the same instance as the current one. OR</li>
      * <li>if code AND text of the two instances are same respectively (including null values).</li>
      * </ul>
-     *
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override

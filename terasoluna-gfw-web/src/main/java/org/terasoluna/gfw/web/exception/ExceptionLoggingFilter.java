@@ -28,7 +28,8 @@ import org.terasoluna.gfw.common.exception.ExceptionLogger;
 /**
  * Servlet filter class for log output of exception.
  * <p>
- * This class outputs the log of exceptions which do not get handled by {@link org.springframework.web.servlet.HandlerExceptionResolver} of SpringMVC.<br>
+ * This class outputs the log of exceptions which do not get handled by
+ * {@link org.springframework.web.servlet.HandlerExceptionResolver} of SpringMVC.<br>
  * Must be specified in Servlet filter. <br>
  * </p>
  * <p>
@@ -38,7 +39,6 @@ import org.terasoluna.gfw.common.exception.ExceptionLogger;
  * <li>Exceptions that occur beyond the boundary of SpringMVC ({@code javax.servlet.Filter} etc).</li>
  * <li>Fatal errors that occur within the boundary of SpringMVC (classed inherited from {@code java.lang.Error}).</li>
  * </ul>
- *
  * <h2>Example of the Settings for inject a custom ExceptionLogger</h2><br>
  * <strong>[applicationContext.xml]</strong><br>
  * define bean of custom ExceptionLogger and ExceptionLoggingFilter.
@@ -65,7 +65,6 @@ import org.terasoluna.gfw.common.exception.ExceptionLogger;
  *   &lt;filter-class&gt;org.springframework.web.filter.DelegatingFilterProxy&lt;/filter-class&gt;
  * &lt;/filter&gt;
  * </pre>
- * 
  */
 public class ExceptionLoggingFilter extends GenericFilterBean {
 

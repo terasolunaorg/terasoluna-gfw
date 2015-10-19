@@ -44,7 +44,8 @@ public class JdbcFixedJodaTimeDateFactory extends AbstractJodaTimeDateFactory {
     private String currentTimestampQuery;
 
     /**
-     * {@link org.springframework.jdbc.core.RowMapper} implementation maps the {@link java.sql.Timestamp} fetched from database into a {@link org.joda.time.DateTime} instance
+     * {@link org.springframework.jdbc.core.RowMapper} implementation maps the {@link java.sql.Timestamp} fetched from database
+     * into a {@link org.joda.time.DateTime} instance
      */
     private static final RowMapper<DateTime> DATE_ROW_MAPPER = new RowMapper<DateTime>() {
         @Override
@@ -72,8 +73,8 @@ public class JdbcFixedJodaTimeDateFactory extends AbstractJodaTimeDateFactory {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    /** the current timestamp received as parameter.
-     * Sets
+    /**
+     * the current timestamp received as parameter. Sets
      * @param currentTimestampQuery SQL to retrieve current timestamp
      */
     public void setCurrentTimestampQuery(String currentTimestampQuery) {

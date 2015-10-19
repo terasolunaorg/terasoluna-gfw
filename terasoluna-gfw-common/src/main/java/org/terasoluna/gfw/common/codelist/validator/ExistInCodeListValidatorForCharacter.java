@@ -21,7 +21,8 @@ package org.terasoluna.gfw.common.codelist.validator;
  * If the value of the field for which the custom annotation is used, is of type {@code Character}, <br>
  * then it is converted to String. <br>
  * <br>
- * Validates whether the value of field is a valid code existing in the {@link org.terasoluna.gfw.common.codelist.CodeList} specified <br>
+ * Validates whether the value of field is a valid code existing in the {@link org.terasoluna.gfw.common.codelist.CodeList}
+ * specified <br>
  * as a parameter to the {@link org.terasoluna.gfw.common.codelist.ExistInCodeList} annotation.<br>
  * </p>
  */
