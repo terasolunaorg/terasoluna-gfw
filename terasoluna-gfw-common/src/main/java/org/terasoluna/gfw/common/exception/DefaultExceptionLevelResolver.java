@@ -15,7 +15,6 @@
  */
 package org.terasoluna.gfw.common.exception;
 
-
 /**
  * Default class for resolving exception level
  */
@@ -61,7 +60,6 @@ public class DefaultExceptionLevelResolver implements ExceptionLevelResolver {
      * <li>"e", then ExceptionLevel.ERROR</li>
      * <li>Other than above, ExceptionLevel.ERROR</li>
      * </ul>
-     *
      * @see org.terasoluna.gfw.common.exception.ExceptionLevelResolver#resolveExceptionLevel(java.lang.Exception)
      */
     public ExceptionLevel resolveExceptionLevel(Exception ex) {

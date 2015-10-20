@@ -39,14 +39,12 @@ public enum StandardResultMessageType implements ResultMessageType {
     INFO("info"),
     /**
      * message type is <code>warn</code>.
-     * @deprecated Instead of this value, please use {@link #WARNING}. This
-     *             value will be removed in the future.
+     * @deprecated Instead of this value, please use {@link #WARNING}. This value will be removed in the future.
      */
     @Deprecated
     WARN("warn"),
     /**
      * message type is <code>warning</code>.
-     * 
      * @since 5.0.0
      */
     WARNING("warning"),

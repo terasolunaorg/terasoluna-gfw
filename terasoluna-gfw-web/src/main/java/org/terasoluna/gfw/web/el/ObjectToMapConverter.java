@@ -118,20 +118,19 @@ import org.springframework.util.StringUtils;
  * {@code criteria.name=suzuki&criteria.age=30&users[0].name=yamada&users[0].age=20&users[1].name=tanaka&users[1].age=50}
  * </p>
  * <p>
- * If the value of a property is {@code null}, the value is converted to an empty string and the key is prefixed with {@code "_"}.
- * Request parameter that start with {@code "_"} is reset parameter provided by Spring Web MVC.
- * If a reset parameter is specified, Spring Web MVC bind {@code null} to a property value.<br>
+ * If the value of a property is {@code null}, the value is converted to an empty string and the key is prefixed with
+ * {@code "_"}. Request parameter that start with {@code "_"} is reset parameter provided by Spring Web MVC. If a reset
+ * parameter is specified, Spring Web MVC bind {@code null} to a property value.<br>
  * e.g.) {@code "_rememberCriteria":"", "_criteria.name":"", "_criteria.age":""}
  * </p>
  * <p>
- * If the value of a {@link Iterable} or Array property is empty element, the value is converted to an empty string.
- * If a empty string is specified, Spring Web MVC bind empty element to a property value.<br>
+ * If the value of a {@link Iterable} or Array property is empty element, the value is converted to an empty string. If a empty
+ * string is specified, Spring Web MVC bind empty element to a property value.<br>
  * e.g.) {@code "users":"", "criteria.name":"suzuki", "criteria.age":"30"}
  * </p>
  * <p>
- * If the value of a {@link Map} property is empty element, it is not converted.
- * As a result, the property value will be a default value of server side implementation
- * because Spring Web MVC does not bind request parameter to the property value.
+ * If the value of a {@link Map} property is empty element, it is not converted. As a result, the property value will be a
+ * default value of server side implementation because Spring Web MVC does not bind request parameter to the property value.
  * </p>
  * @since 5.0.1
  */
@@ -181,8 +180,8 @@ class ObjectToMapConverter {
      * Convert the given Iterable to the flatten map
      * @param prefix prefix of the key
      * @param value iterable instance to convert
-     * @return converted map. all keys are prefixed with the given key.
-     * If given Iterable is empty, the pair of the given name(prefix) and an empty string is added into map of return value.
+     * @return converted map. all keys are prefixed with the given key. If given Iterable is empty, the pair of the given
+     *         name(prefix) and an empty string is added into map of return value.
      */
     private Map<String, String> convert(String prefix, Iterable value) {
         Map<String, String> map = new LinkedHashMap<String, String>();
@@ -269,10 +268,10 @@ class ObjectToMapConverter {
      * <li>if {@link #conversionService} can convert</li>
      * </ul>
      * <p>
-     * The value is formatted using {@link FormattingConversionService} is possible.
-     * If the value of a property is {@code null}, the value is converted to an empty string and the key is prefixed with {@code "_"}.
-     * Request parameter that start with {@code "_"} is reset parameter provided by Spring Web MVC.
-     * If a reset parameter is specified, Spring Web MVC bind {@code null} to a property value.
+     * The value is formatted using {@link FormattingConversionService} is possible. If the value of a property is {@code null},
+     * the value is converted to an empty string and the key is prefixed with {@code "_"}. Request parameter that start with
+     * {@code "_"} is reset parameter provided by Spring Web MVC. If a reset parameter is specified, Spring Web MVC bind
+     * {@code null} to a property value.
      * </p>
      * @param map map to add
      * @param prefix prefix of the key

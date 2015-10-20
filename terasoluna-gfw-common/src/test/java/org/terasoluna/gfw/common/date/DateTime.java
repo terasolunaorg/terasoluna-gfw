@@ -26,7 +26,6 @@ public class DateTime {
 
     /**
      * Create from the specified timestamp
-     *
      * @param timestamp timestamp
      */
     public DateTime(long timestamp) {
@@ -36,7 +35,6 @@ public class DateTime {
 
     /**
      * Create from the specified date
-     *
      * @param year year
      * @param month month
      * @param dayOfMonth day
@@ -45,7 +43,8 @@ public class DateTime {
      * @param second second
      * @param millisecond mill second
      */
-    public DateTime(int year, int month, int dayOfMonth, int hourOfDay, int minute, int second, int millisecond) {
+    public DateTime(int year, int month, int dayOfMonth, int hourOfDay,
+            int minute, int second, int millisecond) {
         this.calendar = Calendar.getInstance();
         this.calendar.set(Calendar.YEAR, year);
         this.calendar.set(Calendar.MONTH, month - 1);
@@ -58,7 +57,6 @@ public class DateTime {
 
     /**
      * return year
-     *
      * @return year
      */
     public int getYear() {
@@ -67,7 +65,6 @@ public class DateTime {
 
     /**
      * returns month
-     *
      * @return month
      */
     public int getMonthOfYear() {
@@ -76,7 +73,6 @@ public class DateTime {
 
     /**
      * returns day
-     *
      * @return day
      */
     public int getDayOfMonth() {
@@ -85,7 +81,6 @@ public class DateTime {
 
     /**
      * returns hour
-     *
      * @return hour
      */
     public int getHourOfDay() {
@@ -94,7 +89,6 @@ public class DateTime {
 
     /**
      * returns minute
-     *
      * @return minute
      */
     public int getMinuteOfHour() {
@@ -103,7 +97,6 @@ public class DateTime {
 
     /**
      * returns second
-     *
      * @return second
      */
     public int getSecondOfMinute() {
@@ -112,7 +105,6 @@ public class DateTime {
 
     /**
      * returns mill second
-     *
      * @return mill second
      */
     public int getMillisOfSecond() {
@@ -121,7 +113,6 @@ public class DateTime {
 
     /**
      * converts to {@code java.util.Date}
-     *
      * @return date
      */
     public Date toDate() {

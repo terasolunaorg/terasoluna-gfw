@@ -28,10 +28,9 @@ import java.util.Date;
  */
 public class DefaultClassicDateFactory implements ClassicDateFactory {
 
-	/**
-	 * Returns {@link java.util.Date} instance for the current date.
-	 * 
-	 * @return Date current date
+    /**
+     * Returns {@link java.util.Date} instance for the current date.
+     * @return Date current date
      */
     @Override
     public Date newDate() {
@@ -39,9 +38,8 @@ public class DefaultClassicDateFactory implements ClassicDateFactory {
     }
 
     /**
-	 * Returns {@link java.sql.Timestamp} instance corresponding to current date and time.
-	 * 
-	 * @return Timestamp current date
+     * Returns {@link java.sql.Timestamp} instance corresponding to current date and time.
+     * @return Timestamp current date
      */
     @Override
     public Timestamp newTimestamp() {
@@ -54,7 +52,6 @@ public class DefaultClassicDateFactory implements ClassicDateFactory {
      * <p>
      * normalize hour,minute,second,milliSecond to 0.
      * </p>
-     * 
      * @return Date {@link java.sql.Date} instance for current date
      */
     @Override

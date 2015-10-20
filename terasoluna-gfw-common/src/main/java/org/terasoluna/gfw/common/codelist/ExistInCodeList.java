@@ -44,9 +44,8 @@ import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForS
  * In the above code, ExistInCodeList annotation checks whether the code in gender field <br>
  * exists in {@code CD_GENDER} {@link CodeList}. <br>
  * <br>
- * If the the code does not exist in the {@link CodeList}, an instance of {@link javax.validation.ConstraintViolation} is returned with the
- * default error message represented by {@code message()} in it.
- *
+ * If the the code does not exist in the {@link CodeList}, an instance of {@link javax.validation.ConstraintViolation} is
+ * returned with the default error message represented by {@code message()} in it.
  */
 @Target({ ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
@@ -62,7 +61,6 @@ public @interface ExistInCodeList {
 
     /**
      * Bean ID of the codelist in which check the value<br>
-     *
      * @return bean ID of the codelist
      */
     String codeListId();
