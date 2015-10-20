@@ -116,7 +116,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do test.
-        boolean actualReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
+        boolean actualReturnValue = testTarget.preHandle(mockRequest,
+                mockResponse, null);
 
         // do assert.
         assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
@@ -149,7 +150,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do test.
-        boolean actualReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
+        boolean actualReturnValue = testTarget.preHandle(mockRequest,
+                mockResponse, null);
 
         // do assert.
         Enumeration<String> actualAttributeNames = mockRequest
@@ -158,7 +160,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         actualAttributeNames.nextElement();
         assertThat(actualAttributeNames.hasMoreElements(), is(false));
         assertThat(mockRequest.getAttribute("simpleMapCodeList").toString(),
-                is(simpleMapCodeList.asMap().toString()));        
+                is(simpleMapCodeList.asMap().toString()));
         assertThat(actualReturnValue, is(true));
 
     }
@@ -183,7 +185,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do test.
-        boolean actualReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
+        boolean actualReturnValue = testTarget.preHandle(mockRequest,
+                mockResponse, null);
 
         // do assert.
         SimpleMapCodeList simpleMapCodeList = getApplicationContext().getBean(
@@ -215,7 +218,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         // do nothing.
 
         // do test.
-    	boolean actualReturnValue = testTarget.preHandle(mockRequest, mockResponse, null);
+        boolean actualReturnValue = testTarget.preHandle(mockRequest,
+                mockResponse, null);
 
         // do assert.
         assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
@@ -252,7 +256,6 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
     }
 
-    
     /**
      * [afterPropertiesSet] Case of codeListIdPattern is not null.
      * <p>
@@ -274,9 +277,11 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
         // do assert.
         assertThat(testTarget.getCodeLists(), is(containsInAnyOrder(
-                getApplicationContext().getBean("A_simpleI18nCodeList", CodeList.class),
-                getApplicationContext().getBean("A_numberRangeCodeList", CodeList.class),
-                getApplicationContext().getBean("A_simpleMapCodeList", CodeList.class))));
+                getApplicationContext().getBean("A_simpleI18nCodeList",
+                        CodeList.class), getApplicationContext().getBean(
+                        "A_numberRangeCodeList", CodeList.class),
+                getApplicationContext().getBean("A_simpleMapCodeList",
+                        CodeList.class))));
 
     }
 

@@ -91,9 +91,9 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter
      * @since 5.0.1
      */
     @Override
-    public boolean preHandle(HttpServletRequest request, 
+    public boolean preHandle(HttpServletRequest request,
             HttpServletResponse response, Object handler) throws Exception {
- 
+
         if (codeLists == null) {
             return true;
         }

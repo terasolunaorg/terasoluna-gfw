@@ -21,7 +21,8 @@ package org.terasoluna.gfw.common.exception;
  * System exception is to be thrown if something that must exist, is not there (like file, directory, master data etc)
  * </p>
  */
-public class SystemException extends RuntimeException implements ExceptionCodeProvider {
+public class SystemException extends RuntimeException implements
+                                                     ExceptionCodeProvider {
 
     private static final long serialVersionUID = 1L;
 

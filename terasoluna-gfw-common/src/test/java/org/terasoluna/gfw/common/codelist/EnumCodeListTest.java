@@ -29,6 +29,7 @@ public class EnumCodeListTest {
                 "Cancelled");
 
         private final String value;
+
         private final String label;
 
         private OrderStatus(String code, String label) {
@@ -47,7 +48,6 @@ public class EnumCodeListTest {
         }
     }
 
-
     public static enum IllegalEnum {
 
     }
@@ -63,7 +63,6 @@ public class EnumCodeListTest {
 
         assertThat(codeList.asMap(), is(expected));
     }
-
 
     @Test(expected = IllegalArgumentException.class)
     public void testSetInvalidEnum() {

@@ -148,8 +148,8 @@ public class RedirectAuthenticationHandler extends
             String redirectUrl = request.getParameter(targetUrlParameter);
             if (StringUtils.hasText(redirectUrl)) {
                 clearAuthenticationAttributes(request);
-                targetUrlParameterRedirectStrategy.sendRedirect(request, response,
-                        redirectUrl);
+                targetUrlParameterRedirectStrategy.sendRedirect(request,
+                        response, redirectUrl);
                 return;
             }
         }
@@ -164,7 +164,6 @@ public class RedirectAuthenticationHandler extends
      * {@code contextRelative} property of DefaultRedirectStrategy is set to true.<br>
      * In order to set it to {@code false}, {@code targetUrlParameterRedirectStrategy} property <br>
      * must be set in the bean definition <br>
-     * 
      * </p>
      * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
      */

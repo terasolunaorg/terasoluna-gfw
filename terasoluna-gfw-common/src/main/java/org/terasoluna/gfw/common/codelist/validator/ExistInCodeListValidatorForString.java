@@ -20,7 +20,8 @@ package org.terasoluna.gfw.common.codelist.validator;
  * <p>
  * Used if the value of the field for which the custom annotation is used, is of type {@code String} <br>
  * <br>
- * Validates whether the value of field is a valid code existing in the {@link org.terasoluna.gfw.common.codelist.CodeList} specified <br>
+ * Validates whether the value of field is a valid code existing in the {@link org.terasoluna.gfw.common.codelist.CodeList}
+ * specified <br>
  * as a parameter to the {@link org.terasoluna.gfw.common.codelist.ExistInCodeList} annotation.<br>
  * </p>
  */
@@ -28,12 +29,12 @@ package org.terasoluna.gfw.common.codelist.validator;
 public class ExistInCodeListValidatorForString
                                               extends
                                               AbstractExistInCodeListValidator<String> {
-    
-	/**
-	 * Fetches the code value which is the target of validation
-	 * @see org.terasoluna.gfw.common.codelist.validator.AbstractExistInCodeListValidator#getCode(Object)
-	 */
-	@Override
+
+    /**
+     * Fetches the code value which is the target of validation
+     * @see org.terasoluna.gfw.common.codelist.validator.AbstractExistInCodeListValidator#getCode(Object)
+     */
+    @Override
     protected String getCode(String value) {
         return value;
     }

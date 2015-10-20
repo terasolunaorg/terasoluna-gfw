@@ -25,5 +25,6 @@ import org.terasoluna.gfw.common.date.jodatime.DefaultJodaTimeDateFactory;
  * @deprecated please use instead of this class. {@link org.terasoluna.gfw.common.date.jodatime.DefaultJodaTimeDateFactory}
  */
 @Deprecated
-public class DefaultDateFactory extends DefaultJodaTimeDateFactory implements DateFactory {
+public class DefaultDateFactory extends DefaultJodaTimeDateFactory implements
+                                                                  DateFactory {
 }

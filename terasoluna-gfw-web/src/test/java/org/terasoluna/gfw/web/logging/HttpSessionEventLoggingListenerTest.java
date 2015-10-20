@@ -153,7 +153,7 @@ public class HttpSessionEventLoggingListenerTest {
         verifyLogging(attributeRemovedStr, Level.TRACE);
 
     }
-    
+
     /**
      * session create logging
      */

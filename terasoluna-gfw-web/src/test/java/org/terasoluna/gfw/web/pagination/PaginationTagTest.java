@@ -743,7 +743,7 @@ public class PaginationTagTest {
         // That the question-mark(?) is add
         assertThat(getOutput(), is(expected.toString()));
     }
-    
+
     @Test
     public void issue13_14_testDoStartTagInternal_linkOfCurrentPage_specified_true() throws Exception {
         Page<String> page = mock(Page.class);
@@ -778,7 +778,7 @@ public class PaginationTagTest {
         // That the current link is enabled
         assertThat(getOutput(), is(expected.toString()));
     }
-    
+
     @Test
     public void issue13_14_testDoStartTagInternal_linkOfCurrentPage_specified_false() throws Exception {
         Page<String> page = mock(Page.class);
@@ -813,7 +813,7 @@ public class PaginationTagTest {
         // That the current link is enabled
         assertThat(getOutput(), is(expected.toString()));
     }
-    
+
     @Test
     public void issue13_14_testDoStartTagInternal_linkOfCurrentPage_isEmpty() throws Exception {
         Page<String> page = mock(Page.class);

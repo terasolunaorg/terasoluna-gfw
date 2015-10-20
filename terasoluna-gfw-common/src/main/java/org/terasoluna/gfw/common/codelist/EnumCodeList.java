@@ -24,32 +24,26 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * Codelist consisting of values/labels in Enum which implements {@link CodeListItem}.
- * <br>
- * The result of {@link CodeListItem#getCodeValue} is used as a value of codelist (means it is used as a key of map).
- * <br>
+ * Codelist consisting of values/labels in Enum which implements {@link CodeListItem}. <br>
+ * The result of {@link CodeListItem#getCodeValue} is used as a value of codelist (means it is used as a key of map). <br>
  * The result of {@link CodeListItem#getCodeLabel} is used as a label of codelist (means it is used as a value of map).
- *
  * @since 5.0.0
  */
 public class EnumCodeList extends AbstractCodeList {
 
     /**
      * interface of item in codelist
-     *
      * @since 5.0.0
      */
     public static interface CodeListItem {
         /**
          * Returns the label of item
-         *
          * @return label of the item
          */
         String getCodeLabel();
 
         /**
          * Returns the value of item
-         *
          * @return value of the item
          */
         String getCodeValue();
@@ -62,7 +56,6 @@ public class EnumCodeList extends AbstractCodeList {
 
     /**
      * Constructor.
-     *
      * @param enumClass Enum class of which this codelist consists. Must implement {@link CodeListItem}
      * @throws java.lang.IllegalArgumentException if the given class does not implement {@link CodeListItem}
      */
@@ -87,7 +80,6 @@ public class EnumCodeList extends AbstractCodeList {
      * <p>
      * The map is unmodifiable.
      * </p>
-     *
      * @see org.terasoluna.gfw.common.codelist.CodeList#asMap()
      */
     @Override

@@ -56,7 +56,7 @@ public class PaginationTag extends RequestContextAwareTag {
      * @since 1.0.1
      */
     private boolean disableHtmlEscapeOfCriteriaQuery;
-    
+
     /**
      * Flag to enable the link of current page.
      * @since 5.0.0
@@ -220,13 +220,15 @@ public class PaginationTag extends RequestContextAwareTag {
         tagWriter.startTag(innerElement); // <li>
         if (info.isCurrent(page)) {
             tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR, activeClass);
-            if(enableLinkOfCurrentPage) {
-                writeAnchor(tagWriter, info.getPageUrl(page), String.valueOf(page + 1)); // a
+            if (enableLinkOfCurrentPage) {
+                writeAnchor(tagWriter, info.getPageUrl(page), String
+                        .valueOf(page + 1)); // a
             } else {
                 writeAnchor(tagWriter, disabledHref, String.valueOf(page + 1)); // a
             }
         } else {
-            writeAnchor(tagWriter, info.getPageUrl(page), String.valueOf(page + 1)); // a
+            writeAnchor(tagWriter, info.getPageUrl(page), String
+                    .valueOf(page + 1)); // a
         }
         tagWriter.endTag(); // </li>
     }
@@ -417,7 +419,7 @@ public class PaginationTag extends RequestContextAwareTag {
                 disableHtmlEscapeOfCriteriaQuery, false,
                 "disableHtmlEscapeOfCriteriaQuery");
     }
-    
+
     /**
      * Sets the value for enableLinkOfCurrentPage property.
      * <p>
@@ -428,11 +430,9 @@ public class PaginationTag extends RequestContextAwareTag {
      * @throws JspException If value that is not true or false is specified.
      * @since 5.0.0
      */
-    public void setEnableLinkOfCurrentPage(
-            String enableLinkOfCurrentPage) throws JspException {
+    public void setEnableLinkOfCurrentPage(String enableLinkOfCurrentPage) throws JspException {
         this.enableLinkOfCurrentPage = JspTagUtils.toBoolean(
-                enableLinkOfCurrentPage, false,
-                "enableLinkOfCurrentPage");
+                enableLinkOfCurrentPage, false, "enableLinkOfCurrentPage");
     }
 
     /**

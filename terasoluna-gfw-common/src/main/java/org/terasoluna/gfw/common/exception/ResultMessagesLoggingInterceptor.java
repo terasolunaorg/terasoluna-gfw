@@ -76,7 +76,6 @@ public class ResultMessagesLoggingInterceptor implements MethodInterceptor,
      * <li>if other exception occurred , not logging exception.</li>
      * <li>if intercepted on multi point, logging do in starting point of interception.(for prevent duplicate log output)</li>
      * </ol>
-     *
      * @param invocation invocation object of intercepted target's method.
      * @return returned object from intercepted target's method.
      * @throws Throwable if occur exception in invocation target's method.
