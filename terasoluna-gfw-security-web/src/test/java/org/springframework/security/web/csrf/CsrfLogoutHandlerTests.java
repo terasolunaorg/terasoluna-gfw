@@ -55,7 +55,8 @@ public class CsrfLogoutHandlerTests {
 
     @Test
     public void logoutRemovesCsrfToken() {
-        handler.logout(request, response, new TestingAuthenticationToken("user", "password", "ROLE_USER"));
+        handler.logout(request, response,
+                new TestingAuthenticationToken("user", "password", "ROLE_USER"));
 
         verify(csrfTokenRepository).saveToken(null, request, response);
     }

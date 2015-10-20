@@ -342,11 +342,11 @@ public class FunctionsTest {
         String actual = Functions.query(map);
         assertThat(actual, is(matcher));
     }
-    
+
     @Test
     public void testUAndQuery_EncodingDelimiter() {
-        String[] inputStr = {"+", "&", "="};
-        for(String str : inputStr){
+        String[] inputStr = { "+", "&", "=" };
+        for (String str : inputStr) {
             String matcher = "name=" + Functions.u(str);
             Map<String, Object> map = new LinkedHashMap<String, Object>();
             map.put("name", str);
@@ -357,8 +357,8 @@ public class FunctionsTest {
 
     @Test
     public void testUAndQuery_EncodingChar() {
-        String[] inputStr = {"%", "あ", "\n"};
-        for(String str : inputStr){
+        String[] inputStr = { "%", "あ", "\n" };
+        for (String str : inputStr) {
             String matcher = "name=" + Functions.u(str);
             Map<String, Object> map = new LinkedHashMap<String, Object>();
             map.put("name", str);

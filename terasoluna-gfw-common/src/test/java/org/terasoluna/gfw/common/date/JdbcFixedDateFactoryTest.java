@@ -65,8 +65,8 @@ public class JdbcFixedDateFactoryTest {
         jdbcTemplate.getJdbcOperations().execute(
                 "CREATE TABLE system_date(now timestamp NOT NULL)");
         jdbcTemplate.update("INSERT INTO system_date(now) VALUES (:now)",
-                Collections.singletonMap("now", new DateTime(2012, 9, 11, 2,
-                        25, 15, 100).toDate()));
+                Collections.singletonMap("now",
+                        new DateTime(2012, 9, 11, 2, 25, 15, 100).toDate()));
 
         JdbcFixedDateFactory dateFactory = new JdbcFixedDateFactory();
         dateFactory.setDataSource(dataSource);

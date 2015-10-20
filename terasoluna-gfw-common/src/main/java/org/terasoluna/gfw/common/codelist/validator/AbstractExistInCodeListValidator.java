@@ -26,11 +26,10 @@ import org.terasoluna.gfw.common.codelist.CodeList;
 import org.terasoluna.gfw.common.codelist.ExistInCodeList;
 
 /**
- *  Abstract validation implementation class for {@link ExistInCodeList} custom annotation.
+ * Abstract validation implementation class for {@link ExistInCodeList} custom annotation.
  * <p>
- * Validates whether the value of field for which the custom annotation is used, is 
- * a valid code existing in the {@link CodeList} specified as a parameter to the 
- * {@link ExistInCodeList} annotation.
+ * Validates whether the value of field for which the custom annotation is used, is a valid code existing in the
+ * {@link CodeList} specified as a parameter to the {@link ExistInCodeList} annotation.
  * </p>
  */
 public abstract class AbstractExistInCodeListValidator<T> extends

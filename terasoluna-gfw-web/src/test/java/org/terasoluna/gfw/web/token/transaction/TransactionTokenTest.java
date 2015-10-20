@@ -158,8 +158,7 @@ public class TransactionTokenTest {
     @Test
     public void testToString() {
         // run
-        TransactionToken token = new TransactionToken("tokenName", "tokenKey",
-                "tokenValue");
+        TransactionToken token = new TransactionToken("tokenName", "tokenKey", "tokenValue");
         String result = token.getTokenString();
 
         // assert

@@ -15,7 +15,6 @@
  */
 package org.terasoluna.gfw.common.exception;
 
-
 /**
  * Default class for resolving exception level
  */

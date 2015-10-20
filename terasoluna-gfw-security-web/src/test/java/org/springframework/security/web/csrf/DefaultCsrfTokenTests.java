@@ -19,40 +19,41 @@ import org.junit.Test;
 
 /**
  * @author Rob Winch
- *
  */
 public class DefaultCsrfTokenTests {
     private final String headerName = "headerName";
+
     private final String parameterName = "parameterName";
+
     private final String tokenValue = "tokenValue";
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorNullHeaderName() {
-        new DefaultCsrfToken(null,parameterName, tokenValue);
+        new DefaultCsrfToken(null, parameterName, tokenValue);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorEmptyHeaderName() {
-        new DefaultCsrfToken("",parameterName, tokenValue);
+        new DefaultCsrfToken("", parameterName, tokenValue);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorNullParameterName() {
-        new DefaultCsrfToken(headerName,null, tokenValue);
+        new DefaultCsrfToken(headerName, null, tokenValue);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorEmptyParameterName() {
-        new DefaultCsrfToken(headerName,"", tokenValue);
+        new DefaultCsrfToken(headerName, "", tokenValue);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorNullTokenValue() {
-        new DefaultCsrfToken(headerName,parameterName, null);
+        new DefaultCsrfToken(headerName, parameterName, null);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void constructorEmptyTokenValue() {
-        new DefaultCsrfToken(headerName,parameterName, "");
+        new DefaultCsrfToken(headerName, parameterName, "");
     }
 }

@@ -80,7 +80,8 @@ public class CompositeRequestDataValueProcessor implements
 
         String result = action;
         for (RequestDataValueProcessor processor : processors) {
-            result = processActionInvocationHelper.invokeProcessAction(processor, request, action, null);
+            result = processActionInvocationHelper.invokeProcessAction(
+                    processor, request, action, null);
             if (!action.equals(result)) {
                 break;
             }
@@ -88,7 +89,6 @@ public class CompositeRequestDataValueProcessor implements
 
         return result;
     }
-
 
     /**
      * Calls the {@code processAction()} method of all the {@link RequestDataValueProcessor} implementations <br>
@@ -99,11 +99,13 @@ public class CompositeRequestDataValueProcessor implements
      *      java.lang.String, java.lang.String)
      * @since 1.0.2
      */
-    public String processAction(HttpServletRequest request, String action, String method) {
+    public String processAction(HttpServletRequest request, String action,
+            String method) {
 
         String result = action;
         for (RequestDataValueProcessor processor : processors) {
-            result = processActionInvocationHelper.invokeProcessAction(processor, request, action, method);
+            result = processActionInvocationHelper.invokeProcessAction(
+                    processor, request, action, method);
             if (!action.equals(result)) {
                 break;
             }

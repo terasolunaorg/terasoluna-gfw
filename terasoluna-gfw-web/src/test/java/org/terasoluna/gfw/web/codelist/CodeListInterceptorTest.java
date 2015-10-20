@@ -278,9 +278,11 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
         // do assert.
         assertThat(testTarget.getCodeLists(), is(containsInAnyOrder(
-                getApplicationContext().getBean("A_simpleI18nCodeList", CodeList.class),
-                getApplicationContext().getBean("A_numberRangeCodeList", CodeList.class),
-                getApplicationContext().getBean("A_simpleMapCodeList", CodeList.class))));
+                getApplicationContext().getBean("A_simpleI18nCodeList",
+                        CodeList.class), getApplicationContext().getBean(
+                        "A_numberRangeCodeList", CodeList.class),
+                getApplicationContext().getBean("A_simpleMapCodeList",
+                        CodeList.class))));
 
     }
 

@@ -32,9 +32,9 @@ import org.springframework.jdbc.core.RowMapper;
  * </P>
  */
 public class JdbcFixedDateFactory extends AbstractDateFactory {
-	
-	/**
-     * JDBC Template used to access the database to fetch the adjustment value. 
+
+    /**
+     * JDBC Template used to access the database to fetch the adjustment value.
      */
     private JdbcTemplate jdbcTemplate;
 
@@ -44,7 +44,7 @@ public class JdbcFixedDateFactory extends AbstractDateFactory {
     private String currentTimestampQuery;
 
     /**
-     * {@link RowMapper} implementation maps the {@link Timestamp} fetched from database into a {@link DateTime} instance 
+     * {@link RowMapper} implementation maps the {@link Timestamp} fetched from database into a {@link DateTime} instance
      */
     private static final RowMapper<DateTime> DATE_ROW_MAPPER = new RowMapper<DateTime>() {
         @Override
@@ -72,8 +72,8 @@ public class JdbcFixedDateFactory extends AbstractDateFactory {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
     }
 
-    /** the current timestamp received as parameter.
-     * Sets
+    /**
+     * the current timestamp received as parameter. Sets
      * @param currentTimestampQuery SQL to retrieve current timestamp
      */
     public void setCurrentTimestampQuery(String currentTimestampQuery) {

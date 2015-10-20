@@ -19,8 +19,7 @@ import java.util.Collections;
 import java.util.Map;
 
 /**
- * Implementation class for the codelist functionality.
- * codelist is maintained as a map.
+ * Implementation class for the codelist functionality. codelist is maintained as a map.
  */
 public class SimpleMapCodeList extends AbstractCodeList {
 
@@ -40,8 +39,7 @@ public class SimpleMapCodeList extends AbstractCodeList {
     }
 
     /**
-     * Sets codelist information in a Map
-     * This map is stored as an unmodifiable Map
+     * Sets codelist information in a Map This map is stored as an unmodifiable Map
      * @param map codelist information
      */
     public void setMap(Map<String, String> map) {

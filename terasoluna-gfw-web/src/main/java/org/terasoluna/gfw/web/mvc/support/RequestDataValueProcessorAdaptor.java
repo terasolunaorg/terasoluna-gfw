@@ -42,7 +42,8 @@ public class RequestDataValueProcessorAdaptor implements
      *      java.lang.String, java.lang.String)
      * @since 1.0.2
      */
-    public String processAction(HttpServletRequest request, String action, String method) {
+    public String processAction(HttpServletRequest request, String action,
+            String method) {
         return action;
     }
 
