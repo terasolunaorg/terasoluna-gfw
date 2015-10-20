@@ -28,7 +28,8 @@ import org.terasoluna.gfw.common.exception.ExceptionLogger;
 /**
  * Servlet filter class for log output of exception.
  * <p>
- * This class outputs the log of exceptions which do not get handled by {@link org.springframework.web.servlet.HandlerExceptionResolver} of SpringMVC.<br>
+ * This class outputs the log of exceptions which do not get handled by
+ * {@link org.springframework.web.servlet.HandlerExceptionResolver} of SpringMVC.<br>
  * Must be specified in Servlet filter. <br>
  * </p>
  * <p>

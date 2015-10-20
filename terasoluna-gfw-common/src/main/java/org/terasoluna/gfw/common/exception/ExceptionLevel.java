@@ -20,9 +20,9 @@ package org.terasoluna.gfw.common.exception;
  * <p>
  * The exception levels defined are:
  * <ul>
- * <li> INFO </li>
- * <li> WARN </li>
- * <li> ERROR </li>
+ * <li>INFO</li>
+ * <li>WARN</li>
+ * <li>ERROR</li>
  * </ul>
  * </p>
  */

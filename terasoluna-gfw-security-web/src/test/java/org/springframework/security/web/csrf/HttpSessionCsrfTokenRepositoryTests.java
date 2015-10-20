@@ -24,7 +24,6 @@ import org.springframework.mock.web.MockHttpServletResponse;
 
 /**
  * @author Rob Winch
- *
  */
 public class HttpSessionCsrfTokenRepositoryTests {
     private MockHttpServletRequest request;
@@ -32,6 +31,7 @@ public class HttpSessionCsrfTokenRepositoryTests {
     private MockHttpServletResponse response;
 
     private CsrfToken token;
+
     private HttpSessionCsrfTokenRepository repo;
 
     @Before

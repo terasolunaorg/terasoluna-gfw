@@ -40,7 +40,6 @@ import org.springframework.util.Assert;
  * </code>
  * </pre>
  * <hr>
- * 
  * Way3. if you want to set code (+ args) and message text (as default text used when code is not found)
  * 
  * <pre>

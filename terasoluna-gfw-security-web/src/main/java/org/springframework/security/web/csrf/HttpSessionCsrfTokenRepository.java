@@ -25,16 +25,17 @@ import org.springframework.util.Assert;
 
 /**
  * A {@link CsrfTokenRepository} that stores the {@link CsrfToken} in the {@link HttpSession}.
- *
  * @author Rob Winch
  * @since 3.2
  */
-public final class HttpSessionCsrfTokenRepository implements CsrfTokenRepository {
+public final class HttpSessionCsrfTokenRepository implements
+                                                 CsrfTokenRepository {
     private static final String DEFAULT_CSRF_PARAMETER_NAME = "_csrf";
 
     private static final String DEFAULT_CSRF_HEADER_NAME = "X-CSRF-TOKEN";
 
-    private static final String DEFAULT_CSRF_TOKEN_ATTR_NAME = HttpSessionCsrfTokenRepository.class.getName().concat(".CSRF_TOKEN");
+    private static final String DEFAULT_CSRF_TOKEN_ATTR_NAME = HttpSessionCsrfTokenRepository.class
+            .getName().concat(".CSRF_TOKEN");
 
     private String parameterName = DEFAULT_CSRF_PARAMETER_NAME;
 
@@ -44,23 +45,26 @@ public final class HttpSessionCsrfTokenRepository implements CsrfTokenRepository
 
     /*
      * (non-Javadoc)
-     * @see org.springframework.security.web.csrf.CsrfTokenRepository#saveToken(org.springframework.security.web.csrf.CsrfToken, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+     * @see org.springframework.security.web.csrf.CsrfTokenRepository#saveToken(org.springframework.security.web.csrf.CsrfToken,
+     * javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
      */
     public void saveToken(CsrfToken token, HttpServletRequest request,
             HttpServletResponse response) {
         HttpSession session = request.getSession();
-        if(token == null) {
+        if (token == null) {
             session.removeAttribute(sessionAttributeName);
         } else {
             session.setAttribute(sessionAttributeName, token);
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
      * @see org.springframework.security.web.csrf.CsrfTokenRepository#loadToken(javax.servlet.http.HttpServletRequest)
      */
     public CsrfToken loadToken(HttpServletRequest request) {
-        return (CsrfToken) request.getSession().getAttribute(sessionAttributeName);
+        return (CsrfToken) request.getSession().getAttribute(
+                sessionAttributeName);
     }
 
     /*
@@ -81,11 +85,9 @@ public final class HttpSessionCsrfTokenRepository implements CsrfTokenRepository
     }
 
     /**
-     * Sets the header name that the {@link CsrfToken} is expected to appear on
-     * and the header that the response will contain the {@link CsrfToken}.
-     *
-     * @param parameterName
-     *            the new parameter name to use
+     * Sets the header name that the {@link CsrfToken} is expected to appear on and the header that the response will contain
+     * the {@link CsrfToken}.
+     * @param parameterName the new parameter name to use
      */
     public void setHeaderName(String parameterName) {
         Assert.hasLength(parameterName, "parameterName cannot be null or empty");
@@ -97,7 +99,8 @@ public final class HttpSessionCsrfTokenRepository implements CsrfTokenRepository
      * @param sessionAttributeName the new attribute name to use
      */
     public void setSessionAttributeName(String sessionAttributeName) {
-        Assert.hasLength(sessionAttributeName, "sessionAttributename cannot be null or empty");
+        Assert.hasLength(sessionAttributeName,
+                "sessionAttributename cannot be null or empty");
         this.sessionAttributeName = sessionAttributeName;
     }
 

@@ -28,7 +28,6 @@ import org.springframework.security.authentication.TestingAuthenticationToken;
 
 /**
  * @author Rob Winch
- *
  */
 @RunWith(MockitoJUnitRunner.class)
 public class CsrfAuthenticationStrategyTests {
@@ -55,10 +54,11 @@ public class CsrfAuthenticationStrategyTests {
 
     @Test
     public void logoutRemovesCsrfToken() {
-        strategy.onAuthentication(new TestingAuthenticationToken("user", "password", "ROLE_USER"),request, response);
+        strategy.onAuthentication(
+                new TestingAuthenticationToken("user", "password", "ROLE_USER"),
+                request, response);
 
         verify(csrfTokenRepository).saveToken(null, request, response);
     }
 
 }
-

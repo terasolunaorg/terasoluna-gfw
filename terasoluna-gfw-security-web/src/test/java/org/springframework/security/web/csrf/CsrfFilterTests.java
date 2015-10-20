@@ -45,30 +45,33 @@ import org.springframework.security.web.util.RequestMatcher;
 
 /**
  * @author Rob Winch
- *
  */
 @RunWith(MockitoJUnitRunner.class)
 public class CsrfFilterTests {
 
     @Mock
     private RequestMatcher requestMatcher;
+
     @Mock
     private CsrfTokenRepository tokenRepository;
+
     @Mock
     private FilterChain filterChain;
+
     @Mock
     private AccessDeniedHandler deniedHandler;
 
     private MockHttpServletRequest request;
+
     private MockHttpServletResponse response;
+
     private CsrfToken token;
 
     private CsrfFilter filter;
 
     @Before
     public void setup() {
-        token = new DefaultCsrfToken("headerName", "paramName",
-                "csrfTokenValue");
+        token = new DefaultCsrfToken("headerName", "paramName", "csrfTokenValue");
         resetRequestResponse();
         filter = new CsrfFilter(tokenRepository);
         filter.setRequireCsrfProtectionMatcher(requestMatcher);
@@ -87,28 +90,29 @@ public class CsrfFilterTests {
 
     // SEC-2276
     @Test
-    public void doFilterDoesNotSaveCsrfTokenUntilAccessed() throws ServletException,
-            IOException {
+    public void doFilterDoesNotSaveCsrfTokenUntilAccessed() throws ServletException, IOException {
         when(requestMatcher.matches(request)).thenReturn(false);
         when(tokenRepository.generateToken(request)).thenReturn(token);
 
         filter.doFilter(request, response, filterChain);
-        CsrfToken attrToken = (CsrfToken) request.getAttribute(token.getParameterName());
+        CsrfToken attrToken = (CsrfToken) request.getAttribute(token
+                .getParameterName());
 
         // no CsrfToken should have been saved yet
-        verify(tokenRepository,times(0)).saveToken(any(CsrfToken.class), any(HttpServletRequest.class), any(HttpServletResponse.class));
+        verify(tokenRepository, times(0)).saveToken(any(CsrfToken.class),
+                any(HttpServletRequest.class), any(HttpServletResponse.class));
         verify(filterChain).doFilter(request, response);
 
         // access the token
         attrToken.getToken();
 
         // now the CsrfToken should have been saved
-        verify(tokenRepository).saveToken(eq(token), any(HttpServletRequest.class), any(HttpServletResponse.class));
+        verify(tokenRepository).saveToken(eq(token),
+                any(HttpServletRequest.class), any(HttpServletResponse.class));
     }
 
     @Test
-    public void doFilterAccessDeniedNoTokenPresent() throws ServletException,
-            IOException {
+    public void doFilterAccessDeniedNoTokenPresent() throws ServletException, IOException {
         when(requestMatcher.matches(request)).thenReturn(true);
         when(tokenRepository.loadToken(request)).thenReturn(token);
 
@@ -125,8 +129,7 @@ public class CsrfFilterTests {
     }
 
     @Test
-    public void doFilterAccessDeniedIncorrectTokenPresent()
-            throws ServletException, IOException {
+    public void doFilterAccessDeniedIncorrectTokenPresent() throws ServletException, IOException {
         when(requestMatcher.matches(request)).thenReturn(true);
         when(tokenRepository.loadToken(request)).thenReturn(token);
         request.setParameter(token.getParameterName(), token.getToken()
@@ -145,8 +148,7 @@ public class CsrfFilterTests {
     }
 
     @Test
-    public void doFilterAccessDeniedIncorrectTokenPresentHeader()
-            throws ServletException, IOException {
+    public void doFilterAccessDeniedIncorrectTokenPresentHeader() throws ServletException, IOException {
         when(requestMatcher.matches(request)).thenReturn(true);
         when(tokenRepository.loadToken(request)).thenReturn(token);
         request.addHeader(token.getHeaderName(), token.getToken() + " INVALID");
@@ -164,8 +166,7 @@ public class CsrfFilterTests {
     }
 
     @Test
-    public void doFilterAccessDeniedIncorrectTokenPresentHeaderPreferredOverParameter()
-            throws ServletException, IOException {
+    public void doFilterAccessDeniedIncorrectTokenPresentHeaderPreferredOverParameter() throws ServletException, IOException {
         when(requestMatcher.matches(request)).thenReturn(true);
         when(tokenRepository.loadToken(request)).thenReturn(token);
         request.setParameter(token.getParameterName(), token.getToken());
@@ -184,8 +185,7 @@ public class CsrfFilterTests {
     }
 
     @Test
-    public void doFilterNotCsrfRequestExistingToken() throws ServletException,
-            IOException {
+    public void doFilterNotCsrfRequestExistingToken() throws ServletException, IOException {
         when(requestMatcher.matches(request)).thenReturn(false);
         when(tokenRepository.loadToken(request)).thenReturn(token);
 
@@ -201,11 +201,9 @@ public class CsrfFilterTests {
     }
 
     @Test
-    public void doFilterNotCsrfRequestGenerateToken() throws ServletException,
-            IOException {
+    public void doFilterNotCsrfRequestGenerateToken() throws ServletException, IOException {
         when(requestMatcher.matches(request)).thenReturn(false);
-        when(tokenRepository.generateToken(request))
-                .thenReturn(token);
+        when(tokenRepository.generateToken(request)).thenReturn(token);
 
         filter.doFilter(request, response, filterChain);
 
@@ -219,8 +217,7 @@ public class CsrfFilterTests {
     }
 
     @Test
-    public void doFilterIsCsrfRequestExistingTokenHeader()
-            throws ServletException, IOException {
+    public void doFilterIsCsrfRequestExistingTokenHeader() throws ServletException, IOException {
         when(requestMatcher.matches(request)).thenReturn(true);
         when(tokenRepository.loadToken(request)).thenReturn(token);
         request.addHeader(token.getHeaderName(), token.getToken());
@@ -237,8 +234,7 @@ public class CsrfFilterTests {
     }
 
     @Test
-    public void doFilterIsCsrfRequestExistingTokenHeaderPreferredOverInvalidParam()
-            throws ServletException, IOException {
+    public void doFilterIsCsrfRequestExistingTokenHeaderPreferredOverInvalidParam() throws ServletException, IOException {
         when(requestMatcher.matches(request)).thenReturn(true);
         when(tokenRepository.loadToken(request)).thenReturn(token);
         request.setParameter(token.getParameterName(), token.getToken()
@@ -257,8 +253,7 @@ public class CsrfFilterTests {
     }
 
     @Test
-    public void doFilterIsCsrfRequestExistingToken() throws ServletException,
-            IOException {
+    public void doFilterIsCsrfRequestExistingToken() throws ServletException, IOException {
         when(requestMatcher.matches(request)).thenReturn(true);
         when(tokenRepository.loadToken(request)).thenReturn(token);
         request.setParameter(token.getParameterName(), token.getToken());
@@ -275,11 +270,9 @@ public class CsrfFilterTests {
     }
 
     @Test
-    public void doFilterIsCsrfRequestGenerateToken() throws ServletException,
-            IOException {
+    public void doFilterIsCsrfRequestGenerateToken() throws ServletException, IOException {
         when(requestMatcher.matches(request)).thenReturn(true);
-        when(tokenRepository.generateToken(request))
-                .thenReturn(token);
+        when(tokenRepository.generateToken(request)).thenReturn(token);
         request.setParameter(token.getParameterName(), token.getToken());
 
         filter.doFilter(request, response, filterChain);
@@ -294,8 +287,7 @@ public class CsrfFilterTests {
     }
 
     @Test
-    public void doFilterDefaultRequireCsrfProtectionMatcherAllowedMethods()
-            throws ServletException, IOException {
+    public void doFilterDefaultRequireCsrfProtectionMatcherAllowedMethods() throws ServletException, IOException {
         filter = new CsrfFilter(tokenRepository);
         filter.setAccessDeniedHandler(deniedHandler);
 
@@ -312,16 +304,13 @@ public class CsrfFilterTests {
     }
 
     /**
-     * SEC-2292 Should not allow other cases through since spec states HTTP
-     * method is case sensitive
+     * SEC-2292 Should not allow other cases through since spec states HTTP method is case sensitive
      * http://www.w3.org/Protocols/rfc2616/rfc2616-sec5.html#sec5.1.1
-     *
      * @throws ServletException
      * @throws IOException
      */
     @Test
-    public void doFilterDefaultRequireCsrfProtectionMatcherAllowedMethodsCaseSensitive()
-            throws ServletException, IOException {
+    public void doFilterDefaultRequireCsrfProtectionMatcherAllowedMethodsCaseSensitive() throws ServletException, IOException {
         filter = new CsrfFilter(tokenRepository);
         filter.setAccessDeniedHandler(deniedHandler);
 
@@ -339,8 +328,7 @@ public class CsrfFilterTests {
     }
 
     @Test
-    public void doFilterDefaultRequireCsrfProtectionMatcherDeniedMethods()
-            throws ServletException, IOException {
+    public void doFilterDefaultRequireCsrfProtectionMatcherDeniedMethods() throws ServletException, IOException {
         filter = new CsrfFilter(tokenRepository);
         filter.setAccessDeniedHandler(deniedHandler);
 
@@ -359,8 +347,7 @@ public class CsrfFilterTests {
     }
 
     @Test
-    public void doFilterDefaultAccessDenied() throws ServletException,
-            IOException {
+    public void doFilterDefaultAccessDenied() throws ServletException, IOException {
         filter = new CsrfFilter(tokenRepository);
         filter.setRequireCsrfProtectionMatcher(requestMatcher);
         when(requestMatcher.matches(request)).thenReturn(true);
@@ -389,25 +376,26 @@ public class CsrfFilterTests {
     }
 
     private static final CsrfTokenAssert assertToken(Object token) {
-        return new CsrfTokenAssert((CsrfToken)token);
+        return new CsrfTokenAssert((CsrfToken) token);
     }
 
-    private static class CsrfTokenAssert extends
-            GenericAssert<CsrfTokenAssert, CsrfToken> {
+    private static class CsrfTokenAssert
+                                        extends
+                                        GenericAssert<CsrfTokenAssert, CsrfToken> {
 
         /**
          * Creates a new </code>{@link ObjectAssert}</code>.
-         *
-         * @param actual
-         *            the target to verify.
+         * @param actual the target to verify.
          */
         protected CsrfTokenAssert(CsrfToken actual) {
             super(CsrfTokenAssert.class, actual);
         }
 
         public CsrfTokenAssert isEqualTo(CsrfToken expected) {
-            assertThat(actual.getHeaderName()).isEqualTo(expected.getHeaderName());
-            assertThat(actual.getParameterName()).isEqualTo(expected.getParameterName());
+            assertThat(actual.getHeaderName()).isEqualTo(
+                    expected.getHeaderName());
+            assertThat(actual.getParameterName()).isEqualTo(
+                    expected.getParameterName());
             assertThat(actual.getToken()).isEqualTo(expected.getToken());
             return this;
         }

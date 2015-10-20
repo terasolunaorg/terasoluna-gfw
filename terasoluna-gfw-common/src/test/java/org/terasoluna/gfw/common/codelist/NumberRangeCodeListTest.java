@@ -209,8 +209,7 @@ public class NumberRangeCodeListTest {
     }
 
     /**
-     * Tests the following : 1) if negative value is set to interval
-     * issues/6 added message assertion
+     * Tests the following : 1) if negative value is set to interval issues/6 added message assertion
      */
     @Test
     public void TestAfterPropertiesSet07() {

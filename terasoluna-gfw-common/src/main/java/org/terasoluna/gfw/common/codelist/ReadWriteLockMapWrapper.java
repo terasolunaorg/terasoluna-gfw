@@ -23,9 +23,7 @@ import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
 /**
- * {@link Map} implementation class which enables thread-safe 
- * operations on the map of key-value pairs contained in it.
- *
+ * {@link Map} implementation class which enables thread-safe operations on the map of key-value pairs contained in it.
  * @param <K> Key
  * @param <V> Value
  */
@@ -42,7 +40,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
 
     /**
      * Constructor with a single {@link Map} parameter.
-     * @param map 
+     * @param map
      */
     public ReadWriteLockMapWrapper(Map<K, V> map) {
         this.map = map;
@@ -58,10 +56,9 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * @param <T> The return type of the method represented by the instance of implementation of this interface.
      */
     public interface LockedCallback<T> {
-        
+
         /**
          * Implementation must first acquire read or write lock before calling the method represented by this contract <br>
-         * 
          * @return value returned by the method call
          */
         T apply();
@@ -70,16 +67,16 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
     /**
      * Provides read locked call to a method of {@link Map}. {@link Map} is not locked exclusively. <br>
      * <p>
-     * {@link Map} is the shared resource which is wrapped in this class. Access to this shared resource is regulated 
-     * using {@link ReadWriteLock} implementation. A read lock can be acquired by as any number of threads.
-     * A read lock does not block other read locks. 
+     * {@link Map} is the shared resource which is wrapped in this class. Access to this shared resource is regulated using
+     * {@link ReadWriteLock} implementation. A read lock can be acquired by as any number of threads. A read lock does not block
+     * other read locks.
      * </p>
      * <p>
      * A {@link LockedCallback} instance passed as argument to this method. It represents a method call of the {@link Map}.<br>
-     * A read lock is first acquired over the {@code Map} and then using {@code callback}, method represented by {@code callback} <br>
+     * A read lock is first acquired over the {@code Map} and then using {@code callback}, method represented by
+     * {@code callback} <br>
      * is executed.
      * </p>
-     * 
      * @param callback An instance of {@link LockedCallback} which represents a method call of {@link Map}
      * @return the return value of the method represented by {@code callback}
      */
@@ -96,18 +93,18 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
     }
 
     /**
-     * Provides write locked call to a method of {@link Map}. {@link Map} is exclusively locked for write operation. <br> 
+     * Provides write locked call to a method of {@link Map}. {@link Map} is exclusively locked for write operation. <br>
      * <p>
-     * {@link Map} is the shared resource which is wrapped in this class. Access to this shared resource is regulated <br>  
-     * using {@link ReadWriteLock} implementation. A write lock can be acquired by only a single thread. No read lock can be <br> 
+     * {@link Map} is the shared resource which is wrapped in this class. Access to this shared resource is regulated <br>
+     * using {@link ReadWriteLock} implementation. A write lock can be acquired by only a single thread. No read lock can be <br>
      * acquired while the resource is write locked. A write lock blocks other write locks as well as read locks. <br>
      * </p>
      * <p>
      * A {@link LockedCallback} instance passed as argument to this method. It represents a method call of the {@link Map}.<br>
-     * A read lock is first acquired over the {@code Map} and then using {@code callback}, method represented by {@code callback} <br>
+     * A read lock is first acquired over the {@code Map} and then using {@code callback}, method represented by
+     * {@code callback} <br>
      * is executed.<br>
      * </p>
-     * 
      * @param callback An instance of {@link LockedCallback} which represents a method call of {@link Map}
      * @return the return value of the method represented by {@code callback}
      */
@@ -138,7 +135,6 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
 
     /**
      * A read locked call to {@code isEmpty()} method of {@link Map}
-     *
      * @see java.util.Map#isEmpty()
      */
     public boolean isEmpty() {
@@ -152,7 +148,6 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
 
     /**
      * A read locked call to {@code containsKey()} method of {@link Map}
-     * 
      * @see java.util.Map#containsKey(java.lang.Object)
      */
     public boolean containsKey(final Object key) {
@@ -166,7 +161,6 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
 
     /**
      * A read locked call to {@code containsValue()} method of {@link Map}
-     * 
      * @see java.util.Map#containsValue(java.lang.Object)
      */
     public boolean containsValue(final Object value) {
@@ -180,7 +174,6 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
 
     /**
      * A read locked call to {@code get()} method of {@link Map}
-     * 
      * @see java.util.Map#get(java.lang.Object)
      */
     public V get(final Object key) {
@@ -194,7 +187,6 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
 
     /**
      * A write locked call to {@code put()} method of {@link Map}
-     * 
      * @see java.util.Map#put(java.lang.Object, java.lang.Object)
      */
     public V put(final K key, final V value) {
@@ -208,7 +200,6 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
 
     /**
      * A write locked call to {@code remove()} method of {@link Map}
-     * 
      * @see java.util.Map#remove(java.lang.Object)
      */
     public V remove(final Object key) {
@@ -222,7 +213,6 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
 
     /**
      * A write locked call to {@code putAll()} method of {@link Map}
-     * 
      * @see java.util.Map#putAll(java.util.Map)
      */
     public void putAll(final Map<? extends K, ? extends V> m) {
@@ -237,7 +227,6 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
 
     /**
      * A write locked call to {@code clear()} method of {@link Map}
-     * 
      * @see java.util.Map#clear()
      */
     public void clear() {
@@ -251,11 +240,10 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
     }
 
     /**
-     * A write locked call to {@code clear()} and {@link #putAll(java.util.Map)}} methods of {@link Map}
+     * A write locked call to {@code clear()} and {@link #putAll(java.util.Map)} methods of {@link Map}
      * <p>
-     * Clears the {@link Map} which is encapsulated in this class and loads it with new values of<br> 
+     * Clears the {@link Map} which is encapsulated in this class and loads it with new values of<br>
      * the {@link Map} received as argument.
-     * 
      * @param m {@link Map} with new values
      */
     public void clearAndPutAll(final Map<? extends K, ? extends V> m) {
@@ -271,7 +259,6 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
 
     /**
      * A read locked call to {@code keySet()} method of {@link Map}
-     * 
      * @see java.util.Map#keySet()
      */
     public Set<K> keySet() {
@@ -285,7 +272,6 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
 
     /**
      * A read locked call to {@code values()} method of {@link Map}
-     * 
      * @see java.util.Map#values()
      */
     public Collection<V> values() {
@@ -299,7 +285,6 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
 
     /**
      * A read locked call to {@code entrySet()} method of {@link Map}
-     * 
      * @see java.util.Map#entrySet()
      */
     public Set<java.util.Map.Entry<K, V>> entrySet() {
@@ -313,7 +298,6 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
 
     /**
      * A read locked call to {@code equals()} method of {@link Map}
-     * 
      * @see java.lang.Object#equals(java.lang.Object)
      */
     public boolean equals(final Object o) {
@@ -327,7 +311,6 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
 
     /**
      * A read locked call to {@code hashCode()} method of {@link Map}
-     * 
      * @see java.lang.Object#hashCode()
      */
     public int hashCode() {

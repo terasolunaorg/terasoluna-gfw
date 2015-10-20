@@ -73,8 +73,7 @@ public class TransactionTokenRequestDataValueProcessorTest {
         // setup arguments
         TransactionTokenRequestDataValueProcessor processor = new TransactionTokenRequestDataValueProcessor();
         HttpServletRequest request = mock(HttpServletRequest.class);
-        TransactionToken token = new TransactionToken("tokenName", "tokenkey",
-                "tokenValue");
+        TransactionToken token = new TransactionToken("tokenName", "tokenkey", "tokenValue");
 
         // mock behavior
         when(

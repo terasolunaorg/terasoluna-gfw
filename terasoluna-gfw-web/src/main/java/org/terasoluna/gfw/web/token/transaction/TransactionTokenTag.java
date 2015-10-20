@@ -35,8 +35,7 @@ public class TransactionTokenTag extends AbstractHtmlElementTag {
      * @see org.springframework.web.servlet.tags.form.AbstractFormTag#writeTagContent(org.springframework.web.servlet.tags.form.TagWriter)
      */
     @Override
-    protected int writeTagContent(final TagWriter tagWriter)
-                                                            throws JspException {
+    protected int writeTagContent(final TagWriter tagWriter) throws JspException {
         HttpServletRequest request = (HttpServletRequest) pageContext
                 .getRequest();
 

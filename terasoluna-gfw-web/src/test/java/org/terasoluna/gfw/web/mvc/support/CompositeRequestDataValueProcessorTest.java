@@ -59,8 +59,8 @@ public class CompositeRequestDataValueProcessorTest {
         // for Spring4
         when(
                 requestDataValueProcessor.processAction(
-                        (HttpServletRequest) (anyObject()), anyString(), anyString()))
-                .thenReturn("action");
+                        (HttpServletRequest) (anyObject()), anyString(),
+                        anyString())).thenReturn("action");
         String result = compositeRequestDataValueProcessor.processAction(
                 request, "action");
         assertThat(result, is("action"));
@@ -77,8 +77,8 @@ public class CompositeRequestDataValueProcessorTest {
         // for Spring4
         when(
                 requestDataValueProcessor.processAction(
-                        (HttpServletRequest) (anyObject()), anyString(), anyString()))
-                .thenReturn("other_action");
+                        (HttpServletRequest) (anyObject()), anyString(),
+                        anyString())).thenReturn("other_action");
         String result = compositeRequestDataValueProcessor.processAction(
                 request, "action");
         assertThat(result, is("other_action"));

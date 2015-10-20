@@ -22,17 +22,16 @@ import java.util.Date;
 /**
  * Abstract implementation of {@link DateFactory}.
  * <p>
- * This class converts from {@link org.joda.time.DateTime} to {@link java.util.Date}, {@link java.sql.Timestamp}, {@link java.sql.Date},
- * {@link java.sql.Time} <br>
+ * This class converts from {@link org.joda.time.DateTime} to {@link java.util.Date}, {@link java.sql.Timestamp},
+ * {@link java.sql.Date}, {@link java.sql.Time} <br>
  * so all things that concrete classes do is to return current {@link org.joda.time.DateTime}.
  * </p>
  */
 public abstract class AbstractDateFactory implements DateFactory {
 
-	/**
-	 * Returns {@link java.util.Date} instance for the current date.
-	 * 
-	 * @return Date current date
+    /**
+     * Returns {@link java.util.Date} instance for the current date.
+     * @return Date current date
      */
     @Override
     public Date newDate() {
@@ -40,9 +39,8 @@ public abstract class AbstractDateFactory implements DateFactory {
     }
 
     /**
-	 * Returns {@link java.sql.Timestamp} instance corresponding to current date and time.
-	 * 
-	 * @return Timestamp current date
+     * Returns {@link java.sql.Timestamp} instance corresponding to current date and time.
+     * @return Timestamp current date
      */
     @Override
     public Timestamp newTimestamp() {
@@ -55,7 +53,6 @@ public abstract class AbstractDateFactory implements DateFactory {
      * <p>
      * normalize hour,minute,second,milliSecond to 0.
      * </p>
-     * 
      * @return Date {@link java.sql.Date} instance for current date
      */
     @Override

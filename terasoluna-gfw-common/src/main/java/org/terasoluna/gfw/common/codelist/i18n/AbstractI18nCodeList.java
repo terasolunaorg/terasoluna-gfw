@@ -21,9 +21,8 @@ import java.util.Map;
 import org.terasoluna.gfw.common.codelist.AbstractCodeList;
 
 /**
- * Abstract extended implementation of {@link AbstractCodeList}. Adds 
- * Internationalization support to {@link AbstractCodeList} by implementing
- * {I18nCodeList} interface.
+ * Abstract extended implementation of {@link AbstractCodeList}. Adds Internationalization support to {@link AbstractCodeList}
+ * by implementing {I18nCodeList} interface.
  */
 public abstract class AbstractI18nCodeList extends AbstractCodeList implements
                                                                    I18nCodeList {

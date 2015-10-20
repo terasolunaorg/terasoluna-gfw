@@ -17,10 +17,8 @@ package org.springframework.security.web.csrf;
 
 import org.springframework.security.access.AccessDeniedException;
 
-
 /**
  * Thrown when an invalid or missing {@link CsrfToken} is found in the HttpServletRequest
- *
  * @author Rob Winch
  * @since 3.2
  */
@@ -30,7 +28,8 @@ public class InvalidCsrfTokenException extends AccessDeniedException {
     /**
      * @param msg
      */
-    public InvalidCsrfTokenException(CsrfToken expectedAccessToken, String actualAccessToken) {
+    public InvalidCsrfTokenException(CsrfToken expectedAccessToken,
+            String actualAccessToken) {
         super("Invalid CSRF Token '" + actualAccessToken
                 + "' was found on the request parameter '"
                 + expectedAccessToken.getParameterName() + "' or header '"

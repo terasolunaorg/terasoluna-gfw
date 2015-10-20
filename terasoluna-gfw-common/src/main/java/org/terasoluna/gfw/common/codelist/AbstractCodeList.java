@@ -28,7 +28,7 @@ public abstract class AbstractCodeList implements CodeList, BeanNameAware {
 
     /**
      * Setter method for bean name of the {@link CodeList} bean
-     * @param beanName name or id of the bean defining {@link CodeList} 
+     * @param beanName name or id of the bean defining {@link CodeList}
      * @see org.springframework.beans.factory.BeanNameAware#setBeanName(java.lang.String)
      */
     @Override
