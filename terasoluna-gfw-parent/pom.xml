@@ -524,6 +524,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <archetype.test.skip>true</archetype.test.skip>
         <encoding>UTF-8</encoding>
-        <java-version>1.6</java-version>
+        <java-version>1.7</java-version>
     </properties>
 </project>
