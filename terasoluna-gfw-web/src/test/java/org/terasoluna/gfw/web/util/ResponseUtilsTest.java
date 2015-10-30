@@ -16,9 +16,7 @@
 package org.terasoluna.gfw.web.util;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.lang.reflect.Constructor;
 
@@ -40,7 +38,8 @@ public class ResponseUtilsTest {
         assertThat(response.getHeader("Cache-Control"),
                 is("private,no-store,no-cache,must-revalidate"));
         assertThat(response.getHeader("Pragma"), is("no-cache"));
-        assertThat(response.getHeader("Expires"), is("1"));
+        assertThat(response.getHeader("Expires"),
+                is("Thu, 01 Jan 1970 00:00:00 GMT")); // Changed by SPR-11912
     }
 
     @Test
