@@ -421,13 +421,18 @@
             </dependency>
             <!-- == End Spring IO Platform == -->
 
-            <!-- == Begin Mybatis == -->
+            <!-- == Begin MyBatis == -->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${org.mybatis.version}</version>
+            </dependency>
             <dependency>
                 <groupId>org.mybatis</groupId>
                 <artifactId>mybatis-spring</artifactId>
                 <version>${org.mybatis.spring.version}</version>
             </dependency>
-            <!-- == End Mybatis == -->
+            <!-- == End MyBatis == -->
 
             <!-- == Begin Dozer== -->
             <dependency>
