@@ -9,21 +9,20 @@
     </parent>
     <artifactId>terasoluna-gfw-mybatis3</artifactId>
     <name>TERASOLUNA Server Framework for Java (5.x) for MyBatis3</name>
-    <description>Maven dependency definition for using mybatis3</description>
+    <description>Maven dependency definition for using MyBatis3</description>
     <url>http://terasoluna.org</url>
 
     <dependencies>
-        <!-- == Begin Mybatis == -->
+        <!-- == Begin MyBatis == -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>${org.mybatis.version}</version>
         </dependency>
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis-spring</artifactId>
         </dependency>
-        <!-- == End Mybatis == -->
+        <!-- == End MyBatis == -->
     </dependencies>
 
 </project>
