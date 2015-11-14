@@ -91,11 +91,12 @@ public @interface Before {
     /**
      * Defines several {@link Before} annotations on the same element.
      * @see Before
+     * @since 5.1.0
      */
     @Documented
     @Target({ METHOD, FIELD, TYPE, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
     @Retention(RUNTIME)
-    public @interface List {
+    @interface List {
         Before[] value();
     }
 }

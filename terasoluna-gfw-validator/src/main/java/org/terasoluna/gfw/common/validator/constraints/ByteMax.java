@@ -76,11 +76,12 @@ public @interface ByteMax {
     /**
      * Defines several {@link ByteMax} annotations on the same element.
      * @see ByteMax
+     * @since 5.1.0
      */
     @Documented
     @Target({ METHOD, FIELD, TYPE, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
     @Retention(RUNTIME)
-    public @interface List {
+    @interface List {
         ByteMax[] value();
     }
 }

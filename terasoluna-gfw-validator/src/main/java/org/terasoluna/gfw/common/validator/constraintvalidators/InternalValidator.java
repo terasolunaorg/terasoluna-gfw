@@ -18,6 +18,7 @@ package org.terasoluna.gfw.common.validator.constraintvalidators;
 /**
  * Abstract class of internal validator.
  * @param <T> validate target type
+ * @since 5.1.0
  */
 abstract class InternalValidator<T> {
 

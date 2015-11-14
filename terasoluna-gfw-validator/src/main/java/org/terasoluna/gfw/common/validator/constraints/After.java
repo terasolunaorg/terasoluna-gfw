@@ -91,11 +91,12 @@ public @interface After {
     /**
      * Defines several {@link After} annotations on the same element.
      * @see After
+     * @since 5.1.0
      */
     @Documented
     @Target({ METHOD, FIELD, TYPE, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
     @Retention(RUNTIME)
-    public @interface List {
+    @interface List {
         After[] value();
     }
 }

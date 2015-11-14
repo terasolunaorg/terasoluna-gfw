@@ -50,7 +50,7 @@ public class AfterValidator implements ConstraintValidator<After, Object> {
     /**
      * Internal validators.
      */
-    private Set<InternalValidator<?>> validators = new HashSet<InternalValidator<?>>();
+    private Set<InternalValidator<?>> validators = new HashSet<>();
 
     /**
      * The Compare destination date time.
@@ -111,7 +111,6 @@ public class AfterValidator implements ConstraintValidator<After, Object> {
      * @see javax.validation.ConstraintValidator#isValid(java.lang.Object, javax.validation.ConstraintValidatorContext)
      */
     @Override
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         if (value == null) {
             return true;
@@ -119,7 +118,9 @@ public class AfterValidator implements ConstraintValidator<After, Object> {
 
         for (InternalValidator validator : validators) {
             if (validator.isGenericType(value)) {
-                return validator.isAfter(value, date, format);
+                @SuppressWarnings("unchecked")
+                boolean result = validator.isAfter(value, date, format);
+                return result;
             }
         }
 

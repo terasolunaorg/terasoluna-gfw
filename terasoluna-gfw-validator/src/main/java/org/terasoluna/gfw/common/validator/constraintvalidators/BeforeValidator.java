@@ -50,7 +50,7 @@ public class BeforeValidator implements ConstraintValidator<Before, Object> {
     /**
      * Internal validators.
      */
-    private Set<InternalValidator<?>> validators = new HashSet<InternalValidator<?>>();
+    private Set<InternalValidator<?>> validators = new HashSet<>();
 
     /**
      * The Compare destination date time.
@@ -106,12 +106,11 @@ public class BeforeValidator implements ConstraintValidator<Before, Object> {
      * @param value object to validate
      * @param context context in which the constraint is evaluated
      * @return {@code true} if {@code value} is before(not allow equal) the specified date time, or null. otherwise
-     *         {@code false} .
+     *         {@code false}.
      * @throws IllegalArgumentException {@code value} type is not match any type of internal validator target.
      * @see javax.validation.ConstraintValidator#isValid(java.lang.Object, javax.validation.ConstraintValidatorContext)
      */
     @Override
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     public boolean isValid(Object value, ConstraintValidatorContext context) {
         if (value == null) {
             return true;
@@ -119,7 +118,9 @@ public class BeforeValidator implements ConstraintValidator<Before, Object> {
 
         for (InternalValidator validator : validators) {
             if (validator.isGenericType(value)) {
-                return validator.isBefore(value, date, format);
+                @SuppressWarnings("unchecked")
+                boolean result = validator.isBefore(value, date, format);
+                return result;
             }
         }
 
