@@ -83,18 +83,20 @@ public @interface Compare {
     /**
      * Defines several {@link Compare} annotations on the same element.
      * @see Compare
+     * @since 5.1.0
      */
     @Documented
     @Target({ METHOD, FIELD, TYPE, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
     @Retention(RUNTIME)
-    public @interface List {
+    @interface List {
         Compare[] value();
     }
 
     /**
      * The operator used in the {@link Compare} comparison.
+     * @since 5.1.0
      */
-    public enum Operator {
+    enum Operator {
 
         /**
          * Source must be less than or equal destination.

@@ -27,6 +27,7 @@ import org.joda.time.format.DateTimeFormat;
  * @see InternalValidator
  * @see AfterValidator
  * @see BeforeValidator
+ * @since 5.1.0
  */
 class InternalValidatorForReadableInstant extends
                                          InternalValidator<ReadableInstant> {

@@ -76,11 +76,12 @@ public @interface ByteMin {
     /**
      * Defines several {@link ByteMin} annotations on the same element.
      * @see ByteMin
+     * @since 5.1.0
      */
     @Documented
     @Target({ METHOD, FIELD, TYPE, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
     @Retention(RUNTIME)
-    public @interface List {
+    @interface List {
         ByteMin[] value();
     }
 }

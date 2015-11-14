@@ -90,12 +90,12 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
             return false;
         }
 
-        if (isCompareValid(sourceValue, destinationValue)) {
-            return true;
-        } else {
+        if (!isCompareValid(sourceValue, destinationValue)) {
             constructValidationMessage(context);
             return false;
         }
+
+        return true;
     }
 
     /**
@@ -122,8 +122,8 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
      * @return {@code true} if result to comparing {@code source} and {@code destination} is expected {@code operator}.
      *         otherwise {@code false}.
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     private boolean isCompareValid(Object sourceValue, Object destinationValue) {
+        @SuppressWarnings("unchecked")
         int result = ((Comparable) sourceValue).compareTo(destinationValue);
 
         for (int operatorValue : operator.value()) {

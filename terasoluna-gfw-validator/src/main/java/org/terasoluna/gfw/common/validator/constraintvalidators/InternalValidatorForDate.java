@@ -27,6 +27,7 @@ import java.util.Date;
  * @see InternalValidator
  * @see AfterValidator
  * @see BeforeValidator
+ * @since 5.1.0
  */
 class InternalValidatorForDate extends InternalValidator<Date> {
 

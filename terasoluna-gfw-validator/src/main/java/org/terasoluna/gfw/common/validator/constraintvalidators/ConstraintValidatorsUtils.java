@@ -20,21 +20,22 @@ import java.lang.reflect.Method;
 
 /**
  * Utility methods for constraint validators and internal validators.
+ * @since 5.1.0
  */
 class ConstraintValidatorsUtils {
 
     /**
      * Wrap the exception in {@link IllegalArgumentException} with initialize error messages.
-     * @param e caused exception
+     * @param cause caused throwable
      * @return wrapped exception
      */
-    static IllegalArgumentException reportFailedToInitialize(Throwable e) {
-        return new IllegalArgumentException("failed to initialize validator by invalid argument", e);
+    static IllegalArgumentException reportFailedToInitialize(Throwable cause) {
+        return new IllegalArgumentException("failed to initialize validator by invalid argument", cause);
     }
 
     /**
      * Wrap the exception in {@link IllegalArgumentException} with unexpected type messages.
-     * @param e caused exception
+     * @param value validation target value
      * @return wrapped exception
      */
     static IllegalArgumentException reportUnexpectedType(Object value) {
@@ -100,19 +101,19 @@ class ConstraintValidatorsUtils {
         try {
             classLoader = Thread.currentThread().getContextClassLoader();
         } catch (Throwable e) {
-            // cannot access thread classLoader.
+            // cannot access context class loader for current thread.
         }
         if (classLoader == null) {
             try {
                 classLoader = ConstraintValidatorsUtils.class.getClassLoader();
             } catch (Throwable e) {
-                // cannot access this class classloader.
+                // cannot access this class load for this class.
             }
             if (classLoader == null) {
                 try {
                     classLoader = ClassLoader.getSystemClassLoader();
                 } catch (Throwable e) {
-                    // cannot access system classloader.
+                    // cannot access system class loader.
                 }
             }
         }
