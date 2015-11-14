@@ -11,4 +11,8 @@ cache:
 
 install: true
 
-script: ./mvn-build-all.sh
+script:
+  - jdk_switcher use oraclejdk8
+  - export JAVA8_PLUS_HOME=$JAVA_HOME
+  - jdk_switcher use $TRAVIS_JDK_VERSION
+  - ./mvn-build-all.sh

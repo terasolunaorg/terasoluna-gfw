@@ -96,4 +96,44 @@
         </dependency>
         <!-- == End Unit Test == -->
     </dependencies>
+    <profiles>
+        <!-- Profile for CI on Java 7 -->
+        <profile>
+            <id>jdk1.7</id>
+            <activation>
+                <jdk>1.7</jdk>
+            </activation>
+            <properties>
+                <!-- Skip settings -->
+                <maven.install.skip>true</maven.install.skip>
+                <maven.deploy.skip>true</maven.deploy.skip>
+                <maven.main.skip>true</maven.main.skip>
+                <maven.javadoc.skip>true</maven.javadoc.skip>
+                <jar.skipIfEmpty>true</jar.skipIfEmpty>
+                <source.skip>true</source.skip>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <configuration>
+                            <!-- Ignore test classes of JSR-310(depends on Java 8+) -->
+                            <testExcludes>
+                                <exclude>**/*JSR310*</exclude>
+                            </testExcludes>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+            <dependencies>
+                <!-- Get test target module from maven repository -->
+                <dependency>
+                    <groupId>org.terasoluna.gfw</groupId>
+                    <artifactId>terasoluna-gfw-validator</artifactId>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 </project>
