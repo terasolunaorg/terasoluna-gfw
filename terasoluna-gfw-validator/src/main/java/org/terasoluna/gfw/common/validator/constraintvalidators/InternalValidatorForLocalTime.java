@@ -66,8 +66,8 @@ class InternalValidatorForLocalTime extends InternalValidator<LocalTime> {
         try {
 
             DateTimeFormatter formatter = isEmpty(format) ? DateTimeFormatter.ISO_LOCAL_TIME
-                    : DateTimeFormatter.ofPattern(format);
-            formatter = formatter.withResolverStyle(ResolverStyle.STRICT);
+                    : DateTimeFormatter.ofPattern(format).withResolverStyle(
+                            ResolverStyle.STRICT);
 
             return LocalTime.parse(date, formatter);
 

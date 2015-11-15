@@ -68,8 +68,8 @@ class InternalValidatorForChronoLocalDate extends
         try {
 
             DateTimeFormatter formatter = isEmpty(format) ? DateTimeFormatter.ISO_LOCAL_DATE
-                    : DateTimeFormatter.ofPattern(format);
-            formatter = formatter.withResolverStyle(ResolverStyle.STRICT);
+                    : DateTimeFormatter.ofPattern(format).withResolverStyle(
+                            ResolverStyle.STRICT);
 
             return LocalDate.parse(date, formatter);
 

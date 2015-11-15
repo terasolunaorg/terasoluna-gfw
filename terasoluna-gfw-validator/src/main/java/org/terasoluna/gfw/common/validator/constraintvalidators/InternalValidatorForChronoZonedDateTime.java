@@ -70,8 +70,8 @@ class InternalValidatorForChronoZonedDateTime
         try {
 
             DateTimeFormatter formatter = isEmpty(format) ? DateTimeFormatter.ISO_ZONED_DATE_TIME
-                    : DateTimeFormatter.ofPattern(format);
-            formatter = formatter.withResolverStyle(ResolverStyle.STRICT);
+                    : DateTimeFormatter.ofPattern(format).withResolverStyle(
+                            ResolverStyle.STRICT);
 
             return ZonedDateTime.parse(date, formatter);
 

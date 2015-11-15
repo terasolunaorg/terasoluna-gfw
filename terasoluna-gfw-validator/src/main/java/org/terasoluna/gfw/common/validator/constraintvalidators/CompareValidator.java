@@ -15,14 +15,14 @@
  */
 package org.terasoluna.gfw.common.validator.constraintvalidators;
 
-import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.getProperty;
-import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.reportUnexpectedType;
+import org.terasoluna.gfw.common.validator.constraints.Compare;
+import org.terasoluna.gfw.common.validator.constraints.Compare.Operator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import org.terasoluna.gfw.common.validator.constraints.Compare;
-import org.terasoluna.gfw.common.validator.constraints.Compare.Operator;
+import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.getPropertyValue;
+import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.reportUnexpectedType;
 
 /**
  * Constraint validator class of {@link Compare} annotation.
@@ -70,16 +70,16 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
 
     /**
      * Validate execute.
-     * @param value object to validate
+     * @param bean bean to validate
      * @param context context in which the constraint is evaluated
      * @return {@code true} if result to comparing {@code source} and {@code destination} is expected {@code operator}, or any
      *         property is null. otherwise {@code false}.
      * @see javax.validation.ConstraintValidator#isValid(java.lang.Object, javax.validation.ConstraintValidatorContext)
      */
     @Override
-    public boolean isValid(Object value, ConstraintValidatorContext context) {
-        Object sourceValue = getProperty(value, source);
-        Object destinationValue = getProperty(value, destination);
+    public boolean isValid(Object bean, ConstraintValidatorContext context) {
+        Object sourceValue = getPropertyValue(bean, source);
+        Object destinationValue = getPropertyValue(bean, destination);
 
         if (sourceValue == null || destinationValue == null) {
             return true;
@@ -102,7 +102,7 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
      * Assert source value and destination value are able to {@code Comparable#compareTo()}.
      * @param sourceValue comparison source
      * @param destinationValue comparison destination
-     * @return {@code true} if source value is {@code Comparable}, and destionation value is able to cast to source value.
+     * @return {@code true} if source value is {@code Comparable}, and destination value is able to cast to source value.
      *         otherwise {@code false}.
      * @throws IllegalArgumentException type of {@code sourceValue} is not {@code Comparable}.
      */
@@ -139,8 +139,8 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
      * @param context constraint validation context
      */
     private void constructValidationMessage(ConstraintValidatorContext context) {
-        context.disableDefaultConstraintViolation();
         context.buildConstraintViolationWithTemplate(message).addPropertyNode(
-                source).addConstraintViolation();
+                source).addConstraintViolation()
+                .disableDefaultConstraintViolation();
     }
 }

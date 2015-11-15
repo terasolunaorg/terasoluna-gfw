@@ -70,10 +70,9 @@ class InternalValidatorForYear extends InternalValidator<Year> {
     private Year parse(String date, String format) {
         try {
 
-            DateTimeFormatter formatter = isEmpty(format) ? DateTimeFormatter
-                    .ofPattern(DEFAULT_FORMAT) : DateTimeFormatter
-                    .ofPattern(format);
-            formatter = formatter.withResolverStyle(ResolverStyle.STRICT);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern(
+                    isEmpty(format) ? DEFAULT_FORMAT : format)
+                    .withResolverStyle(ResolverStyle.STRICT);
 
             return Year.parse(date, formatter);
 

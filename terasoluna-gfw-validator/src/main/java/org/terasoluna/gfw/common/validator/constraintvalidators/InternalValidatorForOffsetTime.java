@@ -66,8 +66,8 @@ class InternalValidatorForOffsetTime extends InternalValidator<OffsetTime> {
         try {
 
             DateTimeFormatter formatter = isEmpty(format) ? DateTimeFormatter.ISO_OFFSET_TIME
-                    : DateTimeFormatter.ofPattern(format);
-            formatter = formatter.withResolverStyle(ResolverStyle.STRICT);
+                    : DateTimeFormatter.ofPattern(format).withResolverStyle(
+                            ResolverStyle.STRICT);
 
             return OffsetTime.parse(date, formatter);
 
