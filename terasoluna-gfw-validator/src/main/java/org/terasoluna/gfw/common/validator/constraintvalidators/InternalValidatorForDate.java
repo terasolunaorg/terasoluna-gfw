@@ -15,7 +15,7 @@
  */
 package org.terasoluna.gfw.common.validator.constraintvalidators;
 
-import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.isEmpty;
+import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.*;
 import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.reportFailedToInitialize;
 
 import java.text.DateFormat;

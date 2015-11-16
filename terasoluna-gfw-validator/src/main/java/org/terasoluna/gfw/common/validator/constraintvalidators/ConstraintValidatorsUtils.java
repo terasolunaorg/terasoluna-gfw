@@ -47,28 +47,28 @@ class ConstraintValidatorsUtils {
     /**
      * Check string is null or empty.
      * @param value string to check
-     * @return {@code true} if string is null or length is {@code 0}. otherwise {@code false}.
+     * @return {@code true} if string is null or empty. otherwise {@code false}.
      */
     static boolean isEmpty(String value) {
-        return (value == null || value.length() == 0);
+        return (value == null || value.isEmpty());
     }
 
     /**
-     * Get property in object by name.
-     * @param value parent object
+     * Get property value in bean by name.
+     * @param bean bean which holds a specified property
      * @param propertyName property name
-     * @return property object. if failed to get, return null.
+     * @return property value. if failed to get, return null.
      */
-    static Object getProperty(Object value, String propertyName) {
-        if (value == null || isEmpty(propertyName)) {
+    static Object getPropertyValue(Object bean, String propertyName) {
+        if (bean == null || isEmpty(propertyName)) {
             return null;
         }
 
         try {
-            PropertyDescriptor property = new PropertyDescriptor(propertyName, value
+            PropertyDescriptor property = new PropertyDescriptor(propertyName, bean
                     .getClass());
             Method getter = property.getReadMethod();
-            return getter.invoke(value, (Object[]) null);
+            return getter.invoke(bean);
         } catch (Exception e) {
             throw reportFailedToInitialize(e);
         }
