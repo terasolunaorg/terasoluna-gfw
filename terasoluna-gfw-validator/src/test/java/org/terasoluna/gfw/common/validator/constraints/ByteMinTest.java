@@ -76,6 +76,30 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
     }
 
     /**
+     * specify min value for StringBuilder(CharSequence).
+     * @throws Throwable
+     */
+    @Test
+    public void testSpecifyMinValueForStringBuilder() throws Throwable {
+
+        {
+            form.setStringBuilderProperty(new StringBuilder("あaa"));
+
+            violations = validator.validate(form);
+            assertThat(violations.size(), is(1));
+            assertThat(violations.iterator().next().getMessage(), is(String
+                    .format(MESSAGE_VALIDATION_ERROR, 6)));
+        }
+
+        {
+            form.setStringBuilderProperty(new StringBuilder("ああ"));
+
+            violations = validator.validate(form);
+            assertThat(violations.size(), is(0));
+        }
+    }
+
+    /**
      * specify charset. expected valid if input value encoded in specified charset is grater than or equal min value.
      * @throws Throwable
      */
@@ -147,6 +171,9 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
                 @ByteMin(value = 6, charset = "shift-jis", groups = { SpecifyCharset.class }),
                 @ByteMin(value = 6, charset = "illegal-charset", groups = { IllegalCharset.class }) })
         private String stringProperty;
+
+        @ByteMin(6)
+        private StringBuilder stringBuilderProperty;
 
         @ByteMin(value = 6, groups = { UnexpectedType.class })
         private Integer intProperty;

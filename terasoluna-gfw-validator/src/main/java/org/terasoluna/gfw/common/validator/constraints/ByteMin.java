@@ -35,7 +35,7 @@ import javax.validation.ValidationException;
 import org.terasoluna.gfw.common.validator.constraintvalidators.ByteMinValidator;
 
 /**
- * The annotated element must be a string whose byte length must be higher or equal to the specified minimum.
+ * The annotated element must be a {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte length must be higher or equal to the specified minimum.
  * <p>
  * Supported types are:
  * </p>

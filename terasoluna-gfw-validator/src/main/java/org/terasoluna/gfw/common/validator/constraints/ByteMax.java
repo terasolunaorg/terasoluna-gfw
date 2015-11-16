@@ -35,7 +35,7 @@ import javax.validation.ValidationException;
 import org.terasoluna.gfw.common.validator.constraintvalidators.ByteMaxValidator;
 
 /**
- * The annotated element must be a string whose byte length must be lower or equal to the specified maximum.
+ * The annotated element must be a {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte length must be lower or equal to the specified maximum.
  * <p>
  * Supported types are:
  * </p>
