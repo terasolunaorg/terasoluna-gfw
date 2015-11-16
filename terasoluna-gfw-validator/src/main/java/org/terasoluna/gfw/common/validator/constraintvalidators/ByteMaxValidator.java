@@ -27,14 +27,14 @@ import org.terasoluna.gfw.common.validator.constraints.ByteMax;
 /**
  * Constraint validator class of {@link ByteMax} annotation.
  * <p>
- * Validate the string whose byte length must be lower or equal to the specified maximum. Determine the byte length By encoding
+ * Validate the {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte length must be lower or equal to the specified maximum. Determine the byte length By encoding
  * the string in the specified charset.
  * </p>
  * @since 5.1.0
  * @see ConstraintValidator
  * @see ByteMax
  */
-public class ByteMaxValidator implements ConstraintValidator<ByteMax, String> {
+public class ByteMaxValidator implements ConstraintValidator<ByteMax, CharSequence> {
 
     /**
      * The charset used in parse to a string.
@@ -70,12 +70,12 @@ public class ByteMaxValidator implements ConstraintValidator<ByteMax, String> {
      * @see javax.validation.ConstraintValidator#isValid(java.lang.Object, javax.validation.ConstraintValidatorContext)
      */
     @Override
-    public boolean isValid(String value, ConstraintValidatorContext context) {
+    public boolean isValid(CharSequence value, ConstraintValidatorContext context) {
         if (value == null) {
             return true;
         }
 
-        byte[] bytes = value.getBytes(charset);
-        return (bytes.length <= max);
+        long byteLength = value.toString().getBytes(charset).length;
+        return (byteLength <= max);
     }
 }

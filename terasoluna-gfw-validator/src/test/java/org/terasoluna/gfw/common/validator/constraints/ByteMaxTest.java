@@ -76,6 +76,29 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
     }
 
     /**
+     * specify max value for StringBuilder(CharSequence).
+     */
+    @Test
+    public void testSpecifyMaxValueForStringBuilder() throws Throwable {
+
+        {
+            form.setStringBuilderProperty(new StringBuilder("ああa"));
+
+            violations = validator.validate(form);
+            assertThat(violations.size(), is(1));
+            assertThat(violations.iterator().next().getMessage(), is(String
+                    .format(MESSAGE_VALIDATION_ERROR, 6)));
+        }
+
+        {
+            form.setStringBuilderProperty(new StringBuilder("ああ"));
+
+            violations = validator.validate(form);
+            assertThat(violations.size(), is(0));
+        }
+    }
+
+    /**
      * specify charset. expected valid if input value encoded in specified charset is grater than or equal max value.
      * @throws Throwable
      */
@@ -147,6 +170,9 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
                 @ByteMax(value = 6, charset = "shift-jis", groups = { SpecifyCharset.class }),
                 @ByteMax(value = 6, charset = "illegal-charset", groups = { IllegalCharset.class }) })
         private String stringProperty;
+
+        @ByteMax(6)
+        private StringBuilder stringBuilderProperty;
 
         @ByteMax(value = 6, groups = { UnexpectedType.class })
         private Integer intProperty;
