@@ -15,10 +15,15 @@
  */
 package org.terasoluna.gfw.common.codelist;
 
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
+import static java.lang.annotation.ElementType.CONSTRUCTOR;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
 import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
@@ -48,8 +53,8 @@ import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForS
  * returned with the default error message represented by {@code message()} in it.
  */
 @Documented
-@Target({ ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE })
-@Retention(RetentionPolicy.RUNTIME)
+@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
+@Retention(RUNTIME)
 @Constraint(validatedBy = { ExistInCodeListValidatorForString.class,
         ExistInCodeListValidatorForCharacter.class })
 public @interface ExistInCodeList {
@@ -82,9 +87,8 @@ public @interface ExistInCodeList {
      * Defines several <code>@ExistInCodeList</code> annotations on the same element
      * @see ExistInCodeList
      */
-    @Target({ ElementType.METHOD, ElementType.FIELD,
-            ElementType.ANNOTATION_TYPE })
-    @Retention(RetentionPolicy.RUNTIME)
+    @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
+    @Retention(RUNTIME)
     @Documented
     @interface List {
         /**
