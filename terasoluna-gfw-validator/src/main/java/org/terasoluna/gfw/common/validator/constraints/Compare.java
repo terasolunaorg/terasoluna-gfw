@@ -29,7 +29,6 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import javax.validation.ReportAsSingleViolation;
 import javax.validation.ValidationException;
 
 import org.terasoluna.gfw.common.validator.constraintvalidators.CompareValidator;
@@ -56,7 +55,6 @@ import org.terasoluna.gfw.common.validator.constraintvalidators.CompareValidator
 @Constraint(validatedBy = { CompareValidator.class })
 @Target({ TYPE, ANNOTATION_TYPE })
 @Retention(RUNTIME)
-@ReportAsSingleViolation
 public @interface Compare {
 
     String message() default "{org.terasoluna.gfw.common.validator.constraints.Compare.message}";

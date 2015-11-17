@@ -29,7 +29,6 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import javax.validation.ReportAsSingleViolation;
 import javax.validation.ValidationException;
 
 import org.terasoluna.gfw.common.validator.constraintvalidators.ByteMinValidator;
@@ -54,7 +53,6 @@ import org.terasoluna.gfw.common.validator.constraintvalidators.ByteMinValidator
 @Constraint(validatedBy = { ByteMinValidator.class })
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
-@ReportAsSingleViolation
 public @interface ByteMin {
 
     String message() default "{org.terasoluna.gfw.common.validator.constraints.ByteMin.message}";
