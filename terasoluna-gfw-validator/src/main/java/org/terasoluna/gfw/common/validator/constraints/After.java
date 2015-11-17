@@ -29,7 +29,6 @@ import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import javax.validation.ReportAsSingleViolation;
 import javax.validation.ValidationException;
 
 import org.terasoluna.gfw.common.validator.constraintvalidators.AfterValidator;
@@ -69,7 +68,6 @@ import org.terasoluna.gfw.common.validator.constraintvalidators.AfterValidator;
 @Constraint(validatedBy = { AfterValidator.class })
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
-@ReportAsSingleViolation
 public @interface After {
 
     String message() default "{org.terasoluna.gfw.common.validator.constraints.After.message}";
