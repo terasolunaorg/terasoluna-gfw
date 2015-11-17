@@ -15,6 +15,7 @@
  */
 package org.terasoluna.gfw.web.token.transaction;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -47,6 +48,7 @@ import java.lang.annotation.Target;
  * By default, if no namespace is defined and {@code value} attribute at method level is also not specified, "globalToken" is
  * used as {@code tokenName} for all the transaction tokens generated.
  */
+@Documented
 @Target({ ElementType.METHOD, ElementType.TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface TransactionTokenCheck {
