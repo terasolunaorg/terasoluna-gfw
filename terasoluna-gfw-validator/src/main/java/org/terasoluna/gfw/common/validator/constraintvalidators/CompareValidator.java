@@ -23,6 +23,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.terasoluna.gfw.common.validator.constraints.Compare;
 import org.terasoluna.gfw.common.validator.constraints.Compare.Operator;
+import org.terasoluna.gfw.common.validator.constraints.Compare.Path;
 
 /**
  * Constraint validator class of {@link Compare} annotation.
@@ -51,6 +52,11 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
     private Operator operator;
 
     /**
+     * Property path of bind validation message
+     */
+    private Path path;
+
+    /**
      * Validation message.
      */
     private String message;
@@ -65,6 +71,7 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
         source = constraintAnnotation.source();
         destination = constraintAnnotation.destination();
         operator = constraintAnnotation.operator();
+        path = constraintAnnotation.path();
         message = constraintAnnotation.message();
     }
 
@@ -133,12 +140,17 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
     }
 
     /**
-     * Construct validation message.
+     * Construct validation message when selected {@code PropertyPath#SOURCE} or {@code PropertyPath#DESTINATION}.
      * @param context constraint validation context
      */
     private void constructValidationMessage(ConstraintValidatorContext context) {
+        if (path == Path.ROOT_BEAN) {
+            return;
+        }
+
+        String node = (path == Path.SOURCE) ? source : destination;
         context.buildConstraintViolationWithTemplate(message).addPropertyNode(
-                source).addConstraintViolation()
+                node).addConstraintViolation()
                 .disableDefaultConstraintViolation();
     }
 }

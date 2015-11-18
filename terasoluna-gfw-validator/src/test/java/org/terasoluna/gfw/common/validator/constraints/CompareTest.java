@@ -15,14 +15,21 @@
  */
 package org.terasoluna.gfw.common.validator.constraints;
 
+import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 import java.beans.IntrospectionException;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Path.Node;
+import javax.validation.Path.PropertyNode;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.terasoluna.gfw.common.validator.constraints.Compare.Operator;
+import org.terasoluna.gfw.common.validator.constraints.Compare.Path;
 import org.terasoluna.gfw.common.validator.constraints.CompareTest.CompareTestForm;
 
 import lombok.Data;
@@ -278,6 +285,72 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     }
 
     /**
+     * specify path. expected validation message node is source.
+     * @throws Throwable
+     */
+    @Test
+    public void testSpecifyPathSource() throws Throwable {
+
+        form.setSource(100);
+        form.setDestination(99);
+
+        violations = validator.validate(form, PathSource.class);
+        assertThat(violations.size(), is(1));
+        for (ConstraintViolation<CompareTestForm> violation : violations) {
+            assertThat(violation.getMessage(), is(String.format(
+                    MESSAGE_VALIDATION_ERROR, "source", "destination")));
+            for (Node node : violation.getPropertyPath()) {
+                assertThat(node, instanceOf(PropertyNode.class));
+                assertThat(node.getName(), is("source"));
+            }
+        }
+    }
+
+    /**
+     * specify path. expected validation message node is destination.
+     * @throws Throwable
+     */
+    @Test
+    public void testSpecifyPathDestination() throws Throwable {
+
+        form.setSource(100);
+        form.setDestination(99);
+
+        violations = validator.validate(form, PathDestination.class);
+        assertThat(violations.size(), is(1));
+        for (ConstraintViolation<CompareTestForm> violation : violations) {
+            assertThat(violation.getMessage(), is(String.format(
+                    MESSAGE_VALIDATION_ERROR, "source", "destination")));
+            for (Node node : violation.getPropertyPath()) {
+                assertThat(node, instanceOf(PropertyNode.class));
+                assertThat(node.getName(), is("destination"));
+            }
+        }
+    }
+
+    /**
+     * specify path. expected validation message node is root bean.
+     * @throws Throwable
+     */
+    @Test
+    public void testSpecifyPathRootBean() throws Throwable {
+
+        form.setSource(100);
+        form.setDestination(99);
+
+        violations = validator.validate(form, PathRootBean.class);
+        assertThat(violations.size(), is(1));
+        for (ConstraintViolation<CompareTestForm> violation : violations) {
+            assertThat(violation.getMessage(), is(String.format(
+                    MESSAGE_VALIDATION_ERROR, "source", "destination")));
+            for (Node node : violation.getPropertyPath()) {
+                assertThat(node, instanceOf(PropertyNode.class));
+                assertThat(node.getName(), nullValue());
+            }
+        }
+    }
+
+    /**
      * specify source type is {@code Integer} and destination type is {@code String}. expected invalid.
      * @throws Throwable
      */
@@ -360,6 +433,24 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     };
 
     /**
+     * Validation group path source.
+     */
+    private static interface PathSource {
+    };
+
+    /**
+     * Validation group path destination.
+     */
+    private static interface PathDestination {
+    };
+
+    /**
+     * Validation group path root bean.
+     */
+    private static interface PathRootBean {
+    };
+
+    /**
      * Validation group source and destination type unmatch.
      */
     private static interface TypeUnmatch {
@@ -383,12 +474,6 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     private static interface NotComparableSource {
     };
 
-    /**
-     * Validation group destination not comparable.
-     */
-    private static interface NotComparableDestination {
-    };
-
     @Data
     @Compare.List({
             @Compare(source = "source", destination = "destination", operator = Operator.EQUAL),
@@ -396,6 +481,9 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             @Compare(source = "source", destination = "destination", operator = Operator.GRATER_THAN, groups = { GraterThan.class }),
             @Compare(source = "source", destination = "destination", operator = Operator.LESS_THAN_OR_EQUAL, groups = { LessThanOrEqual.class }),
             @Compare(source = "source", destination = "destination", operator = Operator.LESS_THAN, groups = { LessThan.class }),
+            @Compare(source = "source", destination = "destination", operator = Operator.EQUAL, path = Path.SOURCE, groups = { PathSource.class }),
+            @Compare(source = "source", destination = "destination", operator = Operator.EQUAL, path = Path.DESTINATION, groups = { PathDestination.class }),
+            @Compare(source = "source", destination = "destination", operator = Operator.EQUAL, path = Path.ROOT_BEAN, groups = { PathRootBean.class }),
             @Compare(source = "source", destination = "stringProperty", operator = Operator.EQUAL, groups = { TypeUnmatch.class }),
             @Compare(source = "unknown", destination = "destination", operator = Operator.EQUAL, groups = { UnknownSource.class }),
             @Compare(source = "source", destination = "unknown", operator = Operator.EQUAL, groups = { UnknownDestination.class }),
