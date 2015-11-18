@@ -99,47 +99,107 @@ public @interface Compare {
         /**
          * Source must be less than or equal destination.
          */
-        LESS_THAN_OR_EQUAL(-1, 0),
+        LESS_THAN_OR_EQUAL(CompareStrategy.EQ, CompareStrategy.LT),
 
         /**
          * Source must be less than destination.
          */
-        LESS_THAN(-1),
+        LESS_THAN(CompareStrategy.LT),
 
         /**
          * Source must be equal destination.
          */
-        EQUAL(0),
+        EQUAL(CompareStrategy.EQ),
 
         /**
          * Source must be grater than destination.
          */
-        GRATER_THAN(1),
+        GRATER_THAN(CompareStrategy.GT),
 
         /**
          * Source must be grater than or equal destination.
          */
-        GRATER_THAN_OR_EQUAL(0, 1);
+        GRATER_THAN_OR_EQUAL(CompareStrategy.EQ, CompareStrategy.GT);
 
         /**
-         * expected values as a result of {@code Comparable#compareTo(Object)}.
+         * strategies to assert result of {@code Comparable#compareTo(Object)} as the expected.
          */
-        private final int[] value;
+        private final CompareStrategy[] strategies;
 
         /**
          * Constructor.
-         * @param value expected values as a result of {@code Comparable#compareTo(Object)}
+         * @param strategies to assert result of {@code Comparable#compareTo(Object)} as the expected
          */
-        Operator(int... value) {
-            this.value = value;
+        private Operator(CompareStrategy... strategies) {
+            this.strategies = strategies;
         }
 
         /**
-         * Get expected values as a result of {@code Comparable#compareTo(Object)}.
-         * @return expected values as a result of {@code Comparable#compareTo(Object)}
+         * Assert result of {@code Comparable#compareTo(Object)} as the expected.
+         * @param value result of {@code Comparable#compareTo(Object)}
+         * @return {@code true} if result of {@code Comparable#compareTo(Object)} as the expected in any of the
+         *         {@code CompareStrategy#isExpected(int)}, otherwise {@code false}.
          */
-        public int[] value() {
-            return this.value;
+        public boolean isExpected(int value) {
+            for (CompareStrategy strategy : strategies) {
+                if (strategy.isExpected(value)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        /**
+         * Strategy to assert result of {@code Comparable#compareTo(Object)} as the expected.
+         * @since 5.1.0
+         */
+        private enum CompareStrategy {
+
+            /**
+             * Expected equals ZERO.
+             */
+            EQ {
+                /**
+                 * {@inheritDoc}
+                 */
+                @Override
+                protected boolean isExpected(int value) {
+                    return value == 0;
+                }
+            },
+
+            /**
+             * Expected grater than ZERO.
+             */
+            GT {
+                /**
+                 * {@inheritDoc}
+                 */
+                @Override
+                protected boolean isExpected(int value) {
+                    return value > 0;
+                }
+            },
+
+            /**
+             * Expected less than ZERO.
+             */
+            LT {
+                /**
+                 * {@inheritDoc}
+                 */
+                @Override
+                protected boolean isExpected(int value) {
+                    return value < 0;
+                }
+            };
+
+            /**
+             * Assert result of {@code Comparable#compareTo(Object)} as the expected.
+             * @param value result of {@code Comparable#compareTo(Object)}
+             * @return {@code true} if result of {@code Comparable#compareTo(Object)} as the expected, otherwise {@code false}.
+             */
+            protected abstract boolean isExpected(int value);
         }
     }
 }
