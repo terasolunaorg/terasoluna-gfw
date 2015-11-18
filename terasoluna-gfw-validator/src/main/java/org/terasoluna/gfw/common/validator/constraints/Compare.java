@@ -79,6 +79,11 @@ public @interface Compare {
     Operator operator();
 
     /**
+     * @return property path of bind validation message
+     */
+    Path path() default Path.SOURCE;
+
+    /**
      * Defines several {@link Compare} annotations on the same element.
      * @see Compare
      * @since 5.1.0
@@ -201,5 +206,27 @@ public @interface Compare {
              */
             protected abstract boolean isExpected(int value);
         }
+    }
+
+    /**
+     * The property path of bind validation message.
+     * @since 5.1.0
+     */
+    enum Path {
+
+        /**
+         * Bind validation message to property specified {@code Compare#source()}.
+         */
+        SOURCE,
+
+        /**
+         * Bind validation message to property specified {@code Compare#destination()}.
+         */
+        DESTINATION,
+
+        /**
+         * Bind validation message to root bean {@code Compare} annotated.
+         */
+        ROOT_BEAN
     }
 }
