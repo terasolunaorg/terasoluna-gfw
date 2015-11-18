@@ -40,7 +40,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     }
 
     /**
-     * input null value. expected valid.
+     * input null value. expected valid if only input null each source and destination.
      * @throws Throwable
      */
     @Test
@@ -48,14 +48,27 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
 
         {
             form.setSource(100);
+            form.setDestination(null);
 
             violations = validator.validate(form);
-            assertThat(violations.size(), is(0));
+            assertThat(violations.size(), is(1));
+            assertThat(violations.iterator().next().getMessage(), is(String
+                    .format(MESSAGE_VALIDATION_ERROR, "source", "destination")));
         }
 
         {
             form.setSource(null);
             form.setDestination(100);
+
+            violations = validator.validate(form);
+            assertThat(violations.size(), is(1));
+            assertThat(violations.iterator().next().getMessage(), is(String
+                    .format(MESSAGE_VALIDATION_ERROR, "source", "destination")));
+        }
+
+        {
+            form.setSource(null);
+            form.setDestination(null);
 
             violations = validator.validate(form);
             assertThat(violations.size(), is(0));

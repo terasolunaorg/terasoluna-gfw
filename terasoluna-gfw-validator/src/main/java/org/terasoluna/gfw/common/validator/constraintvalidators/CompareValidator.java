@@ -15,14 +15,14 @@
  */
 package org.terasoluna.gfw.common.validator.constraintvalidators;
 
-import org.terasoluna.gfw.common.validator.constraints.Compare;
-import org.terasoluna.gfw.common.validator.constraints.Compare.Operator;
+import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.getPropertyValue;
+import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.reportUnexpectedType;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.getPropertyValue;
-import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.reportUnexpectedType;
+import org.terasoluna.gfw.common.validator.constraints.Compare;
+import org.terasoluna.gfw.common.validator.constraints.Compare.Operator;
 
 /**
  * Constraint validator class of {@link Compare} annotation.
@@ -81,7 +81,7 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
         Object sourceValue = getPropertyValue(bean, source);
         Object destinationValue = getPropertyValue(bean, destination);
 
-        if (sourceValue == null || destinationValue == null) {
+        if (sourceValue == null && destinationValue == null) {
             return true;
         }
 
@@ -99,14 +99,18 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
     }
 
     /**
-     * Assert source value and destination value are able to {@code Comparable#compareTo()}.
+     * Assert source and destination value are able to {@code Comparable#compareTo()}.
      * @param sourceValue comparison source
      * @param destinationValue comparison destination
-     * @return {@code true} if source value is {@code Comparable}, and destination value is able to cast to source value.
-     *         otherwise {@code false}.
-     * @throws IllegalArgumentException type of {@code sourceValue} is not {@code Comparable}.
+     * @return {@code true} if source and destination value are not null, and source value is {@code Comparable}, and
+     *         destination value is able to cast to source value. otherwise {@code false}.
+     * @throws IllegalArgumentException type of source and destination value is not {@code Comparable}.
      */
     private boolean assertComparable(Object sourceValue, Object destinationValue) {
+        if (sourceValue == null || destinationValue == null) {
+            return false;
+        }
+
         if (!(sourceValue instanceof Comparable)) {
             throw reportUnexpectedType(sourceValue);
         }
