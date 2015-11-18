@@ -15,14 +15,15 @@
  */
 package org.terasoluna.gfw.common.validator.constraintvalidators;
 
-import org.terasoluna.gfw.common.validator.constraints.Compare;
-import org.terasoluna.gfw.common.validator.constraints.Compare.Operator;
+import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.getPropertyValue;
+import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.reportUnexpectedType;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.getPropertyValue;
-import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.reportUnexpectedType;
+import org.terasoluna.gfw.common.validator.constraints.Compare;
+import org.terasoluna.gfw.common.validator.constraints.Compare.Operator;
+import org.terasoluna.gfw.common.validator.constraints.Compare.Path;
 
 /**
  * Constraint validator class of {@link Compare} annotation.
@@ -51,6 +52,11 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
     private Operator operator;
 
     /**
+     * Property path of bind validation message
+     */
+    private Path path;
+
+    /**
      * Validation message.
      */
     private String message;
@@ -65,6 +71,7 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
         source = constraintAnnotation.source();
         destination = constraintAnnotation.destination();
         operator = constraintAnnotation.operator();
+        path = constraintAnnotation.path();
         message = constraintAnnotation.message();
     }
 
@@ -81,7 +88,7 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
         Object sourceValue = getPropertyValue(bean, source);
         Object destinationValue = getPropertyValue(bean, destination);
 
-        if (sourceValue == null || destinationValue == null) {
+        if (sourceValue == null && destinationValue == null) {
             return true;
         }
 
@@ -99,14 +106,18 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
     }
 
     /**
-     * Assert source value and destination value are able to {@code Comparable#compareTo()}.
+     * Assert source and destination value are able to {@code Comparable#compareTo()}.
      * @param sourceValue comparison source
      * @param destinationValue comparison destination
-     * @return {@code true} if source value is {@code Comparable}, and destination value is able to cast to source value.
-     *         otherwise {@code false}.
-     * @throws IllegalArgumentException type of {@code sourceValue} is not {@code Comparable}.
+     * @return {@code true} if source and destination value are not null, and source value is {@code Comparable}, and
+     *         destination value is able to cast to source value. otherwise {@code false}.
+     * @throws IllegalArgumentException type of source and destination value is not {@code Comparable}.
      */
     private boolean assertComparable(Object sourceValue, Object destinationValue) {
+        if (sourceValue == null || destinationValue == null) {
+            return false;
+        }
+
         if (!(sourceValue instanceof Comparable)) {
             throw reportUnexpectedType(sourceValue);
         }
@@ -119,28 +130,27 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
      * Compare objects.
      * @param sourceValue comparison source
      * @param destinationValue comparison destination
-     * @return {@code true} if result to comparing {@code source} and {@code destination} is expected {@code operator}.
+     * @return {@code true} if result to comparing {@code source} and {@code destination} as the expected {@code operator}.
      *         otherwise {@code false}.
      */
     private boolean isCompareValid(Object sourceValue, Object destinationValue) {
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings({ "rawtypes", "unchecked" })
         int result = ((Comparable) sourceValue).compareTo(destinationValue);
-
-        for (int operatorValue : operator.value()) {
-            if (result == operatorValue) {
-                return true;
-            }
-        }
-        return false;
+        return operator.isExpected(result);
     }
 
     /**
-     * Construct validation message.
+     * Construct validation message when selected {@code PropertyPath#SOURCE} or {@code PropertyPath#DESTINATION}.
      * @param context constraint validation context
      */
     private void constructValidationMessage(ConstraintValidatorContext context) {
+        if (path == Path.ROOT_BEAN) {
+            return;
+        }
+
+        String node = (path == Path.SOURCE) ? source : destination;
         context.buildConstraintViolationWithTemplate(message).addPropertyNode(
-                source).addConstraintViolation()
+                node).addConstraintViolation()
                 .disableDefaultConstraintViolation();
     }
 }

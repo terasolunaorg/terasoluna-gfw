@@ -57,13 +57,10 @@ class ConstraintValidatorsUtils {
      * Get property value in bean by name.
      * @param bean bean which holds a specified property
      * @param propertyName property name
-     * @return property value. if failed to get, return null.
+     * @return property value.
+     * @throws IllegalArgumentException failed to get property value.
      */
     static Object getPropertyValue(Object bean, String propertyName) {
-        if (bean == null || isEmpty(propertyName)) {
-            return null;
-        }
-
         try {
             PropertyDescriptor property = new PropertyDescriptor(propertyName, bean
                     .getClass());
