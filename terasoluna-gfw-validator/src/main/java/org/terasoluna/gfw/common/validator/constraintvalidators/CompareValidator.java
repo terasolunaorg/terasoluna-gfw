@@ -123,19 +123,13 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
      * Compare objects.
      * @param sourceValue comparison source
      * @param destinationValue comparison destination
-     * @return {@code true} if result to comparing {@code source} and {@code destination} is expected {@code operator}.
+     * @return {@code true} if result to comparing {@code source} and {@code destination} as the expected {@code operator}.
      *         otherwise {@code false}.
      */
     private boolean isCompareValid(Object sourceValue, Object destinationValue) {
-        @SuppressWarnings("unchecked")
+        @SuppressWarnings({ "rawtypes", "unchecked" })
         int result = ((Comparable) sourceValue).compareTo(destinationValue);
-
-        for (int operatorValue : operator.value()) {
-            if (result == operatorValue) {
-                return true;
-            }
-        }
-        return false;
+        return operator.isExpected(result);
     }
 
     /**
