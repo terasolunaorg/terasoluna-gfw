@@ -336,16 +336,6 @@
             <id>terasoluna-gfw-snapshots</id>
             <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
         </repository>
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>Spring-milestone-repository</id>
-            <url>http://repo.springsource.org/milestone/</url>
-        </repository>
     </repositories>
     <dependencyManagement>
         <dependencies>
