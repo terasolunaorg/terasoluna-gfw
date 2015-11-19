@@ -64,14 +64,14 @@ public @interface Compare {
     Class<? extends Payload>[] payload() default {};
 
     /**
-     * @return property name of comparison source
+     * @return name of property to become left side of comparison
      */
-    String source();
+    String left();
 
     /**
-     * @return property name of comparison destination
+     * @return name of property to become right side of comparison
      */
-    String destination();
+    String right();
 
     /**
      * @return operator used in the comparison
@@ -81,7 +81,7 @@ public @interface Compare {
     /**
      * @return property path of bind validation message
      */
-    Path path() default Path.SOURCE;
+    Path path() default Path.LEFT;
 
     /**
      * Defines several {@link Compare} annotations on the same element.
@@ -102,27 +102,27 @@ public @interface Compare {
     enum Operator {
 
         /**
-         * Source must be less than or equal destination.
+         * Left side object must be less than or equal Right side object.
          */
         LESS_THAN_OR_EQUAL(CompareStrategy.EQ, CompareStrategy.LT),
 
         /**
-         * Source must be less than destination.
+         * Left side object must be less than Right side object.
          */
         LESS_THAN(CompareStrategy.LT),
 
         /**
-         * Source must be equal destination.
+         * Left side object must be equal Right side object.
          */
         EQUAL(CompareStrategy.EQ),
 
         /**
-         * Source must be grater than destination.
+         * Left side object must be grater than Right side object.
          */
         GRATER_THAN(CompareStrategy.GT),
 
         /**
-         * Source must be grater than or equal destination.
+         * Left side object must be grater than or equal Right side object.
          */
         GRATER_THAN_OR_EQUAL(CompareStrategy.EQ, CompareStrategy.GT);
 
@@ -215,14 +215,14 @@ public @interface Compare {
     enum Path {
 
         /**
-         * Bind validation message to property specified {@code Compare#source()}.
+         * Bind validation message to property specified {@code Compare#left()}.
          */
-        SOURCE,
+        LEFT,
 
         /**
-         * Bind validation message to property specified {@code Compare#destination()}.
+         * Bind validation message to property specified {@code Compare#right()}.
          */
-        DESTINATION,
+        RIGHT,
 
         /**
          * Bind validation message to root bean {@code Compare} annotated.

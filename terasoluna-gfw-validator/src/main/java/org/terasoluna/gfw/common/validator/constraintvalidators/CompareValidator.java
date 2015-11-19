@@ -37,14 +37,14 @@ import org.terasoluna.gfw.common.validator.constraints.Compare.Path;
 public class CompareValidator implements ConstraintValidator<Compare, Object> {
 
     /**
-     * Property name of comparison source.
+     * Name of property to become left side of comparison.
      */
-    private String source;
+    private String left;
 
     /**
-     * Property name of comparison destination.
+     * Name of property to become right side of comparison.
      */
-    private String destination;
+    private String right;
 
     /**
      * Operator used in the comparison.
@@ -68,8 +68,8 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
      */
     @Override
     public void initialize(Compare constraintAnnotation) {
-        source = constraintAnnotation.source();
-        destination = constraintAnnotation.destination();
+        left = constraintAnnotation.left();
+        right = constraintAnnotation.right();
         operator = constraintAnnotation.operator();
         path = constraintAnnotation.path();
         message = constraintAnnotation.message();
@@ -79,25 +79,25 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
      * Validate execute.
      * @param bean bean to validate
      * @param context context in which the constraint is evaluated
-     * @return {@code true} if result to comparing {@code source} and {@code destination} is expected {@code operator}, or any
-     *         property is null. otherwise {@code false}.
+     * @return {@code true} if result to comparing {@code left} and {@code right} is expected {@code operator}, or any property
+     *         is null. otherwise {@code false}.
      * @see javax.validation.ConstraintValidator#isValid(java.lang.Object, javax.validation.ConstraintValidatorContext)
      */
     @Override
     public boolean isValid(Object bean, ConstraintValidatorContext context) {
-        Object sourceValue = getPropertyValue(bean, source);
-        Object destinationValue = getPropertyValue(bean, destination);
+        Object leftValue = getPropertyValue(bean, left);
+        Object rightValue = getPropertyValue(bean, right);
 
-        if (sourceValue == null || destinationValue == null) {
+        if (leftValue == null || rightValue == null) {
             return true;
         }
 
-        if (!assertComparable(sourceValue, destinationValue)) {
+        if (!assertComparable(leftValue, rightValue)) {
             constructValidationMessage(context);
             return false;
         }
 
-        if (!isCompareValid(sourceValue, destinationValue)) {
+        if (!isCompareValid(leftValue, rightValue)) {
             constructValidationMessage(context);
             return false;
         }
@@ -106,37 +106,35 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
     }
 
     /**
-     * Assert source value and destination value are able to {@code Comparable#compareTo()}.
-     * @param sourceValue comparison source
-     * @param destinationValue comparison destination
-     * @return {@code true} if source value is {@code Comparable}, and destination value is able to cast to source value.
-     *         otherwise {@code false}.
-     * @throws IllegalArgumentException type of {@code sourceValue} is not {@code Comparable}.
+     * Assert left value and right value are able to {@code Comparable#compareTo()}.
+     * @param leftValue value to become left side of comparison
+     * @param rightValue value to become right side of comparison
+     * @return {@code true} if left value is {@code Comparable}, and right value is able to cast to left value. otherwise
+     *         {@code false}.
+     * @throws IllegalArgumentException type of {@code leftValue} is not {@code Comparable}.
      */
-    private boolean assertComparable(Object sourceValue, Object destinationValue) {
-        if (!(sourceValue instanceof Comparable)) {
-            throw reportUnexpectedType(sourceValue);
+    private boolean assertComparable(Object leftValue, Object rightValue) {
+        if (!(leftValue instanceof Comparable)) {
+            throw reportUnexpectedType(leftValue);
         }
 
-        return sourceValue.getClass().isAssignableFrom(
-                destinationValue.getClass());
+        return leftValue.getClass().isAssignableFrom(rightValue.getClass());
     }
 
     /**
-     * Compare objects.
-     * @param sourceValue comparison source
-     * @param destinationValue comparison destination
-     * @return {@code true} if result to comparing {@code source} and {@code destination} as the expected {@code operator}.
-     *         otherwise {@code false}.
+     * Compare objects by {@code Comparable#compareTo()}.
+     * @param leftValue value to become left side of comparison
+     * @param rightValue value to become right side of comparison
+     * @return {@code true} if comparison result as the expected to specified {@code operator}, otherwise {@code false}.
      */
-    private boolean isCompareValid(Object sourceValue, Object destinationValue) {
+    private boolean isCompareValid(Object leftValue, Object rightValue) {
         @SuppressWarnings({ "rawtypes", "unchecked" })
-        int result = ((Comparable) sourceValue).compareTo(destinationValue);
+        int result = ((Comparable) leftValue).compareTo(rightValue);
         return operator.isExpected(result);
     }
 
     /**
-     * Construct validation message when selected {@code PropertyPath#SOURCE} or {@code PropertyPath#DESTINATION}.
+     * Construct validation message when selected {@code PropertyPath#LEFT} or {@code PropertyPath#RIGHT}.
      * @param context constraint validation context
      */
     private void constructValidationMessage(ConstraintValidatorContext context) {
@@ -144,7 +142,7 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
             return;
         }
 
-        String node = (path == Path.SOURCE) ? source : destination;
+        String node = (path == Path.LEFT) ? left : right;
         context.buildConstraintViolationWithTemplate(message).addPropertyNode(
                 node).addConstraintViolation()
                 .disableDefaultConstraintViolation();
