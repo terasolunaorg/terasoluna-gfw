@@ -25,8 +25,6 @@ import org.junit.Test;
 import org.terasoluna.gfw.common.validator.constraints.Compare.Operator;
 import org.terasoluna.gfw.common.validator.constraints.CompareTest.CompareTestForm;
 
-import lombok.Data;
-
 /**
  * Test class of {@link Compare}
  */
@@ -376,7 +374,6 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     private static interface NotComparableDestination {
     };
 
-    @Data
     @Compare.List({
             @Compare(source = "source", destination = "destination", operator = Operator.EQUAL),
             @Compare(source = "source", destination = "destination", operator = Operator.GRATER_THAN_OR_EQUAL, groups = { GraterThanOrEqual.class }),
@@ -395,5 +392,37 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
         private String stringProperty;
 
         private Object objectProperty;
+
+        public Integer getSource() {
+            return source;
+        }
+
+        public void setSource(Integer source) {
+            this.source = source;
+        }
+
+        public Integer getDestination() {
+            return destination;
+        }
+
+        public void setDestination(Integer destination) {
+            this.destination = destination;
+        }
+
+        public String getStringProperty() {
+            return stringProperty;
+        }
+
+        public void setStringProperty(String stringProperty) {
+            this.stringProperty = stringProperty;
+        }
+
+        public Object getObjectProperty() {
+            return objectProperty;
+        }
+
+        public void setObjectProperty(Object objectProperty) {
+            this.objectProperty = objectProperty;
+        }
     }
 }

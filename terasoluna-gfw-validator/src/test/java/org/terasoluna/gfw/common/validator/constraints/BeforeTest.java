@@ -27,8 +27,6 @@ import java.util.Date;
 import org.junit.Test;
 import org.terasoluna.gfw.common.validator.constraints.BeforeTest.BeforeTestForm;
 
-import lombok.Data;
-
 /**
  * Test class of {@link Before}
  */
@@ -219,7 +217,6 @@ public class BeforeTest extends AbstractConstraintsTest<BeforeTestForm> {
     private static interface UnexpectedType {
     };
 
-    @Data
     public class BeforeTestForm {
         @Before.List({
                 @Before("2015-10-01"),
@@ -235,5 +232,29 @@ public class BeforeTest extends AbstractConstraintsTest<BeforeTestForm> {
 
         @Before(value = "2015-10-01", groups = { UnexpectedType.class })
         private String otherProperty;
+
+        public Date getDateProperty() {
+            return dateProperty;
+        }
+
+        public void setDateProperty(Date dateProperty) {
+            this.dateProperty = dateProperty;
+        }
+
+        public Calendar getCalendarProperty() {
+            return calendarProperty;
+        }
+
+        public void setCalendarProperty(Calendar calendarProperty) {
+            this.calendarProperty = calendarProperty;
+        }
+
+        public String getOtherProperty() {
+            return otherProperty;
+        }
+
+        public void setOtherProperty(String otherProperty) {
+            this.otherProperty = otherProperty;
+        }
     }
 }
