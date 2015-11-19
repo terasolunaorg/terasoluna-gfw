@@ -15,14 +15,21 @@
  */
 package org.terasoluna.gfw.common.validator.constraints;
 
+import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 import java.beans.IntrospectionException;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Path.Node;
+import javax.validation.Path.PropertyNode;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.terasoluna.gfw.common.validator.constraints.Compare.Operator;
+import org.terasoluna.gfw.common.validator.constraints.Compare.Path;
 import org.terasoluna.gfw.common.validator.constraints.CompareTest.CompareTestForm;
 
 /**
@@ -45,15 +52,15 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     public void testInputNull() throws Throwable {
 
         {
-            form.setSource(100);
+            form.setLeft(100);
 
             violations = validator.validate(form);
             assertThat(violations.size(), is(0));
         }
 
         {
-            form.setSource(null);
-            form.setDestination(100);
+            form.setLeft(null);
+            form.setRight(100);
 
             violations = validator.validate(form);
             assertThat(violations.size(), is(0));
@@ -61,25 +68,25 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     }
 
     /**
-     * specify source and destination. expected valid if input source value is equal destination value.
+     * specify left and right. expected valid if input left value is equal right value.
      * @throws Throwable
      */
     @Test
-    public void testSpecifySourceAndDestination() throws Throwable {
+    public void testSpecifyLeftAndRight() throws Throwable {
 
         {
-            form.setSource(100);
-            form.setDestination(99);
+            form.setLeft(100);
+            form.setRight(99);
 
             violations = validator.validate(form);
             assertThat(violations.size(), is(1));
             assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "source", "destination")));
+                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
         }
 
         {
-            form.setSource(100);
-            form.setDestination(100);
+            form.setLeft(100);
+            form.setRight(100);
 
             violations = validator.validate(form);
             assertThat(violations.size(), is(0));
@@ -87,33 +94,33 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     }
 
     /**
-     * specify operator. expected valid if input source value less than or equal destination value.
+     * specify operator. expected valid if input left value less than or equal right value.
      * @throws Throwable
      */
     @Test
     public void testSpecifyOperatorLessThanOrEqual() throws Throwable {
 
         {
-            form.setSource(101);
-            form.setDestination(100);
+            form.setLeft(101);
+            form.setRight(100);
 
             violations = validator.validate(form, LessThanOrEqual.class);
             assertThat(violations.size(), is(1));
             assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "source", "destination")));
+                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
         }
 
         {
-            form.setSource(100);
-            form.setDestination(100);
+            form.setLeft(100);
+            form.setRight(100);
 
             violations = validator.validate(form, LessThanOrEqual.class);
             assertThat(violations.size(), is(0));
         }
 
         {
-            form.setSource(99);
-            form.setDestination(100);
+            form.setLeft(99);
+            form.setRight(100);
 
             violations = validator.validate(form, LessThanOrEqual.class);
             assertThat(violations.size(), is(0));
@@ -121,35 +128,35 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     }
 
     /**
-     * specify operator. expected valid if input source value less than destination value.
+     * specify operator. expected valid if input left value less than right value.
      * @throws Throwable
      */
     @Test
     public void testSpecifyOperatorLessThan() throws Throwable {
 
         {
-            form.setSource(101);
-            form.setDestination(100);
+            form.setLeft(101);
+            form.setRight(100);
 
             violations = validator.validate(form, LessThan.class);
             assertThat(violations.size(), is(1));
             assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "source", "destination")));
+                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
         }
 
         {
-            form.setSource(100);
-            form.setDestination(100);
+            form.setLeft(100);
+            form.setRight(100);
 
             violations = validator.validate(form, LessThan.class);
             assertThat(violations.size(), is(1));
             assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "source", "destination")));
+                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
         }
 
         {
-            form.setSource(99);
-            form.setDestination(100);
+            form.setLeft(99);
+            form.setRight(100);
 
             violations = validator.validate(form, LessThan.class);
             assertThat(violations.size(), is(0));
@@ -157,71 +164,71 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     }
 
     /**
-     * specify operator. expected valid if input source value equal destination value.
+     * specify operator. expected valid if input left value equal right value.
      * @throws Throwable
      */
     @Test
     public void testSpecifyOperatorEqual() throws Throwable {
 
         {
-            form.setSource(101);
-            form.setDestination(100);
+            form.setLeft(101);
+            form.setRight(100);
 
             violations = validator.validate(form);
             assertThat(violations.size(), is(1));
             assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "source", "destination")));
+                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
         }
 
         {
-            form.setSource(100);
-            form.setDestination(100);
+            form.setLeft(100);
+            form.setRight(100);
 
             violations = validator.validate(form);
             assertThat(violations.size(), is(0));
         }
 
         {
-            form.setSource(99);
-            form.setDestination(100);
+            form.setLeft(99);
+            form.setRight(100);
 
             violations = validator.validate(form);
             assertThat(violations.size(), is(1));
             assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "source", "destination")));
+                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
         }
     }
 
     /**
-     * specify operator. expected valid if input source value less than destination value.
+     * specify operator. expected valid if input left value less than right value.
      * @throws Throwable
      */
     @Test
     public void testSpecifyOperatorGraterThan() throws Throwable {
 
         {
-            form.setSource(99);
-            form.setDestination(100);
+            form.setLeft(99);
+            form.setRight(100);
 
             violations = validator.validate(form, GraterThan.class);
             assertThat(violations.size(), is(1));
             assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "source", "destination")));
+                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
         }
 
         {
-            form.setSource(100);
-            form.setDestination(100);
+            form.setLeft(100);
+            form.setRight(100);
 
             violations = validator.validate(form, GraterThan.class);
             assertThat(violations.size(), is(1));
             assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "source", "destination")));
+                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
         }
 
         {
-            form.setSource(101);
-            form.setDestination(100);
+            form.setLeft(101);
+            form.setRight(100);
 
             violations = validator.validate(form, GraterThan.class);
             assertThat(violations.size(), is(0));
@@ -229,33 +236,33 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     }
 
     /**
-     * specify operator. expected valid if input source value less than or equal destination value.
+     * specify operator. expected valid if input left value less than or equal right value.
      * @throws Throwable
      */
     @Test
     public void testSpecifyOperatorGraterThanOrEqual() throws Throwable {
 
         {
-            form.setSource(99);
-            form.setDestination(100);
+            form.setLeft(99);
+            form.setRight(100);
 
             violations = validator.validate(form, GraterThanOrEqual.class);
             assertThat(violations.size(), is(1));
             assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "source", "destination")));
+                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
         }
 
         {
-            form.setSource(100);
-            form.setDestination(100);
+            form.setLeft(100);
+            form.setRight(100);
 
             violations = validator.validate(form, GraterThanOrEqual.class);
             assertThat(violations.size(), is(0));
         }
 
         {
-            form.setSource(101);
-            form.setDestination(100);
+            form.setLeft(101);
+            form.setRight(100);
 
             violations = validator.validate(form, GraterThanOrEqual.class);
             assertThat(violations.size(), is(0));
@@ -263,61 +270,127 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     }
 
     /**
-     * specify source type is {@code Integer} and destination type is {@code String}. expected invalid.
+     * specify path. expected validation message node is left.
      * @throws Throwable
      */
     @Test
-    public void testSpecifyDestinationTypeUnmatch() throws Throwable {
+    public void testSpecifyPathLeft() throws Throwable {
+
+        form.setLeft(100);
+        form.setRight(99);
+
+        violations = validator.validate(form, PathLeft.class);
+        assertThat(violations.size(), is(1));
+        for (ConstraintViolation<CompareTestForm> violation : violations) {
+            assertThat(violation.getMessage(), is(String.format(
+                    MESSAGE_VALIDATION_ERROR, "left", "right")));
+            for (Node node : violation.getPropertyPath()) {
+                assertThat(node, instanceOf(PropertyNode.class));
+                assertThat(node.getName(), is("left"));
+            }
+        }
+    }
+
+    /**
+     * specify path. expected validation message node is right.
+     * @throws Throwable
+     */
+    @Test
+    public void testSpecifyPathRight() throws Throwable {
+
+        form.setLeft(100);
+        form.setRight(99);
+
+        violations = validator.validate(form, PathRight.class);
+        assertThat(violations.size(), is(1));
+        for (ConstraintViolation<CompareTestForm> violation : violations) {
+            assertThat(violation.getMessage(), is(String.format(
+                    MESSAGE_VALIDATION_ERROR, "left", "right")));
+            for (Node node : violation.getPropertyPath()) {
+                assertThat(node, instanceOf(PropertyNode.class));
+                assertThat(node.getName(), is("right"));
+            }
+        }
+    }
+
+    /**
+     * specify path. expected validation message node is root bean.
+     * @throws Throwable
+     */
+    @Test
+    public void testSpecifyPathRootBean() throws Throwable {
+
+        form.setLeft(100);
+        form.setRight(99);
+
+        violations = validator.validate(form, PathRootBean.class);
+        assertThat(violations.size(), is(1));
+        for (ConstraintViolation<CompareTestForm> violation : violations) {
+            assertThat(violation.getMessage(), is(String.format(
+                    MESSAGE_VALIDATION_ERROR, "left", "right")));
+            for (Node node : violation.getPropertyPath()) {
+                assertThat(node, instanceOf(PropertyNode.class));
+                assertThat(node.getName(), nullValue());
+            }
+        }
+    }
+
+    /**
+     * specify left type is {@code Integer} and right type is {@code String}. expected invalid.
+     * @throws Throwable
+     */
+    @Test
+    public void testSpecifyRightTypeUnmatch() throws Throwable {
 
         {
-            form.setSource(100);
+            form.setLeft(100);
             form.setStringProperty("100");
 
             violations = validator.validate(form, TypeUnmatch.class);
             assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "source",
+            assertThat(violations.iterator().next().getMessage(),
+                    is(String.format(MESSAGE_VALIDATION_ERROR, "left",
                             "stringProperty")));
         }
     }
 
     /**
-     * specify unknown source. expected {@code ValidationException} caused by {@code IllegalArgumentException} that message is
+     * specify unknown left. expected {@code ValidationException} caused by {@code IllegalArgumentException} that message is
      * {@code failed to initialize validator by invalid argument}.
      * @throws Throwable
      */
     @Test
-    public void testSpecifyUnknownSource() throws Throwable {
+    public void testSpecifyUnknownLeft() throws Throwable {
         setExpectedFailedToInitialize(IntrospectionException.class);
 
-        validator.validate(form, UnknownSource.class);
+        validator.validate(form, UnknownLeft.class);
     }
 
     /**
-     * specify unknown destination. expected {@code ValidationException} caused by {@code IllegalArgumentException} that message
-     * is {@code failed to initialize validator by invalid argument}.
+     * specify unknown right. expected {@code ValidationException} caused by {@code IllegalArgumentException} that message is
+     * {@code failed to initialize validator by invalid argument}.
      * @throws Throwable
      */
     @Test
-    public void testSpecifyUnknownDestination() throws Throwable {
+    public void testSpecifyUnknownRight() throws Throwable {
         setExpectedFailedToInitialize(IntrospectionException.class);
 
-        validator.validate(form, UnknownDestination.class);
+        validator.validate(form, UnknownRight.class);
     }
 
     /**
-     * specify not comparable source. expected {@code ValidationException} caused by {@code IllegalArgumentException} that
-     * message is {@code validator does not support this type: java.lang.Object}
+     * specify not comparable left. expected {@code ValidationException} caused by {@code IllegalArgumentException} that message
+     * is {@code validator does not support this type: java.lang.Object}
      * @throws Throwable
      */
     @Test
-    public void testSpecifyNotComparableSource() throws Throwable {
+    public void testSpecifyNotComparableLeft() throws Throwable {
         setExpectedTypeNotSupport(Object.class);
 
         form.setObjectProperty(new Object());
-        form.setDestination(100);
+        form.setRight(100);
 
-        validator.validate(form, NotComparableSource.class);
+        validator.validate(form, NotComparableLeft.class);
     }
 
     /**
@@ -345,68 +418,83 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     };
 
     /**
-     * Validation group source and destination type unmatch.
+     * Validation group path left.
+     */
+    private static interface PathLeft {
+    };
+
+    /**
+     * Validation group path right.
+     */
+    private static interface PathRight {
+    };
+
+    /**
+     * Validation group path root bean.
+     */
+    private static interface PathRootBean {
+    };
+
+    /**
+     * Validation group left and right type unmatch.
      */
     private static interface TypeUnmatch {
     };
 
     /**
-     * Validation group source not found.
+     * Validation group left not found.
      */
-    private static interface UnknownSource {
+    private static interface UnknownLeft {
     };
 
     /**
-     * Validation group destination not found.
+     * Validation group right not found.
      */
-    private static interface UnknownDestination {
+    private static interface UnknownRight {
     };
 
     /**
-     * Validation group source not comparable.
+     * Validation group left not comparable.
      */
-    private static interface NotComparableSource {
-    };
-
-    /**
-     * Validation group destination not comparable.
-     */
-    private static interface NotComparableDestination {
+    private static interface NotComparableLeft {
     };
 
     @Compare.List({
-            @Compare(source = "source", destination = "destination", operator = Operator.EQUAL),
-            @Compare(source = "source", destination = "destination", operator = Operator.GRATER_THAN_OR_EQUAL, groups = { GraterThanOrEqual.class }),
-            @Compare(source = "source", destination = "destination", operator = Operator.GRATER_THAN, groups = { GraterThan.class }),
-            @Compare(source = "source", destination = "destination", operator = Operator.LESS_THAN_OR_EQUAL, groups = { LessThanOrEqual.class }),
-            @Compare(source = "source", destination = "destination", operator = Operator.LESS_THAN, groups = { LessThan.class }),
-            @Compare(source = "source", destination = "stringProperty", operator = Operator.EQUAL, groups = { TypeUnmatch.class }),
-            @Compare(source = "unknown", destination = "destination", operator = Operator.EQUAL, groups = { UnknownSource.class }),
-            @Compare(source = "source", destination = "unknown", operator = Operator.EQUAL, groups = { UnknownDestination.class }),
-            @Compare(source = "objectProperty", destination = "destination", operator = Operator.EQUAL, groups = { NotComparableSource.class }) })
+            @Compare(left = "left", right = "right", operator = Operator.EQUAL),
+            @Compare(left = "left", right = "right", operator = Operator.GRATER_THAN_OR_EQUAL, groups = { GraterThanOrEqual.class }),
+            @Compare(left = "left", right = "right", operator = Operator.GRATER_THAN, groups = { GraterThan.class }),
+            @Compare(left = "left", right = "right", operator = Operator.LESS_THAN_OR_EQUAL, groups = { LessThanOrEqual.class }),
+            @Compare(left = "left", right = "right", operator = Operator.LESS_THAN, groups = { LessThan.class }),
+            @Compare(left = "left", right = "right", operator = Operator.EQUAL, path = Path.LEFT, groups = { PathLeft.class }),
+            @Compare(left = "left", right = "right", operator = Operator.EQUAL, path = Path.RIGHT, groups = { PathRight.class }),
+            @Compare(left = "left", right = "right", operator = Operator.EQUAL, path = Path.ROOT_BEAN, groups = { PathRootBean.class }),
+            @Compare(left = "left", right = "stringProperty", operator = Operator.EQUAL, groups = { TypeUnmatch.class }),
+            @Compare(left = "unknown", right = "right", operator = Operator.EQUAL, groups = { UnknownLeft.class }),
+            @Compare(left = "left", right = "unknown", operator = Operator.EQUAL, groups = { UnknownRight.class }),
+            @Compare(left = "objectProperty", right = "right", operator = Operator.EQUAL, groups = { NotComparableLeft.class }) })
     public class CompareTestForm {
-        private Integer source;
+        private Integer left;
 
-        private Integer destination;
+        private Integer right;
 
         private String stringProperty;
 
         private Object objectProperty;
 
-        public Integer getSource() {
-            return source;
+        public Integer getLeft() {
+            return left;
         }
 
-        public void setSource(Integer source) {
-            this.source = source;
+        public void setLeft(Integer left) {
+            this.left = left;
         }
 
-        public Integer getDestination() {
-            return destination;
+        public Integer getRight() {
+            return right;
         }
 
-        public void setDestination(Integer destination) {
-            this.destination = destination;
+        public void setRight(Integer right) {
+            this.right = right;
         }
 
         public String getStringProperty() {

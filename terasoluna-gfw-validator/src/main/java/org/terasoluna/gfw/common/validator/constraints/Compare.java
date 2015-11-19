@@ -64,19 +64,24 @@ public @interface Compare {
     Class<? extends Payload>[] payload() default {};
 
     /**
-     * @return property name of comparison source
+     * @return name of property to become left side of comparison
      */
-    String source();
+    String left();
 
     /**
-     * @return property name of comparison destination
+     * @return name of property to become right side of comparison
      */
-    String destination();
+    String right();
 
     /**
      * @return operator used in the comparison
      */
     Operator operator();
+
+    /**
+     * @return property path of bind validation message
+     */
+    Path path() default Path.LEFT;
 
     /**
      * Defines several {@link Compare} annotations on the same element.
@@ -97,49 +102,131 @@ public @interface Compare {
     enum Operator {
 
         /**
-         * Source must be less than or equal destination.
+         * Left side object must be less than or equal Right side object.
          */
-        LESS_THAN_OR_EQUAL(-1, 0),
+        LESS_THAN_OR_EQUAL(CompareStrategy.EQ, CompareStrategy.LT),
 
         /**
-         * Source must be less than destination.
+         * Left side object must be less than Right side object.
          */
-        LESS_THAN(-1),
+        LESS_THAN(CompareStrategy.LT),
 
         /**
-         * Source must be equal destination.
+         * Left side object must be equal Right side object.
          */
-        EQUAL(0),
+        EQUAL(CompareStrategy.EQ),
 
         /**
-         * Source must be grater than destination.
+         * Left side object must be grater than Right side object.
          */
-        GRATER_THAN(1),
+        GRATER_THAN(CompareStrategy.GT),
 
         /**
-         * Source must be grater than or equal destination.
+         * Left side object must be grater than or equal Right side object.
          */
-        GRATER_THAN_OR_EQUAL(0, 1);
+        GRATER_THAN_OR_EQUAL(CompareStrategy.EQ, CompareStrategy.GT);
 
         /**
-         * expected values as a result of {@code Comparable#compareTo(Object)}.
+         * strategies to assert result of {@code Comparable#compareTo(Object)} as the expected.
          */
-        private final int[] value;
+        private final CompareStrategy[] strategies;
 
         /**
          * Constructor.
-         * @param value expected values as a result of {@code Comparable#compareTo(Object)}
+         * @param strategies to assert result of {@code Comparable#compareTo(Object)} as the expected
          */
-        Operator(int... value) {
-            this.value = value;
+        private Operator(CompareStrategy... strategies) {
+            this.strategies = strategies;
         }
 
         /**
-         * Get expected values as a result of {@code Comparable#compareTo(Object)}.
-         * @return expected values as a result of {@code Comparable#compareTo(Object)}
+         * Assert result of {@code Comparable#compareTo(Object)} as the expected.
+         * @param value result of {@code Comparable#compareTo(Object)}
+         * @return {@code true} if result of {@code Comparable#compareTo(Object)} as the expected in any of the
+         *         {@code CompareStrategy#isExpected(int)}, otherwise {@code false}.
          */
-        public int[] value() {
-            return this.value;
+        public boolean isExpected(int value) {
+            for (CompareStrategy strategy : strategies) {
+                if (strategy.isExpected(value)) {
+                    return true;
+                }
+            }
+            return false;
         }
+
+        /**
+         * Strategy to assert result of {@code Comparable#compareTo(Object)} as the expected.
+         * @since 5.1.0
+         */
+        private enum CompareStrategy {
+
+            /**
+             * Expected equals ZERO.
+             */
+            EQ {
+                /**
+                 * {@inheritDoc}
+                 */
+                @Override
+                protected boolean isExpected(int value) {
+                    return value == 0;
+                }
+            },
+
+            /**
+             * Expected grater than ZERO.
+             */
+            GT {
+                /**
+                 * {@inheritDoc}
+                 */
+                @Override
+                protected boolean isExpected(int value) {
+                    return value > 0;
+                }
+            },
+
+            /**
+             * Expected less than ZERO.
+             */
+            LT {
+                /**
+                 * {@inheritDoc}
+                 */
+                @Override
+                protected boolean isExpected(int value) {
+                    return value < 0;
+                }
+            };
+
+            /**
+             * Assert result of {@code Comparable#compareTo(Object)} as the expected.
+             * @param value result of {@code Comparable#compareTo(Object)}
+             * @return {@code true} if result of {@code Comparable#compareTo(Object)} as the expected, otherwise {@code false}.
+             */
+            protected abstract boolean isExpected(int value);
+        }
+    }
+
+    /**
+     * The property path of bind validation message.
+     * @since 5.1.0
+     */
+    enum Path {
+
+        /**
+         * Bind validation message to property specified {@code Compare#left()}.
+         */
+        LEFT,
+
+        /**
+         * Bind validation message to property specified {@code Compare#right()}.
+         */
+        RIGHT,
+
+        /**
+         * Bind validation message to root bean {@code Compare} annotated.
+         */
+        ROOT_BEAN
     }
 }
