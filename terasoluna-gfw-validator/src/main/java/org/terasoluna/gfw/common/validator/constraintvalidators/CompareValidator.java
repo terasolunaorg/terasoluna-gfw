@@ -134,7 +134,7 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
     }
 
     /**
-     * Construct validation message when selected {@link Node#LEFT_PROPERTY} or {@link Node#RIGHT_PROPERTY}.
+     * Construct validation message when selected {@link Node#PROPERTY}.
      * @param context constraint validation context
      */
     private void constructValidationMessage(ConstraintValidatorContext context) {
@@ -142,9 +142,8 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
             return;
         }
 
-        String propertyName = (node == Node.LEFT_PROPERTY) ? left : right;
         context.buildConstraintViolationWithTemplate(message).addPropertyNode(
-                propertyName).addConstraintViolation()
+                left).addConstraintViolation()
                 .disableDefaultConstraintViolation();
     }
 }
