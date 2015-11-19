@@ -141,13 +141,13 @@ public @interface Compare {
 
         /**
          * Assert result of {@code Comparable#compareTo(Object)} as the expected.
-         * @param value result of {@code Comparable#compareTo(Object)}
+         * @param comparisonResult result of {@code Comparable#compareTo(Object)}
          * @return {@code true} if result of {@code Comparable#compareTo(Object)} as the expected in any of the
          *         {@code CompareStrategy#isExpected(int)}, otherwise {@code false}.
          */
-        public boolean isExpected(int value) {
+        public boolean isExpected(int comparisonResult) {
             for (CompareStrategy strategy : strategies) {
-                if (strategy.isExpected(value)) {
+                if (strategy.isExpected(comparisonResult)) {
                     return true;
                 }
             }
@@ -168,8 +168,8 @@ public @interface Compare {
                  * {@inheritDoc}
                  */
                 @Override
-                protected boolean isExpected(int value) {
-                    return value == 0;
+                protected boolean isExpected(int comparisonResult) {
+                    return comparisonResult == 0;
                 }
             },
 
@@ -181,8 +181,8 @@ public @interface Compare {
                  * {@inheritDoc}
                  */
                 @Override
-                protected boolean isExpected(int value) {
-                    return value > 0;
+                protected boolean isExpected(int comparisonResult) {
+                    return comparisonResult > 0;
                 }
             },
 
@@ -194,17 +194,17 @@ public @interface Compare {
                  * {@inheritDoc}
                  */
                 @Override
-                protected boolean isExpected(int value) {
-                    return value < 0;
+                protected boolean isExpected(int comparisonResult) {
+                    return comparisonResult < 0;
                 }
             };
 
             /**
              * Assert result of {@code Comparable#compareTo(Object)} as the expected.
-             * @param value result of {@code Comparable#compareTo(Object)}
+             * @param comparisonResult result of {@code Comparable#compareTo(Object)}
              * @return {@code true} if result of {@code Comparable#compareTo(Object)} as the expected, otherwise {@code false}.
              */
-            protected abstract boolean isExpected(int value);
+            protected abstract boolean isExpected(int comparisonResult);
         }
     }
 
