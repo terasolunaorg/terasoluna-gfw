@@ -26,8 +26,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.terasoluna.gfw.common.validator.constraints.ByteMaxTest.ByteMaxTestForm;
 
-import lombok.Data;
-
 /**
  * Test class of {@link ByteMax}
  */
@@ -163,7 +161,6 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
     private static interface UnexpectedType {
     };
 
-    @Data
     public class ByteMaxTestForm {
         @ByteMax.List({
                 @ByteMax(6),
@@ -176,5 +173,29 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
 
         @ByteMax(value = 6, groups = { UnexpectedType.class })
         private Integer intProperty;
+
+        public String getStringProperty() {
+            return stringProperty;
+        }
+
+        public void setStringProperty(String stringProperty) {
+            this.stringProperty = stringProperty;
+        }
+
+        public StringBuilder getStringBuilderProperty() {
+            return stringBuilderProperty;
+        }
+
+        public void setStringBuilderProperty(StringBuilder stringBuilderProperty) {
+            this.stringBuilderProperty = stringBuilderProperty;
+        }
+
+        public Integer getIntProperty() {
+            return intProperty;
+        }
+
+        public void setIntProperty(Integer intProperty) {
+            this.intProperty = intProperty;
+        }
     }
 }

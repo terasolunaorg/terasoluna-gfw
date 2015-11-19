@@ -32,8 +32,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.terasoluna.gfw.common.validator.constraints.AfterForJSR310Test.AfterForJSR310TestForm;
 
-import lombok.Data;
-
 /**
  * Test class of {@link After} for JSR310 Date and Time API
  */
@@ -582,7 +580,6 @@ public class AfterForJSR310Test extends
     private static interface IllegalFormat {
     };
 
-    @Data
     public class AfterForJSR310TestForm {
         @After.List({
                 @After("2015-10-01"),
@@ -631,5 +628,70 @@ public class AfterForJSR310Test extends
                 @After(value = "2015年10月", format = "uuuu年MM月", groups = { SpecifyFormat.class }),
                 @After(value = "2015-10", format = "uuuu年MM月", groups = { IllegalFormat.class }) })
         private YearMonth yearMonthProperty;
+
+        public LocalDate getLocalDateProperty() {
+            return localDateProperty;
+        }
+
+        public void setLocalDateProperty(LocalDate localDateProperty) {
+            this.localDateProperty = localDateProperty;
+        }
+
+        public LocalDateTime getLocalDateTimeProperty() {
+            return localDateTimeProperty;
+        }
+
+        public void setLocalDateTimeProperty(LocalDateTime localDateTimeProperty) {
+            this.localDateTimeProperty = localDateTimeProperty;
+        }
+
+        public ZonedDateTime getZonedDateTimeProperty() {
+            return zonedDateTimeProperty;
+        }
+
+        public void setZonedDateTimeProperty(ZonedDateTime zonedDateTimeProperty) {
+            this.zonedDateTimeProperty = zonedDateTimeProperty;
+        }
+
+        public LocalTime getLocalTimeProperty() {
+            return localTimeProperty;
+        }
+
+        public void setLocalTimeProperty(LocalTime localTimeProperty) {
+            this.localTimeProperty = localTimeProperty;
+        }
+
+        public OffsetDateTime getOffsetDateTimeProperty() {
+            return offsetDateTimeProperty;
+        }
+
+        public void setOffsetDateTimeProperty(
+                OffsetDateTime offsetDateTimeProperty) {
+            this.offsetDateTimeProperty = offsetDateTimeProperty;
+        }
+
+        public OffsetTime getOffsetTimeProperty() {
+            return offsetTimeProperty;
+        }
+
+        public void setOffsetTimeProperty(OffsetTime offsetTimeProperty) {
+            this.offsetTimeProperty = offsetTimeProperty;
+        }
+
+        public Year getYearProperty() {
+            return yearProperty;
+        }
+
+        public void setYearProperty(Year yearProperty) {
+            this.yearProperty = yearProperty;
+        }
+
+        public YearMonth getYearMonthProperty() {
+            return yearMonthProperty;
+        }
+
+        public void setYearMonthProperty(YearMonth yearMonthProperty) {
+            this.yearMonthProperty = yearMonthProperty;
+        }
     }
 }

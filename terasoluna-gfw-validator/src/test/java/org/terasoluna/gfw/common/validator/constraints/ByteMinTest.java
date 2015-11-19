@@ -26,8 +26,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.terasoluna.gfw.common.validator.constraints.ByteMinTest.ByteMinTestForm;
 
-import lombok.Data;
-
 /**
  * Test class of {@link ByteMin}
  */
@@ -164,7 +162,6 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
     private static interface UnexpectedType {
     };
 
-    @Data
     public class ByteMinTestForm {
         @ByteMin.List({
                 @ByteMin(6),
@@ -177,5 +174,29 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
         @ByteMin(value = 6, groups = { UnexpectedType.class })
         private Integer intProperty;
+
+        public String getStringProperty() {
+            return stringProperty;
+        }
+
+        public void setStringProperty(String stringProperty) {
+            this.stringProperty = stringProperty;
+        }
+
+        public StringBuilder getStringBuilderProperty() {
+            return stringBuilderProperty;
+        }
+
+        public void setStringBuilderProperty(StringBuilder stringBuilderProperty) {
+            this.stringBuilderProperty = stringBuilderProperty;
+        }
+
+        public Integer getIntProperty() {
+            return intProperty;
+        }
+
+        public void setIntProperty(Integer intProperty) {
+            this.intProperty = intProperty;
+        }
     }
 }

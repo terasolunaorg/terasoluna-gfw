@@ -27,8 +27,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.terasoluna.gfw.common.validator.constraints.AfterForJodaTimeTest.AfterForJodaTimeTestForm;
 
-import lombok.Data;
-
 /**
  * Test class of {@link After} for Joda-Time
  */
@@ -438,7 +436,6 @@ public class AfterForJodaTimeTest
     private static interface IllegalFormat {
     };
 
-    @Data
     public class AfterForJodaTimeTestForm {
         @After.List({
                 @After("2015-10-01T00:00:00"),
@@ -476,5 +473,52 @@ public class AfterForJodaTimeTest
                 @After(value = "2015-10", format = "yyyy年MM月", groups = { IllegalFormat.class }) })
         private YearMonth yearMonthProperty;
 
+        public DateTime getDateTimeProperty() {
+            return dateTimeProperty;
+        }
+
+        public void setDateTimeProperty(DateTime dateTimeProperty) {
+            this.dateTimeProperty = dateTimeProperty;
+        }
+
+        public LocalDate getLocalDateProperty() {
+            return localDateProperty;
+        }
+
+        public void setLocalDateProperty(LocalDate localDateProperty) {
+            this.localDateProperty = localDateProperty;
+        }
+
+        public LocalDateTime getLocalDateTimeProperty() {
+            return localDateTimeProperty;
+        }
+
+        public void setLocalDateTimeProperty(LocalDateTime localDateTimeProperty) {
+            this.localDateTimeProperty = localDateTimeProperty;
+        }
+
+        public LocalTime getLocalTimeProperty() {
+            return localTimeProperty;
+        }
+
+        public void setLocalTimeProperty(LocalTime localTimeProperty) {
+            this.localTimeProperty = localTimeProperty;
+        }
+
+        public YearMonth getYearProperty() {
+            return yearProperty;
+        }
+
+        public void setYearProperty(YearMonth yearProperty) {
+            this.yearProperty = yearProperty;
+        }
+
+        public YearMonth getYearMonthProperty() {
+            return yearMonthProperty;
+        }
+
+        public void setYearMonthProperty(YearMonth yearMonthProperty) {
+            this.yearMonthProperty = yearMonthProperty;
+        }
     }
 }
