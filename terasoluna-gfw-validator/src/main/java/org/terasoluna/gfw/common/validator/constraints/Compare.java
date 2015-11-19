@@ -135,7 +135,7 @@ public @interface Compare {
          * Constructor.
          * @param strategies to assert result of {@code Comparable#compareTo(Object)} as the expected
          */
-        private Operator(CompareStrategy... strategies) {
+        Operator(CompareStrategy... strategies) {
             this.strategies = strategies;
         }
 
