@@ -22,8 +22,8 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 import org.terasoluna.gfw.common.validator.constraints.Compare;
+import org.terasoluna.gfw.common.validator.constraints.Compare.Node;
 import org.terasoluna.gfw.common.validator.constraints.Compare.Operator;
-import org.terasoluna.gfw.common.validator.constraints.Compare.Path;
 
 /**
  * Constraint validator class of {@link Compare} annotation.
@@ -52,9 +52,9 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
     private Operator operator;
 
     /**
-     * Property path of bind validation message
+     * Node of bind validation message
      */
-    private Path path;
+    private Node node;
 
     /**
      * Validation message.
@@ -71,7 +71,7 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
         left = constraintAnnotation.left();
         right = constraintAnnotation.right();
         operator = constraintAnnotation.operator();
-        path = constraintAnnotation.path();
+        node = constraintAnnotation.node();
         message = constraintAnnotation.message();
     }
 
@@ -134,17 +134,17 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
     }
 
     /**
-     * Construct validation message when selected {@code PropertyPath#LEFT} or {@code PropertyPath#RIGHT}.
+     * Construct validation message when selected {@link Node#LEFT_PROPERTY} or {@link Node#RIGHT_PROPERTY}.
      * @param context constraint validation context
      */
     private void constructValidationMessage(ConstraintValidatorContext context) {
-        if (path == Path.ROOT_BEAN) {
+        if (node == Node.ROOT_BEAN) {
             return;
         }
 
-        String node = (path == Path.LEFT) ? left : right;
+        String propertyName = (node == Node.LEFT_PROPERTY) ? left : right;
         context.buildConstraintViolationWithTemplate(message).addPropertyNode(
-                node).addConstraintViolation()
+                propertyName).addConstraintViolation()
                 .disableDefaultConstraintViolation();
     }
 }

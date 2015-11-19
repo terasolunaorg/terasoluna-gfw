@@ -23,13 +23,12 @@ import static org.junit.Assert.assertThat;
 import java.beans.IntrospectionException;
 
 import javax.validation.ConstraintViolation;
-import javax.validation.Path.Node;
 import javax.validation.Path.PropertyNode;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.terasoluna.gfw.common.validator.constraints.Compare.Node;
 import org.terasoluna.gfw.common.validator.constraints.Compare.Operator;
-import org.terasoluna.gfw.common.validator.constraints.Compare.Path;
 import org.terasoluna.gfw.common.validator.constraints.CompareTest.CompareTestForm;
 
 /**
@@ -279,12 +278,12 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
         form.setLeft(100);
         form.setRight(99);
 
-        violations = validator.validate(form, PathLeft.class);
+        violations = validator.validate(form, NodeLeftProperty.class);
         assertThat(violations.size(), is(1));
         for (ConstraintViolation<CompareTestForm> violation : violations) {
             assertThat(violation.getMessage(), is(String.format(
                     MESSAGE_VALIDATION_ERROR, "left", "right")));
-            for (Node node : violation.getPropertyPath()) {
+            for (javax.validation.Path.Node node : violation.getPropertyPath()) {
                 assertThat(node, instanceOf(PropertyNode.class));
                 assertThat(node.getName(), is("left"));
             }
@@ -301,12 +300,12 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
         form.setLeft(100);
         form.setRight(99);
 
-        violations = validator.validate(form, PathRight.class);
+        violations = validator.validate(form, NodeRightProperty.class);
         assertThat(violations.size(), is(1));
         for (ConstraintViolation<CompareTestForm> violation : violations) {
             assertThat(violation.getMessage(), is(String.format(
                     MESSAGE_VALIDATION_ERROR, "left", "right")));
-            for (Node node : violation.getPropertyPath()) {
+            for (javax.validation.Path.Node node : violation.getPropertyPath()) {
                 assertThat(node, instanceOf(PropertyNode.class));
                 assertThat(node.getName(), is("right"));
             }
@@ -328,7 +327,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
         for (ConstraintViolation<CompareTestForm> violation : violations) {
             assertThat(violation.getMessage(), is(String.format(
                     MESSAGE_VALIDATION_ERROR, "left", "right")));
-            for (Node node : violation.getPropertyPath()) {
+            for (javax.validation.Path.Node node : violation.getPropertyPath()) {
                 assertThat(node, instanceOf(PropertyNode.class));
                 assertThat(node.getName(), nullValue());
             }
@@ -420,13 +419,13 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     /**
      * Validation group path left.
      */
-    private static interface PathLeft {
+    private static interface NodeLeftProperty {
     };
 
     /**
      * Validation group path right.
      */
-    private static interface PathRight {
+    private static interface NodeRightProperty {
     };
 
     /**
@@ -465,9 +464,9 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             @Compare(left = "left", right = "right", operator = Operator.GRATER_THAN, groups = { GraterThan.class }),
             @Compare(left = "left", right = "right", operator = Operator.LESS_THAN_OR_EQUAL, groups = { LessThanOrEqual.class }),
             @Compare(left = "left", right = "right", operator = Operator.LESS_THAN, groups = { LessThan.class }),
-            @Compare(left = "left", right = "right", operator = Operator.EQUAL, path = Path.LEFT, groups = { PathLeft.class }),
-            @Compare(left = "left", right = "right", operator = Operator.EQUAL, path = Path.RIGHT, groups = { PathRight.class }),
-            @Compare(left = "left", right = "right", operator = Operator.EQUAL, path = Path.ROOT_BEAN, groups = { PathRootBean.class }),
+            @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.LEFT_PROPERTY, groups = { NodeLeftProperty.class }),
+            @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.RIGHT_PROPERTY, groups = { NodeRightProperty.class }),
+            @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.ROOT_BEAN, groups = { PathRootBean.class }),
             @Compare(left = "left", right = "stringProperty", operator = Operator.EQUAL, groups = { TypeUnmatch.class }),
             @Compare(left = "unknown", right = "right", operator = Operator.EQUAL, groups = { UnknownLeft.class }),
             @Compare(left = "left", right = "unknown", operator = Operator.EQUAL, groups = { UnknownRight.class }),
