@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ARTIFACT_ID_PREFIX="terasoluna-gfw-"
-TARGETS="parent common jodatime web security-core security-web jpa mybatis3 mybatis2 recommended-dependencies recommended-web-dependencies"
+TARGETS="parent common jodatime web security-core security-web validator jpa mybatis3 mybatis2 recommended-dependencies recommended-web-dependencies"
 DEFAULT_GOALS="clean install"
 
 commandArgs=${DEFAULT_GOALS}
