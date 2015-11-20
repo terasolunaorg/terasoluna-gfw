@@ -64,6 +64,14 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             violations = validator.validate(form);
             assertThat(violations.size(), is(0));
         }
+
+        {
+            form.setLeft(null);
+            form.setRight(null);
+
+            violations = validator.validate(form);
+            assertThat(violations.size(), is(0));
+        }
     }
 
     /**
@@ -269,11 +277,95 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     }
 
     /**
+     * specify requireBoth. expected valid if input left and right are both null.
+     * @throws Throwable
+     */
+    @Test
+    public void testSpecifyRequireBothIsTrue() throws Throwable {
+
+        {
+            form.setLeft(100);
+            form.setRight(100);
+
+            violations = validator.validate(form, RequireBoth.class);
+            assertThat(violations.size(), is(0));
+        }
+
+        {
+            form.setLeft(100);
+            form.setRight(null);
+
+            violations = validator.validate(form, RequireBoth.class);
+            assertThat(violations.size(), is(1));
+            assertThat(violations.iterator().next().getMessage(), is(String
+                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
+        }
+
+        {
+            form.setLeft(null);
+            form.setRight(100);
+
+            violations = validator.validate(form, RequireBoth.class);
+            assertThat(violations.size(), is(1));
+            assertThat(violations.iterator().next().getMessage(), is(String
+                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
+        }
+
+        {
+            form.setLeft(null);
+            form.setRight(null);
+
+            violations = validator.validate(form, RequireBoth.class);
+            assertThat(violations.size(), is(0));
+        }
+    }
+
+    /**
+     * specify requireBoth. expected valid if input either left and right is null.
+     * @throws Throwable
+     */
+    @Test
+    public void testSpecifyRequireBothIsFalse() throws Throwable {
+
+        {
+            form.setLeft(100);
+            form.setRight(100);
+
+            violations = validator.validate(form, RequireEither.class);
+            assertThat(violations.size(), is(0));
+        }
+
+        {
+            form.setLeft(100);
+            form.setRight(null);
+
+            violations = validator.validate(form, RequireEither.class);
+            assertThat(violations.size(), is(0));
+        }
+
+        {
+            form.setLeft(null);
+            form.setRight(100);
+
+            violations = validator.validate(form, RequireEither.class);
+            assertThat(violations.size(), is(0));
+        }
+
+        {
+            form.setLeft(null);
+            form.setRight(null);
+
+            violations = validator.validate(form, RequireEither.class);
+            assertThat(violations.size(), is(0));
+        }
+    }
+
+    /**
      * specify path. expected validation message node is left.
      * @throws Throwable
      */
     @Test
-    public void testSpecifyPathLeft() throws Throwable {
+    public void testSpecifyNodeProperty() throws Throwable {
 
         form.setLeft(100);
         form.setRight(99);
@@ -395,13 +487,25 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     };
 
     /**
-     * Validation group path left.
+     * Validation group required left and right both.
+     */
+    private static interface RequireBoth {
+    };
+
+    /**
+     * Validation group required left and right either.
+     */
+    private static interface RequireEither {
+    };
+
+    /**
+     * Validation group node left property.
      */
     private static interface NodeProperty {
     };
 
     /**
-     * Validation group path root bean.
+     * Validation group node root bean.
      */
     private static interface PathRootBean {
     };
@@ -436,6 +540,8 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             @Compare(left = "left", right = "right", operator = Operator.GRATER_THAN, groups = { GraterThan.class }),
             @Compare(left = "left", right = "right", operator = Operator.LESS_THAN_OR_EQUAL, groups = { LessThanOrEqual.class }),
             @Compare(left = "left", right = "right", operator = Operator.LESS_THAN, groups = { LessThan.class }),
+            @Compare(left = "left", right = "right", operator = Operator.EQUAL, requireBoth = true, groups = { RequireBoth.class }),
+            @Compare(left = "left", right = "right", operator = Operator.EQUAL, requireBoth = false, groups = { RequireEither.class }),
             @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.PROPERTY, groups = { NodeProperty.class }),
             @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.ROOT_BEAN, groups = { PathRootBean.class }),
             @Compare(left = "left", right = "stringProperty", operator = Operator.EQUAL, groups = { TypeUnmatch.class }),

@@ -52,6 +52,12 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
     private Operator operator;
 
     /**
+     * {@code true} it's valid if left and right are both null, but it's invalid if either is null. otherwise it's valid even if
+     * either is null.
+     */
+    private boolean requireBoth;
+
+    /**
      * Node of bind validation message
      */
     private Node node;
@@ -71,6 +77,7 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
         left = constraintAnnotation.left();
         right = constraintAnnotation.right();
         operator = constraintAnnotation.operator();
+        requireBoth = constraintAnnotation.requireBoth();
         node = constraintAnnotation.node();
         message = constraintAnnotation.message();
     }
@@ -79,8 +86,8 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
      * Validate execute.
      * @param bean bean to validate
      * @param context context in which the constraint is evaluated
-     * @return {@code true} if result to comparing {@code left} and {@code right} is expected {@code operator}, or any property
-     *         is null. otherwise {@code false}.
+     * @return {@code true} if result to comparing {@code left} and {@code right} is expected {@code operator}, or is match
+     *         conditions that are described in the {@link CompareValidator#requireBoth} . otherwise {@code false}.
      * @see javax.validation.ConstraintValidator#isValid(java.lang.Object, javax.validation.ConstraintValidatorContext)
      */
     @Override
@@ -89,7 +96,8 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
         Object rightValue = getPropertyValue(bean, right);
 
         if (leftValue == null || rightValue == null) {
-            return true;
+            return requireBoth ? (leftValue == null && rightValue == null)
+                    : true;
         }
 
         if (!assertComparable(leftValue, rightValue)) {
