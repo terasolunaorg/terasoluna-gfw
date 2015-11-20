@@ -79,9 +79,9 @@ public @interface Compare {
     Operator operator();
 
     /**
-     * @return property path of bind validation message
+     * @return node of bind validation message
      */
-    Path path() default Path.LEFT;
+    Node node() default Node.LEFT_PROPERTY;
 
     /**
      * Defines several {@link Compare} annotations on the same element.
@@ -209,20 +209,20 @@ public @interface Compare {
     }
 
     /**
-     * The property path of bind validation message.
+     * The node of bind validation message.
      * @since 5.1.0
      */
-    enum Path {
+    enum Node {
 
         /**
          * Bind validation message to property specified {@code Compare#left()}.
          */
-        LEFT,
+        LEFT_PROPERTY,
 
         /**
          * Bind validation message to property specified {@code Compare#right()}.
          */
-        RIGHT,
+        RIGHT_PROPERTY,
 
         /**
          * Bind validation message to root bean {@code Compare} annotated.
