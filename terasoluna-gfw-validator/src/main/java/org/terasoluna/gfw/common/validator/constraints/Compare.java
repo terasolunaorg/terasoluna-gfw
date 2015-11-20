@@ -81,7 +81,7 @@ public @interface Compare {
     /**
      * @return node of bind validation message
      */
-    Node node() default Node.LEFT_PROPERTY;
+    Node node() default Node.PROPERTY;
 
     /**
      * Defines several {@link Compare} annotations on the same element.
@@ -217,12 +217,7 @@ public @interface Compare {
         /**
          * Bind validation message to property specified {@code Compare#left()}.
          */
-        LEFT_PROPERTY,
-
-        /**
-         * Bind validation message to property specified {@code Compare#right()}.
-         */
-        RIGHT_PROPERTY,
+        PROPERTY,
 
         /**
          * Bind validation message to root bean {@code Compare} annotated.

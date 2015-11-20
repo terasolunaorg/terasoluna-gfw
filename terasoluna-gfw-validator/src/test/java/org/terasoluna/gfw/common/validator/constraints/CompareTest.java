@@ -278,7 +278,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
         form.setLeft(100);
         form.setRight(99);
 
-        violations = validator.validate(form, NodeLeftProperty.class);
+        violations = validator.validate(form, NodeProperty.class);
         assertThat(violations.size(), is(1));
         for (ConstraintViolation<CompareTestForm> violation : violations) {
             assertThat(violation.getMessage(), is(String.format(
@@ -286,28 +286,6 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             for (javax.validation.Path.Node node : violation.getPropertyPath()) {
                 assertThat(node, instanceOf(PropertyNode.class));
                 assertThat(node.getName(), is("left"));
-            }
-        }
-    }
-
-    /**
-     * specify path. expected validation message node is right.
-     * @throws Throwable
-     */
-    @Test
-    public void testSpecifyPathRight() throws Throwable {
-
-        form.setLeft(100);
-        form.setRight(99);
-
-        violations = validator.validate(form, NodeRightProperty.class);
-        assertThat(violations.size(), is(1));
-        for (ConstraintViolation<CompareTestForm> violation : violations) {
-            assertThat(violation.getMessage(), is(String.format(
-                    MESSAGE_VALIDATION_ERROR, "left", "right")));
-            for (javax.validation.Path.Node node : violation.getPropertyPath()) {
-                assertThat(node, instanceOf(PropertyNode.class));
-                assertThat(node.getName(), is("right"));
             }
         }
     }
@@ -419,13 +397,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     /**
      * Validation group path left.
      */
-    private static interface NodeLeftProperty {
-    };
-
-    /**
-     * Validation group path right.
-     */
-    private static interface NodeRightProperty {
+    private static interface NodeProperty {
     };
 
     /**
@@ -464,8 +436,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             @Compare(left = "left", right = "right", operator = Operator.GRATER_THAN, groups = { GraterThan.class }),
             @Compare(left = "left", right = "right", operator = Operator.LESS_THAN_OR_EQUAL, groups = { LessThanOrEqual.class }),
             @Compare(left = "left", right = "right", operator = Operator.LESS_THAN, groups = { LessThan.class }),
-            @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.LEFT_PROPERTY, groups = { NodeLeftProperty.class }),
-            @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.RIGHT_PROPERTY, groups = { NodeRightProperty.class }),
+            @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.PROPERTY, groups = { NodeProperty.class }),
             @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.ROOT_BEAN, groups = { PathRootBean.class }),
             @Compare(left = "left", right = "stringProperty", operator = Operator.EQUAL, groups = { TypeUnmatch.class }),
             @Compare(left = "unknown", right = "right", operator = Operator.EQUAL, groups = { UnknownLeft.class }),
