@@ -19,7 +19,6 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.http.HttpSessionActivationListener;
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
-import javax.servlet.http.HttpSessionBindingListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
@@ -86,8 +85,8 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
     public void attributeAdded(HttpSessionBindingEvent se) {
         if (logger.isDebugEnabled()) {
             HttpSession session = se.getSession();
-            logger.debug("SESSIONID#{} attributeAdded : {}={}", new Object[] {
-                    session.getId(), se.getName(), se.getValue() });
+            logger.debug("SESSIONID#{} attributeAdded : {}={}",
+                    session.getId(), se.getName(), se.getValue());
         }
     }
 
@@ -102,8 +101,8 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
     public void attributeRemoved(HttpSessionBindingEvent se) {
         if (logger.isDebugEnabled()) {
             HttpSession session = se.getSession();
-            logger.debug("SESSIONID#{} attributeRemoved : {}={}", new Object[] {
-                    session.getId(), se.getName(), se.getValue() });
+            logger.debug("SESSIONID#{} attributeRemoved : {}={}", session
+                    .getId(), se.getName(), se.getValue());
         }
     }
 
@@ -118,9 +117,8 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
     public void attributeReplaced(HttpSessionBindingEvent se) {
         if (logger.isTraceEnabled()) {
             HttpSession session = se.getSession();
-            logger.trace(
-                    "SESSIONID#{} attributeReplaced : {}={}",
-                    new Object[] { session.getId(), se.getName(), se.getValue() });
+            logger.trace("SESSIONID#{} attributeReplaced : {}={}", session
+                    .getId(), se.getName(), se.getValue());
         }
     }
 
