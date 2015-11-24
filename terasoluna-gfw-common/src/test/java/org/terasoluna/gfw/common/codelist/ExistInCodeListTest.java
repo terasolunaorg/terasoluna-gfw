@@ -24,15 +24,18 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 import javax.inject.Inject;
+import javax.inject.Named;
 import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.terasoluna.gfw.common.codelist.ExistInCodeList;
+import org.springframework.validation.annotation.Validated;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
@@ -40,6 +43,9 @@ public class ExistInCodeListTest {
 
     @Inject
     Validator validator;
+
+    @Inject
+    CodeService codeService;
 
     @Before
     public void setUp() throws Exception {
@@ -281,6 +287,41 @@ public class ExistInCodeListTest {
                 error.getMessageTemplate(),
                 is("{org.terasoluna.gfw.common.codelist.ExistInCodeList.message}"));
         assertThat(error.getMessage(), is("Does not exist in CD_GENDER"));
+    }
+
+    @Test
+    public void issue401_testMethodValidationByValidValue() {
+        String actualLabel = codeService.getGenderLabel("M"); // call a method using valid code value
+        assertThat(actualLabel, is("Male"));
+    }
+
+    @Test
+    public void issue401_testMethodValidationByInvalidValue() {
+        try {
+            codeService.getGenderLabel("U"); // call a method using invalid code value
+            fail("should be become a validation error.");
+        } catch (ConstraintViolationException e) {
+            Set<ConstraintViolation<?>> actualViolations = e.getConstraintViolations();
+            assertThat(actualViolations.size(), is(1));
+            assertThat(actualViolations.iterator().next().getMessage(), is("Does not exist in CD_GENDER"));
+        }
+    }
+
+    @Validated
+    public interface CodeService {
+        String getGenderLabel(@ExistInCodeList(codeListId = "CD_GENDER") String genderCode);
+    }
+
+    @Service
+    public static class CodeServiceImpl implements CodeService {
+        @Inject
+        @Named("CD_GENDER")
+        CodeList genderCodeList;
+
+        @Override
+        public String getGenderLabel(String genderCode) {
+            return genderCodeList.asMap().get(genderCode);
+        }
     }
 
 }
