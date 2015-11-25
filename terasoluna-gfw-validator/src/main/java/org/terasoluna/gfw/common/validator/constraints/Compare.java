@@ -79,8 +79,9 @@ public @interface Compare {
     Operator operator();
 
     /**
-     * @return {@code true} it's valid if left and right are both null, but it's invalid if either is null. otherwise it's valid
-     *         even if either is null. (default {@code false})
+     * @return configure how to treat {@code null} value in given parameters. If true, it is regarded as valid only when both
+     *         left and right are {@code null}. It is regarded as invalid when either is {@code null}. If false, both cases are
+     *         regarded as valid.
      */
     boolean requireBoth() default false;
 
