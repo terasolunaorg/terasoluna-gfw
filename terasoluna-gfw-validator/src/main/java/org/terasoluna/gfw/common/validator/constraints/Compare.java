@@ -79,6 +79,13 @@ public @interface Compare {
     Operator operator();
 
     /**
+     * @return configure how to treat {@code null} value in given parameters. If true, it is regarded as valid only when both
+     *         left and right are {@code null}. It is regarded as invalid when either is {@code null}. If false, both cases are
+     *         regarded as valid.
+     */
+    boolean requireBoth() default false;
+
+    /**
      * @return node of bind validation message
      */
     Node node() default Node.PROPERTY;
