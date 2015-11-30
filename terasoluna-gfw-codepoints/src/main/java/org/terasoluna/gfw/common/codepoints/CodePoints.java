@@ -209,9 +209,7 @@ public class CodePoints implements Serializable {
      */
     public CodePoints(Integer... codePoints) {
         Set<Integer> s = new HashSet<Integer>(codePoints.length);
-        for (Integer codePoint : codePoints) {
-            s.add(codePoint);
-        }
+        Collections.addAll(s, codePoints);
         this.set = Collections.unmodifiableSet(s);
     }
 
@@ -237,8 +235,7 @@ public class CodePoints implements Serializable {
      * @param codePoints collection of actual code points
      */
     public CodePoints(Collection<Integer> codePoints) {
-        Set<Integer> s = new HashSet<Integer>();
-        s.addAll(codePoints);
+        Set<Integer> s = new HashSet<Integer>(codePoints);
         this.set = Collections.unmodifiableSet(s);
     }
 
@@ -333,13 +330,8 @@ public class CodePoints implements Serializable {
      * @return intersected code points
      */
     public CodePoints intersect(CodePoints codePoints) {
-        Set<Integer> set = new HashSet<Integer>();
-        Set<Integer> target = codePoints.set;
-        for (Integer s : this.set) {
-            if (target.contains(s)) {
-                set.add(s);
-            }
-        }
+        Set<Integer> set = new HashSet<Integer>(this.set);
+        set.retainAll(codePoints.set);
         return new CodePoints(set);
     }
 
@@ -383,13 +375,13 @@ public class CodePoints implements Serializable {
                 return true;
             }
 
-            for (Integer codepoint : excluded) {
+            for (Integer codePoint : excluded) {
                 // count the number of CodePoints in the given list which forbade the given code point
-                Integer count = excludedCounts.get(codepoint);
+                Integer count = excludedCounts.get(codePoint);
                 if (count != null) {
-                    excludedCounts.put(codepoint, count + 1);
+                    excludedCounts.put(codePoint, count + 1);
                 } else {
-                    excludedCounts.put(codepoint, 1);
+                    excludedCounts.put(codePoint, 1);
                 }
             }
         }
@@ -421,7 +413,7 @@ public class CodePoints implements Serializable {
 
         CodePoints that = (CodePoints) o;
 
-        return !(set != null ? !set.equals(that.set) : that.set != null);
+        return set.equals(that.set);
 
     }
 
@@ -431,6 +423,6 @@ public class CodePoints implements Serializable {
      */
     @Override
     public int hashCode() {
-        return set != null ? set.hashCode() : 0;
+        return set.hashCode();
     }
 }
