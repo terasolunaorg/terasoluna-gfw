@@ -26,15 +26,17 @@ import org.terasoluna.gfw.common.codepoints.validator.ConsistOfValidator;
  * All code points in the string must be included in any {@link CodePoints} class specified by {@link #value()}.
  * @since 5.1.0
  */
-@Target({ ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE })
+@Target({ ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE,
+        ElementType.PARAMETER })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = { ConsistOfValidator.class })
+@Documented
 public @interface ConsistOf {
     /**
      * CodePoints
      * @return codePoints
      */
-    Class<? extends CodePoints>[] value() default {};
+    Class<? extends CodePoints>[] value();
 
     /**
      * Error message or message key
@@ -59,7 +61,7 @@ public @interface ConsistOf {
      * @see ConsistOf
      */
     @Target({ ElementType.METHOD, ElementType.FIELD,
-            ElementType.ANNOTATION_TYPE })
+            ElementType.ANNOTATION_TYPE, ElementType.PARAMETER })
     @Retention(RetentionPolicy.RUNTIME)
     @Documented
     @interface List {

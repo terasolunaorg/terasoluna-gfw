@@ -168,4 +168,106 @@ public class ConsistOfValidatorTest {
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(1));
     }
+
+    @Test
+    public void testIsValid_getter_all_valid() throws Exception {
+        Name_Getter name = new Name_Getter("ABC", "GHI");
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<Name_Getter>> violations = validator
+                .validate(name);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(0));
+    }
+
+    @Test
+    public void testIsValid_getter_firstName_is_invalid() throws Exception {
+        Name_Getter name = new Name_Getter("abc", "GHI");
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<Name_Getter>> violations = validator
+                .validate(name);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(1));
+
+        ConstraintViolation<Name_Getter> v = violations.iterator().next();
+        assertThat(v.getPropertyPath().toString(), is("firstName"));
+        assertThat(v.getMessage(),
+                is("{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+    }
+
+    @Test
+    public void testIsValid_getter_lastName_is_invalid() throws Exception {
+        Name_Getter name = new Name_Getter("ABC", "ghi");
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<Name_Getter>> violations = validator
+                .validate(name);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(1));
+
+        ConstraintViolation<Name_Getter> v = violations.iterator().next();
+        assertThat(v.getPropertyPath().toString(), is("lastName"));
+        assertThat(v.getMessage(),
+                is("{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+    }
+
+    @Test
+    public void testIsValid_parameter_all_valid() throws Exception {
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<Name_ConstructorParameter>> violations = validator
+                .forExecutables().validateConstructorParameters(
+                        Name_ConstructorParameter.class.getConstructor(
+                                String.class, String.class),
+                        new Object[] { "ABC", "GHI" });
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(0));
+    }
+
+    @Test
+    public void testIsValid_parameter_firstName_is_invalid() throws Exception {
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<Name_ConstructorParameter>> violations = validator
+                .forExecutables().validateConstructorParameters(
+                        Name_ConstructorParameter.class.getConstructor(
+                                String.class, String.class),
+                        new Object[] { "abc", "GHI" });
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(1));
+
+        ConstraintViolation<Name_ConstructorParameter> v = violations
+                .iterator().next();
+        assertThat(v.getPropertyPath().toString(),
+                is("Name_ConstructorParameter.arg0"));
+        assertThat(v.getMessage(),
+                is("{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+    }
+
+    @Test
+    public void testIsValid_parameter_lastName_is_invalid() throws Exception {
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<Name_ConstructorParameter>> violations = validator
+                .forExecutables().validateConstructorParameters(
+                        Name_ConstructorParameter.class.getConstructor(
+                                String.class, String.class),
+                        new Object[] { "ABC", "ghi" });
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(1));
+
+        ConstraintViolation<Name_ConstructorParameter> v = violations
+                .iterator().next();
+        assertThat(v.getPropertyPath().toString(),
+                is("Name_ConstructorParameter.arg1"));
+        assertThat(v.getMessage(),
+                is("{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+    }
 }
