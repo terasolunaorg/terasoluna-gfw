@@ -194,14 +194,14 @@ public class CodePoints implements Serializable {
     public static final int NOT_FOUND = Integer.MIN_VALUE;
 
     /**
-     * set for code points.
-     */
-    private final Set<Integer> set;
-
-    /**
      * {@code CodePoints} cache
      */
     private static final ConcurrentMap<Class<? extends CodePoints>, CodePoints> cache = new ConcurrentHashMap<Class<? extends CodePoints>, CodePoints>();
+
+    /**
+     * set for code points.
+     */
+    private final Set<Integer> set;
 
     /**
      * Constructor with the given {@code java.lang.Integer} code points
