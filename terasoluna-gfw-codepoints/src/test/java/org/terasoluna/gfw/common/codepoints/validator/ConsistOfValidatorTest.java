@@ -270,4 +270,62 @@ public class ConsistOfValidatorTest {
         assertThat(v.getMessage(),
                 is("{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
     }
+
+    @Test
+    public void testIsValid_annoattion_all_valid() throws Exception {
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<Name_ConstructorParameter>> violations = validator
+                .forExecutables().validateConstructorParameters(
+                        Name_ConstructorParameter.class.getConstructor(
+                                String.class, String.class),
+                        new Object[] { "ABC", "GHI" });
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(0));
+    }
+
+    @Test
+    public void testIsValid_annotation_all_valid() throws Exception {
+        Name_Annotation name = new Name_Annotation("ABC", "GHI");
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<Name_Annotation>> violations = validator
+                .validate(name);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(0));
+    }
+
+    @Test
+    public void testIsValid_annotation_firstName_is_invalid() throws Exception {
+        Name_Annotation name = new Name_Annotation("ＡＢＣ", "GHI");
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<Name_Annotation>> violations = validator
+                .validate(name);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(1));
+
+        ConstraintViolation<Name_Annotation> v = violations.iterator().next();
+        assertThat(v.getPropertyPath().toString(), is("firstName"));
+        assertThat(v.getMessage(), is("not ascii printable!"));
+    }
+
+    @Test
+    public void testIsValid_annotation_lastName_is_invalid() throws Exception {
+        Name_Annotation name = new Name_Annotation("ABC", "ＧＨＩ");
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<Name_Annotation>> violations = validator
+                .validate(name);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(1));
+
+        ConstraintViolation<Name_Annotation> v = violations.iterator().next();
+        assertThat(v.getPropertyPath().toString(), is("lastName"));
+        assertThat(v.getMessage(), is("not ascii printable!"));
+    }
 }
