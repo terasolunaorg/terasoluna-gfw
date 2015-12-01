@@ -21,9 +21,16 @@ import static org.junit.Assert.*;
 
 import java.util.*;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+import org.terasoluna.gfw.common.codepoints.catalog.ABCD;
+import org.terasoluna.gfw.common.codepoints.catalog.AbstractCodePoints;
+import org.terasoluna.gfw.common.codepoints.catalog.IllegalCodePoints;
 
 public class CodePointsTest {
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void testContainsAll() {
@@ -645,6 +652,21 @@ public class CodePointsTest {
     }
 
     @Test
+    public void testOf_illegal_access() throws Exception {
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage("public default constructor not found");
+        CodePoints.of(IllegalCodePoints.class);
+    }
+
+    @Test
+    public void testOf_instantiation_fail() {
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException
+                .expectMessage("exception occurred while initializing");
+        CodePoints.of(AbstractCodePoints.class);
+    }
+
+    @Test
     public void testEquals() {
         ABCD cp1 = new ABCD();
         ABCD cp2 = new ABCD();
@@ -665,9 +687,4 @@ public class CodePointsTest {
         assertThat(cp1.equals(cp2), is(false));
     }
 
-    public static class ABCD extends CodePoints {
-        public ABCD() {
-            super("ABCD");
-        }
-    }
 }

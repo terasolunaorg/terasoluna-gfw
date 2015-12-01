@@ -354,7 +354,7 @@ public class CodePoints implements Serializable {
         } catch (InstantiationException e) {
             throw new IllegalArgumentException("exception occurred while initializing", e);
         } catch (IllegalAccessException e) {
-            throw new IllegalArgumentException("default constructor not found", e);
+            throw new IllegalArgumentException("public default constructor not found", e);
         }
     }
 
