@@ -16,6 +16,7 @@
 package org.terasoluna.gfw.common.codepoints;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.junit.Assert.*;
 
 import java.util.*;
@@ -636,4 +637,37 @@ public class CodePointsTest {
         assertThat(it.next().intValue(), is(0x20B9F));
     }
 
+    @Test
+    public void testOf_caches_are_same_instance() {
+        ABCD cp1 = CodePoints.of(ABCD.class);
+        ABCD cp2 = CodePoints.of(ABCD.class);
+        assertThat(cp1, is(sameInstance(cp2)));
+    }
+
+    @Test
+    public void testEquals() {
+        ABCD cp1 = new ABCD();
+        ABCD cp2 = new ABCD();
+        assertThat(cp1.equals(cp2), is(true));
+    }
+
+    @Test
+    public void testEquals_different_codepoints() {
+        CodePoints cp1 = new CodePoints("abcd");
+        CodePoints cp2 = new CodePoints("ABCD");
+        assertThat(cp1.equals(cp2), is(false));
+    }
+
+    @Test
+    public void testEquals_same_codepoints_other_class() {
+        CodePoints cp1 = new ABCD();
+        CodePoints cp2 = new CodePoints("ABCD");
+        assertThat(cp1.equals(cp2), is(false));
+    }
+
+    public static class ABCD extends CodePoints {
+        public ABCD() {
+            super("ABCD");
+        }
+    }
 }
