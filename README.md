@@ -2,7 +2,7 @@
 
 The common library of TERASOLUNA Server Framework for Java (5.x) is a library of useful and obtrusive common functionalities.
 
-[![Build Status](https://travis-ci.org/terasolunaorg/terasoluna-gfw.png?branch=master)](https://travis-ci.org/terasolunaorg/terasoluna-gfw)
+[![Build Status](https://travis-ci.org/terasolunaorg/terasoluna-gfw.png?branch=master)](https://travis-ci.org/terasolunaorg/terasoluna-gfw) [![Coverage Status](https://coveralls.io/repos/terasolunaorg/terasoluna-gfw/badge.svg?branch=master&service=github)](https://coveralls.io/github/terasolunaorg/terasoluna-gfw?branch=master)
 
 ## Projects of Common Library
 
