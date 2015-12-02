@@ -32,6 +32,50 @@
                         <includes>
                             <include>**/*Test.java</include>
                         </includes>
+                        <argLine>${jacocoArgs}</argLine>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${jacoco-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>prepare-agent</id>
+                            <phase>test-compile</phase>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                            <configuration>
+                                <propertyName>jacocoArgs</propertyName>
+                                <includes>
+                                    <include>*</include>
+                                </includes>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.eluder.coveralls</groupId>
+                    <artifactId>coveralls-maven-plugin</artifactId>
+                    <version>${coveralls-maven-plugin.version}</version>
+                    <configuration>
+                        <jacocoReports>
+                            <jacocoReport>../terasoluna-gfw-common/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>../terasoluna-gfw-jodatime/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>../terasoluna-gfw-web/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>../terasoluna-gfw-security-web/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>../terasoluna-gfw-validator/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>../terasoluna-gfw-codepoints/target/site/jacoco/jacoco.xml</jacocoReport>
+                        </jacocoReports>
+                        <sourceDirectories>
+                            <sourceDirectory>../terasoluna-gfw-common/src/main/java</sourceDirectory>
+                            <sourceDirectory>../terasoluna-gfw-jodatime/src/main/java</sourceDirectory>
+                            <sourceDirectory>../terasoluna-gfw-web/src/main/java</sourceDirectory>
+                            <sourceDirectory>../terasoluna-gfw-security-web/src/main/java</sourceDirectory>
+                            <sourceDirectory>../terasoluna-gfw-validator/src/main/java</sourceDirectory>
+                            <sourceDirectory>../terasoluna-gfw-codepoints/src/main/java</sourceDirectory>
+                        </sourceDirectories>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -520,6 +564,8 @@
         <maven-site-plugin.version>3.4</maven-site-plugin.version>
         <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
         <org.apache.tomcat.maven.version>2.2</org.apache.tomcat.maven.version>
+        <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
         <!-- == Other Properties== -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <archetype.test.skip>true</archetype.test.skip>
