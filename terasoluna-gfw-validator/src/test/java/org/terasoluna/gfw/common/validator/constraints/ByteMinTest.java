@@ -31,7 +31,7 @@ import org.terasoluna.gfw.common.validator.constraints.ByteMinTest.ByteMinTestFo
  */
 public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
-    private static final String MESSAGE_VALIDATION_ERROR = "must be over %d Bytes";
+    private static final String MESSAGE_VALIDATION_ERROR = "must be greater than or equal to %d Bytes";
 
     @Before
     public void before() {

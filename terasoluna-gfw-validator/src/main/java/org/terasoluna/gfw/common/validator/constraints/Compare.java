@@ -124,14 +124,14 @@ public @interface Compare {
         EQUAL(CompareStrategy.EQ),
 
         /**
-         * Left side object must be grater than Right side object.
+         * Left side object must be greater than Right side object.
          */
-        GRATER_THAN(CompareStrategy.GT),
+        GREATER_THAN(CompareStrategy.GT),
 
         /**
-         * Left side object must be grater than or equal Right side object.
+         * Left side object must be greater than or equal Right side object.
          */
-        GRATER_THAN_OR_EQUAL(CompareStrategy.EQ, CompareStrategy.GT);
+        GREATER_THAN_OR_EQUAL(CompareStrategy.EQ, CompareStrategy.GT);
 
         /**
          * strategies to assert result of {@code Comparable#compareTo(Object)} as the expected.
@@ -181,7 +181,7 @@ public @interface Compare {
             },
 
             /**
-             * Expected grater than ZERO.
+             * Expected greater than ZERO.
              */
             GT {
                 /**
