@@ -211,13 +211,13 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
      * @throws Throwable
      */
     @Test
-    public void testSpecifyOperatorGraterThan() throws Throwable {
+    public void testSpecifyOperatorGreaterThan() throws Throwable {
 
         {
             form.setLeft(99);
             form.setRight(100);
 
-            violations = validator.validate(form, GraterThan.class);
+            violations = validator.validate(form, GreaterThan.class);
             assertThat(violations.size(), is(1));
             assertThat(violations.iterator().next().getMessage(), is(String
                     .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
@@ -227,7 +227,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setLeft(100);
             form.setRight(100);
 
-            violations = validator.validate(form, GraterThan.class);
+            violations = validator.validate(form, GreaterThan.class);
             assertThat(violations.size(), is(1));
             assertThat(violations.iterator().next().getMessage(), is(String
                     .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
@@ -237,7 +237,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setLeft(101);
             form.setRight(100);
 
-            violations = validator.validate(form, GraterThan.class);
+            violations = validator.validate(form, GreaterThan.class);
             assertThat(violations.size(), is(0));
         }
     }
@@ -247,13 +247,13 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
      * @throws Throwable
      */
     @Test
-    public void testSpecifyOperatorGraterThanOrEqual() throws Throwable {
+    public void testSpecifyOperatorGreaterThanOrEqual() throws Throwable {
 
         {
             form.setLeft(99);
             form.setRight(100);
 
-            violations = validator.validate(form, GraterThanOrEqual.class);
+            violations = validator.validate(form, GreaterThanOrEqual.class);
             assertThat(violations.size(), is(1));
             assertThat(violations.iterator().next().getMessage(), is(String
                     .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
@@ -263,7 +263,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setLeft(100);
             form.setRight(100);
 
-            violations = validator.validate(form, GraterThanOrEqual.class);
+            violations = validator.validate(form, GreaterThanOrEqual.class);
             assertThat(violations.size(), is(0));
         }
 
@@ -271,7 +271,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setLeft(101);
             form.setRight(100);
 
-            violations = validator.validate(form, GraterThanOrEqual.class);
+            violations = validator.validate(form, GreaterThanOrEqual.class);
             assertThat(violations.size(), is(0));
         }
     }
@@ -475,15 +475,15 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     };
 
     /**
-     * Validation group operator grater than.
+     * Validation group operator greater than.
      */
-    private static interface GraterThan {
+    private static interface GreaterThan {
     };
 
     /**
-     * Validation group operator grater than or equal.
+     * Validation group operator greater than or equal.
      */
-    private static interface GraterThanOrEqual {
+    private static interface GreaterThanOrEqual {
     };
 
     /**
@@ -536,8 +536,8 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
 
     @Compare.List({
             @Compare(left = "left", right = "right", operator = Operator.EQUAL),
-            @Compare(left = "left", right = "right", operator = Operator.GRATER_THAN_OR_EQUAL, groups = { GraterThanOrEqual.class }),
-            @Compare(left = "left", right = "right", operator = Operator.GRATER_THAN, groups = { GraterThan.class }),
+            @Compare(left = "left", right = "right", operator = Operator.GREATER_THAN_OR_EQUAL, groups = { GreaterThanOrEqual.class }),
+            @Compare(left = "left", right = "right", operator = Operator.GREATER_THAN, groups = { GreaterThan.class }),
             @Compare(left = "left", right = "right", operator = Operator.LESS_THAN_OR_EQUAL, groups = { LessThanOrEqual.class }),
             @Compare(left = "left", right = "right", operator = Operator.LESS_THAN, groups = { LessThan.class }),
             @Compare(left = "left", right = "right", operator = Operator.EQUAL, requireBoth = true, groups = { RequireBoth.class }),
