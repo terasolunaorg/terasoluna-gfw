@@ -26,16 +26,16 @@ package org.terasoluna.gfw.common.codelist.validator;
  * </p>
  */
 
-public class ExistInCodeListValidatorForString
+public class ExistInCodeListValidatorForCharSequence
                                               extends
-                                              AbstractExistInCodeListValidator<String> {
+                                              AbstractExistInCodeListValidator<CharSequence> {
 
     /**
      * Fetches the code value which is the target of validation
      * @see org.terasoluna.gfw.common.codelist.validator.AbstractExistInCodeListValidator#getCode(Object)
      */
     @Override
-    protected String getCode(String value) {
-        return value;
+    protected String getCode(CharSequence value) {
+        return value == null ? null : value.toString();
     }
 }

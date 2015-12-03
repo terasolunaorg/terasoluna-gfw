@@ -29,7 +29,7 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharacter;
-import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForString;
+import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharSequence;
 
 /**
  * Custom annotation that provides the functionality to check the existence of a code in the specified codelist.
@@ -54,7 +54,7 @@ import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForS
 @Documented
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, PARAMETER })
 @Retention(RUNTIME)
-@Constraint(validatedBy = { ExistInCodeListValidatorForString.class,
+@Constraint(validatedBy = { ExistInCodeListValidatorForCharSequence.class,
         ExistInCodeListValidatorForCharacter.class })
 public @interface ExistInCodeList {
 
