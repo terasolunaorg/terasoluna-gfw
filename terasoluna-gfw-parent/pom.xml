@@ -539,6 +539,11 @@
                 <type>pom</type>
             </dependency>
             <!-- == End TERASOLUNA == -->
+            <dependency>
+            	<groupId>org.terasoluna.gfw</groupId>
+            	<artifactId>terasoluna-gfw-string</artifactId>
+            	<version>${terasoluna.gfw.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <distributionManagement>
