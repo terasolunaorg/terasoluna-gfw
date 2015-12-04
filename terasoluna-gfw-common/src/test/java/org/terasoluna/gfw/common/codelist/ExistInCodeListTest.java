@@ -61,11 +61,29 @@ public class ExistInCodeListTest {
     }
 
     @Test
+    public void test_allValidStringBuilderCode() {
+        Employee e = new Employee();
+        e.gender = new StringBuilder("F");
+        e.lang = new StringBuilder("JP");
+        Set<ConstraintViolation<Employee>> result = validator.validate(e);
+        assertThat(result.isEmpty(), is(true));
+    }
+
+    @Test
     public void test_allValidStringCodeWithNull() {
         Person p = new Person();
         p.gender = null;
         p.lang = "JP";
         Set<ConstraintViolation<Person>> result = validator.validate(p);
+        assertThat(result.isEmpty(), is(true));
+    }
+
+    @Test
+    public void test_allValidStringBuilderCodeWithNull() {
+        Employee e = new Employee();
+        e.gender = null;
+        e.lang = new StringBuilder("JP");
+        Set<ConstraintViolation<Employee>> result = validator.validate(e);
         assertThat(result.isEmpty(), is(true));
     }
 
@@ -79,6 +97,15 @@ public class ExistInCodeListTest {
     }
 
     @Test
+    public void test_allValidStringBuilderCodeWithEmpty() {
+        Employee e = new Employee();
+        e.gender = new StringBuilder("");
+        e.lang = new StringBuilder("JP");
+        Set<ConstraintViolation<Employee>> result = validator.validate(e);
+        assertThat(result.isEmpty(), is(true));
+    }
+
+    @Test
     public void test_hasInValidStringCode() {
         Person p = new Person();
         p.gender = "G";
@@ -88,11 +115,29 @@ public class ExistInCodeListTest {
     }
 
     @Test
+    public void test_hasInValidStringBuilderCode() {
+        Employee e = new Employee();
+        e.gender = new StringBuilder("G");
+        e.lang = new StringBuilder("JP");
+        Set<ConstraintViolation<Employee>> result = validator.validate(e);
+        assertThat(result.size(), is(1));
+    }
+
+    @Test
     public void test_allInValidStringCode() {
         Person p = new Person();
         p.gender = "G";
         p.lang = "FR";
         Set<ConstraintViolation<Person>> result = validator.validate(p);
+        assertThat(result.size(), is(2));
+    }
+
+    @Test
+    public void test_allInValidStringBuilderCode() {
+        Employee e = new Employee();
+        e.gender = new StringBuilder("G");
+        e.lang = new StringBuilder("FR");
+        Set<ConstraintViolation<Employee>> result = validator.validate(e);
         assertThat(result.size(), is(2));
     }
 
@@ -340,6 +385,14 @@ class Customer {
 
     @ExistInCodeList(codeListId = "CD_LANG")
     public String lang;
+}
+
+class Employee {
+    @ExistInCodeList(codeListId = "CD_GENDER")
+    public StringBuilder gender;
+
+    @ExistInCodeList(codeListId = "CD_LANG")
+    public StringBuilder lang;
 }
 
 class Order {
