@@ -15,7 +15,9 @@
  */
 package org.terasoluna.gfw.web.token.transaction;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -137,6 +139,18 @@ public class TransactionTokenInfoStoreTest {
                 .getDeclaredMethod("first", SampleForm.class, Model.class));
 
         assertNotNull(store.getTransactionTokenInfo(handlerMethod));
+
+    }
+
+    @Test
+    public void testNamespaceCreateTransactionTokenInfo() throws Exception {
+
+        HandlerMethod handlerMethod = new HandlerMethod(new TransactionTokenSampleNamespaceController(), TransactionTokenSampleNamespaceController.class
+                .getDeclaredMethod("first"));
+
+        TransactionTokenInfo tokenInfo = store
+                .createTransactionTokenInfo(handlerMethod);
+        assertThat(tokenInfo.getTokenName(), containsString("testTokenAttrByNameSpace"));
 
     }
 }

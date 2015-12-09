@@ -21,6 +21,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.springframework.core.annotation.AliasFor;
+
 /**
  * A custom annotation that provides a functionality to perform a token check for preventing consecutive form submissions.
  * <p>
@@ -56,7 +58,14 @@ public @interface TransactionTokenCheck {
     /**
      * @return The value of generated {@code TransactionToken}<br>
      */
+    @AliasFor("namespace") 
     String value() default "";
+
+    /**
+     * @return The namespace of generated {@code TransactionToken}<br>
+     */
+    @AliasFor("value")
+    String namespace() default "";
 
     /**
      * @return Type of the {@code TransactionToken}. Default value is {@code TransactionTokenType.IN}
