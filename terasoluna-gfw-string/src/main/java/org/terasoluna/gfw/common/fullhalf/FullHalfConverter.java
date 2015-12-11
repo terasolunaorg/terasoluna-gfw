@@ -27,6 +27,10 @@ import java.util.*;
  *   .pair("Ｂ", "B")
  *   .build());</code>
  * </pre>
+ * <p>
+ * If the halfwidth or fullwidth in the given pair is already registered, the former is preferred. Note that it cannot be
+ * overridden.
+ * </p>
  * @since 5.1.0
  */
 public final class FullHalfConverter {
@@ -47,7 +51,8 @@ public final class FullHalfConverter {
 
     /**
      * Constructor.
-     * @param pairs pair of fullwidth-halfwidth. must not be null.
+     * @param pairs pair of fullwidth-halfwidth. must not be null. If the halfwidth or fullwidth in the given pair is already
+     *            registered, the former is preferred.
      * @see FullHalfConverter
      * @throws IllegalArgumentException if the given pairs is null
      */
