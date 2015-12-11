@@ -16,21 +16,21 @@ public class FullHalfPairsBuilderTest {
     @Test
     public void testFullIsNull() {
         expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("fullwidth must be 1 length string");
+        expectedException.expectMessage("fullwidth must be 1 length string (fullwidth = null)");
         new FullHalfPairsBuilder().pair(null, "a").build();
     }
 
     @Test
     public void testFullIsEmptyString() {
         expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("fullwidth must be 1 length string");
+        expectedException.expectMessage("fullwidth must be 1 length string (fullwidth = )");
         new FullHalfPairsBuilder().pair("", "a").build();
     }
 
     @Test
     public void testFullIsTwoString() {
         expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("fullwidth must be 1 length string");
+        expectedException.expectMessage("fullwidth must be 1 length string (fullwidth = aa)");
         new FullHalfPairsBuilder().pair("aa", "a").build();
     }
 
@@ -38,7 +38,7 @@ public class FullHalfPairsBuilderTest {
     public void testHalfIsNull() {
         expectedException.expect(IllegalArgumentException.class);
         expectedException
-                .expectMessage("halfwidth must be 1 or 2 length string");
+                .expectMessage("halfwidth must be 1 or 2 length string (halfwidth = null)");
         new FullHalfPairsBuilder().pair("a", null).build();
     }
 
@@ -46,7 +46,7 @@ public class FullHalfPairsBuilderTest {
     public void testHalfIsEmptyString() {
         expectedException.expect(IllegalArgumentException.class);
         expectedException
-                .expectMessage("halfwidth must be 1 or 2 length string");
+                .expectMessage("halfwidth must be 1 or 2 length string (halfwidth = )");
         new FullHalfPairsBuilder().pair("a", "").build();
     }
 
@@ -54,7 +54,7 @@ public class FullHalfPairsBuilderTest {
     public void testHalfIsThreeString() {
         expectedException.expect(IllegalArgumentException.class);
         expectedException
-                .expectMessage("halfwidth must be 1 or 2 length string");
+                .expectMessage("halfwidth must be 1 or 2 length string (halfwidth = aaa)");
         new FullHalfPairsBuilder().pair("a", "aaa").build();
     }
 
