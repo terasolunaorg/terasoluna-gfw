@@ -41,6 +41,12 @@ public class FullHalfPairs {
      * @param predicate Predicate to check whether the given character is appendable.
      */
     public FullHalfPairs(Set<FullHalfPair> pairs, AppendablePredicate predicate) {
+        if (pairs == null) {
+            throw new IllegalArgumentException("pairs must not be null");
+        }
+        if (pairs.isEmpty()) {
+            throw new IllegalArgumentException("pairs must not be empty");
+        }
         this.pairs = pairs;
         this.predicate = predicate != null ? predicate
                 : new AppendablePredicate() {
