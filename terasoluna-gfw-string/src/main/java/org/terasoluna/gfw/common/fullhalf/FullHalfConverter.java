@@ -31,12 +31,12 @@ import java.util.*;
  */
 public final class FullHalfConverter {
     /**
-     * map to convert from fullwidth car
+     * map to convert from fullwidth char
      */
     private final Map<String, FullHalfPair> fullwidthMap;
 
     /**
-     * map to convert from halfwidth car
+     * map to convert from halfwidth char
      */
     private final Map<String, FullHalfPair> halfwidthMap;
 
