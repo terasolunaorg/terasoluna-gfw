@@ -10,8 +10,8 @@
     </parent>
     <artifactId>terasoluna-gfw-string</artifactId>
     <packaging>jar</packaging>
-    <name>TERASOLUNA Server Framework for Java (5.x) Common Library for Joda-Time</name>
-    <description>Functionality for Japanese</description>
+    <name>TERASOLUNA Server Framework for Java (5.x) Common Library for String Processes</name>
+    <description>Functionality for String Processes</description>
     <url>http://terasoluna.org</url>
     <licenses>
         <license>
