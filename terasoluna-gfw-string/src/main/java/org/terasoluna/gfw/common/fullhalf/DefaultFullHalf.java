@@ -779,8 +779,8 @@ public final class DefaultFullHalf {
      * a singleton instance with default mapping table.
      * @see DefaultFullHalf
      */
-	public static final FullHalfConverter INSTANCE = new FullHalfConverter(
-			new FullHalfPairsBuilder()
+    public static final FullHalfConverter INSTANCE = new FullHalfConverter(
+            new FullHalfPairsBuilder()
                 .pair("！", "!")
                 .pair("”", "\"")
                 .pair("＃", "#")
