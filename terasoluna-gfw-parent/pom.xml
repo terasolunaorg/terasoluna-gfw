@@ -67,6 +67,7 @@
                             <jacocoReport>../terasoluna-gfw-security-web/target/site/jacoco/jacoco.xml</jacocoReport>
                             <jacocoReport>../terasoluna-gfw-validator/target/site/jacoco/jacoco.xml</jacocoReport>
                             <jacocoReport>../terasoluna-gfw-codepoints/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>../terasoluna-gfw-string/target/site/jacoco/jacoco.xml</jacocoReport>
                         </jacocoReports>
                         <sourceDirectories>
                             <sourceDirectory>../terasoluna-gfw-common/src/main/java</sourceDirectory>
@@ -75,6 +76,7 @@
                             <sourceDirectory>../terasoluna-gfw-security-web/src/main/java</sourceDirectory>
                             <sourceDirectory>../terasoluna-gfw-validator/src/main/java</sourceDirectory>
                             <sourceDirectory>../terasoluna-gfw-codepoints/src/main/java</sourceDirectory>
+                            <sourceDirectory>../terasoluna-gfw-string/src/main/java</sourceDirectory>
                         </sourceDirectories>
                     </configuration>
                 </plugin>
@@ -539,6 +541,11 @@
                 <type>pom</type>
             </dependency>
             <!-- == End TERASOLUNA == -->
+            <dependency>
+            	<groupId>org.terasoluna.gfw</groupId>
+            	<artifactId>terasoluna-gfw-string</artifactId>
+            	<version>${terasoluna.gfw.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
     <distributionManagement>
