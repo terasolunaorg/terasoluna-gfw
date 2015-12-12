@@ -154,7 +154,7 @@ After adding above, add the following dependency definitions.
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
     <type>pom</type>
-</dependency
+</dependency>
 
 <!-- If Spring Security is to be used -->
 <dependency>
@@ -206,7 +206,7 @@ Add the following dependency definitions.
     <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
     <version>5.0.1.RELEASE</version>
     <type>pom</type>
-</dependency
+</dependency>
 
 <!-- If Spring Security is to be used -->
 <dependency>
