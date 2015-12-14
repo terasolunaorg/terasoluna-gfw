@@ -21,6 +21,12 @@
             <plugin>
                 <groupId>com.google.code.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
+                <configuration>
+                    <header>${project.basedir}/../../../license/header.txt</header>
+                    <headerDefinitions>
+                        <headerDefinition>${project.basedir}/../../../license/header-definition.xml</headerDefinition>
+                    </headerDefinitions>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
