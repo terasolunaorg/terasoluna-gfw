@@ -79,13 +79,13 @@
                     <artifactId>maven-license-plugin</artifactId>
                     <version>${com.google.code.maven-license-plugin.version}</version>
                     <configuration>
-                        <header>src/etc/header.txt</header>
+                        <header>${project.basedir}/../license/header.txt</header>
                         <includes>
                             <include>src/**/*.java</include>
                         </includes>
                         <encoding>${encoding}</encoding>
                         <headerDefinitions>
-                            <headerDefinition>src/etc/header-definition.xml</headerDefinition>
+                            <headerDefinition>${project.basedir}/../license/header-definition.xml</headerDefinition>
                         </headerDefinitions>
                     </configuration>
                 </plugin>
