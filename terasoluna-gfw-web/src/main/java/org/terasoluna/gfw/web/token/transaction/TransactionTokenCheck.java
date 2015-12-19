@@ -47,7 +47,7 @@ import org.springframework.core.annotation.AliasFor;
  * FIFO algorithm to replace old keys will new ones. This default value can be changed by through settings in applicationContext
  * file. Please refer to guideline for details regarding the configuration and usage method.
  * <p>
- * By default, if no namespace is defined and {@code value} attribute at method level is also not specified, "globalToken" is
+ * By default, if no namespace is defined and {@code namespace}(or {@code value}) attribute at method level is also not specified, "globalToken" is
  * used as {@code tokenName} for all the transaction tokens generated.
  */
 @Documented
@@ -56,19 +56,30 @@ import org.springframework.core.annotation.AliasFor;
 public @interface TransactionTokenCheck {
 
     /**
-     * @return The value of generated {@code TransactionToken}<br>
+     * Alias for {@code namespace} attribute.
+     * @return same with {@link #namespace}
+     * @see #namespace
      */
     @AliasFor("namespace") 
     String value() default "";
 
     /**
-     * @return The namespace of generated {@code TransactionToken}<br>
+     * The namespace which use in generating transaction token.
+     * <p>
+     * If namespace is not specified on both with class level and method level, {@code "globalToken"} is used as namespace.
+     * @return The namespace which use in generating transaction token
+     * @see TransactionToken
+     * @see #value
+     * @since 5.1.0
      */
     @AliasFor("value")
     String namespace() default "";
 
     /**
-     * @return Type of the {@code TransactionToken}. Default value is {@code TransactionTokenType.IN}
+     * The processing type for transaction token.
+     * @return The processing type for transaction token
+     * @see TransactionTokenType
+     * @see TransactionToken
      */
     TransactionTokenType type() default TransactionTokenType.IN;
 }
