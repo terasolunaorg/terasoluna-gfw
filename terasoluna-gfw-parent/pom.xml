@@ -235,120 +235,35 @@
                     <version>${maven-site-plugin.version}</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.apache.tomcat.maven</groupId>
-                    <artifactId>tomcat7-maven-plugin</artifactId>
-                    <version>${org.apache.tomcat.maven.version}</version>
+                    <groupId>org.codehaus.cargo</groupId>
+                    <artifactId>cargo-maven2-plugin</artifactId>
+                    <version>${cargo-maven2-plugin.version}</version>
                     <configuration>
-                        <uriEncoding>UTF-8</uriEncoding>
-                        <systemProperties>
-                            <JAVA_OPTS>-Xms512m -Xmx1024m</JAVA_OPTS>
-                        </systemProperties>
+                        <configuration>
+                            <properties>
+                                <cargo.servlet.uriencoding>UTF-8</cargo.servlet.uriencoding>
+                                <cargo.jvmargs>${cargo.jvmargs}</cargo.jvmargs>
+                            </properties>
+                        </configuration>
+                        <container>
+                            <containerId>${cargo.container.id}</containerId>
+                            <zipUrlInstaller>
+                                <url>${cargo.container.url}</url>
+                            </zipUrlInstaller>
+                        </container>
+                        <daemon>
+                            <properties>
+                                <cargo.daemon.url>${cargo.daemon.url}</cargo.daemon.url>
+                                <cargo.daemon.handleid>${project.artifactId}</cargo.daemon.handleid>
+                            </properties>
+                        </daemon>
+                        <deployables>
+                            <deployable>
+                                <location>${project.basedir}/target/${project.artifactId}.war</location>
+                                <type>war</type>
+                            </deployable>
+                        </deployables>
                     </configuration>
-                    <dependencies>
-                        <dependency>
-                            <groupId>org.apache.tomcat.embed</groupId>
-                            <artifactId>tomcat-embed-core</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-util</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-coyote</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-api</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-jdbc</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-dbcp</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-servlet-api</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-jsp-api</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-jasper</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-jasper-el</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-el-api</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-catalina</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-tribes</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-catalina-ha</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-annotations-api</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-
-                        <dependency>
-                            <groupId>org.apache.tomcat</groupId>
-                            <artifactId>tomcat-juli</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-
-                        <dependency>
-                            <groupId>org.apache.tomcat.embed</groupId>
-                            <artifactId>tomcat-embed-logging-juli</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.apache.tomcat.embed</groupId>
-                            <artifactId>tomcat-embed-logging-log4j</artifactId>
-                            <version>${tomcat.version}</version>
-                        </dependency>
-                    </dependencies>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -577,8 +492,6 @@
         <org.lazyluke.version>0.2.7</org.lazyluke.version>
         <!-- == JUnit == -->
         <selenium.version>2.46.0</selenium.version>
-        <!-- == Tomcat == -->
-        <tomcat.version>7.0.59</tomcat.version>
         <!-- == Maven Plugins == -->
         <maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
@@ -595,13 +508,19 @@
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
         <maven-site-plugin.version>3.4</maven-site-plugin.version>
         <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
-        <org.apache.tomcat.maven.version>2.2</org.apache.tomcat.maven.version>
         <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
+        <cargo-maven2-plugin.version>1.4.17</cargo-maven2-plugin.version>
         <!-- == Other Properties== -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <archetype.test.skip>true</archetype.test.skip>
         <encoding>UTF-8</encoding>
         <java-version>1.7</java-version>
+        <!-- == Properties for Cargo Plugin == -->
+        <cargo.jvmargs>-Xms512m -Xmx1024m</cargo.jvmargs>
+        <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
+        <cargo.container.id>tomcat8x</cargo.container.id>
+        <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-8/v${cargo.tomcat8.version}/bin/apache-tomcat-${cargo.tomcat8.version}.zip</cargo.container.url>
+        <cargo.tomcat8.version>8.0.30</cargo.tomcat8.version>
     </properties>
 </project>
