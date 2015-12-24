@@ -83,16 +83,12 @@
         <!-- Servlet API 3.0 & JSP API 2.2 -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jsp-api</artifactId>
+            <artifactId>tomcat-servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
         <!-- == End Tomcat == -->
 
         <!-- == Begin Other JavaEE/SE APIs == -->
-        <dependency>
-            <groupId>org.apache.taglibs</groupId>
-            <artifactId>taglibs-standard-jstlel</artifactId>
-        </dependency>
         <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>

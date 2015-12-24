@@ -64,6 +64,7 @@
                             <jacocoReport>../terasoluna-gfw-common/target/site/jacoco/jacoco.xml</jacocoReport>
                             <jacocoReport>../terasoluna-gfw-jodatime/target/site/jacoco/jacoco.xml</jacocoReport>
                             <jacocoReport>../terasoluna-gfw-web/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>../terasoluna-gfw-web-jsp/target/site/jacoco/jacoco.xml</jacocoReport>
                             <jacocoReport>../terasoluna-gfw-security-web/target/site/jacoco/jacoco.xml</jacocoReport>
                             <jacocoReport>../terasoluna-gfw-validator/target/site/jacoco/jacoco.xml</jacocoReport>
                             <jacocoReport>../terasoluna-gfw-codepoints/target/site/jacoco/jacoco.xml</jacocoReport>
@@ -73,6 +74,7 @@
                             <sourceDirectory>../terasoluna-gfw-common/src/main/java</sourceDirectory>
                             <sourceDirectory>../terasoluna-gfw-jodatime/src/main/java</sourceDirectory>
                             <sourceDirectory>../terasoluna-gfw-web/src/main/java</sourceDirectory>
+                            <sourceDirectory>../terasoluna-gfw-web-jsp/src/main/java</sourceDirectory>
                             <sourceDirectory>../terasoluna-gfw-security-web/src/main/java</sourceDirectory>
                             <sourceDirectory>../terasoluna-gfw-validator/src/main/java</sourceDirectory>
                             <sourceDirectory>../terasoluna-gfw-codepoints/src/main/java</sourceDirectory>
@@ -311,6 +313,19 @@
             </dependency>
             <!-- == End Spring IO Platform == -->
 
+            <!-- == Start Tomcat == -->
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-jsp-api</artifactId>
+                <version>${tomcat8.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-servlet-api</artifactId>
+                <version>${tomcat8.version}</version>
+            </dependency>
+            <!-- == End Tomcat -->
+
             <!-- == Begin MyBatis == -->
             <dependency>
                 <groupId>org.mybatis</groupId>
@@ -386,6 +401,11 @@
             <dependency>
                 <groupId>org.terasoluna.gfw</groupId>
                 <artifactId>terasoluna-gfw-web</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-web-jsp</artifactId>
                 <version>${terasoluna.gfw.version}</version>
             </dependency>
             <dependency>
@@ -478,6 +498,7 @@
         <terasoluna.gfw.version>5.1.0-SNAPSHOT</terasoluna.gfw.version>
         <!-- == Spring IO Platform == -->
         <io.spring.platform.version>2.0.1.RELEASE</io.spring.platform.version>
+        <tomcat8.version>8.0.30</tomcat8.version>
         <!-- == MyBatis3 == -->
         <org.mybatis.version>3.3.0</org.mybatis.version>
         <org.mybatis.spring.version>1.2.3</org.mybatis.spring.version>
