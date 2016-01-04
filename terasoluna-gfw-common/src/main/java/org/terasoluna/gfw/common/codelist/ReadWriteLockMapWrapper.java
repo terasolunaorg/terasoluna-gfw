@@ -126,6 +126,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * A read locked call to {@code size()} method of {@link Map}
      * @see java.util.Map#size()
      */
+    @Override
     public int size() {
         return withReadLock(new LockedCallback<Integer>() {
             @Override
@@ -139,6 +140,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * A read locked call to {@code isEmpty()} method of {@link Map}
      * @see java.util.Map#isEmpty()
      */
+    @Override
     public boolean isEmpty() {
         return withReadLock(new LockedCallback<Boolean>() {
             @Override
@@ -152,6 +154,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * A read locked call to {@code containsKey()} method of {@link Map}
      * @see java.util.Map#containsKey(java.lang.Object)
      */
+    @Override
     public boolean containsKey(final Object key) {
         return withReadLock(new LockedCallback<Boolean>() {
             @Override
@@ -165,6 +168,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * A read locked call to {@code containsValue()} method of {@link Map}
      * @see java.util.Map#containsValue(java.lang.Object)
      */
+    @Override
     public boolean containsValue(final Object value) {
         return withReadLock(new LockedCallback<Boolean>() {
             @Override
@@ -178,6 +182,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * A read locked call to {@code get()} method of {@link Map}
      * @see java.util.Map#get(java.lang.Object)
      */
+    @Override
     public V get(final Object key) {
         return withReadLock(new LockedCallback<V>() {
             @Override
@@ -191,6 +196,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * A write locked call to {@code put()} method of {@link Map}
      * @see java.util.Map#put(java.lang.Object, java.lang.Object)
      */
+    @Override
     public V put(final K key, final V value) {
         return withWriteLock(new LockedCallback<V>() {
             @Override
@@ -204,6 +210,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * A write locked call to {@code remove()} method of {@link Map}
      * @see java.util.Map#remove(java.lang.Object)
      */
+    @Override
     public V remove(final Object key) {
         return withWriteLock(new LockedCallback<V>() {
             @Override
@@ -217,6 +224,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * A write locked call to {@code putAll()} method of {@link Map}
      * @see java.util.Map#putAll(java.util.Map)
      */
+    @Override
     public void putAll(final Map<? extends K, ? extends V> m) {
         withWriteLock(new LockedCallback<Void>() {
             @Override
@@ -231,6 +239,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * A write locked call to {@code clear()} method of {@link Map}
      * @see java.util.Map#clear()
      */
+    @Override
     public void clear() {
         withWriteLock(new LockedCallback<Void>() {
             @Override
@@ -263,6 +272,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * A read locked call to {@code keySet()} method of {@link Map}
      * @see java.util.Map#keySet()
      */
+    @Override
     public Set<K> keySet() {
         return withReadLock(new LockedCallback<Set<K>>() {
             @Override
@@ -276,6 +286,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * A read locked call to {@code values()} method of {@link Map}
      * @see java.util.Map#values()
      */
+    @Override
     public Collection<V> values() {
         return withReadLock(new LockedCallback<Collection<V>>() {
             @Override
@@ -289,6 +300,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * A read locked call to {@code entrySet()} method of {@link Map}
      * @see java.util.Map#entrySet()
      */
+    @Override
     public Set<java.util.Map.Entry<K, V>> entrySet() {
         return withReadLock(new LockedCallback<Set<java.util.Map.Entry<K, V>>>() {
             @Override
@@ -302,6 +314,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * A read locked call to {@code equals()} method of {@link Map}
      * @see java.lang.Object#equals(java.lang.Object)
      */
+    @Override
     public boolean equals(final Object o) {
         return withReadLock(new LockedCallback<Boolean>() {
             @Override
@@ -315,6 +328,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * A read locked call to {@code hashCode()} method of {@link Map}
      * @see java.lang.Object#hashCode()
      */
+    @Override
     public int hashCode() {
         return withReadLock(new LockedCallback<Integer>() {
             @Override
