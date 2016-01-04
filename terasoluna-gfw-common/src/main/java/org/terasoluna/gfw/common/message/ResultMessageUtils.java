@@ -64,7 +64,7 @@ public final class ResultMessageUtils {
         Assert.notNull(message, "message must not be null!");
         Assert.notNull(locale, "locale must not be null!");
 
-        String msg = null;
+        String msg;
         String code = message.getCode();
         if (code != null) {
             // try to resolve from code at first.

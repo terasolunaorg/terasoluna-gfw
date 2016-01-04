@@ -52,7 +52,7 @@ public final class HtmlEscapeUtils {
         if (input == null) {
             return "";
         }
-        String str = null;
+        String str;
         if (input.getClass().isArray()) {
             Class<?> clazz = input.getClass().getComponentType();
             if (clazz == String.class) {

@@ -52,8 +52,8 @@ public final class JspTagUtils {
     public static boolean toBoolean(String attributeValue,
             boolean defaultValue, String attributeName) throws JspTagException {
         if (StringUtils.hasText(attributeValue)) {
-            if (attributeValue.equalsIgnoreCase("true")
-                    || attributeValue.equalsIgnoreCase("false")) {
+            if ("true".equalsIgnoreCase(attributeValue)
+                    || "false".equalsIgnoreCase(attributeValue)) {
                 return Boolean.parseBoolean(attributeValue);
             } else {
                 throw new JspTagException("The value of " + attributeName

@@ -235,16 +235,14 @@ public class MessagesPanelTag extends RequestContextAwareTag {
                 }
             }
 
-            {
-                if (StringUtils.hasText(outerElement)) {
-                    tagWriter.startTag(outerElement); // <ul>
-                }
+            if (StringUtils.hasText(outerElement)) {
+                tagWriter.startTag(outerElement); // <ul>
+            }
 
-                writeMessages(tagWriter, messages);
+            writeMessages(tagWriter, messages);
 
-                if (StringUtils.hasText(outerElement)) {
-                    tagWriter.endTag(); // </ul>
-                }
+            if (StringUtils.hasText(outerElement)) {
+                tagWriter.endTag(); // </ul>
             }
 
             if (StringUtils.hasText(panelElement)) {
@@ -333,7 +331,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * @return Message after conversion to String
      */
     private String getText(Object message) {
-        String text = null;
+        String text;
 
         if (message instanceof String) {
             text = (String) message;
