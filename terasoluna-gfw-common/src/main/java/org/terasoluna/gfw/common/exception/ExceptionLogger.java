@@ -466,6 +466,7 @@ public class ExceptionLogger implements InitializingBean {
          * Checks whether Info logging is enabled in either monitoring log or application log
          * @see org.terasoluna.gfw.common.exception.ExceptionLogger.LogLevelWrappingLogger#isEnabled()
          */
+        @Override
         public boolean isEnabled() {
             return monitoringLogger.isInfoEnabled()
                     || applicationLogger.isInfoEnabled();
@@ -479,6 +480,7 @@ public class ExceptionLogger implements InitializingBean {
          * @see org.terasoluna.gfw.common.exception.ExceptionLogger.LogLevelWrappingLogger#log(java.lang.String,
          *      java.lang.Exception)
          */
+        @Override
         public void log(String logMessage, Exception ex) {
             if (monitoringLogger.isInfoEnabled()) {
                 monitoringLogger.info(logMessage);
@@ -498,6 +500,7 @@ public class ExceptionLogger implements InitializingBean {
          * Checks whether Warn logging is enabled in either monitoring log or application log
          * @see org.terasoluna.gfw.common.exception.ExceptionLogger.LogLevelWrappingLogger#isEnabled()
          */
+        @Override
         public boolean isEnabled() {
             return monitoringLogger.isWarnEnabled()
                     || applicationLogger.isWarnEnabled();
@@ -511,6 +514,7 @@ public class ExceptionLogger implements InitializingBean {
          * @see org.terasoluna.gfw.common.exception.ExceptionLogger.LogLevelWrappingLogger#log(java.lang.String,
          *      java.lang.Exception)
          */
+        @Override
         public void log(String logMessage, Exception ex) {
             if (monitoringLogger.isWarnEnabled()) {
                 monitoringLogger.warn(logMessage);
@@ -530,6 +534,7 @@ public class ExceptionLogger implements InitializingBean {
          * Checks whether Error logging is enabled in either monitoring log or application log
          * @see org.terasoluna.gfw.common.exception.ExceptionLogger.LogLevelWrappingLogger#isEnabled()
          */
+        @Override
         public boolean isEnabled() {
             return monitoringLogger.isErrorEnabled()
                     || applicationLogger.isErrorEnabled();
@@ -543,6 +548,7 @@ public class ExceptionLogger implements InitializingBean {
          * @see org.terasoluna.gfw.common.exception.ExceptionLogger.LogLevelWrappingLogger#log(java.lang.String,
          *      java.lang.Exception)
          */
+        @Override
         public void log(String logMessage, Exception ex) {
             if (monitoringLogger.isErrorEnabled()) {
                 monitoringLogger.error(logMessage);
