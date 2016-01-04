@@ -2,8 +2,6 @@
 
 setlocal enabledelayedexpansion
 
-set ARTIFACT_ID_PREFIX=terasoluna-gfw-
-set TARGETS=parent common jodatime web security-core security-web jpa mybatis3 mybatis2 recommended-dependencies recommended-web-dependencies
 set DEFAULT_GOALS=clean install
 
 set commandArgs=%DEFAULT_GOALS%
@@ -16,8 +14,8 @@ echo [INFO] Start a build.
 
 echo [DEBUG] Command arguments : "%commandArgs%"
 
-for %%i in (%TARGETS%) do (
-    set pomFile=%ARTIFACT_ID_PREFIX%%%i\pom.xml
+for /f %%i in (mvn-build-all-targets.txt) do (
+    set pomFile=%%i\pom.xml
     if exist !pomFile! (
         call mvn -U -f !pomFile! %commandArgs%
         if not !ERRORLEVEL! == 0 (
