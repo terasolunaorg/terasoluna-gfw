@@ -29,6 +29,7 @@ public class DefaultExceptionLevelResolver implements ExceptionLevelResolver {
      * Default constructor
      */
     public DefaultExceptionLevelResolver() {
+        // do nothing for Default constructor
     }
 
     /**
