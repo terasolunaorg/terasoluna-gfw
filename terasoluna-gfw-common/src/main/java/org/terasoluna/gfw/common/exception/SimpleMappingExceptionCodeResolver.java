@@ -96,6 +96,7 @@ public class SimpleMappingExceptionCodeResolver implements
      * @param ex Exception
      * @return Corresponding exception code.
      */
+    @Override
     public String resolveExceptionCode(Exception ex) {
 
         if (ex == null) {
