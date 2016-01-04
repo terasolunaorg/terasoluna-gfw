@@ -15,6 +15,9 @@
  */
 package org.terasoluna.gfw.common.message;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -247,4 +250,24 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
         return "ResultMessages [type=" + type + ", list=" + list + "]";
     }
 
+    /**
+     * special handling for the serialization and deserialization process 
+     * @param out ObjectOutputStream
+     * @throws IOException
+     * @see java.io.Serializable
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+    }
+
+    /**
+     * special handling for the serialization and deserialization process 
+     * @param in ObjectInputStream
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @see java.io.Serializable
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+    }
 }
