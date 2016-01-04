@@ -147,7 +147,7 @@ public class TraceLoggingInterceptor extends HandlerInterceptorAdapter {
         request.setAttribute(HANDLING_ATTR, handlingTime);
         String formattedHandlingTime = String.format("%1$,3d", handlingTime);
 
-        boolean isWarnHandling = (handlingTime > warnHandlingNanos);
+        boolean isWarnHandling = handlingTime > warnHandlingNanos;
 
         if (isWarnHandling) {
             if (!logger.isWarnEnabled()) {

@@ -776,6 +776,13 @@ package org.terasoluna.gfw.common.fullhalf;
 public final class DefaultFullHalf {
 
     /**
+     * Default constructor
+     */
+    private DefaultFullHalf() {
+        // do nothing for Default constructor
+    }
+
+    /**
      * a singleton instance with default mapping table.
      * @see DefaultFullHalf
      */

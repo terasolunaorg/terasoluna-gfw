@@ -25,6 +25,13 @@ import java.lang.reflect.Method;
 class ConstraintValidatorsUtils {
 
     /**
+     * Default constructor
+     */
+    private ConstraintValidatorsUtils() {
+        // do nothing for Default constructor
+    }
+
+    /**
      * Wrap the exception in {@link IllegalArgumentException} with initialize error messages.
      * @param cause caused throwable
      * @return wrapped exception
@@ -50,7 +57,7 @@ class ConstraintValidatorsUtils {
      * @return {@code true} if string is null or empty. otherwise {@code false}.
      */
     static boolean isEmpty(String value) {
-        return (value == null || value.isEmpty());
+        return value == null || value.isEmpty();
     }
 
     /**

@@ -78,6 +78,6 @@ public class ByteMinValidator implements
         }
 
         long byteLength = value.toString().getBytes(charset).length;
-        return (min <= byteLength);
+        return min <= byteLength;
     }
 }

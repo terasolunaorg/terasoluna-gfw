@@ -78,6 +78,6 @@ public class ByteMaxValidator implements
         }
 
         long byteLength = value.toString().getBytes(charset).length;
-        return (byteLength <= max);
+        return byteLength <= max;
     }
 }

@@ -41,6 +41,7 @@ public class TransactionTokenInfoStore {
      * No parameter constructor
      */
     public TransactionTokenInfoStore() {
+        // do nothing.
     }
 
     /**
