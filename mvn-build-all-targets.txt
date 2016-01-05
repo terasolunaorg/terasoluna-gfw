@@ -1,0 +1,10 @@
+terasoluna-gfw-parent
+terasoluna-gfw-common
+terasoluna-gfw-jodatime
+terasoluna-gfw-web
+terasoluna-gfw-security-core
+terasoluna-gfw-security-web
+terasoluna-gfw-mybatis3
+terasoluna-gfw-jpa
+terasoluna-gfw-recommended-dependencies
+terasoluna-gfw-recommended-web-dependencies
