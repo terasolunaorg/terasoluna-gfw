@@ -188,7 +188,7 @@ public abstract class AbstractFileDownloadView extends AbstractView implements
         }
 
         byte[] buffer = new byte[chunkSize];
-        int length = 0;
+        int length;
         while ((length = inputStream.read(buffer)) > 0) {
             outputStream.write(buffer, 0, length);
         }
