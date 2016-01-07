@@ -89,6 +89,10 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+        </dependency>
         <!-- == End Tomcat == -->
 
         <!-- == Begin Other JavaEE/SE APIs == -->
