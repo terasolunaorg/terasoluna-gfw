@@ -41,6 +41,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.form.TagWriter;
 import org.terasoluna.gfw.common.message.ResultMessage;
 import org.terasoluna.gfw.common.message.ResultMessages;
+import org.terasoluna.gfw.web.message.MessagesPanelTag;
 
 /**
  * Test class for MessagesPanelTag.

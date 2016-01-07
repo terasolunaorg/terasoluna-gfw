@@ -38,6 +38,7 @@ import org.springframework.mock.web.MockPageContext;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.form.TagWriter;
+import org.terasoluna.gfw.web.pagination.PaginationTag;
 
 @SuppressWarnings("unchecked")
 public class PaginationTagTest {

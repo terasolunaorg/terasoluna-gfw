@@ -8,10 +8,10 @@
         <version>5.1.0-SNAPSHOT</version>
         <relativePath>../terasoluna-gfw-parent/pom.xml</relativePath>
     </parent>
-    <artifactId>terasoluna-gfw-web</artifactId>
+    <artifactId>terasoluna-gfw-web-jsp</artifactId>
     <packaging>jar</packaging>
     <name>TERASOLUNA Server Framework for Java (5.x) for web</name>
-    <description>Functionality that can be used on web</description>
+    <description>Functionality that can be used on web with jsp</description>
     <url>http://terasoluna.org</url>
     <licenses>
         <license>
@@ -62,6 +62,10 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>terasoluna-gfw-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>terasoluna-gfw-web</artifactId>
+        </dependency>
         <!-- == End TERASOLUNA == -->
 
         <!-- == Begin Spring == -->
@@ -85,12 +89,24 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
         </dependency>
+        <dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>javax.servlet.jsp-api</artifactId>
+        </dependency>
         <!-- == End Tomcat == -->
 
         <!-- == Begin Other JavaEE/SE APIs == -->
         <dependency>
+            <groupId>org.apache.taglibs</groupId>
+            <artifactId>taglibs-standard-jstlel</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javax.inject</groupId>
             <artifactId>javax.inject</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
         </dependency>
         <!-- == End Other JavaEE/SE APIs == -->
 

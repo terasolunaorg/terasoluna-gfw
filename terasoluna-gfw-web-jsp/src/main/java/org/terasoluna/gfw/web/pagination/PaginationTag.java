@@ -16,7 +16,6 @@
 package org.terasoluna.gfw.web.pagination;
 
 import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
 
 import org.springframework.data.domain.Page;
 import org.springframework.util.StringUtils;

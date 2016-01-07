@@ -9,6 +9,7 @@ terasoluna-gfw-validator
 terasoluna-gfw-common
 terasoluna-gfw-jodatime
 terasoluna-gfw-web
+terasoluna-gfw-web-jsp
 terasoluna-gfw-security-core
 terasoluna-gfw-security-web
 terasoluna-gfw-mybatis3

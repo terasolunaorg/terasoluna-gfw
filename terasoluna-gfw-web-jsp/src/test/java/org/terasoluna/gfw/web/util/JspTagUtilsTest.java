@@ -22,6 +22,7 @@ import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 
 import org.junit.Test;
+import org.terasoluna.gfw.web.util.JspTagUtils;
 
 public class JspTagUtilsTest {
 
