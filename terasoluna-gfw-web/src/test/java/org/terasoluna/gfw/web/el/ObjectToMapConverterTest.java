@@ -248,6 +248,29 @@ public class ObjectToMapConverterTest {
         assertThat(form.getItem().getArray4()[0], is("d"));
         assertThat(form.getItem().getArray4()[1], is("e"));
         assertThat(form.getItem().getArray4()[2], is("f"));
+
+    }
+
+    @Test
+    public void testConvert7_SimpleArray() {
+        Map<String, String> map1 = converter.convert(new int[] {1, 2, 3});
+        assertThat(map1.size(), is(0));
+        Map<String, String> map2 = converter.convert(Arrays.asList("a", "b", "c"));
+        assertThat(map2.size(), is(0));
+    }
+
+    @Test
+    public void testConvert8_SimpleMap() {
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        map.put("name", "Ichiro Suzuki");
+        map.put("ja", "すずき いちろう");
+        map.put("arr", new Object[] { "xxx", "yyy" });
+        Map<String, String> resultMap = converter.convert(map);
+        assertThat(resultMap.size(), is(4));
+        assertThat(resultMap.get("name"), is("Ichiro Suzuki"));
+        assertThat(resultMap.get("ja"), is("すずき いちろう"));
+        assertThat(resultMap.get("arr[0]"), is("xxx"));
+        assertThat(resultMap.get("arr[1]"), is("yyy"));
     }
 
     @SuppressWarnings("unchecked")
