@@ -36,7 +36,7 @@ import org.terasoluna.gfw.common.validator.constraints.CompareTest.CompareTestFo
  */
 public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
 
-    private static final String MESSAGE_VALIDATION_ERROR = "not match '%s' and '%s'";
+    private static final String MESSAGE_VALIDATION_ERROR = "invalid combination of %s and %s";
 
     @Before
     public void before() {
