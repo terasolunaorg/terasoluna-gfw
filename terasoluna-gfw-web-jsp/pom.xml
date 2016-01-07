@@ -86,9 +86,8 @@
         <!-- == Begin Tomcat == -->
         <!-- Servlet API 3.0 & JSP API 2.2 -->
         <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jsp-api</artifactId>
-            <scope>provided</scope>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
         </dependency>
         <!-- == End Tomcat == -->
 

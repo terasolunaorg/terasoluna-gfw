@@ -313,19 +313,6 @@
             </dependency>
             <!-- == End Spring IO Platform == -->
 
-            <!-- == Start Tomcat == -->
-            <dependency>
-                <groupId>org.apache.tomcat</groupId>
-                <artifactId>tomcat-jsp-api</artifactId>
-                <version>${tomcat8.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.tomcat</groupId>
-                <artifactId>tomcat-servlet-api</artifactId>
-                <version>${tomcat8.version}</version>
-            </dependency>
-            <!-- == End Tomcat -->
-
             <!-- == Begin MyBatis == -->
             <dependency>
                 <groupId>org.mybatis</groupId>
@@ -498,7 +485,6 @@
         <terasoluna.gfw.version>5.1.0-SNAPSHOT</terasoluna.gfw.version>
         <!-- == Spring IO Platform == -->
         <io.spring.platform.version>2.0.1.RELEASE</io.spring.platform.version>
-        <tomcat8.version>8.0.30</tomcat8.version>
         <!-- == MyBatis3 == -->
         <org.mybatis.version>3.3.0</org.mybatis.version>
         <org.mybatis.spring.version>1.2.3</org.mybatis.spring.version>
