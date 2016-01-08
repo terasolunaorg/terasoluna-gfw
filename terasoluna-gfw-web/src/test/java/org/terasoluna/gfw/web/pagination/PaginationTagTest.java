@@ -29,6 +29,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.core.serializer.support.SerializationFailedException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -36,6 +37,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockPageContext;
 import org.springframework.mock.web.MockServletContext;
+import org.springframework.util.SerializationUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.form.TagWriter;
 
@@ -931,6 +933,16 @@ public class PaginationTagTest {
             tag1.setEnableLinkOfCurrentPage("");
         } catch (Exception ex) {
             ex.printStackTrace();
+            fail();
+        }
+    }
+
+    @Test
+    public void testSerialization() {
+        try {
+            byte[] serialized = SerializationUtils.serialize(new PaginationTag());
+            SerializationUtils.deserialize(serialized);
+        } catch (SerializationFailedException e) {
             fail();
         }
     }
