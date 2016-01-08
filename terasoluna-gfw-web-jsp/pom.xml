@@ -10,7 +10,7 @@
     </parent>
     <artifactId>terasoluna-gfw-web-jsp</artifactId>
     <packaging>jar</packaging>
-    <name>TERASOLUNA Server Framework for Java (5.x) for web</name>
+    <name>TERASOLUNA Server Framework for Java (5.x) for jsp</name>
     <description>Functionality that can be used on web with jsp</description>
     <url>http://terasoluna.org</url>
     <licenses>
@@ -60,21 +60,11 @@
         <!-- == Begin TERASOLUNA == -->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>terasoluna-gfw-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
             <artifactId>terasoluna-gfw-web</artifactId>
         </dependency>
         <!-- == End TERASOLUNA == -->
 
         <!-- == Begin Spring == -->
-        <!-- Spring MVC -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-
         <!-- Spring Test -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -88,10 +78,12 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>javax.servlet.jsp-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!-- == End Tomcat == -->
 
@@ -101,23 +93,11 @@
             <artifactId>taglibs-standard-jstlel</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-        </dependency>
-        <dependency>
             <groupId>javax.el</groupId>
             <artifactId>javax.el-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!-- == End Other JavaEE/SE APIs == -->
-
-        <!-- == Begin Database == -->
-        <!-- H2 (for test) -->
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- == End Database == -->
 
         <!-- == Begin Unit Test == -->
         <dependency>
@@ -126,18 +106,8 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
             <scope>test</scope>
         </dependency>
         <!-- == End Unit Test == -->

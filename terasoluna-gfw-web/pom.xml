@@ -80,10 +80,11 @@
         <!-- == End Spring == -->
 
         <!-- == Begin Tomcat == -->
-        <!-- Servlet API 3.0 & JSP API 2.2 -->
+        <!-- Servlet API 3.0 -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
+            <scope>provided</scope>
         </dependency>
         <!-- == End Tomcat == -->
 
