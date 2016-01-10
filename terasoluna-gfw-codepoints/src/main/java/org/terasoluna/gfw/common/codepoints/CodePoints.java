@@ -308,9 +308,9 @@ public class CodePoints implements Serializable {
      * @return united code points
      */
     public CodePoints union(CodePoints codePoints) {
-        Set<Integer> set = new HashSet<Integer>(this.set);
-        set.addAll(codePoints.set);
-        return new CodePoints(set);
+        Set<Integer> setTmp = new HashSet<Integer>(this.set);
+        setTmp.addAll(codePoints.set);
+        return new CodePoints(setTmp);
     }
 
     /**
@@ -319,9 +319,9 @@ public class CodePoints implements Serializable {
      * @return subtracted code points
      */
     public CodePoints subtract(CodePoints codePoints) {
-        Set<Integer> set = new HashSet<Integer>(this.set);
-        set.removeAll(codePoints.set);
-        return new CodePoints(set);
+        Set<Integer> setTmp = new HashSet<Integer>(this.set);
+        setTmp.removeAll(codePoints.set);
+        return new CodePoints(setTmp);
     }
 
     /**
@@ -330,9 +330,9 @@ public class CodePoints implements Serializable {
      * @return intersected code points
      */
     public CodePoints intersect(CodePoints codePoints) {
-        Set<Integer> set = new HashSet<Integer>(this.set);
-        set.retainAll(codePoints.set);
-        return new CodePoints(set);
+        Set<Integer> setTmp = new HashSet<Integer>(this.set);
+        setTmp.retainAll(codePoints.set);
+        return new CodePoints(setTmp);
     }
 
     /**

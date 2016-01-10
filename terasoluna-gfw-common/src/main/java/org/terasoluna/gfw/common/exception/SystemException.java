@@ -75,6 +75,7 @@ public class SystemException extends RuntimeException implements
      * Returns the {@link ExceptionCodeProvider}
      * @see org.terasoluna.gfw.common.exception.ExceptionCodeProvider#getCode()
      */
+    @Override
     public String getCode() {
         return code;
     }

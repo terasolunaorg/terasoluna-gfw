@@ -49,20 +49,20 @@ class ProcessActionInvocationHelper {
         Method targetProcessActionMethod = ReflectionUtils.findMethod(
                 RequestDataValueProcessor.class, "processAction",
                 HttpServletRequest.class, String.class, String.class);
-        boolean isLegacySignature = false;
+        boolean isLegacySignatureTmp = false;
 
         if (targetProcessActionMethod == null) {
             // Check Spring3's signature
             targetProcessActionMethod = ReflectionUtils.findMethod(
                     RequestDataValueProcessor.class, "processAction",
                     HttpServletRequest.class, String.class);
-            isLegacySignature = true;
+            isLegacySignatureTmp = true;
         }
         if (targetProcessActionMethod == null) {
             throw new IllegalStateException("'processActionMethod' is not found. Should never get here!");
         }
         this.processActionMethod = targetProcessActionMethod;
-        this.isLegacySignature = isLegacySignature;
+        this.isLegacySignature = isLegacySignatureTmp;
     }
 
     /**

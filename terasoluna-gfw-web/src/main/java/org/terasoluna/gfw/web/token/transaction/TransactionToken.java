@@ -55,20 +55,20 @@ public class TransactionToken implements Serializable {
      * @param tokenString token string
      */
     public TransactionToken(final String tokenString) {
-        String tokenName = "";
-        String tokenKey = "";
-        String tokenValue = "";
+        String tokenNameTmp = "";
+        String tokenKeyTmp = "";
+        String tokenValueTmp = "";
         if (tokenString != null && !tokenString.isEmpty()) {
             String[] strs = tokenString.split(TOKEN_STRING_SEPARATOR);
             if (strs.length == 3) {
-                tokenName = strs[0];
-                tokenKey = strs[1];
-                tokenValue = strs[2];
+                tokenNameTmp = strs[0];
+                tokenKeyTmp = strs[1];
+                tokenValueTmp = strs[2];
             }
         }
-        this.tokenName = tokenName;
-        this.tokenKey = tokenKey;
-        this.tokenValue = tokenValue;
+        this.tokenName = tokenNameTmp;
+        this.tokenKey = tokenKeyTmp;
+        this.tokenValue = tokenValueTmp;
     }
 
     /**

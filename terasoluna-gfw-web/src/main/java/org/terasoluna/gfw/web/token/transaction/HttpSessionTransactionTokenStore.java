@@ -212,19 +212,7 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
             for (int i = 0, max = sessionAttributeNames.size(); i < max; i++) {
                 // do not use while loop to avoid infinite loop
                 if (sessionAttributeNames.size() >= transactionTokensPerTokenName) {
-                    String oldestTokenName = null;
-                    TokenHolder oldestTokenHolder = new TokenHolder(null, Long.MAX_VALUE);
-                    for (String name : sessionAttributeNames) {
-                        TokenHolder tokenHolder = (TokenHolder) session
-                                .getAttribute(name);
-                        if (tokenHolder.getTimestamp() < oldestTokenHolder
-                                .getTimestamp()) {
-                            oldestTokenName = name;
-                            oldestTokenHolder = tokenHolder;
-                        }
-                    }
-                    session.removeAttribute(oldestTokenName);
-                    sessionAttributeNames.remove(oldestTokenName);
+                    removeOldTokenName(sessionAttributeNames, session);
                 } else {
                     break;
                 }
@@ -246,6 +234,28 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
         }
 
         return tokenKey;
+    }
+
+    /**
+     * removes old token name from session
+     * @param sessionAttributeNames set of token names
+     * @param session HttpSession
+     */
+    private void removeOldTokenName(Set<String> sessionAttributeNames,
+            HttpSession session) {
+        String oldestTokenName = null;
+        TokenHolder oldestTokenHolder = new TokenHolder(null, Long.MAX_VALUE);
+        for (String name : sessionAttributeNames) {
+            TokenHolder tokenHolder = (TokenHolder) session
+                    .getAttribute(name);
+            if (tokenHolder.getTimestamp() < oldestTokenHolder
+                    .getTimestamp()) {
+                oldestTokenName = name;
+                oldestTokenHolder = tokenHolder;
+            }
+        }
+        session.removeAttribute(oldestTokenName);
+        sessionAttributeNames.remove(oldestTokenName);
     }
 
     /**

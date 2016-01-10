@@ -147,13 +147,9 @@ public class TraceLoggingInterceptor extends HandlerInterceptorAdapter {
         request.setAttribute(HANDLING_ATTR, handlingTime);
         String formattedHandlingTime = String.format("%1$,3d", handlingTime);
 
-        boolean isWarnHandling = (handlingTime > warnHandlingNanos);
+        boolean isWarnHandling = handlingTime > warnHandlingNanos;
 
-        if (isWarnHandling) {
-            if (!logger.isWarnEnabled()) {
-                return;
-            }
-        } else if (!logger.isTraceEnabled()) {
+        if (!isEnabledLogLevel(isWarnHandling)) {
             return;
         }
 
@@ -184,6 +180,22 @@ public class TraceLoggingInterceptor extends HandlerInterceptorAdapter {
                     m.getDeclaringClass().getSimpleName(), m.getName(),
                     buildMethodParams(handlerMethod), formattedHandlingTime });
         }
+    }
+
+    /**
+     * check whether warn is enabled if isWarnHandling, or trace is enabled
+     * @param isWarnHandling
+     * @return false if isWarnHandling and logger.warn is disabled, or logger.trace is disabled
+     */
+    private boolean isEnabledLogLevel(boolean isWarnHandling) {
+        if (isWarnHandling) {
+            if (!logger.isWarnEnabled()) {
+                return false;
+            }
+        } else if (!logger.isTraceEnabled()) {
+            return false;
+        }
+        return true;
     }
 
     /**
