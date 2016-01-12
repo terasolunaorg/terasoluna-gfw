@@ -32,6 +32,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
 import org.springframework.security.web.RedirectStrategy;
 
+@SuppressWarnings("deprecation")
 public class RedirectAuthenticationHandlerTest {
 
     MockHttpServletRequest request;
@@ -55,7 +56,7 @@ public class RedirectAuthenticationHandlerTest {
     public void testOnAuthenticationSuccess_SetConstParam() throws Exception {
         String changeAttrName = "hoge";
 
-        RedirectAuthenticationHandler redireHandler = new RedirectAuthenticationHandler();
+		RedirectAuthenticationHandler redireHandler = new RedirectAuthenticationHandler();
         redireHandler.setTargetUrlParameter(changeAttrName);
         redireHandler.afterPropertiesSet();
 
