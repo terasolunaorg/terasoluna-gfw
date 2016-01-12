@@ -56,7 +56,7 @@ public class RedirectAuthenticationHandlerTest {
     public void testOnAuthenticationSuccess_SetConstParam() throws Exception {
         String changeAttrName = "hoge";
 
-		RedirectAuthenticationHandler redireHandler = new RedirectAuthenticationHandler();
+        RedirectAuthenticationHandler redireHandler = new RedirectAuthenticationHandler();
         redireHandler.setTargetUrlParameter(changeAttrName);
         redireHandler.afterPropertiesSet();
 
