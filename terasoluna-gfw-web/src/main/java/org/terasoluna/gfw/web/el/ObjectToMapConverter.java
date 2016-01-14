@@ -190,8 +190,10 @@ class ObjectToMapConverter {
             map.put(prefix, "");
             return map;
         }
-        for (int i = 0; iterator.hasNext(); i++) {
+        int i = 0;
+        while (iterator.hasNext()) {
             map.putAll(this.convert(prefix + "[" + i + "]", iterator.next()));
+            i++;
         }
         return map;
     }

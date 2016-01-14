@@ -255,6 +255,7 @@ public final class Functions {
      * @param map map
      * @param beanWrapper beanWrapper which has the definition of each field.
      * @return query string. if map is not empty, return query string. ex) name1=value&amp;name2=value&amp;...
+     * @deprecated (since 5.0.1, to support nested fields in f:query, Use {@link #mapToQuery(Map)} instead of this method.)
      */
     @Deprecated
     public static String mapToQuery(Map<String, Object> map,

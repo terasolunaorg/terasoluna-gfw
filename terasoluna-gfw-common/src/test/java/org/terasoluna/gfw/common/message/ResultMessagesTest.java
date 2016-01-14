@@ -24,6 +24,8 @@ import java.util.Collection;
 import java.util.List;
 
 import org.junit.Test;
+import org.springframework.core.serializer.support.SerializationFailedException;
+import org.springframework.util.SerializationUtils;
 import org.terasoluna.gfw.common.message.ResultMessage;
 import org.terasoluna.gfw.common.message.ResultMessageType;
 import org.terasoluna.gfw.common.message.ResultMessages;
@@ -254,4 +256,13 @@ public class ResultMessagesTest {
         assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
     }
 
+    @Test
+    public void testSerialization() {
+        try {
+            byte[] serialized = SerializationUtils.serialize(new ResultMessages((ResultMessageType) ERROR));
+            SerializationUtils.deserialize(serialized);
+        } catch (SerializationFailedException e) {
+            fail();
+        }
+    }
 }

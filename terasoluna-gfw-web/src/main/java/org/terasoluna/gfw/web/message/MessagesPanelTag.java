@@ -221,13 +221,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
                 StringBuilder className = new StringBuilder(panelClassName);
                 String type = getType(messages);
 
-                if (panelTypeClassPrefix != null && StringUtils.hasText(type)) {
-
-                    if (StringUtils.hasLength(className)) {
-                        className.append(" ");
-                    }
-                    className.append(panelTypeClassPrefix);
-                }
+                appendPanelTypeClassPrefix(className, type);
                 className.append(type);
 
                 if (StringUtils.hasText(className)) {
@@ -235,16 +229,14 @@ public class MessagesPanelTag extends RequestContextAwareTag {
                 }
             }
 
-            {
-                if (StringUtils.hasText(outerElement)) {
-                    tagWriter.startTag(outerElement); // <ul>
-                }
+            if (StringUtils.hasText(outerElement)) {
+                tagWriter.startTag(outerElement); // <ul>
+            }
 
-                writeMessages(tagWriter, messages);
+            writeMessages(tagWriter, messages);
 
-                if (StringUtils.hasText(outerElement)) {
-                    tagWriter.endTag(); // </ul>
-                }
+            if (StringUtils.hasText(outerElement)) {
+                tagWriter.endTag(); // </ul>
             }
 
             if (StringUtils.hasText(panelElement)) {
@@ -253,6 +245,21 @@ public class MessagesPanelTag extends RequestContextAwareTag {
         }
 
         return EVAL_BODY_INCLUDE;
+    }
+
+    /**
+     * appends panelTypeClassPrefix to className if necessary
+     * @param className className built by StringBuilder
+     * @param type classType
+     */
+    private void appendPanelTypeClassPrefix(StringBuilder className, String type) {
+        if (panelTypeClassPrefix != null && StringUtils.hasText(type)) {
+
+            if (StringUtils.hasLength(className)) {
+                className.append(" ");
+            }
+            className.append(panelTypeClassPrefix);
+        }
     }
 
     /**
@@ -333,7 +340,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * @return Message after conversion to String
      */
     private String getText(Object message) {
-        String text = null;
+        String text;
 
         if (message instanceof String) {
             text = (String) message;

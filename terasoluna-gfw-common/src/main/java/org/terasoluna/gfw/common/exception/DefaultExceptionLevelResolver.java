@@ -29,6 +29,7 @@ public class DefaultExceptionLevelResolver implements ExceptionLevelResolver {
      * Default constructor
      */
     public DefaultExceptionLevelResolver() {
+        // do nothing for Default constructor
     }
 
     /**
@@ -62,6 +63,7 @@ public class DefaultExceptionLevelResolver implements ExceptionLevelResolver {
      * </ul>
      * @see org.terasoluna.gfw.common.exception.ExceptionLevelResolver#resolveExceptionLevel(java.lang.Exception)
      */
+    @Override
     public ExceptionLevel resolveExceptionLevel(Exception ex) {
         String exceptionCode = resolveExceptionCode(ex);
         if (exceptionCode == null || exceptionCode.isEmpty()) {

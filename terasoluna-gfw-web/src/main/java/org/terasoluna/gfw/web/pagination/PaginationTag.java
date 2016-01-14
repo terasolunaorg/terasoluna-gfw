@@ -15,6 +15,10 @@
  */
 package org.terasoluna.gfw.web.pagination;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 
@@ -523,4 +527,24 @@ public class PaginationTag extends RequestContextAwareTag {
         this.disabledClass = disabledClass;
     }
 
+    /**
+     * special handling for the serialization and deserialization process 
+     * @param out ObjectOutputStream
+     * @throws IOException
+     * @see java.io.Serializable
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+    }
+
+    /**
+     * special handling for the serialization and deserialization process 
+     * @param in ObjectInputStream
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @see java.io.Serializable
+     */
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+    }
 }
