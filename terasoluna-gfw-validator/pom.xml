@@ -61,12 +61,6 @@
             <artifactId>validation-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <scope>provided</scope>
-            <optional>true</optional>
-        </dependency>
         <!-- == Begin Unit Test == -->
         <dependency>
             <groupId>org.hibernate</groupId>
