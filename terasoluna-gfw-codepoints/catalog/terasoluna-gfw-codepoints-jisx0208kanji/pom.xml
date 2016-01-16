@@ -67,7 +67,6 @@
         <dependency>
             <groupId>org.terasoluna.gfw</groupId>
             <artifactId>terasoluna-gfw-codepoints</artifactId>
-            <version>${project.version}</version>
         </dependency>
         <!-- == Begin Unit Test == -->
         <dependency>
