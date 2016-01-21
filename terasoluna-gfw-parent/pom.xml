@@ -434,6 +434,15 @@
             </dependency>
             <!-- == End MyBatis == -->
 
+            <!-- == Start CGLIB == -->
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>${cglib.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!-- == End CGLIB == -->
+
             <!-- == Begin Dozer== -->
             <dependency>
                 <groupId>net.sf.dozer</groupId>
@@ -536,14 +545,6 @@
                 <type>pom</type>
             </dependency>
             <!-- == End TERASOLUNA == -->
-            <!-- == Start CGLIB == -->
-            <dependency>
-                <groupId>cglib</groupId>
-                <artifactId>cglib</artifactId>
-                <version>${cglib.version}</version>
-                <scope>runtime</scope>
-            </dependency>
-            <!-- == End CGLIB == -->
         </dependencies>
     </dependencyManagement>
     <distributionManagement>
