@@ -536,6 +536,14 @@
                 <type>pom</type>
             </dependency>
             <!-- == End TERASOLUNA == -->
+            <!-- == Start CGLIB == -->
+            <dependency>
+                <groupId>cglib</groupId>
+                <artifactId>cglib</artifactId>
+                <version>3.1</version>
+                <scope>runtime</scope>
+            </dependency>
+            <!-- == End CGLIB == -->
         </dependencies>
     </dependencyManagement>
     <distributionManagement>
@@ -589,6 +597,8 @@
         <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
         <cargo-maven2-plugin.version>1.4.17</cargo-maven2-plugin.version>
+        <!-- == CGLIB == -->
+        <cglib.version>3.1</cglib.version>
         <!-- == Other Properties== -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <archetype.test.skip>true</archetype.test.skip>
