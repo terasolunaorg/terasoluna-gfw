@@ -108,7 +108,7 @@ Please commit a modification.
 
 > **Note: Commit comment format**
 >
-> "#{commit number}: {modification overview}"
+> "{modification overview} #{issue number}"
 
 > **Note: Supported language**
 >
@@ -117,7 +117,7 @@ Please commit a modification.
 e.g.)
 
 ```
-git commit -a -m "#999: Fixes typos in CodeListInterceptor"
+git commit -a -m "Fixes typos in CodeListInterceptor #999"
 ```
 
 
@@ -141,7 +141,7 @@ For details, please refer to the [GitHub document-Creating a pull request-](http
 >
 > English only.
 
-* Please write the modification overview into the title area. (Default is commit comment or work branch name)
+* Please write the modification overview into the title area and end with #{issue number}. (Default is commit comment or work branch name)
 * Please write the modification detail into the comment area. (If needed)
 * Please include the issue number(`#{issue number}` format) to track a modification into the comment area.
 
@@ -149,5 +149,5 @@ e.g.)
 
 | Area | Content |
 | ----- | --------- |
-| Title | #999: Fixes typos in CodeListInterceptor |
+| Title | Fixes typos in CodeListInterceptor #999 |
 | Comment | Please review #999 . |
