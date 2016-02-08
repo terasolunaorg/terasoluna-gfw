@@ -56,10 +56,22 @@ import org.terasoluna.gfw.common.validator.constraintvalidators.ByteMaxValidator
 @Retention(RUNTIME)
 public @interface ByteMax {
 
+    /**
+     * Error message or message key
+     * @return error message or message key
+     */
     String message() default "{org.terasoluna.gfw.common.validator.constraints.ByteMax.message}";
 
+    /**
+     * Constraint groups
+     * @return constraint groups
+     */
     Class<?>[] groups() default {};
 
+    /**
+     * Payload
+     * @return payload
+     */
     Class<? extends Payload>[] payload() default {};
 
     /**
