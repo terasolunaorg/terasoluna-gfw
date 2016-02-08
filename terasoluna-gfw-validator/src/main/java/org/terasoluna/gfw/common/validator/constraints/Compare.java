@@ -57,10 +57,22 @@ import org.terasoluna.gfw.common.validator.constraintvalidators.CompareValidator
 @Retention(RUNTIME)
 public @interface Compare {
 
+    /**
+     * Error message or message key
+     * @return error message or message key
+     */
     String message() default "{org.terasoluna.gfw.common.validator.constraints.Compare.message}";
 
+    /**
+     * Constraint groups
+     * @return constraint groups
+     */
     Class<?>[] groups() default {};
 
+    /**
+     * Payload
+     * @return payload
+     */
     Class<? extends Payload>[] payload() default {};
 
     /**

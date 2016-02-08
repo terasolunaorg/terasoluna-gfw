@@ -56,10 +56,22 @@ import org.terasoluna.gfw.common.validator.constraintvalidators.ByteMinValidator
 @Retention(RUNTIME)
 public @interface ByteMin {
 
+    /**
+     * Error message or message key
+     * @return error message or message key
+     */
     String message() default "{org.terasoluna.gfw.common.validator.constraints.ByteMin.message}";
 
+    /**
+     * Constraint groups
+     * @return constraint groups
+     */
     Class<?>[] groups() default {};
 
+    /**
+     * Payload
+     * @return payload
+     */
     Class<? extends Payload>[] payload() default {};
 
     /**
