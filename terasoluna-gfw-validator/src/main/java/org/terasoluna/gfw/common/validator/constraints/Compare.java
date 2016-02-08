@@ -111,6 +111,10 @@ public @interface Compare {
     @Target({ METHOD, FIELD, TYPE, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
     @Retention(RUNTIME)
     @interface List {
+        /**
+         * <code>@Compare</code> annotations
+         * @return annotations
+         */
         Compare[] value();
     }
 

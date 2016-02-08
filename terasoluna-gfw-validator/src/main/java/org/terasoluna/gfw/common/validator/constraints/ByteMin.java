@@ -93,6 +93,10 @@ public @interface ByteMin {
     @Target({ METHOD, FIELD, TYPE, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
     @Retention(RUNTIME)
     @interface List {
+        /**
+         * <code>@ByteMin</code> annotations
+         * @return annotations
+         */
         ByteMin[] value();
     }
 }
