@@ -93,6 +93,10 @@ public @interface ByteMax {
     @Target({ METHOD, FIELD, TYPE, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
     @Retention(RUNTIME)
     @interface List {
+        /**
+         * <code>@ByteMax</code> annotations
+         * @return annotations
+         */
         ByteMax[] value();
     }
 }
