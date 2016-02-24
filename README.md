@@ -126,7 +126,7 @@ Define parent project in pom file
 <parent>
   <groupId>org.terasoluna.gfw</groupId>
   <artifactId>terasoluna-gfw-parent</artifactId>
-  <version>5.0.1.RELEASE</version>
+  <version>5.1.0.RELEASE</version>
 </parent>
 ```
 
@@ -189,14 +189,14 @@ Add the following dependency definitions.
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-web</artifactId>
-    <version>5.0.1.RELEASE</version>
+    <version>5.1.0.RELEASE</version>
 </dependency>
 
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
-    <version>5.0.1.RELEASE</version>
+    <version>5.1.0.RELEASE</version>
     <type>pom</type>
 </dependency>
 
@@ -204,7 +204,7 @@ Add the following dependency definitions.
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
-    <version>5.0.1.RELEASE</version>
+    <version>5.1.0.RELEASE</version>
     <type>pom</type>
 </dependency>
 
@@ -212,21 +212,21 @@ Add the following dependency definitions.
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-security-web</artifactId>
-    <version>5.0.1.RELEASE</version>
+    <version>5.1.0.RELEASE</version>
 </dependency>
 
 <!-- If MyBatis3 is to be used -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-mybatis3</artifactId>
-    <version>5.0.1.RELEASE</version>
+    <version>5.1.0.RELEASE</version>
 </dependency>
 
 <!-- If JPA is to be used -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-jpa</artifactId>
-    <version>5.0.1.RELEASE</version>
+    <version>5.1.0.RELEASE</version>
 </dependency>
 ```
 
