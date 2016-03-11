@@ -6,7 +6,7 @@
         <artifactId>terasoluna-gfw-parent</artifactId>
         <groupId>org.terasoluna.gfw</groupId>
         <version>5.2.0-SNAPSHOT</version>
-        <relativePath>../terasoluna-gfw-parent/pom.xml</relativePath>
+        <relativePath>../terasoluna-gfw-starter-web-jsp/pom.xml</relativePath>
     </parent>
     <artifactId>terasoluna-gfw-web-jsp</artifactId>
     <packaging>jar</packaging>
@@ -88,10 +88,6 @@
         <!-- == End Tomcat == -->
 
         <!-- == Begin Other JavaEE/SE APIs == -->
-        <dependency>
-            <groupId>org.apache.taglibs</groupId>
-            <artifactId>taglibs-standard-jstlel</artifactId>
-        </dependency>
         <dependency>
             <groupId>javax.el</groupId>
             <artifactId>javax.el-api</artifactId>
