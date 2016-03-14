@@ -16,7 +16,7 @@ terasoluna-gfw-starter-web-jsp
 terasoluna-gfw-web-jsp
 terasoluna-gfw-security-core
 terasoluna-gfw-security-web
-terasoluna-gfw-mybatis3
-terasoluna-gfw-jpa
+terasoluna-gfw-starter-mybatis3
+terasoluna-gfw-starter-jpa
 terasoluna-gfw-recommended-dependencies
 terasoluna-gfw-recommended-web-dependencies
