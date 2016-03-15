@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>terasoluna-gfw-starter-common</artifactId>
+		<artifactId>terasoluna-gfw-parent</artifactId>
 		<groupId>org.terasoluna.gfw</groupId>
 		<version>5.2.0-SNAPSHOT</version>
-		<relativePath>../terasoluna-gfw-starter-common/pom.xml</relativePath>
+		<relativePath>../terasoluna-gfw-parent/pom.xml</relativePath>
 	</parent>
 	<artifactId>terasoluna-gfw-common</artifactId>
 	<packaging>jar</packaging>
@@ -56,6 +56,48 @@
 		</plugins>
 	</build>
 	<dependencies>
+
+		<!-- == Begin AspectJ == -->
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjrt</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.aspectj</groupId>
+			<artifactId>aspectjweaver</artifactId>
+		</dependency>
+		<!-- == End AspectJ == -->
+
+		<!-- == Begin Logging == -->
+		<!-- Logback -->
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+		</dependency>
+		<!-- Log4JDBC -->
+		<dependency>
+			<groupId>org.lazyluke</groupId>
+			<artifactId>log4jdbc-remix</artifactId>
+		</dependency>
+		<!-- == End Logging == -->
+
+		<!-- == Begin Spring == -->
+		<!-- Spring Framework -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+
+		<!-- Spring Data -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+		</dependency>
+		<!-- == End Spring == -->
 
 		<!-- == Begin Google == -->
 		<dependency>

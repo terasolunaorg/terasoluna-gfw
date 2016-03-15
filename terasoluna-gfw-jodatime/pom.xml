@@ -3,10 +3,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>terasoluna-gfw-parent</artifactId>
 		<groupId>org.terasoluna.gfw</groupId>
+		<artifactId>terasoluna-gfw-parent</artifactId>
 		<version>5.2.0-SNAPSHOT</version>
-		<relativePath>../terasoluna-gfw-starter-jodatime/pom.xml</relativePath>
+		<relativePath>../terasoluna-gfw-parent/pom.xml</relativePath>
 	</parent>
 	<artifactId>terasoluna-gfw-jodatime</artifactId>
 	<packaging>jar</packaging>
