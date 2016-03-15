@@ -3,7 +3,7 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>terasoluna-gfw-parent</artifactId>
+        <artifactId>terasoluna-gfw-starter-web-jsp</artifactId>
         <groupId>org.terasoluna.gfw</groupId>
         <version>5.2.0-SNAPSHOT</version>
         <relativePath>../terasoluna-gfw-starter-web-jsp/pom.xml</relativePath>
