@@ -6,7 +6,7 @@ terasoluna-gfw-codepoints/catalog/terasoluna-gfw-codepoints-jisx0208
 terasoluna-gfw-codepoints/catalog/terasoluna-gfw-codepoints-jisx0208kanji
 terasoluna-gfw-codepoints/catalog/terasoluna-gfw-codepoints-jisx0213kanji
 terasoluna-gfw-validator
-terasoluna-gfw-starter-common
+terasoluna-gfw-starter
 terasoluna-gfw-common
 terasoluna-gfw-starter-jodatime
 terasoluna-gfw-jodatime
