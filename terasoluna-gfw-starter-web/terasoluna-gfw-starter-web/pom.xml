@@ -13,7 +13,12 @@
 	<url>http://terasoluna.org</url>
 
 	<dependencies>
-
+		<!-- == Begin TERASOLUNA == -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>terasoluna-gfw-web</artifactId>
+		</dependency>
+		<!-- == End TERASOLUNA == -->
 		<!-- == Begin Spring == -->
 		<!-- Spring MVC -->
 		<dependency>
