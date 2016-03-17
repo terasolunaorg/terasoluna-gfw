@@ -25,4 +25,5 @@
         <!-- == End MyBatis == -->
     </dependencies>
 
+    <packaging>pom</packaging>
 </project>
