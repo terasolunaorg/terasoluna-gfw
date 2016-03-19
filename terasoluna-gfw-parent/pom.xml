@@ -42,6 +42,7 @@
                     <configuration>
                         <includes>
                             <include>**/*Test.java</include>
+                            <include>**/*Tests.java</include>
                         </includes>
                         <argLine>${jacocoArgs}</argLine>
                     </configuration>
