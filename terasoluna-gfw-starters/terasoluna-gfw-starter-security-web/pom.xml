@@ -17,7 +17,6 @@
 
   <dependencies>
   	<!-- == Begin TERASOLUNA == -->
-  	<!-- Optional -->
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>terasoluna-gfw-security-web</artifactId>

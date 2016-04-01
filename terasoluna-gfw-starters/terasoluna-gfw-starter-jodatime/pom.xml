@@ -15,6 +15,12 @@
 	<url>http://terasoluna.org</url>
 	<packaging>pom</packaging>
 	<dependencies>
+		<!-- == Begin TERASOLUNA == -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>terasoluna-gfw-jodatime</artifactId>
+		</dependency>
+		<!-- == End TERASOLUNA == -->
 		<!-- == Begin Joda-Time == -->
 		<dependency>
 			<groupId>joda-time</groupId>

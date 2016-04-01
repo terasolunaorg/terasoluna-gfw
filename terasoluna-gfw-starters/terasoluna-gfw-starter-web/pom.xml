@@ -27,12 +27,6 @@
 		</dependency>
 		<!-- == End Spring == -->
 
-		<!-- == Begin Other JavaEE/SE APIs == -->
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-		</dependency>
-		<!-- == End Other JavaEE/SE APIs == -->
 
 	</dependencies>
 

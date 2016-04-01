@@ -14,6 +14,12 @@
 	<packaging>pom</packaging>
 
 	<dependencies>
+		<!-- == Begin TERASOLUNA == -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>terasoluna-gfw-common</artifactId>
+		</dependency>
+		<!-- == End TERASOLUNA == -->
 		<!-- == Begin Jackson == -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -52,7 +58,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 		</dependency>
-
 		<!-- == End Spring == -->
+		<!-- == Begin Other JavaEE/SE APIs == -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+		</dependency>
+		<!-- == End Other JavaEE/SE APIs == -->
 	</dependencies>
 </project>
