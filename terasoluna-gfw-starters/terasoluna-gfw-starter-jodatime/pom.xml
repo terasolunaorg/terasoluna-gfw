@@ -7,7 +7,7 @@
 		<groupId>org.terasoluna.gfw</groupId>
 		<artifactId>terasoluna-gfw-starters</artifactId>
 		<version>5.2.0-SNAPSHOT</version>
-		<relativePath>../terasoluna-gfw-starters/pom.xml</relativePath>
+		<relativePath>../../terasoluna-gfw-starters/pom.xml</relativePath>
 	</parent>
 	<artifactId>terasoluna-gfw-starter-jodatime</artifactId>
 	<name>TERASOLUNA Server Framework for Java (5.x) for joda-time library</name>
