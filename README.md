@@ -6,7 +6,7 @@ The common library of TERASOLUNA Server Framework for Java (5.x) is a library of
 
 ## Projects of Common Library
 
-All modules included in TERASOLUNA Server Framework for Java (5.x) Common Librariey are listed up in the [development guideline](https://github.com/terasolunaorg/guideline/blob/master/source_en/Overview/FrameworkStack.rst#building-blocks-of-common-library).
+All modules included in TERASOLUNA Server Framework for Java (5.x) Common Library are listed up in the [development guideline](https://github.com/terasolunaorg/guideline/blob/master/source_en/Overview/FrameworkStack.rst#building-blocks-of-common-library).
 
 ## Getting Started
 
