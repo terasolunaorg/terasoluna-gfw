@@ -27,7 +27,7 @@ The following project are included in TERASOLUNA Server Framework for Java (5.x)
 * Improvised System Time handling mechanism (using java.util.Date, java.sql.Date, java.sql.Time, java.sql.Timestamp)
 * Codelist functionality
 * Improvised Message handling mechasim
-* Query excaping utilities for SQL, JPQL
+* Query escaping utilities for SQL, JPQL
 * Sequencer classes
      </pre>
     </td>
