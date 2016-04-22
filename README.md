@@ -27,7 +27,7 @@ The following project are included in TERASOLUNA Global Framework Common Library
 * Improvised System Time handling mechanism
 * Codelist functionality
 * Improvised Message handling mechasim
-* Query excaping utilities for SQL, JPQL
+* Query escaping utilities for SQL, JPQL
 * Sequencer classes
      </pre>
     </td>
