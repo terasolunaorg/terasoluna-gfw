@@ -65,6 +65,8 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>terasoluna-gfw-security-core</artifactId>
+            <version>${terasoluna.gfw.version}</version>
+            <type>pom</type>
         </dependency>
         <!-- == End TERASOLUNA == -->
 
