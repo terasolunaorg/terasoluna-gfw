@@ -404,6 +404,7 @@
                 <groupId>org.terasoluna.gfw</groupId>
                 <artifactId>terasoluna-gfw-security-core</artifactId>
                 <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>org.terasoluna.gfw</groupId>
@@ -414,11 +415,13 @@
                 <groupId>org.terasoluna.gfw</groupId>
                 <artifactId>terasoluna-gfw-jpa</artifactId>
                 <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>org.terasoluna.gfw</groupId>
                 <artifactId>terasoluna-gfw-mybatis3</artifactId>
                 <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>org.terasoluna.gfw</groupId>
