@@ -9,7 +9,7 @@
         <version>5.2.0-SNAPSHOT</version>
         <relativePath>../../terasoluna-gfw-dependencies/pom.xml</relativePath>
     </parent>
-    <artifactId>terasoluna-gfw-dependencies-jodatime</artifactId>
+    <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
     <name>TERASOLUNA Server Framework for Java (5.x) for joda-time library</name>
     <description>Useful libraries for jodatime library created by TERASOLUNA Server Framework for Java (5.x)</description>
     <url>http://terasoluna.org</url>

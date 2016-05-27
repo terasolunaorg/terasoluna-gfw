@@ -460,43 +460,43 @@
             </dependency>
             <dependency>
                 <groupId>org.terasoluna.gfw</groupId>
-                <artifactId>terasoluna-gfw-dependencies-common</artifactId>
+                <artifactId>terasoluna-gfw-common-dependencies</artifactId>
                 <version>${terasoluna.gfw.version}</version>
                 <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>org.terasoluna.gfw</groupId>
-                <artifactId>terasoluna-gfw-dependencies-web</artifactId>
+                <artifactId>terasoluna-gfw-web-dependencies</artifactId>
                 <version>${terasoluna.gfw.version}</version>
                 <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>org.terasoluna.gfw</groupId>
-                <artifactId>terasoluna-gfw-dependencies-web-jsp</artifactId>
+                <artifactId>terasoluna-gfw-web-jsp-dependencies</artifactId>
                 <version>${terasoluna.gfw.version}</version>
                 <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>org.terasoluna.gfw</groupId>
-                <artifactId>terasoluna-gfw-dependencies-jodatime</artifactId>
+                <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
                 <version>${terasoluna.gfw.version}</version>
                 <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>org.terasoluna.gfw</groupId>
-                <artifactId>terasoluna-gfw-dependencies-security-web</artifactId>
+                <artifactId>terasoluna-gfw-security-web-dependencies</artifactId>
                 <version>${terasoluna.gfw.version}</version>
                 <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>org.terasoluna.gfw</groupId>
-                <artifactId>terasoluna-gfw-dependencies-jpa</artifactId>
+                <artifactId>terasoluna-gfw-jpa-dependencies</artifactId>
                 <version>${terasoluna.gfw.version}</version>
                 <type>pom</type>
             </dependency>
             <dependency>
                 <groupId>org.terasoluna.gfw</groupId>
-                <artifactId>terasoluna-gfw-dependencies-mybatis3</artifactId>
+                <artifactId>terasoluna-gfw-mybatis3-dependencies</artifactId>
                 <version>${terasoluna.gfw.version}</version>
                 <type>pom</type>
             </dependency>
