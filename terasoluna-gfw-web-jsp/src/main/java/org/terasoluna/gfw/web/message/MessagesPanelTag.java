@@ -236,11 +236,11 @@ public class MessagesPanelTag extends RequestContextAwareTag {
             writeMessages(tagWriter, messages);
 
             if (StringUtils.hasText(outerElement)) {
-                tagWriter.endTag(); // </ul>
+                tagWriter.endTag(true); // </ul>
             }
 
             if (StringUtils.hasText(panelElement)) {
-                tagWriter.endTag(); // </div>
+                tagWriter.endTag(true); // </div>
             }
         }
 
@@ -323,7 +323,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
             }
 
             if (StringUtils.hasText(innerElement)) {
-                tagWriter.endTag(); // </li>
+                tagWriter.endTag(true); // </li>
             }
         }
     }
