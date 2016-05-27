@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-parent</artifactId>
@@ -413,18 +413,6 @@
             </dependency>
             <dependency>
                 <groupId>org.terasoluna.gfw</groupId>
-                <artifactId>terasoluna-gfw-jpa</artifactId>
-                <version>${terasoluna.gfw.version}</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>org.terasoluna.gfw</groupId>
-                <artifactId>terasoluna-gfw-mybatis3</artifactId>
-                <version>${terasoluna.gfw.version}</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>org.terasoluna.gfw</groupId>
                 <artifactId>terasoluna-gfw-validator</artifactId>
                 <version>${terasoluna.gfw.version}</version>
             </dependency>
@@ -465,12 +453,54 @@
                 <version>${terasoluna.gfw.version}</version>
                 <type>pom</type>
             </dependency>
-            <!-- == End TERASOLUNA == -->
             <dependency>
-            	<groupId>org.terasoluna.gfw</groupId>
-            	<artifactId>terasoluna-gfw-string</artifactId>
-            	<version>${terasoluna.gfw.version}</version>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-string</artifactId>
+                <version>${terasoluna.gfw.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-dependencies-common</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-dependencies-web</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-dependencies-web-jsp</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-dependencies-jodatime</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-dependencies-security-web</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-dependencies-jpa</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-dependencies-mybatis3</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <!-- == End TERASOLUNA == -->
         </dependencies>
     </dependencyManagement>
     <distributionManagement>

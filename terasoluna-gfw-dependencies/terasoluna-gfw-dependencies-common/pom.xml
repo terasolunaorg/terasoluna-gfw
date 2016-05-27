@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>terasoluna-gfw-dependencies</artifactId>
+        <groupId>org.terasoluna.gfw</groupId>
+        <version>5.2.0-SNAPSHOT</version>
+        <relativePath>../../terasoluna-gfw-dependencies/pom.xml</relativePath>
+    </parent>
+    <artifactId>terasoluna-gfw-dependencies-common</artifactId>
+    <name>TERASOLUNA Server Framework for Java (5.x) for Common library</name>
+    <description>Useful libraries for common library created by TERASOLUNA Server Framework for Java (5.x)</description>
+    <url>http://terasoluna.org</url>
+    <packaging>pom</packaging>
+
+    <dependencies>
+        <!-- == Begin TERASOLUNA == -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>terasoluna-gfw-common</artifactId>
+        </dependency>
+        <!-- == End TERASOLUNA == -->
+        <!-- == Begin Jackson == -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <!-- == End Jackson == -->
+
+        <!-- == Begin Logging == -->
+        <!-- SLF4J -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <!-- Log4JDBC -->
+        <dependency>
+            <groupId>org.lazyluke</groupId>
+            <artifactId>log4jdbc-remix</artifactId>
+        </dependency>
+        <!-- == End Logging == -->
+
+        <!-- == Begin Spring == -->
+        <!-- Spring Framework -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+        <!-- == End Spring == -->
+        <!-- == Begin Other JavaEE/SE APIs == -->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+        </dependency>
+        <!-- == End Other JavaEE/SE APIs == -->
+    </dependencies>
+</project>

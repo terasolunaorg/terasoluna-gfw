@@ -3,8 +3,8 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>terasoluna-gfw-parent</artifactId>
         <groupId>org.terasoluna.gfw</groupId>
+        <artifactId>terasoluna-gfw-parent</artifactId>
         <version>5.2.0-SNAPSHOT</version>
         <relativePath>../terasoluna-gfw-parent/pom.xml</relativePath>
     </parent>
@@ -60,17 +60,6 @@
             <groupId>org.terasoluna.gfw</groupId>
             <artifactId>terasoluna-gfw-common</artifactId>
         </dependency>
-        <!-- == Begin Joda-Time == -->
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time-jsptags</artifactId>
-            <!-- this dependency does not pull servlet-api -->
-        </dependency>
-        <!-- == End Joda-Time == -->
 
         <!-- == Begin Jackson == -->
         <dependency>
@@ -95,19 +84,6 @@
             <scope>test</scope>
         </dependency>
         <!-- == End Database == -->
-
-        <!-- == Begin Unit Test == -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- == End Unit Test == -->
 
     </dependencies>
 </project>
