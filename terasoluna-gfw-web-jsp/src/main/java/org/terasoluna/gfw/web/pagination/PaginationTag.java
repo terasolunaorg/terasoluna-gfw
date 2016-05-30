@@ -178,7 +178,7 @@ public class PaginationTag extends RequestContextAwareTag {
             tagWriter.startTag(PaginationInfo.A_ELM);
             tagWriter.writeAttribute(PaginationInfo.HREF_ATTR, href);
             tagWriter.appendValue(value);
-            tagWriter.endTag();
+            tagWriter.endTag(true);
         } else {
             tagWriter.appendValue(value);
         }
@@ -207,7 +207,7 @@ public class PaginationTag extends RequestContextAwareTag {
      */
     protected void endOuterElement(TagWriter tagWriter) throws JspException {
         if (StringUtils.hasText(outerElement)) {
-            tagWriter.endTag(); // ul
+            tagWriter.endTag(true); // ul
         }
     }
 
@@ -233,7 +233,7 @@ public class PaginationTag extends RequestContextAwareTag {
             writeAnchor(tagWriter, info.getPageUrl(page), String
                     .valueOf(page + 1)); // a
         }
-        tagWriter.endTag(); // </li>
+        tagWriter.endTag(true); // </li>
     }
 
     /**
@@ -255,7 +255,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
                 writeAnchor(tagWriter, disabledHref, firstLinkText); // a
 
-                tagWriter.endTag(); // </li>
+                tagWriter.endTag(true); // </li>
             }
 
             if (StringUtils.hasText(previousLinkText)) {
@@ -267,7 +267,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
                 writeAnchor(tagWriter, disabledHref, previousLinkText); // a
 
-                tagWriter.endTag(); // </li>
+                tagWriter.endTag(true); // </li>
             }
         } else {
             if (StringUtils.hasText(firstLinkText)) {
@@ -277,7 +277,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
                 writeAnchor(tagWriter, info.getFirstUrl(), firstLinkText); // a
 
-                tagWriter.endTag(); // </li>
+                tagWriter.endTag(true); // </li>
             }
 
             if (StringUtils.hasText(previousLinkText)) {
@@ -287,7 +287,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
                 writeAnchor(tagWriter, info.getPreviousUrl(), previousLinkText); // a
 
-                tagWriter.endTag(); // </li>
+                tagWriter.endTag(true); // </li>
             }
         }
     }
@@ -310,7 +310,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
                 writeAnchor(tagWriter, disabledHref, nextLinkText); // a
 
-                tagWriter.endTag(); // </li>
+                tagWriter.endTag(true); // </li>
 
             }
 
@@ -321,7 +321,7 @@ public class PaginationTag extends RequestContextAwareTag {
                 tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
                         disabledClass); // a
                 writeAnchor(tagWriter, disabledHref, lastLinkText);
-                tagWriter.endTag(); // </li>
+                tagWriter.endTag(true); // </li>
             }
         } else {
             if (StringUtils.hasText(nextLinkText)) {
@@ -331,7 +331,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
                 writeAnchor(tagWriter, info.getNextUrl(), nextLinkText); // a
 
-                tagWriter.endTag(); // </li>
+                tagWriter.endTag(true); // </li>
             }
 
             if (StringUtils.hasText(lastLinkText)) {
@@ -341,7 +341,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
                 writeAnchor(tagWriter, info.getLastUrl(), lastLinkText); // a
 
-                tagWriter.endTag(); // </li>
+                tagWriter.endTag(true); // </li>
             }
         }
     }
