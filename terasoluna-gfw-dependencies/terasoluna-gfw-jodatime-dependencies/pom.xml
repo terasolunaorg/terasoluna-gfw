@@ -18,6 +18,11 @@
         <!-- == Begin TERASOLUNA == -->
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>terasoluna-gfw-common-dependencies</artifactId>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>terasoluna-gfw-jodatime</artifactId>
         </dependency>
         <!-- == End TERASOLUNA == -->
@@ -32,18 +37,5 @@
             <!-- this dependency does not pull servlet-api -->
         </dependency>
         <!-- == End Joda-Time == -->
-
-        <!-- == Begin Unit Test == -->
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <!-- == End Unit Test == -->
     </dependencies>
 </project>

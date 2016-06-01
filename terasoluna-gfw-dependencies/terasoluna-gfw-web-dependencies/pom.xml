@@ -16,6 +16,11 @@
         <!-- == Begin TERASOLUNA == -->
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>terasoluna-gfw-common-dependencies</artifactId>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>terasoluna-gfw-web</artifactId>
         </dependency>
         <!-- == End TERASOLUNA == -->

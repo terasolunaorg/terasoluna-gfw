@@ -367,9 +367,15 @@
                 <groupId>org.lazyluke</groupId>
                 <artifactId>log4jdbc-remix</artifactId>
                 <version>${org.lazyluke.version}</version>
+                <!-- this artifact depends on junit as compile scope -->
+                <exclusions>
+                    <exclusion>
+                        <groupId>junit</groupId>
+                        <artifactId>junit</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <!-- == End Logging == -->
-
 
             <!-- == Begin Unit Test == -->
             <dependency>

@@ -32,5 +32,7 @@
         <module>terasoluna-gfw-web-jsp-dependencies</module>
         <module>terasoluna-gfw-jpa-dependencies</module>
         <module>terasoluna-gfw-security-web-dependencies</module>
+        <module>terasoluna-gfw-recommended-dependencies</module>
+        <module>terasoluna-gfw-recommended-web-dependencies</module>
     </modules>
 </project>

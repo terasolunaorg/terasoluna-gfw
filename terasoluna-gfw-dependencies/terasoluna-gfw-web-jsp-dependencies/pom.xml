@@ -17,14 +17,13 @@
         <!-- == Begin TERASOLUNA == -->
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>terasoluna-gfw-common-dependencies</artifactId>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>terasoluna-gfw-web-jsp</artifactId>
         </dependency>
         <!-- == End TERASOLUNA == -->
-        <!-- == Begin Other JavaEE/SE APIs == -->
-        <dependency>
-            <groupId>org.apache.taglibs</groupId>
-            <artifactId>taglibs-standard-jstlel</artifactId>
-        </dependency>
-        <!-- == End Other JavaEE/SE APIs == -->
     </dependencies>
 </project>

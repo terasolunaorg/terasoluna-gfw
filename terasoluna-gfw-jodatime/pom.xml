@@ -76,6 +76,14 @@
         </dependency>
         <!-- == End Spring == -->
 
+        <!-- == Begin Unit Test == -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- == End Unit Test == -->
+
         <!-- == Begin Database == -->
         <!-- H2 (for test) -->
         <dependency>
