@@ -948,6 +948,43 @@ public class PaginationTagTest {
         }
     }
 
+    /**
+     * check that anchor tags are not self-closing in paginationTag.
+     */
+    @Test
+    public void testWriteAnchor() throws Exception {
+        
+        tag.writeAnchor(tag.createTagWriter(), PaginationInfo.DEFAULT_DISABLED_HREF, "");
+        String expected = "<a href=\"javascript:void(0)\"></a>";
+        assertThat(getOutput(), is(expected));
+    }
+
+    /**
+     * check that ul tags are not self-closing in paginationTag.
+     */
+    @Test
+    public void testEndOuterElement() throws Exception {
+
+        Page<String> page = mock(Page.class);
+        // set mock behavior
+        when(page.getNumber()).thenReturn(0);
+        when(page.getSize()).thenReturn(0);
+        when(page.getTotalPages()).thenReturn(0);
+        when(page.getTotalElements()).thenReturn(1L);
+
+        tag.setPage(page);
+        tag.setFirstLinkText("");
+        tag.setLastLinkText("");
+        tag.setPreviousLinkText("");
+        tag.setNextLinkText("");
+
+        int ret = tag.doStartTagInternal();
+
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        String expected = "<ul></ul>";
+        assertThat(getOutput(), is(expected));
+    }
+
     protected String getOutput() {
         return this.writer.toString();
     }
