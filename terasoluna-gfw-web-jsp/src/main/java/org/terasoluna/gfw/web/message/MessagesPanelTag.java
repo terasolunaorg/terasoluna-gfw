@@ -198,7 +198,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * Creates messagesPanel tag
      * <p>
      * If message is {@code null}, this method doesn't do anything.<br>
-     * Otherwise, this method write {@link #panelEmement} and {@link #outerElement},<br>
+     * Otherwise, this method write {@link #panelElement} and {@link #outerElement},<br>
      * and call {@link #writeMessages(TagWriter, Object)}.
      * </p>
      * @throws JspException In case when {@link JspException} is generated later in the chain when tag configured by
