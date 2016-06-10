@@ -112,6 +112,38 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * <pre>
  * &lt;div class=&quot;notice&quot;&gt;&lt;ul&gt;&lt;li&gt;textMessage&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
  * </pre>
+ * <p>
+ * <b>When the message is in {@code Null} <br>
+ * </b>
+ * </p>
+ * <p>
+ * Configuration example:<br>
+ * 
+ * <pre>
+ * &lt;t:messagesPanel messagesAttributeName=&quot;textMessage&quot; /&gt;
+ * </pre>
+ * <p>
+ * Result:<br>
+ * 
+ * <pre>
+ * 
+ * </pre>
+ * <p>
+ * <b>When the message is in empty {@code List} <br>
+ * </b>
+ * </p>
+ * <p>
+ * Configuration example:<br>
+ * 
+ * <pre>
+ * &lt;t:messagesPanel messagesAttributeName=&quot;textMessage&quot; /&gt;
+ * </pre>
+ * <p>
+ * Result:<br>
+ * 
+ * <pre>
+ * &lt;div class=&quot;alert&quot;&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/div&gt;
+ * </pre>
  */
 public class MessagesPanelTag extends RequestContextAwareTag {
 
