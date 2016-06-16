@@ -14,7 +14,7 @@ echo [INFO] Start a build.
 
 echo [DEBUG] Command arguments : "%commandArgs%"
 
-call mvn -U -f terasoluna-gfw-parent\pom.xml %commandArgs%
+call mvn -U -f terasoluna-gfw-parent\pom.xml %commandArgs% -Dmaven.test.skip=true
         if not !ERRORLEVEL! == 0 (
             echo [ERROR] Failed a build.
             exit /B !ERRORLEVEL!
@@ -26,7 +26,7 @@ call mvn -U %commandArgs%
             exit /B !ERRORLEVEL!
         )
 
-call mvn -U -f terasoluna-gfw-dependencies\pom.xml %commandArgs%
+call mvn -U -f terasoluna-gfw-dependencies\pom.xml %commandArgs% -Dmaven.test.skip=true
         if not !ERRORLEVEL! == 0 (
             echo [ERROR] Failed a build.
             exit /B !ERRORLEVEL!

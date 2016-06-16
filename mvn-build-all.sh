@@ -13,7 +13,7 @@ echo "[INFO] Start a build."
 echo "[DEBUG] Command arguments : \"${commandArgs}\""
 
 
-mvn -U -f terasoluna-gfw-parent/pom.xml ${commandArgs}
+mvn -U -f terasoluna-gfw-parent/pom.xml ${commandArgs} -Dmaven.test.skip=true
 buildResult=$?
 if test ${buildResult} -ne 0 ; then
     echo "[ERROR] Failed a build."
@@ -27,7 +27,7 @@ if test ${buildResult} -ne 0 ; then
     exit ${buildResult}
 fi
 
-mvn -U -f terasoluna-gfw-dependencies/pom.xml ${commandArgs}
+mvn -U -f terasoluna-gfw-dependencies/pom.xml ${commandArgs} -Dmaven.test.skip=true
 buildResult=$?
 if test ${buildResult} -ne 0 ; then
     echo "[ERROR] Failed a build."
