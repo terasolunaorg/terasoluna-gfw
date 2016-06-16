@@ -12,13 +12,15 @@ if not "%*" == "" (
 
 echo [INFO] Start a build.
 
-echo [DEBUG] Command arguments : "%commandArgs%"
+echo [DEBUG] Command arguments : "%DEFAULT_GOALS%"
 
-call mvn -U -f terasoluna-gfw-parent\pom.xml %commandArgs% -Dmaven.test.skip=true
+call mvn -U -f terasoluna-gfw-parent\pom.xml %DEFAULT_GOALS%
         if not !ERRORLEVEL! == 0 (
             echo [ERROR] Failed a build.
             exit /B !ERRORLEVEL!
         )
+
+echo [DEBUG] Command arguments : "%commandArgs%"
 
 call mvn -U %commandArgs%
         if not !ERRORLEVEL! == 0 (
@@ -26,7 +28,9 @@ call mvn -U %commandArgs%
             exit /B !ERRORLEVEL!
         )
 
-call mvn -U -f terasoluna-gfw-dependencies\pom.xml %commandArgs% -Dmaven.test.skip=true
+echo [DEBUG] Command arguments : "%DEFAULT_GOALS%"
+
+call mvn -U -f terasoluna-gfw-dependencies\pom.xml %DEFAULT_GOALS%
         if not !ERRORLEVEL! == 0 (
             echo [ERROR] Failed a build.
             exit /B !ERRORLEVEL!
