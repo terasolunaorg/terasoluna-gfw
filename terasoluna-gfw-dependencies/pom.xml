@@ -9,7 +9,7 @@
     </parent>
     <artifactId>terasoluna-gfw-dependencies</artifactId>
     <packaging>pom</packaging>
-    <name>TERASOLUNA Server Framework for Java (5.x) Parent</name>
+    <name>TERASOLUNA Server Framework for Java (5.x) Dependencies</name>
     <description>The parent of dependencies artifacts of TERASOLUNA Server Framework for Java (5.x)</description>
     <url>http://terasoluna.org</url>
     <inceptionYear>2013</inceptionYear>
@@ -32,6 +32,7 @@
         <module>terasoluna-gfw-web-jsp-dependencies</module>
         <module>terasoluna-gfw-jpa-dependencies</module>
         <module>terasoluna-gfw-security-web-dependencies</module>
+        <module>terasoluna-gfw-security-core-dependencies</module>
         <module>terasoluna-gfw-recommended-dependencies</module>
         <module>terasoluna-gfw-recommended-web-dependencies</module>
     </modules>

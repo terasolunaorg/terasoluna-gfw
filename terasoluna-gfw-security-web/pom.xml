@@ -62,11 +62,11 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>terasoluna-gfw-web</artifactId>
         </dependency>
-        <dependency>
+        <!-- <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>terasoluna-gfw-security-core</artifactId>
+            <artifactId>terasoluna-gfw-security-core-dependencies</artifactId>
             <type>pom</type>
-        </dependency>
+        </dependency> -->
         <!-- == End TERASOLUNA == -->
 
         <!-- == Begin Spring == -->
