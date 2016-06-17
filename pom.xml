@@ -163,20 +163,6 @@
                     <artifactId>maven-antrun-plugin</artifactId>
                     <version>${maven-antrun-plugin.version}</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <version>${maven-dependency-plugin.version}</version>
-                    <executions>
-                        <execution>
-                            <id>install</id>
-                            <phase>install</phase>
-                            <goals>
-                                <goal>sources</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                </plugin>
             </plugins>
         </pluginManagement>
     </build>
@@ -194,7 +180,6 @@
         <!-- == Maven Plugins == -->
         <maven-war-plugin.version>2.5</maven-war-plugin.version>
         <maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
-        <maven-dependency-plugin.version>2.9</maven-dependency-plugin.version>
         <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
         <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
