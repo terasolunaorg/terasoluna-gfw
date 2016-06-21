@@ -618,6 +618,34 @@ public class MessagesPanelTagTest {
         tag.doStartTag();
     }
 
+    /**
+     * Set default messages attribute name & Empty Array.<br>
+     * check that start tags are not self-closing in messagesPanelTag.
+     */
+    @Test
+    public void test34() throws Exception {
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
+                new String[] {});
+        int ret = tag.doStartTag();
+        String expected = "<div class=\"alert\"><ul></ul></div>";
+        assertThat(getOutput(), is(expected));
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+    }
+
+    /**
+     * Set default messages attribute name & Empty String.<br>
+     * check that start tags are not self-closing in messagesPanelTag.
+     */
+    @Test
+    public void test35() throws Exception {
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
+                "");
+        int ret = tag.doStartTag();
+        String expected = "<div class=\"alert\"><ul><li></li></ul></div>";
+        assertThat(getOutput(), is(expected));
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+    }
+
     protected String getOutput() {
         return this.writer.toString();
     }

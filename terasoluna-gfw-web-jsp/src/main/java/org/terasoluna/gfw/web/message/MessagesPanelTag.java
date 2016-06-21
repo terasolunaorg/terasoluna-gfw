@@ -112,6 +112,38 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * <pre>
  * &lt;div class=&quot;notice&quot;&gt;&lt;ul&gt;&lt;li&gt;textMessage&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
  * </pre>
+ * <p>
+ * <b>When the message is in {@code Null} <br>
+ * </b>
+ * </p>
+ * <p>
+ * Configuration example:<br>
+ * 
+ * <pre>
+ * &lt;t:messagesPanel messagesAttributeName=&quot;textMessage&quot; /&gt;
+ * </pre>
+ * <p>
+ * Result:<br>
+ * 
+ * <pre>
+ * 
+ * </pre>
+ * <p>
+ * <b>When the message is in empty {@code List} <br>
+ * </b>
+ * </p>
+ * <p>
+ * Configuration example:<br>
+ * 
+ * <pre>
+ * &lt;t:messagesPanel messagesAttributeName=&quot;textMessage&quot; /&gt;
+ * </pre>
+ * <p>
+ * Result:<br>
+ * 
+ * <pre>
+ * &lt;div class=&quot;alert&quot;&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/div&gt;
+ * </pre>
  */
 public class MessagesPanelTag extends RequestContextAwareTag {
 
@@ -196,6 +228,11 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 
     /**
      * Creates messagesPanel tag
+     * <p>
+     * If message is {@code null}, this method doesn't do anything.<br>
+     * Otherwise, this method write {@link #panelElement} and {@link #outerElement},<br>
+     * and call {@link #writeMessages(TagWriter, Object)}.
+     * </p>
      * @throws JspException In case when {@link JspException} is generated later in the chain when tag configured by
      *             messagesPanel could not be created
      * @see org.springframework.web.servlet.tags.RequestContextAwareTag#doStartTagInternal()
@@ -236,11 +273,11 @@ public class MessagesPanelTag extends RequestContextAwareTag {
             writeMessages(tagWriter, messages);
 
             if (StringUtils.hasText(outerElement)) {
-                tagWriter.endTag(); // </ul>
+                tagWriter.endTag(true); // </ul>
             }
 
             if (StringUtils.hasText(panelElement)) {
-                tagWriter.endTag(); // </div>
+                tagWriter.endTag(true); // </div>
             }
         }
 
@@ -323,7 +360,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
             }
 
             if (StringUtils.hasText(innerElement)) {
-                tagWriter.endTag(); // </li>
+                tagWriter.endTag(true); // </li>
             }
         }
     }
