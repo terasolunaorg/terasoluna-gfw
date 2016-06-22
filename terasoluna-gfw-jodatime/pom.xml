@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-parent</artifactId>
+        <artifactId>terasoluna-gfw-libraries-parent</artifactId>
         <version>5.2.0-SNAPSHOT</version>
-        <relativePath>../terasoluna-gfw-parent/pom.xml</relativePath>
+        <relativePath>../terasoluna-gfw-libraries-parent/pom.xml</relativePath>
     </parent>
     <artifactId>terasoluna-gfw-jodatime</artifactId>
     <packaging>jar</packaging>
