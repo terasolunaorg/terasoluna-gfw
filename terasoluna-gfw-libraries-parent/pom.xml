@@ -16,33 +16,6 @@
         <pluginManagement>
             <plugins>
                 <plugin>
-                    <groupId>org.eluder.coveralls</groupId>
-                    <artifactId>coveralls-maven-plugin</artifactId>
-                    <version>${coveralls-maven-plugin.version}</version>
-                    <configuration>
-                        <jacocoReports>
-                            <jacocoReport>terasoluna-gfw-common/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>terasoluna-gfw-jodatime/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>terasoluna-gfw-web/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>terasoluna-gfw-web-jsp/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>terasoluna-gfw-security-web/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>terasoluna-gfw-validator/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>terasoluna-gfw-codepoints/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>terasoluna-gfw-string/target/site/jacoco/jacoco.xml</jacocoReport>
-                        </jacocoReports>
-                        <sourceDirectories>
-                            <sourceDirectory>terasoluna-gfw-common/src/main/java</sourceDirectory>
-                            <sourceDirectory>terasoluna-gfw-jodatime/src/main/java</sourceDirectory>
-                            <sourceDirectory>terasoluna-gfw-web/src/main/java</sourceDirectory>
-                            <sourceDirectory>terasoluna-gfw-web-jsp/src/main/java</sourceDirectory>
-                            <sourceDirectory>terasoluna-gfw-security-web/src/main/java</sourceDirectory>
-                            <sourceDirectory>terasoluna-gfw-validator/src/main/java</sourceDirectory>
-                            <sourceDirectory>terasoluna-gfw-codepoints/src/main/java</sourceDirectory>
-                            <sourceDirectory>terasoluna-gfw-string/src/main/java</sourceDirectory>
-                        </sourceDirectories>
-                    </configuration>
-                </plugin>
-                <plugin>
                     <groupId>com.google.code.maven-license-plugin</groupId>
                     <artifactId>maven-license-plugin</artifactId>
                     <version>${com.google.code.maven-license-plugin.version}</version>
@@ -80,6 +53,33 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-antrun-plugin</artifactId>
                     <version>${maven-antrun-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.eluder.coveralls</groupId>
+                    <artifactId>coveralls-maven-plugin</artifactId>
+                    <version>${coveralls-maven-plugin.version}</version>
+                    <configuration>
+                        <jacocoReports>
+                            <jacocoReport>../terasoluna-gfw-common/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>../terasoluna-gfw-jodatime/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>../terasoluna-gfw-web/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>../terasoluna-gfw-web-jsp/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>../terasoluna-gfw-security-web/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>../terasoluna-gfw-validator/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>../terasoluna-gfw-codepoints/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>../terasoluna-gfw-string/target/site/jacoco/jacoco.xml</jacocoReport>
+                        </jacocoReports>
+                        <sourceDirectories>
+                            <sourceDirectory>../terasoluna-gfw-common/src/main/java</sourceDirectory>
+                            <sourceDirectory>../terasoluna-gfw-jodatime/src/main/java</sourceDirectory>
+                            <sourceDirectory>../terasoluna-gfw-web/src/main/java</sourceDirectory>
+                            <sourceDirectory>../terasoluna-gfw-web-jsp/src/main/java</sourceDirectory>
+                            <sourceDirectory>../terasoluna-gfw-security-web/src/main/java</sourceDirectory>
+                            <sourceDirectory>../terasoluna-gfw-validator/src/main/java</sourceDirectory>
+                            <sourceDirectory>../terasoluna-gfw-codepoints/src/main/java</sourceDirectory>
+                            <sourceDirectory>../terasoluna-gfw-string/src/main/java</sourceDirectory>
+                        </sourceDirectories>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
