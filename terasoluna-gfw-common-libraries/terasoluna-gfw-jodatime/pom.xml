@@ -3,15 +3,15 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>terasoluna-gfw-libraries-parent</artifactId>
         <groupId>org.terasoluna.gfw</groupId>
+        <artifactId>terasoluna-gfw-common-libraries</artifactId>
         <version>5.2.0-SNAPSHOT</version>
-        <relativePath>../terasoluna-gfw-libraries-parent/pom.xml</relativePath>
+        <relativePath>../terasoluna-gfw-common-libraries/pom.xml</relativePath>
     </parent>
-    <artifactId>terasoluna-gfw-validator</artifactId>
+    <artifactId>terasoluna-gfw-jodatime</artifactId>
     <packaging>jar</packaging>
-    <name>TERASOLUNA Server Framework for Java (5.x) Common Library for Validator</name>
-    <description>Bean Validation extensions</description>
+    <name>TERASOLUNA Server Framework for Java (5.x) Common Library for Joda-Time</name>
+    <description>Functionality that can be used with Joda-Time</description>
     <url>http://terasoluna.org</url>
     <licenses>
         <license>
@@ -23,11 +23,8 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>com.google.code.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -54,47 +51,55 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
                 <groupId>net.revelc.code</groupId>
                 <artifactId>formatter-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.google.code.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
     <dependencies>
         <dependency>
-            <groupId>javax.validation</groupId>
-            <artifactId>validation-api</artifactId>
-            <scope>provided</scope>
+            <groupId>org.terasoluna.gfw</groupId>
+            <artifactId>terasoluna-gfw-common</artifactId>
         </dependency>
-        <!-- == Begin Unit Test == -->
+
+        <!-- == Begin Jackson == -->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-joda</artifactId>
+        </dependency>
+        <!-- == End Jackson == -->
+
+        <!-- Spring Test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <!-- == End Spring == -->
+
+        <!-- == Begin Unit Test == -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-el</artifactId>
-            <scope>test</scope>
-        </dependency>
         <!-- == End Unit Test == -->
+
+        <!-- == Begin Database == -->
+        <!-- H2 (for test) -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!-- == End Database == -->
+
     </dependencies>
+    <properties>
+        <project.root.basedir>${project.parent.basedir}</project.root.basedir>
+    </properties>
 </project>

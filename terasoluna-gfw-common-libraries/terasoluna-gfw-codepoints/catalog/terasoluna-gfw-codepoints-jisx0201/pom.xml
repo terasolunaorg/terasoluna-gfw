@@ -2,10 +2,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>terasoluna-gfw-libraries-parent</artifactId>
+        <artifactId>terasoluna-gfw-common-libraries</artifactId>
         <groupId>org.terasoluna.gfw</groupId>
         <version>5.2.0-SNAPSHOT</version>
-        <relativePath>../../../terasoluna-gfw-libraries-parent/pom.xml</relativePath>
+        <relativePath>../../../terasoluna-gfw-common-libraries/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -15,17 +15,8 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>com.google.code.maven-license-plugin</groupId>
-                <artifactId>maven-license-plugin</artifactId>
-                <configuration>
-                    <header>${project.basedir}/../../../license/header.txt</header>
-                    <headerDefinitions>
-                        <headerDefinition>${project.basedir}/../../../license/header-definition.xml</headerDefinition>
-                    </headerDefinitions>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -52,16 +43,12 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
             </plugin>
             <plugin>
-                <groupId>org.eluder.coveralls</groupId>
-                <artifactId>coveralls-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
                 <groupId>net.revelc.code</groupId>
                 <artifactId>formatter-maven-plugin</artifactId>
-                <configuration>
-                    <configFile>${project.basedir}/../../../eclipse/formatter.xml
-                    </configFile>
-                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.google.code.maven-license-plugin</groupId>
+                <artifactId>maven-license-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
@@ -80,4 +67,7 @@
         <!-- == End Unit Test == -->
     </dependencies>
 
+    <properties>
+        <project.root.basedir>${project.parent.basedir}</project.root.basedir>
+    </properties>
 </project>

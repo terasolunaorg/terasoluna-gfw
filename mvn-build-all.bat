@@ -26,10 +26,4 @@ call mvn -U %commandArgs%
             exit /B !ERRORLEVEL!
         )
 
-call mvn -U -f terasoluna-gfw-dependencies\pom.xml %commandArgs%
-        if not !ERRORLEVEL! == 0 (
-            echo [ERROR] Failed a build.
-            exit /B !ERRORLEVEL!
-        )
-
 echo [INFO] Finish a build.

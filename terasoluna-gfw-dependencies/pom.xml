@@ -10,7 +10,7 @@
     <artifactId>terasoluna-gfw-dependencies</artifactId>
     <packaging>pom</packaging>
     <name>TERASOLUNA Server Framework for Java (5.x) Dependencies</name>
-    <description>The parent of dependencies artifacts of TERASOLUNA Server Framework for Java (5.x)</description>
+    <description>The Parent of dependencies artifacts of TERASOLUNA Server Framework for Java (5.x)</description>
     <url>http://terasoluna.org</url>
     <inceptionYear>2013</inceptionYear>
     <licenses>
@@ -36,4 +36,27 @@
         <module>terasoluna-gfw-recommended-dependencies</module>
         <module>terasoluna-gfw-recommended-web-dependencies</module>
     </modules>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>com.google.code.maven-license-plugin</groupId>
+                    <artifactId>maven-license-plugin</artifactId>
+                    <version>${com.google.code.maven-license-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>net.revelc.code</groupId>
+                    <artifactId>formatter-maven-plugin</artifactId>
+                    <version>${formatter-maven-plugin.version}</version>
+                    <configuration>
+                        <skip>true</skip>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    <properties>
+        <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
+        <formatter-maven-plugin.version>0.5.2</formatter-maven-plugin.version>
+    </properties>
 </project>
