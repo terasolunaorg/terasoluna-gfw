@@ -22,6 +22,7 @@
     </organization>
     <modules>
         <module>terasoluna-gfw-common-libraries</module>
+        <module>terasoluna-gfw-dependencies</module>
     </modules>
     <repositories>
         <repository>
@@ -101,6 +102,28 @@
                     <groupId>org.eluder.coveralls</groupId>
                     <artifactId>coveralls-maven-plugin</artifactId>
                     <version>${coveralls-maven-plugin.version}</version>
+                    <configuration>
+                        <jacocoReports>
+                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-common/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-jodatime/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-web/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-web-jsp/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-security-web/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-validator/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints/target/site/jacoco/jacoco.xml</jacocoReport>
+                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-string/target/site/jacoco/jacoco.xml</jacocoReport>
+                        </jacocoReports>
+                        <sourceDirectories>
+                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-common/src/main/java</sourceDirectory>
+                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-jodatime/src/main/java</sourceDirectory>
+                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-web/src/main/java</sourceDirectory>
+                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-web-jsp/src/main/java</sourceDirectory>
+                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-security-web/src/main/java</sourceDirectory>
+                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-validator/src/main/java</sourceDirectory>
+                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints/src/main/java</sourceDirectory>
+                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-string/src/main/java</sourceDirectory>
+                        </sourceDirectories>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
