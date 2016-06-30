@@ -223,6 +223,11 @@
                 <artifactId>mybatis-spring</artifactId>
                 <version>${org.mybatis.spring.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-typehandlers-jsr310</artifactId>
+                <version>${org.mybatis.typehandlers.version}</version>
+            </dependency>
             <!-- == End MyBatis == -->
 
             <!-- == Begin Dozer== -->
@@ -408,6 +413,7 @@
         <!-- == MyBatis3 == -->
         <org.mybatis.version>3.3.1</org.mybatis.version>
         <org.mybatis.spring.version>1.2.5</org.mybatis.spring.version>
+        <org.mybatis.typehandlers.version>1.0.1</org.mybatis.typehandlers.version>
         <!-- == Dozer== -->
         <dozer.version>5.5.1</dozer.version>
         <!-- == Joda-Time == -->
