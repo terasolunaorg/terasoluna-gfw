@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-parent</artifactId>
@@ -54,58 +54,6 @@
                             </configuration>
                         </execution>
                     </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.eluder.coveralls</groupId>
-                    <artifactId>coveralls-maven-plugin</artifactId>
-                    <version>${coveralls-maven-plugin.version}</version>
-                    <configuration>
-                        <jacocoReports>
-                            <jacocoReport>../terasoluna-gfw-common/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>../terasoluna-gfw-jodatime/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>../terasoluna-gfw-web/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>../terasoluna-gfw-web-jsp/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>../terasoluna-gfw-security-web/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>../terasoluna-gfw-validator/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>../terasoluna-gfw-codepoints/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>../terasoluna-gfw-string/target/site/jacoco/jacoco.xml</jacocoReport>
-                        </jacocoReports>
-                        <sourceDirectories>
-                            <sourceDirectory>../terasoluna-gfw-common/src/main/java</sourceDirectory>
-                            <sourceDirectory>../terasoluna-gfw-jodatime/src/main/java</sourceDirectory>
-                            <sourceDirectory>../terasoluna-gfw-web/src/main/java</sourceDirectory>
-                            <sourceDirectory>../terasoluna-gfw-web-jsp/src/main/java</sourceDirectory>
-                            <sourceDirectory>../terasoluna-gfw-security-web/src/main/java</sourceDirectory>
-                            <sourceDirectory>../terasoluna-gfw-validator/src/main/java</sourceDirectory>
-                            <sourceDirectory>../terasoluna-gfw-codepoints/src/main/java</sourceDirectory>
-                            <sourceDirectory>../terasoluna-gfw-string/src/main/java</sourceDirectory>
-                        </sourceDirectories>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>com.google.code.maven-license-plugin</groupId>
-                    <artifactId>maven-license-plugin</artifactId>
-                    <version>${com.google.code.maven-license-plugin.version}</version>
-                    <configuration>
-                        <header>${project.basedir}/../license/header.txt</header>
-                        <includes>
-                            <include>src/**/*.java</include>
-                        </includes>
-                        <encoding>${encoding}</encoding>
-                        <headerDefinitions>
-                            <headerDefinition>${project.basedir}/../license/header-definition.xml</headerDefinition>
-                        </headerDefinitions>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>net.revelc.code</groupId>
-                    <artifactId>formatter-maven-plugin</artifactId>
-                    <version>0.5.2</version>
-                    <configuration>
-                        <configFile>${project.basedir}/../eclipse/formatter.xml
-                        </configFile>
-                        <lineEnding>CRLF</lineEnding>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -194,25 +142,6 @@
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-war-plugin</artifactId>
-                    <version>${maven-war-plugin.version}</version>
-                    <configuration>
-                        <warName>${project.artifactId}</warName>
-                        <archive>
-                            <addMavenDescriptor>false</addMavenDescriptor>
-                            <manifest>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                            </manifest>
-                        </archive>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-antrun-plugin</artifactId>
-                    <version>${maven-antrun-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-assembly-plugin</artifactId>
                     <version>${maven-assembly-plugin.version}</version>
                 </plugin>
@@ -270,36 +199,6 @@
             </plugins>
         </pluginManagement>
     </build>
-    <repositories>
-        <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>central</id>
-            <name>Maven Central repository</name>
-            <url>http://repo1.maven.org/maven2/</url>
-        </repository>
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>terasoluna-gfw-releases</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
-        </repository>
-        <repository>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-            <id>terasoluna-gfw-snapshots</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
-        </repository>
-    </repositories>
     <dependencyManagement>
         <dependencies>
 
@@ -367,17 +266,15 @@
                 <groupId>org.lazyluke</groupId>
                 <artifactId>log4jdbc-remix</artifactId>
                 <version>${org.lazyluke.version}</version>
+                <!-- this artifact depends on junit as compile scope -->
+                <exclusions>
+                    <exclusion>
+                        <groupId>junit</groupId>
+                        <artifactId>junit</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <!-- == End Logging == -->
-
-
-            <!-- == Begin Unit Test == -->
-            <dependency>
-                <groupId>org.seleniumhq.selenium</groupId>
-                <artifactId>selenium-java</artifactId>
-                <version>${selenium.version}</version>
-            </dependency>
-            <!-- == End Unit Test == -->
 
             <!-- == Begin TERASOLUNA == -->
             <dependency>
@@ -402,7 +299,7 @@
             </dependency>
             <dependency>
                 <groupId>org.terasoluna.gfw</groupId>
-                <artifactId>terasoluna-gfw-security-core</artifactId>
+                <artifactId>terasoluna-gfw-security-core-dependencies</artifactId>
                 <version>${terasoluna.gfw.version}</version>
                 <type>pom</type>
             </dependency>
@@ -413,19 +310,12 @@
             </dependency>
             <dependency>
                 <groupId>org.terasoluna.gfw</groupId>
-                <artifactId>terasoluna-gfw-jpa</artifactId>
-                <version>${terasoluna.gfw.version}</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>org.terasoluna.gfw</groupId>
-                <artifactId>terasoluna-gfw-mybatis3</artifactId>
-                <version>${terasoluna.gfw.version}</version>
-                <type>pom</type>
-            </dependency>
-            <dependency>
-                <groupId>org.terasoluna.gfw</groupId>
                 <artifactId>terasoluna-gfw-validator</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-string</artifactId>
                 <version>${terasoluna.gfw.version}</version>
             </dependency>
             <dependency>
@@ -465,24 +355,51 @@
                 <version>${terasoluna.gfw.version}</version>
                 <type>pom</type>
             </dependency>
-            <!-- == End TERASOLUNA == -->
             <dependency>
-            	<groupId>org.terasoluna.gfw</groupId>
-            	<artifactId>terasoluna-gfw-string</artifactId>
-            	<version>${terasoluna.gfw.version}</version>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-common-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
             </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-web-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-web-jsp-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-security-web-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-jpa-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-mybatis3-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <!-- == End TERASOLUNA == -->
         </dependencies>
     </dependencyManagement>
-    <distributionManagement>
-        <repository>
-            <id>terasoluna-gfw-releases</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>terasoluna-gfw-snapshots</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
     <properties>
         <!-- == TERASOLUNA == -->
         <terasoluna.gfw.version>5.2.0-SNAPSHOT</terasoluna.gfw.version>
@@ -500,8 +417,6 @@
         <jboss-logging-annotations.version>1.2.0.Final</jboss-logging-annotations.version>
         <!-- == Logging == -->
         <org.lazyluke.version>0.2.7</org.lazyluke.version>
-        <!-- == JUnit == -->
-        <selenium.version>2.46.0</selenium.version>
         <!-- == Maven Plugins == -->
         <maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
@@ -510,17 +425,13 @@
         <maven-source-plugin.version>2.4</maven-source-plugin.version>
         <maven-javadoc-plugin.version>2.10.1</maven-javadoc-plugin.version>
         <maven-jar-plugin.version>2.5</maven-jar-plugin.version>
-        <maven-war-plugin.version>2.5</maven-war-plugin.version>
-        <maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
         <maven-assembly-plugin.version>2.5.1</maven-assembly-plugin.version>
         <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
         <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
         <maven-site-plugin.version>3.4</maven-site-plugin.version>
-        <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
-        <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
-        <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
         <cargo-maven2-plugin.version>1.4.17</cargo-maven2-plugin.version>
+        <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
         <!-- == Other Properties== -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <archetype.test.skip>true</archetype.test.skip>

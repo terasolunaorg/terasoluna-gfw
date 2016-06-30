@@ -14,15 +14,16 @@ echo [INFO] Start a build.
 
 echo [DEBUG] Command arguments : "%commandArgs%"
 
-for /f %%i in (mvn-build-all-targets.txt) do (
-    set pomFile=%%i\pom.xml
-    if exist !pomFile! (
-        call mvn -U -f !pomFile! %commandArgs%
+call mvn -U -f terasoluna-gfw-parent\pom.xml %commandArgs%
         if not !ERRORLEVEL! == 0 (
             echo [ERROR] Failed a build.
             exit /B !ERRORLEVEL!
         )
-    )
-)
+
+call mvn -U %commandArgs%
+        if not !ERRORLEVEL! == 0 (
+            echo [ERROR] Failed a build.
+            exit /B !ERRORLEVEL!
+        )
 
 echo [INFO] Finish a build.

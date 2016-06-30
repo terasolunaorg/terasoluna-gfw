@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-TARGETS=`cat mvn-build-all-targets.txt`
 DEFAULT_GOALS="clean install"
 
 commandArgs=${DEFAULT_GOALS}
@@ -12,15 +11,18 @@ echo "[INFO] Start a build."
 
 echo "[DEBUG] Command arguments : \"${commandArgs}\""
 
-for artifactId in ${TARGETS}; do
-    if test -f ${artifactId}/pom.xml ; then
-        mvn -U -f ${artifactId}/pom.xml ${commandArgs}
-        buildResult=$?
-        if test ${buildResult} -ne 0 ; then
-            echo "[ERROR] Failed a build."
-            exit ${buildResult}
-        fi
-    fi
-done
+mvn -U -f terasoluna-gfw-parent/pom.xml ${commandArgs}
+buildResult=$?
+if test ${buildResult} -ne 0 ; then
+    echo "[ERROR] Failed a build."
+    exit ${buildResult}
+fi
+
+mvn -U ${commandArgs}
+buildResult=$?
+if test ${buildResult} -ne 0 ; then
+    echo "[ERROR] Failed a build."
+    exit ${buildResult}
+fi
 
 echo "[INFO] Finish a build."
