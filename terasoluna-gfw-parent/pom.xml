@@ -404,10 +404,10 @@
         <!-- == TERASOLUNA == -->
         <terasoluna.gfw.version>5.2.0-SNAPSHOT</terasoluna.gfw.version>
         <!-- == Spring IO Platform == -->
-        <io.spring.platform.version>2.0.1.RELEASE</io.spring.platform.version>
+        <io.spring.platform.version>2.0.5.RELEASE</io.spring.platform.version>
         <!-- == MyBatis3 == -->
-        <org.mybatis.version>3.3.0</org.mybatis.version>
-        <org.mybatis.spring.version>1.2.3</org.mybatis.spring.version>
+        <org.mybatis.version>3.3.1</org.mybatis.version>
+        <org.mybatis.spring.version>1.2.5</org.mybatis.spring.version>
         <!-- == Dozer== -->
         <dozer.version>5.5.1</dozer.version>
         <!-- == Joda-Time == -->
