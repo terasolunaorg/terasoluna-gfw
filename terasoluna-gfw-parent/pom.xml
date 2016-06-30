@@ -21,6 +21,16 @@
         <name>terasoluna.org</name>
         <url>http://terasoluna.org</url>
     </organization>
+    <distributionManagement>
+        <repository>
+            <id>terasoluna-gfw-releases</id>
+            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>terasoluna-gfw-snapshots</id>
+            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
     <build>
         <pluginManagement>
             <plugins>
