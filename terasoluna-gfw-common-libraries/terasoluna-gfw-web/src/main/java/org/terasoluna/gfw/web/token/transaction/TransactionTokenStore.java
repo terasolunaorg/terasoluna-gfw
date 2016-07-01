@@ -49,5 +49,11 @@ public interface TransactionTokenStore {
      * @throws IllegalArgumentException token is null
      */
     void store(TransactionToken token);
-
+    
+    /**
+     * todo write javadoc
+     * @param token
+     * @return 
+     */
+    boolean existToken(TransactionToken token);
 }

@@ -173,6 +173,172 @@ public class TransactionTokenInterceptorTest {
     }
 
     @Test
+    public void testPreHandleValidTokenOnUpdate() throws Exception {
+        
+        HttpSessionTransactionTokenStore tokenStore = new HttpSessionTransactionTokenStore();
+        TransactionToken inputToken = new TransactionToken("testTokenAttr", "111", "222");
+        tokenStore.store(inputToken);
+
+        assertThat(tokenStore.getSession().getAttribute(
+                tokenStore.createSessionAttributeName(inputToken)),
+                is(notNullValue()));
+
+        request.setParameter(
+                TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER,
+                "testTokenAttr~111~a");
+        
+        interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
+        
+        boolean result = interceptor
+        .preHandle(
+                request,
+                response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("seventh", SampleForm.class,
+                                Model.class)));
+        
+        assertTrue(result);
+        
+        TransactionTokenContext transactionTokenCtx = (TransactionTokenContext) request
+                .getAttribute(
+                        TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME);
+        TransactionToken token = transactionTokenCtx.getReceivedToken();
+        assertNotNull(token);
+        assertThat(token.getTokenName(), is("testTokenAttr"));
+        assertThat(token.getTokenKey(), is("111"));
+        assertThat(token.getTokenValue(), is("a"));
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void testPreHandleUnmatchTokenStoreOnUpdate() throws Exception {
+        
+        HttpSessionTransactionTokenStore tokenStore = new HttpSessionTransactionTokenStore();
+        TransactionToken inputToken = new TransactionToken("testTokenAttr", "333", "222");
+        tokenStore.store(inputToken);
+
+        assertThat(tokenStore.getSession().getAttribute(
+                tokenStore.createSessionAttributeName(inputToken)),
+                is(notNullValue()));
+
+        request.setParameter(
+                TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER,
+                "testTokenAttr~111~a");
+        
+        interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
+        
+        interceptor
+        .preHandle(
+                request,
+                response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("seventh", SampleForm.class,
+                                Model.class)));
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void testPreHandleInvalidTokenOnUpdate() throws Exception {
+        
+        HttpSessionTransactionTokenStore tokenStore = new HttpSessionTransactionTokenStore();
+        TransactionToken inputToken = new TransactionToken("testTokenAttr", "333", "222");
+        tokenStore.store(inputToken);
+
+        assertThat(tokenStore.getSession().getAttribute(
+                tokenStore.createSessionAttributeName(inputToken)),
+                is(notNullValue()));
+
+        request.setParameter(
+                TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER,
+                "testTokenAttr~111");
+        
+        interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
+        
+        interceptor
+        .preHandle(
+                request,
+                response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("seventh", SampleForm.class,
+                                Model.class)));
+    }
+
+    @Test
+    public void testPreHandleValidTokenOnKeep() throws Exception {
+        
+        HttpSessionTransactionTokenStore tokenStore = new HttpSessionTransactionTokenStore();
+        TransactionToken inputToken = new TransactionToken("testTokenAttr", "333", "222");
+        tokenStore.store(inputToken);
+
+        assertThat(tokenStore.getSession().getAttribute(
+                tokenStore.createSessionAttributeName(inputToken)),
+                is(notNullValue()));
+
+        request.setParameter(
+                TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER,
+                "testTokenAttr~111~a");
+        
+        interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
+        
+        boolean result = interceptor
+        .preHandle(
+                request,
+                response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("sixth", SampleForm.class,
+                                Model.class)));
+        
+        assertTrue(result);
+        
+        TransactionTokenContext transactionTokenCtx = (TransactionTokenContext) request
+                .getAttribute(
+                        TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME);
+        TransactionToken token = transactionTokenCtx.getReceivedToken();
+        assertNotNull(token);
+        assertThat(token.getTokenName(), is("testTokenAttr"));
+        assertThat(token.getTokenKey(), is("111"));
+        assertThat(token.getTokenValue(), is("a"));
+    }
+
+
+    @Test
+    public void testPreHandleValidTokenOnCheck() throws Exception {
+        
+        HttpSessionTransactionTokenStore tokenStore = new HttpSessionTransactionTokenStore();
+        TransactionToken inputToken = new TransactionToken("testTokenAttr", "111", "222");
+        tokenStore.store(inputToken);
+
+        assertThat(tokenStore.getSession().getAttribute(
+                tokenStore.createSessionAttributeName(inputToken)),
+                is(notNullValue()));
+
+        request.setParameter(
+                TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER,
+                "testTokenAttr~111~222");
+        
+        interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
+        
+        boolean result = interceptor
+        .preHandle(
+                request,
+                response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("fifth", SampleForm.class,
+                                Model.class)));
+        
+        assertTrue(result);
+        
+        TransactionTokenContext transactionTokenCtx = (TransactionTokenContext) request
+                .getAttribute(
+                        TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME);
+        TransactionToken token = transactionTokenCtx.getReceivedToken();
+        assertNotNull(token);
+        assertThat(token.getTokenName(), is("testTokenAttr"));
+        assertThat(token.getTokenKey(), is("111"));
+        assertThat(token.getTokenValue(), is("222"));
+        tokenStore.existToken(token);
+    }
+
+    
+    @Test
     public void testValidateToken01() {
         HttpSessionTransactionTokenStore tokenStore = new HttpSessionTransactionTokenStore();
         TransactionToken inputToken = new TransactionToken("tokenName1", "111", "222");
@@ -387,6 +553,46 @@ public class TransactionTokenInterceptorTest {
                 .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME));
     }
 
+    @Test
+    public void testPostHandleWithKeepToken() throws Exception {
+
+        HttpSessionTransactionTokenStore tokenStore = new HttpSessionTransactionTokenStore();
+        TransactionToken inputToken = new TransactionToken("testTokenAttr", "111", "222");
+        tokenStore.store(inputToken);
+
+        request.setParameter(
+                TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER,
+                "testTokenAttr~111~222");
+
+        interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
+
+        interceptor
+                .preHandle(
+                        request,
+                        response,
+                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                                .getDeclaredMethod("fifth", SampleForm.class,
+                                        Model.class)));
+
+        interceptor
+                .postHandle(
+                        request,
+                        response,
+                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                                .getDeclaredMethod("fifth", SampleForm.class,
+                                        Model.class)), null);
+
+        
+        TransactionToken nextToken = (TransactionToken) request.getAttribute(
+                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
+        assertNotNull(nextToken);
+        assertThat(nextToken.getTokenName(), is("testTokenAttr"));
+        assertThat(nextToken.getTokenKey(), is("111"));
+        assertThat(nextToken.getTokenValue(), is("222"));
+        assertThat(tokenStore.getAndClear(nextToken), is("222"));
+    }
+
+    
     @Test
     public void testPostHandleWithNoneOperation() throws Exception {
 

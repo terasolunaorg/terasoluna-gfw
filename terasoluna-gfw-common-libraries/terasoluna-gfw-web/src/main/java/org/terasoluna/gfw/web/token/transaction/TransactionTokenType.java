@@ -24,26 +24,41 @@ public enum TransactionTokenType {
      * A {@link TransactionToken} of type {@link #NONE} is created when {@link TransactionTokenCheck} annotation is not found
      * for a particular handlerMethod. In this case, the token check functionality is not invoked
      */
-    NONE(false, false),
+    NONE(false, false, false),
     /**
      * Indicates beginning of the boundary of transaction token check. <br>
      * <p>
      * Transaction token check will not be performed in this type of {@link TransactionToken}. Only a new token will be created
      * and rendered to the view as a hidden element
      */
-    BEGIN(false, true),
+    BEGIN(false, true, false),
     /**
      * Indicates that the corresponding handler method is within the transaction boundary <br>
      * <p>
      * Transaction token check will be performed in this type of {@link TransactionToken}.
      */
-    IN(true, true),
+    IN(true, true, false),
     /**
      * Indicates end of the boundary of transaction token check. <br>
      * <p>
      * Transaction token check will be performed in this type of {@link TransactionToken}.
      */
-    END(true, false);
+    END(true, false, false),
+
+    /**
+     * [todo] write javadoc
+     */
+    CHECK(true, false, true),
+
+    /**
+     * [todo] write javadoc
+     */
+    KEEP(false, false, true),
+
+    /**
+     * [todo] write javadoc
+     */
+    UPDATE(false, true, true);
 
     /**
      * whether need to validate token
@@ -56,14 +71,21 @@ public enum TransactionTokenType {
     private boolean needCreate;
 
     /**
+     * [todo] write javadoc
+     */
+    private boolean needKeep;
+
+    /**
      * depending on type of a {@link TransactionToken} instance decides whether it needs to be checked for correctness or to be
      * newly created.
      * @param needValidate, whether needs to checked for correctness
      * @param needCreate, whether it needs to be newly created
      */
-    TransactionTokenType(final boolean needValidate, final boolean needCreate) {
+    TransactionTokenType(final boolean needValidate, final boolean needCreate,
+            final boolean needKeep) {
         this.needValidate = needValidate;
         this.needCreate = needCreate;
+        this.needKeep = needKeep;
     }
 
     /**
@@ -82,4 +104,11 @@ public enum TransactionTokenType {
         return needCreate;
     }
 
+    /**
+     * [todo] write javadoc
+     * @return
+     */
+    public boolean needKeep() {
+        return needKeep;
+    }
 }

@@ -27,7 +27,7 @@ public class TransactionTokenContextImpl implements TransactionTokenContext {
 
     /** Indicates the command to be executed pertaining to transactionToken */
     enum ReserveCommand {
-        CREATE_TOKEN, UPDATE_TOKEN, REMOVE_TOKEN, NONE
+        CREATE_TOKEN, UPDATE_TOKEN, REMOVE_TOKEN, KEEP_TOKEN, NONE
     };
 
     /** Meta-Information regarding TransactionToken */
@@ -56,6 +56,8 @@ public class TransactionTokenContextImpl implements TransactionTokenContext {
             } else {
                 defaultCommand = ReserveCommand.CREATE_TOKEN;
             }
+        } else if (tokenInfo.needKeep() && receivedToken.valid()) {
+            defaultCommand = ReserveCommand.KEEP_TOKEN;
         } else {
             if (receivedToken.valid()) {
                 defaultCommand = ReserveCommand.REMOVE_TOKEN;
