@@ -504,4 +504,31 @@ public class HttpSessionTransactionTokenStoreTest {
 
     }
 
+    
+    @Test
+    public void testExistToken() {
+        // prepare store instance
+        store = new HttpSessionTransactionTokenStore(5);
+
+        // setup parameters
+        HttpSession session = new MockHttpSession();
+        request.setSession(session);
+
+        TransactionToken tokenA = new TransactionToken("tokenName", "tokenKeyA", "tokenValueA");
+        store.store(tokenA);
+        TransactionToken tokenB = new TransactionToken("tokenName", "tokenKeyB", "tokenValueB");
+        store.store(tokenB);
+        TransactionToken tokenC = new TransactionToken("tokenName", "tokenKeyC", "tokenValueC");
+        store.store(tokenC);
+        TransactionToken token1 = new TransactionToken("tokenName1", "tokenKey1", "tokenValue1");
+        store.store(token1);
+        TransactionToken token2 = new TransactionToken("tokenName2", "tokenKey2", "tokenValue2");
+        store.store(token2);
+        TransactionToken token3 = new TransactionToken("tokenName3", "tokenKey3", "tokenValue3");
+        
+        // run
+        // assert
+        assertThat(store.existToken(tokenB), is(true));
+        assertThat(store.existToken(token3), is(false));
+    }
 }
