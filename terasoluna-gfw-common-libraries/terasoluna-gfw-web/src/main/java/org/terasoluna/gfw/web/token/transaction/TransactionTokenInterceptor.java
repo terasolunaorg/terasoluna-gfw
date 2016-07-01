@@ -33,22 +33,20 @@ import org.terasoluna.gfw.web.token.TokenStringGenerator;
  */
 public class TransactionTokenInterceptor implements HandlerInterceptor {
 
-    private static final Logger logger = LoggerFactory
-            .getLogger(TransactionTokenInterceptor.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            TransactionTokenInterceptor.class);
 
     /**
      * attribute name of {@link TransactionTokenContext} in the request scope
      */
     public static final String TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME = TransactionTokenInterceptor.class
-            .getName()
-            + ".TOKEN_CONTEXT";
+            .getName() + ".TOKEN_CONTEXT";
 
     /**
      * attribute name of next {@link TransactionToken} in the request scope
      */
     public static final String NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME = TransactionTokenInterceptor.class
-            .getName()
-            + ".NEXT_TOKEN";
+            .getName() + ".NEXT_TOKEN";
 
     /**
      * request parameter of token value to check
@@ -154,8 +152,8 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
         logger.trace("preHandle");
 
         HandlerMethod handlerMethod = (HandlerMethod) handler;
-        TransactionTokenInfo tokenInfo = tokenInfoStore
-                .getTransactionTokenInfo(handlerMethod);
+        TransactionTokenInfo tokenInfo = tokenInfoStore.getTransactionTokenInfo(
+                handlerMethod);
 
         TransactionToken receivedToken = INVALID_TOKEN;
         if (tokenInfo.needValidate()) {
@@ -163,7 +161,19 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
             if (!validateToken(receivedToken, tokenStore, tokenInfo)) {
                 processTransactionTokenError(receivedToken);
             }
+        } else if (tokenInfo.needKeep()) {
+            receivedToken = createReceivedToken(request);
+            if (receivedToken.valid()) {
+                if (tokenInfo.needCreate()) {
+                    if (!tokenStore.existToken(receivedToken)) {
+                        processTransactionTokenErrorOnKeep(request);
+                    }
+                }
+            } else {
+                processTransactionTokenErrorOnKeep(request);
+            }
         }
+
         if (tokenInfo.getTransactionTokenType() == TransactionTokenType.BEGIN) {
             // This logic is added later to remove existing token sent in the request in case of Transaction BEGIN
             // When transactions BEGIN, the transaction token sent from the request are usually those which are generated
@@ -180,14 +190,22 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
 
         TransactionTokenContextImpl tokenContext = new TransactionTokenContextImpl(tokenInfo, receivedToken);
 
-        request.setAttribute(TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME, tokenContext);
+        request.setAttribute(TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME,
+                tokenContext);
 
         return true;
     }
 
-    protected void processTransactionTokenError(TransactionToken receivedToken) {
+    protected void processTransactionTokenError(
+            TransactionToken receivedToken) {
         removeToken(receivedToken);
         throw new InvalidTransactionTokenException();
+    }
+
+    protected void processTransactionTokenErrorOnKeep(
+            HttpServletRequest request) {
+        throw new IllegalStateException("receive abnormal token when you use TransactionTokenCheckType UPDATE or KEEP . received tokenValue is "
+                + request.getParameter(TOKEN_REQUEST_PARAMETER));
     }
 
     /**
@@ -222,13 +240,12 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
             final TransactionTokenStore tokenStore,
             final TransactionTokenInfo tokenInfo) {
 
-        if (receivedToken.valid()
-                && receivedToken.getTokenName()
-                        .equals(tokenInfo.getTokenName())) {
+        if (receivedToken.valid() && receivedToken.getTokenName().equals(
+                tokenInfo.getTokenName())) {
 
             String storedToken = tokenStore.getAndClear(receivedToken);
-            if (storedToken != null
-                    && storedToken.equals(receivedToken.getTokenValue())) {
+            if (storedToken != null && storedToken.equals(receivedToken
+                    .getTokenValue())) {
                 return true;
             }
         }
@@ -269,11 +286,15 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
             break;
         case UPDATE_TOKEN:
             updateToken(request, request.getSession(true), tokenContext
-                    .getReceivedToken(), tokenContext.getTokenInfo(),
-                    generator, tokenStore);
+                    .getReceivedToken(), tokenContext.getTokenInfo(), generator,
+                    tokenStore);
             break;
         case REMOVE_TOKEN:
             removeToken(tokenContext.getReceivedToken());
+            break;
+        case KEEP_TOKEN:
+            keepToken(request, tokenContext.getReceivedToken(), tokenContext
+                    .getTokenInfo(), tokenStore);
             break;
         default:
             // noop
@@ -324,7 +345,7 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
             TokenStringGenerator generator, TransactionTokenStore tokenStore) {
         TransactionToken nextToken = new TransactionToken(tokenInfo
                 .getTokenName(), receivedToken.getTokenKey(), generator
-                .generate(session.getId()));
+                        .generate(session.getId()));
         tokenStore.store(nextToken);
         request.setAttribute(NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME, nextToken);
     }
@@ -348,8 +369,9 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
         synchronized (WebUtils.getSessionMutex(session)) {
             String tokenKey = tokenStore.createAndReserveTokenKey(tokenInfo
                     .getTokenName());
-            nextToken = new TransactionToken(tokenInfo.getTokenName(), tokenKey, generator
-                    .generate(session.getId()));
+            nextToken = new TransactionToken(tokenInfo
+                    .getTokenName(), tokenKey, generator.generate(session
+                            .getId()));
             tokenStore.store(nextToken);
         }
         request.setAttribute(NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME, nextToken);
@@ -363,5 +385,20 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
         if (receivedToken.valid()) {
             tokenStore.remove(receivedToken);
         }
+    }
+
+    /**
+     * [todo] write javadoc
+     * @param request
+     * @param tokenInfo
+     * @param receivedToken
+     * @param tokenStore
+     */
+    void keepToken(HttpServletRequest request, TransactionToken receivedToken,
+            TransactionTokenInfo tokenInfo, TransactionTokenStore tokenStore) {
+        if (tokenInfo.needValidate()) {
+            tokenStore.store(receivedToken);
+        }
+        request.setAttribute(NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME, receivedToken);
     }
 }

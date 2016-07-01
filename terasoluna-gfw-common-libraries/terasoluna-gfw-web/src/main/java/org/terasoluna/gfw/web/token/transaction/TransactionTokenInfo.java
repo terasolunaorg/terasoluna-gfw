@@ -75,6 +75,14 @@ public class TransactionTokenInfo {
     }
 
     /**
+     * [todo] write javadoc
+     * @return
+     */
+    public boolean needKeep(){
+        return tokenType.needKeep();
+    }
+    
+    /**
      * @see java.lang.Object#toString()
      */
     @Override
