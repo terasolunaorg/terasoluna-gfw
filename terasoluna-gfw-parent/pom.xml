@@ -416,6 +416,22 @@
         </dependencies>
     </dependencyManagement>
     <properties>
+        <!-- == Maven Plugin Versions == -->
+        <maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
+        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
+        <maven-dependency-plugin.version>2.9</maven-dependency-plugin.version>
+        <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
+        <maven-source-plugin.version>2.4</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>2.10.1</maven-javadoc-plugin.version>
+        <maven-jar-plugin.version>2.5</maven-jar-plugin.version>
+        <maven-assembly-plugin.version>2.5.1</maven-assembly-plugin.version>
+        <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
+        <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
+        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
+        <maven-site-plugin.version>3.4</maven-site-plugin.version>
+        <cargo-maven2-plugin.version>1.4.17</cargo-maven2-plugin.version>
+        <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
+        <!-- == Dependency Versions == -->
         <!-- == TERASOLUNA == -->
         <terasoluna.gfw.version>5.2.0-SNAPSHOT</terasoluna.gfw.version>
         <!-- == Spring IO Platform == -->
@@ -433,27 +449,12 @@
         <jboss-logging-annotations.version>1.2.0.Final</jboss-logging-annotations.version>
         <!-- == Logging == -->
         <org.lazyluke.version>0.2.7</org.lazyluke.version>
-        <!-- == Maven Plugins == -->
-        <maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
-        <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
-        <maven-dependency-plugin.version>2.9</maven-dependency-plugin.version>
-        <maven-resources-plugin.version>2.6</maven-resources-plugin.version>
-        <maven-source-plugin.version>2.4</maven-source-plugin.version>
-        <maven-javadoc-plugin.version>2.10.1</maven-javadoc-plugin.version>
-        <maven-jar-plugin.version>2.5</maven-jar-plugin.version>
-        <maven-assembly-plugin.version>2.5.1</maven-assembly-plugin.version>
-        <maven-clean-plugin.version>2.5</maven-clean-plugin.version>
-        <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
-        <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
-        <maven-site-plugin.version>3.4</maven-site-plugin.version>
-        <cargo-maven2-plugin.version>1.4.17</cargo-maven2-plugin.version>
-        <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
-        <!-- == Other Properties== -->
+        <!-- == Project Properties == -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <archetype.test.skip>true</archetype.test.skip>
         <encoding>UTF-8</encoding>
         <java-version>1.7</java-version>
-        <!-- == Properties for Cargo Plugin == -->
+        <!-- == Cargo Plugin == -->
         <cargo.jvmargs>-Xms512m -Xmx1024m</cargo.jvmargs>
         <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
         <cargo.container.id>tomcat8x</cargo.container.id>
