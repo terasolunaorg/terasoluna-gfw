@@ -102,12 +102,12 @@
         </pluginManagement>
     </build>
     <properties>
-        <!-- == Maven Plugins == -->
+        <!-- == Maven Plugin Versions == -->
         <maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
         <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
         <formatter-maven-plugin.version>0.5.2</formatter-maven-plugin.version>
         <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
-        <!-- == Other Properties== -->
+        <!-- == Project Properties == -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <archetype.test.skip>true</archetype.test.skip>
         <encoding>UTF-8</encoding>

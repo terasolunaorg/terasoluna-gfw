@@ -56,6 +56,7 @@
         </pluginManagement>
     </build>
     <properties>
+        <!-- == Maven Plugin Versions == -->
         <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
         <formatter-maven-plugin.version>0.5.2</formatter-maven-plugin.version>
     </properties>
