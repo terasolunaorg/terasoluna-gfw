@@ -18,7 +18,16 @@ package org.terasoluna.gfw.common.codepoints.catalog;
 import org.terasoluna.gfw.common.codepoints.CodePoints;
 
 /**
- * Code points which consist of JIS X 0208's rows 1 and 2 (Special characters)
+ * Code points which consist of JIS X 0208's rows 1 and 2 (Special characters).
+ * <p>
+ * This class defines the code point set to change HORINZONTAL BAR(
+ * <tt>U+2015</tt>) to the EM DASH(<tt>U+2014</tt>). <br>
+ * For general conversion rules and Unicode conversion tables are different.
+ * There is a possibility that a problem may arise according to Unicode
+ * conversion table when code point set is defined. <br>
+ * Full-size dash of common JIS Kanji is the EM DASH(<tt>U+2014</tt>). <br>
+ * Conversion table Unicode consortium provides is HORINZONTAL BAR(
+ * <tt>U+2015</tt>).
  * @since 5.1.0
  */
 public final class JIS_X_0208_SpecialChars extends CodePoints {
