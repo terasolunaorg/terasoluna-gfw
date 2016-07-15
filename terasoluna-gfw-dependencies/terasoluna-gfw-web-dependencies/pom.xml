@@ -24,12 +24,5 @@
             <artifactId>terasoluna-gfw-web</artifactId>
         </dependency>
         <!-- == End TERASOLUNA == -->
-        <!-- == Begin Spring == -->
-        <!-- Spring MVC -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-        </dependency>
-        <!-- == End Spring == -->
     </dependencies>
 </project>
