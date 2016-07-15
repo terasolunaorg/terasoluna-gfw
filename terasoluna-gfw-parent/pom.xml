@@ -599,6 +599,6 @@
         <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
         <cargo.container.id>tomcat8x</cargo.container.id>
         <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-8/v${cargo.tomcat8.version}/bin/apache-tomcat-${cargo.tomcat8.version}.zip</cargo.container.url>
-        <cargo.tomcat8.version>8.0.30</cargo.tomcat8.version>
+        <cargo.tomcat8.version>8.0.36</cargo.tomcat8.version>
     </properties>
 </project>
