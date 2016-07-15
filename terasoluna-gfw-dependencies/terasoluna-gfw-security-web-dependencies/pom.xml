@@ -18,16 +18,5 @@
             <artifactId>terasoluna-gfw-security-web</artifactId>
         </dependency>
         <!-- == End TERASOLUNA == -->
-        <!-- == Begin Spring == -->
-        <!-- Spring Security -->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-taglibs</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-        </dependency>
-        <!-- == End Spring == -->
     </dependencies>
 </project>
