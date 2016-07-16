@@ -51,9 +51,10 @@ public interface TransactionTokenStore {
     void store(TransactionToken token);
     
     /**
-     * todo write javadoc
-     * @param token
-     * @return 
+     * Whether the transaction token with the same namespace and tokenkey in this store exists.
+     * @param token {@link TransactionToken} instance (must not be null)
+     * @return true the transaction is present. false otherwise 
+     * @throws IllegalArgumentException token is null
      */
     boolean existToken(TransactionToken token);
 }
