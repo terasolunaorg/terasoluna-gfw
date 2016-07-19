@@ -51,10 +51,10 @@ public interface TransactionTokenStore {
     void store(TransactionToken token);
     
     /**
-     * Whether the transaction token with the same namespace and tokenkey in this store exists.
-     * @param token {@link TransactionToken} instance (must not be null)
-     * @return true the transaction is present. false otherwise 
-     * @throws IllegalArgumentException token is null
+     * Check whether the {@link TransactionToken} with the same namespace and token key exist in HTTP session.
+     * @param token {@link TransactionToken} instance (must not be {@code null})
+     * @return {@code true} the transaction is present. {@code false} otherwise 
+     * @throws IllegalArgumentException token is {@code null}
      */
     boolean existToken(TransactionToken token);
 }
