@@ -26,26 +26,26 @@ public enum TransactionTokenType {
      */
     NONE(false, false, false),
     /**
-     * Indicates beginning of the boundary of transaction token check. <br>
+     * Indicate beginning of the boundary of transaction token check. <br>
      * <p>
      * Transaction token check will not be performed in this type of {@link TransactionToken}. Only a new token will be created
      * and rendered to the view as a hidden element
      */
     BEGIN(false, true, false),
     /**
-     * Indicates that the corresponding handler method is within the transaction boundary <br>
+     * Indicate that the corresponding handler method is within the transaction boundary <br>
      * <p>
      * Transaction token check will be performed in this type of {@link TransactionToken}.
      */
     IN(true, true, false),
     /**
-     * Indicates end of the boundary of transaction token check. <br>
+     * Indicate end of the boundary of transaction token check. <br>
      * <p>
      * Transaction token check will be performed in this type of {@link TransactionToken}.
      */
     END(true, false, false),
     /**
-     * Indicates that the corresponding handler method is within the transaction boundary <br>
+     * Indicate that the corresponding handler method is within the transaction boundary <br>
      * <p>
      * Transaction token check will be performed in this type of {@link TransactionToken},
      * but Transaction token is no update.<br>
@@ -54,7 +54,7 @@ public enum TransactionTokenType {
      */
     CHECK(true, false, true),
     /**
-     * Indicates that the corresponding handler method is without the transaction boundary <br>
+     * Indicate that the corresponding handler method is without the transaction boundary <br>
      * <p>
      * Transaction token check will not be performed in this type of {@link TransactionToken},
      * and Transaction token is no update.
@@ -63,7 +63,7 @@ public enum TransactionTokenType {
      */
     KEEP(false, false, true),
     /**
-     * Indicates that the corresponding handler method is within the transaction boundary <br>
+     * Indicate that the corresponding handler method is within the transaction boundary <br>
      * <p>
      * Transaction token check will not be performed in this type of {@link TransactionToken},
      * but Transaction token is updated.
@@ -100,7 +100,7 @@ public enum TransactionTokenType {
     }
 
     /**
-     * Indicates if a {@link TransactionToken} needs to be checked for correctness depending on it type
+     * Indicate if a {@link TransactionToken} needs to be checked for correctness depending on it type
      * @return true if it has be to checked for correctness. otherwise, false
      */
     public boolean needValidate() {
@@ -108,7 +108,7 @@ public enum TransactionTokenType {
     }
 
     /**
-     * Indicates if a {@link TransactionToken} needs to be checked newly created
+     * Indicate if a {@link TransactionToken} needs to be checked newly created
      * @return true if it has be to checked for correctness. otherwise, false
      */
     public boolean needCreate() {
@@ -116,7 +116,7 @@ public enum TransactionTokenType {
     }
 
     /**
-     * Indicates if a {@link TransactionToken} needs to take over token.
+     * Indicate if a {@link TransactionToken} needs to take over token.
      * @return true take over token. otherwise, false
      */
     public boolean needKeep() {
