@@ -393,8 +393,8 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
     }
 
     /**
-     * To set the receivedToken to the attributes named <code>TransactionTokenInterceptor.NEXT_TOKEN</code> of request .
-     * And if receivedToken is validated, it stored in <code>TransactionTokenStore</code>
+     * Set the receivedToken to the attributes named <code>TransactionTokenInterceptor.NEXT_TOKEN</code> of request.
+     * And if receivedToken is validated, it stored in <code>TransactionTokenStore</code> without updates.
      * @param request current HTTP request
      * @param receivedToken {@link TransactionToken} got from the current HTTP request
      * @param tokenInfo meta-information about a TransactionToken
