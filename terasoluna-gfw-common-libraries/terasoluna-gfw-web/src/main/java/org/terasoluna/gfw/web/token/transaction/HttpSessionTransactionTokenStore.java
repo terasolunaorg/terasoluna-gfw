@@ -278,9 +278,9 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
 
     /**
      * Check whether the {@link TransactionToken} with the same namespace and token key exist in HTTP session.
-     * @param token {@link TransactionToken} instance (must not be null)
-     * @return true the {@link TransactionToken} is present. false otherwise.
-     * @throws IllegalArgumentException token is null.
+     * @param token {@link TransactionToken} instance (must not be {@code null})
+     * @return {@code true} the {@link TransactionToken} is present. {@code false} otherwise.
+     * @throws IllegalArgumentException token is {@code null}.
      */
     @Override
     public boolean existToken(TransactionToken token) {
