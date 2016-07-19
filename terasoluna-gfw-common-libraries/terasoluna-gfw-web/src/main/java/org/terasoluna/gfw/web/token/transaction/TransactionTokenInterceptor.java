@@ -259,7 +259,7 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
 
     /**
      * Based on context information from the request attribute named <code>TransactionTokenInterceptor.TOKEN_CONTEXT</code>,
-     * creates or updates or keeps the token stored with the request attribute <code>TransactionTokenInterceptor.NEXT_TOKEN</code> and
+     * creates, updates or keeps the token stored with the request attribute <code>TransactionTokenInterceptor.NEXT_TOKEN</code> and
      * also in the <code>TransactionTokenStore</code> or removes the token from <code>TransactionTokenStore</code>
      * <p>
      * modelAndView is not used in the implementation
