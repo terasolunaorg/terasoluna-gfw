@@ -75,7 +75,7 @@ public class TransactionTokenInfo {
     }
 
     /**
-     * Checks whether the {@link TransactionToken} represented by this {@link TransactionTokenInfo} object needs to be taken
+     * Check whether the {@link TransactionToken} represented by this {@link TransactionTokenInfo} object needs to be taken
      * over.
      * @return true if need to be taken over token. false otherwise
      */
