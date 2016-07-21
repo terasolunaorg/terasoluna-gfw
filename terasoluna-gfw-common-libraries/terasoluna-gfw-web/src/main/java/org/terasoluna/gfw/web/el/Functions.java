@@ -19,6 +19,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.core.convert.TypeDescriptor;
@@ -47,6 +49,10 @@ import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
  */
 public final class Functions {
 
+    /**
+     * logger
+     */
+    private static final Logger logger = LoggerFactory.getLogger(Functions.class);
     /**
      * Pattern of URL for replace to the link tag.
      */
@@ -171,6 +177,7 @@ public final class Functions {
             return UriUtils.encodeQueryParam(value, "UTF-8");
         } catch (UnsupportedEncodingException ignored) {
             // This exception doesn't absolutely occur.
+            logger.info(ignored.toString());
             return value;
         }
     }
