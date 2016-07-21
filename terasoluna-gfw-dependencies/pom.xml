@@ -36,28 +36,4 @@
         <module>terasoluna-gfw-recommended-dependencies</module>
         <module>terasoluna-gfw-recommended-web-dependencies</module>
     </modules>
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>com.google.code.maven-license-plugin</groupId>
-                    <artifactId>maven-license-plugin</artifactId>
-                    <version>${com.google.code.maven-license-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>net.revelc.code</groupId>
-                    <artifactId>formatter-maven-plugin</artifactId>
-                    <version>${formatter-maven-plugin.version}</version>
-                    <configuration>
-                        <skip>true</skip>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-    <properties>
-        <!-- == Maven Plugin Versions == -->
-        <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
-        <formatter-maven-plugin.version>0.5.2</formatter-maven-plugin.version>
-    </properties>
 </project>
