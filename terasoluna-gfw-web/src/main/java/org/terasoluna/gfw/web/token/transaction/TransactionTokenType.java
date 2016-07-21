@@ -101,7 +101,7 @@ public enum TransactionTokenType {
 
     /**
      * Indicate if a {@link TransactionToken} needs to be checked for correctness depending on it type
-     * @return true if it has be to checked for correctness. otherwise, false
+     * @return {@code true} if it has be to checked for correctness. otherwise, {@code false}
      */
     public boolean needValidate() {
         return needValidate;
@@ -109,7 +109,7 @@ public enum TransactionTokenType {
 
     /**
      * Indicate if a {@link TransactionToken} needs to be checked newly created
-     * @return true if it has be to checked for correctness. otherwise, false
+     * @return {@code true} if it has be to checked for correctness. otherwise, {@code false}
      */
     public boolean needCreate() {
         return needCreate;
@@ -117,7 +117,7 @@ public enum TransactionTokenType {
 
     /**
      * Indicate if a {@link TransactionToken} needs to take over token.
-     * @return true take over token. otherwise, false
+     * @return {@code true} take over token. otherwise, {@code false}
      */
     public boolean needKeep() {
         return needKeep;
