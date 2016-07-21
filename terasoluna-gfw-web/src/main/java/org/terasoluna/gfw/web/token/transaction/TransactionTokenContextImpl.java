@@ -81,6 +81,7 @@ public class TransactionTokenContextImpl implements TransactionTokenContext {
      * <code>TransactionToken</code>
      * @see org.terasoluna.gfw.web.token.transaction.TransactionTokenContext#createToken()
      */
+    @Deprecated
     @Override
     public void createToken() {
         if (receivedToken.valid()) {
@@ -95,6 +96,7 @@ public class TransactionTokenContextImpl implements TransactionTokenContext {
      * {@link org.terasoluna.gfw.web.token.transaction.TransactionTokenContextImpl.ReserveCommand#REMOVE_TOKEN}
      * @see org.terasoluna.gfw.web.token.transaction.TransactionTokenContext#removeToken()
      */
+    @Deprecated
     @Override
     public void removeToken() {
         reserveCommand = ReserveCommand.REMOVE_TOKEN;
@@ -103,6 +105,7 @@ public class TransactionTokenContextImpl implements TransactionTokenContext {
     /**
      * rollback resrveCommand to default
      */
+    @Deprecated
     public void cancelReservation() {
         reserveCommand = defaultCommand;
     }
