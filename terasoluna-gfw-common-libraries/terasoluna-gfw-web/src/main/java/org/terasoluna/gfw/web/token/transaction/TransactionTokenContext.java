@@ -23,11 +23,13 @@ public interface TransactionTokenContext {
     /**
      * Defines the contract for implementations of token creation
      */
+    @Deprecated
     void createToken();
 
     /**
      * Defines the contract for implementations of token removal
      */
+    @Deprecated
     void removeToken();
 
     /**
