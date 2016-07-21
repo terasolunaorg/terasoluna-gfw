@@ -77,7 +77,7 @@ public class TransactionTokenInfo {
     /**
      * Check whether the {@link TransactionToken} represented by this {@link TransactionTokenInfo} object needs to be taken
      * over.
-     * @return true if need to be taken over token. false otherwise
+     * @return {@code true} if need to be taken over token. {@code false} otherwise
      */
     public boolean needKeep(){
         return tokenType.needKeep();
