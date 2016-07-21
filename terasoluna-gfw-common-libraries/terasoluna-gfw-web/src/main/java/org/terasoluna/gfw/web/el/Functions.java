@@ -52,7 +52,9 @@ public final class Functions {
     /**
      * logger
      */
-    private static final Logger logger = LoggerFactory.getLogger(Functions.class);
+    private static final Logger logger = LoggerFactory
+            .getLogger(Functions.class);
+
     /**
      * Pattern of URL for replace to the link tag.
      */
@@ -177,7 +179,8 @@ public final class Functions {
             return UriUtils.encodeQueryParam(value, "UTF-8");
         } catch (UnsupportedEncodingException ignored) {
             // This exception doesn't absolutely occur.
-            logger.warn("UnsupportedEncodingException",ignored);
+            logger.warn("the given encoding parameter is not supported",
+                    ignored);
             return value;
         }
     }

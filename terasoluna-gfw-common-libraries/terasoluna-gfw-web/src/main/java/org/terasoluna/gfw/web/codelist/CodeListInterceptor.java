@@ -165,7 +165,8 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter
         for (CodeList codeList : definedCodeLists.values()) {
             String codeListId = codeList.getCodeListId();
             if (codeListId != null) {
-                Matcher codeListIdMatcher = this.codeListIdPattern.matcher(codeListId);
+                Matcher codeListIdMatcher = this.codeListIdPattern
+                        .matcher(codeListId);
                 if (codeListIdMatcher.matches()) {
                     targetCodeLists.put(codeListId, codeList);
                 }
