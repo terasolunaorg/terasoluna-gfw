@@ -177,7 +177,7 @@ public final class Functions {
             return UriUtils.encodeQueryParam(value, "UTF-8");
         } catch (UnsupportedEncodingException ignored) {
             // This exception doesn't absolutely occur.
-            logger.info(ignored.toString());
+            logger.warn("UnsupportedEncodingException",ignored);
             return value;
         }
     }
