@@ -100,9 +100,9 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <modules>
+                <module>terasoluna-gfw-parent</module>
                 <module>terasoluna-gfw-common-libraries</module>
                 <module>terasoluna-gfw-dependencies</module>
-                <module>terasoluna-gfw-parent</module>
             </modules>
         </profile>
         <profile>
