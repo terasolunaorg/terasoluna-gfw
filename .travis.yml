@@ -12,5 +12,5 @@ cache:
 install: true
 
 script:
-  - mvn -U clean install jacoco:report
-  - mvn -U -P common-libs-only coveralls:report
+  - mvn -U clean install
+  - mvn -U -P common-libs-only jacoco:report coveralls:report
