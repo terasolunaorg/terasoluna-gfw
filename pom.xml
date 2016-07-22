@@ -50,16 +50,6 @@
             <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
         </repository>
     </repositories>
-    <distributionManagement>
-        <repository>
-            <id>terasoluna-gfw-releases</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>terasoluna-gfw-snapshots</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
     <properties>
         <!-- == Maven Plugin Versions == -->
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
@@ -68,6 +58,7 @@
         <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
         <!-- == Project Properties == -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
     <profiles>
         <profile>
