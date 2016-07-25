@@ -277,9 +277,12 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
     }
 
     /**
-     * [todo] write javadoc
-     * @param token
+     * Check whether the {@link TransactionToken} with the same namespace and token key exist in HTTP session.
+     * @param token {@link TransactionToken} instance (must not be {@code null})
+     * @return {@code true} the {@link TransactionToken} is present. {@code false} otherwise.
+     * @throws IllegalArgumentException token is {@code null}.
      */
+    @Override
     public boolean existToken(TransactionToken token) {
         HttpSession session = getSession();
         Object mutex = getMutex(session);
