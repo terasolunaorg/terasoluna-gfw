@@ -12,5 +12,5 @@ cache:
 install: true
 
 script:
-  - ./mvn-build-all.sh clean install jacoco:report
-  - mvn -U coveralls:report
+  - mvn -U clean install
+  - mvn -U -P common-libs-only jacoco:report coveralls:report

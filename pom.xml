@@ -20,10 +20,6 @@
         <name>terasoluna.org</name>
         <url>http://terasoluna.org</url>
     </organization>
-    <modules>
-        <module>terasoluna-gfw-common-libraries</module>
-        <module>terasoluna-gfw-dependencies</module>
-    </modules>
     <repositories>
         <repository>
             <snapshots>
@@ -54,80 +50,6 @@
             <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
         </repository>
     </repositories>
-    <distributionManagement>
-        <repository>
-            <id>terasoluna-gfw-releases</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>terasoluna-gfw-snapshots</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
-        </snapshotRepository>
-    </distributionManagement>
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <configuration>
-                        <includes>
-                            <include>**/*Test.java</include>
-                        </includes>
-                        <argLine>${jacocoArgs}</argLine>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.jacoco</groupId>
-                    <artifactId>jacoco-maven-plugin</artifactId>
-                    <version>${jacoco-maven-plugin.version}</version>
-                    <configuration>
-                        <skip>true</skip>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>com.google.code.maven-license-plugin</groupId>
-                    <artifactId>maven-license-plugin</artifactId>
-                    <version>${com.google.code.maven-license-plugin.version}</version>
-                </plugin>
-                <plugin>
-                    <groupId>net.revelc.code</groupId>
-                    <artifactId>formatter-maven-plugin</artifactId>
-                    <version>${formatter-maven-plugin.version}</version>
-                    <configuration>
-                        <skip>true</skip>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.eluder.coveralls</groupId>
-                    <artifactId>coveralls-maven-plugin</artifactId>
-                    <version>${coveralls-maven-plugin.version}</version>
-                    <configuration>
-                        <jacocoReports>
-                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-common/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-jodatime/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-web/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-web-jsp/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-security-web/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-validator/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints/target/site/jacoco/jacoco.xml</jacocoReport>
-                            <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-string/target/site/jacoco/jacoco.xml</jacocoReport>
-                        </jacocoReports>
-                        <sourceDirectories>
-                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-common/src/main/java</sourceDirectory>
-                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-jodatime/src/main/java</sourceDirectory>
-                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-web/src/main/java</sourceDirectory>
-                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-web-jsp/src/main/java</sourceDirectory>
-                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-security-web/src/main/java</sourceDirectory>
-                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-validator/src/main/java</sourceDirectory>
-                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints/src/main/java</sourceDirectory>
-                            <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-string/src/main/java</sourceDirectory>
-                        </sourceDirectories>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
     <properties>
         <!-- == Maven Plugin Versions == -->
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
@@ -136,5 +58,92 @@
         <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
         <!-- == Project Properties == -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.deploy.skip>true</maven.deploy.skip>
     </properties>
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <modules>
+                <module>terasoluna-gfw-parent</module>
+                <module>terasoluna-gfw-common-libraries</module>
+                <module>terasoluna-gfw-dependencies</module>
+            </modules>
+        </profile>
+        <profile>
+            <id>common-libs-only</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <modules>
+                <module>terasoluna-gfw-common-libraries</module>
+            </modules>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <configuration>
+                                <includes>
+                                    <include>**/*Test.java</include>
+                                </includes>
+                                <argLine>${jacocoArgs}</argLine>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.jacoco</groupId>
+                            <artifactId>jacoco-maven-plugin</artifactId>
+                            <version>${jacoco-maven-plugin.version}</version>
+                            <configuration>
+                                <skip>true</skip>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>com.google.code.maven-license-plugin</groupId>
+                            <artifactId>maven-license-plugin</artifactId>
+                            <version>${com.google.code.maven-license-plugin.version}</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>net.revelc.code</groupId>
+                            <artifactId>formatter-maven-plugin</artifactId>
+                            <version>${formatter-maven-plugin.version}</version>
+                            <configuration>
+                                <skip>true</skip>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.eluder.coveralls</groupId>
+                            <artifactId>coveralls-maven-plugin</artifactId>
+                            <version>${coveralls-maven-plugin.version}</version>
+                            <configuration>
+                                <jacocoReports>
+                                    <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-common/target/site/jacoco/jacoco.xml</jacocoReport>
+                                    <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-jodatime/target/site/jacoco/jacoco.xml</jacocoReport>
+                                    <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-web/target/site/jacoco/jacoco.xml</jacocoReport>
+                                    <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-web-jsp/target/site/jacoco/jacoco.xml</jacocoReport>
+                                    <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-security-web/target/site/jacoco/jacoco.xml</jacocoReport>
+                                    <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-validator/target/site/jacoco/jacoco.xml</jacocoReport>
+                                    <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints/target/site/jacoco/jacoco.xml</jacocoReport>
+                                    <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-string/target/site/jacoco/jacoco.xml</jacocoReport>
+                                </jacocoReports>
+                                <sourceDirectories>
+                                    <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-common/src/main/java</sourceDirectory>
+                                    <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-jodatime/src/main/java</sourceDirectory>
+                                    <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-web/src/main/java</sourceDirectory>
+                                    <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-web-jsp/src/main/java</sourceDirectory>
+                                    <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-security-web/src/main/java</sourceDirectory>
+                                    <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-validator/src/main/java</sourceDirectory>
+                                    <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints/src/main/java</sourceDirectory>
+                                    <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-string/src/main/java</sourceDirectory>
+                                </sourceDirectories>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+    </profiles>
 </project>

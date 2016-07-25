@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+#this script is left to keep backward compatibility.
 
 DEFAULT_GOALS="clean install"
 
@@ -10,13 +11,6 @@ fi
 echo "[INFO] Start a build."
 
 echo "[DEBUG] Command arguments : \"${commandArgs}\""
-
-mvn -U -f terasoluna-gfw-parent/pom.xml ${commandArgs}
-buildResult=$?
-if test ${buildResult} -ne 0 ; then
-    echo "[ERROR] Failed a build."
-    exit ${buildResult}
-fi
 
 mvn -U ${commandArgs}
 buildResult=$?
