@@ -62,24 +62,6 @@
             <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
         </repository>
     </repositories>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-        <!-- <repository>
-            <id>terasoluna-gfw-releases</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
-        </repository>
-        <snapshotRepository>
-            <id>terasoluna-gfw-snapshots</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
-        </snapshotRepository> -->
-    </distributionManagement>
     <build>
         <pluginManagement>
             <plugins>
@@ -99,17 +81,6 @@
                     <version>${jacoco-maven-plugin.version}</version>
                     <configuration>
                         <skip>true</skip>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.sonatype.plugins</groupId>
-                    <artifactId>nexus-staging-maven-plugin</artifactId>
-                    <version>${nexus-staging-maven-plugin.version}</version>
-                    <extensions>true</extensions>
-                    <configuration>
-                        <serverId>ossrh</serverId>
-                        <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                        <autoReleaseAfterClose>true</autoReleaseAfterClose>
                     </configuration>
                 </plugin>
             </plugins>
@@ -138,6 +109,16 @@
                 <module>terasoluna-gfw-common-libraries</module>
                 <module>terasoluna-gfw-dependencies</module>
             </modules>
+            <distributionManagement>
+                <repository>
+                    <id>terasoluna-gfw-releases</id>
+                    <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>terasoluna-gfw-snapshots</id>
+                    <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
+                </snapshotRepository>
+            </distributionManagement>
         </profile>
         <profile>
             <id>common-libs-only</id>
@@ -214,14 +195,32 @@
         </profile>
         <profile>
             <id>release-sign-artifacts</id>
+            <!-- for release -->
+            <!-- mvn -DperformRelease=true deploy -->
             <activation>
                 <property>
                     <name>performRelease</name>
                     <value>true</value>
                 </property>
             </activation>
+            <modules>
+                <module>terasoluna-gfw-parent</module>
+                <module>terasoluna-gfw-common-libraries</module>
+                <module>terasoluna-gfw-dependencies</module>
+            </modules>
+            <distributionManagement>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+            </distributionManagement>
             <build>
                 <plugins>
+                    <!-- generate PGP Signature -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-gpg-plugin</artifactId>
@@ -235,6 +234,17 @@
                                 </goals>
                             </execution>
                         </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${nexus-staging-maven-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
                     </plugin>
                 </plugins>
             </build>
