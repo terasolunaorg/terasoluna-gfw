@@ -80,7 +80,9 @@ public class TransactionTokenContextImpl implements TransactionTokenContext {
      * If the <code>receivedToken</code> contains a valid token, sets the instruction to create a new
      * <code>TransactionToken</code>
      * @see org.terasoluna.gfw.web.token.transaction.TransactionTokenContext#createToken()
+     * @deprecated not work properly
      */
+    @Deprecated
     @Override
     public void createToken() {
         if (receivedToken.valid()) {
@@ -94,7 +96,9 @@ public class TransactionTokenContextImpl implements TransactionTokenContext {
      * set reserveCommand to
      * {@link org.terasoluna.gfw.web.token.transaction.TransactionTokenContextImpl.ReserveCommand#REMOVE_TOKEN}
      * @see org.terasoluna.gfw.web.token.transaction.TransactionTokenContext#removeToken()
+     * @deprecated not work properly
      */
+    @Deprecated
     @Override
     public void removeToken() {
         reserveCommand = ReserveCommand.REMOVE_TOKEN;
@@ -102,7 +106,9 @@ public class TransactionTokenContextImpl implements TransactionTokenContext {
 
     /**
      * rollback resrveCommand to default
+     * @deprecated not work properly
      */
+    @Deprecated
     public void cancelReservation() {
         reserveCommand = defaultCommand;
     }
