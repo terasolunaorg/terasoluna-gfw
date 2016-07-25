@@ -680,6 +680,16 @@ public class TransactionTokenInterceptorTest {
         }
     }
 
+    @Test
+    public void testAfterCompletionWithExceptionHasNoTransactionTokenContextImpl() {
+        try {
+            interceptor.afterCompletion(request, response, null, new Exception());
+        } catch (Exception e) {
+            fail();
+        }
+    }
+
+    
     /*
      * @Test public void testCreateTokenSynchronization() throws Exception { int size = 2000; Thread arrThreads[] = new
      * Thread[size]; for (int i = 0; i <size ; i++) { Thread thread = new Thread(new Runnable() {

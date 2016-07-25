@@ -321,8 +321,10 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
         if (ex != null) {
             TransactionTokenContextImpl tokenContext = (TransactionTokenContextImpl) request
                     .getAttribute(TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME);
-            TransactionToken token = tokenContext.getReceivedToken();
-            removeToken(token);
+            if (tokenContext != null) {
+                TransactionToken token = tokenContext.getReceivedToken();
+                removeToken(token);
+            }
         }
 
     }
