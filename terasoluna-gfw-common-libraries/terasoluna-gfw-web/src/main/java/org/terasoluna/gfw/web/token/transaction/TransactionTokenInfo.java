@@ -75,8 +75,9 @@ public class TransactionTokenInfo {
     }
 
     /**
-     * [todo] write javadoc
-     * @return
+     * Check whether the {@link TransactionToken} represented by this {@link TransactionTokenInfo} object needs to be taken
+     * over.
+     * @return {@code true} if need to be taken over token. {@code false} otherwise
      */
     public boolean needKeep(){
         return tokenType.needKeep();
