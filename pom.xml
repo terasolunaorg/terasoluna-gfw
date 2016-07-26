@@ -76,7 +76,7 @@
     </properties>
     <profiles>
         <profile>
-            <id>full-terasoluna-nexus</id>
+            <id>default</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -97,7 +97,7 @@
             </distributionManagement>
         </profile>
         <profile>
-            <id>full-maven-central</id>
+            <id>central</id>
             <!-- for release to Maven Central Repository-->
             <modules>
                 <module>terasoluna-gfw-parent</module>
@@ -146,7 +146,7 @@
             </build>
         </profile>
         <profile>
-            <id>common-libs-only</id>
+            <id>common-libs</id>
             <modules>
                 <module>terasoluna-gfw-common-libraries</module>
             </modules>

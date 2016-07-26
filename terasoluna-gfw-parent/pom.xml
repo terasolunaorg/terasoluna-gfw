@@ -434,7 +434,7 @@
     </properties>
     <profiles>
         <profile>
-            <id>full-terasoluna-nexus</id>
+            <id>default</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -450,7 +450,7 @@
             </distributionManagement>
         </profile>
         <profile>
-            <id>full-maven-central</id>
+            <id>central</id>
             <distributionManagement>
                 <repository>
                     <id>ossrh</id>
