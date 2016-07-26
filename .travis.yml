@@ -13,4 +13,4 @@ install: true
 
 script:
   - mvn -U clean install
-  - mvn -U -P common-libs-only jacoco:report coveralls:report
+  - mvn -U -P common-libs jacoco:report coveralls:report

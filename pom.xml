@@ -20,6 +20,18 @@
         <name>terasoluna.org</name>
         <url>http://terasoluna.org</url>
     </organization>
+    <developers>
+        <developer>
+            <name>NTT DATA</name>
+            <organization>NTT DATA Corporation</organization>
+            <organizationUrl>http://terasolunaorg.github.io/</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git@github.com:terasolunaorg/terasoluna-gfw.git</connection>
+        <developerConnection>scm:git:git@github.com:terasolunaorg/terasoluna-gfw.git</developerConnection>
+        <url>git@github.com:terasolunaorg/terasoluna-gfw.git</url>
+    </scm>
     <repositories>
         <repository>
             <snapshots>
@@ -56,6 +68,8 @@
         <formatter-maven-plugin.version>0.5.2</formatter-maven-plugin.version>
         <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
         <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
+        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
         <!-- == Project Properties == -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.deploy.skip>true</maven.deploy.skip>
@@ -71,12 +85,68 @@
                 <module>terasoluna-gfw-common-libraries</module>
                 <module>terasoluna-gfw-dependencies</module>
             </modules>
+            <distributionManagement>
+                <repository>
+                    <id>terasoluna-gfw-releases</id>
+                    <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>terasoluna-gfw-snapshots</id>
+                    <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
+                </snapshotRepository>
+            </distributionManagement>
         </profile>
         <profile>
-            <id>common-libs-only</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
+            <id>central</id>
+            <!-- for release to Maven Central Repository-->
+            <modules>
+                <module>terasoluna-gfw-parent</module>
+                <module>terasoluna-gfw-common-libraries</module>
+                <module>terasoluna-gfw-dependencies</module>
+            </modules>
+            <distributionManagement>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <!-- generate PGP Signature -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${maven-gpg-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${nexus-staging-maven-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>common-libs</id>
             <modules>
                 <module>terasoluna-gfw-common-libraries</module>
             </modules>
