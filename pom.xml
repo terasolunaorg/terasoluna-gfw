@@ -98,9 +98,6 @@
         </profile>
         <profile>
             <id>common-libs-only</id>
-            <activation>
-                <activeByDefault>false</activeByDefault>
-            </activation>
             <modules>
                 <module>terasoluna-gfw-common-libraries</module>
             </modules>
