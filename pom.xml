@@ -99,12 +99,6 @@
         <profile>
             <id>full-maven-central</id>
             <!-- for release to Maven Central Repository-->
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
             <modules>
                 <module>terasoluna-gfw-parent</module>
                 <module>terasoluna-gfw-common-libraries</module>

@@ -451,12 +451,6 @@
         </profile>
         <profile>
             <id>full-maven-central</id>
-            <activation>
-                <property>
-                    <name>performRelease</name>
-                    <value>true</value>
-                </property>
-            </activation>
             <distributionManagement>
                 <repository>
                     <id>ossrh</id>
