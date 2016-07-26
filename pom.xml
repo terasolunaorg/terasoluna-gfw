@@ -76,7 +76,7 @@
     </properties>
     <profiles>
         <profile>
-            <id>default</id>
+            <id>full-terasoluna-nexus</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -167,9 +167,8 @@
             </build>
         </profile>
         <profile>
-            <id>release-sign-artifacts</id>
-            <!-- for release -->
-            <!-- mvn -DperformRelease=true deploy -->
+            <id>full-maven-central</id>
+            <!-- for release to Maven Central Repository-->
             <activation>
                 <property>
                     <name>performRelease</name>

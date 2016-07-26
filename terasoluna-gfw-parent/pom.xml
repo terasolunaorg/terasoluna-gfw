@@ -434,7 +434,7 @@
     </properties>
     <profiles>
         <profile>
-            <id>default</id>
+            <id>full-terasoluna-nexus</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
             </activation>
@@ -450,7 +450,7 @@
             </distributionManagement>
         </profile>
         <profile>
-            <id>release-sign-artifacts</id>
+            <id>full-maven-central</id>
             <activation>
                 <property>
                     <name>performRelease</name>
