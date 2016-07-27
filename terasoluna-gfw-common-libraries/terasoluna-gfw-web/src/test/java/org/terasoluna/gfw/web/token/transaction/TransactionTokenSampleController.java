@@ -66,16 +66,4 @@ public class TransactionTokenSampleController {
     public void fifth(SampleForm form, Model model) {
         logger.debug("fifth");
     }
-
-    @RequestMapping(value="/sixth")
-    @TransactionTokenCheck(type = TransactionTokenType.KEEP)
-    public void sixth(SampleForm form, Model model) {
-        logger.debug("sixth");
-    }
-
-    @RequestMapping(value="/seventh")
-    @TransactionTokenCheck(type = TransactionTokenType.UPDATE)
-    public void seventh(SampleForm form, Model model) {
-        logger.debug("seventh");
-    }
 }

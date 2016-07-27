@@ -52,23 +52,7 @@ public enum TransactionTokenType {
      * To use if you want to take over the same transaction token between the same transaction.<br>
      * For example,This type is used in the method that does not return a transaction token, such as a file download.
      */
-    CHECK(true, false, true),
-    /**
-     * Indicate that the corresponding handler method is without the transaction boundary <br>
-     * <p>
-     * Transaction token check will not be performed in this type of {@link TransactionToken},
-     * and Transaction token is no update.
-     * To use if you want to take over the same transaction token between the same transaction.<br>
-     * For example,This type is used in the method that does not return a transaction token, such as a file download.
-     */
-    KEEP(false, false, true),
-    /**
-     * Indicate that the corresponding handler method is within the transaction boundary <br>
-     * <p>
-     * Transaction token check will not be performed in this type of {@link TransactionToken},
-     * but Transaction token is updated.
-     */
-    UPDATE(false, true, true);
+    CHECK(true, false, true);
 
     /**
      * whether need to validate token
