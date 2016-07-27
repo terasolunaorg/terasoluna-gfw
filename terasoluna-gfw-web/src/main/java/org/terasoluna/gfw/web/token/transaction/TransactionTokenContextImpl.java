@@ -56,7 +56,7 @@ public class TransactionTokenContextImpl implements TransactionTokenContext {
             } else {
                 defaultCommand = ReserveCommand.CREATE_TOKEN;
             }
-        } else if (tokenInfo.needKeep() && receivedToken.valid()) {
+        } else if (tokenInfo.needKeep()) {
             defaultCommand = ReserveCommand.KEEP_TOKEN;
         } else {
             if (receivedToken.valid()) {
