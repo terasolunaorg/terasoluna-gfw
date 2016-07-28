@@ -65,13 +65,21 @@ After adding above, add the following dependency definitions.
 ``` xml
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-web</artifactId>
+    <artifactId>terasoluna-gfw-web-dependencies</artifactId>
+    <type>pom</type>
 </dependency>
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-jodatime</artifactId>
+    <artifactId>terasoluna-gfw-web-jsp-dependencies</artifactId>
     <type>pom</type>
+</dependency>
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
+    <type>pom</type>
+</dependency>
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
@@ -88,19 +96,27 @@ After adding above, add the following dependency definitions.
 <!-- If Spring Security is to be used -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-security-web</artifactId>
+    <artifactId>terasoluna-gfw-security-web-dependencies</artifactId>
+    <type>pom</type>
+</dependency>
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-security-core-dependencies</artifactId>
+    <type>pom</type>
 </dependency>
 
 <!-- If MyBatis3 is to be used -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-mybatis3</artifactId>
+    <artifactId>terasoluna-gfw-mybatis3-dependencies</artifactId>
+    <type>pom</type>
 </dependency>
 
 <!-- If JPA is to be used -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-jpa</artifactId>
+    <artifactId>terasoluna-gfw-jpa-dependencies</artifactId>
+    <type>pom</type>
 </dependency>
 ```
 
@@ -117,8 +133,25 @@ Add the following dependency definitions.
 ``` xml
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-web</artifactId>
+    <artifactId>terasoluna-gfw-web-dependencies</artifactId>
     <version>5.1.0.RELEASE</version>
+    <type>pom</type>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-web-jsp-dependencies</artifactId>
+    <version>5.1.0.RELEASE</version>
+    <type>pom</type>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
+    <version>5.1.0.RELEASE</version>
+    <type>pom</type>
 </dependency>
 
 <!-- OPTIONAL -->
@@ -140,22 +173,31 @@ Add the following dependency definitions.
 <!-- If Spring Security is to be used -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-security-web</artifactId>
+    <artifactId>terasoluna-gfw-security-web-dependencies</artifactId>
     <version>5.1.0.RELEASE</version>
+    <type>pom</type>
+</dependency>
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-security-core-dependencies</artifactId>
+    <version>5.1.0.RELEASE</version>
+    <type>pom</type>
 </dependency>
 
 <!-- If MyBatis3 is to be used -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-mybatis3</artifactId>
+    <artifactId>terasoluna-gfw-mybatis3-dependencies</artifactId>
     <version>5.1.0.RELEASE</version>
+    <type>pom</type>
 </dependency>
 
 <!-- If JPA is to be used -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-jpa</artifactId>
+    <artifactId>terasoluna-gfw-jpa-dependencies</artifactId>
     <version>5.1.0.RELEASE</version>
+    <type>pom</type>
 </dependency>
 ```
 
