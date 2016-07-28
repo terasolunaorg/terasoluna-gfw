@@ -68,24 +68,28 @@ After adding above, add the following dependency definitions.
     <artifactId>terasoluna-gfw-web-dependencies</artifactId>
     <type>pom</type>
 </dependency>
+
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-web-jsp-dependencies</artifactId>
     <type>pom</type>
 </dependency>
+
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
     <type>pom</type>
 </dependency>
+
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
     <type>pom</type>
 </dependency>
+
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
