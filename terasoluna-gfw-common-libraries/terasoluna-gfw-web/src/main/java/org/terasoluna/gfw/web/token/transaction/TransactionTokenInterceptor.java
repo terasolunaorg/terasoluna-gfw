@@ -160,19 +160,7 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
             if (!validateToken(receivedToken, tokenStore, tokenInfo)) {
                 processTransactionTokenError(receivedToken);
             }
-        } else if (tokenInfo.needKeep()) {
-            receivedToken = createReceivedToken(request);
-            if (receivedToken.valid()) {
-                if (tokenInfo.needCreate()) {
-                    if (!tokenStore.existToken(receivedToken)) {
-                        processTransactionTokenErrorOnKeep(request);
-                    }
-                }
-            } else {
-                processTransactionTokenErrorOnKeep(request);
-            }
         }
-
         if (tokenInfo.getTransactionTokenType() == TransactionTokenType.BEGIN) {
             // This logic is added later to remove existing token sent in the request in case of Transaction BEGIN
             // When transactions BEGIN, the transaction token sent from the request are usually those which are generated
@@ -199,18 +187,6 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
             TransactionToken receivedToken) {
         removeToken(receivedToken);
         throw new InvalidTransactionTokenException();
-    }
-
-    /**
-     * Perform a process when an error occurs in the take-over of the transaction token required method.
-     * @param request current HTTP request
-     * @throws IllegalStateException in case of received invalid token when you use {@link TransactionTokenType#UPDATE} or 
-     * {@link TransactionTokenType#KEEP}.
-     */
-    protected void processTransactionTokenErrorOnKeep(
-            HttpServletRequest request) {
-        throw new IllegalStateException("received invalid token when you use TransactionTokenType UPDATE or KEEP . received tokenValue is "
-                + request.getParameter(TOKEN_REQUEST_PARAMETER));
     }
 
     /**
@@ -396,7 +372,7 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
 
     /**
      * Set the receivedToken to the attributes named <code>TransactionTokenInterceptor.NEXT_TOKEN</code> of request.
-     * And if receivedToken is validated, it stored in <code>TransactionTokenStore</code> without updates.
+     * And receivedToken stored in <code>TransactionTokenStore</code> without updates.
      * @param request current HTTP request
      * @param receivedToken {@link TransactionToken} got from the current HTTP request
      * @param tokenInfo meta-information about a TransactionToken
@@ -404,9 +380,7 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
      */
     void keepToken(HttpServletRequest request, TransactionToken receivedToken,
             TransactionTokenInfo tokenInfo, TransactionTokenStore tokenStore) {
-        if (tokenInfo.needValidate()) {
-            tokenStore.store(receivedToken);
-        }
+        tokenStore.store(receivedToken);
         request.setAttribute(NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME, receivedToken);
     }
 }

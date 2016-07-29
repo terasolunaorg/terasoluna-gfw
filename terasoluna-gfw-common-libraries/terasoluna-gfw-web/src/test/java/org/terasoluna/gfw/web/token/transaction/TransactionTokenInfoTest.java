@@ -174,21 +174,6 @@ public class TransactionTokenInfoTest {
 
         String tokenName = "aaa";
 
-        TransactionTokenType tokenType = TransactionTokenType.KEEP;
-
-        // run
-        TransactionTokenInfo tokenInfo = new TransactionTokenInfo(tokenName, tokenType);
-        boolean output = tokenInfo.needCreate();
-        // assert
-        assertThat(output, is(false));
-    }
-
-    @Test
-    public void testNeedCreate06() {
-        // setup input parameters
-
-        String tokenName = "aaa";
-
         TransactionTokenType tokenType = TransactionTokenType.CHECK;
 
         // run
@@ -199,37 +184,7 @@ public class TransactionTokenInfoTest {
     }
 
     @Test
-    public void testNeedCreate07() {
-        // setup input parameters
-
-        String tokenName = "aaa";
-
-        TransactionTokenType tokenType = TransactionTokenType.UPDATE;
-
-        // run
-        TransactionTokenInfo tokenInfo = new TransactionTokenInfo(tokenName, tokenType);
-        boolean output = tokenInfo.needCreate();
-        // assert
-        assertThat(output, is(true));
-    }
-
-    @Test
     public void testNeedValidate05() {
-        // setup input parameters
-
-        String tokenName = "aaa";
-
-        TransactionTokenType tokenType = TransactionTokenType.KEEP;
-
-        // run
-        TransactionTokenInfo info = new TransactionTokenInfo(tokenName, tokenType);
-        boolean output = info.needValidate();
-        // assert
-        assertThat(output, is(false));
-    }
-
-    @Test
-    public void testNeedValidate06() {
         // setup input parameters
 
         String tokenName = "aaa";
@@ -243,20 +198,6 @@ public class TransactionTokenInfoTest {
         assertThat(output, is(true));
     }
     
-    @Test
-    public void testNeedValidate07() {
-        // setup input parameters
-
-        String tokenName = "aaa";
-
-        TransactionTokenType tokenType = TransactionTokenType.UPDATE;
-
-        // run
-        TransactionTokenInfo info = new TransactionTokenInfo(tokenName, tokenType);
-        boolean output = info.needValidate();
-        // assert
-        assertThat(output, is(false));
-    }
     
     @Test
     public void testNeedKeep01(){
@@ -324,37 +265,7 @@ public class TransactionTokenInfoTest {
 
         String tokenName = "aaa";
 
-        TransactionTokenType tokenType = TransactionTokenType.KEEP;
-
-        // run
-        TransactionTokenInfo info = new TransactionTokenInfo(tokenName, tokenType);
-        boolean output = info.needKeep();
-        // assert
-        assertThat(output, is(true));
-    }
-
-    @Test
-    public void testNeedKeep06(){
-        // setup input parameters
-
-        String tokenName = "aaa";
-
         TransactionTokenType tokenType = TransactionTokenType.CHECK;
-
-        // run
-        TransactionTokenInfo info = new TransactionTokenInfo(tokenName, tokenType);
-        boolean output = info.needKeep();
-        // assert
-        assertThat(output, is(true));
-    }
-
-    @Test
-    public void testNeedKeep07(){
-        // setup input parameters
-
-        String tokenName = "aaa";
-
-        TransactionTokenType tokenType = TransactionTokenType.UPDATE;
 
         // run
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, tokenType);
