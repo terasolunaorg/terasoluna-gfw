@@ -72,6 +72,20 @@ After adding above, add the following dependency definitions.
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-web-jsp-dependencies</artifactId>
+    <type>pom</type>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
+    <type>pom</type>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-string</artifactId>
 </dependency>
 
@@ -85,20 +99,6 @@ After adding above, add the following dependency definitions.
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-validator</artifactId>
-</dependency>
-
-<!-- OPTIONAL -->
-<dependency>
-    <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-web-jsp-dependencies</artifactId>
-    <type>pom</type>
-</dependency>
-
-<!-- OPTIONAL -->
-<dependency>
-    <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
-    <type>pom</type>
 </dependency>
 
 <!-- OPTIONAL -->
@@ -163,6 +163,22 @@ Add the following dependency definitions.
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-web-jsp-dependencies</artifactId>
+    <version>5.1.0.RELEASE</version>
+    <type>pom</type>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
+    <version>5.1.0.RELEASE</version>
+    <type>pom</type>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-string</artifactId>
     <version>5.1.0.RELEASE</version>
 </dependency>
@@ -179,22 +195,6 @@ Add the following dependency definitions.
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-validator</artifactId>
     <version>5.1.0.RELEASE</version>
-</dependency>
-
-<!-- OPTIONAL -->
-<dependency>
-    <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-web-jsp-dependencies</artifactId>
-    <version>5.1.0.RELEASE</version>
-    <type>pom</type>
-</dependency>
-
-<!-- OPTIONAL -->
-<dependency>
-    <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
-    <version>5.1.0.RELEASE</version>
-    <type>pom</type>
 </dependency>
 
 <!-- OPTIONAL -->
