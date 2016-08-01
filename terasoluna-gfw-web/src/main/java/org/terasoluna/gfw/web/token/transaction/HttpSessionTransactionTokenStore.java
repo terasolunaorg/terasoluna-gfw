@@ -25,7 +25,6 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.CollectionUtils;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.util.WebUtils;
@@ -273,23 +272,6 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
         synchronized (mutex) {
             session.setAttribute(sessionAttributeKey, new TokenHolder(token
                     .getTokenValue(), System.currentTimeMillis()));
-        }
-    }
-
-    /**
-     * Check whether the {@link TransactionToken} with the same namespace and token key exist in HTTP session.
-     * @param token {@link TransactionToken} instance (must not be {@code null})
-     * @return {@code true} the {@link TransactionToken} is present. {@code false} otherwise.
-     * @throws IllegalArgumentException token is {@code null}.
-     */
-    @Override
-    public boolean existToken(TransactionToken token) {
-        HttpSession session = getSession();
-        Object mutex = getMutex(session);
-        synchronized (mutex) {
-            Enumeration<String> attributeNames = session.getAttributeNames();
-            return CollectionUtils.contains(attributeNames,
-                    createSessionAttributeName(token));
         }
     }
 
