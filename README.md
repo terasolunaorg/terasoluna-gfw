@@ -78,13 +78,13 @@ After adding above, add the following dependency definitions.
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-validator</artifactId>
+    <artifactId>terasoluna-gfw-codepoints</artifactId>
 </dependency>
 
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-codepoints</artifactId>
+    <artifactId>terasoluna-gfw-validator</artifactId>
 </dependency>
 
 <!-- OPTIONAL -->
@@ -170,14 +170,14 @@ Add the following dependency definitions.
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-validator</artifactId>
+    <artifactId>terasoluna-gfw-codepoints</artifactId>
     <version>5.1.0.RELEASE</version>
 </dependency>
 
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
-    <artifactId>terasoluna-gfw-codepoints</artifactId>
+    <artifactId>terasoluna-gfw-validator</artifactId>
     <version>5.1.0.RELEASE</version>
 </dependency>
 
