@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.terasoluna.gfw</groupId>
         <artifactId>terasoluna-gfw-dependencies</artifactId>
-        <version>5.2.0-SNAPSHOT</version>
+        <version>5.2.0.RELEASE</version>
         <relativePath>../../terasoluna-gfw-dependencies/pom.xml</relativePath>
     </parent>
     <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
