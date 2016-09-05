@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.terasoluna.gfw</groupId>
         <artifactId>terasoluna-gfw-common-libraries</artifactId>
-        <version>5.2.0-SNAPSHOT</version>
+        <version>5.2.1-SNAPSHOT</version>
         <relativePath>../../terasoluna-gfw-common-libraries/pom.xml</relativePath>
     </parent>
     <artifactId>terasoluna-gfw-jodatime</artifactId>
