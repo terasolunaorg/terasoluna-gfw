@@ -15,13 +15,17 @@
  */
 package org.terasoluna.gfw.common.codepoints.catalog;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-
 import org.junit.Test;
 import org.terasoluna.gfw.common.codepoints.CodePoints;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+/**
+ * Testing against JIS_X_0201_LatinLetters class.
+ */
 public class JIS_X_0201_LatinLettersTest {
+
     public Class<? extends CodePoints> clazz = JIS_X_0201_LatinLetters.class;
 
     @Test
@@ -37,4 +41,5 @@ public class JIS_X_0201_LatinLettersTest {
         assertThat(codePoints.containsAll("Hello~"), is(false));
         assertThat(codePoints.containsAll("\\100"), is(false));
     }
+
 }

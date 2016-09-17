@@ -19,6 +19,7 @@ import org.terasoluna.gfw.common.codepoints.CodePoints;
 
 /**
  * Code points which consist of JIS X 0201's Latin letters.
+ *
  * @since 5.1.0
  */
 public final class JIS_X_0201_LatinLetters extends CodePoints {
@@ -27,7 +28,8 @@ public final class JIS_X_0201_LatinLetters extends CodePoints {
      * Constructor.
      */
     public JIS_X_0201_LatinLetters() {
-        super(0x0020 /*   */, 0x0021 /* ! */, 0x0022 /* " */, 0x0023 /* # */,
+        super(
+                0x0020 /*   */, 0x0021 /* ! */, 0x0022 /* " */, 0x0023 /* # */,
                 0x0024 /* $ */, 0x0025 /* % */, 0x0026 /* & */, 0x0027 /* ' */,
                 0x0028 /* ( */, 0x0029 /* ) */, 0x002A /* * */, 0x002B /* + */,
                 0x002C /* , */, 0x002D /* - */, 0x002E /* . */, 0x002F /* / */,
@@ -52,4 +54,5 @@ public final class JIS_X_0201_LatinLetters extends CodePoints {
                 0x0078 /* x */, 0x0079 /* y */, 0x007A /* z */, 0x007B /* { */,
                 0x007C /* | */, 0x007D /* } */, 0x203E /* ‾ */);
     }
+
 }

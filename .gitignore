@@ -8,3 +8,7 @@ target
 .idea
 .DS_Store
 *.iml
+*.jar
+*.war
+*.ear
+*.classes

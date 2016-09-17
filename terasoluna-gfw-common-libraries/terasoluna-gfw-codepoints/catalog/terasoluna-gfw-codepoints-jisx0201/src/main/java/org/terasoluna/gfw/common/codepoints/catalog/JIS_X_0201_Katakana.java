@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2016 NTT DATA Corporation
+ * Copyright (C) 2013-2016 NTT DATA Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -18,13 +18,15 @@ package org.terasoluna.gfw.common.codepoints.catalog;
 import org.terasoluna.gfw.common.codepoints.CodePoints;
 
 /**
- * Code points which consist of JIS X 0201's Katakana (a.k.a Halfwidth-Kana). Note that this codepoints include '｢', '｣', '､',
- * '･'.
+ * Code points which consist of JIS X 0201's Katakana (a.k.a Halfwidth-Kana). Note that this codepoints include '｢',
+ * '｣', '､', '･'.
+ *
  * @since 5.1.0
  */
 public class JIS_X_0201_Katakana extends CodePoints {
+
     /**
-     * Constructor
+     * Constructor.
      */
     public JIS_X_0201_Katakana() {
         super(0xFF61 /* ｡ */, 0xFF62 /* ｢ */, 0xFF63 /* ｣ */, 0xFF64 /* ､ */,
@@ -44,4 +46,5 @@ public class JIS_X_0201_Katakana extends CodePoints {
                 0xFF99 /* ﾙ */, 0xFF9A /* ﾚ */, 0xFF9B /* ﾛ */, 0xFF9C /* ﾜ */,
                 0xFF9D /* ﾝ */, 0xFF9E /* ﾞ */, 0xFF9F /* ﾟ */);
     }
+
 }
