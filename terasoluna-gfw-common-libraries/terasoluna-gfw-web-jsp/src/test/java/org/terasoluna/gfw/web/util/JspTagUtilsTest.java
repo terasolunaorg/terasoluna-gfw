@@ -16,15 +16,31 @@
 package org.terasoluna.gfw.web.util;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+
+import java.lang.reflect.Constructor;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.JspTagException;
 
 import org.junit.Test;
-import org.terasoluna.gfw.web.util.JspTagUtils;
 
 public class JspTagUtilsTest {
+
+    @Test
+    public void testJspTagUtils() throws Exception {
+        // set up
+        Constructor<JspTagUtils> constructor = JspTagUtils.class.getDeclaredConstructor();
+        assertThat(constructor.isAccessible(), is(false));
+        constructor.setAccessible(true);
+
+        // assert
+        assertNotNull(constructor.newInstance());
+
+        constructor.setAccessible(false);
+    }
 
     @Test
     public void toBoolean_valueIsTrue() throws JspException {

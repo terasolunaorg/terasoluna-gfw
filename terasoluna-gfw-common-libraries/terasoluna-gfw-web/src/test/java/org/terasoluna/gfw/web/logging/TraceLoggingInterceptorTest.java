@@ -15,7 +15,10 @@
  */
 package org.terasoluna.gfw.web.logging;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
@@ -35,6 +38,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -44,9 +48,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
-import org.terasoluna.gfw.web.logging.TraceLoggingInterceptor;
 
 import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.joran.JoranConfigurator;
+import ch.qos.logback.core.Context;
 
 @ContextConfiguration(locations = "classpath:/test-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -65,6 +72,20 @@ public class TraceLoggingInterceptorTest {
     TraceLoggingInterceptorController controller;
 
     ModelAndView model;
+
+    private final String LOGBACK_UNIT_TEST_FILE_PATH = "src/test/resources/logback-unittest.xml";
+
+    private final String LOGBACK_DEFAULT_FILE_PATH = "src/test/resources/logback.xml";
+
+    private String logbackUnitTestFilePath = LOGBACK_UNIT_TEST_FILE_PATH;
+
+    private String logbackDefaultFilePath = LOGBACK_DEFAULT_FILE_PATH;
+
+    private Logger logger;
+
+    private Context context;
+
+    private JoranConfigurator configurator;
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -89,6 +110,12 @@ public class TraceLoggingInterceptorTest {
         model = mock(ModelAndView.class);
 
         interceptor = new TraceLoggingInterceptor();
+
+        logger = (Logger) LoggerFactory
+                .getLogger(HttpSessionEventLoggingListener.class);
+
+        context = logger.getLoggerContext();
+        configurator = new JoranConfigurator();
     }
 
     @After
@@ -158,6 +185,41 @@ public class TraceLoggingInterceptorTest {
         // assert
         assertThat(startTime, nullValue());
         assertThat(count, is(0L));
+    }
+
+    @Test
+    public void testPreHandleIsTraceEnabledFalse() throws Exception {
+        //Change in the logback setting file
+        configurator.setContext(context);
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackUnitTestFilePath);
+
+        // parameter create
+        Object paramHandler = new Object();
+
+        try {
+            // run
+            interceptor.preHandle(request, response, paramHandler);
+        } catch (Exception e) {
+            fail("illegal case");
+        }
+
+        // expected
+        Long startTime = (Long) request
+                .getAttribute(TraceLoggingInterceptor.class.getName()
+                        + ".startTime");
+
+        long count = jdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM LOGGING_EVENT", Collections.singletonMap(
+                        "", ""), Long.class);
+        // assert
+        assertThat(startTime, nullValue());
+        assertThat(count, is(0L));
+        assertFalse(logger.isDebugEnabled());
+
+        //Change in the logback setting file
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackDefaultFilePath);
     }
 
     /**
@@ -402,6 +464,87 @@ public class TraceLoggingInterceptorTest {
 
         // assert
         verifyLogging(expectedLogStr, levelList, 1);
+    }
+
+    @Test
+    public void testPostHandleNullStartAttr() throws Exception {
+        // parameter create
+        HandlerMethod paramHandler = new HandlerMethod(controller, TraceLoggingInterceptorController.class
+                .getMethod("createForm"));
+        request.setAttribute(TraceLoggingInterceptor.class.getName() + ".startTime", null);
+
+        try {
+            // run
+            interceptor.postHandle(request, response, paramHandler, null);
+        } catch (Exception e) {
+            fail("illegal case");
+        }
+
+        // expected
+        String expectedLogStr = "TraceLoggingInterceptorController.createForm()->";
+        List<Level> levelList = new ArrayList<Level>();
+        levelList.add(Level.TRACE);
+
+        // assert
+        verifyLogging(expectedLogStr, levelList, 2);
+    }
+
+    @Test
+    public void testIsEnabledLogLevelIsWarnEnabledFalse() throws Exception {
+        //Change in the logback setting file
+        configurator.setContext(context);
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackUnitTestFilePath);
+
+        // parameter create
+        HandlerMethod paramHandler = new HandlerMethod(controller, TraceLoggingInterceptorController.class
+                .getMethod("createForm"));
+        long startTime = System.nanoTime();
+        request.setAttribute(TraceLoggingInterceptor.class.getName()
+                + ".startTime", startTime);
+
+        try {
+            // run
+            interceptor.postHandle(request, response, paramHandler, model);
+        } catch (Exception e) {
+            fail("illegal case");
+        }
+
+        // assert
+        assertFalse(logger.isDebugEnabled());
+
+        //Change in the logback setting file
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackDefaultFilePath);
+    }
+
+    @Test
+    public void testIsEnabledLogLevelIsTraceEnabledFalse() throws Exception {
+        //Change in the logback setting file
+        configurator.setContext(context);
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackUnitTestFilePath);
+
+        // parameter create
+        HandlerMethod paramHandler = new HandlerMethod(controller, TraceLoggingInterceptorController.class
+                .getMethod("createForm"));
+        long startTime = System.nanoTime();
+        request.setAttribute(TraceLoggingInterceptor.class.getName()
+                + ".startTime", startTime);
+
+        try {
+            // run
+            interceptor.postHandle(request, response, paramHandler, model);
+        } catch (Exception e) {
+            fail("illegal case");
+        }
+
+        // assert
+        assertFalse(logger.isDebugEnabled());
+
+        //Change in the logback setting file
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackDefaultFilePath);
     }
 
     /**

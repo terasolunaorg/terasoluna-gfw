@@ -15,8 +15,9 @@
  */
 package org.terasoluna.gfw.common.codelist;
 
-import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,15 +25,38 @@ import java.util.Map;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.terasoluna.gfw.common.codelist.AbstractReloadableCodeList;
+import org.slf4j.LoggerFactory;
+
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.joran.JoranConfigurator;
+import ch.qos.logback.core.Context;
 
 /**
  * Abstract class for the reloadable codelist functionality
  */
 public class AbstractReloadableCodeListTest {
 
+    private final String LOGBACK_UNIT_TEST_FILE_PATH = "src/test/resources/logback-unittest.xml";
+
+    private final String LOGBACK_DEFAULT_FILE_PATH = "src/test/resources/logback.xml";
+
+    private String logbackUnitTestFilePath = LOGBACK_UNIT_TEST_FILE_PATH;
+
+    private String logbackDefaultFilePath = LOGBACK_DEFAULT_FILE_PATH;
+
+    private Logger logger;
+
+    private Context context;
+
+    private JoranConfigurator configurator;
+
     @Before
     public void setUp() throws Exception {
+
+        logger = (Logger) LoggerFactory.getLogger(AbstractReloadableCodeList.class);
+        context = logger.getLoggerContext();
+        configurator = new JoranConfigurator();
     }
 
     @After
@@ -120,6 +144,52 @@ public class AbstractReloadableCodeListTest {
         for (String key : mapResult2.keySet()) {
             assertThat(mapResult2.get(key), is(mapExpectedFirstFetch.get(key)));
         }
+    }
+
+    @Test
+    public void testRefreshIsDebugEnabledFalse() throws Exception {
+        //Change in the logback setting file
+        configurator.setContext(context);
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackUnitTestFilePath);
+
+        // create expected values
+        Map<String, String> mapExpectedFirstFetch = new HashMap<String, String>();
+        mapExpectedFirstFetch.put("001", "firstRetrieve001");
+        mapExpectedFirstFetch.put("002", "firstRetrieve002");
+        mapExpectedFirstFetch.put("003", "firstRetrieve003");
+
+        Map<String, String> mapExpectedSecondFetch = new HashMap<String, String>();
+        mapExpectedSecondFetch.put("001", "secondRetrieve001");
+        mapExpectedSecondFetch.put("002", "secondRetrieve002");
+        mapExpectedSecondFetch.put("003", "secondRetrieve003");
+
+        // create target
+        AbstractReloadableCodeList reloadableCodeList = new ExtendedReloadableCodelist();
+
+        // fetch codelist map for the first time
+        Map<String, String> mapResult1 = reloadableCodeList.asMap();
+
+        // assert
+        assertThat(mapResult1.size(), is(mapExpectedFirstFetch.size()));
+        for (String key : mapResult1.keySet()) {
+            assertThat(mapResult1.get(key), is(mapExpectedFirstFetch.get(key)));
+        }
+        assertFalse(logger.isDebugEnabled());
+
+        // fetch codelist map for the first time
+        reloadableCodeList.afterPropertiesSet();
+
+        // fetch codelist map again immediately
+        Map<String, String> mapResult2 = reloadableCodeList.asMap();
+        assertThat(mapResult2.size(), is(mapExpectedSecondFetch.size()));
+        for (String key : mapResult2.keySet()) {
+            assertThat(mapResult2.get(key), is(mapExpectedSecondFetch.get(key)));
+        }
+
+        //Change in the logback setting file
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackDefaultFilePath);
     }
 
 }

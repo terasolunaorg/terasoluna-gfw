@@ -391,6 +391,35 @@ public class MessagesPanelTagTest {
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
     }
 
+    @Test
+    public void testDoStartTagInternalPanelElementAndOuterElementEmpty() throws Exception {
+        // set up
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
+                ResultMessages.info().add(ResultMessage.fromText("foo")));
+        tag.setPanelElement("");
+        tag.setOuterElement("");
+        int ret = tag.doStartTag();
+        String expected = "<li>foo</li>";
+
+        // assert
+        assertThat(getOutput(), is(expected));
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+    }
+
+    @Test
+    public void testDoStartTagInternalPanelElementEmpty() throws Exception {
+        // set up
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
+                ResultMessages.info().add(ResultMessage.fromText("foo")));
+        tag.setPanelElement("");
+        int ret = tag.doStartTag();
+        String expected = "<ul><li>foo</li></ul>";
+
+        // assert
+        assertThat(getOutput(), is(expected));
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+    }
+
     /**
      * Set default messages attribute name & Use ResultMessages & change PanelElement,OuterElement and InnerElement is empty.<br>
      * check JspTagException.
@@ -402,6 +431,19 @@ public class MessagesPanelTagTest {
         tag.setPanelElement("");
         tag.setOuterElement("");
         tag.setInnerElement("");
+        tag.doStartTag();
+    }
+
+    @Test(expected = JspTagException.class)
+    public void testDoStartTagInternalElementNull() throws Exception {
+        // set up
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
+                ResultMessages.info().add(ResultMessage.fromText("foo")));
+        tag.setPanelElement(null);
+        tag.setOuterElement(null);
+        tag.setInnerElement(null);
+
+        // try
         tag.doStartTag();
     }
 
@@ -648,5 +690,33 @@ public class MessagesPanelTagTest {
 
     protected String getOutput() {
         return this.writer.toString();
+    }
+
+    @Test
+    public void testAppendPanelTypeClassPrefixPanelTypeClassPrefixNull() throws Exception {
+        // set up
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
+                ResultMessages.error().add(
+                        ResultMessage.fromText("foo")));
+        tag.setPanelTypeClassPrefix(null);
+        int ret = tag.doStartTag();
+        String expected = "<div class=\"alerterror\"><ul><li>foo</li></ul></div>";
+
+        // assert
+        assertThat(getOutput(), is(expected));
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+    }
+
+    @Test
+    public void testGetTextMessageInstanceofThrowable() throws Exception {
+        // set up
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
+                new Throwable());
+        int ret = tag.doStartTag();
+        String expected = "<div class=\"alert\"><ul><li></li></ul></div>";
+
+        // assert
+        assertThat(getOutput(), is(expected));
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
     }
 }
