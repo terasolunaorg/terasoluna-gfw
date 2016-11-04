@@ -31,7 +31,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.web.servlet.support.RequestDataValueProcessor;
 
 public class CompositeRequestDataValueProcessorTest {
 
@@ -49,7 +48,7 @@ public class CompositeRequestDataValueProcessorTest {
     }
 
     @Test
-    public void testProcessActionSameActionAndResult() {
+    public void testProcessActionSameActionAndResult01() {
         // Set mock behavior
         // for Spring3
         when(
@@ -67,7 +66,7 @@ public class CompositeRequestDataValueProcessorTest {
     }
 
     @Test
-    public void testProcessActionDifferectActionAndResult() {
+    public void testProcessActionDifferectActionAndResult01() {
         // Set mock behavior
         // for Spring3
         when(
@@ -85,11 +84,62 @@ public class CompositeRequestDataValueProcessorTest {
     }
 
     @Test
-    public void testProcessActionNoProcessors() {
+    public void testProcessActionNoProcessors01() {
         // No processors assigned
         compositeRequestDataValueProcessor = new CompositeRequestDataValueProcessor();
         String result = compositeRequestDataValueProcessor.processAction(
                 request, "action");
+        assertThat(result, is("action"));
+    }
+
+    @Test
+    public void testProcessActionSameActionAndResult02() {
+        // Set mock behavior
+        // for Spring3
+        when(
+                requestDataValueProcessor.processAction(
+                        (HttpServletRequest) (anyObject()), anyString()))
+                .thenReturn("action");
+        // for Spring4
+        when(
+                requestDataValueProcessor.processAction(
+                        (HttpServletRequest) (anyObject()), anyString(),
+                        anyString())).thenReturn("action");
+        String result = compositeRequestDataValueProcessor.processAction(
+                request, "action", "method");
+
+        // assert
+        assertThat(result, is("action"));
+    }
+
+    @Test
+    public void testProcessActionDifferectActionAndResult02() {
+        // Set mock behavior
+        // for Spring3
+        when(
+                requestDataValueProcessor.processAction(
+                        (HttpServletRequest) (anyObject()), anyString()))
+                .thenReturn("other_action");
+        // for Spring4
+        when(
+                requestDataValueProcessor.processAction(
+                        (HttpServletRequest) (anyObject()), anyString(),
+                        anyString())).thenReturn("other_action");
+        String result = compositeRequestDataValueProcessor.processAction(
+                request, "action", "method");
+
+        // assert
+        assertThat(result, is("other_action"));
+    }
+
+    @Test
+    public void testProcessActionNoProcessors02() {
+        // No processors assigned
+        compositeRequestDataValueProcessor = new CompositeRequestDataValueProcessor();
+        String result = compositeRequestDataValueProcessor.processAction(
+                request, "action", "method");
+
+        // assert
         assertThat(result, is("action"));
     }
 

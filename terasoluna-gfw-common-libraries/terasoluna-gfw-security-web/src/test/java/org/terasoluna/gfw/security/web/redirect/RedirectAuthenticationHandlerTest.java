@@ -71,6 +71,22 @@ public class RedirectAuthenticationHandlerTest {
         assertThat(response.getRedirectedUrl(), is(redirectURI));
     }
 
+    @Test
+    public void testOnAuthenticationSuccessTargetUrlParameterIsNull() throws Exception {
+        // set up
+        RedirectAuthenticationHandler redireHandler = new RedirectAuthenticationHandler();
+        redireHandler.afterPropertiesSet();
+
+        // expected data
+        String expectedRedirectURL = "/foo/";
+
+        // run
+        redireHandler.onAuthenticationSuccess(request, response, auth);
+
+        // assert
+        assertThat(response.getRedirectedUrl(), is(expectedRedirectURL));
+    }
+
     /**
      * redirected in the name of the default attributes
      */

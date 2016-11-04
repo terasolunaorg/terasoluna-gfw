@@ -49,9 +49,12 @@ import org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.LoggingEvent;
 import ch.qos.logback.core.Appender;
+import ch.qos.logback.core.Context;
 
 import com.google.common.collect.Maps;
 
@@ -77,6 +80,21 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      */
     private Appender<ILoggingEvent> mockAppender;
 
+
+    private final String LOGBACK_UNIT_TEST_FILE_PATH = "src/test/resources/logback-unittest.xml";
+
+    private final String LOGBACK_DEFAULT_FILE_PATH = "src/test/resources/logback.xml";
+
+    private String logbackUnitTestFilePath = LOGBACK_UNIT_TEST_FILE_PATH;
+
+    private String logbackDefaultFilePath = LOGBACK_DEFAULT_FILE_PATH;
+
+    private Logger logger;
+
+    private Context context;
+
+    private JoranConfigurator configurator;
+
     @Before
     public void setUp() {
         this.testTarget = new CodeListInterceptor();
@@ -89,9 +107,12 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         @SuppressWarnings("unchecked")
         Appender<ILoggingEvent> mockAppender = mock(Appender.class);
         this.mockAppender = mockAppender;
-        Logger logger = (Logger) LoggerFactory
+        logger = (Logger) LoggerFactory
                 .getLogger(CodeListInterceptor.class);
         logger.addAppender(mockAppender);
+
+        context = logger.getLoggerContext();
+        configurator = new JoranConfigurator();
     }
 
     @After
@@ -307,6 +328,26 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         // do assert.
         assertThat(testTarget.getCodeLists().isEmpty(), is(true));
 
+    }
+
+    @Test
+    public void testAfterPropertiesSetIsDebugEnabledFalse() throws Exception {
+        //Change in the logback setting file
+        configurator.setContext(context);
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackUnitTestFilePath);
+
+        // set up
+        testTarget.setApplicationContext(new StaticApplicationContext());
+
+        testTarget.afterPropertiesSet();
+
+        // assert
+        assertThat(testTarget.getCodeLists().isEmpty(), is(true));
+
+        //Change in the logback setting file
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackDefaultFilePath);
     }
 
     /**

@@ -15,6 +15,7 @@
  */
 package org.terasoluna.gfw.web.logging;
 
+import static org.junit.Assert.assertFalse;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -28,13 +29,16 @@ import org.junit.Test;
 import org.mockito.ArgumentMatcher;
 import org.slf4j.LoggerFactory;
 import org.springframework.mock.web.MockHttpSession;
-import org.terasoluna.gfw.web.logging.HttpSessionEventLoggingListener;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.LoggingEvent;
 import ch.qos.logback.core.Appender;
+import ch.qos.logback.core.Context;
+import ch.qos.logback.core.joran.spi.JoranException;
 
 public class HttpSessionEventLoggingListenerTest {
 
@@ -48,6 +52,20 @@ public class HttpSessionEventLoggingListenerTest {
 
     private HttpSessionBindingEvent sessionBindingEvent;
 
+    private final String LOGBACK_UNIT_TEST_FILE_PATH = "src/test/resources/logback-unittest.xml";
+
+    private final String LOGBACK_DEFAULT_FILE_PATH = "src/test/resources/logback.xml";
+
+    private String logbackUnitTestFilePath = LOGBACK_UNIT_TEST_FILE_PATH;
+
+    private String logbackDefaultFilePath = LOGBACK_DEFAULT_FILE_PATH;
+
+    private Logger logger;
+
+    private Context context;
+
+    private JoranConfigurator configurator;
+
     @Before
     public void setup() throws Exception {
         mockHttpSession = new MockHttpSession();
@@ -59,10 +77,12 @@ public class HttpSessionEventLoggingListenerTest {
         @SuppressWarnings("unchecked")
         Appender<ILoggingEvent> mockAppender = mock(Appender.class);
         this.mockAppender = mockAppender;
-        Logger logger = (Logger) LoggerFactory
+        logger = (Logger) LoggerFactory
                 .getLogger(HttpSessionEventLoggingListener.class);
         logger.addAppender(mockAppender);
 
+        context = logger.getLoggerContext();
+        configurator = new JoranConfigurator();
     }
 
     @After
@@ -87,6 +107,24 @@ public class HttpSessionEventLoggingListenerTest {
 
     }
 
+    @Test
+    public void testSessionWillPassivateIsDebugEnabledFalse() throws JoranException {
+        //Change in the logback setting file
+        configurator.setContext(context);
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackUnitTestFilePath);
+
+        // run
+        listener.sessionWillPassivate(httpSessionEvent);
+
+        // assert
+        assertFalse(logger.isDebugEnabled());
+
+        //Change in the logback setting file
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackDefaultFilePath);
+    }
+
     /**
      * session DidActivate logging
      */
@@ -101,6 +139,24 @@ public class HttpSessionEventLoggingListenerTest {
         // assert
         verifyLogging(didActivateStr, Level.DEBUG);
 
+    }
+
+    @Test
+    public void testSessionDidActivateIsDebugEnabledFalse() throws Exception {
+        //Change in the logback setting file
+        configurator.setContext(context);
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackUnitTestFilePath);
+
+        // run
+        listener.sessionDidActivate(httpSessionEvent);
+
+        // assert
+        assertFalse(logger.isDebugEnabled());
+
+        //Change in the logback setting file
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackDefaultFilePath);
     }
 
     /**
@@ -120,6 +176,24 @@ public class HttpSessionEventLoggingListenerTest {
 
     }
 
+    @Test
+    public void testAttributeAddedIsDebugEnabledFalse() throws Exception {
+        //Change in the logback setting file
+        configurator.setContext(context);
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackUnitTestFilePath);
+
+        // run
+        listener.attributeAdded(sessionBindingEvent);
+
+        // assert
+        assertFalse(logger.isDebugEnabled());
+
+        //Change in the logback setting file
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackDefaultFilePath);
+    }
+
     /**
      * attribute removed logging
      */
@@ -135,6 +209,24 @@ public class HttpSessionEventLoggingListenerTest {
         // assert
         verifyLogging(attributeRemovedStr, Level.DEBUG);
 
+    }
+
+    @Test
+    public void testAttributeRemovedIsDebugEnabledFalse() throws Exception {
+        //Change in the logback setting file
+        configurator.setContext(context);
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackUnitTestFilePath);
+
+        // run
+        listener.attributeRemoved(sessionBindingEvent);
+
+        // assert
+        assertFalse(logger.isDebugEnabled());
+
+        //Change in the logback setting file
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackDefaultFilePath);
     }
 
     /**
@@ -154,6 +246,24 @@ public class HttpSessionEventLoggingListenerTest {
 
     }
 
+    @Test
+    public void testAttributeReplacedisTraceEnabledFalse() throws Exception {
+        //Change in the logback setting file
+        configurator.setContext(context);
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackUnitTestFilePath);
+
+        // run
+        listener.attributeReplaced(sessionBindingEvent);
+
+        // assert
+        assertFalse(logger.isTraceEnabled());
+
+        //Change in the logback setting file
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackDefaultFilePath);
+    }
+
     /**
      * session create logging
      */
@@ -169,6 +279,24 @@ public class HttpSessionEventLoggingListenerTest {
         // assert
         verifyLogging(sessionCreatedStr, Level.DEBUG);
 
+    }
+
+    @Test
+    public void testSessionCreatedIsDebugEnabledFalse() throws Exception {
+        //Change in the logback setting file
+        configurator.setContext(context);
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackUnitTestFilePath);
+
+        // run
+        listener.sessionCreated(httpSessionEvent);
+
+        // assert
+        assertFalse(logger.isDebugEnabled());
+
+        //Change in the logback setting file
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackDefaultFilePath);
     }
 
     /**
@@ -188,6 +316,23 @@ public class HttpSessionEventLoggingListenerTest {
 
     }
 
+    @Test
+    public void testSessionDestroyedIsDebugEnabledFalse() throws Exception {
+        //Change in the logback setting file
+        configurator.setContext(context);
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackUnitTestFilePath);
+
+        // run
+        listener.sessionDestroyed(httpSessionEvent);
+
+        // assert
+        assertFalse(logger.isDebugEnabled());
+
+        //Change in the logback setting file
+        ((LoggerContext) context).reset();
+        configurator.doConfigure(logbackDefaultFilePath);
+    }
     /**
      * verify logging.
      * @param expectedLogMessage expected log message.

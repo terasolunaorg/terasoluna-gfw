@@ -18,6 +18,7 @@ package org.terasoluna.gfw.web.logging.mdc;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.spy;
@@ -350,6 +351,28 @@ public class AbstractMDCPutFilterTest {
         assertThat(mockFilterChain.actualMdcPutValue,
                 is("123456789012345678901234567890123a"));
 
+    }
+
+    @Test
+    public void testCutValueNull() throws ServletException, IOException {
+        // set up
+        this.testTarget = new AbstractMDCPutFilter() {
+
+            @Override
+            protected String getMDCKey(HttpServletRequest request,
+                    HttpServletResponse response) {
+                return "MDCKey";
+            }
+
+            @Override
+            protected String getMDCValue(HttpServletRequest request,
+                    HttpServletResponse response) {
+                return "MDCValue";
+            }
+        };
+
+        // assert
+        assertNull(testTarget.cutValue(null));
     }
 
     /**

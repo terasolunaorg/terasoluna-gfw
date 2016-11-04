@@ -985,6 +985,31 @@ public class PaginationTagTest {
         assertThat(getOutput(), is(expected));
     }
 
+    @Test
+    public void testEndOuterElement2() throws Exception {
+
+        Page<String> page = mock(Page.class);
+        // set mock behavior
+        when(page.getNumber()).thenReturn(1);
+        when(page.getSize()).thenReturn(0);
+        when(page.getTotalPages()).thenReturn(2);
+        when(page.getTotalElements()).thenReturn(1L);
+
+        tag.setPage(page);
+        tag.setFirstLinkText("");
+        tag.setLastLinkText("");
+        tag.setPreviousLinkText("");
+        tag.setNextLinkText("");
+
+        int ret = tag.doStartTagInternal();
+
+        String expected = "<ul><li><a href=\"?page=0&size=0\">1</a></li><li class=\"active\"><a href=\"javascript:void(0)\">2</a></li></ul>";
+
+        // assert
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput(), is(expected));
+    }
+
     protected String getOutput() {
         return this.writer.toString();
     }
