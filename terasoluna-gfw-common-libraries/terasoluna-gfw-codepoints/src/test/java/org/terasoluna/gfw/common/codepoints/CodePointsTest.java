@@ -696,10 +696,11 @@ public class CodePointsTest {
     public void testEqualsNull() {
         // set up
         CodePoints cp1 = new CodePoints("ABCD");
-        String str = null;
+        CodePoints cp2 = new CodePoints("ABCD");
+        cp2 = null;
 
         // assert
-        assertThat(cp1.equals(str), is(false));
+        assertThat(cp1.equals(cp2), is(false));
     }
 
     @Test
