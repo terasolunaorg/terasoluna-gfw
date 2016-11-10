@@ -27,11 +27,11 @@ public class BusinessExceptionTest {
     private BusinessException exception;
 
     @Test(expected = IllegalArgumentException.class)
-    public void testResultMessagesNullValue() throws Exception {
+    public void testResultMessagesNullValue() {
 
         try {
             new BusinessException(null, null);
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
             // assert
             assertThat(e.getMessage(), is("messages must not be null"));
             throw e;
