@@ -18,7 +18,9 @@ package org.terasoluna.gfw.common.exception;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.terasoluna.gfw.common.message.ResultMessage;
 import org.terasoluna.gfw.common.message.ResultMessages;
 
@@ -26,16 +28,17 @@ public class BusinessExceptionTest {
 
     private BusinessException exception;
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testResultMessagesNullValue() {
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
 
-        try {
-            new BusinessException(null, null);
-        } catch (IllegalArgumentException e) {
-            // assert
-            assertThat(e.getMessage(), is("messages must not be null"));
-            throw e;
-        }
+    @Test
+    public void testResultMessagesNullValue() {
+        // expect
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage("messages must not be null");
+
+        // test
+        new BusinessException(null, null);
 
     }
 
