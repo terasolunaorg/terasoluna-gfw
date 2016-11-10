@@ -123,7 +123,7 @@ public class ResultMessagesLoggingInterceptorTest extends
         try {
             // do test.
             testTarget.invoke(mockMethodInvocation);
-            fail("don't occur BusinessException.");
+            fail("didn't occured BusinessException.");
         } catch (BusinessException e) {
             // do assert.
             assertThat(e, is(occurException));
