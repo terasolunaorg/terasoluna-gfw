@@ -15,19 +15,14 @@
  */
 package org.terasoluna.gfw.common.date;
 
-import static org.junit.Assert.assertNotNull;
-
 import org.junit.Test;
 
 public class JdbcAdjustedDateFactoryTest {
 
     @Test
     public void testJdbcAdjustedDateFactory() throws Exception {
-        // set up
         JdbcAdjustedDateFactory JdbcAdjustedDateFactory = new JdbcAdjustedDateFactory();
 
-        // assert
-        assertNotNull(JdbcAdjustedDateFactory);
     }
 
 }
