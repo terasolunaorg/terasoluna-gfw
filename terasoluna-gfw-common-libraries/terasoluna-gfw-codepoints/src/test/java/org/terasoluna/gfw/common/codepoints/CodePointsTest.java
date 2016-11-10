@@ -704,12 +704,12 @@ public class CodePointsTest {
     }
 
     @Test
-    public void testhashCode() {
+    public void testHashCode() {
         // set up
-        CodePoints codePoints = new CodePoints("abc");
-        int hashCode = codePoints.hashCode();
+        CodePoints cp1 = new CodePoints("ABCD");
+        CodePoints cp2 = new CodePoints("ABCD");
 
         // assert
-        assertThat(hashCode, is(Integer.class));
+        assertThat(cp1.hashCode(), is(cp2.hashCode()));
     }
 }
