@@ -16,7 +16,7 @@
 package org.terasoluna.gfw.common.query;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
+import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
 import java.lang.reflect.Constructor;
@@ -184,14 +184,14 @@ public class QueryEscapeUtilsTest {
     }
 
     @Test
-    public void testPrivateConstructor() throws Exception {
+    public void testQueryEscapeUtils() throws Exception {
         // set up
         Constructor<QueryEscapeUtils> constructor = QueryEscapeUtils.class.getDeclaredConstructor();
         assertThat(constructor.isAccessible(), is(false));
         constructor.setAccessible(true);
 
         // assert
-        assertNotNull(constructor.newInstance());
+        assertThat(constructor.newInstance(), notNullValue());
 
         constructor.setAccessible(false);
     }

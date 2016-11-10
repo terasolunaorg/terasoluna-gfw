@@ -16,7 +16,7 @@
 package org.terasoluna.gfw.web.el;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
+import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
 import java.lang.reflect.Constructor;
@@ -40,16 +40,16 @@ public class FunctionsTest {
      * test private constructor.
      */
     @Test
-    public void testPrivateConstructor() throws Exception {
+    public void testFunctions() throws Exception {
         // set up
-        Constructor<Functions> c = Functions.class.getDeclaredConstructor();
-        assertThat(c.isAccessible(), is(false));
-        c.setAccessible(true);
+        Constructor<Functions> constructor = Functions.class.getDeclaredConstructor();
+        assertThat(constructor.isAccessible(), is(false));
+        constructor.setAccessible(true);
 
         // assert
-        assertNotNull(c.newInstance());
+        assertThat(constructor.newInstance(), notNullValue());
 
-        c.setAccessible(false);
+        constructor.setAccessible(false);
     }
 
     @Test

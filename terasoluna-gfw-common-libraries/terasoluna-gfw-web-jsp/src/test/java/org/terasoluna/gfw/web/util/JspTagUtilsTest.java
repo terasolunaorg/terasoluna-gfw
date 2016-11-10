@@ -16,7 +16,7 @@
 package org.terasoluna.gfw.web.util;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
+import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
@@ -37,7 +37,7 @@ public class JspTagUtilsTest {
         constructor.setAccessible(true);
 
         // assert
-        assertNotNull(constructor.newInstance());
+        assertThat(constructor.newInstance(), notNullValue());
 
         constructor.setAccessible(false);
     }

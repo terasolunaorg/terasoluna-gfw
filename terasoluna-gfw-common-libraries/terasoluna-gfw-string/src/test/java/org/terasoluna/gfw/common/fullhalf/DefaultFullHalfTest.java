@@ -16,7 +16,7 @@
 package org.terasoluna.gfw.common.fullhalf;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
+import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
 import java.lang.reflect.Constructor;
@@ -33,7 +33,7 @@ public class DefaultFullHalfTest {
         constructor.setAccessible(true);
 
         // assert
-        assertNotNull(constructor.newInstance());
+        assertThat(constructor.newInstance(), notNullValue());
 
         constructor.setAccessible(false);
     }
