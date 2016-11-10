@@ -66,7 +66,7 @@ public class AbstractExistInCodeListValidatorTest {
         ExistInCodeListValidator<T> existInCodeListValidator = new ExistInCodeListValidator<T>();
 
         try {
-        existInCodeListValidator.isValid(object, constraintValidatorContext);
+            existInCodeListValidator.isValid(object, constraintValidatorContext);
         } catch(NullPointerException e) {
             e.printStackTrace();
         }
