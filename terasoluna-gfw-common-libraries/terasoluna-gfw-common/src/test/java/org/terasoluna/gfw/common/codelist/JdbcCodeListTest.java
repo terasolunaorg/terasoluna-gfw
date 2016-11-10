@@ -165,8 +165,6 @@ public class JdbcCodeListTest {
 
         // assert
         assertThat(mapOutput.size(), is(0));
-        assertNull(mapOutput.get("valueColumn"));
-        assertNull(mapOutput.get("labelColumn"));
 
     }
 
@@ -185,8 +183,6 @@ public class JdbcCodeListTest {
 
         // assert
         assertThat(mapOutput.size(), is(0));
-        assertNull(mapOutput.get("code_name"));
-        assertNull(mapOutput.get("labelColumn"));
 
     }
 
@@ -205,8 +201,6 @@ public class JdbcCodeListTest {
 
         // assert
         assertThat(mapOutput.size(), is(0));
-        assertNull(mapOutput.get("valueColumn"));
-        assertNull(mapOutput.get("code_id"));
 
     }
 
