@@ -64,4 +64,13 @@ public class FullHalfPairTest {
         assertThat(FullHalfPair1.equals(FullHalfPair2), is(false));
     }
 
+    @Test
+    public void testHalfWidthNotEquals() {
+        // set up
+        FullHalfPair FullHalfPair1 = new FullHalfPair("A", "A");
+        FullHalfPair FullHalfPair2 = new FullHalfPair("B", "B");
+
+        // assert
+        assertThat(FullHalfPair1.equals(FullHalfPair2), is(false));
+    }
 }
