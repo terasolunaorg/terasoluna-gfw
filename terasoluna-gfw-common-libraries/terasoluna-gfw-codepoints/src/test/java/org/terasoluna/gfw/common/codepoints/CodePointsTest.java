@@ -693,16 +693,6 @@ public class CodePointsTest {
     }
 
     @Test
-    public void testEqualsEmpty() {
-        // set up
-        CodePoints cp1 = new CodePoints("ABCD");
-        CodePoints cp2 = new CodePoints("    ");
-
-        // assert
-        assertThat(cp1.equals(cp2), is(false));
-    }
-
-    @Test
     public void testEqualsNull() {
         // set up
         CodePoints cp1 = new CodePoints("ABCD");
