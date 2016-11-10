@@ -15,19 +15,14 @@
  */
 package org.terasoluna.gfw.common.date;
 
-import static org.junit.Assert.assertNotNull;
-
 import org.junit.Test;
 
 public class DefaultDateFactoryTest {
 
     @Test
     public void testDefaultDateFactory() throws Exception {
-        // set up
         DefaultDateFactory defaultDateFactory = new DefaultDateFactory();
 
-        // assert
-        assertNotNull(defaultDateFactory);
     }
 
 }

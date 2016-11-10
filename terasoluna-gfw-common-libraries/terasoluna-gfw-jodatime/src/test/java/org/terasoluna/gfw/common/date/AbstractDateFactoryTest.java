@@ -15,8 +15,6 @@
  */
 package org.terasoluna.gfw.common.date;
 
-import static org.junit.Assert.assertNotNull;
-
 import org.joda.time.DateTime;
 import org.junit.Test;
 
@@ -24,11 +22,8 @@ public class AbstractDateFactoryTest {
 
     @Test
     public void testAbstractDateFactory() throws Exception {
-        // set up
         ExtendsAbstractDateFactory abstractDateFactory = new ExtendsAbstractDateFactory();
 
-        // assert
-        assertNotNull(abstractDateFactory);
     }
 
     public class ExtendsAbstractDateFactory extends AbstractDateFactory {
