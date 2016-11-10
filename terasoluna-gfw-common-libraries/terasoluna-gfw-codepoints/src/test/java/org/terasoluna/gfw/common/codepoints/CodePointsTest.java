@@ -670,10 +670,12 @@ public class CodePointsTest {
     public void testEquals() {
         // set up
         ABCD cp1 = new ABCD();
-        ABCD cp2 = cp1;
+        ABCD cp2 = new ABCD();
+        ABCD cp3 = cp1;
 
         // assert
         assertThat(cp1.equals(cp2), is(true));
+        assertThat(cp1.equals(cp3), is(true));
     }
 
     @Test
