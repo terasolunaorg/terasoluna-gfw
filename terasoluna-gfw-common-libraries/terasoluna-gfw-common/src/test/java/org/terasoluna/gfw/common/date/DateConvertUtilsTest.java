@@ -16,7 +16,7 @@
 package org.terasoluna.gfw.common.date;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
+import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
 import java.lang.reflect.Constructor;
@@ -40,7 +40,7 @@ public class DateConvertUtilsTest {
         constructor.setAccessible(true);
 
         // assert
-        assertNotNull(constructor.newInstance());
+        assertThat(constructor.newInstance(), notNullValue());
 
         constructor.setAccessible(false);
     }
