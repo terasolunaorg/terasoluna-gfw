@@ -80,7 +80,6 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      */
     private Appender<ILoggingEvent> mockAppender;
 
-
     private final String HIGH_LOGLEVEL_FILE_PATH = "src/test/resources/high-loglevel-logback.xml";
 
     private final String LOGBACK_DEFAULT_FILE_PATH = "src/test/resources/logback.xml";
