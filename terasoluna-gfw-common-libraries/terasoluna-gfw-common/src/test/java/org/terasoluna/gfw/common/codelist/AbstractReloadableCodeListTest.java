@@ -16,7 +16,6 @@
 package org.terasoluna.gfw.common.codelist;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 
 import java.util.HashMap;
