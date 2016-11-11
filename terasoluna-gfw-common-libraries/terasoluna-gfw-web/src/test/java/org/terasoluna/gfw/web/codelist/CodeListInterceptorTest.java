@@ -344,6 +344,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
         // assert
         assertThat(testTarget.getCodeLists().isEmpty(), is(true));
+        assertThat(logger.isDebugEnabled(), is(false));
 
         //Change in the logback setting file
         ((LoggerContext) context).reset();
