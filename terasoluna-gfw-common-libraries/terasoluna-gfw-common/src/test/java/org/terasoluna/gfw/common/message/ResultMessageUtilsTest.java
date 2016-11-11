@@ -25,40 +25,13 @@ import static org.mockito.Mockito.when;
 import java.lang.reflect.Constructor;
 import java.util.Locale;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
+import org.terasoluna.gfw.common.codelist.validator.AbstractExistInCodeListValidator;
+import org.terasoluna.gfw.common.logback.ChangingLogbackFile;
 
-import ch.qos.logback.classic.Logger;
-import ch.qos.logback.classic.LoggerContext;
-import ch.qos.logback.classic.joran.JoranConfigurator;
-import ch.qos.logback.core.Context;
-
-public class ResultMessageUtilsTest {
-
-    private final String LOGBACK_UNIT_TEST_FILE_PATH = "src/test/resources/logback-unittest.xml";
-
-    private final String LOGBACK_DEFAULT_FILE_PATH = "src/test/resources/logback.xml";
-
-    private String logbackUnitTestFilePath = LOGBACK_UNIT_TEST_FILE_PATH;
-
-    private String logbackDefaultFilePath = LOGBACK_DEFAULT_FILE_PATH;
-
-    private Logger logger;
-
-    private Context context;
-
-    private JoranConfigurator configurator;
-
-    @Before
-    public void setUp() throws Exception {
-
-        logger = (Logger) LoggerFactory.getLogger(ResultMessageUtils.class);
-        context = logger.getLoggerContext();
-        configurator = new JoranConfigurator();
-    }
+public class ResultMessageUtilsTest extends ChangingLogbackFile {
 
     @Test
     public void testResultMessageUtils() throws Exception {
@@ -149,12 +122,10 @@ public class ResultMessageUtilsTest {
 
     @Test
     public void testResolveMessageIsDebugEnabledFalse() throws Exception {
-        //Change in the logback setting file
-        configurator.setContext(context);
-        ((LoggerContext) context).reset();
-        configurator.doConfigure(logbackUnitTestFilePath);
-
         // set up
+        setLogger(ResultMessageUtils.class);
+        before();
+
         ResultMessage message = mock(ResultMessage.class);
         MessageSource messageSource = mock(MessageSource.class);
         Locale locale = Locale.getDefault();
@@ -171,9 +142,7 @@ public class ResultMessageUtilsTest {
         assertThat(msg, is("MESSAGE_TEXT"));
         assertFalse(logger.isDebugEnabled());
 
-        //Change in the logback setting file
-        ((LoggerContext) context).reset();
-        configurator.doConfigure(logbackDefaultFilePath);
+        after();
     }
 
 }

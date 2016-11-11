@@ -23,41 +23,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.LoggerFactory;
-
-import ch.qos.logback.classic.Logger;
-import ch.qos.logback.classic.LoggerContext;
-import ch.qos.logback.classic.joran.JoranConfigurator;
-import ch.qos.logback.core.Context;
+import org.terasoluna.gfw.common.logback.ChangingLogbackFile;
 
 /**
  * Abstract class for the reloadable codelist functionality
  */
-public class AbstractReloadableCodeListTest {
-
-    private final String LOGBACK_UNIT_TEST_FILE_PATH = "src/test/resources/logback-unittest.xml";
-
-    private final String LOGBACK_DEFAULT_FILE_PATH = "src/test/resources/logback.xml";
-
-    private String logbackUnitTestFilePath = LOGBACK_UNIT_TEST_FILE_PATH;
-
-    private String logbackDefaultFilePath = LOGBACK_DEFAULT_FILE_PATH;
-
-    private Logger logger;
-
-    private Context context;
-
-    private JoranConfigurator configurator;
-
-    @Before
-    public void setUp() throws Exception {
-
-        logger = (Logger) LoggerFactory.getLogger(AbstractReloadableCodeList.class);
-        context = logger.getLoggerContext();
-        configurator = new JoranConfigurator();
-    }
+public class AbstractReloadableCodeListTest extends ChangingLogbackFile {
 
     @After
     public void tearDown() throws Exception {
@@ -148,10 +120,9 @@ public class AbstractReloadableCodeListTest {
 
     @Test
     public void testRefreshIsDebugEnabledFalse() throws Exception {
-        //Change in the logback setting file
-        configurator.setContext(context);
-        ((LoggerContext) context).reset();
-        configurator.doConfigure(logbackUnitTestFilePath);
+        // set up
+        setLogger(AbstractReloadableCodeList.class);
+        before();
 
         // create expected values
         Map<String, String> mapExpectedFirstFetch = new HashMap<String, String>();
@@ -187,9 +158,7 @@ public class AbstractReloadableCodeListTest {
             assertThat(mapResult2.get(key), is(mapExpectedSecondFetch.get(key)));
         }
 
-        //Change in the logback setting file
-        ((LoggerContext) context).reset();
-        configurator.doConfigure(logbackDefaultFilePath);
+        after();
     }
 
 }
