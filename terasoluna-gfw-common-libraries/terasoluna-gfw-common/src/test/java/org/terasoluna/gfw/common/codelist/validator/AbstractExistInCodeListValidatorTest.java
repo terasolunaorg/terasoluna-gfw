@@ -20,47 +20,17 @@ import static org.mockito.Mockito.mock;
 
 import javax.validation.ConstraintValidatorContext;
 
-import org.junit.Before;
 import org.junit.Test;
-import org.slf4j.LoggerFactory;
+import org.terasoluna.gfw.common.logback.ChangingLogbackFile;
 
-import ch.qos.logback.classic.Logger;
-import ch.qos.logback.classic.LoggerContext;
-import ch.qos.logback.classic.joran.JoranConfigurator;
-import ch.qos.logback.core.Context;
-
-public class AbstractExistInCodeListValidatorTest {
-
-    private final String LOGBACK_UNIT_TEST_FILE_PATH = "src/test/resources/logback-unittest.xml";
-
-    private final String LOGBACK_DEFAULT_FILE_PATH = "src/test/resources/logback.xml";
-
-    private String logbackUnitTestFilePath = LOGBACK_UNIT_TEST_FILE_PATH;
-
-    private String logbackDefaultFilePath = LOGBACK_DEFAULT_FILE_PATH;
-
-    private Logger logger;
-
-    private Context context;
-
-    private JoranConfigurator configurator;
-
-    @Before
-    public void setUp() throws Exception {
-
-        logger = (Logger) LoggerFactory.getLogger(AbstractExistInCodeListValidator.class);
-        context = logger.getLoggerContext();
-        configurator = new JoranConfigurator();
-    }
+public class AbstractExistInCodeListValidatorTest extends ChangingLogbackFile {
 
     @Test
     public <T> void testIsValidIsTraceEnabled() throws Exception {
-        //Change in the logback setting file
-        configurator.setContext(context);
-        ((LoggerContext) context).reset();
-        configurator.doConfigure(logbackUnitTestFilePath);
-
         // set up
+        setLogger(AbstractExistInCodeListValidator.class);
+        before();
+
         T object = (T) mock(Object.class);
         ConstraintValidatorContext constraintValidatorContext = mock(ConstraintValidatorContext.class);
         ExistInCodeListValidator<T> existInCodeListValidator = new ExistInCodeListValidator<T>();
@@ -74,9 +44,7 @@ public class AbstractExistInCodeListValidatorTest {
         // assert
         assertFalse(logger.isTraceEnabled());
 
-        //Change in the logback setting file
-        ((LoggerContext) context).reset();
-        configurator.doConfigure(logbackDefaultFilePath);
+        after();
     }
 
 }

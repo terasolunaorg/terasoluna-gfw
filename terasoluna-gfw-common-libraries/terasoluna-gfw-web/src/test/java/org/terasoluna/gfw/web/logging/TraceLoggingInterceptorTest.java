@@ -38,7 +38,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -48,16 +47,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
+import org.terasoluna.gfw.web.logback.ChangingLogbackFile;
 
 import ch.qos.logback.classic.Level;
-import ch.qos.logback.classic.Logger;
-import ch.qos.logback.classic.LoggerContext;
-import ch.qos.logback.classic.joran.JoranConfigurator;
-import ch.qos.logback.core.Context;
 
 @ContextConfiguration(locations = "classpath:/test-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class TraceLoggingInterceptorTest {
+public class TraceLoggingInterceptorTest extends ChangingLogbackFile {
     @Inject
     NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -72,20 +68,6 @@ public class TraceLoggingInterceptorTest {
     TraceLoggingInterceptorController controller;
 
     ModelAndView model;
-
-    private final String LOGBACK_UNIT_TEST_FILE_PATH = "src/test/resources/logback-unittest.xml";
-
-    private final String LOGBACK_DEFAULT_FILE_PATH = "src/test/resources/logback.xml";
-
-    private String logbackUnitTestFilePath = LOGBACK_UNIT_TEST_FILE_PATH;
-
-    private String logbackDefaultFilePath = LOGBACK_DEFAULT_FILE_PATH;
-
-    private Logger logger;
-
-    private Context context;
-
-    private JoranConfigurator configurator;
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -110,12 +92,6 @@ public class TraceLoggingInterceptorTest {
         model = mock(ModelAndView.class);
 
         interceptor = new TraceLoggingInterceptor();
-
-        logger = (Logger) LoggerFactory
-                .getLogger(HttpSessionEventLoggingListener.class);
-
-        context = logger.getLoggerContext();
-        configurator = new JoranConfigurator();
     }
 
     @After
@@ -189,10 +165,9 @@ public class TraceLoggingInterceptorTest {
 
     @Test
     public void testPreHandleIsTraceEnabledFalse() throws Exception {
-        //Change in the logback setting file
-        configurator.setContext(context);
-        ((LoggerContext) context).reset();
-        configurator.doConfigure(logbackUnitTestFilePath);
+        // set up
+        setLogger(HttpSessionEventLoggingListener.class);
+        before();
 
         // parameter create
         Object paramHandler = new Object();
@@ -217,9 +192,7 @@ public class TraceLoggingInterceptorTest {
         assertThat(count, is(0L));
         assertFalse(logger.isDebugEnabled());
 
-        //Change in the logback setting file
-        ((LoggerContext) context).reset();
-        configurator.doConfigure(logbackDefaultFilePath);
+        after();
     }
 
     /**
@@ -491,10 +464,9 @@ public class TraceLoggingInterceptorTest {
 
     @Test
     public void testIsEnabledLogLevelIsWarnEnabledFalse() throws Exception {
-        //Change in the logback setting file
-        configurator.setContext(context);
-        ((LoggerContext) context).reset();
-        configurator.doConfigure(logbackUnitTestFilePath);
+        // set up
+        setLogger(HttpSessionEventLoggingListener.class);
+        before();
 
         // parameter create
         HandlerMethod paramHandler = new HandlerMethod(controller, TraceLoggingInterceptorController.class
@@ -513,17 +485,14 @@ public class TraceLoggingInterceptorTest {
         // assert
         assertFalse(logger.isDebugEnabled());
 
-        //Change in the logback setting file
-        ((LoggerContext) context).reset();
-        configurator.doConfigure(logbackDefaultFilePath);
+        after();
     }
 
     @Test
     public void testIsEnabledLogLevelIsTraceEnabledFalse() throws Exception {
-        //Change in the logback setting file
-        configurator.setContext(context);
-        ((LoggerContext) context).reset();
-        configurator.doConfigure(logbackUnitTestFilePath);
+        // set up
+        setLogger(HttpSessionEventLoggingListener.class);
+        before();
 
         // parameter create
         HandlerMethod paramHandler = new HandlerMethod(controller, TraceLoggingInterceptorController.class
@@ -542,9 +511,7 @@ public class TraceLoggingInterceptorTest {
         // assert
         assertFalse(logger.isDebugEnabled());
 
-        //Change in the logback setting file
-        ((LoggerContext) context).reset();
-        configurator.doConfigure(logbackDefaultFilePath);
+        after();
     }
 
     /**
