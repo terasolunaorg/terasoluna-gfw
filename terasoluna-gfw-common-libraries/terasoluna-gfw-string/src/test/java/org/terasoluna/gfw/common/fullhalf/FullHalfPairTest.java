@@ -29,9 +29,14 @@ public class FullHalfPairTest {
         FullHalfPair FullHalfPair2 = new FullHalfPair("ａ", "a");
         FullHalfPair FullHalfPair3 = FullHalfPair1;
 
+        FullHalfPair FullHalfPair4 = new FullHalfPair("A", "A");
+        FullHalfPair FullHalfPair5 = new FullHalfPair("A", "A");
+
         // assert
         assertThat(FullHalfPair1.equals(FullHalfPair2), is(true));
         assertThat(FullHalfPair1.equals(FullHalfPair3), is(true));
+
+        assertThat(FullHalfPair4.equals(FullHalfPair5), is(true));
     }
 
     @Test
