@@ -15,7 +15,9 @@
  */
 package org.terasoluna.gfw.web.logging;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -97,7 +99,7 @@ public class HttpSessionEventLoggingListenerTest extends ChangingLogbackFile {
         listener.sessionWillPassivate(httpSessionEvent);
 
         // assert
-        assertFalse(logger.isDebugEnabled());
+        assertThat(logger.isDebugEnabled(), is(false));
 
         after();
     }
@@ -128,7 +130,7 @@ public class HttpSessionEventLoggingListenerTest extends ChangingLogbackFile {
         listener.sessionDidActivate(httpSessionEvent);
 
         // assert
-        assertFalse(logger.isDebugEnabled());
+        assertThat(logger.isDebugEnabled(), is(false));
 
         after();
     }
@@ -160,7 +162,7 @@ public class HttpSessionEventLoggingListenerTest extends ChangingLogbackFile {
         listener.attributeAdded(sessionBindingEvent);
 
         // assert
-        assertFalse(logger.isDebugEnabled());
+        assertThat(logger.isDebugEnabled(), is(false));
 
         after();
     }
@@ -192,7 +194,7 @@ public class HttpSessionEventLoggingListenerTest extends ChangingLogbackFile {
         listener.attributeRemoved(sessionBindingEvent);
 
         // assert
-        assertFalse(logger.isDebugEnabled());
+        assertThat(logger.isDebugEnabled(), is(false));
 
         after();
     }
@@ -224,7 +226,7 @@ public class HttpSessionEventLoggingListenerTest extends ChangingLogbackFile {
         listener.attributeReplaced(sessionBindingEvent);
 
         // assert
-        assertFalse(logger.isTraceEnabled());
+        assertThat(logger.isDebugEnabled(), is(false));
 
         after();
     }
@@ -256,7 +258,7 @@ public class HttpSessionEventLoggingListenerTest extends ChangingLogbackFile {
         listener.sessionCreated(httpSessionEvent);
 
         // assert
-        assertFalse(logger.isDebugEnabled());
+        assertThat(logger.isDebugEnabled(), is(false));
 
         after();
     }
@@ -288,7 +290,7 @@ public class HttpSessionEventLoggingListenerTest extends ChangingLogbackFile {
         listener.sessionDestroyed(httpSessionEvent);
 
         // assert
-        assertFalse(logger.isDebugEnabled());
+        assertThat(logger.isDebugEnabled(), is(false));
 
         after();
     }

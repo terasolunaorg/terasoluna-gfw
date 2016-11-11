@@ -28,7 +28,6 @@ import java.util.Locale;
 import org.junit.Test;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
-import org.terasoluna.gfw.common.codelist.validator.AbstractExistInCodeListValidator;
 import org.terasoluna.gfw.common.logback.ChangingLogbackFile;
 
 public class ResultMessageUtilsTest extends ChangingLogbackFile {
@@ -140,7 +139,7 @@ public class ResultMessageUtilsTest extends ChangingLogbackFile {
 
         // assert
         assertThat(msg, is("MESSAGE_TEXT"));
-        assertFalse(logger.isDebugEnabled());
+        assertThat(logger.isDebugEnabled(), is(false));
 
         after();
     }

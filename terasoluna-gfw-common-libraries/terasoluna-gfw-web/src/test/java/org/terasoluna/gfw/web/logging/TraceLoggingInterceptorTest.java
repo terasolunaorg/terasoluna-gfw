@@ -190,7 +190,7 @@ public class TraceLoggingInterceptorTest extends ChangingLogbackFile {
         // assert
         assertThat(startTime, nullValue());
         assertThat(count, is(0L));
-        assertFalse(logger.isDebugEnabled());
+        assertThat(logger.isDebugEnabled(), is(false));
 
         after();
     }
@@ -483,7 +483,7 @@ public class TraceLoggingInterceptorTest extends ChangingLogbackFile {
         }
 
         // assert
-        assertFalse(logger.isDebugEnabled());
+        assertThat(logger.isDebugEnabled(), is(false));
 
         after();
     }
@@ -509,7 +509,7 @@ public class TraceLoggingInterceptorTest extends ChangingLogbackFile {
         }
 
         // assert
-        assertFalse(logger.isDebugEnabled());
+        assertThat(logger.isDebugEnabled(), is(false));
 
         after();
     }

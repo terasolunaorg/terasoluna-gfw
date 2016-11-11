@@ -146,7 +146,7 @@ public class AbstractReloadableCodeListTest extends ChangingLogbackFile {
         for (String key : mapResult1.keySet()) {
             assertThat(mapResult1.get(key), is(mapExpectedFirstFetch.get(key)));
         }
-        assertFalse(logger.isDebugEnabled());
+        assertThat(logger.isDebugEnabled(), is(false));
 
         // fetch codelist map for the first time
         reloadableCodeList.afterPropertiesSet();

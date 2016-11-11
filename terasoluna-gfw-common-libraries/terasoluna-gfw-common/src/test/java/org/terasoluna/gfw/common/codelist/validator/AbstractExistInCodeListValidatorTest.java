@@ -15,7 +15,8 @@
  */
 package org.terasoluna.gfw.common.codelist.validator;
 
-import static org.junit.Assert.assertFalse;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 
 import javax.validation.ConstraintValidatorContext;
@@ -42,7 +43,7 @@ public class AbstractExistInCodeListValidatorTest extends ChangingLogbackFile {
         }
 
         // assert
-        assertFalse(logger.isTraceEnabled());
+        assertThat(logger.isTraceEnabled(), is(false));
 
         after();
     }
