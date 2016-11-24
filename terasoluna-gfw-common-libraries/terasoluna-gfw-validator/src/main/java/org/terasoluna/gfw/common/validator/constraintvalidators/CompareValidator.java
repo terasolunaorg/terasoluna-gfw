@@ -97,8 +97,11 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
         Object rightValue = getPropertyValue(bean, right);
 
         if (leftValue == null || rightValue == null) {
-            return requireBoth ? (leftValue == null && rightValue == null)
-                    : true;
+            if(requireBoth && !(leftValue == null && rightValue == null)){
+                constructValidationMessage(context);
+                return false;
+            }
+            return true;
         }
 
         if (!assertComparable(leftValue, rightValue)) {
