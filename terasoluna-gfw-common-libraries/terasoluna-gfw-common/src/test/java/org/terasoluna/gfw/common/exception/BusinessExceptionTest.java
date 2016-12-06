@@ -15,9 +15,8 @@
  */
 package org.terasoluna.gfw.common.exception;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.Matcher;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -37,29 +36,48 @@ public class BusinessExceptionTest {
         expectedException.expect(IllegalArgumentException.class);
         expectedException.expectMessage("messages must not be null");
 
-        // test
-        new BusinessException(null, null);
-
+        // throw & assert
+        throw new BusinessException(null, null);
     }
 
     @Test
-    public void testGetMessage() throws Exception {
+    public void testConstructor1() throws Exception {
+
+    	String message = "resultMessages";
+
+        // expect
+        expectedException.expect(BusinessException.class);
+        expectedException.expectMessage(message);
+
         // set up
-        ResultMessages resultMessages = ResultMessages.error().add(ResultMessage.fromText("resultMessages"));
+        ResultMessages resultMessages = ResultMessages.error().add(
+                ResultMessage.fromText(message));
         exception = new BusinessException(resultMessages);
 
-        // assert
-        assertThat(exception.getMessage(), is(resultMessages.toString()));
+        // throw & assert
+        throw exception;
     }
 
     @Test
-    public void testGetResultMessages() throws Exception {
-        // set up
-        ResultMessages resultMessages = ResultMessages.error().add(ResultMessage.fromText("resultMessages"));
-        exception = new BusinessException(resultMessages);
+    public void testConstructor2() throws Exception {
 
-        // assert
-        assertThat(exception.getResultMessages(), is(resultMessages));
+        String message = "resultMessages";
+        Exception cause = new IllegalArgumentException("cause");
+
+        // expect
+        expectedException.expect(BusinessException.class);
+        expectedException.expectMessage(message);
+
+        Matcher<? extends Throwable> matcher = CoreMatchers
+                .instanceOf(IllegalArgumentException.class);
+        expectedException.expectCause(matcher);
+
+        // set up
+        ResultMessages resultMessages = ResultMessages.error().add(ResultMessage.fromText(message));
+        exception = new BusinessException(resultMessages, cause);
+
+        // throw & assert
+        throw exception;
     }
 
 }
