@@ -15,6 +15,9 @@
  */
 package org.terasoluna.gfw.common.date;
 
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Test;
 
 public class JdbcAdjustedDateFactoryTest {
@@ -22,7 +25,7 @@ public class JdbcAdjustedDateFactoryTest {
     @Test
     public void testJdbcAdjustedDateFactory() throws Exception {
         JdbcAdjustedDateFactory JdbcAdjustedDateFactory = new JdbcAdjustedDateFactory();
-
+        assertThat(JdbcAdjustedDateFactory, notNullValue());
     }
 
 }

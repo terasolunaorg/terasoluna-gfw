@@ -15,6 +15,9 @@
  */
 package org.terasoluna.gfw.common.date;
 
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Test;
 
 public class JdbcFixedDateFactoryTest {
@@ -22,7 +25,7 @@ public class JdbcFixedDateFactoryTest {
     @Test
     public void testJdbcFixedDateFactory() throws Exception {
         JdbcFixedDateFactory jdbcFixedDateFactory = new JdbcFixedDateFactory();
-
+        assertThat(jdbcFixedDateFactory, notNullValue());
     }
 
 }
