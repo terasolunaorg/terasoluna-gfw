@@ -15,6 +15,9 @@
  */
 package org.terasoluna.gfw.common.date;
 
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.junit.Assert.assertThat;
+
 import org.junit.Test;
 
 public class DefaultDateFactoryTest {
@@ -22,7 +25,7 @@ public class DefaultDateFactoryTest {
     @Test
     public void testDefaultDateFactory() throws Exception {
         DefaultDateFactory defaultDateFactory = new DefaultDateFactory();
-
+        assertThat(defaultDateFactory, notNullValue());
     }
 
 }
