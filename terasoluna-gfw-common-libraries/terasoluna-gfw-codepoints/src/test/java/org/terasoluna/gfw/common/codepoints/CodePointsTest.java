@@ -696,8 +696,7 @@ public class CodePointsTest {
     public void testEqualsNull() {
         // set up
         CodePoints cp1 = new CodePoints("ABCD");
-        CodePoints cp2 = new CodePoints("ABCD");
-        cp2 = null;
+        CodePoints cp2 = null;
 
         // assert
         assertThat(cp1.equals(cp2), is(false));
