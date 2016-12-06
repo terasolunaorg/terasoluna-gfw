@@ -23,19 +23,22 @@ import java.util.Map;
 
 import org.junit.After;
 import org.junit.Test;
-import org.terasoluna.gfw.common.logback.ChangingLogbackFile;
+import org.slf4j.LoggerFactory;
+import org.terasoluna.gfw.common.logback.LogLevelChangeUtil;
+
+import ch.qos.logback.classic.Logger;
 
 /**
  * Abstract class for the reloadable codelist functionality
  */
-public class AbstractReloadableCodeListTest extends ChangingLogbackFile {
+public class AbstractReloadableCodeListTest {
 
-    @After
-    public void tearDown() throws Exception {
-    }
+    private Logger logger = (Logger) LoggerFactory
+            .getLogger(AbstractReloadableCodeList.class);
 
     /**
      * In case LazyInit is set to false
+     * 
      * @throws Exception
      */
     @Test
@@ -72,11 +75,11 @@ public class AbstractReloadableCodeListTest extends ChangingLogbackFile {
         for (String key : mapResult2.keySet()) {
             assertThat(mapResult2.get(key), is(mapExpectedSecondFetch.get(key)));
         }
-
     }
 
     /**
      * In case LazyInit is set to true
+     * 
      * @throws Exception
      */
     @Test
@@ -120,8 +123,7 @@ public class AbstractReloadableCodeListTest extends ChangingLogbackFile {
     @Test
     public void testRefreshIsDebugEnabledFalse() throws Exception {
         // set up
-        setLogger(AbstractReloadableCodeList.class);
-        before();
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
         // create expected values
         Map<String, String> mapExpectedFirstFetch = new HashMap<String, String>();
@@ -157,7 +159,8 @@ public class AbstractReloadableCodeListTest extends ChangingLogbackFile {
             assertThat(mapResult2.get(key), is(mapExpectedSecondFetch.get(key)));
         }
 
-        after();
+        // init log level
+        LogLevelChangeUtil.clearProperty();
     }
 
 }

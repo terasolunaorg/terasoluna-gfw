@@ -10,7 +10,7 @@
 
     <!-- Library Loggers -->
     <logger name="org.terasoluna">
-        <level value="trace" />
+        <level value="${ut.log.level:-trace}" />
     </logger>
 
     <!-- 3rdparty Loggers -->
