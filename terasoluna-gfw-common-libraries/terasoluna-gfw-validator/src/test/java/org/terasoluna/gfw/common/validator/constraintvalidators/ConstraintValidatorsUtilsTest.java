@@ -2,77 +2,90 @@ package org.terasoluna.gfw.common.validator.constraintvalidators;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.core.IsNull.notNullValue;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
 
 import java.lang.reflect.Constructor;
 
-import javax.validation.ConstraintValidatorContext;
-
-import org.junit.Before;
 import org.junit.Test;
 
 public class ConstraintValidatorsUtilsTest {
 
-    private CompareValidator compareValidator;
-
-    @Before
-    public void setUp() {
-        compareValidator = new CompareValidator();
-    }
-
     @Test
     public void testConstraintValidatorsUtils() throws Exception {
         // set up
-        Constructor<ConstraintValidatorsUtils> constructor = ConstraintValidatorsUtils.class.getDeclaredConstructor();
+        Constructor<ConstraintValidatorsUtils> constructor = ConstraintValidatorsUtils.class
+                .getDeclaredConstructor();
         assertThat(constructor.isAccessible(), is(false));
         constructor.setAccessible(true);
 
         // assert
         assertThat(constructor.newInstance(), notNullValue());
-
-        constructor.setAccessible(false);
     }
 
     @Test
-    public void testGetPropertyValueBeanAndPropertyNameNotNull() throws Exception {
+    public void testGetPropertyValueBeanAndPropertyNameNotNull()
+            throws Exception {
         // set up
-        Object bean = mock(Object.class);
-        ConstraintValidatorContext context = mock(ConstraintValidatorContext.class);
+        FooBean foo = new FooBean();
+        foo.setBar("test");
+
+        // test
+        Object o = ConstraintValidatorsUtils.getPropertyValue(foo, "bar");
 
         // assert
-        assertTrue(compareValidator.isValid(bean, context));
+        assertThat(o, notNullValue());
     }
 
     @Test
     public void testGetPropertyValueBeanNull() throws Exception {
-        // set up
-        Object bean = null;
-        ConstraintValidatorContext context = mock(ConstraintValidatorContext.class);
+        // test
+        Object o = ConstraintValidatorsUtils.getPropertyValue(null, "bar");
 
         // assert
-        assertTrue(compareValidator.isValid(bean, context));
-    }
-
-
-    @Test
-    public void testGetPropertyValuePropertyNameNotNull() throws Exception {
-        // set up
-        Object bean = mock(Object.class);
-        ConstraintValidatorContext context = null;
-
-        // assert
-        assertTrue(compareValidator.isValid(bean, context));
+        assertThat(o, nullValue());
     }
 
     @Test
-    public void testGetPropertyValueBeanAndPropertyNameNull() throws Exception {
-        // set up
-        Object bean = null;
-        ConstraintValidatorContext context = null;
+    public void testGetPropertyValuePropertyNameNull() throws Exception {
+        // test
+        Object o = ConstraintValidatorsUtils.getPropertyValue(new FooBean(),
+                null);
 
         // assert
-        assertTrue(compareValidator.isValid(bean, context));
+        assertThat(o, nullValue());
+    }
+
+    @Test
+    public void testIsEmptyValueNull() throws Exception {
+        // test
+        boolean b = ConstraintValidatorsUtils.isEmpty(null);
+
+        // assert
+        assertTrue(b);
+    }
+
+    @Test
+    public void testIsEmptyValueNotNull() throws Exception {
+        // test
+        boolean b = ConstraintValidatorsUtils.isEmpty("test");
+
+        // assert
+        assertTrue(!b);
+    }
+
+    class FooBean {
+
+        private String bar;
+
+        public String getBar() {
+            return bar;
+        }
+
+        public void setBar(String bar) {
+            this.bar = bar;
+        }
+
     }
 }
