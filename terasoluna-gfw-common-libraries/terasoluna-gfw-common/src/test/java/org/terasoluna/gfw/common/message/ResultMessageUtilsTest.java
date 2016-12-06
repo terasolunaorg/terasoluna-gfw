@@ -25,16 +25,23 @@ import java.lang.reflect.Constructor;
 import java.util.Locale;
 
 import org.junit.Test;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
-import org.terasoluna.gfw.common.logback.ChangingLogbackFile;
+import org.terasoluna.gfw.common.logback.LogLevelChangeUtil;
 
-public class ResultMessageUtilsTest extends ChangingLogbackFile {
+import ch.qos.logback.classic.Logger;
+
+public class ResultMessageUtilsTest {
+
+    private Logger logger = (Logger) LoggerFactory
+            .getLogger(ResultMessageUtils.class);
 
     @Test
     public void testResultMessageUtils() throws Exception {
         // set up
-        Constructor<ResultMessageUtils> constructor = ResultMessageUtils.class.getDeclaredConstructor();
+        Constructor<ResultMessageUtils> constructor = ResultMessageUtils.class
+                .getDeclaredConstructor();
         assertThat(constructor.isAccessible(), is(false));
         constructor.setAccessible(true);
 
@@ -121,8 +128,7 @@ public class ResultMessageUtilsTest extends ChangingLogbackFile {
     @Test
     public void testResolveMessageIsDebugEnabledFalse() throws Exception {
         // set up
-        setLogger(ResultMessageUtils.class);
-        before();
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
         ResultMessage message = mock(ResultMessage.class);
         MessageSource messageSource = mock(MessageSource.class);
@@ -134,13 +140,15 @@ public class ResultMessageUtilsTest extends ChangingLogbackFile {
         when(messageSource.getMessage("MSG001", null, locale)).thenThrow(
                 new NoSuchMessageException("MSG001"));
 
-        String msg = ResultMessageUtils.resolveMessage(message, messageSource, locale);
+        String msg = ResultMessageUtils.resolveMessage(message, messageSource,
+                locale);
 
         // assert
         assertThat(msg, is("MESSAGE_TEXT"));
         assertThat(logger.isDebugEnabled(), is(false));
 
-        after();
+        // init log level
+        LogLevelChangeUtil.clearProperty();
     }
 
 }

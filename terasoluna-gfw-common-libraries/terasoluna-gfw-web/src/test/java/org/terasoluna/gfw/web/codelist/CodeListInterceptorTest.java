@@ -46,15 +46,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.terasoluna.gfw.common.codelist.CodeList;
 import org.terasoluna.gfw.common.codelist.SimpleMapCodeList;
 import org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList;
+import org.terasoluna.gfw.web.logback.LogLevelChangeUtil;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
-import ch.qos.logback.classic.LoggerContext;
-import ch.qos.logback.classic.joran.JoranConfigurator;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.classic.spi.LoggingEvent;
 import ch.qos.logback.core.Appender;
-import ch.qos.logback.core.Context;
 
 import com.google.common.collect.Maps;
 
@@ -80,20 +78,6 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      */
     private Appender<ILoggingEvent> mockAppender;
 
-    private final String HIGH_LOGLEVEL_FILE_PATH = "src/test/resources/high-loglevel-logback.xml";
-
-    private final String LOGBACK_DEFAULT_FILE_PATH = "src/test/resources/logback.xml";
-
-    private String logbackUnitTestFilePath = HIGH_LOGLEVEL_FILE_PATH;
-
-    private String logbackDefaultFilePath = LOGBACK_DEFAULT_FILE_PATH;
-
-    private Logger logger;
-
-    private Context context;
-
-    private JoranConfigurator configurator;
-
     @Before
     public void setUp() {
         this.testTarget = new CodeListInterceptor();
@@ -106,12 +90,9 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         @SuppressWarnings("unchecked")
         Appender<ILoggingEvent> mockAppender = mock(Appender.class);
         this.mockAppender = mockAppender;
-        logger = (Logger) LoggerFactory
+        Logger logger = (Logger) LoggerFactory
                 .getLogger(CodeListInterceptor.class);
         logger.addAppender(mockAppender);
-
-        context = logger.getLoggerContext();
-        configurator = new JoranConfigurator();
     }
 
     @After
@@ -329,25 +310,36 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
     }
 
+    /**
+     * [afterPropertiesSet] Case of log level is higher than debug.
+     * <p>
+     * [Expected Result]
+     * <ol>
+     * <li>target is empty.(don't occur error.)</li>
+     * </ol>
+     * </p>
+     * @throws Exception
+     */
     @Test
-    public void testAfterPropertiesSetIsDebugEnabledFalse() throws Exception {
-        //Change in the logback setting file
-        configurator.setContext(context);
-        ((LoggerContext) context).reset();
-        configurator.doConfigure(logbackUnitTestFilePath);
+    public void testAfterPropertiesSet_isDebugEnabled_false() throws Exception {
 
-        // set up
+        Logger logger = (Logger) LoggerFactory
+                .getLogger(CodeListInterceptor.class);
+
+        // do setup.
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
         testTarget.setApplicationContext(new StaticApplicationContext());
 
+        // do test.
         testTarget.afterPropertiesSet();
 
-        // assert
+        // do assert.
         assertThat(testTarget.getCodeLists().isEmpty(), is(true));
         assertThat(logger.isDebugEnabled(), is(false));
 
-        //Change in the logback setting file
-        ((LoggerContext) context).reset();
-        configurator.doConfigure(logbackDefaultFilePath);
+        // init log level.
+        LogLevelChangeUtil.clearProperty();
+
     }
 
     /**

@@ -22,30 +22,33 @@ import static org.mockito.Mockito.mock;
 import javax.validation.ConstraintValidatorContext;
 
 import org.junit.Test;
-import org.terasoluna.gfw.common.logback.ChangingLogbackFile;
+import org.slf4j.LoggerFactory;
+import org.terasoluna.gfw.common.logback.LogLevelChangeUtil;
 
-public class AbstractExistInCodeListValidatorTest extends ChangingLogbackFile {
+import ch.qos.logback.classic.Logger;
+
+public class AbstractExistInCodeListValidatorTest {
 
     @Test
-    public <T> void testIsValidIsTraceEnabled() throws Exception {
+    public <T> void testIsValidIsTraceEnabledFalse() throws Exception {
+
+        Logger logger = (Logger) LoggerFactory
+                .getLogger(AbstractExistInCodeListValidator.class);
+
         // set up
-        setLogger(AbstractExistInCodeListValidator.class);
-        before();
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
         T object = (T) mock(Object.class);
         ConstraintValidatorContext constraintValidatorContext = mock(ConstraintValidatorContext.class);
         ExistInCodeListValidator<T> existInCodeListValidator = new ExistInCodeListValidator<T>();
 
-        try {
-            existInCodeListValidator.isValid(object, constraintValidatorContext);
-        } catch(NullPointerException e) {
-            e.printStackTrace();
-        }
+        existInCodeListValidator.isValid(object, constraintValidatorContext);
 
         // assert
         assertThat(logger.isTraceEnabled(), is(false));
 
-        after();
+        // init log level
+        LogLevelChangeUtil.clearProperty();
     }
 
 }

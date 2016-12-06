@@ -37,6 +37,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -46,13 +47,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
-import org.terasoluna.gfw.web.logback.ChangingLogbackFile;
+import org.terasoluna.gfw.web.logback.LogLevelChangeUtil;
 
 import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 
 @ContextConfiguration(locations = "classpath:/test-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
-public class TraceLoggingInterceptorTest extends ChangingLogbackFile {
+public class TraceLoggingInterceptorTest {
     @Inject
     NamedParameterJdbcTemplate jdbcTemplate;
 
@@ -67,6 +69,9 @@ public class TraceLoggingInterceptorTest extends ChangingLogbackFile {
     TraceLoggingInterceptorController controller;
 
     ModelAndView model;
+
+    Logger logger = (Logger) LoggerFactory
+            .getLogger(TraceLoggingInterceptor.class);
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -165,8 +170,7 @@ public class TraceLoggingInterceptorTest extends ChangingLogbackFile {
     @Test
     public void testPreHandleIsTraceEnabledFalse() throws Exception {
         // set up
-        setLogger(HttpSessionEventLoggingListener.class);
-        before();
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
         // parameter create
         Object paramHandler = new Object();
@@ -191,7 +195,8 @@ public class TraceLoggingInterceptorTest extends ChangingLogbackFile {
         assertThat(count, is(0L));
         assertThat(logger.isDebugEnabled(), is(false));
 
-        after();
+        // init log level
+        LogLevelChangeUtil.clearProperty();
     }
 
     /**
@@ -464,8 +469,7 @@ public class TraceLoggingInterceptorTest extends ChangingLogbackFile {
     @Test
     public void testIsEnabledLogLevelIsWarnEnabledFalse() throws Exception {
         // set up
-        setLogger(HttpSessionEventLoggingListener.class);
-        before();
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
         // parameter create
         HandlerMethod paramHandler = new HandlerMethod(controller, TraceLoggingInterceptorController.class
@@ -484,14 +488,14 @@ public class TraceLoggingInterceptorTest extends ChangingLogbackFile {
         // assert
         assertThat(logger.isDebugEnabled(), is(false));
 
-        after();
+        // init log level
+        LogLevelChangeUtil.clearProperty();
     }
 
     @Test
     public void testIsEnabledLogLevelIsTraceEnabledFalse() throws Exception {
         // set up
-        setLogger(HttpSessionEventLoggingListener.class);
-        before();
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
         // parameter create
         HandlerMethod paramHandler = new HandlerMethod(controller, TraceLoggingInterceptorController.class
@@ -510,7 +514,8 @@ public class TraceLoggingInterceptorTest extends ChangingLogbackFile {
         // assert
         assertThat(logger.isDebugEnabled(), is(false));
 
-        after();
+        // init log level
+        LogLevelChangeUtil.clearProperty();
     }
 
     /**
