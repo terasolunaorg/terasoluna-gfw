@@ -68,6 +68,15 @@ public class ConstraintValidatorsUtilsTest {
     }
 
     @Test
+    public void testIsEmptyValueBlank() throws Exception {
+        // test
+        boolean b = ConstraintValidatorsUtils.isEmpty("");
+
+        // assert
+        assertThat(b, is(true));
+    }
+
+    @Test
     public void testIsEmptyValueNotNull() throws Exception {
         // test
         boolean b = ConstraintValidatorsUtils.isEmpty("test");
