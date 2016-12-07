@@ -17,12 +17,19 @@ package org.terasoluna.gfw.common.codelist.validator;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
+import java.lang.annotation.Annotation;
+
 import javax.validation.ConstraintValidatorContext;
+import javax.validation.Payload;
 
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
+import org.terasoluna.gfw.common.codelist.ExistInCodeList;
 import org.terasoluna.gfw.common.logback.LogLevelChangeUtil;
 
 import ch.qos.logback.classic.Logger;
@@ -38,13 +45,20 @@ public class AbstractExistInCodeListValidatorTest {
         // set up
         LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
-        T object = (T) mock(Object.class);
         ConstraintValidatorContext constraintValidatorContext = mock(ConstraintValidatorContext.class);
-        ExistInCodeListValidator<T> existInCodeListValidator = new ExistInCodeListValidator<T>();
 
-        existInCodeListValidator.isValid(object, constraintValidatorContext);
+        ExistInCodeListValidator<String> existInCodeListValidator = new ExistInCodeListValidator<String>();
+        ApplicationContext context = new FileSystemXmlApplicationContext(
+                "src/test/resources/org/terasoluna/gfw/common/codelist/ExistInCodeListTest-context.xml");
+        existInCodeListValidator.setApplicationContext(context);
+        existInCodeListValidator.initialize(new GenderCodeList());
+
+        // test
+        boolean isValid = existInCodeListValidator.isValid("Male",
+                constraintValidatorContext);
 
         // assert
+        assertTrue(isValid);
         assertThat(logger.isTraceEnabled(), is(false));
 
         // init log level
@@ -58,6 +72,35 @@ class ExistInCodeListValidator<T> extends AbstractExistInCodeListValidator<T> {
     @Override
     protected String getCode(T value) {
         return "code";
+    }
+
+}
+
+class GenderCodeList implements ExistInCodeList {
+
+    @Override
+    public Class<? extends Annotation> annotationType() {
+        return null;
+    }
+
+    @Override
+    public String message() {
+        return null;
+    }
+
+    @Override
+    public String codeListId() {
+        return "CD_GENDER";
+    }
+
+    @Override
+    public Class<?>[] groups() {
+        return null;
+    }
+
+    @Override
+    public Class<? extends Payload>[] payload() {
+        return null;
     }
 
 }
