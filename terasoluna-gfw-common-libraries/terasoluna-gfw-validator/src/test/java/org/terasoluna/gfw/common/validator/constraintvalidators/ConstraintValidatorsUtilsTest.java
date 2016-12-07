@@ -64,7 +64,7 @@ public class ConstraintValidatorsUtilsTest {
         boolean b = ConstraintValidatorsUtils.isEmpty(null);
 
         // assert
-        assertTrue(b);
+        assertThat(b, is(true));
     }
 
     @Test
@@ -73,7 +73,7 @@ public class ConstraintValidatorsUtilsTest {
         boolean b = ConstraintValidatorsUtils.isEmpty("test");
 
         // assert
-        assertFalse(b);
+        assertThat(b, is(false));
     }
 
     class FooBean {
