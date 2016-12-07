@@ -17,7 +17,6 @@ package org.terasoluna.gfw.common.codelist.validator;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 
 import java.lang.annotation.Annotation;
@@ -58,7 +57,7 @@ public class AbstractExistInCodeListValidatorTest {
                 constraintValidatorContext);
 
         // assert
-        assertTrue(isValid);
+        assertThat(isValid, is(true));
         assertThat(logger.isTraceEnabled(), is(false));
 
         // init log level
@@ -71,7 +70,7 @@ class ExistInCodeListValidator<T> extends AbstractExistInCodeListValidator<T> {
 
     @Override
     protected String getCode(T value) {
-        return "code";
+        return "M";
     }
 
 }
