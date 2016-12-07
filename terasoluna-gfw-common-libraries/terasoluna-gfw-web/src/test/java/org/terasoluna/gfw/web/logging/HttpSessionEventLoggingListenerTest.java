@@ -49,14 +49,15 @@ public class HttpSessionEventLoggingListenerTest {
     private Appender<ILoggingEvent> mockAppender;
 
     private HttpSessionBindingEvent sessionBindingEvent;
-    
-	private Logger logger;
+
+    private Logger logger;
 
     @Before
     public void setup() throws Exception {
         mockHttpSession = new MockHttpSession();
         httpSessionEvent = new HttpSessionEvent(mockHttpSession);
-        sessionBindingEvent = new HttpSessionBindingEvent(mockHttpSession, "terasoluna", "AA");
+        sessionBindingEvent = new HttpSessionBindingEvent(mockHttpSession,
+                "terasoluna", "AA");
 
         listener = new HttpSessionEventLoggingListener();
 
@@ -93,7 +94,7 @@ public class HttpSessionEventLoggingListenerTest {
     @Test
     public void testSessionWillPassivateIsDebugEnabledFalse() throws Exception {
         // set up
-		LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
         // run
         listener.sessionWillPassivate(httpSessionEvent);
@@ -120,7 +121,7 @@ public class HttpSessionEventLoggingListenerTest {
     @Test
     public void testSessionDidActivateIsDebugEnabledFalse() throws Exception {
         // set up
-		LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
         // run
         listener.sessionDidActivate(httpSessionEvent);
@@ -148,7 +149,7 @@ public class HttpSessionEventLoggingListenerTest {
     @Test
     public void testAttributeAddedIsDebugEnabledFalse() throws Exception {
         // set up
-		LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
         // run
         listener.attributeAdded(sessionBindingEvent);
@@ -176,7 +177,7 @@ public class HttpSessionEventLoggingListenerTest {
     @Test
     public void testAttributeRemovedIsDebugEnabledFalse() throws Exception {
         // set up
-		LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
         // run
         listener.attributeRemoved(sessionBindingEvent);
@@ -204,7 +205,7 @@ public class HttpSessionEventLoggingListenerTest {
     @Test
     public void testAttributeReplacedisTraceEnabledFalse() throws Exception {
         // set up
-		LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
         // run
         listener.attributeReplaced(sessionBindingEvent);
@@ -232,7 +233,7 @@ public class HttpSessionEventLoggingListenerTest {
     @Test
     public void testSessionCreatedIsDebugEnabledFalse() throws Exception {
         // set up
-		LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
         // run
         listener.sessionCreated(httpSessionEvent);
@@ -260,7 +261,7 @@ public class HttpSessionEventLoggingListenerTest {
     @Test
     public void testSessionDestroyedIsDebugEnabledFalse() throws Exception {
         // set up
-		LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
         // run
         listener.sessionDestroyed(httpSessionEvent);
@@ -268,10 +269,14 @@ public class HttpSessionEventLoggingListenerTest {
         // assert
         assertThat(logger.isDebugEnabled(), is(false));
     }
+
     /**
      * verify logging.
-     * @param expectedLogMessage expected log message.
-     * @param expectedLogLevel expected log level.
+     * 
+     * @param expectedLogMessage
+     *            expected log message.
+     * @param expectedLogLevel
+     *            expected log level.
      */
     private void verifyLogging(final String expectedLogMessage,
             final Level expectedLogLevel) {
