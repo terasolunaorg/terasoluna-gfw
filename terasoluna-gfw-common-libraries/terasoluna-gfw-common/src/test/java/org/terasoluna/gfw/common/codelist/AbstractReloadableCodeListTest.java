@@ -160,7 +160,7 @@ public class AbstractReloadableCodeListTest {
         }
 
         // init log level
-        LogLevelChangeUtil.clearProperty();
+        LogLevelChangeUtil.resetLogLevel();
     }
 
 }

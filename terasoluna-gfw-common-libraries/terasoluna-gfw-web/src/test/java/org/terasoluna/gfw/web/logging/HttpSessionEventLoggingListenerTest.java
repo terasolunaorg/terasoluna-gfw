@@ -72,7 +72,7 @@ public class HttpSessionEventLoggingListenerTest {
     @After
     public void tearDown() throws Exception {
         // init log level
-        LogLevelChangeUtil.clearProperty();
+        LogLevelChangeUtil.resetLogLevel();
     }
 
     /**
