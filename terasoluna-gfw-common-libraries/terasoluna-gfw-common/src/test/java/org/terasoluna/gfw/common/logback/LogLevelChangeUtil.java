@@ -12,25 +12,25 @@ public class LogLevelChangeUtil {
     private static final String LOGBACK_FILE_PATH = "src/test/resources/logback.xml";
 
     /**
-     * set log level system property, configure log settings
+     * set log level system property, reload logback configuration
      */
     public static void setLogLevel(LogLevel logLevel) throws Exception {
         System.setProperty(LOG_LEVEL_SYS_PROP_NAME, logLevel.getName());
-        configureLogSettings();
+        reloadLogbackConfiguration();
     }
 
     /**
-     * clear log level system property, configure log settings
+     * clear log level system property, reload logback configuration
      */
-    public static void clearProperty() throws Exception {
+    public static void resetLogLevel() throws Exception {
         System.clearProperty(LOG_LEVEL_SYS_PROP_NAME);
-        configureLogSettings();
+        reloadLogbackConfiguration();
     }
 
     /**
-     * configure log settings
+     * reload logback configuration
      */
-    private static void configureLogSettings() throws Exception {
+    private static void reloadLogbackConfiguration() throws Exception {
         LoggerContext context = (LoggerContext) LoggerFactory
                 .getILoggerFactory();
         JoranConfigurator configurator = new JoranConfigurator();

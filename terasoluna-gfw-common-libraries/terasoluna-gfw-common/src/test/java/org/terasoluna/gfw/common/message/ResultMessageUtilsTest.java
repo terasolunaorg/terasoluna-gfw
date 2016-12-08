@@ -148,7 +148,7 @@ public class ResultMessageUtilsTest {
         assertThat(logger.isDebugEnabled(), is(false));
 
         // init log level
-        LogLevelChangeUtil.clearProperty();
+        LogLevelChangeUtil.resetLogLevel();
     }
 
 }

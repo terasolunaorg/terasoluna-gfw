@@ -196,7 +196,7 @@ public class TraceLoggingInterceptorTest {
         assertThat(logger.isDebugEnabled(), is(false));
 
         // init log level
-        LogLevelChangeUtil.clearProperty();
+        LogLevelChangeUtil.resetLogLevel();
     }
 
     /**
@@ -489,7 +489,7 @@ public class TraceLoggingInterceptorTest {
         assertThat(logger.isDebugEnabled(), is(false));
 
         // init log level
-        LogLevelChangeUtil.clearProperty();
+        LogLevelChangeUtil.resetLogLevel();
     }
 
     @Test
@@ -515,7 +515,7 @@ public class TraceLoggingInterceptorTest {
         assertThat(logger.isDebugEnabled(), is(false));
 
         // init log level
-        LogLevelChangeUtil.clearProperty();
+        LogLevelChangeUtil.resetLogLevel();
     }
 
     /**

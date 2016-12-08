@@ -61,7 +61,7 @@ public class AbstractExistInCodeListValidatorTest {
         assertThat(logger.isTraceEnabled(), is(false));
 
         // init log level
-        LogLevelChangeUtil.clearProperty();
+        LogLevelChangeUtil.resetLogLevel();
     }
 
 }

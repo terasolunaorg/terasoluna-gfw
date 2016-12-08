@@ -338,7 +338,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         assertThat(logger.isDebugEnabled(), is(false));
 
         // init log level.
-        LogLevelChangeUtil.clearProperty();
+        LogLevelChangeUtil.resetLogLevel();
 
     }
 
