@@ -15,32 +15,30 @@
  */
 package org.terasoluna.gfw.common.codelist;
 
-import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
-import org.terasoluna.gfw.common.codelist.AbstractReloadableCodeList;
+import org.slf4j.LoggerFactory;
+import org.terasoluna.gfw.common.logback.LogLevelChangeUtil;
+
+import ch.qos.logback.classic.Logger;
 
 /**
  * Abstract class for the reloadable codelist functionality
  */
 public class AbstractReloadableCodeListTest {
 
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
+    private Logger logger = (Logger) LoggerFactory
+            .getLogger(AbstractReloadableCodeList.class);
 
     /**
      * In case LazyInit is set to false
+     * 
      * @throws Exception
      */
     @Test
@@ -77,11 +75,11 @@ public class AbstractReloadableCodeListTest {
         for (String key : mapResult2.keySet()) {
             assertThat(mapResult2.get(key), is(mapExpectedSecondFetch.get(key)));
         }
-
     }
 
     /**
      * In case LazyInit is set to true
+     * 
      * @throws Exception
      */
     @Test
@@ -120,6 +118,49 @@ public class AbstractReloadableCodeListTest {
         for (String key : mapResult2.keySet()) {
             assertThat(mapResult2.get(key), is(mapExpectedFirstFetch.get(key)));
         }
+    }
+
+    @Test
+    public void testRefreshIsDebugEnabledFalse() throws Exception {
+        // set up
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+
+        // create expected values
+        Map<String, String> mapExpectedFirstFetch = new HashMap<String, String>();
+        mapExpectedFirstFetch.put("001", "firstRetrieve001");
+        mapExpectedFirstFetch.put("002", "firstRetrieve002");
+        mapExpectedFirstFetch.put("003", "firstRetrieve003");
+
+        Map<String, String> mapExpectedSecondFetch = new HashMap<String, String>();
+        mapExpectedSecondFetch.put("001", "secondRetrieve001");
+        mapExpectedSecondFetch.put("002", "secondRetrieve002");
+        mapExpectedSecondFetch.put("003", "secondRetrieve003");
+
+        // create target
+        AbstractReloadableCodeList reloadableCodeList = new ExtendedReloadableCodelist();
+
+        // fetch codelist map for the first time
+        Map<String, String> mapResult1 = reloadableCodeList.asMap();
+
+        // assert
+        assertThat(mapResult1.size(), is(mapExpectedFirstFetch.size()));
+        for (String key : mapResult1.keySet()) {
+            assertThat(mapResult1.get(key), is(mapExpectedFirstFetch.get(key)));
+        }
+        assertThat(logger.isDebugEnabled(), is(false));
+
+        // fetch codelist map for the first time
+        reloadableCodeList.afterPropertiesSet();
+
+        // fetch codelist map again immediately
+        Map<String, String> mapResult2 = reloadableCodeList.asMap();
+        assertThat(mapResult2.size(), is(mapExpectedSecondFetch.size()));
+        for (String key : mapResult2.keySet()) {
+            assertThat(mapResult2.get(key), is(mapExpectedSecondFetch.get(key)));
+        }
+
+        // init log level
+        LogLevelChangeUtil.resetLogLevel();
     }
 
 }

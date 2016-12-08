@@ -16,7 +16,7 @@
 package org.terasoluna.gfw.common.query;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNotNull;
+import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
 import java.lang.reflect.Constructor;
@@ -172,17 +172,28 @@ public class QueryEscapeUtilsTest {
         assertThat(errorMessage, actual, is(expected));
     }
 
-    /**
-     * test private constructor.
-     */
+    @Theory
+    public void testToLikeConditionIsNull(TestData param) {
+        // set up
+        StringBuilder actual = QueryEscapeUtils.toLikeCondition(param.input, null);
+        StringBuilder expected = param.expectedToLikeConditionIsNull;
+        String errorMessage = "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
+
+        // assert
+        assertThat(errorMessage, actual.toString(), is(expected.toString()));
+    }
+
     @Test
-    public void testPrivateConstructor() throws Exception {
-        Constructor<QueryEscapeUtils> c = QueryEscapeUtils.class
-                .getDeclaredConstructor();
-        assertThat(c.isAccessible(), is(false));
-        c.setAccessible(true);
-        assertNotNull(c.newInstance());
-        c.setAccessible(false);
+    public void testQueryEscapeUtils() throws Exception {
+        // set up
+        Constructor<QueryEscapeUtils> constructor = QueryEscapeUtils.class.getDeclaredConstructor();
+        assertThat(constructor.isAccessible(), is(false));
+        constructor.setAccessible(true);
+
+        // assert
+        assertThat(constructor.newInstance(), notNullValue());
+
+        constructor.setAccessible(false);
     }
 
     static class TestData {
@@ -208,6 +219,8 @@ public class QueryEscapeUtilsTest {
 
         final String expectedContainingConditionWithFullWidth;
 
+        private final StringBuilder expectedToLikeConditionIsNull;
+
         public TestData(String input, String expectedToLikeCondition,
                 String expectedToLikeConditionWithFullWidth) {
             this.input = input;
@@ -229,6 +242,8 @@ public class QueryEscapeUtilsTest {
                     : "%" + expectedToLikeCondition + "%";
             this.expectedContainingConditionWithFullWidth = (expectedToLikeConditionWithFullWidth == null) ? null
                     : "%" + expectedToLikeConditionWithFullWidth + "%";
+            this.expectedToLikeConditionIsNull = (expectedToLikeCondition == null) ? new StringBuilder()
+                    : new StringBuilder(expectedToLikeCondition);
         }
     }
 }

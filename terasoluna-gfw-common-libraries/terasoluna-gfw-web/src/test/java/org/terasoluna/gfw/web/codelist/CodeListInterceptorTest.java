@@ -46,6 +46,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.terasoluna.gfw.common.codelist.CodeList;
 import org.terasoluna.gfw.common.codelist.SimpleMapCodeList;
 import org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList;
+import org.terasoluna.gfw.web.logback.LogLevelChangeUtil;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
@@ -306,6 +307,38 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
         // do assert.
         assertThat(testTarget.getCodeLists().isEmpty(), is(true));
+
+    }
+
+    /**
+     * [afterPropertiesSet] Case of log level is higher than debug.
+     * <p>
+     * [Expected Result]
+     * <ol>
+     * <li>target is empty.(don't occur error.)</li>
+     * </ol>
+     * </p>
+     * @throws Exception
+     */
+    @Test
+    public void testAfterPropertiesSet_isDebugEnabled_false() throws Exception {
+
+        Logger logger = (Logger) LoggerFactory
+                .getLogger(CodeListInterceptor.class);
+
+        // do setup.
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+        testTarget.setApplicationContext(new StaticApplicationContext());
+
+        // do test.
+        testTarget.afterPropertiesSet();
+
+        // do assert.
+        assertThat(testTarget.getCodeLists().isEmpty(), is(true));
+        assertThat(logger.isDebugEnabled(), is(false));
+
+        // init log level.
+        LogLevelChangeUtil.resetLogLevel();
 
     }
 

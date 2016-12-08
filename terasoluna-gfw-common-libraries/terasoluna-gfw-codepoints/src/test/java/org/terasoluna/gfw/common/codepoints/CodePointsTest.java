@@ -668,9 +668,14 @@ public class CodePointsTest {
 
     @Test
     public void testEquals() {
+        // set up
         ABCD cp1 = new ABCD();
         ABCD cp2 = new ABCD();
+        ABCD cp3 = cp1;
+
+        // assert
         assertThat(cp1.equals(cp2), is(true));
+        assertThat(cp1.equals(cp3), is(true));
     }
 
     @Test
@@ -687,4 +692,23 @@ public class CodePointsTest {
         assertThat(cp1.equals(cp2), is(false));
     }
 
+    @Test
+    public void testEqualsNull() {
+        // set up
+        CodePoints cp1 = new CodePoints("ABCD");
+        CodePoints cp2 = null;
+
+        // assert
+        assertThat(cp1.equals(cp2), is(false));
+    }
+
+    @Test
+    public void testHashCode() {
+        // set up
+        CodePoints cp1 = new CodePoints("ABCD");
+        CodePoints cp2 = new CodePoints("ABCD");
+
+        // assert
+        assertThat(cp1.hashCode(), is(cp2.hashCode()));
+    }
 }

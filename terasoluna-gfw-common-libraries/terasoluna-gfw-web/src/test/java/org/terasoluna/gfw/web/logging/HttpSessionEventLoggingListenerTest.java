@@ -15,6 +15,8 @@
  */
 package org.terasoluna.gfw.web.logging;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -28,7 +30,7 @@ import org.junit.Test;
 import org.mockito.ArgumentMatcher;
 import org.slf4j.LoggerFactory;
 import org.springframework.mock.web.MockHttpSession;
-import org.terasoluna.gfw.web.logging.HttpSessionEventLoggingListener;
+import org.terasoluna.gfw.web.logback.LogLevelChangeUtil;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
@@ -48,25 +50,29 @@ public class HttpSessionEventLoggingListenerTest {
 
     private HttpSessionBindingEvent sessionBindingEvent;
 
+    private Logger logger;
+
     @Before
     public void setup() throws Exception {
         mockHttpSession = new MockHttpSession();
         httpSessionEvent = new HttpSessionEvent(mockHttpSession);
-        sessionBindingEvent = new HttpSessionBindingEvent(mockHttpSession, "terasoluna", "AA");
+        sessionBindingEvent = new HttpSessionBindingEvent(mockHttpSession,
+                "terasoluna", "AA");
 
         listener = new HttpSessionEventLoggingListener();
 
         @SuppressWarnings("unchecked")
         Appender<ILoggingEvent> mockAppender = mock(Appender.class);
         this.mockAppender = mockAppender;
-        Logger logger = (Logger) LoggerFactory
+        logger = (Logger) LoggerFactory
                 .getLogger(HttpSessionEventLoggingListener.class);
         logger.addAppender(mockAppender);
-
     }
 
     @After
     public void tearDown() throws Exception {
+        // init log level
+        LogLevelChangeUtil.resetLogLevel();
     }
 
     /**
@@ -74,7 +80,6 @@ public class HttpSessionEventLoggingListenerTest {
      */
     @Test
     public void testSessionWillPassivate() {
-
         // expected
         String passivateStr = "SESSIONID#" + mockHttpSession.getId()
                 + " sessionWillPassivate : " + mockHttpSession.toString();
@@ -84,7 +89,18 @@ public class HttpSessionEventLoggingListenerTest {
 
         // assert
         verifyLogging(passivateStr, Level.DEBUG);
+    }
 
+    @Test
+    public void testSessionWillPassivateIsDebugEnabledFalse() throws Exception {
+        // set up
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+
+        // run
+        listener.sessionWillPassivate(httpSessionEvent);
+
+        // assert
+        assertThat(logger.isDebugEnabled(), is(false));
     }
 
     /**
@@ -100,7 +116,18 @@ public class HttpSessionEventLoggingListenerTest {
 
         // assert
         verifyLogging(didActivateStr, Level.DEBUG);
+    }
 
+    @Test
+    public void testSessionDidActivateIsDebugEnabledFalse() throws Exception {
+        // set up
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+
+        // run
+        listener.sessionDidActivate(httpSessionEvent);
+
+        // assert
+        assertThat(logger.isDebugEnabled(), is(false));
     }
 
     /**
@@ -117,7 +144,18 @@ public class HttpSessionEventLoggingListenerTest {
 
         // assert
         verifyLogging(attributeAddedStr, Level.DEBUG);
+    }
 
+    @Test
+    public void testAttributeAddedIsDebugEnabledFalse() throws Exception {
+        // set up
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+
+        // run
+        listener.attributeAdded(sessionBindingEvent);
+
+        // assert
+        assertThat(logger.isDebugEnabled(), is(false));
     }
 
     /**
@@ -134,7 +172,18 @@ public class HttpSessionEventLoggingListenerTest {
 
         // assert
         verifyLogging(attributeRemovedStr, Level.DEBUG);
+    }
 
+    @Test
+    public void testAttributeRemovedIsDebugEnabledFalse() throws Exception {
+        // set up
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+
+        // run
+        listener.attributeRemoved(sessionBindingEvent);
+
+        // assert
+        assertThat(logger.isDebugEnabled(), is(false));
     }
 
     /**
@@ -151,7 +200,18 @@ public class HttpSessionEventLoggingListenerTest {
 
         // assert
         verifyLogging(attributeRemovedStr, Level.TRACE);
+    }
 
+    @Test
+    public void testAttributeReplacedisTraceEnabledFalse() throws Exception {
+        // set up
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+
+        // run
+        listener.attributeReplaced(sessionBindingEvent);
+
+        // assert
+        assertThat(logger.isDebugEnabled(), is(false));
     }
 
     /**
@@ -168,7 +228,18 @@ public class HttpSessionEventLoggingListenerTest {
 
         // assert
         verifyLogging(sessionCreatedStr, Level.DEBUG);
+    }
 
+    @Test
+    public void testSessionCreatedIsDebugEnabledFalse() throws Exception {
+        // set up
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+
+        // run
+        listener.sessionCreated(httpSessionEvent);
+
+        // assert
+        assertThat(logger.isDebugEnabled(), is(false));
     }
 
     /**
@@ -185,13 +256,27 @@ public class HttpSessionEventLoggingListenerTest {
 
         // assert
         verifyLogging(sessionDestroyedStr, Level.DEBUG);
+    }
 
+    @Test
+    public void testSessionDestroyedIsDebugEnabledFalse() throws Exception {
+        // set up
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+
+        // run
+        listener.sessionDestroyed(httpSessionEvent);
+
+        // assert
+        assertThat(logger.isDebugEnabled(), is(false));
     }
 
     /**
      * verify logging.
-     * @param expectedLogMessage expected log message.
-     * @param expectedLogLevel expected log level.
+     * 
+     * @param expectedLogMessage
+     *            expected log message.
+     * @param expectedLogLevel
+     *            expected log level.
      */
     private void verifyLogging(final String expectedLogMessage,
             final Level expectedLogLevel) {
@@ -211,7 +296,6 @@ public class HttpSessionEventLoggingListenerTest {
                                 .equals(((LoggingEvent) argument).getLevel());
                     }
                 }));
-
     }
 
 }

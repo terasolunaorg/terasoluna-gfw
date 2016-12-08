@@ -32,11 +32,20 @@ public class RequestDataValueProcessorAdaptorTest {
     HttpServletRequest request = new MockHttpServletRequest();
 
     @Test
-    public void testProcessAction() {
+    public void testProcessAction01() {
         String action = requestDataValueProcessorAdaptor.processAction(request,
                 "action");
         assertThat(action, is("action"));
+    }
 
+    @Test
+    public void testProcessAction02() {
+        // set up
+        String action = requestDataValueProcessorAdaptor.processAction(request,
+                "action", "method");
+
+        // assert
+    	assertThat(action, is("action"));
     }
 
     @Test

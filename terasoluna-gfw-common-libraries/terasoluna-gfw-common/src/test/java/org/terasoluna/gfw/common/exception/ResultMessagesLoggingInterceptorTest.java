@@ -113,6 +113,26 @@ public class ResultMessagesLoggingInterceptorTest extends
 
     }
 
+    @Test
+    public void testInvokeOccurBusinessexception01() throws Throwable {
+        // do setup for test case.
+        BusinessException occurException = new 
+                BusinessException("testing businessexception");
+        when(mockMethodInvocation.proceed()).thenThrow(occurException);
+
+        try {
+            // do test.
+            testTarget.invoke(mockMethodInvocation);
+            fail("didn't occured BusinessException.");
+        } catch (BusinessException e) {
+            // do assert.
+            assertThat(e, is(occurException));
+            verify(mockExceptionLogger, times(1)).warn(occurException);
+            verify(mockExceptionLogger, times(1)).warn((Exception) anyObject());
+        }
+
+    }
+
     /**
      * [invoke] Case of occur BusinessException.
      * <p>
@@ -125,8 +145,7 @@ public class ResultMessagesLoggingInterceptorTest extends
      * </p>
      */
     @Test
-    public void testInvoke_occur_businessexception() throws Throwable {
-
+    public void testInvokeOccurBusinessexception02() throws Throwable {
         // do setup for test case.
         BusinessException occurException = new BusinessException(ResultMessages
                 .error().add("e.cm.xxx1", "args1", "args2"));
@@ -137,6 +156,50 @@ public class ResultMessagesLoggingInterceptorTest extends
             testTarget.invoke(mockMethodInvocation);
             fail("don't occur BusinessException.");
         } catch (BusinessException e) {
+            // do assert.
+            assertThat(e, is(occurException));
+            verify(mockExceptionLogger, times(1)).warn(occurException);
+            verify(mockExceptionLogger, times(1)).warn((Exception) anyObject());
+        }
+
+    }
+
+    @Test
+    public void testInvokeOccurBusinessexception03() throws Throwable {
+        // do setup for test case.
+        BusinessException occurException = new BusinessException(ResultMessages
+                .error().add("e.cm.xxx1", "args1", "args2"), null);
+        when(mockMethodInvocation.proceed()).thenThrow(occurException);
+
+        try {
+            // do test.
+            testTarget.invoke(mockMethodInvocation);
+            fail("don't occur BusinessException.");
+        } catch (BusinessException e) {
+            // do assert.
+            assertThat(e, is(occurException));
+            verify(mockExceptionLogger, times(1)).warn(occurException);
+            verify(mockExceptionLogger, times(1)).warn((Exception) anyObject());
+        }
+
+    }
+
+    @Test
+    public void testInvokeOccurResourcenotfoundexceptionInNestedMethod01() throws Throwable {
+        // do setup for test case.
+        ResourceNotFoundException occurException = new ResourceNotFoundException("testing resourcenotfoundexception");
+
+        TestService service = getApplicationContext()
+                .getBean(TestService.class);
+        service.setResultMessagesNotificationException(occurException);
+
+        try {
+            // do test.
+            TestFacade facade = getApplicationContext().getBean(
+                    TestFacade.class);
+            facade.getMessage();
+            fail("don't occur ResourceNotFoundException.");
+        } catch (ResourceNotFoundException e) {
             // do assert.
             assertThat(e, is(occurException));
             verify(mockExceptionLogger, times(1)).warn(occurException);
@@ -161,10 +224,35 @@ public class ResultMessagesLoggingInterceptorTest extends
      * </p>
      */
     @Test
-    public void testInvoke_occur_resourcenotfoundexception_in_nested_method() throws Throwable {
+    public void testInvokeOccurResourcenotfoundexceptionInNestedMethod02() throws Throwable {
         // do setup for test case.
         ResourceNotFoundException occurException = new ResourceNotFoundException(ResultMessages
                 .error().add("e.cm.xxx1", "args1", "args2"));
+
+        TestService service = getApplicationContext()
+                .getBean(TestService.class);
+        service.setResultMessagesNotificationException(occurException);
+
+        try {
+            // do test.
+            TestFacade facade = getApplicationContext().getBean(
+                    TestFacade.class);
+            facade.getMessage();
+            fail("don't occur ResourceNotFoundException.");
+        } catch (ResourceNotFoundException e) {
+            // do assert.
+            assertThat(e, is(occurException));
+            verify(mockExceptionLogger, times(1)).warn(occurException);
+            verify(mockExceptionLogger, times(1)).warn((Exception) anyObject());
+        }
+
+    }
+
+    @Test
+    public void testInvokeOccurResourcenotfoundexceptionInNestedMethod03() throws Throwable {
+        // do setup for test case.
+        ResourceNotFoundException occurException = new ResourceNotFoundException(ResultMessages
+                .error().add("e.cm.xxx1", "args1", "args2"), null);
 
         TestService service = getApplicationContext()
                 .getBean(TestService.class);

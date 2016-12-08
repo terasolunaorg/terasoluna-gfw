@@ -24,7 +24,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
-import org.junit.runner.notification.Failure;
 import org.springframework.core.serializer.support.SerializationFailedException;
 import org.springframework.util.SerializationUtils;
 
@@ -96,15 +95,24 @@ public class ResultMessageTest {
 
     @Test
     public void testEquals01() {
+        // set up
+        Object[] object = new Object[0];
+
         ResultMessage msg1 = ResultMessage.fromText("foo");
         ResultMessage msg2 = ResultMessage.fromCode("foo");
         ResultMessage msg3 = ResultMessage.fromCode("foo", "a");
+        ResultMessage msg4 = new ResultMessage("foo", object, null);
+        ResultMessage msg5 = new ResultMessage("foo", object, "foo");
 
+        // assert
         assertThat(msg1.equals(msg1), is(true));
         assertThat(msg1.equals(null), is(false));
         assertThat(msg1.equals("a"), is(false));
         assertThat(msg2.equals(msg3), is(false));
         assertThat(msg1.equals(ResultMessage.fromText("bar")), is(false));
+        assertThat(msg1.equals(msg2), is(false));
+        assertThat(msg2.equals(ResultMessage.fromCode("hoo")), is(false));
+        assertThat(msg4.equals(msg5), is(false));
 
         Set<ResultMessage> set = new HashSet<ResultMessage>();
         set.add(msg1);
