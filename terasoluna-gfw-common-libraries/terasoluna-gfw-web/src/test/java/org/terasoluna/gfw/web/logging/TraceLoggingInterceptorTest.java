@@ -15,7 +15,9 @@
  */
 package org.terasoluna.gfw.web.logging;
 
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
@@ -35,6 +37,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -44,9 +47,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
-import org.terasoluna.gfw.web.logging.TraceLoggingInterceptor;
+import org.terasoluna.gfw.web.logback.LogLevelChangeUtil;
 
 import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
 
 @ContextConfiguration(locations = "classpath:/test-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -65,6 +69,9 @@ public class TraceLoggingInterceptorTest {
     TraceLoggingInterceptorController controller;
 
     ModelAndView model;
+
+    Logger logger = (Logger) LoggerFactory
+            .getLogger(TraceLoggingInterceptor.class);
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -158,6 +165,38 @@ public class TraceLoggingInterceptorTest {
         // assert
         assertThat(startTime, nullValue());
         assertThat(count, is(0L));
+    }
+
+    @Test
+    public void testPreHandleIsTraceEnabledFalse() throws Exception {
+        // set up
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+
+        // parameter create
+        Object paramHandler = new Object();
+
+        try {
+            // run
+            interceptor.preHandle(request, response, paramHandler);
+        } catch (Exception e) {
+            fail("illegal case");
+        }
+
+        // expected
+        Long startTime = (Long) request
+                .getAttribute(TraceLoggingInterceptor.class.getName()
+                        + ".startTime");
+
+        long count = jdbcTemplate.queryForObject(
+                "SELECT COUNT(*) FROM LOGGING_EVENT", Collections.singletonMap(
+                        "", ""), Long.class);
+        // assert
+        assertThat(startTime, nullValue());
+        assertThat(count, is(0L));
+        assertThat(logger.isDebugEnabled(), is(false));
+
+        // init log level
+        LogLevelChangeUtil.resetLogLevel();
     }
 
     /**
@@ -402,6 +441,81 @@ public class TraceLoggingInterceptorTest {
 
         // assert
         verifyLogging(expectedLogStr, levelList, 1);
+    }
+
+    @Test
+    public void testPostHandleNullStartAttr() throws Exception {
+        // parameter create
+        HandlerMethod paramHandler = new HandlerMethod(controller, TraceLoggingInterceptorController.class
+                .getMethod("createForm"));
+        request.setAttribute(TraceLoggingInterceptor.class.getName() + ".startTime", null);
+
+        try {
+            // run
+            interceptor.postHandle(request, response, paramHandler, null);
+        } catch (Exception e) {
+            fail("illegal case");
+        }
+
+        // expected
+        String expectedLogStr = "TraceLoggingInterceptorController.createForm()->";
+        List<Level> levelList = new ArrayList<Level>();
+        levelList.add(Level.TRACE);
+
+        // assert
+        verifyLogging(expectedLogStr, levelList, 2);
+    }
+
+    @Test
+    public void testIsEnabledLogLevelIsWarnEnabledFalse() throws Exception {
+        // set up
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+
+        // parameter create
+        HandlerMethod paramHandler = new HandlerMethod(controller, TraceLoggingInterceptorController.class
+                .getMethod("createForm"));
+        long startTime = System.nanoTime();
+        request.setAttribute(TraceLoggingInterceptor.class.getName()
+                + ".startTime", startTime);
+
+        try {
+            // run
+            interceptor.postHandle(request, response, paramHandler, model);
+        } catch (Exception e) {
+            fail("illegal case");
+        }
+
+        // assert
+        assertThat(logger.isDebugEnabled(), is(false));
+
+        // init log level
+        LogLevelChangeUtil.resetLogLevel();
+    }
+
+    @Test
+    public void testIsEnabledLogLevelIsTraceEnabledFalse() throws Exception {
+        // set up
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+
+        // parameter create
+        HandlerMethod paramHandler = new HandlerMethod(controller, TraceLoggingInterceptorController.class
+                .getMethod("createForm"));
+        long startTime = System.nanoTime();
+        request.setAttribute(TraceLoggingInterceptor.class.getName()
+                + ".startTime", startTime);
+
+        try {
+            // run
+            interceptor.postHandle(request, response, paramHandler, model);
+        } catch (Exception e) {
+            fail("illegal case");
+        }
+
+        // assert
+        assertThat(logger.isDebugEnabled(), is(false));
+
+        // init log level
+        LogLevelChangeUtil.resetLogLevel();
     }
 
     /**

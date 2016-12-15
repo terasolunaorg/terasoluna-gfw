@@ -16,11 +16,18 @@
 package org.terasoluna.gfw.web.el;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 
+import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import org.joda.time.LocalDate;
 import org.junit.Test;
@@ -28,6 +35,22 @@ import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class FunctionsTest {
+
+    /**
+     * test private constructor.
+     */
+    @Test
+    public void testFunctions() throws Exception {
+        // set up
+        Constructor<Functions> constructor = Functions.class.getDeclaredConstructor();
+        assertThat(constructor.isAccessible(), is(false));
+        constructor.setAccessible(true);
+
+        // assert
+        assertThat(constructor.newInstance(), notNullValue());
+
+        constructor.setAccessible(false);
+    }
 
     @Test
     public void testH() {
@@ -562,6 +585,17 @@ public class FunctionsTest {
     }
 
     @Test
+    public void testDeprecatedMapToQueryIsNull() {
+        assertThat(Functions.mapToQuery(null, null), is(""));
+    }
+
+    @Test
+    public void testDeprecatedMapToQueryIsEmpty() {
+        Map<String, Object> map = new LinkedHashMap<String, Object>();
+        assertThat(Functions.mapToQuery(map, null), is(""));
+    }
+
+    @Test
     public void testJs() {
         assertThat(Functions.js(null), is(""));
         assertThat(Functions.js(""), is(""));
@@ -591,11 +625,6 @@ public class FunctionsTest {
         assertThat(Functions.hjs("\r"), is("\\r"));
         assertThat(Functions.hjs("\n"), is("\\n"));
         assertThat(Functions.hjs("b"), is("b"));
-    }
-
-    @Test
-    public void testMapToQuery_map_isNull() {
-        assertThat(Functions.mapToQuery(null, null), is(""));
     }
 
 }

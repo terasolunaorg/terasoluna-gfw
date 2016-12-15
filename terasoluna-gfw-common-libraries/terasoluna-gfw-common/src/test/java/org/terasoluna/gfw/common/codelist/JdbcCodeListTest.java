@@ -150,6 +150,60 @@ public class JdbcCodeListTest {
 
     }
 
+    @Test
+    public void testRetrieveKeyAndValueNull() {
+        // setup target
+        JdbcCodeList jdbcCodeList = new JdbcCodeList();
+
+        // setup parameters\
+        jdbcCodeList.setDataSource(dataSource);
+        jdbcCodeList.setLabelColumn("valueColumn");
+        jdbcCodeList.setValueColumn("labelColumn");
+        jdbcCodeList.setQuerySql("Select code_id, code_name from codelist");
+
+        Map<String, String> mapOutput = jdbcCodeList.retrieveMap();
+
+        // assert
+        assertThat(mapOutput.size(), is(0));
+
+    }
+
+    @Test
+    public void testRetrieveValueNull() {
+        // setup target
+        JdbcCodeList jdbcCodeList = new JdbcCodeList();
+
+        // setup parameters\
+        jdbcCodeList.setDataSource(dataSource);
+        jdbcCodeList.setLabelColumn("code_name");
+        jdbcCodeList.setValueColumn("labelColumn");
+        jdbcCodeList.setQuerySql("Select code_id, code_name from codelist");
+
+        Map<String, String> mapOutput = jdbcCodeList.retrieveMap();
+
+        // assert
+        assertThat(mapOutput.size(), is(0));
+
+    }
+
+    @Test
+    public void testRetrieveKeyNull() {
+        // setup target
+        JdbcCodeList jdbcCodeList = new JdbcCodeList();
+
+        // setup parameters\
+        jdbcCodeList.setDataSource(dataSource);
+        jdbcCodeList.setLabelColumn("valueColumn");
+        jdbcCodeList.setValueColumn("code_id");
+        jdbcCodeList.setQuerySql("Select code_id, code_name from codelist");
+
+        Map<String, String> mapOutput = jdbcCodeList.retrieveMap();
+
+        // assert
+        assertThat(mapOutput.size(), is(0));
+
+    }
+
     /**
      * In case LazyInit is set to false
      * @throws Exception

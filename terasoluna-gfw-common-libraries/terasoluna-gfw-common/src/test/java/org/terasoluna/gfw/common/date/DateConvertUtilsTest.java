@@ -15,9 +15,11 @@
  */
 package org.terasoluna.gfw.common.date;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.core.IsNull.notNullValue;
+import static org.junit.Assert.assertThat;
 
+import java.lang.reflect.Constructor;
 import java.sql.Time;
 import java.sql.Timestamp;
 
@@ -31,8 +33,20 @@ public class DateConvertUtilsTest {
     public ExpectedException expectedException = ExpectedException.none();
 
     @Test
-    public void testConvertToTimestamp01() {
+    public void testDateConvertUtils() throws Exception {
+        // set up
+        Constructor<DateConvertUtils> constructor = DateConvertUtils.class.getDeclaredConstructor();
+        assertThat(constructor.isAccessible(), is(false));
+        constructor.setAccessible(true);
 
+        // assert
+        assertThat(constructor.newInstance(), notNullValue());
+
+        constructor.setAccessible(false);
+    }
+
+    @Test
+    public void testConvertToTimestamp01() {
         // setup a test data
         DateTime date = new DateTime(2012, 9, 3, 23, 7, 11, 100);
 

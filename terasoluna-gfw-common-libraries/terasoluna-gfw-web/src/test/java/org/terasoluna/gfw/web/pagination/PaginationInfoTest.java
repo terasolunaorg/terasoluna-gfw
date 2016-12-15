@@ -20,8 +20,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -32,8 +35,8 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
 import org.springframework.web.util.UriComponents;
-import org.terasoluna.gfw.web.pagination.PaginationInfo;
 import org.terasoluna.gfw.web.pagination.PaginationInfo.BeginAndEnd;
 
 public class PaginationInfoTest {
@@ -121,6 +124,30 @@ public class PaginationInfoTest {
         assertThat(attributesMap.get("sortOrderProperty").toString(), is("id"));
         assertThat(attributesMap.get("sortOrderDirection").toString(),
                 is("DESC"));
+    }
+
+    @Test
+    public void testCreateAttributeMapfail() {
+        // set up
+        int page = 1;
+        int size = 1;
+
+        Sort sort = mock(Sort.class);
+        Iterator<Order> orders = mock(Iterator.class);
+        when(sort.iterator()).thenReturn(orders);
+        when(orders.hasNext()).thenReturn(false);
+
+        // run
+        Map<String, Object> attributesMap = PaginationInfo.createAttributeMap(
+                page, size, sort);
+
+        // assert
+        assertThat(Integer.valueOf(attributesMap.get("page").toString()),
+                is(page));
+        assertThat(Integer.valueOf(attributesMap.get("size").toString()),
+                is(size));
+        assertNull(attributesMap.get("sortOrderProperty"));
+        assertNull(attributesMap.get("sortOrderDirection"));
     }
 
     @Test

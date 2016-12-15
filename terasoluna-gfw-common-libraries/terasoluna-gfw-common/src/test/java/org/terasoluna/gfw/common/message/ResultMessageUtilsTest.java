@@ -16,17 +16,40 @@
 package org.terasoluna.gfw.common.message;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.core.IsNull.notNullValue;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.lang.reflect.Constructor;
 import java.util.Locale;
 
 import org.junit.Test;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
+import org.terasoluna.gfw.common.logback.LogLevelChangeUtil;
+
+import ch.qos.logback.classic.Logger;
 
 public class ResultMessageUtilsTest {
+
+    private Logger logger = (Logger) LoggerFactory
+            .getLogger(ResultMessageUtils.class);
+
+    @Test
+    public void testResultMessageUtils() throws Exception {
+        // set up
+        Constructor<ResultMessageUtils> constructor = ResultMessageUtils.class
+                .getDeclaredConstructor();
+        assertThat(constructor.isAccessible(), is(false));
+        constructor.setAccessible(true);
+
+        // assert
+        assertThat(constructor.newInstance(), notNullValue());
+
+        constructor.setAccessible(false);
+    }
 
     @Test
     public void testResolveMessageLocaleNotPassed() {
@@ -100,6 +123,32 @@ public class ResultMessageUtilsTest {
                 new NoSuchMessageException("MSG001"));
 
         ResultMessageUtils.resolveMessage(message, messageSource);
+    }
+
+    @Test
+    public void testResolveMessageIsDebugEnabledFalse() throws Exception {
+        // set up
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
+
+        ResultMessage message = mock(ResultMessage.class);
+        MessageSource messageSource = mock(MessageSource.class);
+        Locale locale = Locale.getDefault();
+
+        when(message.getCode()).thenReturn("MSG001");
+        when(message.getArgs()).thenReturn(null);
+        when(message.getText()).thenReturn("MESSAGE_TEXT");
+        when(messageSource.getMessage("MSG001", null, locale)).thenThrow(
+                new NoSuchMessageException("MSG001"));
+
+        String msg = ResultMessageUtils.resolveMessage(message, messageSource,
+                locale);
+
+        // assert
+        assertThat(msg, is("MESSAGE_TEXT"));
+        assertThat(logger.isDebugEnabled(), is(false));
+
+        // init log level
+        LogLevelChangeUtil.resetLogLevel();
     }
 
 }
