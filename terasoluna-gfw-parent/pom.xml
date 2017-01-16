@@ -351,7 +351,7 @@
                     <configuration>
                         <configuration>
                             <properties>
-                                <cargo.servlet.uriencoding>UTF-8</cargo.servlet.uriencoding>
+                                <cargo.tomcat.uriencoding>UTF-8</cargo.tomcat.uriencoding>
                                 <cargo.jvmargs>${cargo.jvmargs}</cargo.jvmargs>
                             </properties>
                         </configuration>
