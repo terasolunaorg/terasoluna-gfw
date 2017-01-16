@@ -1071,7 +1071,7 @@
         <org.codehaus.mojo.version>2.5</org.codehaus.mojo.version>
         <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
-        <cargo-maven2-plugin.version>1.4.17</cargo-maven2-plugin.version>
+        <cargo-maven2-plugin.version>1.6.2</cargo-maven2-plugin.version>
         <!-- == Other Properties== -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <archetype.test.skip>true</archetype.test.skip>
