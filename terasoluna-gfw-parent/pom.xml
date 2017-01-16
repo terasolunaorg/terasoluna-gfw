@@ -399,7 +399,7 @@
         <maven-install-plugin.version>2.5.2</maven-install-plugin.version>
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
         <maven-site-plugin.version>3.4</maven-site-plugin.version>
-        <cargo-maven2-plugin.version>1.4.17</cargo-maven2-plugin.version>
+        <cargo-maven2-plugin.version>1.6.2</cargo-maven2-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
         <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
         <!-- == Dependency Versions == -->
