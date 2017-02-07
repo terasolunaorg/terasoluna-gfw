@@ -46,7 +46,6 @@ import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForS
  * <br>
  * If the the code does not exist in the {@link CodeList}, an instance of {@link javax.validation.ConstraintViolation} is
  * returned with the default error message represented by {@code message()} in it.
- * </p>
  */
 @Target({ ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
@@ -62,7 +61,6 @@ public @interface ExistInCodeList {
 
     /**
      * Bean ID of the codelist in which check the value<br>
-     * </p>
      * @return bean ID of the codelist
      */
     String codeListId();

@@ -24,7 +24,6 @@ import org.springframework.beans.factory.InitializingBean;
  * <p>
  * Please treat as an object of singleton, because this class is thread-safe.
  * </p>
- * <p>
  * <h2>Example of the Settings for inject a custom ExceptionLogger</h2><br>
  * <strong>[applicationContext.xml]</strong><br>
  * define bean of custom ExceptionLogger.
@@ -44,8 +43,6 @@ import org.springframework.beans.factory.InitializingBean;
  *   &lt;property name=&quot;exceptionLogger&quot; ref=&quot;exceptionLogger&quot; /&gt;
  * &lt;/bean&gt;
  * </pre>
- * 
- * </p>
  */
 public class ResultMessagesLoggingInterceptor implements MethodInterceptor,
                                              InitializingBean {
@@ -79,7 +76,6 @@ public class ResultMessagesLoggingInterceptor implements MethodInterceptor,
      * <li>if other exception occurred , not logging exception.</li>
      * <li>if intercepted on multi point, logging do in starting point of interception.(for prevent duplicate log output)</li>
      * </ol>
-     * </p>
      * @param invocation invocation object of intercepted target's method.
      * @return returned object from intercepted target's method.
      * @throws Throwable if occur exception in invocation target's method.

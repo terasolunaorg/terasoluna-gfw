@@ -103,7 +103,6 @@ public class JdbcAdjustedDateFactory extends AbstractDateFactory implements
      * Reloads the adjustment value from the database.
      * <P>
      * Depending on the settings, the reloaded fresh value will also be cached.
-     * <P>
      */
     @Override
     public void afterPropertiesSet() {

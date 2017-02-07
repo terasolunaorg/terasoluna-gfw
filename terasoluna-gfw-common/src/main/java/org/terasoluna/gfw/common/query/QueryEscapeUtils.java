@@ -48,25 +48,22 @@ public final class QueryEscapeUtils {
      * </ol>
      * <p>
      * For example.<br>
-     * <p/>
-     * 
+     *
      * <pre>
      * <code>
      * 
-     * toLikeCondition("a")    -> "a"
-     * toLikeCondition("a~")   -> "a~~"
-     * toLikeCondition("a%")   -> "a~%"
-     * toLikeCondition("a_")   -> "a~_"
-     * toLikeCondition("_a%")  -> "~_a~%"
-     * toLikeCondition("a％")  -> "a％" (does not escape!)
-     * toLikeCondition("a＿")  -> "a＿" (does not escape!)
-     * toLikeCondition(" ")    -> " "
-     * toLikeCondition("")     -> ""
-     * toLikeCondition(null)   -> null
+     * toLikeCondition("a")    -&gt; "a"
+     * toLikeCondition("a~")   -&gt; "a~~"
+     * toLikeCondition("a%")   -&gt; "a~%"
+     * toLikeCondition("a_")   -&gt; "a~_"
+     * toLikeCondition("_a%")  -&gt; "~_a~%"
+     * toLikeCondition("a％")  -&gt; "a％" (does not escape!)
+     * toLikeCondition("a＿")  -&gt; "a＿" (does not escape!)
+     * toLikeCondition(" ")    -&gt; " "
+     * toLikeCondition("")     -&gt; ""
+     * toLikeCondition(null)   -&gt; null
      * </code>
      * </pre>
-     * <p/>
-     * </p>
      * <p>
      * return likeCondition of argument when condition is <code>null</code>.<br>
      * Returned value is not appended "%" keyword.<br>
@@ -165,24 +162,21 @@ public final class QueryEscapeUtils {
      * </ol>
      * <p>
      * For example.<br>
-     * <p/>
-     * 
+     *
      * <pre>
      * <code>
-     * withFullWidth().toLikeCondition("a")    -> "a"
-     * withFullWidth().toLikeCondition("a~")   -> "a~~"
-     * withFullWidth().toLikeCondition("a%")   -> "a~%"
-     * withFullWidth().toLikeCondition("a_")   -> "a~_"
-     * withFullWidth().toLikeCondition("_a%")  -> "~_a~%"
-     * withFullWidth().toLikeCondition("a％")  -> "a~％" (escape!)
-     * withFullWidth().toLikeCondition("a＿")  -> "a~＿" (escape!)
-     * withFullWidth().toLikeCondition(" ")    -> " "
-     * withFullWidth().toLikeCondition("")     -> ""
-     * withFullWidth().toLikeCondition(null)   -> null
+     * withFullWidth().toLikeCondition("a")    -&gt; "a"
+     * withFullWidth().toLikeCondition("a~")   -&gt; "a~~"
+     * withFullWidth().toLikeCondition("a%")   -&gt; "a~%"
+     * withFullWidth().toLikeCondition("a_")   -&gt; "a~_"
+     * withFullWidth().toLikeCondition("_a%")  -&gt; "~_a~%"
+     * withFullWidth().toLikeCondition("a％")  -&gt; "a~％" (escape!)
+     * withFullWidth().toLikeCondition("a＿")  -&gt; "a~＿" (escape!)
+     * withFullWidth().toLikeCondition(" ")    -&gt; " "
+     * withFullWidth().toLikeCondition("")     -&gt; ""
+     * withFullWidth().toLikeCondition(null)   -&gt; null
      * </code>
      * </pre>
-     * <p/>
-     * </p>
      * @return LikeConditionEscape that escape full-width wildcards.
      * @since 1.0.2
      */

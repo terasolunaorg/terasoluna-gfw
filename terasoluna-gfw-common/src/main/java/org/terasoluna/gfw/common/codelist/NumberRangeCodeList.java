@@ -76,7 +76,7 @@ public class NumberRangeCodeList extends AbstractCodeList implements
      * <code>to</code> must be more than <code>from</code>.
      * </p>
      * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
-     * @throws IllegalArgumentException when if from > to.
+     * @throws IllegalArgumentException when if from &gt; to.
      */
     @Override
     public void afterPropertiesSet() {
@@ -105,7 +105,7 @@ public class NumberRangeCodeList extends AbstractCodeList implements
 
     /**
      * Sets the start of the range of numbers(default 0)
-     * @param from
+     * @param from start value of the range
      */
     public void setFrom(int from) {
         this.from = from;
@@ -113,7 +113,7 @@ public class NumberRangeCodeList extends AbstractCodeList implements
 
     /**
      * Sets end of the range of numbers(default 0)
-     * @param to
+     * @param to end value of the range
      */
     public void setTo(int to) {
         this.to = to;
@@ -123,7 +123,7 @@ public class NumberRangeCodeList extends AbstractCodeList implements
      * Sets the interval between 2 numbers<br>
      * <p>
      * This number must be positive integer(default 1)
-     * @param interval
+     * @param interval interval value between start value and end value
      */
     public void setInterval(int interval) {
         this.interval = interval;
@@ -132,7 +132,7 @@ public class NumberRangeCodeList extends AbstractCodeList implements
     /**
      * Sets the display format of the value part of the codelist(default %s)
      * @see String#format(String, Object...)
-     * @param valueFormat
+     * @param valueFormat format string for code value
      */
     public void setValueFormat(String valueFormat) {
         this.valueFormat = valueFormat;
@@ -141,7 +141,7 @@ public class NumberRangeCodeList extends AbstractCodeList implements
     /**
      * Sets the display format of the name part of the codelist(default %s)
      * @see String#format(String, Object...)
-     * @param labelFormat
+     * @param labelFormat format string for code label
      */
     public void setLabelFormat(String labelFormat) {
         this.labelFormat = labelFormat;

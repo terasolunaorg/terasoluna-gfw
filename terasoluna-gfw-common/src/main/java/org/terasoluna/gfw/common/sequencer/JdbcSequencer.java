@@ -23,7 +23,7 @@ import org.springframework.util.Assert;
 
 /**
  * Implementation class for the Sequencing Functionality Uses JDBC to query the database to fetch the next value in a sequence
- * @param <T>
+ * @param <T> type of sequence value
  */
 public class JdbcSequencer<T> implements Sequencer<T>, InitializingBean {
 
@@ -87,7 +87,7 @@ public class JdbcSequencer<T> implements Sequencer<T>, InitializingBean {
 
     /**
      * Sets the type of the class whose instance is returned as the next value in the sequence. must not be null
-     * @param sequenceClass
+     * @param sequenceClass java type of sequence value
      */
     public void setSequenceClass(Class<T> sequenceClass) {
         this.sequenceClass = sequenceClass;
@@ -96,7 +96,7 @@ public class JdbcSequencer<T> implements Sequencer<T>, InitializingBean {
     /**
      * Sets the DataSource information used for accessing the database for fetching the next value of the sequence. must not be
      * null
-     * @param dataSource
+     * @param dataSource DataSource instance for fetching a sequence value
      */
     public void setDataSource(DataSource dataSource) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
@@ -104,7 +104,7 @@ public class JdbcSequencer<T> implements Sequencer<T>, InitializingBean {
 
     /**
      * Sets JdbcTemplate directly. must not be null
-     * @param jdbcTemplate
+     * @param jdbcTemplate JdbcTemplate instance for fetch a sequence value
      */
     public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;

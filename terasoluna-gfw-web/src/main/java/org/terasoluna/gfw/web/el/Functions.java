@@ -48,8 +48,6 @@ import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
  * </ul>
  * <br>
  * Refer JavaDoc of each method for information regarding how to use.<br>
- * <br>
- * </p>
  */
 public final class Functions {
 
@@ -129,13 +127,12 @@ public final class Functions {
      * query         = *( pchar / "/" / "?" )
      * pchar         = unreserved / pct-encoded / sub-delims / ":" / "@"
      * unreserved    = ALPHA / DIGIT / "-" / "." / "_" / "~"
-     * sub-delims    = "!" / "$" / "&" / "'" / "(" / ")" / "*" / "+" / "," / ";" / "="
+     * sub-delims    = "!" / "$" / "&amp;" / "'" / "(" / ")" / "*" / "+" / "," / ";" / "="
      * pct-encoded   = "%" HEXDIG HEXDIG
      *      </code>
      * </pre>
      *
-     * In these characters, as a value of query parameter, <strong>"&", "+" , "=" are percent-encoded</strong>.
-     * </p>
+     * In these characters, as a value of query parameter, <strong>"&amp;", "+" , "=" are percent-encoded</strong>.
      * <h3>sample</h3>
      * <ul>
      * <li>/ ====&gt; /</li>
@@ -148,7 +145,7 @@ public final class Functions {
      * <li>~ ====&gt; ~</li>
      * <li>! ====&gt; !</li>
      * <li>$ ====&gt; $</li>
-     * <li>& ====&gt; %26</li>
+     * <li>&amp; ====&gt; %26</li>
      * <li>' ====&gt; '</li>
      * <li>( ====&gt; (</li>
      * <li>) ====&gt; )</li>
@@ -163,7 +160,7 @@ public final class Functions {
      * </p>
      * @param value string to encode
      * @return encoded string based on RFC 3986. returns empty string if <code>value</code> is <code>null</code> or empty.
-     * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a> 3.4.Query
+     * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986 3.4.Query</a>
      */
     public static String u(String value) {
         if (value == null || value.isEmpty()) {
@@ -229,7 +226,7 @@ public final class Functions {
      * query string is encoded with "UTF-8".
      * </p>
      * @param map map
-     * @return query string. if map is not empty, return query string. ex) name1=value&name2=value&...
+     * @return query string. if map is not empty, return query string. ex) name1=value&amp;name2=value&amp;...
      */
     public static String mapToQuery(Map<String, Object> map) {
         return mapToQuery(map, null);
@@ -242,7 +239,7 @@ public final class Functions {
      * </p>
      * @param map map
      * @param beanWrapper beanWrapper which has the definition of each field.
-     * @return query string. if map is not empty, return query string. ex) name1=value&name2=value&...
+     * @return query string. if map is not empty, return query string. ex) name1=value&amp;name2=value&amp;...
      */
     public static String mapToQuery(Map<String, Object> map,
             BeanWrapper beanWrapper) {
@@ -327,11 +324,10 @@ public final class Functions {
      * " ====&gt; \"<br>
      * \ ====&gt; \\<br>
      * / ====&gt; \/<br>
-     * < ====&gt; \x3c<br>
-     * > ====&gt; \x3e<br>
+     * &lt; ====&gt; \x3c<br>
+     * &gt; ====&gt; \x3e<br>
      * 0x0D ====&gt; \r<br>
      * 0x0A ====&gt; \n<br>
-     * </p>
      * @param value string to escape
      * @return escaped string. returns empty string if <code>value</code> is <code>null</code> or empty.
      */

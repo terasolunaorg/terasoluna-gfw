@@ -30,15 +30,14 @@ import javax.servlet.http.HttpServletResponse;
  * 
  * <pre>
  * <code>
- * &lt;init-param&gt
- *     &lt;param-name&gtattributeName&lt;/param-name&gt
- *     &lt;param-value&gtXXXX&lt;/param-value&gt
- * &lt;/init-param&gt
+ * &lt;init-param&gt;
+ *     &lt;param-name&gt;attributeName&lt;/param-name&gt;
+ *     &lt;param-value&gt;XXXX&lt;/param-value&gt;
+ * &lt;/init-param&gt;
  * </code>
  * </pre>
  * 
  * in web.xml
- * </p>
  */
 public class XTrackMDCPutFilter extends AbstractMDCPutFilter {
 

@@ -67,7 +67,6 @@ public class SimpleMappingExceptionCodeResolver implements
      * {@code key}, {@code java.io.FileNotFoundException} as well as {@code javax.naming.NameNotFoundException} are covered.
      * <li>If multiple {@code key} are set, it will be applicable in the order of addition to the {@code Map}</li>
      * </ul>
-     * </p>
      * @param exceptionMappings Mapping rules between exception code and exception class name.
      */
     public void setExceptionMappings(

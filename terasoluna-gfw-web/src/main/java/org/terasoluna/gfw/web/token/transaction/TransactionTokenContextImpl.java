@@ -42,8 +42,8 @@ public class TransactionTokenContextImpl implements TransactionTokenContext {
 
     /**
      * Constructor. Initializes <code>reserveCommand</code> on the basis of the argument <code>receivedToken</code> <br>
-     * @param tokenInfo
-     * @param receivedToken
+     * @param tokenInfo transaction token information
+     * @param receivedToken received token
      */
     public TransactionTokenContextImpl(final TransactionTokenInfo tokenInfo,
             TransactionToken receivedToken) {

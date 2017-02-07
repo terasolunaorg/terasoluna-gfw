@@ -34,7 +34,7 @@ public final class RequestUtils {
 
     /**
      * Returns whether the request is Ajax.
-     * @param request
+     * @param request the current request
      * @return <code>true</code> if ajax, otherwise <code>false</code>.
      */
     public static boolean isAjaxRequest(HttpServletRequest request) {

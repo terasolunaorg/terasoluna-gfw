@@ -91,8 +91,8 @@ public class ResultMessage implements Serializable {
      * <p>
      * <code>text</code> is <code>null</code>
      * </p>
-     * @param code (must not be null)
-     * @param args
+     * @param code message code (must not be null)
+     * @param args replacement values of message format
      * @return message
      */
     public static ResultMessage fromCode(String code, Object... args) {
@@ -105,7 +105,7 @@ public class ResultMessage implements Serializable {
      * <p>
      * <code>code</code> is <code>null</code>
      * </p>
-     * @param text (must not be null)
+     * @param text message tet (must not be null)
      * @return message
      */
     public static ResultMessage fromText(String text) {
@@ -161,7 +161,6 @@ public class ResultMessage implements Serializable {
      * <li>the obj is the same instance as the current one. OR</li>
      * <li>if code AND text of the two instances are same respectively (including null values).</li>
      * </ul>
-     * </p>
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override

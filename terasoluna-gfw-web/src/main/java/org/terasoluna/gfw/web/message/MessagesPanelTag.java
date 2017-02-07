@@ -60,16 +60,12 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * <pre>
  * &lt;t:messagesPanel /&gt;<br>
  * </pre>
- * 
- * </p>
  * <p>
  * Resulting Output will be<br>
  * 
  * <pre>
  * &lt;div class=&quot;alert alert-success&quot;&gt;&lt;ul&gt;&lt;li&gt;Hello World!!&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;<br>
  * </pre>
- * 
- * </p>
  * <p>
  * By default, a combination of, ``alert`` and any one of ``alert-success,alert-info,alert-warn,alert-error`` classes of
  * bootstrap, is used in ``messagesPanel`` <br>
@@ -85,16 +81,12 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * <pre>
  * &lt;t:messagesPanel messagesAttributeName=&quot;textMessage&quot; /&gt;<br>
  * </pre>
- * 
- * </p>
  * <p>
  * Result:<br>
  * 
  * <pre>
  * &lt;div class=&quot;alert&quot;&gt;&lt;ul&gt;&lt;li&gt;textMessage&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
  * </pre>
- * 
- * </p>
  * <p>
  * <b>When the message is in {@code String} and {@code messagesPanel} is using non-default values<br>
  * </b>
@@ -104,7 +96,7 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * </p>
  * 
  * <pre>
- * <div class="row"> <div class="span12"> <h2>Message pattern</h2> <div class="alert alert-success">
+ * &lt;div class=&quot;row&quot;&gt; &lt;div class=&quot;span12&quot;&gt; &lt;h2&gt;Message pattern&lt;/h2&gt; &lt;div class=&quot;alert alert-success&quot;&gt;
  * </pre>
  * <p>
  * Configuration example:<br>
@@ -113,16 +105,12 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * &lt;t:messagesPanel messagesAttributeName=&quot;textMessage&quot; panelClassName=&quot;notice&quot;
  * panelTypeClassPrefix=&quot;&quot; /&gt;
  * </pre>
- * 
- * </p>
  * <p>
  * Result:<br>
  * 
  * <pre>
  * &lt;div class=&quot;notice&quot;&gt;&lt;ul&gt;&lt;li&gt;textMessage&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
  * </pre>
- * 
- * </p>
  */
 public class MessagesPanelTag extends RequestContextAwareTag {
 
@@ -274,8 +262,8 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * {@link #innerElement} and messages.<br>
      * If there is only a single message, this method calls {@link #writeMessage(TagWriter, Object)} only once
      * </p>
-     * @param tagWriter
-     * @param messages
+     * @param tagWriter a TegWriter instance
+     * @param messages messages
      * @throws JspException If {@link JspException} occurs in caller writeMessage
      */
     protected void writeMessages(TagWriter tagWriter, Object messages) throws JspException {
@@ -309,8 +297,8 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * <p>
      * If {@link #innerElement} is specified, the tag specified in it will be applied around the message.<br>
      * </p>
-     * @param tagWriter
-     * @param message
+     * @param tagWriter a TagWriter instance
+     * @param message message
      * @throws JspException Occurs when {@link JspTagException} occurs in case when nothing is set in the configuration of the
      *             tag that configures MessagePanel using tagWriter.
      */
@@ -377,9 +365,8 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 
     /**
      * converts the parameter to String and returns it.
-     * <p>
-     * </p>
      * @param message Object
+     * @return message string
      */
     protected String getTextInOtherCase(Object message) {
         return message.toString();
@@ -410,8 +397,6 @@ public class MessagesPanelTag extends RequestContextAwareTag {
 
     /**
      * Set the name of the model that stores the messages.
-     * <p>
-     * </p>
      * @param messagesAttributeName Attribute name that is used to store messages
      */
     public void setMessagesAttributeName(String messagesAttributeName) {
@@ -422,8 +407,6 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * Set the class that will configure the MessagesPanel tag. <br>
      * CSS class must be set. <br>
      * If this item is being set, it is assumed that {@link #panelTypeClassPrefix} must be empty.
-     * <p>
-     * </p>
      * @param panelClassName CSS class
      */
     public void setPanelClassName(String panelClassName) {
@@ -447,7 +430,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * Sets the tag that configures MessagesPanel
      * <p>
      * Points to be careful:<br>
-     * Only the tag name should be set. "<>" used while using the tag in HTML should not be included. For ex: "div"<br>
+     * Only the tag name should be set. "&lt;&gt;" used while using the tag in HTML should not be included. For ex: "div"<br>
      * Specify the tag which have class property.
      * </p>
      * @param panelElement html tag
@@ -460,7 +443,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * Sets the outer tag which configures MessagesPanel tag
      * <p>
      * Points to be careful:<br>
-     * Only the tag name should be set. "<>" used while using the tag in HTML should not be included. For ex: "span"<br>
+     * Only the tag name should be set. "&lt;&gt;" used while using the tag in HTML should not be included. For ex: "span"<br>
      * </p>
      * @param outerElement html tag
      */
@@ -472,7 +455,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * Sets the inner tag which configures MessagesPanel tag
      * <p>
      * Points to be careful:<br>
-     * Only the tag name should be set. "<>" used while using the tag in HTML should not be included. For ex: "span"<br>
+     * Only the tag name should be set. "&lt;&gt;" used while using the tag in HTML should not be included. For ex: "span"<br>
      * </p>
      * @param innerElement html tag
      */
@@ -501,6 +484,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * By default, disableHtmlEscape is set to <code>false</code>. This means <br>
      * html escaping is not disabled and will be performed by default.
      * @param disableHtmlEscape value of disableHtmlEscape
+     * @throws JspException If value that is not true or false is specified.
      */
     public void setDisableHtmlEscape(String disableHtmlEscape) throws JspException {
         this.disableHtmlEscape = JspTagUtils.toBoolean(disableHtmlEscape,

@@ -40,7 +40,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
 
     /**
      * Constructor with a single {@link Map} parameter.
-     * @param map
+     * @param map target map of read or write lock
      */
     public ReadWriteLockMapWrapper(Map<K, V> map) {
         this.map = map;
@@ -77,6 +77,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * {@code callback} <br>
      * is executed.
      * </p>
+     * @param <T> a return value type of callback method within read lock
      * @param callback An instance of {@link LockedCallback} which represents a method call of {@link Map}
      * @return the return value of the method represented by {@code callback}
      */
@@ -105,6 +106,7 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * {@code callback} <br>
      * is executed.<br>
      * </p>
+     * @param <T> a return value type of callback method within write lock
      * @param callback An instance of {@link LockedCallback} which represents a method call of {@link Map}
      * @return the return value of the method represented by {@code callback}
      */

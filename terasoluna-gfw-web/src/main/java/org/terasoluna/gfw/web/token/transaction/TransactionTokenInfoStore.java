@@ -49,7 +49,7 @@ public class TransactionTokenInfoStore {
      * <p>
      * If there is no <code>TransactionTokenInfo</code> corresponding to the handlerMethod passed as argument, a new
      * TransactionTokenInfo is returned as well as put in the cache. <br>
-     * @param handlerMethod
+     * @param handlerMethod handler method
      * @return TransactionTokenInfo
      */
     public TransactionTokenInfo getTransactionTokenInfo(

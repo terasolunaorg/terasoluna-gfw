@@ -58,7 +58,7 @@ public abstract class AbstractExistInCodeListValidator<T> extends
 
     /**
      * Get string code from input value
-     * @param value
+     * @param value input value
      * @return code code in the String format
      */
     protected abstract String getCode(T value);

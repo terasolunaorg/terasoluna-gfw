@@ -211,7 +211,7 @@ public class PaginationInfo {
 
     /**
      * Constructor. Initializes the properties with the arguments passed<br>
-     * @param page
+     * @param page a Page instance
      * @param pathTmpl path template of pagination
      * @param queryTmpl query template of pagination
      * @param maxDisplayCount max display count
@@ -223,7 +223,7 @@ public class PaginationInfo {
 
     /**
      * Constructor. Initializes the properties with the arguments passed<br>
-     * @param page
+     * @param page a Page instance
      * @param pathTmpl path template of pagination
      * @param queryTmpl query template of pagination
      * @param criteriaQuery Query of search criteria
@@ -279,7 +279,7 @@ public class PaginationInfo {
      * @param pageIndex index of page number (page index is start with 0).
      * @param size size of page.
      * @param sort Sort option for queries.
-     * @return Map<String, Object> instance of attributes
+     * @return Map&lt;String, Object&gt; instance of attributes
      */
     public static Map<String, Object> createAttributeMap(int pageIndex,
             int size, Sort sort) {
