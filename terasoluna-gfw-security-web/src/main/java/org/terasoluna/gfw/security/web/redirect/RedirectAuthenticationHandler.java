@@ -46,7 +46,7 @@ import org.springframework.util.StringUtils;
  * path should correspond to a {@code GET} request handler. <br>
  * .
  * <p>
- * This functionality can be used in a situation where search screen -> detail screen is possible without login. but login is
+ * This functionality can be used in a situation where search screen -&gt; detail screen is possible without login. but login is
  * required for any update process on the detail screen. In this case, it should transition back to the detail screen after
  * login <br>
  * Usage Example is as below:
@@ -121,7 +121,7 @@ public class RedirectAuthenticationHandler extends
 
     /**
      * set RedirectStrategy to use if redirect path is specified as a request parameter. (default:"redirectTo")<br>
-     * @param redirectToRedirectStrategy
+     * @param redirectToRedirectStrategy RedirectStrategy to use if redirect path is specified as a request parameter
      */
     public void setRedirectToRedirectStrategy(
             RedirectStrategy redirectToRedirectStrategy) {

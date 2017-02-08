@@ -30,10 +30,10 @@ import org.terasoluna.gfw.web.logging.mdc.AbstractMDCPutFilter;
  * 
  * <pre>
  * <code>
- * &lt;init-param&gt
- *     &lt;param-name&gtattributeName&lt;/param-name&gt
- *     &lt;param-value&gtXXXX&lt;/param-value&gt
- * &lt;/init-param&gt
+ * &lt;init-param&gt;
+ *     &lt;param-name&gt;attributeName&lt;/param-name&gt;
+ *     &lt;param-value&gt;XXXX&lt;/param-value&gt;
+ * &lt;/init-param&gt;
  * </code>
  * </pre>
  * 

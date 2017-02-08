@@ -245,7 +245,6 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
      * @param response current HTTP response
      * @param handler chosen handler to execute, for type and/or instance examination
      * @param modelAndView the <code>ModelAndView</code> that the handler returned (can also be <code>null</code>)
-     * @throws Exception in case of errors
      * @see org.springframework.web.servlet.HandlerInterceptor#postHandle(javax.servlet.http.HttpServletRequest,
      *      javax.servlet.http.HttpServletResponse, java.lang.Object, org.springframework.web.servlet.ModelAndView)
      */
@@ -285,7 +284,7 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
 
     /**
      * If exception occurred during request processing, the token is removed from request as well as
-     * <code>TransactionTokenStore<code> 
+     * <code>TransactionTokenStore</code>
      * <p>
      * Token Context is fetched from the request attribute named <code>TransactionTokenInterceptor.TOKEN_CONTEXT</code>
      * Arguments <code>response</code> and <code>handler</code> are not used in this implementation

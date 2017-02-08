@@ -213,7 +213,7 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter
     }
 
     /**
-     * Returns the list of codelists which are to be set to attribute of {@link HttpServletRequest}</p>
+     * Returns the list of codelists which are to be set to attribute of {@link HttpServletRequest}
      * @return list of codelists
      */
     protected Collection<CodeList> getCodeLists() {

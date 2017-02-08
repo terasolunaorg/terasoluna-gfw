@@ -17,7 +17,6 @@ package org.terasoluna.gfw.web.token.transaction;
 
 /**
  * Interface containing operations for managing Transaction Token Context<br>
- * <p>
  */
 public interface TransactionTokenContext {
 

@@ -169,7 +169,6 @@ public class ExceptionLogger implements InitializingBean {
      * <li>logger for output of application log: {name}</li>
      * <li>logger for output of monitoring log: {name} + ".Monitoring"</li>
      * </ul>
-     * </p>
      * @param name name of logger
      */
     public ExceptionLogger(String name) {
@@ -372,7 +371,6 @@ public class ExceptionLogger implements InitializingBean {
      * <li>If exception code is resolved: "[${exceptionCode}] ${exceptionMessage}" format</li>
      * <li>If exception code is not resolved: "${exceptionMessage}" format</li>
      * </ul>
-     * </p>
      * @param exceptionCode exception code
      * @param exceptionMessage exception message
      * @return message ready for log output

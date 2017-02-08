@@ -134,4 +134,46 @@
         <!-- == End Unit Test == -->
 
     </dependencies>
+
+    <profiles>
+        <profile>
+            <id>jdk8</id>
+            <activation>
+                <jdk>1.8</jdk>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <!-- Generate JavaDoc of TERASOLUNA package for verification -->
+                                <id>javadoc-jar</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                                <configuration>
+                                    <excludePackageNames>org.springframework.*</excludePackageNames>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <!-- Generate JavaDoc of all package with ignoring errors (ignore errors on Spring package) -->
+                                <id>javadoc-jar-all-with-ignoring-errors</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                                <configuration>
+                                    <additionalparam>-Xdoclint:none</additionalparam>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
 </project>
