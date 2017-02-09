@@ -15,8 +15,14 @@
  */
 package org.terasoluna.gfw.common.message;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.DANGER;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.ERROR;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.INFO;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.SUCCESS;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.WARN;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,11 +30,8 @@ import java.util.Collection;
 import java.util.List;
 
 import org.junit.Test;
-import org.terasoluna.gfw.common.message.ResultMessage;
-import org.terasoluna.gfw.common.message.ResultMessageType;
-import org.terasoluna.gfw.common.message.ResultMessages;
-
-import static org.terasoluna.gfw.common.message.StandardResultMessageType.*;
+import org.springframework.core.serializer.support.SerializationFailedException;
+import org.springframework.util.SerializationUtils;
 
 public class ResultMessagesTest {
     @Test(expected = IllegalArgumentException.class)
@@ -239,5 +242,15 @@ public class ResultMessagesTest {
 
         assertThat(messages.getType(), is((ResultMessageType) DANGER));
         assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
+    }
+
+    @Test
+    public void testSerialization() {
+        try {
+            byte[] serialized = SerializationUtils.serialize(new ResultMessages((ResultMessageType) ERROR));
+            SerializationUtils.deserialize(serialized);
+        } catch (SerializationFailedException e) {
+            fail();
+        }
     }
 }
