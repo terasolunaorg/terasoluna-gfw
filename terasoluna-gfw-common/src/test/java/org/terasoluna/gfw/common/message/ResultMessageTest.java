@@ -18,11 +18,14 @@ package org.terasoluna.gfw.common.message;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
+import org.springframework.core.serializer.support.SerializationFailedException;
+import org.springframework.util.SerializationUtils;
 
 public class ResultMessageTest {
 
@@ -78,6 +81,16 @@ public class ResultMessageTest {
     @Test(expected = IllegalArgumentException.class)
     public void test09() {
         ResultMessage.fromText(null);
+    }
+
+    @Test
+    public void test10() {
+        try {
+            byte[] serialized = SerializationUtils.serialize(ResultMessage.fromText("foo"));
+            SerializationUtils.deserialize(serialized);
+        } catch (SerializationFailedException e) {
+            fail();
+        }
     }
 
     @Test

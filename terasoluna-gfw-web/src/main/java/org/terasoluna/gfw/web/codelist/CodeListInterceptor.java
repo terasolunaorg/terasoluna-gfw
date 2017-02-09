@@ -155,7 +155,7 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter
 
         Assert.notNull(applicationContext, "applicationContext is null.");
 
-        if (codeListIdPattern == null) {
+        if (this.codeListIdPattern == null) {
             this.codeListIdPattern = Pattern.compile(".+");
         }
 
@@ -165,9 +165,11 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter
         Map<String, CodeList> targetCodeLists = new HashMap<String, CodeList>();
         for (CodeList codeList : definedCodeLists.values()) {
             String codeListId = codeList.getCodeListId();
-            Matcher codeListIdMatcher = codeListIdPattern.matcher(codeListId);
-            if (codeListIdMatcher.matches()) {
-                targetCodeLists.put(codeListId, codeList);
+            if (codeListId != null) {
+                Matcher codeListIdMatcher = codeListIdPattern.matcher(codeListId);
+                if (codeListIdMatcher.matches()) {
+                    targetCodeLists.put(codeListId, codeList);
+                }
             }
         }
 
