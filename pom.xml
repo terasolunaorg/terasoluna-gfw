@@ -34,32 +34,15 @@
     </scm>
     <repositories>
         <repository>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>central</id>
-            <name>Maven Central repository</name>
-            <url>http://repo1.maven.org/maven2/</url>
-        </repository>
-        <repository>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-            <id>terasoluna-gfw-releases</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
-        </repository>
-        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
             <snapshots>
                 <enabled>true</enabled>
             </snapshots>
-            <id>terasoluna-gfw-snapshots</id>
-            <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
         </repository>
     </repositories>
     <properties>
@@ -85,16 +68,6 @@
                 <module>terasoluna-gfw-common-libraries</module>
                 <module>terasoluna-gfw-dependencies</module>
             </modules>
-            <distributionManagement>
-                <repository>
-                    <id>terasoluna-gfw-releases</id>
-                    <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
-                </repository>
-                <snapshotRepository>
-                    <id>terasoluna-gfw-snapshots</id>
-                    <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
-                </snapshotRepository>
-            </distributionManagement>
         </profile>
         <profile>
             <id>central</id>
