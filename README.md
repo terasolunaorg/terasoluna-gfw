@@ -30,23 +30,6 @@ Two types of settings are possible.
 
 Irrespective of above two ways, first define the repositories in the pom file.
 
-(The below is required in the both the type of settings.)
-
-``` xml
-<repositories>
-    <repository>
-        <releases>
-            <enabled>true</enabled>
-        </releases>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
-        <id>terasoluna-gfw-releases</id>
-        <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
-    </repository>
-</repositories>
-```
-
 #### Using parent
 
 Define parent project in pom file
