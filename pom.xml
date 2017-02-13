@@ -32,19 +32,6 @@
         <developerConnection>scm:git:git@github.com:terasolunaorg/terasoluna-gfw.git</developerConnection>
         <url>git@github.com:terasolunaorg/terasoluna-gfw.git</url>
     </scm>
-    <repositories>
-        <repository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
     <properties>
         <!-- == Maven Plugin Versions == -->
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
