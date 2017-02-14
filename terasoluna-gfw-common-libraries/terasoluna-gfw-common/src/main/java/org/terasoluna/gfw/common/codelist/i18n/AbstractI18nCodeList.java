@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2016 NTT DATA Corporation
+ * Copyright (C) 2013-2016 NTT DATA Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,6 +13,7 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
+
 package org.terasoluna.gfw.common.codelist.i18n;
 
 import java.util.Locale;
@@ -21,17 +22,15 @@ import java.util.Map;
 import org.terasoluna.gfw.common.codelist.AbstractCodeList;
 
 /**
- * Abstract extended implementation of {@link AbstractCodeList}. Adds Internationalization support to {@link AbstractCodeList}
- * by implementing {I18nCodeList} interface.
+ * Abstract extended implementation of {@link AbstractCodeList}. Adds Internationalization support to.
  */
-public abstract class AbstractI18nCodeList extends AbstractCodeList implements
-                                                                   I18nCodeList {
+public abstract class AbstractI18nCodeList extends AbstractCodeList implements I18nCodeList {
 
     /**
-     * <p>
-     * Returns a codelist as map for the default locale ({@link Locale#getDefault()}). <br>
-     * if there is no codelist for the locale, returns an empty map.
-     * </p>
+     * <p>Returns a codelist as map for the default locale ({@link Locale#getDefault()}).<br>If there is no codelist
+     * {@link AbstractCodeList} by implementing {I18nCodeList} interface.
+     *
+     * @return
      * @see org.terasoluna.gfw.common.codelist.CodeList#asMap()
      */
     @Override

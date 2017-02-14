@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2013-2016 NTT DATA Corporation
+ * Copyright (C) 2013-2016 NTT DATA Corporation.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,15 +13,20 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.terasoluna.gfw.common.codepoints.catalog;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+package org.terasoluna.gfw.common.codepoints.catalog;
 
 import org.junit.Test;
 import org.terasoluna.gfw.common.codepoints.CodePoints;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+/**
+ * Testing against JIS_X_0201_Katakana class.
+ */
 public class JIS_X_0201_KatakanaTest {
+
     public Class<? extends CodePoints> clazz = JIS_X_0201_Katakana.class;
 
     @Test
@@ -35,4 +40,5 @@ public class JIS_X_0201_KatakanaTest {
         CodePoints codePoints = CodePoints.of(clazz);
         assertThat(codePoints.containsAll("ﾊﾛｰワｰﾙﾄﾞ"), is(false));
     }
+
 }
