@@ -192,7 +192,7 @@ public class RedirectAuthenticationHandlerTest {
         DefaultRedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
         redirectStrategy.setContextRelative(true);
         redireHandler.setRedirectStrategy(redirectStrategy);
-        
+
         // set Blank URI
         String redirectURI = "http://localhost/foo/bar";
         request.setParameter("redirectTo", redirectURI);
@@ -206,7 +206,7 @@ public class RedirectAuthenticationHandlerTest {
         // assert
         assertThat(response.getRedirectedUrl(), is(expectedRedirectURL));
     }
-    
+
     /**
      * test if default path is returned when illegal redirect path is set
      */
@@ -229,7 +229,6 @@ public class RedirectAuthenticationHandlerTest {
         assertThat(response.getRedirectedUrl(), is(expectedRedirectURL));
     }
 
-    
     @Test
     public void testOnAuthenticationSuccess_SetCustomeRedirectToRedirectStrategy() throws Exception {
         RedirectAuthenticationHandler redireHandler = new RedirectAuthenticationHandler();

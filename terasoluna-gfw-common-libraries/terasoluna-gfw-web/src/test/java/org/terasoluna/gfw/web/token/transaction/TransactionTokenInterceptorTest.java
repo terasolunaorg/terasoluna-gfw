@@ -172,10 +172,9 @@ public class TransactionTokenInterceptorTest {
                 is(nullValue()));
     }
 
-
     @Test
     public void testPreHandleValidTokenOnCheck() throws Exception {
-        
+
         HttpSessionTransactionTokenStore tokenStore = new HttpSessionTransactionTokenStore();
         TransactionToken inputToken = new TransactionToken("testTokenAttr", "111", "222");
         tokenStore.store(inputToken);
@@ -187,22 +186,21 @@ public class TransactionTokenInterceptorTest {
         request.setParameter(
                 TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER,
                 "testTokenAttr~111~222");
-        
+
         interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
-        
+
         boolean result = interceptor
-        .preHandle(
-                request,
-                response,
-                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                        .getDeclaredMethod("fifth", SampleForm.class,
-                                Model.class)));
-        
+                .preHandle(
+                        request,
+                        response,
+                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                                .getDeclaredMethod("fifth", SampleForm.class,
+                                        Model.class)));
+
         assertTrue(result);
-        
+
         TransactionTokenContext transactionTokenCtx = (TransactionTokenContext) request
-                .getAttribute(
-                        TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME);
+                .getAttribute(TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME);
         TransactionToken token = transactionTokenCtx.getReceivedToken();
         assertNotNull(token);
         assertThat(token.getTokenName(), is("testTokenAttr"));
@@ -210,7 +208,6 @@ public class TransactionTokenInterceptorTest {
         assertThat(token.getTokenValue(), is("222"));
     }
 
-    
     @Test
     public void testValidateToken01() {
         HttpSessionTransactionTokenStore tokenStore = new HttpSessionTransactionTokenStore();
@@ -455,9 +452,8 @@ public class TransactionTokenInterceptorTest {
                                 .getDeclaredMethod("fifth", SampleForm.class,
                                         Model.class)), null);
 
-        
-        TransactionToken nextToken = (TransactionToken) request.getAttribute(
-                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
+        TransactionToken nextToken = (TransactionToken) request
+                .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
         assertNotNull(nextToken);
         assertThat(nextToken.getTokenName(), is("testTokenAttr"));
         assertThat(nextToken.getTokenKey(), is("111"));
@@ -465,7 +461,6 @@ public class TransactionTokenInterceptorTest {
         assertThat(tokenStore.getAndClear(nextToken), is("222"));
     }
 
-    
     @Test
     public void testPostHandleWithNoneOperation() throws Exception {
 
@@ -556,13 +551,13 @@ public class TransactionTokenInterceptorTest {
     @Test
     public void testAfterCompletionWithExceptionHasNoTransactionTokenContextImpl() {
         try {
-            interceptor.afterCompletion(request, response, null, new Exception());
+            interceptor.afterCompletion(request, response, null,
+                    new Exception());
         } catch (Exception e) {
             fail();
         }
     }
 
-    
     /*
      * @Test public void testCreateTokenSynchronization() throws Exception { int size = 2000; Thread arrThreads[] = new
      * Thread[size]; for (int i = 0; i <size ; i++) { Thread thread = new Thread(new Runnable() {

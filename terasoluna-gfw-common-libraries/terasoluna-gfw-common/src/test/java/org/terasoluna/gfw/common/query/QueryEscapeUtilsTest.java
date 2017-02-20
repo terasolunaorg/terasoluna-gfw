@@ -175,9 +175,11 @@ public class QueryEscapeUtilsTest {
     @Theory
     public void testToLikeConditionIsNull(TestData param) {
         // set up
-        StringBuilder actual = QueryEscapeUtils.toLikeCondition(param.input, null);
+        StringBuilder actual = QueryEscapeUtils.toLikeCondition(param.input,
+                null);
         StringBuilder expected = param.expectedToLikeConditionIsNull;
-        String errorMessage = "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
+        String errorMessage = "Input:" + param.input + ", Expected: "
+                + expected + ", Actual: " + actual;
 
         // assert
         assertThat(errorMessage, actual.toString(), is(expected.toString()));
@@ -186,7 +188,8 @@ public class QueryEscapeUtilsTest {
     @Test
     public void testQueryEscapeUtils() throws Exception {
         // set up
-        Constructor<QueryEscapeUtils> constructor = QueryEscapeUtils.class.getDeclaredConstructor();
+        Constructor<QueryEscapeUtils> constructor = QueryEscapeUtils.class
+                .getDeclaredConstructor();
         assertThat(constructor.isAccessible(), is(false));
         constructor.setAccessible(true);
 

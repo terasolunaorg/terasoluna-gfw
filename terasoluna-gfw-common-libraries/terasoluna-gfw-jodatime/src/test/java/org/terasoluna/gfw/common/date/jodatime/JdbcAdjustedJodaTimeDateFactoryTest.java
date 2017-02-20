@@ -38,7 +38,8 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:test-context.xml" })
 @Transactional
-@Rollback // Changed by SPR-13277
+@Rollback
+// Changed by SPR-13277
 public class JdbcAdjustedJodaTimeDateFactoryTest {
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;

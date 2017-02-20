@@ -45,7 +45,7 @@ public class RequestDataValueProcessorAdaptorTest {
                 "action", "method");
 
         // assert
-    	assertThat(action, is("action"));
+        assertThat(action, is("action"));
     }
 
     @Test
