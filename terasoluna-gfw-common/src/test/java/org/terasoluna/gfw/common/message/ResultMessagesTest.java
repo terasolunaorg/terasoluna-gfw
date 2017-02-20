@@ -247,7 +247,8 @@ public class ResultMessagesTest {
     @Test
     public void testSerialization() {
         try {
-            byte[] serialized = SerializationUtils.serialize(new ResultMessages((ResultMessageType) ERROR));
+            byte[] serialized = SerializationUtils
+                    .serialize(new ResultMessages((ResultMessageType) ERROR));
             SerializationUtils.deserialize(serialized);
         } catch (SerializationFailedException e) {
             fail();
