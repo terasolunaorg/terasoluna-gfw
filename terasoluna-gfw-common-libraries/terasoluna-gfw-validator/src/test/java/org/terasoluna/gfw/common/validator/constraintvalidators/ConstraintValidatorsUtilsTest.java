@@ -41,8 +41,7 @@ public class ConstraintValidatorsUtilsTest {
     }
 
     @Test
-    public void testGetPropertyValueBeanAndPropertyNameNotNull()
-            throws Exception {
+    public void testGetPropertyValueBeanAndPropertyNameNotNull() throws Exception {
         // set up
         FooBean foo = new FooBean();
         foo.setBar("test");

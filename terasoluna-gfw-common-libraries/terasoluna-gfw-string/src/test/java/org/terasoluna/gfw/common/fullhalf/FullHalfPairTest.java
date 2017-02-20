@@ -73,5 +73,5 @@ public class FullHalfPairTest {
         // assert
         assertThat(FullHalfPair1.equals(FullHalfPair2), is(false));
     }
-    
+
 }

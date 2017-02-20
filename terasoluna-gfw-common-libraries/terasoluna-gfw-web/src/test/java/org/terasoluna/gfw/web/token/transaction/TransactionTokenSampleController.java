@@ -61,7 +61,7 @@ public class TransactionTokenSampleController {
         logger.debug("third");
     }
 
-    @RequestMapping(value="/fifth")
+    @RequestMapping(value = "/fifth")
     @TransactionTokenCheck(type = TransactionTokenType.CHECK)
     public void fifth(SampleForm form, Model model) {
         logger.debug("fifth");

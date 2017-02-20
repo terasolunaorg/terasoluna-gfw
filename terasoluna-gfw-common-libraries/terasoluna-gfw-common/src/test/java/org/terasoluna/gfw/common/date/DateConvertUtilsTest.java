@@ -35,7 +35,8 @@ public class DateConvertUtilsTest {
     @Test
     public void testDateConvertUtils() throws Exception {
         // set up
-        Constructor<DateConvertUtils> constructor = DateConvertUtils.class.getDeclaredConstructor();
+        Constructor<DateConvertUtils> constructor = DateConvertUtils.class
+                .getDeclaredConstructor();
         assertThat(constructor.isAccessible(), is(false));
         constructor.setAccessible(true);
 

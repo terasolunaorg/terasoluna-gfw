@@ -43,7 +43,7 @@ public class BusinessExceptionTest {
     @Test
     public void testConstructor1() throws Exception {
 
-    	String message = "resultMessages";
+        String message = "resultMessages";
 
         // expect
         expectedException.expect(BusinessException.class);
@@ -73,7 +73,8 @@ public class BusinessExceptionTest {
         expectedException.expectCause(matcher);
 
         // set up
-        ResultMessages resultMessages = ResultMessages.error().add(ResultMessage.fromText(message));
+        ResultMessages resultMessages = ResultMessages.error().add(
+                ResultMessage.fromText(message));
         exception = new BusinessException(resultMessages, cause);
 
         // throw & assert

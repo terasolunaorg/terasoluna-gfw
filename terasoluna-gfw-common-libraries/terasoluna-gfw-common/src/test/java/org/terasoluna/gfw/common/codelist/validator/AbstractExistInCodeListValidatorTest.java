@@ -47,8 +47,7 @@ public class AbstractExistInCodeListValidatorTest {
         ConstraintValidatorContext constraintValidatorContext = mock(ConstraintValidatorContext.class);
 
         ExistInCodeListValidator<String> existInCodeListValidator = new ExistInCodeListValidator<String>();
-        ApplicationContext context = new FileSystemXmlApplicationContext(
-                "src/test/resources/org/terasoluna/gfw/common/codelist/ExistInCodeListTest-context.xml");
+        ApplicationContext context = new FileSystemXmlApplicationContext("src/test/resources/org/terasoluna/gfw/common/codelist/ExistInCodeListTest-context.xml");
         existInCodeListValidator.setApplicationContext(context);
         existInCodeListValidator.initialize(new GenderCodeList());
 
