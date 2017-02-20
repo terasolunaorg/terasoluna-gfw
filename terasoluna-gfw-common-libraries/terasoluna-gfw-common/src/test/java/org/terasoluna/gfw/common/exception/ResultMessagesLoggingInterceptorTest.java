@@ -116,8 +116,7 @@ public class ResultMessagesLoggingInterceptorTest extends
     @Test
     public void testInvokeOccurBusinessexception01() throws Throwable {
         // do setup for test case.
-        BusinessException occurException = new 
-                BusinessException("testing businessexception");
+        BusinessException occurException = new BusinessException("testing businessexception");
         when(mockMethodInvocation.proceed()).thenThrow(occurException);
 
         try {

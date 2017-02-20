@@ -56,8 +56,7 @@ public class HttpSessionEventLoggingListenerTest {
     public void setup() throws Exception {
         mockHttpSession = new MockHttpSession();
         httpSessionEvent = new HttpSessionEvent(mockHttpSession);
-        sessionBindingEvent = new HttpSessionBindingEvent(mockHttpSession,
-                "terasoluna", "AA");
+        sessionBindingEvent = new HttpSessionBindingEvent(mockHttpSession, "terasoluna", "AA");
 
         listener = new HttpSessionEventLoggingListener();
 
@@ -272,11 +271,8 @@ public class HttpSessionEventLoggingListenerTest {
 
     /**
      * verify logging.
-     * 
-     * @param expectedLogMessage
-     *            expected log message.
-     * @param expectedLogLevel
-     *            expected log level.
+     * @param expectedLogMessage expected log message.
+     * @param expectedLogLevel expected log level.
      */
     private void verifyLogging(final String expectedLogMessage,
             final Level expectedLogLevel) {

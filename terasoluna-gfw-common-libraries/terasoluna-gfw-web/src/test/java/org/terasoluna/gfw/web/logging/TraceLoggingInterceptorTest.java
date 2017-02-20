@@ -448,7 +448,8 @@ public class TraceLoggingInterceptorTest {
         // parameter create
         HandlerMethod paramHandler = new HandlerMethod(controller, TraceLoggingInterceptorController.class
                 .getMethod("createForm"));
-        request.setAttribute(TraceLoggingInterceptor.class.getName() + ".startTime", null);
+        request.setAttribute(TraceLoggingInterceptor.class.getName()
+                + ".startTime", null);
 
         try {
             // run

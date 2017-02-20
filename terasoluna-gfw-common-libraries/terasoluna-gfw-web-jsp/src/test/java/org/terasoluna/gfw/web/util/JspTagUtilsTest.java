@@ -32,7 +32,8 @@ public class JspTagUtilsTest {
     @Test
     public void testJspTagUtils() throws Exception {
         // set up
-        Constructor<JspTagUtils> constructor = JspTagUtils.class.getDeclaredConstructor();
+        Constructor<JspTagUtils> constructor = JspTagUtils.class
+                .getDeclaredConstructor();
         assertThat(constructor.isAccessible(), is(false));
         constructor.setAccessible(true);
 
