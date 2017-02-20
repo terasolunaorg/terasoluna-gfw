@@ -251,7 +251,7 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
     }
 
     /**
-     * special handling for the serialization and deserialization process 
+     * special handling for the serialization and deserialization process
      * @param out ObjectOutputStream
      * @throws IOException
      * @see java.io.Serializable
@@ -261,7 +261,7 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
     }
 
     /**
-     * special handling for the serialization and deserialization process 
+     * special handling for the serialization and deserialization process
      * @param in ObjectInputStream
      * @throws IOException
      * @throws ClassNotFoundException

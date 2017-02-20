@@ -47,8 +47,7 @@ public enum TransactionTokenType {
     /**
      * Indicate that the corresponding handler method is within the transaction boundary <br>
      * <p>
-     * Transaction token check will be performed in this type of {@link TransactionToken},
-     * but Transaction token is no update.<br>
+     * Transaction token check will be performed in this type of {@link TransactionToken}, but Transaction token is no update.<br>
      * To use if you want to take over the same transaction token between the same transaction.<br>
      * For example,This type is used in the method that does not return a transaction token, such as a file download.
      */

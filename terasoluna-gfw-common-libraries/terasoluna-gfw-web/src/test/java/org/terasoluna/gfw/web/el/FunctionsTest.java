@@ -42,7 +42,8 @@ public class FunctionsTest {
     @Test
     public void testFunctions() throws Exception {
         // set up
-        Constructor<Functions> constructor = Functions.class.getDeclaredConstructor();
+        Constructor<Functions> constructor = Functions.class
+                .getDeclaredConstructor();
         assertThat(constructor.isAccessible(), is(false));
         constructor.setAccessible(true);
 

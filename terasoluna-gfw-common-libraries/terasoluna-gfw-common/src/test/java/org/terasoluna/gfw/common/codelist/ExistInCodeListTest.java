@@ -346,15 +346,18 @@ public class ExistInCodeListTest {
             codeService.getGenderLabel("U"); // call a method using invalid code value
             fail("should be become a validation error.");
         } catch (ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> actualViolations = e.getConstraintViolations();
+            Set<ConstraintViolation<?>> actualViolations = e
+                    .getConstraintViolations();
             assertThat(actualViolations.size(), is(1));
-            assertThat(actualViolations.iterator().next().getMessage(), is("Does not exist in CD_GENDER"));
+            assertThat(actualViolations.iterator().next().getMessage(),
+                    is("Does not exist in CD_GENDER"));
         }
     }
 
     @Validated
     public interface CodeService {
-        String getGenderLabel(@ExistInCodeList(codeListId = "CD_GENDER") String genderCode);
+        String getGenderLabel(
+                @ExistInCodeList(codeListId = "CD_GENDER") String genderCode);
     }
 
     @Service

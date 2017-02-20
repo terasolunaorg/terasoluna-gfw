@@ -38,7 +38,6 @@ public class AbstractReloadableCodeListTest {
 
     /**
      * In case LazyInit is set to false
-     * 
      * @throws Exception
      */
     @Test
@@ -79,7 +78,6 @@ public class AbstractReloadableCodeListTest {
 
     /**
      * In case LazyInit is set to true
-     * 
      * @throws Exception
      */
     @Test
