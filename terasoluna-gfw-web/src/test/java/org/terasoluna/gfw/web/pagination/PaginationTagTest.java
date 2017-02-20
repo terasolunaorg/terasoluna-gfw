@@ -838,7 +838,8 @@ public class PaginationTagTest {
     @Test
     public void testSerialization() {
         try {
-            byte[] serialized = SerializationUtils.serialize(new PaginationTag());
+            byte[] serialized = SerializationUtils
+                    .serialize(new PaginationTag());
             SerializationUtils.deserialize(serialized);
         } catch (SerializationFailedException e) {
             fail();
