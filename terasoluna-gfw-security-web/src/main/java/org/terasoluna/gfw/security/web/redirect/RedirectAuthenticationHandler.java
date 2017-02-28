@@ -102,11 +102,9 @@ import org.springframework.util.StringUtils;
  * 
  * The value received from transition source screen is again set to {@code hidden} field<br>
  * In this example, redirect is done to following path {@code /user/read?userCode=$ f:h(param.userCode)}
- * 
- * @deprecated  This feature is expected to replace the alternative functions 
- *              that will be provided by Spring Security.
- *              Until the function is provided ,
- *              Use {@link org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler} .
+ * @deprecated This feature is expected to replace the alternative functions that will be provided by Spring Security. Until the
+ *             function is provided , Use
+ *             {@link org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler} .
  */
 @Deprecated
 public class RedirectAuthenticationHandler extends
@@ -154,8 +152,8 @@ public class RedirectAuthenticationHandler extends
             String redirectUrl = request.getParameter(targetUrlParameter);
             if (StringUtils.hasText(redirectUrl)) {
                 clearAuthenticationAttributes(request);
-                targetUrlParameterRedirectStrategy.sendRedirect(request, response,
-                        redirectUrl);
+                targetUrlParameterRedirectStrategy.sendRedirect(request,
+                        response, redirectUrl);
                 return;
             }
         }
@@ -170,7 +168,6 @@ public class RedirectAuthenticationHandler extends
      * {@code contextRelative} property of DefaultRedirectStrategy is set to true.<br>
      * In order to set it to {@code false}, {@code targetUrlParameterRedirectStrategy} property <br>
      * must be set in the bean definition <br>
-     * 
      * </p>
      * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
      */

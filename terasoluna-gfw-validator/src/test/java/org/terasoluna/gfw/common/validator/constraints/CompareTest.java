@@ -300,7 +300,8 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             for (ConstraintViolation<CompareTestForm> violation : violations) {
                 assertThat(violation.getMessage(), is(String.format(
                         MESSAGE_VALIDATION_ERROR, "left", "right")));
-                for (javax.validation.Path.Node node : violation.getPropertyPath()) {
+                for (javax.validation.Path.Node node : violation
+                        .getPropertyPath()) {
                     assertThat(node, instanceOf(PropertyNode.class));
                     assertThat(node.getName(), is("left"));
                 }
@@ -316,7 +317,8 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             for (ConstraintViolation<CompareTestForm> violation : violations) {
                 assertThat(violation.getMessage(), is(String.format(
                         MESSAGE_VALIDATION_ERROR, "left", "right")));
-                for (javax.validation.Path.Node node : violation.getPropertyPath()) {
+                for (javax.validation.Path.Node node : violation
+                        .getPropertyPath()) {
                     assertThat(node, instanceOf(PropertyNode.class));
                     assertThat(node.getName(), is("left"));
                 }

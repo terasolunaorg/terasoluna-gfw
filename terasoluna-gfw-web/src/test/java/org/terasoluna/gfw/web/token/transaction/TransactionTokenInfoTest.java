@@ -197,10 +197,9 @@ public class TransactionTokenInfoTest {
         // assert
         assertThat(output, is(true));
     }
-    
-    
+
     @Test
-    public void testNeedKeep01(){
+    public void testNeedKeep01() {
         // setup input parameters
 
         String tokenName = "aaa";
@@ -215,7 +214,7 @@ public class TransactionTokenInfoTest {
     }
 
     @Test
-    public void testNeedKeep02(){
+    public void testNeedKeep02() {
         // setup input parameters
 
         String tokenName = "aaa";
@@ -230,7 +229,7 @@ public class TransactionTokenInfoTest {
     }
 
     @Test
-    public void testNeedKeep03(){
+    public void testNeedKeep03() {
         // setup input parameters
 
         String tokenName = "aaa";
@@ -245,7 +244,7 @@ public class TransactionTokenInfoTest {
     }
 
     @Test
-    public void testNeedKeep04(){
+    public void testNeedKeep04() {
         // setup input parameters
 
         String tokenName = "aaa";
@@ -260,7 +259,7 @@ public class TransactionTokenInfoTest {
     }
 
     @Test
-    public void testNeedKeep05(){
+    public void testNeedKeep05() {
         // setup input parameters
 
         String tokenName = "aaa";
@@ -274,7 +273,6 @@ public class TransactionTokenInfoTest {
         assertThat(output, is(true));
     }
 
-    
     @Test
     public void TestToString() {
         // setup input parameters

@@ -31,21 +31,24 @@ public class FullHalfPairsBuilderTest {
     @Test
     public void testFullIsNull() {
         expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("fullwidth must be 1 length string (fullwidth = null)");
+        expectedException
+                .expectMessage("fullwidth must be 1 length string (fullwidth = null)");
         new FullHalfPairsBuilder().pair(null, "a").build();
     }
 
     @Test
     public void testFullIsEmptyString() {
         expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("fullwidth must be 1 length string (fullwidth = )");
+        expectedException
+                .expectMessage("fullwidth must be 1 length string (fullwidth = )");
         new FullHalfPairsBuilder().pair("", "a").build();
     }
 
     @Test
     public void testFullIsTwoString() {
         expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("fullwidth must be 1 length string (fullwidth = aa)");
+        expectedException
+                .expectMessage("fullwidth must be 1 length string (fullwidth = aa)");
         new FullHalfPairsBuilder().pair("aa", "a").build();
     }
 
