@@ -87,7 +87,8 @@ public class ResultMessageTest {
     @Test
     public void test10() {
         try {
-            byte[] serialized = SerializationUtils.serialize(ResultMessage.fromText("foo"));
+            byte[] serialized = SerializationUtils.serialize(ResultMessage
+                    .fromText("foo"));
             SerializationUtils.deserialize(serialized);
         } catch (SerializationFailedException e) {
             fail();

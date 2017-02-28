@@ -246,10 +246,8 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
         String oldestTokenName = null;
         TokenHolder oldestTokenHolder = new TokenHolder(null, Long.MAX_VALUE);
         for (String name : sessionAttributeNames) {
-            TokenHolder tokenHolder = (TokenHolder) session
-                    .getAttribute(name);
-            if (tokenHolder.getTimestamp() < oldestTokenHolder
-                    .getTimestamp()) {
+            TokenHolder tokenHolder = (TokenHolder) session.getAttribute(name);
+            if (tokenHolder.getTimestamp() < oldestTokenHolder.getTimestamp()) {
                 oldestTokenName = name;
                 oldestTokenHolder = tokenHolder;
             }
