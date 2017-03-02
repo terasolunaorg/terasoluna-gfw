@@ -79,10 +79,10 @@ public class TransactionTokenInfo {
      * over.
      * @return {@code true} if need to be taken over token. {@code false} otherwise
      */
-    public boolean needKeep(){
+    public boolean needKeep() {
         return tokenType.needKeep();
     }
-    
+
     /**
      * @see java.lang.Object#toString()
      */

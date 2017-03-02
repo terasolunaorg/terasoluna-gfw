@@ -38,14 +38,15 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
     /**
      * logger
      */
-    private static final Logger logger = LoggerFactory.getLogger(
-            HttpSessionTransactionTokenStore.class);
+    private static final Logger logger = LoggerFactory
+            .getLogger(HttpSessionTransactionTokenStore.class);
 
     /**
      * attribute name of token holder in the session scope
      */
     public static final String TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX = HttpSessionTransactionTokenStore.class
-            .getName() + "_TOKEN_";
+            .getName()
+            + "_TOKEN_";
 
     /**
      * default token size per token name
@@ -85,8 +86,7 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
      * @param transactionTokenSizePerTokenName Allowed number of tokens for each tokenName(must be greater than 0)
      * @throws IllegalArgumentException sizePerTokenName is (less than or equals 0)
      */
-    public HttpSessionTransactionTokenStore(
-            int transactionTokenSizePerTokenName) {
+    public HttpSessionTransactionTokenStore(int transactionTokenSizePerTokenName) {
         this(new TokenStringGenerator(), transactionTokenSizePerTokenName,
                 DEFAULT_RETRY_CREATE_TOKEN_NAME);
     }
@@ -137,8 +137,7 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
     }
 
     /**
-     * Fetches the value stored in session corresponding to the {@link TransactionToken} received as argument to this method.
-     * <br>
+     * Fetches the value stored in session corresponding to the {@link TransactionToken} received as argument to this method. <br>
      * <p>
      * This value corresponding to the same transactionToken instance can be fetched only once. Once the value is fetched, its
      * value is cleared from the session. For all further invocations to this method for the same transactionToken instance,
@@ -204,16 +203,15 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
             while (tokenNameEnumeration.hasMoreElements()) {
                 String name = tokenNameEnumeration.nextElement();
                 // fetch the sessionKeyPrefix (session key with only Token prefix and namespace name) and compare
-                if (tokenNamePrefix.equals(name.split(
-                        TransactionToken.TOKEN_STRING_SEPARATOR)[0])) {
+                if (tokenNamePrefix.equals(name
+                        .split(TransactionToken.TOKEN_STRING_SEPARATOR)[0])) {
                     sessionAttributeNames.add(name);
                 }
             }
 
             for (int i = 0, max = sessionAttributeNames.size(); i < max; i++) {
                 // do not use while loop to avoid infinite loop
-                if (sessionAttributeNames
-                        .size() >= transactionTokensPerTokenName) {
+                if (sessionAttributeNames.size() >= transactionTokensPerTokenName) {
                     removeOldTokenName(sessionAttributeNames, session);
                 } else {
                     break;

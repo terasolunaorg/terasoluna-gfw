@@ -941,7 +941,8 @@ public class PaginationTagTest {
     @Test
     public void testSerialization() {
         try {
-            byte[] serialized = SerializationUtils.serialize(new PaginationTag());
+            byte[] serialized = SerializationUtils
+                    .serialize(new PaginationTag());
             SerializationUtils.deserialize(serialized);
         } catch (SerializationFailedException e) {
             fail();
@@ -953,8 +954,9 @@ public class PaginationTagTest {
      */
     @Test
     public void testWriteAnchor() throws Exception {
-        
-        tag.writeAnchor(tag.createTagWriter(), PaginationInfo.DEFAULT_DISABLED_HREF, "");
+
+        tag.writeAnchor(tag.createTagWriter(),
+                PaginationInfo.DEFAULT_DISABLED_HREF, "");
         String expected = "<a href=\"javascript:void(0)\"></a>";
         assertThat(getOutput(), is(expected));
     }

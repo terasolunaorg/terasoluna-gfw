@@ -33,20 +33,22 @@ import org.terasoluna.gfw.web.token.TokenStringGenerator;
  */
 public class TransactionTokenInterceptor implements HandlerInterceptor {
 
-    private static final Logger logger = LoggerFactory.getLogger(
-            TransactionTokenInterceptor.class);
+    private static final Logger logger = LoggerFactory
+            .getLogger(TransactionTokenInterceptor.class);
 
     /**
      * attribute name of {@link TransactionTokenContext} in the request scope
      */
     public static final String TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME = TransactionTokenInterceptor.class
-            .getName() + ".TOKEN_CONTEXT";
+            .getName()
+            + ".TOKEN_CONTEXT";
 
     /**
      * attribute name of next {@link TransactionToken} in the request scope
      */
     public static final String NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME = TransactionTokenInterceptor.class
-            .getName() + ".NEXT_TOKEN";
+            .getName()
+            + ".NEXT_TOKEN";
 
     /**
      * request parameter of token value to check
@@ -151,8 +153,8 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
         logger.trace("preHandle");
 
         HandlerMethod handlerMethod = (HandlerMethod) handler;
-        TransactionTokenInfo tokenInfo = tokenInfoStore.getTransactionTokenInfo(
-                handlerMethod);
+        TransactionTokenInfo tokenInfo = tokenInfoStore
+                .getTransactionTokenInfo(handlerMethod);
 
         TransactionToken receivedToken = INVALID_TOKEN;
         if (tokenInfo.needValidate()) {
@@ -177,14 +179,12 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
 
         TransactionTokenContextImpl tokenContext = new TransactionTokenContextImpl(tokenInfo, receivedToken);
 
-        request.setAttribute(TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME,
-                tokenContext);
+        request.setAttribute(TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME, tokenContext);
 
         return true;
     }
 
-    protected void processTransactionTokenError(
-            TransactionToken receivedToken) {
+    protected void processTransactionTokenError(TransactionToken receivedToken) {
         removeToken(receivedToken);
         throw new InvalidTransactionTokenException();
     }
@@ -221,12 +221,13 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
             final TransactionTokenStore tokenStore,
             final TransactionTokenInfo tokenInfo) {
 
-        if (receivedToken.valid() && receivedToken.getTokenName().equals(
-                tokenInfo.getTokenName())) {
+        if (receivedToken.valid()
+                && receivedToken.getTokenName()
+                        .equals(tokenInfo.getTokenName())) {
 
             String storedToken = tokenStore.getAndClear(receivedToken);
-            if (storedToken != null && storedToken.equals(receivedToken
-                    .getTokenValue())) {
+            if (storedToken != null
+                    && storedToken.equals(receivedToken.getTokenValue())) {
                 return true;
             }
         }
@@ -235,8 +236,8 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
 
     /**
      * Based on context information from the request attribute named <code>TransactionTokenInterceptor.TOKEN_CONTEXT</code>,
-     * creates, updates or keeps the token stored with the request attribute <code>TransactionTokenInterceptor.NEXT_TOKEN</code> and
-     * also in the <code>TransactionTokenStore</code> or removes the token from <code>TransactionTokenStore</code>
+     * creates, updates or keeps the token stored with the request attribute <code>TransactionTokenInterceptor.NEXT_TOKEN</code>
+     * and also in the <code>TransactionTokenStore</code> or removes the token from <code>TransactionTokenStore</code>
      * <p>
      * modelAndView is not used in the implementation
      * @param request current HTTP request
@@ -267,8 +268,8 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
             break;
         case UPDATE_TOKEN:
             updateToken(request, request.getSession(true), tokenContext
-                    .getReceivedToken(), tokenContext.getTokenInfo(), generator,
-                    tokenStore);
+                    .getReceivedToken(), tokenContext.getTokenInfo(),
+                    generator, tokenStore);
             break;
         case REMOVE_TOKEN:
             removeToken(tokenContext.getReceivedToken());
@@ -328,7 +329,7 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
             TokenStringGenerator generator, TransactionTokenStore tokenStore) {
         TransactionToken nextToken = new TransactionToken(tokenInfo
                 .getTokenName(), receivedToken.getTokenKey(), generator
-                        .generate(session.getId()));
+                .generate(session.getId()));
         tokenStore.store(nextToken);
         request.setAttribute(NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME, nextToken);
     }
@@ -352,9 +353,8 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
         synchronized (WebUtils.getSessionMutex(session)) {
             String tokenKey = tokenStore.createAndReserveTokenKey(tokenInfo
                     .getTokenName());
-            nextToken = new TransactionToken(tokenInfo
-                    .getTokenName(), tokenKey, generator.generate(session
-                            .getId()));
+            nextToken = new TransactionToken(tokenInfo.getTokenName(), tokenKey, generator
+                    .generate(session.getId()));
             tokenStore.store(nextToken);
         }
         request.setAttribute(NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME, nextToken);
@@ -371,8 +371,8 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
     }
 
     /**
-     * Set the receivedToken to the attributes named <code>TransactionTokenInterceptor.NEXT_TOKEN</code> of request.
-     * And receivedToken stored in <code>TransactionTokenStore</code> without updates.
+     * Set the receivedToken to the attributes named <code>TransactionTokenInterceptor.NEXT_TOKEN</code> of request. And
+     * receivedToken stored in <code>TransactionTokenStore</code> without updates.
      * @param request current HTTP request
      * @param receivedToken {@link TransactionToken} got from the current HTTP request
      * @param tokenInfo meta-information about a TransactionToken

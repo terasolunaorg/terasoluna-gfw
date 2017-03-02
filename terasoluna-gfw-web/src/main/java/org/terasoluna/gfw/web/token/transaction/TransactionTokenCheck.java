@@ -58,7 +58,7 @@ public @interface TransactionTokenCheck {
     /**
      * @return The value of generated {@code TransactionToken}<br>
      */
-    @AliasFor("namespace") 
+    @AliasFor("namespace")
     String value() default "";
 
     /**

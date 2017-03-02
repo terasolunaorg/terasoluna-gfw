@@ -150,7 +150,8 @@ public class TransactionTokenInfoStoreTest {
 
         TransactionTokenInfo tokenInfo = store
                 .createTransactionTokenInfo(handlerMethod);
-        assertThat(tokenInfo.getTokenName(), containsString("testTokenAttrByNameSpace"));
+        assertThat(tokenInfo.getTokenName(),
+                containsString("testTokenAttrByNameSpace"));
 
     }
 }

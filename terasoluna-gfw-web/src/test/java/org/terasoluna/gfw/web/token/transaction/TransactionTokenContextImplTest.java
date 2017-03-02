@@ -200,7 +200,6 @@ public class TransactionTokenContextImplTest {
         assertThat(contextImpl.getTokenInfo(), is(updateTransactionToken));
     }
 
-    
     @Test
     public void TestCreateToken01() {
         // setup parameters

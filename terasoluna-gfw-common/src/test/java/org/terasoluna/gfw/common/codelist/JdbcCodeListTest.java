@@ -42,7 +42,8 @@ import org.springframework.util.ReflectionUtils;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:test-context.xml" })
 @Transactional
-@Rollback // Changed by SPR-13277
+@Rollback
+// Changed by SPR-13277
 public class JdbcCodeListTest {
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;

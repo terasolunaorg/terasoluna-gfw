@@ -638,8 +638,7 @@ public class MessagesPanelTagTest {
      */
     @Test
     public void test35() throws Exception {
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                "");
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, "");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li></li></ul></div>";
         assertThat(getOutput(), is(expected));
