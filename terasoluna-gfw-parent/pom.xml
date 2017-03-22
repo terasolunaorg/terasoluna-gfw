@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-parent</artifactId>
-    <version>1.0.6-SNAPSHOT</version>
+    <version>1.0.7-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>TERASOLUNA Global Framework Parent</name>
     <description>The parent of TERASOLUNA Global Framework</description>
@@ -1002,7 +1002,7 @@
     </distributionManagement>
     <properties>
         <!-- == TERASOLUNA == -->
-        <terasoluna.gfw.version>1.0.6-SNAPSHOT</terasoluna.gfw.version>
+        <terasoluna.gfw.version>1.0.7-SNAPSHOT</terasoluna.gfw.version>
         <!-- == Google == -->
         <com.google.guava.version>13.0.1</com.google.guava.version>
         <!-- == Apache Commons == -->
