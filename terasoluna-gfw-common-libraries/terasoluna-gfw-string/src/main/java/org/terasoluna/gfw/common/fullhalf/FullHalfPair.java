@@ -43,8 +43,8 @@ public final class FullHalfPair implements Serializable {
             throw new IllegalArgumentException("fullwidth must be 1 length string (fullwidth = "
                     + fullwidth + ")");
         }
-        if (halfwidth == null
-                || (halfwidth.length() != 1 && halfwidth.length() != 2)) {
+        if (halfwidth == null || (halfwidth.length() != 1 && halfwidth
+                .length() != 2)) {
             throw new IllegalArgumentException("halfwidth must be 1 or 2 length string (halfwidth = "
                     + halfwidth + ")");
         }

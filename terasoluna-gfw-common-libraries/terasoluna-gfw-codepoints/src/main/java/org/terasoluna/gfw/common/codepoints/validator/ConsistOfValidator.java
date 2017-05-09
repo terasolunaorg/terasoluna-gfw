@@ -27,7 +27,7 @@ import org.terasoluna.gfw.common.codepoints.ConsistOf;
  * @since 5.1.0
  */
 public class ConsistOfValidator implements
-                               ConstraintValidator<ConsistOf, CharSequence> {
+                                ConstraintValidator<ConsistOf, CharSequence> {
     /**
      * Array of CodePoints to check
      */

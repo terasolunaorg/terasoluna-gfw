@@ -50,8 +50,8 @@ public class BusinessExceptionTest {
         expectedException.expectMessage(message);
 
         // set up
-        ResultMessages resultMessages = ResultMessages.error().add(
-                ResultMessage.fromText(message));
+        ResultMessages resultMessages = ResultMessages.error().add(ResultMessage
+                .fromText(message));
         exception = new BusinessException(resultMessages);
 
         // throw & assert
@@ -68,13 +68,13 @@ public class BusinessExceptionTest {
         expectedException.expect(BusinessException.class);
         expectedException.expectMessage(message);
 
-        Matcher<? extends Throwable> matcher = CoreMatchers
-                .instanceOf(IllegalArgumentException.class);
+        Matcher<? extends Throwable> matcher = CoreMatchers.instanceOf(
+                IllegalArgumentException.class);
         expectedException.expectCause(matcher);
 
         // set up
-        ResultMessages resultMessages = ResultMessages.error().add(
-                ResultMessage.fromText(message));
+        ResultMessages resultMessages = ResultMessages.error().add(ResultMessage
+                .fromText(message));
         exception = new BusinessException(resultMessages, cause);
 
         // throw & assert
