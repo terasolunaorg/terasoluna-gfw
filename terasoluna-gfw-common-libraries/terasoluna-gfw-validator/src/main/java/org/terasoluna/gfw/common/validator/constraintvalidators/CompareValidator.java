@@ -149,7 +149,8 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
      * Construct validation message when selected {@link Node#PROPERTY}.
      * @param context constraint validation context
      */
-    private void constructValidationMessage(ConstraintValidatorContext context) {
+    private void constructValidationMessage(
+            ConstraintValidatorContext context) {
         if (node == Node.ROOT_BEAN) {
             return;
         }

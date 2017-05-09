@@ -204,8 +204,8 @@ public class ResultMessage implements Serializable {
      */
     @Override
     public String toString() {
-        return "ResultMessage [code=" + code + ", args="
-                + Arrays.toString(args) + ", text=" + text + "]";
+        return "ResultMessage [code=" + code + ", args=" + Arrays.toString(args)
+                + ", text=" + text + "]";
     }
 
     /**
@@ -225,7 +225,8 @@ public class ResultMessage implements Serializable {
      * @throws ClassNotFoundException
      * @see java.io.Serializable
      */
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    private void readObject(
+            ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
     }
 }

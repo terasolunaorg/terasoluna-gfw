@@ -52,20 +52,20 @@ public final class Functions {
     /**
      * logger
      */
-    private static final Logger logger = LoggerFactory
-            .getLogger(Functions.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            Functions.class);
 
     /**
      * Pattern of URL for replace to the link tag.
      */
-    private static final Pattern URL_PATTERN = Pattern
-            .compile("(http|https)://[A-Za-z0-9\\._~/:\\-?&=%;]+");
+    private static final Pattern URL_PATTERN = Pattern.compile(
+            "(http|https)://[A-Za-z0-9\\._~/:\\-?&=%;]+");
 
     /**
      * Pattern of line break.
      */
-    private static final Pattern LINE_BREAK_PATTERN = Pattern
-            .compile("(\\r\\n|\\r|\\n)");
+    private static final Pattern LINE_BREAK_PATTERN = Pattern.compile(
+            "(\\r\\n|\\r|\\n)");
 
     /**
      * line break tag string of HTML.
@@ -80,8 +80,8 @@ public final class Functions {
     /**
      * type descriptor of string for format a value.
      */
-    private static final TypeDescriptor STRING_DESC = TypeDescriptor
-            .valueOf(String.class);
+    private static final TypeDescriptor STRING_DESC = TypeDescriptor.valueOf(
+            String.class);
 
     /**
      * converter from object to map

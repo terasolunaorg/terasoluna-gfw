@@ -60,10 +60,10 @@ abstract public class AbstractConstraintsTest<F> {
      */
     protected void setExpectedFailedToInitialize(Class<?> cls) {
         thrown.expect(ValidationException.class);
-        thrown.expectCause(allOf(Matchers
-                .<Throwable> instanceOf(IllegalArgumentException.class),
-                hasProperty("message", is(MESSAGE_INITIALIZE_ERROR)),
-                hasProperty("cause", Matchers.<Throwable> instanceOf(cls))));
+        thrown.expectCause(allOf(Matchers.<Throwable> instanceOf(
+                IllegalArgumentException.class), hasProperty("message", is(
+                        MESSAGE_INITIALIZE_ERROR)), hasProperty("cause",
+                                Matchers.<Throwable> instanceOf(cls))));
     }
 
     /**
@@ -72,10 +72,10 @@ abstract public class AbstractConstraintsTest<F> {
      */
     protected void setExpectedTypeNotSupport(Class<?> cls) {
         thrown.expect(ValidationException.class);
-        thrown.expectCause(allOf(Matchers
-                .<Throwable> instanceOf(IllegalArgumentException.class),
-                hasProperty("message", is(String.format(
-                        MESSAGE_NOTSUPPORT_ERROR, cls.getName())))));
+        thrown.expectCause(allOf(Matchers.<Throwable> instanceOf(
+                IllegalArgumentException.class), hasProperty("message", is(
+                        String.format(MESSAGE_NOTSUPPORT_ERROR, cls
+                                .getName())))));
     }
 
 }

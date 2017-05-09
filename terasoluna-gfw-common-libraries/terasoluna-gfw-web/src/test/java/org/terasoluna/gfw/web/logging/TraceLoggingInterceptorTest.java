@@ -70,8 +70,8 @@ public class TraceLoggingInterceptorTest {
 
     ModelAndView model;
 
-    Logger logger = (Logger) LoggerFactory
-            .getLogger(TraceLoggingInterceptor.class);
+    Logger logger = (Logger) LoggerFactory.getLogger(
+            TraceLoggingInterceptor.class);
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -81,8 +81,9 @@ public class TraceLoggingInterceptorTest {
     @Before
     public void setUp() throws Exception {
         // reset log
-        new SimpleDriverDataSource(Driver.load(), "jdbc:h2:mem:terasolung-gfw-web;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:h2.sql'", "sa", "")
-                .getConnection().close();
+        new SimpleDriverDataSource(Driver
+                .load(), "jdbc:h2:mem:terasolung-gfw-web;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:h2.sql'", "sa", "")
+                        .getConnection().close();
 
         // prepare request object
         request = new MockHttpServletRequest();
@@ -123,17 +124,14 @@ public class TraceLoggingInterceptorTest {
             fail("illegal case");
         }
 
-        String logMessage = jdbcTemplate
-                .queryForObject(
-                        "SELECT FORMATTED_MESSAGE FROM LOGGING_EVENT WHERE EVENT_ID=:id",
-                        Collections.singletonMap("id", 1), String.class);
-        Long startTime = (Long) request
-                .getAttribute(TraceLoggingInterceptor.class.getName()
-                        + ".startTime");
+        String logMessage = jdbcTemplate.queryForObject(
+                "SELECT FORMATTED_MESSAGE FROM LOGGING_EVENT WHERE EVENT_ID=:id",
+                Collections.singletonMap("id", 1), String.class);
+        Long startTime = (Long) request.getAttribute(
+                TraceLoggingInterceptor.class.getName() + ".startTime");
 
-        assertThat(
-                logMessage,
-                is("[START CONTROLLER] TraceLoggingInterceptorController.createForm()"));
+        assertThat(logMessage, is(
+                "[START CONTROLLER] TraceLoggingInterceptorController.createForm()"));
         assertThat(startTime, notNullValue());
     }
 
@@ -155,9 +153,8 @@ public class TraceLoggingInterceptorTest {
         }
 
         // expected
-        Long startTime = (Long) request
-                .getAttribute(TraceLoggingInterceptor.class.getName()
-                        + ".startTime");
+        Long startTime = (Long) request.getAttribute(
+                TraceLoggingInterceptor.class.getName() + ".startTime");
 
         long count = jdbcTemplate.queryForObject(
                 "SELECT COUNT(*) FROM LOGGING_EVENT", Collections.singletonMap(
@@ -183,9 +180,8 @@ public class TraceLoggingInterceptorTest {
         }
 
         // expected
-        Long startTime = (Long) request
-                .getAttribute(TraceLoggingInterceptor.class.getName()
-                        + ".startTime");
+        Long startTime = (Long) request.getAttribute(
+                TraceLoggingInterceptor.class.getName() + ".startTime");
 
         long count = jdbcTemplate.queryForObject(
                 "SELECT COUNT(*) FROM LOGGING_EVENT", Collections.singletonMap(
@@ -220,21 +216,17 @@ public class TraceLoggingInterceptorTest {
         }
 
         // expected
-        String logMessage1 = jdbcTemplate
-                .queryForObject(
-                        "SELECT FORMATTED_MESSAGE FROM LOGGING_EVENT WHERE EVENT_ID=:id",
-                        Collections.singletonMap("id", 1), String.class);
-        String logMessage2 = jdbcTemplate
-                .queryForObject(
-                        "SELECT FORMATTED_MESSAGE FROM LOGGING_EVENT WHERE EVENT_ID=:id",
-                        Collections.singletonMap("id", 2), String.class);
+        String logMessage1 = jdbcTemplate.queryForObject(
+                "SELECT FORMATTED_MESSAGE FROM LOGGING_EVENT WHERE EVENT_ID=:id",
+                Collections.singletonMap("id", 1), String.class);
+        String logMessage2 = jdbcTemplate.queryForObject(
+                "SELECT FORMATTED_MESSAGE FROM LOGGING_EVENT WHERE EVENT_ID=:id",
+                Collections.singletonMap("id", 2), String.class);
 
-        assertThat(
-                logMessage1,
-                is("[END CONTROLLER  ] TraceLoggingInterceptorController.createForm()-> view=null, model={}"));
-        assertThat(
-                logMessage2
-                        .startsWith("[HANDLING TIME   ] TraceLoggingInterceptorController.createForm()->"),
+        assertThat(logMessage1, is(
+                "[END CONTROLLER  ] TraceLoggingInterceptorController.createForm()-> view=null, model={}"));
+        assertThat(logMessage2.startsWith(
+                "[HANDLING TIME   ] TraceLoggingInterceptorController.createForm()->"),
                 is(true));
     }
 

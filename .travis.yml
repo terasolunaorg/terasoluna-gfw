@@ -12,5 +12,18 @@ cache:
 install: true
 
 script:
+  - mvn xml:check-format
+  - mvn -f terasoluna-gfw-common-libraries/terasoluna-gfw-common/pom.xml formatter:validate
+  - mvn -f terasoluna-gfw-common-libraries/terasoluna-gfw-jodatime/pom.xml formatter:validate
+  - mvn -f terasoluna-gfw-common-libraries/terasoluna-gfw-web/pom.xml formatter:validate
+  - mvn -f terasoluna-gfw-common-libraries/terasoluna-gfw-web-jsp/pom.xml formatter:validate
+  - mvn -f terasoluna-gfw-common-libraries/terasoluna-gfw-security-web/pom.xml formatter:validate
+  - mvn -f terasoluna-gfw-common-libraries/terasoluna-gfw-string/pom.xml formatter:validate
+  - mvn -f terasoluna-gfw-common-libraries/terasoluna-gfw-validator/pom.xml formatter:validate
+  - mvn -f terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints/pom.xml formatter:validate
+  - mvn -f terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints/catalog/terasoluna-gfw-codepoints-jisx0201/pom.xml formatter:validate
+  - mvn -f terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints/catalog/terasoluna-gfw-codepoints-jisx0208/pom.xml formatter:validate
+  - mvn -f terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints/catalog/terasoluna-gfw-codepoints-jisx0208kanji/pom.xml formatter:validate
+  - mvn -f terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints/catalog/terasoluna-gfw-codepoints-jisx0213kanji/pom.xml formatter:validate
   - mvn -U clean install
   - mvn -U -P common-libs jacoco:report coveralls:report

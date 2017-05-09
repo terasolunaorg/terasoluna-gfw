@@ -57,20 +57,22 @@ public class FunctionsTest {
     public void testH() {
         assertThat(Functions.h(null), is(""));
         assertThat(Functions.h(""), is(""));
-        assertThat(Functions.h("<a href=\"\">"),
-                is("&lt;a href=&quot;&quot;&gt;"));
+        assertThat(Functions.h("<a href=\"\">"), is(
+                "&lt;a href=&quot;&quot;&gt;"));
         assertThat(Functions.h("<a href=''>"), is("&lt;a href=&#39;&#39;&gt;"));
         assertThat(Functions.h("&lt;"), is("&amp;lt;"));
-        assertThat(Functions.h(new boolean[] { true, false }),
-                is("[true, false]"));
+        assertThat(Functions.h(new boolean[] { true, false }), is(
+                "[true, false]"));
         assertThat(Functions.h(new int[] { 1, 2, 3 }), is("[1, 2, 3]"));
         assertThat(Functions.h(new short[] { 1, 2, 3 }), is("[1, 2, 3]"));
         assertThat(Functions.h(new long[] { 1, 2, 3 }), is("[1, 2, 3]"));
         assertThat(Functions.h(new byte[] { 1, 2, 3 }), is("[1, 2, 3]"));
-        assertThat(Functions.h(new double[] { 1, 2, 3 }), is("[1.0, 2.0, 3.0]"));
+        assertThat(Functions.h(new double[] { 1, 2, 3 }), is(
+                "[1.0, 2.0, 3.0]"));
         assertThat(Functions.h(new float[] { 1, 2, 3 }), is("[1.0, 2.0, 3.0]"));
         assertThat(Functions.h(new char[] { 'a', 'b', 'c' }), is("[a, b, c]"));
-        assertThat(Functions.h(new String[] { "a", "b", "c" }), is("[a, b, c]"));
+        assertThat(Functions.h(new String[] { "a", "b", "c" }), is(
+                "[a, b, c]"));
     }
 
     /**
@@ -290,13 +292,12 @@ public class FunctionsTest {
     public void testU() {
         assertThat(Functions.u(null), is(""));
         assertThat(Functions.u(""), is(""));
-        assertThat(Functions.u("あいうえお"),
-                is("%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
-        assertThat(Functions.u("http://localhost:8080/spring"),
-                is("http://localhost:8080/spring"));
-        assertThat(
-                Functions.u("http://localhost:8080/あいうえお"),
-                is("http://localhost:8080/%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
+        assertThat(Functions.u("あいうえお"), is(
+                "%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
+        assertThat(Functions.u("http://localhost:8080/spring"), is(
+                "http://localhost:8080/spring"));
+        assertThat(Functions.u("http://localhost:8080/あいうえお"), is(
+                "http://localhost:8080/%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
     }
 
     @Test
@@ -410,8 +411,8 @@ public class FunctionsTest {
         assertThat(Functions.br("a\r"), is("a<br />"));
         assertThat(Functions.br("\ra"), is("<br />a"));
         assertThat(Functions.br("\r\r"), is("<br /><br />"));
-        assertThat(Functions.br("<br />\r\r<br />"),
-                is("<br /><br /><br /><br />"));
+        assertThat(Functions.br("<br />\r\r<br />"), is(
+                "<br /><br /><br /><br />"));
     }
 
     @Test
@@ -420,8 +421,8 @@ public class FunctionsTest {
         assertThat(Functions.br("a\n"), is("a<br />"));
         assertThat(Functions.br("\na"), is("<br />a"));
         assertThat(Functions.br("\n\n"), is("<br /><br />"));
-        assertThat(Functions.br("<br />\n\n<br />"),
-                is("<br /><br /><br /><br />"));
+        assertThat(Functions.br("<br />\n\n<br />"), is(
+                "<br /><br /><br /><br />"));
     }
 
     @Test
@@ -430,8 +431,8 @@ public class FunctionsTest {
         assertThat(Functions.br("a\r\n"), is("a<br />"));
         assertThat(Functions.br("\r\na"), is("<br />a"));
         assertThat(Functions.br("\r\n\r\n"), is("<br /><br />"));
-        assertThat(Functions.br("<br />\r\n\r\n<br />"),
-                is("<br /><br /><br /><br />"));
+        assertThat(Functions.br("<br />\r\n\r\n<br />"), is(
+                "<br /><br /><br /><br />"));
     }
 
     @Test
@@ -458,12 +459,10 @@ public class FunctionsTest {
     public void testLink() {
         assertThat(Functions.link(null), is(""));
         assertThat(Functions.link(""), is(""));
-        assertThat(
-                Functions.link("go to http://www.google.com"),
-                is("go to <a href=\"http://www.google.com\">http://www.google.com</a>"));
-        assertThat(
-                Functions.link("go to https://www.google.com"),
-                is("go to <a href=\"https://www.google.com\">https://www.google.com</a>"));
+        assertThat(Functions.link("go to http://www.google.com"), is(
+                "go to <a href=\"http://www.google.com\">http://www.google.com</a>"));
+        assertThat(Functions.link("go to https://www.google.com"), is(
+                "go to <a href=\"https://www.google.com\">https://www.google.com</a>"));
     }
 
     @Test
@@ -493,10 +492,10 @@ public class FunctionsTest {
         // 5.0.0 ... arr=xxx,yyy
         // 5.0.1 ... arr[0]=xxx&arr[1]=yyy
         // Either can be populated as { "xxx", "yyy" }
-        assertThat(
-                query,
-                is("name=Ichiro%20Suzuki&ja=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86&arr%5B0%5D=xxx&arr%5B1%5D=yyy"));
-        assertThat(Functions.query(new LinkedHashMap<String, Object>()), is(""));
+        assertThat(query, is(
+                "name=Ichiro%20Suzuki&ja=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86&arr%5B0%5D=xxx&arr%5B1%5D=yyy"));
+        assertThat(Functions.query(new LinkedHashMap<String, Object>()), is(
+                ""));
     }
 
     @Test
@@ -511,14 +510,13 @@ public class FunctionsTest {
         // 5.0.0 ... list=a,b,あ
         // 5.0.1 ... list[0]=a&list[1]=b&list[2]=あ
         // Either can be populated as { "a", "b", "あ" }
-        assertThat(
-                query,
-                is("age=10&date=2000-01-01&list%5B0%5D=a&list%5B1%5D=b&list%5B2%5D=%E3%81%82&name=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86"));
+        assertThat(query, is(
+                "age=10&date=2000-01-01&list%5B0%5D=a&list%5B1%5D=b&list%5B2%5D=%E3%81%82&name=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86"));
         // Spec has been changed betwee 5.0.0 and 5.0.1
         // 5.0.0 ... age=&date=&list=&name=
         // 5.0.1 ... _age=&_date=&_list=&_name=
-        assertThat(Functions.query(new Person()),
-                is("_age=&_date=&_list=&_name=")); // null property should show reset parameter that start with "_"
+        assertThat(Functions.query(new Person()), is(
+                "_age=&_date=&_list=&_name=")); // null property should show reset parameter that start with "_"
     }
 
     @Test
@@ -577,10 +575,9 @@ public class FunctionsTest {
         map.put("name", "Ichiro Suzuki");
         map.put("age", 10);
         map.put("list", Arrays.asList("xxx", "yyy"));
-        assertThat(Functions.mapToQuery(map, null),
-                is("name=Ichiro%20Suzuki&age=10&list=xxx,yyy"));
-        assertThat(
-                Functions.mapToQuery(map, new BeanWrapperImpl(new Person())),
+        assertThat(Functions.mapToQuery(map, null), is(
+                "name=Ichiro%20Suzuki&age=10&list=xxx,yyy"));
+        assertThat(Functions.mapToQuery(map, new BeanWrapperImpl(new Person())),
                 is("name=Ichiro%20Suzuki&age=10&list=xxx,yyy"));
 
     }

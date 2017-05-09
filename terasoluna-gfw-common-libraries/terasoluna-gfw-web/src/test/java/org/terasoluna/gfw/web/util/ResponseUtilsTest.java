@@ -35,11 +35,11 @@ public class ResponseUtilsTest {
     @Test
     public void testSetPreventionCachingHeaders() {
         ResponseUtils.setPreventionCachingHeaders(response);
-        assertThat(response.getHeader("Cache-Control"),
-                is("private,no-store,no-cache,must-revalidate"));
+        assertThat(response.getHeader("Cache-Control"), is(
+                "private,no-store,no-cache,must-revalidate"));
         assertThat(response.getHeader("Pragma"), is("no-cache"));
-        assertThat(response.getHeader("Expires"),
-                is("Thu, 01 Jan 1970 00:00:00 GMT")); // Changed by SPR-11912
+        assertThat(response.getHeader("Expires"), is(
+                "Thu, 01 Jan 1970 00:00:00 GMT")); // Changed by SPR-11912
     }
 
     @Test
