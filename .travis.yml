@@ -12,6 +12,7 @@ cache:
 install: true
 
 script:
+  - mvn xml:check-format
   - mvn -f terasoluna-gfw-common-libraries/terasoluna-gfw-common/pom.xml formatter:validate
   - mvn -f terasoluna-gfw-common-libraries/terasoluna-gfw-jodatime/pom.xml formatter:validate
   - mvn -f terasoluna-gfw-common-libraries/terasoluna-gfw-web/pom.xml formatter:validate
