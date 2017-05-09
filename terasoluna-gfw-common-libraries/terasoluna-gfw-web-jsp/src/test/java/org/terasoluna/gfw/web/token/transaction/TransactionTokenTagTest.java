@@ -56,10 +56,9 @@ public class TransactionTokenTagTest {
 
         // mock behavior
         when((HttpServletRequest) pageContext.getRequest()).thenReturn(request);
-        when(
-                (TransactionToken) request
-                        .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
-                .thenReturn(null);
+        when((TransactionToken) request.getAttribute(
+                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
+                        .thenReturn(null);
 
         // run
         int result = 1;
@@ -91,10 +90,9 @@ public class TransactionTokenTagTest {
 
         // mock behavior
         when((HttpServletRequest) pageContext.getRequest()).thenReturn(request);
-        when(
-                (TransactionToken) request
-                        .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
-                .thenReturn(token);
+        when((TransactionToken) request.getAttribute(
+                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
+                        .thenReturn(token);
 
         // run
         int result = 1;
@@ -130,10 +128,9 @@ public class TransactionTokenTagTest {
 
         // mock behavior
         when((HttpServletRequest) pageContext.getRequest()).thenReturn(request);
-        when(
-                (TransactionToken) request
-                        .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
-                .thenReturn(token);
+        when((TransactionToken) request.getAttribute(
+                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
+                        .thenReturn(token);
 
         // run
         int result = 1;

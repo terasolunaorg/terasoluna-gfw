@@ -235,7 +235,8 @@ public class RedirectAuthenticationHandlerTest {
         redireHandler.setRedirectToRedirectStrategy(new RedirectStrategy() {
             @Override
             public void sendRedirect(HttpServletRequest request,
-                    HttpServletResponse response, String url) throws IOException {
+                    HttpServletResponse response,
+                    String url) throws IOException {
                 response.sendRedirect("http://google.com");
             }
         });

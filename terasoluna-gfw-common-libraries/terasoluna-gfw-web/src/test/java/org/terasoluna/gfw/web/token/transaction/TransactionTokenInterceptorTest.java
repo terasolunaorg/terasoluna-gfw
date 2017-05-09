@@ -86,13 +86,10 @@ public class TransactionTokenInterceptorTest {
 
     @Test
     public void testPreHandleWithoutTokenValidate() throws Exception {
-        boolean result = interceptor
-                .preHandle(
-                        request,
-                        response,
-                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                                .getDeclaredMethod("first", SampleForm.class,
-                                        Model.class)));
+        boolean result = interceptor.preHandle(request, response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("first", SampleForm.class,
+                                Model.class)));
         assertTrue(result);
     }
 
@@ -109,19 +106,16 @@ public class TransactionTokenInterceptorTest {
 
         interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
 
-        boolean result = interceptor
-                .preHandle(
-                        request,
-                        response,
-                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                                .getDeclaredMethod("third", SampleForm.class,
-                                        Model.class)));
+        boolean result = interceptor.preHandle(request, response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("third", SampleForm.class,
+                                Model.class)));
 
         // Confirm return value
         assertTrue(result);
         // Confirm that TokenContext is stored in the request
-        assertNotNull(request
-                .getAttribute(TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME));
+        assertNotNull(request.getAttribute(
+                TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME));
     }
 
     @Test(expected = InvalidTransactionTokenException.class)
@@ -131,13 +125,10 @@ public class TransactionTokenInterceptorTest {
 
         interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
 
-        interceptor
-                .preHandle(
-                        request,
-                        response,
-                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                                .getDeclaredMethod("third", SampleForm.class,
-                                        Model.class)));
+        interceptor.preHandle(request, response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("third", SampleForm.class,
+                                Model.class)));
 
     }
 
@@ -148,9 +139,8 @@ public class TransactionTokenInterceptorTest {
         TransactionToken inputToken = new TransactionToken("tokenName1", "111", "222");
         tokenStore.store(inputToken);
 
-        assertThat(tokenStore.getSession().getAttribute(
-                tokenStore.createSessionAttributeName(inputToken)),
-                is(notNullValue()));
+        assertThat(tokenStore.getSession().getAttribute(tokenStore
+                .createSessionAttributeName(inputToken)), is(notNullValue()));
 
         request.setParameter(
                 TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER,
@@ -158,18 +148,14 @@ public class TransactionTokenInterceptorTest {
 
         interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
 
-        interceptor
-                .preHandle(
-                        request,
-                        response,
-                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                                .getDeclaredMethod("first", SampleForm.class,
-                                        Model.class)));
+        interceptor.preHandle(request, response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("first", SampleForm.class,
+                                Model.class)));
 
         // check if inputToken is removed
-        assertThat(tokenStore.getSession().getAttribute(
-                tokenStore.createSessionAttributeName(inputToken)),
-                is(nullValue()));
+        assertThat(tokenStore.getSession().getAttribute(tokenStore
+                .createSessionAttributeName(inputToken)), is(nullValue()));
     }
 
     @Test
@@ -179,9 +165,8 @@ public class TransactionTokenInterceptorTest {
         TransactionToken inputToken = new TransactionToken("testTokenAttr", "111", "222");
         tokenStore.store(inputToken);
 
-        assertThat(tokenStore.getSession().getAttribute(
-                tokenStore.createSessionAttributeName(inputToken)),
-                is(notNullValue()));
+        assertThat(tokenStore.getSession().getAttribute(tokenStore
+                .createSessionAttributeName(inputToken)), is(notNullValue()));
 
         request.setParameter(
                 TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER,
@@ -189,18 +174,16 @@ public class TransactionTokenInterceptorTest {
 
         interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
 
-        boolean result = interceptor
-                .preHandle(
-                        request,
-                        response,
-                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                                .getDeclaredMethod("fifth", SampleForm.class,
-                                        Model.class)));
+        boolean result = interceptor.preHandle(request, response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("fifth", SampleForm.class,
+                                Model.class)));
 
         assertTrue(result);
 
         TransactionTokenContext transactionTokenCtx = (TransactionTokenContext) request
-                .getAttribute(TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME);
+                .getAttribute(
+                        TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME);
         TransactionToken token = transactionTokenCtx.getReceivedToken();
         assertNotNull(token);
         assertThat(token.getTokenName(), is("testTokenAttr"));
@@ -230,14 +213,15 @@ public class TransactionTokenInterceptorTest {
     @Test
     public void testValidateToken02() {
 
-        HttpSessionTransactionTokenStore tokenStore = mock(HttpSessionTransactionTokenStore.class);
+        HttpSessionTransactionTokenStore tokenStore = mock(
+                HttpSessionTransactionTokenStore.class);
         TransactionToken inputToken = new TransactionToken("tokenName1", "111", "222");
 
         TransactionTokenInfo tokenInfo = new TransactionTokenInfo("tokenName1", TransactionTokenType.IN);
 
         // Set mock behavior
-        when(tokenStore.getAndClear((TransactionToken) anyObject()))
-                .thenReturn("differentValue");
+        when(tokenStore.getAndClear((TransactionToken) anyObject())).thenReturn(
+                "differentValue");
 
         boolean result = interceptor.validateToken(inputToken, tokenStore,
                 tokenInfo);
@@ -308,30 +292,21 @@ public class TransactionTokenInterceptorTest {
 
         interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
 
-        interceptor
-                .preHandle(
-                        request,
-                        response,
-                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                                .getDeclaredMethod("third", SampleForm.class,
-                                        Model.class)));
+        interceptor.preHandle(request, response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("third", SampleForm.class,
+                                Model.class)));
 
-        interceptor
-                .postHandle(
-                        request,
-                        response,
-                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                                .getDeclaredMethod("third", SampleForm.class,
-                                        Model.class)), null);
+        interceptor.postHandle(request, response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("third", SampleForm.class,
+                                Model.class)), null);
 
         // Confirm that token is removed from session
-        assertNull(tokenStore
-                .getSession()
-                .getAttribute(
-                        HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
-                                + inputToken.getTokenName()
-                                + "~"
-                                + inputToken.getTokenKey()));
+        assertNull(tokenStore.getSession().getAttribute(
+                HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
+                        + inputToken.getTokenName() + "~" + inputToken
+                                .getTokenKey()));
     }
 
     @Test
@@ -347,37 +322,28 @@ public class TransactionTokenInterceptorTest {
 
         interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
 
-        interceptor
-                .preHandle(
-                        request,
-                        response,
-                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                                .getDeclaredMethod("first", SampleForm.class,
-                                        Model.class)));
+        interceptor.preHandle(request, response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("first", SampleForm.class,
+                                Model.class)));
 
-        interceptor
-                .postHandle(
-                        request,
-                        response,
-                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                                .getDeclaredMethod("third", SampleForm.class,
-                                        Model.class)), null);
+        interceptor.postHandle(request, response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("third", SampleForm.class,
+                                Model.class)), null);
 
         // Next token is stored in request object
-        assertNotNull(request
-                .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME));
+        assertNotNull(request.getAttribute(
+                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME));
 
-        TransactionToken nextToken = (TransactionToken) request
-                .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
+        TransactionToken nextToken = (TransactionToken) request.getAttribute(
+                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
 
         // Confirm that next token is present in the session
-        assertNotNull(tokenStore
-                .getSession()
-                .getAttribute(
-                        HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
-                                + nextToken.getTokenName()
-                                + "~"
-                                + nextToken.getTokenKey()));
+        assertNotNull(tokenStore.getSession().getAttribute(
+                HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
+                        + nextToken.getTokenName() + "~" + nextToken
+                                .getTokenKey()));
     }
 
     @Test
@@ -393,34 +359,24 @@ public class TransactionTokenInterceptorTest {
 
         interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
 
-        interceptor
-                .preHandle(
-                        request,
-                        response,
-                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                                .getDeclaredMethod("second", SampleForm.class,
-                                        Model.class,
-                                        TransactionTokenContext.class)));
+        interceptor.preHandle(request, response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("second", SampleForm.class,
+                                Model.class, TransactionTokenContext.class)));
 
-        interceptor
-                .postHandle(
-                        request,
-                        response,
-                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                                .getDeclaredMethod("third", SampleForm.class,
-                                        Model.class)), null);
+        interceptor.postHandle(request, response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("third", SampleForm.class,
+                                Model.class)), null);
 
         // Confirm that token is still present in the session
-        assertNotNull(tokenStore
-                .getSession()
-                .getAttribute(
-                        HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
-                                + inputToken.getTokenName()
-                                + "~"
-                                + inputToken.getTokenKey()));
+        assertNotNull(tokenStore.getSession().getAttribute(
+                HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
+                        + inputToken.getTokenName() + "~" + inputToken
+                                .getTokenKey()));
         // Next token is also stored in request object
-        assertNotNull(request
-                .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME));
+        assertNotNull(request.getAttribute(
+                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME));
     }
 
     @Test
@@ -436,24 +392,18 @@ public class TransactionTokenInterceptorTest {
 
         interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
 
-        interceptor
-                .preHandle(
-                        request,
-                        response,
-                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                                .getDeclaredMethod("fifth", SampleForm.class,
-                                        Model.class)));
+        interceptor.preHandle(request, response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("fifth", SampleForm.class,
+                                Model.class)));
 
-        interceptor
-                .postHandle(
-                        request,
-                        response,
-                        new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                                .getDeclaredMethod("fifth", SampleForm.class,
-                                        Model.class)), null);
+        interceptor.postHandle(request, response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("fifth", SampleForm.class,
+                                Model.class)), null);
 
-        TransactionToken nextToken = (TransactionToken) request
-                .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
+        TransactionToken nextToken = (TransactionToken) request.getAttribute(
+                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
         assertNotNull(nextToken);
         assertThat(nextToken.getTokenName(), is("testTokenAttr"));
         assertThat(nextToken.getTokenKey(), is("111"));
@@ -464,7 +414,8 @@ public class TransactionTokenInterceptorTest {
     @Test
     public void testPostHandleWithNoneOperation() throws Exception {
 
-        TransactionTokenContextImpl context = mock(TransactionTokenContextImpl.class);
+        TransactionTokenContextImpl context = mock(
+                TransactionTokenContextImpl.class);
 
         request.setAttribute(
                 TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME,
@@ -474,14 +425,10 @@ public class TransactionTokenInterceptorTest {
                 TransactionTokenContextImpl.ReserveCommand.NONE);
 
         try {
-            interceptor
-                    .postHandle(
-                            request,
-                            response,
-                            new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                                    .getDeclaredMethod("third",
-                                            SampleForm.class, Model.class)),
-                            null);
+            interceptor.postHandle(request, response,
+                    new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                            .getDeclaredMethod("third", SampleForm.class,
+                                    Model.class)), null);
         } catch (Exception e) {
             fail();
         }
@@ -511,22 +458,16 @@ public class TransactionTokenInterceptorTest {
 
             interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
 
-            interceptor
-                    .preHandle(
-                            request,
-                            response,
-                            new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                                    .getDeclaredMethod("third",
-                                            SampleForm.class, Model.class)));
+            interceptor.preHandle(request, response,
+                    new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                            .getDeclaredMethod("third", SampleForm.class,
+                                    Model.class)));
 
             // Confirm that token is stored in session
-            assertNotNull(tokenStore
-                    .getSession()
-                    .getAttribute(
-                            HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
-                                    + inputToken.getTokenName()
-                                    + "~"
-                                    + inputToken.getTokenKey()));
+            assertNotNull(tokenStore.getSession().getAttribute(
+                    HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
+                            + inputToken.getTokenName() + "~" + inputToken
+                                    .getTokenKey()));
 
             // Consider that exception has occured and call afterCompletion()
             // method
@@ -535,13 +476,10 @@ public class TransactionTokenInterceptorTest {
             interceptor.afterCompletion(request, response, null, ex);
 
             // Confirm that token is removed from session
-            assertNull(tokenStore
-                    .getSession()
-                    .getAttribute(
-                            HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
-                                    + inputToken.getTokenName()
-                                    + "~"
-                                    + inputToken.getTokenKey()));
+            assertNull(tokenStore.getSession().getAttribute(
+                    HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
+                            + inputToken.getTokenName() + "~" + inputToken
+                                    .getTokenKey()));
 
         } catch (Exception e) {
             fail();

@@ -202,12 +202,12 @@ import com.google.common.collect.Tables;
  * </pre>
  */
 public class SimpleI18nCodeList extends AbstractI18nCodeList implements
-                                                            InitializingBean {
+                                InitializingBean {
     /**
      * Logger.
      */
-    private static final Logger logger = LoggerFactory
-            .getLogger(SimpleI18nCodeList.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            SimpleI18nCodeList.class);
 
     /**
      * codelist table.

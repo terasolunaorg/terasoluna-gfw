@@ -34,8 +34,8 @@ public class ConsistOfValidatorTest {
         Name_Simple name = new Name_Simple("ABC", "GHI");
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
-        Set<ConstraintViolation<Name_Simple>> violations = validator
-                .validate(name);
+        Set<ConstraintViolation<Name_Simple>> violations = validator.validate(
+                name);
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(0));
@@ -46,8 +46,8 @@ public class ConsistOfValidatorTest {
         Name_Simple name = new Name_Simple();
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
-        Set<ConstraintViolation<Name_Simple>> violations = validator
-                .validate(name);
+        Set<ConstraintViolation<Name_Simple>> violations = validator.validate(
+                name);
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(0));
@@ -58,16 +58,16 @@ public class ConsistOfValidatorTest {
         Name_Simple name = new Name_Simple("abc", "GHI");
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
-        Set<ConstraintViolation<Name_Simple>> violations = validator
-                .validate(name);
+        Set<ConstraintViolation<Name_Simple>> violations = validator.validate(
+                name);
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(1));
 
         ConstraintViolation<Name_Simple> v = violations.iterator().next();
         assertThat(v.getPropertyPath().toString(), is("firstName"));
-        assertThat(v.getMessage(),
-                is("{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        assertThat(v.getMessage(), is(
+                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
     }
 
     @Test
@@ -75,16 +75,16 @@ public class ConsistOfValidatorTest {
         Name_Simple name = new Name_Simple("ABC", "ghi");
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
-        Set<ConstraintViolation<Name_Simple>> violations = validator
-                .validate(name);
+        Set<ConstraintViolation<Name_Simple>> violations = validator.validate(
+                name);
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(1));
 
         ConstraintViolation<Name_Simple> v = violations.iterator().next();
         assertThat(v.getPropertyPath().toString(), is("lastName"));
-        assertThat(v.getMessage(),
-                is("{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        assertThat(v.getMessage(), is(
+                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
     }
 
     @Test
@@ -92,8 +92,8 @@ public class ConsistOfValidatorTest {
         Name_Simple name = new Name_Simple("abc", "ghi");
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
-        Set<ConstraintViolation<Name_Simple>> violations = validator
-                .validate(name);
+        Set<ConstraintViolation<Name_Simple>> violations = validator.validate(
+                name);
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(2));
@@ -108,17 +108,17 @@ public class ConsistOfValidatorTest {
                     @Override
                     public int compare(ConstraintViolation<Name_Simple> o1,
                             ConstraintViolation<Name_Simple> o2) {
-                        return o1.getPropertyPath().toString().compareTo(
-                                o2.getPropertyPath().toString());
+                        return o1.getPropertyPath().toString().compareTo(o2
+                                .getPropertyPath().toString());
                     }
                 });
 
         assertThat(lst.get(0).getPropertyPath().toString(), is("firstName"));
-        assertThat(lst.get(0).getMessage(),
-                is("{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        assertThat(lst.get(0).getMessage(), is(
+                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
         assertThat(lst.get(1).getPropertyPath().toString(), is("lastName"));
-        assertThat(lst.get(1).getMessage(),
-                is("{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        assertThat(lst.get(1).getMessage(), is(
+                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
     }
 
     @Test
@@ -126,8 +126,8 @@ public class ConsistOfValidatorTest {
         Name_Multi name = new Name_Multi("ABCGHI", "DEFJKL");
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
-        Set<ConstraintViolation<Name_Multi>> violations = validator
-                .validate(name);
+        Set<ConstraintViolation<Name_Multi>> violations = validator.validate(
+                name);
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(0));
@@ -138,8 +138,8 @@ public class ConsistOfValidatorTest {
         Name_Multi name = new Name_Multi("ABCDEFGHIJKLMN", "ABCDEFGHIJKL");
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
-        Set<ConstraintViolation<Name_Multi>> violations = validator
-                .validate(name);
+        Set<ConstraintViolation<Name_Multi>> violations = validator.validate(
+                name);
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(1));
@@ -174,8 +174,8 @@ public class ConsistOfValidatorTest {
         Name_Getter name = new Name_Getter("ABC", "GHI");
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
-        Set<ConstraintViolation<Name_Getter>> violations = validator
-                .validate(name);
+        Set<ConstraintViolation<Name_Getter>> violations = validator.validate(
+                name);
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(0));
@@ -186,16 +186,16 @@ public class ConsistOfValidatorTest {
         Name_Getter name = new Name_Getter("abc", "GHI");
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
-        Set<ConstraintViolation<Name_Getter>> violations = validator
-                .validate(name);
+        Set<ConstraintViolation<Name_Getter>> violations = validator.validate(
+                name);
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(1));
 
         ConstraintViolation<Name_Getter> v = violations.iterator().next();
         assertThat(v.getPropertyPath().toString(), is("firstName"));
-        assertThat(v.getMessage(),
-                is("{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        assertThat(v.getMessage(), is(
+                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
     }
 
     @Test
@@ -203,16 +203,16 @@ public class ConsistOfValidatorTest {
         Name_Getter name = new Name_Getter("ABC", "ghi");
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
-        Set<ConstraintViolation<Name_Getter>> violations = validator
-                .validate(name);
+        Set<ConstraintViolation<Name_Getter>> violations = validator.validate(
+                name);
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(1));
 
         ConstraintViolation<Name_Getter> v = violations.iterator().next();
         assertThat(v.getPropertyPath().toString(), is("lastName"));
-        assertThat(v.getMessage(),
-                is("{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        assertThat(v.getMessage(), is(
+                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
     }
 
     @Test
@@ -222,8 +222,8 @@ public class ConsistOfValidatorTest {
         Set<ConstraintViolation<Name_ConstructorParameter>> violations = validator
                 .forExecutables().validateConstructorParameters(
                         Name_ConstructorParameter.class.getConstructor(
-                                String.class, String.class),
-                        new Object[] { "ABC", "GHI" });
+                                String.class, String.class), new Object[] {
+                                        "ABC", "GHI" });
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(0));
@@ -236,18 +236,18 @@ public class ConsistOfValidatorTest {
         Set<ConstraintViolation<Name_ConstructorParameter>> violations = validator
                 .forExecutables().validateConstructorParameters(
                         Name_ConstructorParameter.class.getConstructor(
-                                String.class, String.class),
-                        new Object[] { "abc", "GHI" });
+                                String.class, String.class), new Object[] {
+                                        "abc", "GHI" });
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(1));
 
-        ConstraintViolation<Name_ConstructorParameter> v = violations
-                .iterator().next();
-        assertThat(v.getPropertyPath().toString(),
-                is("Name_ConstructorParameter.arg0"));
-        assertThat(v.getMessage(),
-                is("{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        ConstraintViolation<Name_ConstructorParameter> v = violations.iterator()
+                .next();
+        assertThat(v.getPropertyPath().toString(), is(
+                "Name_ConstructorParameter.arg0"));
+        assertThat(v.getMessage(), is(
+                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
     }
 
     @Test
@@ -257,18 +257,18 @@ public class ConsistOfValidatorTest {
         Set<ConstraintViolation<Name_ConstructorParameter>> violations = validator
                 .forExecutables().validateConstructorParameters(
                         Name_ConstructorParameter.class.getConstructor(
-                                String.class, String.class),
-                        new Object[] { "ABC", "ghi" });
+                                String.class, String.class), new Object[] {
+                                        "ABC", "ghi" });
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(1));
 
-        ConstraintViolation<Name_ConstructorParameter> v = violations
-                .iterator().next();
-        assertThat(v.getPropertyPath().toString(),
-                is("Name_ConstructorParameter.arg1"));
-        assertThat(v.getMessage(),
-                is("{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        ConstraintViolation<Name_ConstructorParameter> v = violations.iterator()
+                .next();
+        assertThat(v.getPropertyPath().toString(), is(
+                "Name_ConstructorParameter.arg1"));
+        assertThat(v.getMessage(), is(
+                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
     }
 
     @Test
@@ -278,8 +278,8 @@ public class ConsistOfValidatorTest {
         Set<ConstraintViolation<Name_ConstructorParameter>> violations = validator
                 .forExecutables().validateConstructorParameters(
                         Name_ConstructorParameter.class.getConstructor(
-                                String.class, String.class),
-                        new Object[] { "ABC", "GHI" });
+                                String.class, String.class), new Object[] {
+                                        "ABC", "GHI" });
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(0));

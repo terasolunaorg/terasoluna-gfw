@@ -18,4 +18,3 @@
  *
  */
 package org.terasoluna.gfw.security.web.redirect;
-

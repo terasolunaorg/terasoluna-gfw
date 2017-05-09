@@ -1,163 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 
-    <bean id="CL_testSetRows01"
-        class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
-        <property name="rows">
-            <util:map>
-                <entry key="en">
-                    <util:map>
-                        <entry key="0" value="Sun." />
-                        <entry key="1" value="Mon." />
-                        <entry key="2" value="Tue." />
-                        <entry key="3" value="Wed." />
-                        <entry key="4" value="Thu." />
-                        <entry key="5" value="Fri." />
-                        <entry key="6" value="Sat." />
-                    </util:map>
-                </entry>
-                <entry key="ja">
-                    <util:map>
-                        <entry key="0" value="日" />
-                        <entry key="1" value="月" />
-                        <entry key="2" value="火" />
-                        <entry key="3" value="水" />
-                        <entry key="4" value="木" />
-                        <entry key="5" value="金" />
-                        <entry key="6" value="土" />
-                    </util:map>
-                </entry>
-            </util:map>
-        </property>
-    </bean>
+  <bean id="CL_testSetRows01"
+    class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+    <property name="rows">
+      <util:map>
+        <entry key="en">
+          <util:map>
+            <entry key="0" value="Sun." />
+            <entry key="1" value="Mon." />
+            <entry key="2" value="Tue." />
+            <entry key="3" value="Wed." />
+            <entry key="4" value="Thu." />
+            <entry key="5" value="Fri." />
+            <entry key="6" value="Sat." />
+          </util:map>
+        </entry>
+        <entry key="ja">
+          <util:map>
+            <entry key="0" value="日" />
+            <entry key="1" value="月" />
+            <entry key="2" value="火" />
+            <entry key="3" value="水" />
+            <entry key="4" value="木" />
+            <entry key="5" value="金" />
+            <entry key="6" value="土" />
+          </util:map>
+        </entry>
+      </util:map>
+    </property>
+  </bean>
 
 
-    <bean id="CL_WEEK_EN" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
-        <property name="map">
-            <util:map>
-                <entry key="0" value="Sun." />
-                <entry key="1" value="Mon." />
-                <entry key="2" value="Tue." />
-                <entry key="3" value="Wed." />
-                <entry key="4" value="Thu." />
-                <entry key="5" value="Fri." />
-                <entry key="6" value="Sat." />
-            </util:map>
-        </property>
-    </bean>
+  <bean id="CL_WEEK_EN" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+    <property name="map">
+      <util:map>
+        <entry key="0" value="Sun." />
+        <entry key="1" value="Mon." />
+        <entry key="2" value="Tue." />
+        <entry key="3" value="Wed." />
+        <entry key="4" value="Thu." />
+        <entry key="5" value="Fri." />
+        <entry key="6" value="Sat." />
+      </util:map>
+    </property>
+  </bean>
 
-    <bean id="CL_WEEK_JA" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
-        <property name="map">
-            <util:map>
-                <entry key="0" value="日" />
-                <entry key="1" value="月" />
-                <entry key="2" value="火" />
-                <entry key="3" value="水" />
-                <entry key="4" value="木" />
-                <entry key="5" value="金" />
-                <entry key="6" value="土" />
-            </util:map>
-        </property>
-    </bean>
+  <bean id="CL_WEEK_JA" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+    <property name="map">
+      <util:map>
+        <entry key="0" value="日" />
+        <entry key="1" value="月" />
+        <entry key="2" value="火" />
+        <entry key="3" value="水" />
+        <entry key="4" value="木" />
+        <entry key="5" value="金" />
+        <entry key="6" value="土" />
+      </util:map>
+    </property>
+  </bean>
 
-    <bean id="CL_testSetRowsByCodeList01"
-        class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
-        <property name="rowsByCodeList">
-            <util:map>
-                <entry key="en" value-ref="CL_WEEK_EN" />
-                <entry key="ja" value-ref="CL_WEEK_JA" />
-            </util:map>
-        </property>
-    </bean>
+  <bean id="CL_testSetRowsByCodeList01"
+    class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+    <property name="rowsByCodeList">
+      <util:map>
+        <entry key="en" value-ref="CL_WEEK_EN" />
+        <entry key="ja" value-ref="CL_WEEK_JA" />
+      </util:map>
+    </property>
+  </bean>
 
-    <bean id="CL_testSetColumns01"
-        class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
-        <property name="columns">
-            <util:map>
-                <entry key="0">
-                    <util:map>
-                        <entry key="en" value="Sun." />
-                        <entry key="ja" value="日" />
-                    </util:map>
-                </entry>
-                <entry key="1">
-                    <util:map>
-                        <entry key="en" value="Mon." />
-                        <entry key="ja" value="月" />
-                    </util:map>
-                </entry>
-                <entry key="2">
-                    <util:map>
-                        <entry key="en" value="Tue." />
-                        <entry key="ja" value="火" />
-                    </util:map>
-                </entry>
-                <entry key="3">
-                    <util:map>
-                        <entry key="en" value="Wed." />
-                        <entry key="ja" value="水" />
-                    </util:map>
-                </entry>
-                <entry key="4">
-                    <util:map>
-                        <entry key="en" value="Thu." />
-                        <entry key="ja" value="木" />
-                    </util:map>
-                </entry>
-                <entry key="5">
-                    <util:map>
-                        <entry key="en" value="Fri." />
-                        <entry key="ja" value="金" />
-                    </util:map>
-                </entry>
-                <entry key="6">
-                    <util:map>
-                        <entry key="en" value="Sat." />
-                        <entry key="ja" value="土" />
-                    </util:map>
-                </entry>
-            </util:map>
-        </property>
-    </bean>
+  <bean id="CL_testSetColumns01"
+    class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+    <property name="columns">
+      <util:map>
+        <entry key="0">
+          <util:map>
+            <entry key="en" value="Sun." />
+            <entry key="ja" value="日" />
+          </util:map>
+        </entry>
+        <entry key="1">
+          <util:map>
+            <entry key="en" value="Mon." />
+            <entry key="ja" value="月" />
+          </util:map>
+        </entry>
+        <entry key="2">
+          <util:map>
+            <entry key="en" value="Tue." />
+            <entry key="ja" value="火" />
+          </util:map>
+        </entry>
+        <entry key="3">
+          <util:map>
+            <entry key="en" value="Wed." />
+            <entry key="ja" value="水" />
+          </util:map>
+        </entry>
+        <entry key="4">
+          <util:map>
+            <entry key="en" value="Thu." />
+            <entry key="ja" value="木" />
+          </util:map>
+        </entry>
+        <entry key="5">
+          <util:map>
+            <entry key="en" value="Fri." />
+            <entry key="ja" value="金" />
+          </util:map>
+        </entry>
+        <entry key="6">
+          <util:map>
+            <entry key="en" value="Sat." />
+            <entry key="ja" value="土" />
+          </util:map>
+        </entry>
+      </util:map>
+    </property>
+  </bean>
 
 
-    <bean id="CL_testSetRows03"
-        class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
-        <property name="rows">
-            <util:map>
-                <entry key="en">
-                    <util:map>
-                        <entry key="0" value="Sun." />
-                        <entry key="1" value="Mon." />
-                        <entry key="2" value="Tue." />
-                        <entry key="3" value="Wed." />
-                        <entry key="4" value="Thu." />
-                        <entry key="5" value="Fri." />
-                        <entry key="6" value="Sat." />
-                    </util:map>
-                </entry>
-                <entry key="ja">
-                    <util:map>
-                        <entry key="0" value="日" />
-                        <entry key="1" value="月" />
-                        <entry key="2" value="火" />
-                        <entry key="3" value="水" />
-                        <entry key="4" value="木" />
-                        <entry key="5" value="金" />
-                        <entry key="6" value="土" />
-                    </util:map>
-                </entry>
-            </util:map>
-        </property>
-        <property name="rowsByCodeList">
-            <util:map>
-                <entry key="en" value-ref="CL_WEEK_EN" />
-                <entry key="ja" value-ref="CL_WEEK_JA" />
-            </util:map>
-        </property>
-    </bean>
+  <bean id="CL_testSetRows03"
+    class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+    <property name="rows">
+      <util:map>
+        <entry key="en">
+          <util:map>
+            <entry key="0" value="Sun." />
+            <entry key="1" value="Mon." />
+            <entry key="2" value="Tue." />
+            <entry key="3" value="Wed." />
+            <entry key="4" value="Thu." />
+            <entry key="5" value="Fri." />
+            <entry key="6" value="Sat." />
+          </util:map>
+        </entry>
+        <entry key="ja">
+          <util:map>
+            <entry key="0" value="日" />
+            <entry key="1" value="月" />
+            <entry key="2" value="火" />
+            <entry key="3" value="水" />
+            <entry key="4" value="木" />
+            <entry key="5" value="金" />
+            <entry key="6" value="土" />
+          </util:map>
+        </entry>
+      </util:map>
+    </property>
+    <property name="rowsByCodeList">
+      <util:map>
+        <entry key="en" value-ref="CL_WEEK_EN" />
+        <entry key="ja" value-ref="CL_WEEK_JA" />
+      </util:map>
+    </property>
+  </bean>
 </beans>

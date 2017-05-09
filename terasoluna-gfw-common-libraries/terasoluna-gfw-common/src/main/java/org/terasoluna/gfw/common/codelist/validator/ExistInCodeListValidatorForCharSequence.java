@@ -30,9 +30,8 @@ package org.terasoluna.gfw.common.codelist.validator;
  * </p>
  */
 
-public class ExistInCodeListValidatorForCharSequence
-                                                    extends
-                                                    AbstractExistInCodeListValidator<CharSequence> {
+public class ExistInCodeListValidatorForCharSequence extends
+                                                     AbstractExistInCodeListValidator<CharSequence> {
 
     /**
      * Fetches the code value which is the target of validation

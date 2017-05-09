@@ -40,7 +40,8 @@ public class FullHalfPairs {
      * @param pairs The set of {@link FullHalfPair}s
      * @param predicate Predicate to check whether the given character is appendable.
      */
-    public FullHalfPairs(Set<FullHalfPair> pairs, AppendablePredicate predicate) {
+    public FullHalfPairs(Set<FullHalfPair> pairs,
+            AppendablePredicate predicate) {
         if (pairs == null) {
             throw new IllegalArgumentException("pairs must not be null");
         }

@@ -30,6 +30,5 @@ import org.terasoluna.gfw.common.date.jodatime.AbstractJodaTimeDateFactory;
  */
 @Deprecated
 public abstract class AbstractDateFactory extends AbstractJodaTimeDateFactory
-                                                                             implements
-                                                                             DateFactory {
+                                          implements DateFactory {
 }

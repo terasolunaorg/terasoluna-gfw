@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class TraceLoggingInterceptorController {
 
-    private static final Logger logger = LoggerFactory
-            .getLogger(TraceLoggingInterceptorController.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            TraceLoggingInterceptorController.class);
 
     @ModelAttribute("transactionTokenSampleForm")
     public SampleForm createForm() {
