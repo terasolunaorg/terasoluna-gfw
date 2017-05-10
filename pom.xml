@@ -45,6 +45,32 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.deploy.skip>true</maven.deploy.skip>
   </properties>
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>xml-maven-plugin</artifactId>
+          <version>${xml-maven-plugin.version}</version>
+          <configuration>
+            <indentSize>2</indentSize>
+            <formatFileSets>
+              <formatFileSet>
+                <directory>${basedir}</directory>
+                <includes>
+                  <include>**/*.xml</include>
+                </includes>
+                <excludes>
+                  <exclude>**/.*</exclude>
+                </excludes>
+              </formatFileSet>
+            </formatFileSets>
+            <useDefaultFormatFileSet>false</useDefaultFormatFileSet>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+  </build>
   <profiles>
     <profile>
       <id>default</id>
@@ -56,17 +82,6 @@
         <module>terasoluna-gfw-common-libraries</module>
         <module>terasoluna-gfw-dependencies</module>
       </modules>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>org.codehaus.mojo</groupId>
-              <artifactId>xml-maven-plugin</artifactId>
-              <version>${xml-maven-plugin.version}</version>
-            </plugin>
-          </plugins>
-        </pluginManagement>
-      </build>
     </profile>
     <profile>
       <id>central</id>
