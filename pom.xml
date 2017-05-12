@@ -56,7 +56,7 @@
             <indentSize>2</indentSize>
             <formatFileSets>
               <formatFileSet>
-                <directory>${basedir}</directory>
+                <directory>${project.basedir}</directory>
                 <includes>
                   <include>**/*.xml</include>
                 </includes>
