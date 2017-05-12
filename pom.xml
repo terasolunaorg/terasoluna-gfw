@@ -168,7 +168,13 @@
               <artifactId>formatter-maven-plugin</artifactId>
               <version>${formatter-maven-plugin.version}</version>
               <configuration>
-                <skip>true</skip>
+                <configFile>${project.basedir}/eclipse/formatter.xml
+                </configFile>
+                <lineEnding>CRLF</lineEnding>
+                <sourceDirectory>${project.basedir}</sourceDirectory>
+                <excludes>
+                  <exclude>terasoluna-gfw-common-libraries/terasoluna-gfw-string/src/main/java/org/terasoluna/gfw/common/fullhalf/DefaultFullHalf.java</exclude>
+                </excludes>
               </configuration>
             </plugin>
             <plugin>

@@ -13,6 +13,6 @@ install: true
 
 script:
   - mvn xml:check-format
-  - find ./terasoluna-gfw-common-libraries -name "pom.xml" -type f -exec mvn formatter:validate -f {} \;
+  - mvn formatter:validate
   - mvn -U clean install
   - mvn -U -P common-libs jacoco:report coveralls:report
