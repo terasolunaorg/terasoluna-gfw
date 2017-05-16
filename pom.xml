@@ -62,6 +62,7 @@
                 </includes>
                 <excludes>
                   <exclude>**/.*</exclude>
+                  <exclude>**/target/**</exclude>
                 </excludes>
               </formatFileSet>
             </formatFileSets>
