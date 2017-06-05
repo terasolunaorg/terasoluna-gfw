@@ -58,15 +58,10 @@
               <formatFileSet>
                 <directory>${project.basedir}</directory>
                 <includes>
-                  <include>**/*.xml</include>
+                  <include>src/**/*.xml</include>
                 </includes>
-                <excludes>
-                  <exclude>**/.*</exclude>
-                  <exclude>**/target/**</exclude>
-                </excludes>
               </formatFileSet>
             </formatFileSets>
-            <useDefaultFormatFileSet>false</useDefaultFormatFileSet>
           </configuration>
         </plugin>
       </plugins>
@@ -175,6 +170,10 @@
                 <directories>
                   <directory>${project.basedir}</directory>
                 </directories>
+                <includes>
+                  <include>**/src/main/java/**/*.java</include>
+                  <include>**/src/test/java/**/*.java</include>
+                </includes>
                 <excludes>
                   <exclude>terasoluna-gfw-common-libraries/terasoluna-gfw-string/src/main/java/org/terasoluna/gfw/common/fullhalf/DefaultFullHalf.java</exclude>
                 </excludes>
