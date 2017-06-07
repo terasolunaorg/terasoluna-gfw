@@ -108,6 +108,24 @@
           </configuration>
         </plugin>
         <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>xml-maven-plugin</artifactId>
+          <version>${xml-maven-plugin.version}</version>
+          <configuration>
+            <indentSize>2</indentSize>
+            <formatFileSets>
+              <formatFileSet>
+                <directory>${project.basedir}</directory>
+                <includes>
+                  <include>pom.xml</include>
+                  <include>src/test/resources/**/*.xml</include>
+                </includes>
+              </formatFileSet>
+            </formatFileSets>
+            <useDefaultFormatFileSet>false</useDefaultFormatFileSet>
+          </configuration>
+        </plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-antrun-plugin</artifactId>
           <version>${maven-antrun-plugin.version}</version>
@@ -149,6 +167,7 @@
     <maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
     <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
     <formatter-maven-plugin.version>2.0.1</formatter-maven-plugin.version>
+    <xml-maven-plugin.version>1.0.1</xml-maven-plugin.version>
     <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
     <!-- == Project Properties == -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

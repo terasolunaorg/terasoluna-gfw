@@ -54,14 +54,6 @@
           <version>${xml-maven-plugin.version}</version>
           <configuration>
             <indentSize>2</indentSize>
-            <formatFileSets>
-              <formatFileSet>
-                <directory>${project.basedir}</directory>
-                <includes>
-                  <include>src/**/*.xml</include>
-                </includes>
-              </formatFileSet>
-            </formatFileSets>
           </configuration>
         </plugin>
       </plugins>
