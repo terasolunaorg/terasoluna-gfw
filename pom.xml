@@ -54,6 +54,21 @@
           <version>${xml-maven-plugin.version}</version>
           <configuration>
             <indentSize>2</indentSize>
+            <formatFileSets>
+              <formatFileSet>
+                <directory>${project.basedir}</directory>
+                <includes>
+                  <include>**/*.xml</include>
+                </includes>
+                <excludes>
+                  <exclude>eclipse/*.xml</exclude>
+                  <exclude>license/*.xml</exclude>
+                  <exclude>**/.*</exclude>
+                  <exclude>**/target/**</exclude>
+                </excludes>
+              </formatFileSet>
+            </formatFileSets>
+            <useDefaultFormatFileSet>false</useDefaultFormatFileSet>
           </configuration>
         </plugin>
       </plugins>

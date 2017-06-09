@@ -12,7 +12,7 @@ cache:
 install: true
 
 script:
-  - mvn xml:check-format
+  - mvn -pl pom.xml xml:check-format
   - mvn formatter:validate -P common-libs
   - mvn -U clean install
   - mvn -U -P common-libs jacoco:report coveralls:report
