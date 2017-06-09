@@ -58,17 +58,12 @@
               <formatFileSet>
                 <directory>${project.basedir}</directory>
                 <includes>
-                  <include>**/*.xml</include>
+                  <include>terasoluna-gfw-parent/**/*.xml</include>
+                  <include>terasoluna-gfw-common-libraries/**/*.xml</include>
+                  <include>terasoluna-gfw-dependencies/**/*.xml</include>
                 </includes>
-                <excludes>
-                  <exclude>eclipse/*.xml</exclude>
-                  <exclude>license/*.xml</exclude>
-                  <exclude>**/.*</exclude>
-                  <exclude>**/target/**</exclude>
-                </excludes>
               </formatFileSet>
             </formatFileSets>
-            <useDefaultFormatFileSet>false</useDefaultFormatFileSet>
           </configuration>
         </plugin>
       </plugins>
