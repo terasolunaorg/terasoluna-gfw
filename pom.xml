@@ -205,13 +205,10 @@
                 <indentSize>2</indentSize>
                 <formatFileSets>
                   <formatFileSet>
-                    <directory>${project.basedir}</directory>
+                    <directory>${project.basedir}/terasoluna-gfw-parent</directory>
                     <includes>
-                      <include>terasoluna-gfw-parent/**/*.xml</include>
+                      <include>**/*.xml</include>
                     </includes>
-                    <excludes>
-                      <exclude>**/target/**</exclude>
-                    </excludes>
                   </formatFileSet>
                 </formatFileSets>
               </configuration>
