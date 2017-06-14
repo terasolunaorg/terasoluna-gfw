@@ -45,30 +45,6 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.deploy.skip>true</maven.deploy.skip>
   </properties>
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>xml-maven-plugin</artifactId>
-          <version>${xml-maven-plugin.version}</version>
-          <configuration>
-            <indentSize>2</indentSize>
-            <formatFileSets>
-              <formatFileSet>
-                <directory>${project.basedir}</directory>
-                <includes>
-                  <include>terasoluna-gfw-parent/**/*.xml</include>
-                  <include>terasoluna-gfw-common-libraries/**/*.xml</include>
-                  <include>terasoluna-gfw-dependencies/**/*.xml</include>
-                </includes>
-              </formatFileSet>
-            </formatFileSets>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
   <profiles>
     <profile>
       <id>default</id>
@@ -206,6 +182,38 @@
                   <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints/src/main/java</sourceDirectory>
                   <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-string/src/main/java</sourceDirectory>
                 </sourceDirectories>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+    <profile>
+      <id>xml-check-format</id>
+      <modules>
+        <module>terasoluna-gfw-common-libraries</module>
+        <module>terasoluna-gfw-dependencies</module>
+      </modules>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>xml-maven-plugin</artifactId>
+              <version>${xml-maven-plugin.version}</version>
+              <configuration>
+                <indentSize>2</indentSize>
+                <formatFileSets>
+                  <formatFileSet>
+                    <directory>${project.basedir}</directory>
+                    <includes>
+                      <include>terasoluna-gfw-parent/**/*.xml</include>
+                    </includes>
+                    <excludes>
+                      <exclude>**/target/**</exclude>
+                    </excludes>
+                  </formatFileSet>
+                </formatFileSets>
               </configuration>
             </plugin>
           </plugins>

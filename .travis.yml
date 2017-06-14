@@ -12,7 +12,7 @@ cache:
 install: true
 
 script:
-  - mvn -pl org.terasoluna.gfw:terasoluna-gfw xml:check-format
+  - mvn xml:check-format -P xml-check-format
   - mvn formatter:validate -P common-libs
   - mvn -U clean install
   - mvn -U -P common-libs jacoco:report coveralls:report
