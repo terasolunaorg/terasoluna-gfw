@@ -106,7 +106,7 @@ public class ExceptionLoggingFilterTest {
             assertSame(occurException, e);
         }
 
-        verify(mockExceptionLogger, times(1)).log(occurException);
+        verify(mockExceptionLogger, times(1)).error(occurException);
 
     }
 
@@ -124,7 +124,7 @@ public class ExceptionLoggingFilterTest {
             assertSame(occurException, e);
         }
 
-        verify(mockExceptionLogger, times(1)).log(occurException);
+        verify(mockExceptionLogger, times(1)).error(occurException);
 
     }
 
@@ -142,7 +142,7 @@ public class ExceptionLoggingFilterTest {
             assertSame(occurException, e);
         }
 
-        verify(mockExceptionLogger, times(1)).log(occurException);
+        verify(mockExceptionLogger, times(1)).error(occurException);
 
     }
 
@@ -160,7 +160,7 @@ public class ExceptionLoggingFilterTest {
             assertSame(occurError, e);
         }
 
-        verify(mockExceptionLogger, times(0)).log((Exception) any());
+        verify(mockExceptionLogger, times(0)).error((Exception) any());
 
     }
 
@@ -183,7 +183,7 @@ public class ExceptionLoggingFilterTest {
             assertSame(occurException, e);
         }
 
-        verify(mockExceptionLogger, times(1)).log(occurException);
+        verify(mockExceptionLogger, times(1)).error(occurException);
 
     }
 
