@@ -1,41 +1,41 @@
 <?xml version="1.0"?>
 <project
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-dependencies</artifactId>
-        <version>5.3.1-SNAPSHOT</version>
-        <relativePath>../../terasoluna-gfw-dependencies/pom.xml</relativePath>
-    </parent>
-    <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
-    <name>TERASOLUNA Server Framework for Java (5.x) for joda-time library</name>
-    <description>Useful libraries for jodatime library created by TERASOLUNA Server Framework for Java (5.x)</description>
-    <url>http://terasoluna.org</url>
-    <packaging>pom</packaging>
-    <dependencies>
-        <!-- == Begin TERASOLUNA == -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>terasoluna-gfw-common-dependencies</artifactId>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>terasoluna-gfw-jodatime</artifactId>
-        </dependency>
-        <!-- == End TERASOLUNA == -->
-        <!-- == Begin Joda-Time == -->
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time-jsptags</artifactId>
-            <!-- this dependency does not pull servlet-api -->
-        </dependency>
-        <!-- == End Joda-Time == -->
-    </dependencies>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-dependencies</artifactId>
+    <version>5.3.1-SNAPSHOT</version>
+    <relativePath>../../terasoluna-gfw-dependencies/pom.xml</relativePath>
+  </parent>
+  <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
+  <name>TERASOLUNA Server Framework for Java (5.x) for joda-time library</name>
+  <description>Useful libraries for jodatime library created by TERASOLUNA Server Framework for Java (5.x)</description>
+  <url>http://terasoluna.org</url>
+  <packaging>pom</packaging>
+  <dependencies>
+    <!-- == Begin TERASOLUNA == -->
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>terasoluna-gfw-common-dependencies</artifactId>
+      <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>terasoluna-gfw-jodatime</artifactId>
+    </dependency>
+    <!-- == End TERASOLUNA == -->
+    <!-- == Begin Joda-Time == -->
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time-jsptags</artifactId>
+      <!-- this dependency does not pull servlet-api -->
+    </dependency>
+    <!-- == End Joda-Time == -->
+  </dependencies>
 </project>
