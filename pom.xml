@@ -65,7 +65,7 @@
     <properties>
         <!-- == Maven Plugin Versions == -->
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
-        <formatter-maven-plugin.version>0.5.2</formatter-maven-plugin.version>
+        <formatter-maven-plugin.version>2.0.1</formatter-maven-plugin.version>
         <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
         <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
         <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
@@ -98,7 +98,7 @@
         </profile>
         <profile>
             <id>central</id>
-            <!-- for release to Maven Central Repository-->
+            <!-- for release to Maven Central Repository -->
             <modules>
                 <module>terasoluna-gfw-parent</module>
                 <module>terasoluna-gfw-common-libraries</module>
@@ -177,11 +177,23 @@
                             <version>${com.google.code.maven-license-plugin.version}</version>
                         </plugin>
                         <plugin>
-                            <groupId>net.revelc.code</groupId>
+                            <groupId>net.revelc.code.formatter</groupId>
                             <artifactId>formatter-maven-plugin</artifactId>
                             <version>${formatter-maven-plugin.version}</version>
                             <configuration>
-                                <skip>true</skip>
+                                <configFile>${project.basedir}/eclipse/formatter.xml
+                                </configFile>
+                                <lineEnding>CRLF</lineEnding>
+                                <directories>
+                                  <directory>${project.basedir}</directory>
+                                </directories>
+                                <includes>
+                                  <include>**/src/main/java/**/*.java</include>
+                                  <include>**/src/test/java/**/*.java</include>
+                                </includes>
+                                <excludes>
+                                  <exclude>terasoluna-gfw-common-libraries/terasoluna-gfw-string/src/main/java/org/terasoluna/gfw/common/fullhalf/DefaultFullHalf.java</exclude>
+                                </excludes>
                             </configuration>
                         </plugin>
                         <plugin>

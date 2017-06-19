@@ -88,13 +88,23 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>net.revelc.code</groupId>
+                    <groupId>net.revelc.code.formatter</groupId>
                     <artifactId>formatter-maven-plugin</artifactId>
                     <version>${formatter-maven-plugin.version}</version>
                     <configuration>
                         <configFile>${project.root.basedir}/../eclipse/formatter.xml
                         </configFile>
                         <lineEnding>CRLF</lineEnding>
+                        <directories>
+                          <directory>${project.basedir}</directory>
+                        </directories>
+                        <includes>
+                          <include>**/src/main/java/**/*.java</include>
+                          <include>**/src/test/java/**/*.java</include>
+                        </includes>
+                        <excludes>
+                          <exclude>terasoluna-gfw-string/src/main/java/org/terasoluna/gfw/common/fullhalf/DefaultFullHalf.java</exclude>
+                        </excludes>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -138,7 +148,7 @@
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
         <maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
         <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
-        <formatter-maven-plugin.version>0.5.2</formatter-maven-plugin.version>
+        <formatter-maven-plugin.version>2.0.1</formatter-maven-plugin.version>
         <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
         <!-- == Project Properties == -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
