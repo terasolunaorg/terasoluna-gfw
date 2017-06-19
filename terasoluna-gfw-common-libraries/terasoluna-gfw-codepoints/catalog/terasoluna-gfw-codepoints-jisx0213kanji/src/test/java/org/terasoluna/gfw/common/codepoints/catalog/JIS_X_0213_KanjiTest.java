@@ -28,8 +28,8 @@ public class JIS_X_0213_KanjiTest {
     @Test
     public void testIsValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("\uD842\uDF9F" /* 口へんに"七" */),
-                is(true));
+        assertThat(codePoints.containsAll("\uD842\uDF9F" /* 口へんに"七" */), is(
+                true));
     }
 
     @Test

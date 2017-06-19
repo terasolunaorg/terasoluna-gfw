@@ -34,12 +34,10 @@ import java.util.concurrent.atomic.AtomicLong;
  * </P>
  * @since 5.0.0
  */
-public class JdbcAdjustedJodaTimeDateFactory extends
-                                            AbstractJodaTimeDateFactory
-                                                                       implements
-                                                                       InitializingBean {
-    private static final Logger logger = LoggerFactory
-            .getLogger(JdbcAdjustedJodaTimeDateFactory.class);
+public class JdbcAdjustedJodaTimeDateFactory extends AbstractJodaTimeDateFactory
+                                             implements InitializingBean {
+    private static final Logger logger = LoggerFactory.getLogger(
+            JdbcAdjustedJodaTimeDateFactory.class);
 
     /**
      * JDBC Template used to access the database to fetch the adjustment value.

@@ -35,7 +35,7 @@ import org.terasoluna.gfw.common.validator.constraints.ByteMax;
  * @see ByteMax
  */
 public class ByteMaxValidator implements
-                             ConstraintValidator<ByteMax, CharSequence> {
+                              ConstraintValidator<ByteMax, CharSequence> {
 
     /**
      * The charset used in parse to a string.

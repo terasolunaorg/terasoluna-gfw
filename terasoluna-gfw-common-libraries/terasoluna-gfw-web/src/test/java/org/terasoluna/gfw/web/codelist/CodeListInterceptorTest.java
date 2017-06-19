@@ -81,8 +81,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
     @Before
     public void setUp() {
         this.testTarget = new CodeListInterceptor();
-        testTarget
-                .setApplicationContext(new StaticApplicationContext(getApplicationContext()));
+        testTarget.setApplicationContext(
+                new StaticApplicationContext(getApplicationContext()));
 
         this.mockRequest = new MockHttpServletRequest();
         this.mockResponse = new MockHttpServletResponse();
@@ -90,8 +90,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         @SuppressWarnings("unchecked")
         Appender<ILoggingEvent> mockAppender = mock(Appender.class);
         this.mockAppender = mockAppender;
-        Logger logger = (Logger) LoggerFactory
-                .getLogger(CodeListInterceptor.class);
+        Logger logger = (Logger) LoggerFactory.getLogger(
+                CodeListInterceptor.class);
         logger.addAppender(mockAppender);
     }
 
@@ -121,7 +121,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
                 mockResponse, null);
 
         // do assert.
-        assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
+        assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(
+                false));
         assertThat(actualReturnValue, is(true));
 
     }
@@ -143,8 +144,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         StaticApplicationContext mockApplicationContext = new StaticApplicationContext();
         mockApplicationContext.registerSingleton("simpleMapCodeList",
                 SimpleMapCodeList.class);
-        SimpleMapCodeList simpleMapCodeList = mockApplicationContext
-                .getBean(SimpleMapCodeList.class);
+        SimpleMapCodeList simpleMapCodeList = mockApplicationContext.getBean(
+                SimpleMapCodeList.class);
         simpleMapCodeList.setMap(Collections.singletonMap("key", "value"));
 
         testTarget.setApplicationContext(mockApplicationContext);
@@ -160,8 +161,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         assertThat(actualAttributeNames.hasMoreElements(), is(true));
         actualAttributeNames.nextElement();
         assertThat(actualAttributeNames.hasMoreElements(), is(false));
-        assertThat(mockRequest.getAttribute("simpleMapCodeList").toString(),
-                is(simpleMapCodeList.asMap().toString()));
+        assertThat(mockRequest.getAttribute("simpleMapCodeList").toString(), is(
+                simpleMapCodeList.asMap().toString()));
         assertThat(actualReturnValue, is(true));
 
     }
@@ -192,8 +193,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         // do assert.
         SimpleMapCodeList simpleMapCodeList = getApplicationContext().getBean(
                 "C_simpleMapCodeList", SimpleMapCodeList.class);
-        SimpleI18nCodeList simpleI18nCodeList = getApplicationContext()
-                .getBean("C_simpleI18nCodeList", SimpleI18nCodeList.class);
+        SimpleI18nCodeList simpleI18nCodeList = getApplicationContext().getBean(
+                "C_simpleI18nCodeList", SimpleI18nCodeList.class);
         assertThat(mockRequest.getAttribute("C_simpleMapCodeList").toString(),
                 is(simpleMapCodeList.asMap().toString()));
         assertThat(mockRequest.getAttribute("C_simpleI18nCodeList").toString(),
@@ -223,7 +224,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
                 mockResponse, null);
 
         // do assert.
-        assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
+        assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(
+                false));
         assertThat(actualReturnValue, is(true));
 
     }
@@ -280,7 +282,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         assertThat(testTarget.getCodeLists(), is(containsInAnyOrder(
                 getApplicationContext().getBean("A_simpleI18nCodeList",
                         CodeList.class), getApplicationContext().getBean(
-                        "A_numberRangeCodeList", CodeList.class),
+                                "A_numberRangeCodeList", CodeList.class),
                 getApplicationContext().getBean("A_simpleMapCodeList",
                         CodeList.class))));
 
@@ -323,8 +325,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
     @Test
     public void testAfterPropertiesSet_isDebugEnabled_false() throws Exception {
 
-        Logger logger = (Logger) LoggerFactory
-                .getLogger(CodeListInterceptor.class);
+        Logger logger = (Logger) LoggerFactory.getLogger(
+                CodeListInterceptor.class);
 
         // do setup.
         LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
@@ -457,8 +459,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         codeList.setRows(rows);
 
         // do test.
-        Map<String, String> actualMap = testTarget.getLocalizedCodeMap(
-                codeList, Locale.JAPANESE);
+        Map<String, String> actualMap = testTarget.getLocalizedCodeMap(codeList,
+                Locale.JAPANESE);
 
         // do assert.
         assertThat(actualMap, is(enMap));
@@ -487,8 +489,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         codeList.setRows(rows);
 
         // do test.
-        Map<String, String> actualMap = testTarget.getLocalizedCodeMap(
-                codeList, Locale.ENGLISH);
+        Map<String, String> actualMap = testTarget.getLocalizedCodeMap(codeList,
+                Locale.ENGLISH);
 
         // do assert.
         assertThat(actualMap, is(enMap));
@@ -518,8 +520,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         codeList.setRows(rows);
 
         // do test.
-        Map<String, String> actualMap = testTarget.getLocalizedCodeMap(
-                codeList, Locale.ENGLISH);
+        Map<String, String> actualMap = testTarget.getLocalizedCodeMap(codeList,
+                Locale.ENGLISH);
 
         // do assert.
         assertThat(actualMap, is(enMap));
@@ -548,8 +550,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         codeList.setRows(rows);
 
         // do test.
-        Map<String, String> actualMap = testTarget.getLocalizedCodeMap(
-                codeList, Locale.JAPANESE);
+        Map<String, String> actualMap = testTarget.getLocalizedCodeMap(codeList,
+                Locale.JAPANESE);
 
         // do assert.
         assertThat(actualMap.isEmpty(), is(true));
@@ -565,20 +567,20 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      */
     private void verifyLogging(final String expectedLogMessage,
             final Level expectedLogLevel) {
-        verify(mockAppender).doAppend(
-                argThat(new ArgumentMatcher<LoggingEvent>() {
+        verify(mockAppender).doAppend(argThat(
+                new ArgumentMatcher<LoggingEvent>() {
                     @Override
                     public boolean matches(Object argument) {
                         return ((LoggingEvent) argument).getFormattedMessage()
                                 .equals(expectedLogMessage);
                     }
                 }));
-        verify(mockAppender).doAppend(
-                argThat(new ArgumentMatcher<LoggingEvent>() {
+        verify(mockAppender).doAppend(argThat(
+                new ArgumentMatcher<LoggingEvent>() {
                     @Override
                     public boolean matches(Object argument) {
-                        return expectedLogLevel
-                                .equals(((LoggingEvent) argument).getLevel());
+                        return expectedLogLevel.equals(((LoggingEvent) argument)
+                                .getLevel());
                     }
                 }));
 

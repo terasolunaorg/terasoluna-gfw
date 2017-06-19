@@ -389,7 +389,8 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
         for (ConstraintViolation<CompareTestForm> violation : violations) {
             assertThat(violation.getMessage(), is(String.format(
                     MESSAGE_VALIDATION_ERROR, "left", "right")));
-            for (javax.validation.Path.Node node : violation.getPropertyPath()) {
+            for (javax.validation.Path.Node node : violation
+                    .getPropertyPath()) {
                 assertThat(node, instanceOf(PropertyNode.class));
                 assertThat(node.getName(), is("left"));
             }
@@ -411,7 +412,8 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
         for (ConstraintViolation<CompareTestForm> violation : violations) {
             assertThat(violation.getMessage(), is(String.format(
                     MESSAGE_VALIDATION_ERROR, "left", "right")));
-            for (javax.validation.Path.Node node : violation.getPropertyPath()) {
+            for (javax.validation.Path.Node node : violation
+                    .getPropertyPath()) {
                 assertThat(node, instanceOf(PropertyNode.class));
                 assertThat(node.getName(), nullValue());
             }
@@ -431,8 +433,8 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
 
             violations = validator.validate(form, TypeUnmatch.class);
             assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(),
-                    is(String.format(MESSAGE_VALIDATION_ERROR, "left",
+            assertThat(violations.iterator().next().getMessage(), is(String
+                    .format(MESSAGE_VALIDATION_ERROR, "left",
                             "stringProperty")));
         }
     }
@@ -550,18 +552,30 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
 
     @Compare.List({
             @Compare(left = "left", right = "right", operator = Operator.EQUAL),
-            @Compare(left = "left", right = "right", operator = Operator.GREATER_THAN_OR_EQUAL, groups = { GreaterThanOrEqual.class }),
-            @Compare(left = "left", right = "right", operator = Operator.GREATER_THAN, groups = { GreaterThan.class }),
-            @Compare(left = "left", right = "right", operator = Operator.LESS_THAN_OR_EQUAL, groups = { LessThanOrEqual.class }),
-            @Compare(left = "left", right = "right", operator = Operator.LESS_THAN, groups = { LessThan.class }),
-            @Compare(left = "left", right = "right", operator = Operator.EQUAL, requireBoth = true, groups = { RequireBoth.class }),
-            @Compare(left = "left", right = "right", operator = Operator.EQUAL, requireBoth = false, groups = { RequireEither.class }),
-            @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.PROPERTY, groups = { NodeProperty.class }),
-            @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.ROOT_BEAN, groups = { PathRootBean.class }),
-            @Compare(left = "left", right = "stringProperty", operator = Operator.EQUAL, groups = { TypeUnmatch.class }),
-            @Compare(left = "unknown", right = "right", operator = Operator.EQUAL, groups = { UnknownLeft.class }),
-            @Compare(left = "left", right = "unknown", operator = Operator.EQUAL, groups = { UnknownRight.class }),
-            @Compare(left = "objectProperty", right = "right", operator = Operator.EQUAL, groups = { NotComparableLeft.class }) })
+            @Compare(left = "left", right = "right", operator = Operator.GREATER_THAN_OR_EQUAL, groups = {
+                    GreaterThanOrEqual.class }),
+            @Compare(left = "left", right = "right", operator = Operator.GREATER_THAN, groups = {
+                    GreaterThan.class }),
+            @Compare(left = "left", right = "right", operator = Operator.LESS_THAN_OR_EQUAL, groups = {
+                    LessThanOrEqual.class }),
+            @Compare(left = "left", right = "right", operator = Operator.LESS_THAN, groups = {
+                    LessThan.class }),
+            @Compare(left = "left", right = "right", operator = Operator.EQUAL, requireBoth = true, groups = {
+                    RequireBoth.class }),
+            @Compare(left = "left", right = "right", operator = Operator.EQUAL, requireBoth = false, groups = {
+                    RequireEither.class }),
+            @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.PROPERTY, groups = {
+                    NodeProperty.class }),
+            @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.ROOT_BEAN, groups = {
+                    PathRootBean.class }),
+            @Compare(left = "left", right = "stringProperty", operator = Operator.EQUAL, groups = {
+                    TypeUnmatch.class }),
+            @Compare(left = "unknown", right = "right", operator = Operator.EQUAL, groups = {
+                    UnknownLeft.class }),
+            @Compare(left = "left", right = "unknown", operator = Operator.EQUAL, groups = {
+                    UnknownRight.class }),
+            @Compare(left = "objectProperty", right = "right", operator = Operator.EQUAL, groups = {
+                    NotComparableLeft.class }) })
     public class CompareTestForm {
         private Integer left;
 

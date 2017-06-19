@@ -35,7 +35,7 @@ import org.terasoluna.gfw.common.validator.constraints.ByteMin;
  * @see ByteMin
  */
 public class ByteMinValidator implements
-                             ConstraintValidator<ByteMin, CharSequence> {
+                              ConstraintValidator<ByteMin, CharSequence> {
 
     /**
      * The charset used in parse to a string.
