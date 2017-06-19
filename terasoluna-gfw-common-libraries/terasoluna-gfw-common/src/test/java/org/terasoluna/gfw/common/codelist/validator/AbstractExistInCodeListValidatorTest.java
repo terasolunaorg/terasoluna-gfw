@@ -38,13 +38,14 @@ public class AbstractExistInCodeListValidatorTest {
     @Test
     public <T> void testIsValidIsTraceEnabledFalse() throws Exception {
 
-        Logger logger = (Logger) LoggerFactory
-                .getLogger(AbstractExistInCodeListValidator.class);
+        Logger logger = (Logger) LoggerFactory.getLogger(
+                AbstractExistInCodeListValidator.class);
 
         // set up
         LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
-        ConstraintValidatorContext constraintValidatorContext = mock(ConstraintValidatorContext.class);
+        ConstraintValidatorContext constraintValidatorContext = mock(
+                ConstraintValidatorContext.class);
 
         ExistInCodeListValidator<String> existInCodeListValidator = new ExistInCodeListValidator<String>();
         ApplicationContext context = new FileSystemXmlApplicationContext("src/test/resources/org/terasoluna/gfw/common/codelist/ExistInCodeListTest-context.xml");
