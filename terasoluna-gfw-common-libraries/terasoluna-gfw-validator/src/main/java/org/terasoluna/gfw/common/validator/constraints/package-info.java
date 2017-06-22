@@ -19,4 +19,3 @@
  * @since 5.1.0
  */
 package org.terasoluna.gfw.common.validator.constraints;
-

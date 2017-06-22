@@ -25,8 +25,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @TransactionTokenCheck(namespace = "testTokenAttrByNameSpace")
 public class TransactionTokenSampleNamespaceController {
 
-    private static final Logger logger = LoggerFactory
-            .getLogger(TransactionTokenSampleNamespaceController.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            TransactionTokenSampleNamespaceController.class);
 
     @RequestMapping(value = "/first")
     @TransactionTokenCheck(type = TransactionTokenType.BEGIN)

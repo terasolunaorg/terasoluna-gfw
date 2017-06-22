@@ -240,10 +240,11 @@ public class PaginationInfo {
         this.pathTmpl = pathTmpl;
         this.queryTmpl = queryTmpl;
         if (disableHtmlEscapeOfCriteriaQuery) {
-            this.criteriaQuery = removeHeadDelimiterOfQueryString(criteriaQuery);
+            this.criteriaQuery = removeHeadDelimiterOfQueryString(
+                    criteriaQuery);
         } else {
-            this.criteriaQuery = HtmlEscapeUtils
-                    .htmlEscape(removeHeadDelimiterOfQueryString(criteriaQuery));
+            this.criteriaQuery = HtmlEscapeUtils.htmlEscape(
+                    removeHeadDelimiterOfQueryString(criteriaQuery));
         }
         this.maxDisplayCount = maxDisplayCount;
         this.pageUri = UriComponentsBuilder.fromPath(pathTmpl).query(queryTmpl)
@@ -355,8 +356,8 @@ public class PaginationInfo {
      * @return String Pagination URL with URL page number and display count set to it
      */
     public String getPageUrl(int pageIndex) {
-        Map<String, Object> attr = createAttributeMap(pageIndex,
-                page.getSize(), page.getSort());
+        Map<String, Object> attr = createAttributeMap(pageIndex, page.getSize(),
+                page.getSort());
         StringBuilder pageUriBuilder = new StringBuilder(pageUri.expand(attr)
                 .encode().toUriString());
         if (StringUtils.hasLength(criteriaQuery)) {

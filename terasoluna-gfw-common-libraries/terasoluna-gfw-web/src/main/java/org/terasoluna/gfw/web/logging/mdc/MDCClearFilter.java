@@ -45,7 +45,8 @@ public class MDCClearFilter extends OncePerRequestFilter {
      */
     @Override
     protected final void doFilterInternal(HttpServletRequest request,
-            HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+            HttpServletResponse response,
+            FilterChain filterChain) throws ServletException, IOException {
         try {
             filterChain.doFilter(request, response);
         } finally {

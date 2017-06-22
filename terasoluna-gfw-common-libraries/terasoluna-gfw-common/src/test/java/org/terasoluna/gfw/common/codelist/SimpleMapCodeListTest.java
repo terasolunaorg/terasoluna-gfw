@@ -46,8 +46,8 @@ public class SimpleMapCodeListTest {
 
         Map<String, String> mapInput = new HashMap<String, String>();
         for (int i = 0; i < 10; i++) {
-            mapInput.put(String.format("%03d", i), String
-                    .format("label%03d", i));
+            mapInput.put(String.format("%03d", i), String.format("label%03d",
+                    i));
         }
 
         // run
@@ -72,8 +72,8 @@ public class SimpleMapCodeListTest {
 
         Map<String, String> mapInput = new HashMap<String, String>();
         for (int i = 0; i < 10; i++) {
-            mapInput.put(String.format("%03d", i), String
-                    .format("label%03d", i));
+            mapInput.put(String.format("%03d", i), String.format("label%03d",
+                    i));
         }
 
         // run
