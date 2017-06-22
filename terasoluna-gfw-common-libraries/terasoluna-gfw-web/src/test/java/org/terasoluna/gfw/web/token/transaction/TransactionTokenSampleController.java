@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @TransactionTokenCheck("testTokenAttr")
 public class TransactionTokenSampleController {
 
-    private static final Logger logger = LoggerFactory
-            .getLogger(TransactionTokenSampleController.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            TransactionTokenSampleController.class);
 
     @ModelAttribute("transactionTokenSampleForm")
     public SampleForm createForm() {

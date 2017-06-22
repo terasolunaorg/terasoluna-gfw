@@ -34,8 +34,8 @@ import ch.qos.logback.classic.Logger;
 
 public class ResultMessageUtilsTest {
 
-    private Logger logger = (Logger) LoggerFactory
-            .getLogger(ResultMessageUtils.class);
+    private Logger logger = (Logger) LoggerFactory.getLogger(
+            ResultMessageUtils.class);
 
     @Test
     public void testResultMessageUtils() throws Exception {

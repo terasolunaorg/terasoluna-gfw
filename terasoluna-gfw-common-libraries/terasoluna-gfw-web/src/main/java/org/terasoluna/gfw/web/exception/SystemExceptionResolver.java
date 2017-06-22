@@ -166,9 +166,9 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
             HttpServletResponse response) {
 
         String exceptionCode = null;
-        if (exceptionCodeResolver != null
-                && (StringUtils.hasText(exceptionCodeAttribute) || StringUtils
-                        .hasText(exceptionCodeHeader))) {
+        if (exceptionCodeResolver != null && (StringUtils.hasText(
+                exceptionCodeAttribute) || StringUtils.hasText(
+                        exceptionCodeHeader))) {
             exceptionCode = exceptionCodeResolver.resolveExceptionCode(ex);
         }
 

@@ -102,10 +102,10 @@ public class XTrackMDCPutFilterTest {
         String xTrack = xTrackMDCPutFilter.getMDCValue(request, response);
         assertThat(xTrack, is(notNullValue()));
         assertThat(xTrack, is("12345678901234567890123456789012"));
-        assertThat(response.getHeader("X-Hoge"),
-                is("12345678901234567890123456789012"));
-        assertThat((String) request.getAttribute("X-Hoge"),
-                is("12345678901234567890123456789012"));
+        assertThat(response.getHeader("X-Hoge"), is(
+                "12345678901234567890123456789012"));
+        assertThat((String) request.getAttribute("X-Hoge"), is(
+                "12345678901234567890123456789012"));
     }
 
     @Test
@@ -119,9 +119,9 @@ public class XTrackMDCPutFilterTest {
         String xTrack = xTrackMDCPutFilter.getMDCValue(request, response);
         assertThat(xTrack, is(notNullValue()));
         assertThat(xTrack, is("12345678901234567890123456789012"));
-        assertThat(response.getHeader("X-Track"),
-                is("12345678901234567890123456789012"));
-        assertThat((String) request.getAttribute("X-Track"),
-                is("12345678901234567890123456789012"));
+        assertThat(response.getHeader("X-Track"), is(
+                "12345678901234567890123456789012"));
+        assertThat((String) request.getAttribute("X-Track"), is(
+                "12345678901234567890123456789012"));
     }
 }
