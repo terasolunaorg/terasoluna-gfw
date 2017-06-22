@@ -25,7 +25,7 @@ import org.terasoluna.gfw.common.codelist.AbstractCodeList;
  * by implementing {I18nCodeList} interface.
  */
 public abstract class AbstractI18nCodeList extends AbstractCodeList implements
-                                                                   I18nCodeList {
+                                           I18nCodeList {
 
     /**
      * <p>

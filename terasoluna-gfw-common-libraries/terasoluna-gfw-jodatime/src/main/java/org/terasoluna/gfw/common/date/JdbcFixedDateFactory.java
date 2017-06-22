@@ -29,6 +29,5 @@ import org.terasoluna.gfw.common.date.jodatime.JdbcFixedJodaTimeDateFactory;
  */
 @Deprecated
 public class JdbcFixedDateFactory extends JdbcFixedJodaTimeDateFactory
-                                                                      implements
-                                                                      DateFactory {
+                                  implements DateFactory {
 }

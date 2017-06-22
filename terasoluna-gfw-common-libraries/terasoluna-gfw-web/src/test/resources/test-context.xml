@@ -1,49 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-    xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
-    xmlns:util="http://www.springframework.org/schema/util"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+  xmlns:c="http://www.springframework.org/schema/c" xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:p="http://www.springframework.org/schema/p"
+  xmlns:util="http://www.springframework.org/schema/util"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
-    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-        <property name="driverClass" value="org.h2.Driver" />
-        <property name="url" value="jdbc:h2:mem:terasolung-gfw-web;DB_CLOSE_DELAY=-1" />
-        <property name="username" value="sa" />
-    </bean>
-    
-    <bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-        <constructor-arg name="dataSource" ref="dataSource" />
-    </bean>
+  <bean id="dataSource"
+    class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+    <property name="driverClass" value="org.h2.Driver" />
+    <property name="url"
+      value="jdbc:h2:mem:terasolung-gfw-web;DB_CLOSE_DELAY=-1" />
+    <property name="username" value="sa" />
+  </bean>
 
-    <mvc:annotation-driven>
-        <mvc:argument-resolvers>
-            <bean
-                class="org.terasoluna.gfw.web.token.transaction.TransactionTokenContextHandlerMethodArgumentResolver" />
-        </mvc:argument-resolvers>
-    </mvc:annotation-driven>
+  <bean
+    class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
+    <constructor-arg name="dataSource" ref="dataSource" />
+  </bean>
 
-    <mvc:interceptors>
+  <mvc:annotation-driven>
+    <mvc:argument-resolvers>
+      <bean
+        class="org.terasoluna.gfw.web.token.transaction.TransactionTokenContextHandlerMethodArgumentResolver" />
+    </mvc:argument-resolvers>
+  </mvc:annotation-driven>
+
+  <mvc:interceptors>
+    <bean
+      class="org.terasoluna.gfw.web.token.transaction.TransactionTokenInterceptor">
+    </bean>
+  </mvc:interceptors>
+
+  <bean class="org.terasoluna.gfw.web.token.TokenStringGenerator" />
+
+  <bean name="requestDataValueProcessor"
+    class="org.terasoluna.gfw.web.mvc.support.CompositeRequestDataValueProcessor">
+    <constructor-arg>
+      <util:list>
         <bean
-            class="org.terasoluna.gfw.web.token.transaction.TransactionTokenInterceptor">
-        </bean>
-    </mvc:interceptors>
+          class="org.terasoluna.gfw.web.token.transaction.TransactionTokenRequestDataValueProcessor" />
+      </util:list>
+    </constructor-arg>
+  </bean>
 
-    <bean class="org.terasoluna.gfw.web.token.TokenStringGenerator" />
-
-    <bean name="requestDataValueProcessor"
-        class="org.terasoluna.gfw.web.mvc.support.CompositeRequestDataValueProcessor">
-        <constructor-arg>
-            <util:list>
-                <bean
-                    class="org.terasoluna.gfw.web.token.transaction.TransactionTokenRequestDataValueProcessor" />
-            </util:list>
-        </constructor-arg>
-    </bean>
-    
-    <context:component-scan base-package="org.terasoluna.gfw.web.token.transaction" />
+  <context:component-scan base-package="org.terasoluna.gfw.web.token.transaction" />
 </beans>

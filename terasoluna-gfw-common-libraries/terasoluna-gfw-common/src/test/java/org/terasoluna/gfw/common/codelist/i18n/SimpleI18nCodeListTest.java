@@ -30,7 +30,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:org/terasoluna/gfw/common/codelist/i18n/simpleI18nCodeList.xml" })
+@ContextConfiguration(locations = {
+        "classpath:org/terasoluna/gfw/common/codelist/i18n/simpleI18nCodeList.xml" })
 public class SimpleI18nCodeListTest {
     @Autowired
     @Qualifier("CL_testSetRows01")
@@ -87,8 +88,8 @@ public class SimpleI18nCodeListTest {
                                                                           // x 7
                                                                           // columns
 
-        Map<String, String> row1 = testSetRowsByCodeList01
-                .asMap(Locale.ENGLISH);
+        Map<String, String> row1 = testSetRowsByCodeList01.asMap(
+                Locale.ENGLISH);
         assertThat(row1, is(notNullValue()));
         assertThat(row1.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]")); // check
                                                                            // order
@@ -100,8 +101,8 @@ public class SimpleI18nCodeListTest {
         assertThat(row1.get("5"), is("Fri."));
         assertThat(row1.get("6"), is("Sat."));
 
-        Map<String, String> row2 = testSetRowsByCodeList01
-                .asMap(Locale.JAPANESE);
+        Map<String, String> row2 = testSetRowsByCodeList01.asMap(
+                Locale.JAPANESE);
         assertThat(row2, is(notNullValue()));
         assertThat(row2.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]")); // check
                                                                            // order

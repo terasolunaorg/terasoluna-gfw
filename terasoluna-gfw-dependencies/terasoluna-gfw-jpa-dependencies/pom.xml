@@ -1,55 +1,55 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <artifactId>terasoluna-gfw-dependencies</artifactId>
-        <groupId>org.terasoluna.gfw</groupId>
-        <version>5.3.1-SNAPSHOT</version>
-        <relativePath>../../terasoluna-gfw-dependencies/pom.xml</relativePath>
-    </parent>
-    <artifactId>terasoluna-gfw-jpa-dependencies</artifactId>
-    <name>TERASOLUNA Server Framework for Java (5.x) for JPA</name>
-    <description>Maven dependency definition for using JPA</description>
-    <url>http://terasoluna.org</url>
-    <packaging>pom</packaging>
-    <dependencies>
-        <!-- == Begin JPA == -->
-        <!-- Hibernate -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>xml-apis</groupId>
-                    <artifactId>xml-apis</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <exclusions>
-                <exclusion>
-                    <groupId>xml-apis</groupId>
-                    <artifactId>xml-apis</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>terasoluna-gfw-dependencies</artifactId>
+    <groupId>org.terasoluna.gfw</groupId>
+    <version>5.3.1-SNAPSHOT</version>
+    <relativePath>../../terasoluna-gfw-dependencies/pom.xml</relativePath>
+  </parent>
+  <artifactId>terasoluna-gfw-jpa-dependencies</artifactId>
+  <name>TERASOLUNA Server Framework for Java (5.x) for JPA</name>
+  <description>Maven dependency definition for using JPA</description>
+  <url>http://terasoluna.org</url>
+  <packaging>pom</packaging>
+  <dependencies>
+    <!-- == Begin JPA == -->
+    <!-- Hibernate -->
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-entitymanager</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>xml-apis</groupId>
+          <artifactId>xml-apis</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
 
-        <!-- == Begin Spring == -->
-        <!-- Spring Data -->
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-        </dependency>
-        <!-- == End Spring == -->
+    <!-- == Begin Spring == -->
+    <!-- Spring Data -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-jpa</artifactId>
+    </dependency>
+    <!-- == End Spring == -->
 
-        <!-- == Begin Joda-Time == -->
-        <dependency>
-            <groupId>org.jadira.usertype</groupId>
-            <artifactId>usertype.core</artifactId>
-        </dependency>
-        <!-- == End Joda-Time == -->
-        <!-- == End JPA == -->
-    </dependencies>
+    <!-- == Begin Joda-Time == -->
+    <dependency>
+      <groupId>org.jadira.usertype</groupId>
+      <artifactId>usertype.core</artifactId>
+    </dependency>
+    <!-- == End Joda-Time == -->
+    <!-- == End JPA == -->
+  </dependencies>
 </project>
