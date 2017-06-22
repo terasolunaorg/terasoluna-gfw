@@ -1,31 +1,31 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <artifactId>terasoluna-gfw-dependencies</artifactId>
-        <groupId>org.terasoluna.gfw</groupId>
-        <version>5.2.2-SNAPSHOT</version>
-        <relativePath>../../terasoluna-gfw-dependencies/pom.xml</relativePath>
-    </parent>
-    <artifactId>terasoluna-gfw-mybatis3-dependencies</artifactId>
-    <name>TERASOLUNA Server Framework for Java (5.x) for MyBatis3</name>
-    <description>Maven dependency definition for using MyBatis3</description>
-    <url>http://terasoluna.org</url>
-    <packaging>pom</packaging>
-    <dependencies>
-        <!-- == Begin MyBatis == -->
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-typehandlers-jsr310</artifactId>
-        </dependency>
-        <!-- == End MyBatis == -->
-    </dependencies>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>terasoluna-gfw-dependencies</artifactId>
+    <groupId>org.terasoluna.gfw</groupId>
+    <version>5.2.2-SNAPSHOT</version>
+    <relativePath>../../terasoluna-gfw-dependencies/pom.xml</relativePath>
+  </parent>
+  <artifactId>terasoluna-gfw-mybatis3-dependencies</artifactId>
+  <name>TERASOLUNA Server Framework for Java (5.x) for MyBatis3</name>
+  <description>Maven dependency definition for using MyBatis3</description>
+  <url>http://terasoluna.org</url>
+  <packaging>pom</packaging>
+  <dependencies>
+    <!-- == Begin MyBatis == -->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-spring</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-typehandlers-jsr310</artifactId>
+    </dependency>
+    <!-- == End MyBatis == -->
+  </dependencies>
 </project>
