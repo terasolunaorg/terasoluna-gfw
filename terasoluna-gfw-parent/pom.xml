@@ -392,7 +392,7 @@
     <maven-site-plugin.version>3.4</maven-site-plugin.version>
     <cargo-maven2-plugin.version>1.6.2</cargo-maven2-plugin.version>
     <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-    <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
+    <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
     <!-- == Dependency Versions == -->
     <!-- == TERASOLUNA == -->
     <terasoluna.gfw.version>5.3.1-SNAPSHOT</terasoluna.gfw.version>
