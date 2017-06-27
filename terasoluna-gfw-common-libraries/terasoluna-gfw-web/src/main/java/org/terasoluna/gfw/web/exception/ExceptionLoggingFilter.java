@@ -131,7 +131,6 @@ public class ExceptionLoggingFilter extends GenericFilterBean {
 
     /**
      * Logs IOException.
-     * Subclasses may override this to perform custom logging for IOException.
      * @param ex Exception
      * @param request HTTP servlet request
      * @param response HTTP servlet response
@@ -143,7 +142,6 @@ public class ExceptionLoggingFilter extends GenericFilterBean {
 
     /**
      * Logs ServletException
-     * Subclasses may override this to perform custom logging for ServletException.
      * @param ex Exception
      * @param request HTTP servlet request
      * @param response HTTP servlet response
@@ -155,7 +153,6 @@ public class ExceptionLoggingFilter extends GenericFilterBean {
 
     /**
      * Logs RuntimeException
-     * Subclasses may override this to perform custom logging for RuntimeException.
      * @param ex Exception
      * @param request HTTP servlet request
      * @param response HTTP servlet response
