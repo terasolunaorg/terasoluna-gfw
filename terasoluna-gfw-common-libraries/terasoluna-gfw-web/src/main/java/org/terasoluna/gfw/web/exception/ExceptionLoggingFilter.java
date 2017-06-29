@@ -137,7 +137,7 @@ public class ExceptionLoggingFilter extends GenericFilterBean {
      */
     protected void logIOException(IOException ex, ServletRequest request,
             ServletResponse response) {
-        exceptionLogger.log(ex);
+        exceptionLogger.error(ex);
     }
 
     /**
@@ -148,7 +148,7 @@ public class ExceptionLoggingFilter extends GenericFilterBean {
      */
     protected void logServletException(ServletException ex,
             ServletRequest request, ServletResponse response) {
-        exceptionLogger.log(ex);
+        exceptionLogger.error(ex);
     }
 
     /**
@@ -159,7 +159,7 @@ public class ExceptionLoggingFilter extends GenericFilterBean {
      */
     protected void logRuntimeException(RuntimeException ex,
             ServletRequest request, ServletResponse response) {
-        exceptionLogger.log(ex);
+        exceptionLogger.error(ex);
     }
 
     /**
