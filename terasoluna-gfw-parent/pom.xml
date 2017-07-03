@@ -108,6 +108,14 @@
                     </configuration>
                 </plugin>
                 <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>xml-maven-plugin</artifactId>
+                    <version>${xml-maven-plugin.version}</version>
+                    <configuration>
+                        <indentSize>2</indentSize>
+                    </configuration>
+                </plugin>
+                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven-compiler-plugin.version}</version>
@@ -518,6 +526,7 @@
         <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
         <formatter-maven-plugin.version>2.0.1</formatter-maven-plugin.version>
+        <xml-maven-plugin.version>1.0.1</xml-maven-plugin.version>
         <cargo-maven2-plugin.version>1.6.2</cargo-maven2-plugin.version>
         <!-- == Other Properties== -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
