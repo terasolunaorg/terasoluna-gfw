@@ -98,9 +98,9 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <groupId>net.revelc.code</groupId>
+                    <groupId>net.revelc.code.formatter</groupId>
                     <artifactId>formatter-maven-plugin</artifactId>
-                    <version>0.5.2</version>
+                    <version>${formatter-maven-plugin.version}</version>
                     <configuration>
                         <configFile>${project.basedir}/../eclipse/formatter.xml
                         </configFile>
@@ -517,6 +517,7 @@
         <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
         <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
         <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
+        <formatter-maven-plugin.version>2.0.1</formatter-maven-plugin.version>
         <cargo-maven2-plugin.version>1.6.2</cargo-maven2-plugin.version>
         <!-- == Other Properties== -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

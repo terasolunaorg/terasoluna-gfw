@@ -12,5 +12,6 @@ cache:
 install: true
 
 script:
+  - find ./ -name "pom.xml" -type f -exec mvn formatter:validate -f {} \;
   - ./mvn-build-all.sh clean install jacoco:report
   - mvn -U coveralls:report -f terasoluna-gfw-parent/pom.xml
