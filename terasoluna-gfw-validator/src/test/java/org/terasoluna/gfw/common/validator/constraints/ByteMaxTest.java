@@ -162,10 +162,11 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
     };
 
     public class ByteMaxTestForm {
-        @ByteMax.List({
-                @ByteMax(6),
-                @ByteMax(value = 6, charset = "shift-jis", groups = { SpecifyCharset.class }),
-                @ByteMax(value = 6, charset = "illegal-charset", groups = { IllegalCharset.class }) })
+        @ByteMax.List({ @ByteMax(6),
+                @ByteMax(value = 6, charset = "shift-jis", groups = {
+                        SpecifyCharset.class }),
+                @ByteMax(value = 6, charset = "illegal-charset", groups = {
+                        IllegalCharset.class }) })
         private String stringProperty;
 
         @ByteMax(6)
@@ -186,7 +187,8 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
             return stringBuilderProperty;
         }
 
-        public void setStringBuilderProperty(StringBuilder stringBuilderProperty) {
+        public void setStringBuilderProperty(
+                StringBuilder stringBuilderProperty) {
             this.stringBuilderProperty = stringBuilderProperty;
         }
 

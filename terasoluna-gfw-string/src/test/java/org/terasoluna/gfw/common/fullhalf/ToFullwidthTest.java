@@ -117,8 +117,8 @@ public class ToFullwidthTest {
         assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("｛"), is("{"));
         assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("｜"), is("|"));
         assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("｝"), is("}"));
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth(String
-                .valueOf('\uff5e')), is("~"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth(String.valueOf(
+                '\uff5e')), is("~"));
         assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("。"), is("｡"));
         assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("「"), is("｢"));
         assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("」"), is("｣"));
@@ -204,10 +204,10 @@ public class ToFullwidthTest {
         assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("ペ"), is("ﾍﾟ"));
         assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("ポ"), is("ﾎﾟ"));
         assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("ヴ"), is("ｳﾞ"));
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth(String
-                .valueOf('\u30f7')), is("ﾜﾞ"));
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth(String
-                .valueOf('\u30fa')), is("ｦﾞ"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth(String.valueOf(
+                '\u30f7')), is("ﾜﾞ"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth(String.valueOf(
+                '\u30fa')), is("ｦﾞ"));
         assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("゛"), is("ﾞ"));
         assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("゜"), is("ﾟ"));
         assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("　"), is(" "));
@@ -222,18 +222,18 @@ public class ToFullwidthTest {
     @Test
     public void testToFull_MappedString() throws Exception {
         assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("メロン"), is("ﾒﾛﾝ"));
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("Ｈｅｌｌｏ　Ｗｏｒｌｄ！"),
-                is("Hello World!"));
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("ハローワールド！"),
-                is("ﾊﾛｰﾜｰﾙﾄﾞ!"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("Ｈｅｌｌｏ　Ｗｏｒｌｄ！"), is(
+                "Hello World!"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("ハローワールド！"), is(
+                "ﾊﾛｰﾜｰﾙﾄﾞ!"));
     }
 
     @Test
     public void testToFull_NotMappedAndMappedString() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("完熟メロンパン"),
-                is("完熟ﾒﾛﾝﾊﾟﾝ"));
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("マチュピチュ遺跡"),
-                is("ﾏﾁｭﾋﾟﾁｭ遺跡"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("完熟メロンパン"), is(
+                "完熟ﾒﾛﾝﾊﾟﾝ"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("マチュピチュ遺跡"), is(
+                "ﾏﾁｭﾋﾟﾁｭ遺跡"));
     }
 
     @Test
@@ -283,8 +283,8 @@ public class ToFullwidthTest {
 
     @Test
     public void testToHalf10_半角全角混合文字が全て半角に変換されることを() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("サ\u30faｲAピ"),
-                is("ｻｦﾞｲAﾋﾟ"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("サ\u30faｲAピ"), is(
+                "ｻｦﾞｲAﾋﾟ"));
     }
 
     @Test

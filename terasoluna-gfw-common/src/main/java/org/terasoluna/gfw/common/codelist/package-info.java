@@ -22,4 +22,3 @@
  *
  */
 package org.terasoluna.gfw.common.codelist;
-

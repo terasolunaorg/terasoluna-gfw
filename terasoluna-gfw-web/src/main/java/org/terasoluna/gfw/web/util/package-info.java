@@ -17,4 +17,3 @@
  * Package related to Web layer related Utility classes.
  */
 package org.terasoluna.gfw.web.util;
-
