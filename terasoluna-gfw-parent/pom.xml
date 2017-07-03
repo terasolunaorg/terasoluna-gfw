@@ -89,7 +89,8 @@
                     <configuration>
                         <header>${project.basedir}/../license/header.txt</header>
                         <includes>
-                            <include>src/**/*.java</include>
+                            <include>src/main/java/**/*.java</include>
+                            <include>src/test/java/**/*.java</include>
                         </includes>
                         <encoding>${encoding}</encoding>
                         <headerDefinitions>
