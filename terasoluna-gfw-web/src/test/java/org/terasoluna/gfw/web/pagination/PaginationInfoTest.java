@@ -91,10 +91,10 @@ public class PaginationInfoTest {
                 page, size, null);
 
         // assert
-        assertThat(Integer.valueOf(attributesMap.get("page").toString()),
-                is(page));
-        assertThat(Integer.valueOf(attributesMap.get("size").toString()),
-                is(size));
+        assertThat(Integer.valueOf(attributesMap.get("page").toString()), is(
+                page));
+        assertThat(Integer.valueOf(attributesMap.get("size").toString()), is(
+                size));
         assertNull(attributesMap.get("sortOrderProperty"));
         assertNull(attributesMap.get("sortOrderDirection"));
     }
@@ -114,13 +114,13 @@ public class PaginationInfoTest {
                 page, size, mockedSort);
 
         // assert
-        assertThat(Integer.valueOf(attributesMap.get("page").toString()),
-                is(page));
-        assertThat(Integer.valueOf(attributesMap.get("size").toString()),
-                is(size));
+        assertThat(Integer.valueOf(attributesMap.get("page").toString()), is(
+                page));
+        assertThat(Integer.valueOf(attributesMap.get("size").toString()), is(
+                size));
         assertThat(attributesMap.get("sortOrderProperty").toString(), is("id"));
-        assertThat(attributesMap.get("sortOrderDirection").toString(),
-                is("DESC"));
+        assertThat(attributesMap.get("sortOrderDirection").toString(), is(
+                "DESC"));
     }
 
     @Test

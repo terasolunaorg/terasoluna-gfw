@@ -45,7 +45,7 @@ import org.springframework.beans.factory.InitializingBean;
  * </pre>
  */
 public class ResultMessagesLoggingInterceptor implements MethodInterceptor,
-                                             InitializingBean {
+                                              InitializingBean {
 
     /**
      * Starting point of interception in thread.
@@ -82,7 +82,8 @@ public class ResultMessagesLoggingInterceptor implements MethodInterceptor,
      * @see org.aopalliance.intercept.MethodInterceptor#invoke(org.aopalliance.intercept.MethodInvocation)
      */
     @Override
-    public Object invoke(MethodInvocation invocation) throws Throwable, ResultMessagesNotificationException {
+    public Object invoke(
+            MethodInvocation invocation) throws Throwable, ResultMessagesNotificationException {
 
         // set starting point.
         if (startingPoint.get() == null) {

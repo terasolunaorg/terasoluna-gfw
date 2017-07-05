@@ -26,7 +26,7 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * {@code HandlerMethodArgumentResolver} to handke {@code TransactionTokenContext}<br>
  */
 public class TransactionTokenContextHandlerMethodArgumentResolver implements
-                                                                 HandlerMethodArgumentResolver {
+                                                                  HandlerMethodArgumentResolver {
 
     /**
      * check whether the given parameter type is {@link TransactionTokenContext}.
@@ -49,10 +49,9 @@ public class TransactionTokenContextHandlerMethodArgumentResolver implements
             ModelAndViewContainer mavContainer, NativeWebRequest webRequest,
             WebDataBinderFactory binderFactory) {
 
-        return webRequest
-                .getAttribute(
-                        TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME,
-                        RequestAttributes.SCOPE_REQUEST);
+        return webRequest.getAttribute(
+                TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME,
+                RequestAttributes.SCOPE_REQUEST);
     }
 
 }

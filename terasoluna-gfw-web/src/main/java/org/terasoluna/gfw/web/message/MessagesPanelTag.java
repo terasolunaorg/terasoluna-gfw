@@ -203,9 +203,8 @@ public class MessagesPanelTag extends RequestContextAwareTag {
     @Override
     protected int doStartTagInternal() throws JspException {
 
-        if (!StringUtils.hasText(this.panelElement)
-                && !StringUtils.hasText(this.outerElement)
-                && !StringUtils.hasText(this.innerElement)) {
+        if (!StringUtils.hasText(this.panelElement) && !StringUtils.hasText(
+                this.outerElement) && !StringUtils.hasText(this.innerElement)) {
             throw new JspTagException("At least one out of panelElement, outerElement, innerElement should be set");
         }
 
@@ -252,7 +251,8 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * @param className className built by StringBuilder
      * @param type classType
      */
-    private void appendPanelTypeClassPrefix(StringBuilder className, String type) {
+    private void appendPanelTypeClassPrefix(StringBuilder className,
+            String type) {
         if (panelTypeClassPrefix != null && StringUtils.hasText(type)) {
 
             if (StringUtils.hasLength(className)) {
@@ -274,7 +274,8 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * @param messages messages
      * @throws JspException If {@link JspException} occurs in caller writeMessage
      */
-    protected void writeMessages(TagWriter tagWriter, Object messages) throws JspException {
+    protected void writeMessages(TagWriter tagWriter,
+            Object messages) throws JspException {
         Class<?> clazz = messages.getClass();
         if (Iterable.class.isAssignableFrom(clazz)) {
             Iterable<?> col = (Iterable<?>) messages;
@@ -310,7 +311,8 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * @throws JspException Occurs when {@link JspTagException} occurs in case when nothing is set in the configuration of the
      *             tag that configures messagesPanel using tagWriter.
      */
-    protected void writeMessage(TagWriter tagWriter, Object message) throws JspException {
+    protected void writeMessage(TagWriter tagWriter,
+            Object message) throws JspException {
         if (message != null) {
             if (StringUtils.hasText(innerElement)) {
                 tagWriter.startTag(innerElement); // <li>
@@ -318,8 +320,8 @@ public class MessagesPanelTag extends RequestContextAwareTag {
             if (disableHtmlEscape) {
                 tagWriter.appendValue(getText(message));
             } else {
-                tagWriter.appendValue(HtmlEscapeUtils
-                        .htmlEscape(getText(message)));
+                tagWriter.appendValue(HtmlEscapeUtils.htmlEscape(getText(
+                        message)));
             }
 
             if (StringUtils.hasText(innerElement)) {
@@ -494,9 +496,10 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * @param disableHtmlEscape value of disableHtmlEscape
      * @throws JspException If value that is not true or false is specified.
      */
-    public void setDisableHtmlEscape(String disableHtmlEscape) throws JspException {
-        this.disableHtmlEscape = JspTagUtils.toBoolean(disableHtmlEscape,
-                false, "disableHtmlEscape");
+    public void setDisableHtmlEscape(
+            String disableHtmlEscape) throws JspException {
+        this.disableHtmlEscape = JspTagUtils.toBoolean(disableHtmlEscape, false,
+                "disableHtmlEscape");
     }
 
 }

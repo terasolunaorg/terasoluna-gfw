@@ -33,9 +33,9 @@ import org.terasoluna.gfw.common.codelist.ExistInCodeList;
  * </p>
  */
 public abstract class AbstractExistInCodeListValidator<T> extends
-                                                          ApplicationObjectSupport
-                                                                                  implements
-                                                                                  ConstraintValidator<ExistInCodeList, T> {
+                                                      ApplicationObjectSupport
+                                                      implements
+                                                      ConstraintValidator<ExistInCodeList, T> {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -52,8 +52,8 @@ public abstract class AbstractExistInCodeListValidator<T> extends
      */
     @Override
     public void initialize(ExistInCodeList codeConstraint) {
-        this.codeList = getApplicationContext().getBean(
-                codeConstraint.codeListId(), CodeList.class);
+        this.codeList = getApplicationContext().getBean(codeConstraint
+                .codeListId(), CodeList.class);
     }
 
     /**
@@ -70,7 +70,8 @@ public abstract class AbstractExistInCodeListValidator<T> extends
      * @return if valid value, return true.
      */
     @Override
-    public boolean isValid(T value, ConstraintValidatorContext constraintContext) {
+    public boolean isValid(T value,
+            ConstraintValidatorContext constraintContext) {
         String code = getCode(value);
 
         if (!StringUtils.hasLength(code)) {

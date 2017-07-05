@@ -56,14 +56,14 @@ import org.terasoluna.gfw.common.exception.ResultMessagesNotificationException;
  * </pre>
  */
 public class HandlerExceptionResolverLoggingInterceptor implements
-                                                       MethodInterceptor,
-                                                       InitializingBean {
+                                                        MethodInterceptor,
+                                                        InitializingBean {
 
     /**
      * Logger for output of application log.
      */
-    private static final Logger logger = LoggerFactory
-            .getLogger(HandlerExceptionResolverLoggingInterceptor.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            HandlerExceptionResolverLoggingInterceptor.class);
 
     /**
      * Logger object for exception output.

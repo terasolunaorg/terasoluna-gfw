@@ -37,8 +37,8 @@ public class ResponseUtilsTest {
     @Test
     public void testSetPreventionCachingHeaders() {
         ResponseUtils.setPreventionCachingHeaders(response);
-        assertThat(response.getHeader("Cache-Control"),
-                is("private,no-store,no-cache,must-revalidate"));
+        assertThat(response.getHeader("Cache-Control"), is(
+                "private,no-store,no-cache,must-revalidate"));
         assertThat(response.getHeader("Pragma"), is("no-cache"));
         assertThat(response.getHeader("Expires"), is("1"));
     }

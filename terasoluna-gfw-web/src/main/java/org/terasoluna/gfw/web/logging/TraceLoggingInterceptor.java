@@ -65,22 +65,20 @@ public class TraceLoggingInterceptor extends HandlerInterceptorAdapter {
     /**
      * logger
      */
-    private static final Logger logger = LoggerFactory
-            .getLogger(TraceLoggingInterceptor.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            TraceLoggingInterceptor.class);
 
     /**
      * Attribute name of start time
      */
     private static final String START_ATTR = TraceLoggingInterceptor.class
-            .getName()
-            + ".startTime";
+            .getName() + ".startTime";
 
     /**
      * Attribute name of time elapsed.
      */
     private static final String HANDLING_ATTR = TraceLoggingInterceptor.class
-            .getName()
-            + ".handlingTime";
+            .getName() + ".handlingTime";
 
     /**
      * Default nano-seconds as after which warning log is to be output
@@ -110,8 +108,8 @@ public class TraceLoggingInterceptor extends HandlerInterceptorAdapter {
         if (logger.isTraceEnabled()) {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             Method m = handlerMethod.getMethod();
-            logger.trace("[START CONTROLLER] {}.{}({})", new Object[] {
-                    m.getDeclaringClass().getSimpleName(), m.getName(),
+            logger.trace("[START CONTROLLER] {}.{}({})", new Object[] { m
+                    .getDeclaringClass().getSimpleName(), m.getName(),
                     buildMethodParams(handlerMethod) });
         }
         long startTime = System.nanoTime();
@@ -166,18 +164,18 @@ public class TraceLoggingInterceptor extends HandlerInterceptorAdapter {
         }
 
         logger.trace("[END CONTROLLER  ] {}.{}({})-> view={}, model={}",
-                new Object[] { m.getDeclaringClass().getSimpleName(),
-                        m.getName(), buildMethodParams(handlerMethod), view,
+                new Object[] { m.getDeclaringClass().getSimpleName(), m
+                        .getName(), buildMethodParams(handlerMethod), view,
                         model });
         String handlingTimeMessage = "[HANDLING TIME   ] {}.{}({})-> {} ns";
         if (isWarnHandling) {
-            logger.warn(handlingTimeMessage + " > {}", new Object[] {
-                    m.getDeclaringClass().getSimpleName(), m.getName(),
+            logger.warn(handlingTimeMessage + " > {}", new Object[] { m
+                    .getDeclaringClass().getSimpleName(), m.getName(),
                     buildMethodParams(handlerMethod), formattedHandlingTime,
                     warnHandlingNanos });
         } else {
-            logger.trace(handlingTimeMessage, new Object[] {
-                    m.getDeclaringClass().getSimpleName(), m.getName(),
+            logger.trace(handlingTimeMessage, new Object[] { m
+                    .getDeclaringClass().getSimpleName(), m.getName(),
                     buildMethodParams(handlerMethod), formattedHandlingTime });
         }
     }

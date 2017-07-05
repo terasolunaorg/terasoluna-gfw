@@ -27,7 +27,7 @@ import org.terasoluna.gfw.web.mvc.support.RequestDataValueProcessorAdaptor;
  * in the request. <br>
  */
 public class TransactionTokenRequestDataValueProcessor extends
-                                                      RequestDataValueProcessorAdaptor {
+                                                       RequestDataValueProcessorAdaptor {
 
     /**
      * Returns a map containing the {@link TransactionToken} received in the request. <br>
@@ -35,9 +35,10 @@ public class TransactionTokenRequestDataValueProcessor extends
      * @see org.terasoluna.gfw.web.mvc.support.RequestDataValueProcessorAdaptor#getExtraHiddenFields(javax.servlet.http.HttpServletRequest)
      */
     @Override
-    public Map<String, String> getExtraHiddenFields(HttpServletRequest request) {
-        TransactionToken nextToken = (TransactionToken) request
-                .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
+    public Map<String, String> getExtraHiddenFields(
+            HttpServletRequest request) {
+        TransactionToken nextToken = (TransactionToken) request.getAttribute(
+                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
         if (nextToken != null) {
             Map<String, String> map = new HashMap<String, String>(2);
             map.put(TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER,

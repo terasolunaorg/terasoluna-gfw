@@ -19,4 +19,3 @@
  *
  */
 package org.terasoluna.gfw.common.exception;
-

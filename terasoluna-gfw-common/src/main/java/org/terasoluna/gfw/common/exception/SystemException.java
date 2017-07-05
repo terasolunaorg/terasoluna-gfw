@@ -22,7 +22,7 @@ package org.terasoluna.gfw.common.exception;
  * </p>
  */
 public class SystemException extends RuntimeException implements
-                                                     ExceptionCodeProvider {
+                             ExceptionCodeProvider {
 
     private static final long serialVersionUID = 1L;
 

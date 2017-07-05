@@ -277,9 +277,8 @@ public class ExistInCodeListTest {
         Set<ConstraintViolation<Person>> result = validator.validate(p);
         assertThat(result.size(), is(1));
         ConstraintViolation<Person> error = result.iterator().next();
-        assertThat(
-                error.getMessageTemplate(),
-                is("{org.terasoluna.gfw.common.codelist.ExistInCodeList.message}"));
+        assertThat(error.getMessageTemplate(), is(
+                "{org.terasoluna.gfw.common.codelist.ExistInCodeList.message}"));
         assertThat(error.getMessage(), is("Does not exist in CD_GENDER"));
     }
 

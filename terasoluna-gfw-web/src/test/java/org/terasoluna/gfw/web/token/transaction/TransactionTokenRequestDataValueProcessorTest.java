@@ -51,10 +51,9 @@ public class TransactionTokenRequestDataValueProcessorTest {
         HttpServletRequest request = mock(HttpServletRequest.class);
 
         // mock behavior
-        when(
-                (TransactionToken) request
-                        .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
-                .thenReturn(null);
+        when((TransactionToken) request.getAttribute(
+                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
+                        .thenReturn(null);
 
         // run
         Map<String, String> result = processor.getExtraHiddenFields(request);
@@ -76,10 +75,9 @@ public class TransactionTokenRequestDataValueProcessorTest {
         TransactionToken token = new TransactionToken("tokenName", "tokenkey", "tokenValue");
 
         // mock behavior
-        when(
-                (TransactionToken) request
-                        .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
-                .thenReturn(token);
+        when((TransactionToken) request.getAttribute(
+                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
+                        .thenReturn(token);
 
         // run
         Map<String, String> result = processor.getExtraHiddenFields(request);

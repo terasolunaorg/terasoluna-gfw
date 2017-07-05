@@ -35,13 +35,13 @@ import org.slf4j.LoggerFactory;
  * </p>
  */
 public class SimpleMappingExceptionCodeResolver implements
-                                               ExceptionCodeResolver {
+                                                ExceptionCodeResolver {
 
     /**
      * logger.
      */
-    private static final Logger logger = LoggerFactory
-            .getLogger(SimpleMappingExceptionCodeResolver.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            SimpleMappingExceptionCodeResolver.class);
 
     /**
      * Mapping rules between exception code and exception class name.
@@ -100,7 +100,8 @@ public class SimpleMappingExceptionCodeResolver implements
     public String resolveExceptionCode(Exception ex) {
 
         if (ex == null) {
-            logger.warn("target exception is null. return defaultExceptionCode.");
+            logger.warn(
+                    "target exception is null. return defaultExceptionCode.");
             return defaultExceptionCode;
         }
 
