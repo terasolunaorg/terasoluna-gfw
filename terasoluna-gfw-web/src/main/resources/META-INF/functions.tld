@@ -21,13 +21,13 @@
             " ====> &quot;
             ' ====> &#39;
             ]]>
-        </description>
+    </description>
     <name>h</name>
     <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
     <function-signature>java.lang.String h(java.lang.Object)</function-signature>
     <example>
         <![CDATA[]]>
-        </example>
+    </example>
   </function>
 
   <function>
@@ -59,7 +59,7 @@
         = ====> %3D
         あ ====> %E3%81%82
         ]]>
-        </example>
+    </example>
   </function>
 
   <function>
@@ -69,7 +69,7 @@
     <function-signature>java.lang.String br(java.lang.String)</function-signature>
     <example>
         <![CDATA[]]>
-        </example>
+    </example>
   </function>
 
   <function>
@@ -79,7 +79,7 @@
     <function-signature>java.lang.String cut(java.lang.String, int)</function-signature>
     <example>
         <![CDATA[]]>
-        </example>
+    </example>
   </function>
 
   <function>
@@ -89,7 +89,7 @@
     <function-signature>java.lang.String link(java.lang.String)</function-signature>
     <example>
         <![CDATA[]]>
-        </example>
+    </example>
   </function>
 
   <function>
@@ -99,7 +99,8 @@
     <function-signature>java.lang.String query(java.lang.Object)</function-signature>
     <example><![CDATA[
 <a href="search?page=2&${f:query(searchForm)}">next page</a>
-        ]]></example>
+        ]]>
+    </example>
   </function>
 
   <function>
@@ -109,7 +110,8 @@
     <function-signature>java.lang.String js(java.lang.String)</function-signature>
     <example><![CDATA[
 var message = '${f:js(message)}';
-        ]]></example>
+        ]]>
+    </example>
   </function>
 
   <function>
@@ -119,7 +121,8 @@ var message = '${f:js(message)}';
     <function-signature>java.lang.String hjs(java.lang.String)</function-signature>
     <example><![CDATA[
 <input type="submit" value="Create" onclick="callback('${f:hjs(xxxx)}')">
-        ]]></example>
+        ]]>
+    </example>
   </function>
 </taglib>
 

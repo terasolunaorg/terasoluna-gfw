@@ -42,7 +42,7 @@
                 [For example]&#xA;
                 queryTmpl="page={page}&amp;size={size}&amp;sort={sortOrderProperty},{sortOrderDirection}"
                 ]]>
-            </description>
+      </description>
       <name>queryTmpl</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -57,7 +57,7 @@
                 [For example]&#xA;
                 criteriaQuery="${f:query(searchCriteriaForm)}"
                 ]]>
-            </description>
+      </description>
       <name>criteriaQuery</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -69,7 +69,7 @@
                 
                 Default is set to "false" (means that html escaping is done by default. Set it to true to disable escaping).
                 ]]>
-            </description>
+      </description>
       <name>disableHtmlEscapeOfCriteriaQuery</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -197,14 +197,15 @@
 			Result:
 			
 			 <div class="notice"><ul><li>textMessage</li></ul></div>
-        ]]></description>
+        ]]>
+    </description>
     <name>messagesPanel</name>
     <tag-class>org.terasoluna.gfw.web.message.MessagesPanelTag</tag-class>
     <body-content>JSP</body-content>
     <attribute>
       <description>
             Set attribute name of message. default is "ResultMessages"
-            </description>
+      </description>
       <name>messagesAttributeName</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -212,7 +213,7 @@
     <attribute>
       <description>
             Set CSS class name of this panel. default is "alert"
-            </description>
+      </description>
       <name>panelClassName</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -220,7 +221,7 @@
     <attribute>
       <description>
             Set prefix class name of the message. default is "alert-"
-            </description>
+      </description>
       <name>panelTypeClassPrefix</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -228,7 +229,7 @@
     <attribute>
       <description>
             Set HTML element of this panel, default is "div"
-            </description>
+      </description>
       <name>panelElement</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -236,7 +237,7 @@
     <attribute>
       <description>
             Set outer HTML element of messages in this panel. default is "ul"
-            </description>
+      </description>
       <name>outerElement</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -244,7 +245,7 @@
     <attribute>
       <description>
             Set inner HTML element of messages in this panel.default is "li"
-            </description>
+      </description>
       <name>innerElement</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -252,7 +253,7 @@
     <attribute>
       <description>
             Set message type of this panel explicitly. default is "null" (means that use type of ResultMessages).
-            </description>
+      </description>
       <name>messagesType</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -260,7 +261,7 @@
     <attribute>
       <description>
             Set disableHtmlEscape to disable html escaping functionality of this tag. default is set to "false" (means that html escaping is done by default. Set it to true to disable escaping).
-            </description>
+      </description>
       <name>disableHtmlEscape</name>
       <required>false</required>
       <rtexprvalue>true</rtexprvalue>
@@ -269,7 +270,8 @@
         <![CDATA[
         
         
-        ]]></example>
+        ]]>
+    </example>
   </tag>
 
   <tag>
