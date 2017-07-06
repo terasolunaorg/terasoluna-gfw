@@ -27,6 +27,20 @@
                 <artifactId>maven-surefire-plugin</artifactId>
             </plugin>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>xml-maven-plugin</artifactId>
+                <configuration>
+                    <formatFileSets>
+                        <formatFileSet>
+                            <directory>${project.basedir}</directory>
+                            <includes>
+                                <include>src/**/*.tld</include>
+                            </includes>
+                        </formatFileSet>
+                    </formatFileSets>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>com.google.code.maven-license-plugin</groupId>
                 <artifactId>maven-license-plugin</artifactId>
             </plugin>
