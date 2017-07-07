@@ -93,8 +93,8 @@ public class JdbcFixedJodaTimeDateFactoryTest {
     public void testNewDateTime02() throws Exception {
         JdbcFixedJodaTimeDateFactory dateFactory = new JdbcFixedJodaTimeDateFactory();
         dateFactory.setDataSource(dataSource);
-        dateFactory
-                .setCurrentTimestampQuery("SELECT Timestamp '2012-09-09 2:33:10.222'");
+        dateFactory.setCurrentTimestampQuery(
+                "SELECT Timestamp '2012-09-09 2:33:10.222'");
 
         DateTime now = dateFactory.newDateTime();
         assertThat(now.getYear(), is(2012));

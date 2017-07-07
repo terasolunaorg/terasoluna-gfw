@@ -33,7 +33,7 @@ import org.springframework.web.servlet.support.RequestDataValueProcessor;
  * </p>
  */
 public class CompositeRequestDataValueProcessor implements
-                                               RequestDataValueProcessor {
+                                                RequestDataValueProcessor {
 
     /**
      * List of {@link RequestDataValueProcessor}
@@ -61,8 +61,8 @@ public class CompositeRequestDataValueProcessor implements
     public CompositeRequestDataValueProcessor(
             RequestDataValueProcessor... processors) {
 
-        this.processors = Collections.unmodifiableList(Arrays
-                .asList(processors));
+        this.processors = Collections.unmodifiableList(Arrays.asList(
+                processors));
         List<RequestDataValueProcessor> reverse = Arrays.asList(processors);
         Collections.reverse(reverse);
         this.reversedProcessors = Collections.unmodifiableList(reverse);
@@ -127,13 +127,13 @@ public class CompositeRequestDataValueProcessor implements
      *      java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
-    public String processFormFieldValue(HttpServletRequest request,
-            String name, String value, String type) {
+    public String processFormFieldValue(HttpServletRequest request, String name,
+            String value, String type) {
 
         String result = value;
         for (RequestDataValueProcessor processor : processors) {
-            result = processor
-                    .processFormFieldValue(request, name, value, type);
+            result = processor.processFormFieldValue(request, name, value,
+                    type);
             if (!value.equals(result)) {
                 break;
             }
@@ -149,7 +149,8 @@ public class CompositeRequestDataValueProcessor implements
      * @see org.springframework.web.servlet.support.RequestDataValueProcessor#getExtraHiddenFields(javax.servlet.http.HttpServletRequest)
      */
     @Override
-    public Map<String, String> getExtraHiddenFields(HttpServletRequest request) {
+    public Map<String, String> getExtraHiddenFields(
+            HttpServletRequest request) {
         Map<String, String> result = new LinkedHashMap<String, String>();
         for (RequestDataValueProcessor processor : reversedProcessors) {
             Map<String, String> map = processor.getExtraHiddenFields(request);

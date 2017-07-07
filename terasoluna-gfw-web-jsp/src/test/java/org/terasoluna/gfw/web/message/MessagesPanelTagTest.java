@@ -72,12 +72,10 @@ public class MessagesPanelTagTest {
     protected MockPageContext createPageContext() {
         MockServletContext sc = new MockServletContext();
         wac = mock(WebApplicationContext.class);
-        when(
-                wac.getMessage(eq("hello.world"), eq(new Object[] {}),
-                        (Locale) anyObject())).thenReturn("hello world!");
-        when(
-                wac.getMessage(eq("foo.bar"), eq(new Object[] { 1, 2 }),
-                        (Locale) anyObject())).thenReturn("foo1 and bar2");
+        when(wac.getMessage(eq("hello.world"), eq(new Object[] {}),
+                (Locale) anyObject())).thenReturn("hello world!");
+        when(wac.getMessage(eq("foo.bar"), eq(new Object[] { 1, 2 }),
+                (Locale) anyObject())).thenReturn("foo1 and bar2");
 
         when(wac.getServletContext()).thenReturn(sc);
         request = new MockHttpServletRequest(sc);
@@ -119,8 +117,8 @@ public class MessagesPanelTagTest {
     @Test
     public void test01() throws Exception {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                ResultMessages.error().add(
-                        ResultMessage.fromText("hello world!")));
+                ResultMessages.error().add(ResultMessage.fromText(
+                        "hello world!")));
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-error\"><ul><li>hello world!</li></ul></div>";
         assertThat(getOutput(), is(expected));
@@ -249,8 +247,8 @@ public class MessagesPanelTagTest {
     @Test
     public void test10() throws Exception {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                ResultMessages.success().add("hello.world")
-                        .add("foo.bar", 1, 2));
+                ResultMessages.success().add("hello.world").add("foo.bar", 1,
+                        2));
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-success\"><ul><li>hello world!</li><li>foo1 and bar2</li></ul></div>";
         assertThat(getOutput(), is(expected));
@@ -280,8 +278,8 @@ public class MessagesPanelTagTest {
     @Test
     public void test12() throws Exception {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                ResultMessages.info().add(ResultMessage.fromText("hello!"))
-                        .add(ResultMessage.fromText("foo")));
+                ResultMessages.info().add(ResultMessage.fromText("hello!")).add(
+                        ResultMessage.fromText("foo")));
         tag.setPanelElement("p");
         tag.setOuterElement("");
         tag.setInnerElement("span");
@@ -426,8 +424,8 @@ public class MessagesPanelTagTest {
      */
     @Test
     public void test19() throws Exception {
-        request.setAttribute("result", ResultMessages.error().add(
-                ResultMessage.fromText("hello world!")));
+        request.setAttribute("result", ResultMessages.error().add(ResultMessage
+                .fromText("hello world!")));
         tag.setMessagesAttributeName("result");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-error\"><ul><li>hello world!</li></ul></div>";
@@ -638,7 +636,8 @@ public class MessagesPanelTagTest {
      */
     @Test
     public void test35() throws Exception {
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, "");
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
+                "");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li></li></ul></div>";
         assertThat(getOutput(), is(expected));

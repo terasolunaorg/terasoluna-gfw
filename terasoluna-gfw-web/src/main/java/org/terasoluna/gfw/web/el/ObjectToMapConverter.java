@@ -138,8 +138,8 @@ class ObjectToMapConverter {
     /**
      * type descriptor of string for format a value.
      */
-    private static final TypeDescriptor STRING_DESC = TypeDescriptor
-            .valueOf(String.class);
+    private static final TypeDescriptor STRING_DESC = TypeDescriptor.valueOf(
+            String.class);
 
     /**
      * conversion service for formatting a value.
@@ -233,8 +233,8 @@ class ObjectToMapConverter {
         }
 
         // the given object is a Java Bean
-        BeanWrapper beanWrapper = PropertyAccessorFactory
-                .forBeanPropertyAccess(object);
+        BeanWrapper beanWrapper = PropertyAccessorFactory.forBeanPropertyAccess(
+                object);
         PropertyDescriptor[] pds = beanWrapper.getPropertyDescriptors();
 
         // flatten properties in the given object
@@ -244,8 +244,8 @@ class ObjectToMapConverter {
                 continue;
             }
             Object value = beanWrapper.getPropertyValue(name);
-            TypeDescriptor sourceType = beanWrapper
-                    .getPropertyTypeDescriptor(name);
+            TypeDescriptor sourceType = beanWrapper.getPropertyTypeDescriptor(
+                    name);
 
             if (!flatten(map, prefix, name, value, sourceType)) {
                 // the property can be a Java Bean
@@ -282,8 +282,8 @@ class ObjectToMapConverter {
      * @param sourceType {@link TypeDescriptor} to use
      * @return flatten map
      */
-    private boolean flatten(Map<String, String> map, String prefix,
-            String name, Object value, TypeDescriptor sourceType) {
+    private boolean flatten(Map<String, String> map, String prefix, String name,
+            Object value, TypeDescriptor sourceType) {
         String key = StringUtils.isEmpty(prefix) ? name : prefix + "." + name;
         if (value == null) {
             String resetKey = "_" + key;
@@ -311,8 +311,8 @@ class ObjectToMapConverter {
         } else {
             TypeDescriptor descriptor = (sourceType != null) ? sourceType
                     : TypeDescriptor.forObject(value);
-            if (BeanUtils.isSimpleProperty(clazz)
-                    || conversionService.canConvert(descriptor, STRING_DESC)) {
+            if (BeanUtils.isSimpleProperty(clazz) || conversionService
+                    .canConvert(descriptor, STRING_DESC)) {
                 map.put(key, conversionService.convert(value, descriptor,
                         STRING_DESC).toString());
             } else {

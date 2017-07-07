@@ -33,14 +33,14 @@ import org.slf4j.LoggerFactory;
  * </p>
  */
 public class HttpSessionEventLoggingListener implements HttpSessionListener,
-                                            HttpSessionAttributeListener,
-                                            HttpSessionActivationListener {
+                                             HttpSessionAttributeListener,
+                                             HttpSessionActivationListener {
 
     /**
      * logger
      */
-    private static final Logger logger = LoggerFactory
-            .getLogger(HttpSessionEventLoggingListener.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            HttpSessionEventLoggingListener.class);
 
     /**
      * Logging when object bind to the session is activated.
@@ -85,8 +85,8 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
     public void attributeAdded(HttpSessionBindingEvent se) {
         if (logger.isDebugEnabled()) {
             HttpSession session = se.getSession();
-            logger.debug("SESSIONID#{} attributeAdded : {}={}",
-                    session.getId(), se.getName(), se.getValue());
+            logger.debug("SESSIONID#{} attributeAdded : {}={}", session.getId(),
+                    se.getName(), se.getValue());
         }
     }
 
@@ -133,8 +133,8 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
     public void sessionCreated(HttpSessionEvent se) {
         if (logger.isDebugEnabled()) {
             HttpSession session = se.getSession();
-            logger.debug("SESSIONID#{} sessionCreated : {}", session.getId(),
-                    se.getSource());
+            logger.debug("SESSIONID#{} sessionCreated : {}", session.getId(), se
+                    .getSource());
         }
     }
 

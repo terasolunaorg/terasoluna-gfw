@@ -108,9 +108,8 @@ import org.springframework.util.StringUtils;
  */
 @Deprecated
 public class RedirectAuthenticationHandler extends
-                                          SavedRequestAwareAuthenticationSuccessHandler
-                                                                                       implements
-                                                                                       InitializingBean {
+                                           SavedRequestAwareAuthenticationSuccessHandler
+                                           implements InitializingBean {
     /**
      * RedirectStrategy to use if redirect path is specified as a request parameter. (default:"redirectTo")
      */
@@ -143,7 +142,8 @@ public class RedirectAuthenticationHandler extends
      */
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
-            HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+            HttpServletResponse response,
+            Authentication authentication) throws IOException, ServletException {
 
         String targetUrlParameter = getTargetUrlParameter();
 

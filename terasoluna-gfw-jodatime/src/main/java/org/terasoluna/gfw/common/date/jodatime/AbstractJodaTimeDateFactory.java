@@ -29,9 +29,9 @@ import java.util.Date;
  * @since 5.0.0
  */
 public abstract class AbstractJodaTimeDateFactory extends
-                                                 DefaultClassicDateFactory
-                                                                          implements
-                                                                          JodaTimeDateFactory {
+                                                  DefaultClassicDateFactory
+                                                  implements
+                                                  JodaTimeDateFactory {
 
     /**
      * Returns {@link java.util.Date} instance for the current date.

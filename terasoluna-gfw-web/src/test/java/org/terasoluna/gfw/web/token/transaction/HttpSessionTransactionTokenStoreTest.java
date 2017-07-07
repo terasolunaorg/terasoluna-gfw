@@ -116,8 +116,8 @@ public class HttpSessionTransactionTokenStoreTest {
 
         // assert
         assertThat(actuals, is(token.getTokenValue()));
-        assertNotNull(session
-                .getAttribute(HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
+        assertNotNull(session.getAttribute(
+                HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
                         + token.getTokenName() + token.getTokenKey()));
     }
 
@@ -147,8 +147,8 @@ public class HttpSessionTransactionTokenStoreTest {
         store.remove(token);
 
         // assert
-        assertNull(session
-                .getAttribute(HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
+        assertNull(session.getAttribute(
+                HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
                         + token.getTokenName() + token.getTokenKey()));
     }
 
@@ -207,20 +207,20 @@ public class HttpSessionTransactionTokenStoreTest {
 
         // assert
         assertNotNull(actual);
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenA)), is(nullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenB)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenC)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenD)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(token1)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(token2)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(token3)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenA)), is(nullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenB)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenC)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenD)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                token1)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                token2)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                token3)), is(notNullValue()));
     }
 
     /**
@@ -270,22 +270,22 @@ public class HttpSessionTransactionTokenStoreTest {
 
         // assert
         assertNotNull(actual);
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenA)), is(nullValue())); // check
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenB)), is(nullValue())); // check
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenC)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenD)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenE)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(token1)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(token2)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(token3)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenA)), is(nullValue())); // check
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenB)), is(nullValue())); // check
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenC)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenD)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenE)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                token1)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                token2)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                token3)), is(notNullValue()));
     }
 
     /**
@@ -338,24 +338,24 @@ public class HttpSessionTransactionTokenStoreTest {
 
         // assert
         assertNotNull(actual);
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenA)), is(nullValue())); // check
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenB)), is(nullValue())); // check
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenC)), is(nullValue())); // check
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenD)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenE)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenF)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(token1)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(token2)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(token3)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenA)), is(nullValue())); // check
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenB)), is(nullValue())); // check
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenC)), is(nullValue())); // check
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenD)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenE)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenF)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                token1)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                token2)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                token3)), is(notNullValue()));
     }
 
     /**
@@ -390,18 +390,18 @@ public class HttpSessionTransactionTokenStoreTest {
 
         // assert
         assertNotNull(actual);
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenA)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenB)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(tokenC)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(token1)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(token2)), is(notNullValue()));
-        assertThat(session.getAttribute(store
-                .createSessionAttributeName(token3)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenA)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenB)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                tokenC)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                token1)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                token2)), is(notNullValue()));
+        assertThat(session.getAttribute(store.createSessionAttributeName(
+                token3)), is(notNullValue()));
     }
 
     @Test(expected = IllegalStateException.class)
@@ -421,14 +421,13 @@ public class HttpSessionTransactionTokenStoreTest {
 
         session.setAttribute(
                 HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
-                        + "foo"
-                        + TransactionToken.TOKEN_STRING_SEPARATOR
+                        + "foo" + TransactionToken.TOKEN_STRING_SEPARATOR
                         + "xxxxx", "already in!");
         try {
             store.createAndReserveTokenKey("foo");
         } catch (Exception e) {
-            assertThat(e.getMessage(),
-                    is("token key generation failed within retry count 5"));
+            assertThat(e.getMessage(), is(
+                    "token key generation failed within retry count 5"));
             throw e;
         }
     }
@@ -459,9 +458,8 @@ public class HttpSessionTransactionTokenStoreTest {
         try {
             new HttpSessionTransactionTokenStore(new TokenStringGenerator(), 0, 1);
         } catch (Exception e) {
-            assertThat(
-                    e.getMessage(),
-                    is("transactionTokenSizePerTokenName must be greater than 0"));
+            assertThat(e.getMessage(), is(
+                    "transactionTokenSizePerTokenName must be greater than 0"));
             throw e;
         }
 
@@ -472,9 +470,8 @@ public class HttpSessionTransactionTokenStoreTest {
         try {
             new HttpSessionTransactionTokenStore(new TokenStringGenerator(), -1, 0);
         } catch (Exception e) {
-            assertThat(
-                    e.getMessage(),
-                    is("transactionTokenSizePerTokenName must be greater than 0"));
+            assertThat(e.getMessage(), is(
+                    "transactionTokenSizePerTokenName must be greater than 0"));
             throw e;
         }
 
@@ -485,8 +482,8 @@ public class HttpSessionTransactionTokenStoreTest {
         try {
             new HttpSessionTransactionTokenStore(new TokenStringGenerator(), 1, 0);
         } catch (Exception e) {
-            assertThat(e.getMessage(),
-                    is("retryCreateTokenName must be greater than 0"));
+            assertThat(e.getMessage(), is(
+                    "retryCreateTokenName must be greater than 0"));
             throw e;
         }
 
@@ -497,8 +494,8 @@ public class HttpSessionTransactionTokenStoreTest {
         try {
             new HttpSessionTransactionTokenStore(new TokenStringGenerator(), 1, -1);
         } catch (Exception e) {
-            assertThat(e.getMessage(),
-                    is("retryCreateTokenName must be greater than 0"));
+            assertThat(e.getMessage(), is(
+                    "retryCreateTokenName must be greater than 0"));
             throw e;
         }
 

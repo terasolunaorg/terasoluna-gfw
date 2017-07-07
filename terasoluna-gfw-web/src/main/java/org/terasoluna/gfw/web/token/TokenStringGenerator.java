@@ -79,8 +79,8 @@ public class TokenStringGenerator {
         long time = System.currentTimeMillis();
 
         StringBuilder sb = new StringBuilder(1000);
-        sb.append(internalSeed).append(seed).append(time).append(
-                counter.getAndIncrement());
+        sb.append(internalSeed).append(seed).append(time).append(counter
+                .getAndIncrement());
 
         MessageDigest md = createMessageDigest();
         md.update(sb.toString().getBytes());

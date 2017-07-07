@@ -94,7 +94,8 @@ public class ExceptionLoggingFilter extends GenericFilterBean {
      */
     @Override
     public void doFilter(ServletRequest servletRequest,
-            ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+            ServletResponse servletResponse,
+            FilterChain filterChain) throws IOException, ServletException {
         try {
             filterChain.doFilter(servletRequest, servletResponse);
         } catch (IOException e) {

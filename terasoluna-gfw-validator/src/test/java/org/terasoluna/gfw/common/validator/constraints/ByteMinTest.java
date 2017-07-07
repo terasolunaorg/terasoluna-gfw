@@ -163,10 +163,11 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
     };
 
     public class ByteMinTestForm {
-        @ByteMin.List({
-                @ByteMin(6),
-                @ByteMin(value = 6, charset = "shift-jis", groups = { SpecifyCharset.class }),
-                @ByteMin(value = 6, charset = "illegal-charset", groups = { IllegalCharset.class }) })
+        @ByteMin.List({ @ByteMin(6),
+                @ByteMin(value = 6, charset = "shift-jis", groups = {
+                        SpecifyCharset.class }),
+                @ByteMin(value = 6, charset = "illegal-charset", groups = {
+                        IllegalCharset.class }) })
         private String stringProperty;
 
         @ByteMin(6)
@@ -187,7 +188,8 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             return stringBuilderProperty;
         }
 
-        public void setStringBuilderProperty(StringBuilder stringBuilderProperty) {
+        public void setStringBuilderProperty(
+                StringBuilder stringBuilderProperty) {
             this.stringBuilderProperty = stringBuilderProperty;
         }
 

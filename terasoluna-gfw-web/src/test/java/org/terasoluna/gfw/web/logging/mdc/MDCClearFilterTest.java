@@ -101,8 +101,8 @@ public class MDCClearFilterTest {
         // do assert.
         // not remove existing values from MDC on before chain.
         assertThat(mockFilterChain.actualMdcContextMap.size(), is(1));
-        assertThat(mockFilterChain.actualMdcContextMap.containsKey("key0"),
-                is(true));
+        assertThat(mockFilterChain.actualMdcContextMap.containsKey("key0"), is(
+                true));
         // remove all values from MDC on after chain.
         assertThat(MDC.getCopyOfContextMap(), is(nullValue()));
     }
@@ -151,7 +151,8 @@ public class MDCClearFilterTest {
         private Map actualMdcContextMap;
 
         @Override
-        public void doFilter(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        public void doFilter(ServletRequest request,
+                ServletResponse response) throws ServletException, IOException {
             this.actualMdcContextMap = MDC.getCopyOfContextMap();
         }
     }

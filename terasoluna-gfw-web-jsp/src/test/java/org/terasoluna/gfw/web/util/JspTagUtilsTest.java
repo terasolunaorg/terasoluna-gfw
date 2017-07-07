@@ -52,15 +52,15 @@ public class JspTagUtilsTest {
             JspTagUtils.toBoolean("on", true, "field1");
             fail("should be occurred JspTagException.");
         } catch (JspTagException e) {
-            assertThat(e.getMessage(),
-                    is("The value of field1 must be either true or false."));
+            assertThat(e.getMessage(), is(
+                    "The value of field1 must be either true or false."));
         }
         try {
             JspTagUtils.toBoolean("off", false, "field2");
             fail("should be occurred JspTagException.");
         } catch (JspTagException e) {
-            assertThat(e.getMessage(),
-                    is("The value of field2 must be either true or false."));
+            assertThat(e.getMessage(), is(
+                    "The value of field2 must be either true or false."));
         }
     }
 }
