@@ -26,7 +26,7 @@ import org.springframework.util.Assert;
  * Codelist consisting of range of numbers
  */
 public class NumberRangeCodeList extends AbstractCodeList implements
-                                                         InitializingBean {
+                                 InitializingBean {
     /**
      * Start point of range of numbers(default 0)
      */

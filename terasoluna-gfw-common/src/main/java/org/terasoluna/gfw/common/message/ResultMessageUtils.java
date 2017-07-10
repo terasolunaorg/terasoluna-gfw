@@ -31,8 +31,8 @@ public final class ResultMessageUtils {
     /**
      * logger
      */
-    private static final Logger logger = LoggerFactory
-            .getLogger(ResultMessageUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            ResultMessageUtils.class);
 
     /**
      * Default Constructor.
@@ -59,7 +59,8 @@ public final class ResultMessageUtils {
      * @throws IllegalArgumentException if message or messageSoruce or locale is <code>null</code>
      */
     public static String resolveMessage(ResultMessage message,
-            MessageSource messageSource, Locale locale) throws NoSuchMessageException {
+            MessageSource messageSource,
+            Locale locale) throws NoSuchMessageException {
         Assert.notNull(messageSource, "messageSource must not be null!");
         Assert.notNull(message, "message must not be null!");
         Assert.notNull(locale, "locale must not be null!");

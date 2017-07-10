@@ -28,8 +28,8 @@ public class InvalidTransactionTokenExceptionTest {
         try {
             process();
         } catch (InvalidTransactionTokenException e) {
-            assertThat(e.getMessage(),
-                    is("Invalid Transaction Token Exception !!!"));
+            assertThat(e.getMessage(), is(
+                    "Invalid Transaction Token Exception !!!"));
         }
     }
 

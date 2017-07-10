@@ -39,8 +39,8 @@ public class TransactionTokenInfoStoreTest {
         HandlerMethod handlerMethod = new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
                 .getDeclaredMethod("fourth", SampleForm.class, Model.class));
 
-        TransactionTokenInfo tokenInfo = store
-                .createTransactionTokenInfo(handlerMethod);
+        TransactionTokenInfo tokenInfo = store.createTransactionTokenInfo(
+                handlerMethod);
         assertNotNull(tokenInfo);
 
     }
@@ -51,8 +51,8 @@ public class TransactionTokenInfoStoreTest {
         HandlerMethod handlerMethod = new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
                 .getDeclaredMethod("first", SampleForm.class, Model.class));
 
-        TransactionTokenInfo tokenInfo = store
-                .createTransactionTokenInfo(handlerMethod);
+        TransactionTokenInfo tokenInfo = store.createTransactionTokenInfo(
+                handlerMethod);
         assertNotNull(tokenInfo);
 
     }
@@ -60,8 +60,10 @@ public class TransactionTokenInfoStoreTest {
     @Test
     public void testCreateTokenInfoName01() throws Exception {
 
-        TransactionTokenCheck methodAnnotation = mock(TransactionTokenCheck.class);
-        TransactionTokenCheck classAnnotation = mock(TransactionTokenCheck.class);
+        TransactionTokenCheck methodAnnotation = mock(
+                TransactionTokenCheck.class);
+        TransactionTokenCheck classAnnotation = mock(
+                TransactionTokenCheck.class);
 
         when(methodAnnotation.value()).thenReturn("test");
         when(classAnnotation.value()).thenReturn("test");
@@ -73,7 +75,8 @@ public class TransactionTokenInfoStoreTest {
     @Test
     public void testCreateTokenInfoName02() throws Exception {
 
-        TransactionTokenCheck methodAnnotation = mock(TransactionTokenCheck.class);
+        TransactionTokenCheck methodAnnotation = mock(
+                TransactionTokenCheck.class);
         TransactionTokenCheck classAnnotation = null;
 
         when(methodAnnotation.value()).thenReturn("test");
@@ -85,7 +88,8 @@ public class TransactionTokenInfoStoreTest {
     @Test
     public void testCreateTokenInfoName03() throws Exception {
 
-        TransactionTokenCheck methodAnnotation = mock(TransactionTokenCheck.class);
+        TransactionTokenCheck methodAnnotation = mock(
+                TransactionTokenCheck.class);
         TransactionTokenCheck classAnnotation = null;
 
         when(methodAnnotation.value()).thenReturn("");
@@ -97,7 +101,8 @@ public class TransactionTokenInfoStoreTest {
     @Test
     public void testCreateTokenInfoName04() throws Exception {
 
-        TransactionTokenCheck methodAnnotation = mock(TransactionTokenCheck.class);
+        TransactionTokenCheck methodAnnotation = mock(
+                TransactionTokenCheck.class);
         TransactionTokenCheck classAnnotation = null;
 
         when(methodAnnotation.value()).thenReturn(null);
@@ -109,8 +114,10 @@ public class TransactionTokenInfoStoreTest {
     @Test
     public void testCreateTokenInfoName05() throws Exception {
 
-        TransactionTokenCheck methodAnnotation = mock(TransactionTokenCheck.class);
-        TransactionTokenCheck classAnnotation = mock(TransactionTokenCheck.class);
+        TransactionTokenCheck methodAnnotation = mock(
+                TransactionTokenCheck.class);
+        TransactionTokenCheck classAnnotation = mock(
+                TransactionTokenCheck.class);
 
         when(methodAnnotation.value()).thenReturn("test");
         when(classAnnotation.value()).thenReturn("");
@@ -121,8 +128,10 @@ public class TransactionTokenInfoStoreTest {
     @Test
     public void testCreateTokenInfoName06() throws Exception {
 
-        TransactionTokenCheck methodAnnotation = mock(TransactionTokenCheck.class);
-        TransactionTokenCheck classAnnotation = mock(TransactionTokenCheck.class);
+        TransactionTokenCheck methodAnnotation = mock(
+                TransactionTokenCheck.class);
+        TransactionTokenCheck classAnnotation = mock(
+                TransactionTokenCheck.class);
 
         when(methodAnnotation.value()).thenReturn("test");
         when(classAnnotation.value()).thenReturn(null);

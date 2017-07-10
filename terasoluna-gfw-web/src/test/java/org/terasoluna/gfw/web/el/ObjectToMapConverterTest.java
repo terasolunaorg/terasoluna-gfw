@@ -32,8 +32,8 @@ public class ObjectToMapConverterTest {
 
     @Test
     public void testConvert0_SimpleJavaBean() throws Exception {
-        Map<String, String> map = converter
-                .convert(new SearchUserForm0("yamada", 20));
+        Map<String, String> map = converter.convert(
+                new SearchUserForm0("yamada", 20));
         assertThat(map.size(), is(2));
         assertThat(map, hasEntry("name", "yamada"));
         assertThat(map, hasEntry("age", "20"));
@@ -57,8 +57,8 @@ public class ObjectToMapConverterTest {
 
     @Test
     public void testConvert1_NestedJavaBean() throws Exception {
-        Map<String, String> map = converter
-                .convert(new SearchUserForm1(new SearchUserCriteriaForm1("yamada", 20), true));
+        Map<String, String> map = converter.convert(
+                new SearchUserForm1(new SearchUserCriteriaForm1("yamada", 20), true));
         assertThat(map.size(), is(3));
         assertThat(map, hasEntry("criteria.name", "yamada"));
         assertThat(map, hasEntry("criteria.age", "20"));
@@ -76,8 +76,8 @@ public class ObjectToMapConverterTest {
 
     @Test
     public void testConvert2_ListOfJavaBean() throws Exception {
-        Map<String, String> map = converter
-                .convert(new BatchUpdateUserForm2(Arrays.asList(
+        Map<String, String> map = converter.convert(
+                new BatchUpdateUserForm2(Arrays.asList(
                         new UpdateUserCriteriaForm2("yamada", 20),
                         new UpdateUserCriteriaForm2("tanaka", 50)), LogicalOperator2.AND));
         assertThat(map.size(), is(5));
@@ -102,8 +102,8 @@ public class ObjectToMapConverterTest {
 
     @Test
     public void testConvert3_SimpleJavaBeanAndListOfJavaBean() throws Exception {
-        Map<String, String> map = converter
-                .convert(new SearchAndBatchUpdateUserForm3(new SearchUserCriteriaForm3("suzuki", 30), Arrays
+        Map<String, String> map = converter.convert(
+                new SearchAndBatchUpdateUserForm3(new SearchUserCriteriaForm3("suzuki", 30), Arrays
                         .asList(new User3("yamada", 20),
                                 new User3("tanaka", 50))));
         assertThat(map.size(), is(6));
@@ -131,8 +131,8 @@ public class ObjectToMapConverterTest {
 
     @Test
     public void testConvert4_MapOfJavaBean() throws Exception {
-        Map<String, String> map = converter
-                .convert(new SearchForm4(new LinkedHashMap<String, String>() {
+        Map<String, String> map = converter.convert(
+                new SearchForm4(new LinkedHashMap<String, String>() {
                     {
                         put("aaa", "111");
                         put("bbb", "222");
@@ -162,8 +162,8 @@ public class ObjectToMapConverterTest {
         LocalDate date2 = new LocalDate(2015, 5, 1);
         LocalDate localDate2 = new LocalDate(2015, 7, 10);
 
-        Map<String, String> map = converter
-                .convert(new DateForm5(date1.toDate(), localDate1, new DateFormItem5(date2
+        Map<String, String> map = converter.convert(new DateForm5(date1
+                .toDate(), localDate1, new DateFormItem5(date2
                         .toDate(), localDate2)));
         assertThat(map.size(), is(4));
         assertThat(map, hasEntry("date", "2015-04-01"));
@@ -183,12 +183,15 @@ public class ObjectToMapConverterTest {
 
     @Test
     public void testConvert6_Array() throws Exception {
-        Map<String, String> map = converter
-                .convert(new ArrayForm6(new int[] { 1, 2, 3 }, new double[] {
-                        1.1, 1.2 }, new byte[] { 4, 5, 6 }, new String[] { "a",
-                        "b", "c" }, new ArrayFormItem6(new int[] { 11, 12, 13 }, new double[] {
-                        11.1, 11.2 }, new byte[] { 14, 15, 16 }, new String[] {
-                        "d", "e", "f" })));
+        Map<String, String> map = converter.convert(new ArrayForm6(new int[] {
+                1, 2, 3 }, new double[] { 1.1, 1.2 }, new byte[] { 4, 5,
+                        6 }, new String[] { "a", "b",
+                                "c" }, new ArrayFormItem6(new int[] { 11, 12,
+                                        13 }, new double[] { 11.1,
+                                                11.2 }, new byte[] { 14, 15,
+                                                        16 }, new String[] {
+                                                                "d", "e",
+                                                                "f" })));
         assertThat(map.size(), is(22));
         assertThat(map, hasEntry("array1[0]", "1"));
         assertThat(map, hasEntry("array1[1]", "2"));
@@ -253,14 +256,14 @@ public class ObjectToMapConverterTest {
     @SuppressWarnings("unchecked")
     @Test
     public void test7_Null() {
-        assertThat(converter.convert(null),
-                is((Map<String, String>) Collections.EMPTY_MAP));
+        assertThat(converter.convert(null), is(
+                (Map<String, String>) Collections.EMPTY_MAP));
     }
 
     @Test
     public void test8_LackingGetter() {
-        assertThat(converter.convert(new LackingGetterForm8("aaa", "bbb")),
-                is(Collections.singletonMap("value1", "aaa")));
+        assertThat(converter.convert(new LackingGetterForm8("aaa", "bbb")), is(
+                Collections.singletonMap("value1", "aaa")));
     }
 
     @Test
@@ -810,8 +813,8 @@ public class ObjectToMapConverterTest {
 
         private Map<String, String> map;
 
-        private Map<String, String> map2 = Collections
-                .singletonMap("key", null);
+        private Map<String, String> map2 = Collections.singletonMap("key",
+                null);
 
         private int[] array;
 
@@ -945,8 +948,8 @@ public class ObjectToMapConverterTest {
 
         private Map<String, String> map;
 
-        private Map<String, String> map2 = Collections
-                .singletonMap("key", null);
+        private Map<String, String> map2 = Collections.singletonMap("key",
+                null);
 
         private int[] array;
 

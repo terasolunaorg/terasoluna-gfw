@@ -61,10 +61,10 @@ public class SimpleMappingExceptionCodeResolverTest {
         // nothing.
 
         // do test.
-        String actualExceptionCode1 = testTarget
-                .resolveExceptionCode(new SystemException("testcode001", "testmessage001"));
-        String actualExceptionCode2 = testTarget
-                .resolveExceptionCode(new SystemException("testcode002", "testmessage002"));
+        String actualExceptionCode1 = testTarget.resolveExceptionCode(
+                new SystemException("testcode001", "testmessage001"));
+        String actualExceptionCode2 = testTarget.resolveExceptionCode(
+                new SystemException("testcode002", "testmessage002"));
 
         // do assert.
         assertThat(actualExceptionCode1, is("testcode001"));
@@ -89,8 +89,8 @@ public class SimpleMappingExceptionCodeResolverTest {
         testTarget.setExceptionMappings(exceptionMappings);
 
         // do test.
-        String actualExceptionCode = testTarget
-                .resolveExceptionCode(new SystemException(null, "testmessage001"));
+        String actualExceptionCode = testTarget.resolveExceptionCode(
+                new SystemException(null, "testmessage001"));
 
         // do assert.
         assertThat(actualExceptionCode, is("sys001"));
@@ -114,9 +114,8 @@ public class SimpleMappingExceptionCodeResolverTest {
         testTarget.setExceptionMappings(exceptionMappings);
 
         // do test.
-        String actualExceptionCode = testTarget
-                .resolveExceptionCode(new BusinessException(ResultMessages
-                        .error()));
+        String actualExceptionCode = testTarget.resolveExceptionCode(
+                new BusinessException(ResultMessages.error()));
         // do assert.
         assertThat(actualExceptionCode, is("bus001"));
     }
@@ -140,9 +139,8 @@ public class SimpleMappingExceptionCodeResolverTest {
         testTarget.setExceptionMappings(exceptionMappings);
 
         // do test.
-        String actualExceptionCode = testTarget
-                .resolveExceptionCode(new BusinessException(ResultMessages
-                        .error()));
+        String actualExceptionCode = testTarget.resolveExceptionCode(
+                new BusinessException(ResultMessages.error()));
 
         // do assert.
         assertThat(actualExceptionCode, is("runtime001"));
@@ -168,9 +166,8 @@ public class SimpleMappingExceptionCodeResolverTest {
         testTarget.setExceptionMappings(exceptionMappings);
 
         // do test.
-        String actualExceptionCode = testTarget
-                .resolveExceptionCode(new BusinessException(ResultMessages
-                        .error()));
+        String actualExceptionCode = testTarget.resolveExceptionCode(
+                new BusinessException(ResultMessages.error()));
 
         // do assert.
         assertThat(actualExceptionCode, is("throwable001"));
@@ -196,9 +193,8 @@ public class SimpleMappingExceptionCodeResolverTest {
         testTarget.setDefaultExceptionCode("defaultExceptionCode001");
 
         // do test.
-        String actualExceptionCode = testTarget
-                .resolveExceptionCode(new BusinessException(ResultMessages
-                        .error()));
+        String actualExceptionCode = testTarget.resolveExceptionCode(
+                new BusinessException(ResultMessages.error()));
 
         // do assert.
         assertThat(actualExceptionCode, is("defaultExceptionCode001"));
@@ -227,14 +223,14 @@ public class SimpleMappingExceptionCodeResolverTest {
         testTarget.setDefaultExceptionCode("default");
 
         // do test.
-        String actualExceptionCode1 = testTarget
-                .resolveExceptionCode(new SystemException(null, "syserror"));
-        String actualExceptionCode2 = testTarget
-                .resolveExceptionCode(new FileNotFoundException("filenotfounderror"));
-        String actualExceptionCode3 = testTarget
-                .resolveExceptionCode(new NullPointerException("nullerror"));
-        String actualExceptionCode4 = testTarget
-                .resolveExceptionCode(new ParseException("parseerror", 0));
+        String actualExceptionCode1 = testTarget.resolveExceptionCode(
+                new SystemException(null, "syserror"));
+        String actualExceptionCode2 = testTarget.resolveExceptionCode(
+                new FileNotFoundException("filenotfounderror"));
+        String actualExceptionCode3 = testTarget.resolveExceptionCode(
+                new NullPointerException("nullerror"));
+        String actualExceptionCode4 = testTarget.resolveExceptionCode(
+                new ParseException("parseerror", 0));
 
         // do assert.
         assertThat(actualExceptionCode1, is("systemexception"));
@@ -262,13 +258,12 @@ public class SimpleMappingExceptionCodeResolverTest {
         testTarget.setExceptionMappings(exceptionMappings);
 
         // do test.
-        String actualExceptionCode1 = testTarget
-                .resolveExceptionCode(new BusinessException(ResultMessages
-                        .error()));
-        String actualExceptionCode2 = testTarget
-                .resolveExceptionCode(new TestException());
-        String actualExceptionCode3 = testTarget
-                .resolveExceptionCode(new NullPointerException("nullpointer"));
+        String actualExceptionCode1 = testTarget.resolveExceptionCode(
+                new BusinessException(ResultMessages.error()));
+        String actualExceptionCode2 = testTarget.resolveExceptionCode(
+                new TestException());
+        String actualExceptionCode3 = testTarget.resolveExceptionCode(
+                new NullPointerException("nullpointer"));
 
         // do assert.
         assertThat(actualExceptionCode1, is("tera001"));
@@ -294,9 +289,8 @@ public class SimpleMappingExceptionCodeResolverTest {
         testTarget.setExceptionMappings(exceptionMappings);
 
         // do test.
-        String actualExceptionCode = testTarget
-                .resolveExceptionCode(new BusinessException(ResultMessages
-                        .error()));
+        String actualExceptionCode = testTarget.resolveExceptionCode(
+                new BusinessException(ResultMessages.error()));
 
         // do assert.
         assertThat(actualExceptionCode, is("teracommon001"));
@@ -321,9 +315,8 @@ public class SimpleMappingExceptionCodeResolverTest {
         testTarget.setExceptionMappings(exceptionMappings);
 
         // do test.
-        String actualExceptionCode = testTarget
-                .resolveExceptionCode(new BusinessException(ResultMessages
-                        .error()));
+        String actualExceptionCode = testTarget.resolveExceptionCode(
+                new BusinessException(ResultMessages.error()));
 
         // do assert.
         assertThat(actualExceptionCode, is("exception001"));
@@ -346,8 +339,8 @@ public class SimpleMappingExceptionCodeResolverTest {
         testTarget.setDefaultExceptionCode("defaultExceptionCode002");
 
         // do test.
-        String actualExceptionCode = testTarget
-                .resolveExceptionCode(new NullPointerException("testMessage"));
+        String actualExceptionCode = testTarget.resolveExceptionCode(
+                new NullPointerException("testMessage"));
 
         // do assert.
         assertThat(actualExceptionCode, is("defaultExceptionCode002"));
@@ -371,8 +364,8 @@ public class SimpleMappingExceptionCodeResolverTest {
         testTarget.setExceptionMappings(new LinkedHashMap<String, String>());
 
         // do test.
-        String actualExceptionCode = testTarget
-                .resolveExceptionCode(new NullPointerException("testMessage"));
+        String actualExceptionCode = testTarget.resolveExceptionCode(
+                new NullPointerException("testMessage"));
 
         // do assert.
         assertThat(actualExceptionCode, is("defaultExceptionCode003"));

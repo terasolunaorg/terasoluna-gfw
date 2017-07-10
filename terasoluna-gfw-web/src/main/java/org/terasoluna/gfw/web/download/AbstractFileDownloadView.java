@@ -79,7 +79,7 @@ import org.springframework.web.servlet.view.AbstractView;
  * </pre>
  */
 public abstract class AbstractFileDownloadView extends AbstractView implements
-                                                                   InitializingBean {
+                                               InitializingBean {
 
     /**
      * logger
@@ -100,7 +100,8 @@ public abstract class AbstractFileDownloadView extends AbstractView implements
      */
     @Override
     protected void renderMergedOutputModel(Map<String, Object> model,
-            HttpServletRequest request, HttpServletResponse response) throws IOException {
+            HttpServletRequest request,
+            HttpServletResponse response) throws IOException {
 
         logger.debug("FileDownload start.");
 

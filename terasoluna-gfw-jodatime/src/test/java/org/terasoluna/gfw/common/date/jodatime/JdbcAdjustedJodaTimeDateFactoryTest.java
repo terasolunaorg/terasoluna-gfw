@@ -69,15 +69,14 @@ public class JdbcAdjustedJodaTimeDateFactoryTest {
 
         JdbcAdjustedJodaTimeDateFactory dateFactory = new JdbcAdjustedJodaTimeDateFactory();
         dateFactory.setDataSource(dataSource);
-        dateFactory
-                .setAdjustedValueQuery("SELECT diff * 60 * 1000 FROM system_adjusted_date"); // returns diff as minutes
+        dateFactory.setAdjustedValueQuery(
+                "SELECT diff * 60 * 1000 FROM system_adjusted_date"); // returns diff as minutes
 
         DateTime now = new DateTime();
         DateTime result = dateFactory.newDateTime();
 
-        assertThat(
-                (int) (Math.round(result.getMillis() - now.getMillis()) / 60.0 / 1000.0),
-                is(30));
+        assertThat((int) (Math.round(result.getMillis() - now.getMillis())
+                / 60.0 / 1000.0), is(30));
     }
 
     @Test
@@ -90,17 +89,16 @@ public class JdbcAdjustedJodaTimeDateFactoryTest {
         JdbcAdjustedJodaTimeDateFactory dateFactory = new JdbcAdjustedJodaTimeDateFactory();
         dateFactory.setDataSource(dataSource);
         dateFactory.setUseCache(false);
-        dateFactory
-                .setAdjustedValueQuery("SELECT diff * 60 * 1000 FROM system_adjusted_date"); // returns diff as milliseconds
+        dateFactory.setAdjustedValueQuery(
+                "SELECT diff * 60 * 1000 FROM system_adjusted_date"); // returns diff as milliseconds
         dateFactory.afterPropertiesSet();
 
         {
             DateTime now = new DateTime();
             DateTime result = dateFactory.newDateTime();
 
-            assertThat(
-                    (int) (Math.round(result.getMillis() - now.getMillis()) / 60.0 / 1000.0),
-                    is(30)); // plus 30 minute
+            assertThat((int) (Math.round(result.getMillis() - now.getMillis())
+                    / 60.0 / 1000.0), is(30)); // plus 30 minute
 
         }
         {
@@ -109,9 +107,8 @@ public class JdbcAdjustedJodaTimeDateFactoryTest {
             DateTime now = new DateTime();
             DateTime result = dateFactory.newDateTime();
 
-            assertThat(
-                    (int) (Math.round(result.getMillis() - now.getMillis()) / 60.0 / 1000.0),
-                    is(60));// plus 60 minute
+            assertThat((int) (Math.round(result.getMillis() - now.getMillis())
+                    / 60.0 / 1000.0), is(60));// plus 60 minute
         }
     }
 
@@ -125,17 +122,16 @@ public class JdbcAdjustedJodaTimeDateFactoryTest {
         JdbcAdjustedJodaTimeDateFactory dateFactory = new JdbcAdjustedJodaTimeDateFactory();
         dateFactory.setDataSource(dataSource);
         dateFactory.setUseCache(true);
-        dateFactory
-                .setAdjustedValueQuery("SELECT diff * 60 * 1000 FROM system_adjusted_date"); // returns diff as minutes
+        dateFactory.setAdjustedValueQuery(
+                "SELECT diff * 60 * 1000 FROM system_adjusted_date"); // returns diff as minutes
         dateFactory.afterPropertiesSet();
 
         {
             DateTime now = new DateTime();
             DateTime result = dateFactory.newDateTime();
 
-            assertThat(
-                    (int) (Math.round(result.getMillis() - now.getMillis()) / 60.0 / 1000.0),
-                    is(30)); // plus 30 minute
+            assertThat((int) (Math.round(result.getMillis() - now.getMillis())
+                    / 60.0 / 1000.0), is(30)); // plus 30 minute
 
         }
         {
@@ -144,17 +140,15 @@ public class JdbcAdjustedJodaTimeDateFactoryTest {
             DateTime now = new DateTime();
             DateTime result = dateFactory.newDateTime();
 
-            assertThat(
-                    (int) (Math.round(result.getMillis() - now.getMillis()) / 60.0 / 1000.0),
-                    is(30));// still plus 30 minute
+            assertThat((int) (Math.round(result.getMillis() - now.getMillis())
+                    / 60.0 / 1000.0), is(30));// still plus 30 minute
         }
         {
             DateTime now = new DateTime();
             DateTime result = dateFactory.newDateTime();
 
-            assertThat(
-                    (int) (Math.round(result.getMillis() - now.getMillis()) / 60.0 / 1000.0),
-                    is(30));// still plus 30 minute
+            assertThat((int) (Math.round(result.getMillis() - now.getMillis())
+                    / 60.0 / 1000.0), is(30));// still plus 30 minute
         }
     }
 
@@ -168,17 +162,16 @@ public class JdbcAdjustedJodaTimeDateFactoryTest {
         JdbcAdjustedJodaTimeDateFactory dateFactory = new JdbcAdjustedJodaTimeDateFactory();
         dateFactory.setDataSource(dataSource);
         dateFactory.setUseCache(true);
-        dateFactory
-                .setAdjustedValueQuery("SELECT diff * 60 * 1000 FROM system_adjusted_date"); // returns diff as minutes
+        dateFactory.setAdjustedValueQuery(
+                "SELECT diff * 60 * 1000 FROM system_adjusted_date"); // returns diff as minutes
         dateFactory.afterPropertiesSet();
 
         {
             DateTime now = new DateTime();
             DateTime result = dateFactory.newDateTime();
 
-            assertThat(
-                    (int) (Math.round(result.getMillis() - now.getMillis()) / 60.0 / 1000.0),
-                    is(30)); // plus 30 minute
+            assertThat((int) (Math.round(result.getMillis() - now.getMillis())
+                    / 60.0 / 1000.0), is(30)); // plus 30 minute
 
         }
         {
@@ -187,18 +180,16 @@ public class JdbcAdjustedJodaTimeDateFactoryTest {
             DateTime now = new DateTime();
             DateTime result = dateFactory.newDateTime();
 
-            assertThat(
-                    (int) (Math.round(result.getMillis() - now.getMillis()) / 60.0 / 1000.0),
-                    is(30));// still plus 30 minute
+            assertThat((int) (Math.round(result.getMillis() - now.getMillis())
+                    / 60.0 / 1000.0), is(30));// still plus 30 minute
         }
         {
             dateFactory.reload(); // reload!
             DateTime now = new DateTime();
             DateTime result = dateFactory.newDateTime();
 
-            assertThat(
-                    (int) (Math.round(result.getMillis() - now.getMillis()) / 60.0 / 1000.0),
-                    is(60));// plus 60 minute
+            assertThat((int) (Math.round(result.getMillis() - now.getMillis())
+                    / 60.0 / 1000.0), is(60));// plus 60 minute
         }
     }
 
@@ -217,17 +208,16 @@ public class JdbcAdjustedJodaTimeDateFactoryTest {
         // created datefactory instance
         JdbcAdjustedJodaTimeDateFactory dateFactory = new JdbcAdjustedJodaTimeDateFactory();
         dateFactory.setDataSource(dataSource);
-        dateFactory
-                .setAdjustedValueQuery("SELECT diff * 60 * 1000 FROM system_adjusted_date"); // returns diff as minutes
+        dateFactory.setAdjustedValueQuery(
+                "SELECT diff * 60 * 1000 FROM system_adjusted_date"); // returns diff as minutes
 
         // created comparision targets
         DateTime now = new DateTime();
         DateTime result = dateFactory.newDateTime();
 
         // asserts
-        assertThat(
-                (int) (Math.round(result.getMillis() - now.getMillis()) / 60.0 / 1000.0),
-                is(0));
+        assertThat((int) (Math.round(result.getMillis() - now.getMillis())
+                / 60.0 / 1000.0), is(0));
     }
 
     @Test
@@ -239,23 +229,22 @@ public class JdbcAdjustedJodaTimeDateFactoryTest {
 
         JdbcAdjustedJodaTimeDateFactory dateFactory = new JdbcAdjustedJodaTimeDateFactory();
         dateFactory.setJdbcTemplate(new JdbcTemplate(dataSource));
-        dateFactory
-                .setAdjustedValueQuery("SELECT diff * 60 * 1000 FROM system_adjusted_date"); // returns diff as minutes
+        dateFactory.setAdjustedValueQuery(
+                "SELECT diff * 60 * 1000 FROM system_adjusted_date"); // returns diff as minutes
 
         DateTime now = new DateTime();
         DateTime result = dateFactory.newDateTime();
 
-        assertThat(
-                (int) (Math.round(result.getMillis() - now.getMillis()) / 60.0 / 1000.0),
-                is(30));
+        assertThat((int) (Math.round(result.getMillis() - now.getMillis())
+                / 60.0 / 1000.0), is(30));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testAfterProperitesSet_jdbcTemplateAndDataSourceIsNull() throws Exception {
 
         JdbcAdjustedJodaTimeDateFactory dateFactory = new JdbcAdjustedJodaTimeDateFactory();
-        dateFactory
-                .setAdjustedValueQuery("SELECT diff * 60 * 1000 FROM system_adjusted_date");
+        dateFactory.setAdjustedValueQuery(
+                "SELECT diff * 60 * 1000 FROM system_adjusted_date");
         dateFactory.setDataSource(null);
         dateFactory.setJdbcTemplate(null);
 

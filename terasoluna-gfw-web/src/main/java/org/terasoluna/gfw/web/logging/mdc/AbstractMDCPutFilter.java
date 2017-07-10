@@ -85,8 +85,8 @@ public abstract class AbstractMDCPutFilter extends OncePerRequestFilter {
      * @return cut value
      */
     protected String cutValue(String value) {
-        if (value != null && maxMDCValueLength >= 0
-                && value.length() > maxMDCValueLength) {
+        if (value != null && maxMDCValueLength >= 0 && value
+                .length() > maxMDCValueLength) {
             return value.substring(0, maxMDCValueLength);
         } else {
             return value;
@@ -107,7 +107,8 @@ public abstract class AbstractMDCPutFilter extends OncePerRequestFilter {
      */
     @Override
     protected final void doFilterInternal(HttpServletRequest request,
-            HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+            HttpServletResponse response,
+            FilterChain filterChain) throws ServletException, IOException {
         String key = getMDCKey(request, response);
         String value = getMDCValue(request, response);
         MDC.put(key, cutValue(value));

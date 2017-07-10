@@ -49,11 +49,10 @@ import org.terasoluna.gfw.common.message.ResultMessages;
  * TestCase class of ResultMessagesLoggingInterceptor.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {
-        "classpath:test-context.xml",
+@ContextConfiguration(locations = { "classpath:test-context.xml",
         "classpath:org/terasoluna/gfw/common/exception/ResultMessagesLoggingInterceptorTest.xml" })
 public class ResultMessagesLoggingInterceptorTest extends
-                                                 ApplicationObjectSupport {
+                                                  ApplicationObjectSupport {
 
     /**
      * test target object.
@@ -166,8 +165,8 @@ public class ResultMessagesLoggingInterceptorTest extends
         ResourceNotFoundException occurException = new ResourceNotFoundException(ResultMessages
                 .error().add("e.cm.xxx1", "args1", "args2"));
 
-        TestService service = getApplicationContext()
-                .getBean(TestService.class);
+        TestService service = getApplicationContext().getBean(
+                TestService.class);
         service.setResultMessagesNotificationException(occurException);
 
         try {
@@ -304,12 +303,11 @@ public class ResultMessagesLoggingInterceptorTest extends
 
         // do assert.
         String expectedBaseMessage = getApplicationContext().getBean(
-                TestRepository.class).toString()
-                + ":";
-        assertThat(actualMessage.get(thread1), is(expectedBaseMessage
-                + thread1.getId()));
-        assertThat(actualMessage.get(thread2), is(expectedBaseMessage
-                + thread2.getId()));
+                TestRepository.class).toString() + ":";
+        assertThat(actualMessage.get(thread1), is(expectedBaseMessage + thread1
+                .getId()));
+        assertThat(actualMessage.get(thread2), is(expectedBaseMessage + thread2
+                .getId()));
 
         verify(mockExceptionLogger, never()).warn((Exception) any());
     }
@@ -341,7 +339,8 @@ public class ResultMessagesLoggingInterceptorTest extends
         Thread thread1 = new Thread(new Runnable() {
             @Override
             public void run() {
-                service.setResultMessagesNotificationException(occurExceptionForThread1);
+                service.setResultMessagesNotificationException(
+                        occurExceptionForThread1);
                 facade.setSleepTime(Long.valueOf(2));
                 try {
                     facade.getMessage();
@@ -357,7 +356,8 @@ public class ResultMessagesLoggingInterceptorTest extends
         Thread thread2 = new Thread(new Runnable() {
             @Override
             public void run() {
-                service.setResultMessagesNotificationException(occurExceptionForThread2);
+                service.setResultMessagesNotificationException(
+                        occurExceptionForThread2);
                 facade.setSleepTime(Long.valueOf(0));
                 try {
                     facade.getMessage();
@@ -377,10 +377,10 @@ public class ResultMessagesLoggingInterceptorTest extends
         thread2.join();
 
         // do assert
-        assertThat(actualBusinessException.get(thread1),
-                is(occurExceptionForThread1));
-        assertThat(actualBusinessException.get(thread2),
-                is(occurExceptionForThread2));
+        assertThat(actualBusinessException.get(thread1), is(
+                occurExceptionForThread1));
+        assertThat(actualBusinessException.get(thread2), is(
+                occurExceptionForThread2));
 
         verify(mockExceptionLogger, times(1)).warn(occurExceptionForThread1);
         verify(mockExceptionLogger, times(1)).warn(occurExceptionForThread2);
@@ -427,7 +427,8 @@ public class ResultMessagesLoggingInterceptorTest extends
         Thread thread2 = new Thread(new Runnable() {
             @Override
             public void run() {
-                service.setResultMessagesNotificationException(occurExceptionForThread2);
+                service.setResultMessagesNotificationException(
+                        occurExceptionForThread2);
                 facade.setSleepTime(Long.valueOf(0));
                 try {
                     facade.getMessage();
@@ -448,8 +449,8 @@ public class ResultMessagesLoggingInterceptorTest extends
 
         // do assert
         assertFalse(actualBusinessException.containsKey(thread1));
-        assertThat(actualBusinessException.get(thread2),
-                is(occurExceptionForThread2));
+        assertThat(actualBusinessException.get(thread2), is(
+                occurExceptionForThread2));
 
         verify(mockExceptionLogger, times(1)).warn(occurExceptionForThread2);
         verify(mockExceptionLogger, times(1)).warn((Exception) anyObject());
