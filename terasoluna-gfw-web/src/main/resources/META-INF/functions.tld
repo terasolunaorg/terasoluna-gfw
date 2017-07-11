@@ -1,17 +1,17 @@
 <?xml version="1.0"  encoding="UTF-8"?>
 <taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:xml="http://www.w3.org/XML/1998/namespace"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
-    version="2.1">
+  xmlns:xml="http://www.w3.org/XML/1998/namespace"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+  version="2.1">
 
-    <description>reusable generic functions</description>
-    <display-name>TERASOLUNA EL Functions</display-name>
-    <tlib-version>2.1</tlib-version>
-    <short-name>f</short-name>
-    <uri>http://terasoluna.org/functions</uri>
+  <description>reusable generic functions</description>
+  <display-name>TERASOLUNA EL Functions</display-name>
+  <tlib-version>2.1</tlib-version>
+  <short-name>f</short-name>
+  <uri>http://terasoluna.org/functions</uri>
 
-    <function>
-        <description>
+  <function>
+    <description>
             <![CDATA[
             Escape html tags in the given string.
             Target characters to escape are following: 
@@ -22,22 +22,22 @@
             ' ====> &#39;
             ]]>
         </description>
-        <name>h</name>
-        <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
-        <function-signature>java.lang.String h(java.lang.Object)</function-signature>
-        <example>
+    <name>h</name>
+    <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
+    <function-signature>java.lang.String h(java.lang.Object)</function-signature>
+    <example>
         <![CDATA[]]>
         </example>
-    </function>
+  </function>
 
-    <function>
-        <description><![CDATA[url encode the given string with with "UTF-8".
+  <function>
+    <description><![CDATA[url encode the given string with with "UTF-8".
         This method is used to encode values in "query" string.
          This function percent-encodes  "&", "+" , "=" and characters not used in query part in RFC 3986.]]></description>
-        <name>u</name>
-        <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
-        <function-signature>java.lang.String u(java.lang.String)</function-signature>
-        <example>
+    <name>u</name>
+    <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
+    <function-signature>java.lang.String u(java.lang.String)</function-signature>
+    <example>
         <![CDATA[
         / ====> /
         ? ====> ?
@@ -60,66 +60,66 @@
         あ ====> %E3%81%82
         ]]>
         </example>
-    </function>
+  </function>
 
-    <function>
-        <description><![CDATA[convert "\r\n","\r", "\n" to <br>]]></description>
-        <name>br</name>
-        <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
-        <function-signature>java.lang.String br(java.lang.String)</function-signature>
-        <example>
+  <function>
+    <description><![CDATA[convert "\r\n","\r", "\n" to <br>]]></description>
+    <name>br</name>
+    <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
+    <function-signature>java.lang.String br(java.lang.String)</function-signature>
+    <example>
         <![CDATA[]]>
         </example>
-    </function>
+  </function>
 
-    <function>
-        <description>Cut the given string from head to the given length</description>
-        <name>cut</name>
-        <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
-        <function-signature>java.lang.String cut(java.lang.String, int)</function-signature>
-        <example>
+  <function>
+    <description>Cut the given string from head to the given length</description>
+    <name>cut</name>
+    <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
+    <function-signature>java.lang.String cut(java.lang.String, int)</function-signature>
+    <example>
         <![CDATA[]]>
         </example>
-    </function>
+  </function>
 
-    <function>
-        <description>Convert URL to anchor in the given string</description>
-        <name>link</name>
-        <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
-        <function-signature>java.lang.String link(java.lang.String)</function-signature>
-        <example>
+  <function>
+    <description>Convert URL to anchor in the given string</description>
+    <name>link</name>
+    <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
+    <function-signature>java.lang.String link(java.lang.String)</function-signature>
+    <example>
         <![CDATA[]]>
         </example>
-    </function>
+  </function>
 
-    <function>
-        <description>Build query string from map or bean. Query string is encoded with "UTF-8"</description>
-        <name>query</name>
-        <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
-        <function-signature>java.lang.String query(java.lang.Object)</function-signature>
-        <example><![CDATA[
+  <function>
+    <description>Build query string from map or bean. Query string is encoded with "UTF-8"</description>
+    <name>query</name>
+    <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
+    <function-signature>java.lang.String query(java.lang.Object)</function-signature>
+    <example><![CDATA[
 <a href="search?page=2&${f:query(searchForm)}">next page</a>
         ]]></example>
-    </function>
+  </function>
 
-    <function>
-        <description>Escape javascript in the given string supposed to be surrounded by single-quote.</description>
-        <name>js</name>
-        <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
-        <function-signature>java.lang.String js(java.lang.String)</function-signature>
-        <example><![CDATA[
+  <function>
+    <description>Escape javascript in the given string supposed to be surrounded by single-quote.</description>
+    <name>js</name>
+    <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
+    <function-signature>java.lang.String js(java.lang.String)</function-signature>
+    <example><![CDATA[
 var message = '${f:js(message)}';
         ]]></example>
-    </function>
+  </function>
 
-    <function>
-        <description>Escape html (by h) after escape js (by js)</description>
-        <name>hjs</name>
-        <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
-        <function-signature>java.lang.String hjs(java.lang.String)</function-signature>
-        <example><![CDATA[
+  <function>
+    <description>Escape html (by h) after escape js (by js)</description>
+    <name>hjs</name>
+    <function-class>org.terasoluna.gfw.web.el.Functions</function-class>
+    <function-signature>java.lang.String hjs(java.lang.String)</function-signature>
+    <example><![CDATA[
 <input type="submit" value="Create" onclick="callback('${f:hjs(xxxx)}')">
         ]]></example>
-    </function>
+  </function>
 </taglib>
 
