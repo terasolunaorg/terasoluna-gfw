@@ -99,16 +99,16 @@ public class CsrfFilterTests {
                 .getParameterName());
 
         // no CsrfToken should have been saved yet
-        verify(tokenRepository, times(0)).saveToken(any(CsrfToken.class),
-                any(HttpServletRequest.class), any(HttpServletResponse.class));
+        verify(tokenRepository, times(0)).saveToken(any(CsrfToken.class), any(
+                HttpServletRequest.class), any(HttpServletResponse.class));
         verify(filterChain).doFilter(request, response);
 
         // access the token
         attrToken.getToken();
 
         // now the CsrfToken should have been saved
-        verify(tokenRepository).saveToken(eq(token),
-                any(HttpServletRequest.class), any(HttpServletResponse.class));
+        verify(tokenRepository).saveToken(eq(token), any(
+                HttpServletRequest.class), any(HttpServletResponse.class));
     }
 
     @Test
@@ -123,8 +123,8 @@ public class CsrfFilterTests {
         assertThat(request.getAttribute(CsrfToken.class.getName())).isEqualTo(
                 token);
 
-        verify(deniedHandler).handle(eq(request), eq(response),
-                any(InvalidCsrfTokenException.class));
+        verify(deniedHandler).handle(eq(request), eq(response), any(
+                InvalidCsrfTokenException.class));
         verifyZeroInteractions(filterChain);
     }
 
@@ -142,8 +142,8 @@ public class CsrfFilterTests {
         assertThat(request.getAttribute(CsrfToken.class.getName())).isEqualTo(
                 token);
 
-        verify(deniedHandler).handle(eq(request), eq(response),
-                any(InvalidCsrfTokenException.class));
+        verify(deniedHandler).handle(eq(request), eq(response), any(
+                InvalidCsrfTokenException.class));
         verifyZeroInteractions(filterChain);
     }
 
@@ -160,8 +160,8 @@ public class CsrfFilterTests {
         assertThat(request.getAttribute(CsrfToken.class.getName())).isEqualTo(
                 token);
 
-        verify(deniedHandler).handle(eq(request), eq(response),
-                any(InvalidCsrfTokenException.class));
+        verify(deniedHandler).handle(eq(request), eq(response), any(
+                InvalidCsrfTokenException.class));
         verifyZeroInteractions(filterChain);
     }
 
@@ -179,8 +179,8 @@ public class CsrfFilterTests {
         assertThat(request.getAttribute(CsrfToken.class.getName())).isEqualTo(
                 token);
 
-        verify(deniedHandler).handle(eq(request), eq(response),
-                any(InvalidCsrfTokenException.class));
+        verify(deniedHandler).handle(eq(request), eq(response), any(
+                InvalidCsrfTokenException.class));
         verifyZeroInteractions(filterChain);
     }
 
@@ -321,8 +321,8 @@ public class CsrfFilterTests {
 
             filter.doFilter(request, response, filterChain);
 
-            verify(deniedHandler).handle(eq(request), eq(response),
-                    any(InvalidCsrfTokenException.class));
+            verify(deniedHandler).handle(eq(request), eq(response), any(
+                    InvalidCsrfTokenException.class));
             verifyZeroInteractions(filterChain);
         }
     }
@@ -340,8 +340,8 @@ public class CsrfFilterTests {
 
             filter.doFilter(request, response, filterChain);
 
-            verify(deniedHandler).handle(eq(request), eq(response),
-                    any(InvalidCsrfTokenException.class));
+            verify(deniedHandler).handle(eq(request), eq(response), any(
+                    InvalidCsrfTokenException.class));
             verifyZeroInteractions(filterChain);
         }
     }
@@ -379,9 +379,8 @@ public class CsrfFilterTests {
         return new CsrfTokenAssert((CsrfToken) token);
     }
 
-    private static class CsrfTokenAssert
-                                        extends
-                                        GenericAssert<CsrfTokenAssert, CsrfToken> {
+    private static class CsrfTokenAssert extends
+                                         GenericAssert<CsrfTokenAssert, CsrfToken> {
 
         /**
          * Creates a new </code>{@link ObjectAssert}</code>.
@@ -392,10 +391,10 @@ public class CsrfFilterTests {
         }
 
         public CsrfTokenAssert isEqualTo(CsrfToken expected) {
-            assertThat(actual.getHeaderName()).isEqualTo(
-                    expected.getHeaderName());
-            assertThat(actual.getParameterName()).isEqualTo(
-                    expected.getParameterName());
+            assertThat(actual.getHeaderName()).isEqualTo(expected
+                    .getHeaderName());
+            assertThat(actual.getParameterName()).isEqualTo(expected
+                    .getParameterName());
             assertThat(actual.getToken()).isEqualTo(expected.getToken());
             return this;
         }

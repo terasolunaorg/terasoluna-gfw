@@ -29,7 +29,7 @@ import org.springframework.util.Assert;
  * @since 3.2
  */
 public final class HttpSessionCsrfTokenRepository implements
-                                                 CsrfTokenRepository {
+                                                  CsrfTokenRepository {
     private static final String DEFAULT_CSRF_PARAMETER_NAME = "_csrf";
 
     private static final String DEFAULT_CSRF_HEADER_NAME = "X-CSRF-TOKEN";
@@ -80,7 +80,8 @@ public final class HttpSessionCsrfTokenRepository implements
      * @param parameterName the new parameter name to use
      */
     public void setParameterName(String parameterName) {
-        Assert.hasLength(parameterName, "parameterName cannot be null or empty");
+        Assert.hasLength(parameterName,
+                "parameterName cannot be null or empty");
         this.parameterName = parameterName;
     }
 
@@ -90,7 +91,8 @@ public final class HttpSessionCsrfTokenRepository implements
      * @param parameterName the new parameter name to use
      */
     public void setHeaderName(String parameterName) {
-        Assert.hasLength(parameterName, "parameterName cannot be null or empty");
+        Assert.hasLength(parameterName,
+                "parameterName cannot be null or empty");
         this.parameterName = parameterName;
     }
 

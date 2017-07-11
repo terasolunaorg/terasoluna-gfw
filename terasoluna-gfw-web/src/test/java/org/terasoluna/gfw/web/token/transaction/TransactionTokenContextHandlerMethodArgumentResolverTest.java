@@ -90,12 +90,9 @@ public class TransactionTokenContextHandlerMethodArgumentResolverTest {
         WebDataBinderFactory binderFactory = mock(WebDataBinderFactory.class);
 
         String str = new String("testResolveArgument01");
-        when(
-                webRequest
-                        .getAttribute(
-                                TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME,
-                                RequestAttributes.SCOPE_REQUEST)).thenReturn(
-                str);
+        when(webRequest.getAttribute(
+                TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME,
+                RequestAttributes.SCOPE_REQUEST)).thenReturn(str);
 
         Object result = null;
         try {

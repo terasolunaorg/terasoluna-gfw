@@ -26,9 +26,8 @@ package org.terasoluna.gfw.common.codelist.validator;
  * </p>
  */
 
-public class ExistInCodeListValidatorForString
-                                              extends
-                                              AbstractExistInCodeListValidator<String> {
+public class ExistInCodeListValidatorForString extends
+                                               AbstractExistInCodeListValidator<String> {
 
     /**
      * Fetches the code value which is the target of validation

@@ -59,8 +59,8 @@ public class HttpSessionEventLoggingListenerTest {
         @SuppressWarnings("unchecked")
         Appender<ILoggingEvent> mockAppender = mock(Appender.class);
         this.mockAppender = mockAppender;
-        Logger logger = (Logger) LoggerFactory
-                .getLogger(HttpSessionEventLoggingListener.class);
+        Logger logger = (Logger) LoggerFactory.getLogger(
+                HttpSessionEventLoggingListener.class);
         logger.addAppender(mockAppender);
 
     }
@@ -228,20 +228,20 @@ public class HttpSessionEventLoggingListenerTest {
      */
     private void verifyLogging(final String expectedLogMessage,
             final Level expectedLogLevel) {
-        verify(mockAppender).doAppend(
-                argThat(new ArgumentMatcher<LoggingEvent>() {
+        verify(mockAppender).doAppend(argThat(
+                new ArgumentMatcher<LoggingEvent>() {
                     @Override
                     public boolean matches(Object argument) {
                         return ((LoggingEvent) argument).getFormattedMessage()
                                 .equals(expectedLogMessage);
                     }
                 }));
-        verify(mockAppender).doAppend(
-                argThat(new ArgumentMatcher<LoggingEvent>() {
+        verify(mockAppender).doAppend(argThat(
+                new ArgumentMatcher<LoggingEvent>() {
                     @Override
                     public boolean matches(Object argument) {
-                        return expectedLogLevel
-                                .equals(((LoggingEvent) argument).getLevel());
+                        return expectedLogLevel.equals(((LoggingEvent) argument)
+                                .getLevel());
                     }
                 }));
 

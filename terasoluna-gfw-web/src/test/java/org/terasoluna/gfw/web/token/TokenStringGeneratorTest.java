@@ -30,9 +30,8 @@ public class TokenStringGeneratorTest {
             new TokenStringGenerator("InvalidAlgorithm");
         } catch (Exception e) {
             assertThat(e.getCause(), is(NoSuchAlgorithmException.class));
-            assertThat(
-                    e.getMessage(),
-                    is("The given algorithm is invalid. algorithm=InvalidAlgorithm"));
+            assertThat(e.getMessage(), is(
+                    "The given algorithm is invalid. algorithm=InvalidAlgorithm"));
             throw e;
         }
         fail();

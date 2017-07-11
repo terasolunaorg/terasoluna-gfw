@@ -55,19 +55,17 @@ public class JdbcCodeListTest {
 
     @Before
     public void setUp() throws Exception {
-        jdbcTemplate
-                .getJdbcOperations()
-                .execute(
-                        "CREATE TABLE codelist(code_id character varying(3) NOT NULL, code_name character varying(50),CONSTRAINT pk_code_id PRIMARY KEY (code_id))");
+        jdbcTemplate.getJdbcOperations().execute(
+                "CREATE TABLE codelist(code_id character varying(3) NOT NULL, code_name character varying(50),CONSTRAINT pk_code_id PRIMARY KEY (code_id))");
         for (int i = 0; i < 10; i++) {
             Map<String, String> map = new HashMap<String, String>();
             map.put("code_id", String.format("%03d", i));
             map.put("code_name", String.format("label%03d", i));
-            jdbcTemplate
-                    .update("INSERT INTO codelist (code_id, code_name) VALUES (:code_id, :code_name)",
-                            map);
-            mapInput.put(String.format("%03d", i), String
-                    .format("label%03d", i));
+            jdbcTemplate.update(
+                    "INSERT INTO codelist (code_id, code_name) VALUES (:code_id, :code_name)",
+                    map);
+            mapInput.put(String.format("%03d", i), String.format("label%03d",
+                    i));
         }
     }
 
@@ -95,8 +93,8 @@ public class JdbcCodeListTest {
 
         assertThat(mapOutput.size(), is(mapInput.size()));
         for (int i = 0; i < 10; i++) {
-            assertThat(mapOutput.get(String.format("%03d", i)), is(mapInput
-                    .get(String.format("%03d", i))));
+            assertThat(mapOutput.get(String.format("%03d", i)), is(mapInput.get(
+                    String.format("%03d", i))));
         }
 
     }
@@ -114,8 +112,8 @@ public class JdbcCodeListTest {
         jdbcCodeList.setDataSource(dataSource);
         jdbcCodeList.setLabelColumn("code_name");
         jdbcCodeList.setValueColumn("code_id");
-        jdbcCodeList
-                .setQuerySql("Select code_id, code_name_temp from codelist");
+        jdbcCodeList.setQuerySql(
+                "Select code_id, code_name_temp from codelist");
 
         Map<String, String> mapOutput = jdbcCodeList.retrieveMap();
 
@@ -145,8 +143,8 @@ public class JdbcCodeListTest {
 
         assertThat(mapOutput.size(), is(mapInput.size()));
         for (int i = 0; i < 10; i++) {
-            assertThat(mapOutput.get(String.format("%03d", i)), is(mapInput
-                    .get(String.format("%03d", i))));
+            assertThat(mapOutput.get(String.format("%03d", i)), is(mapInput.get(
+                    String.format("%03d", i))));
         }
 
     }
@@ -171,16 +169,16 @@ public class JdbcCodeListTest {
 
         Field f = ReflectionUtils.findField(JdbcCodeList.class, "exposedMap");
         ReflectionUtils.makeAccessible(f);
-        Map<String, String> exposedMapFirstFetch = (Map<String, String>) f
-                .get(jdbcCodeList);
+        Map<String, String> exposedMapFirstFetch = (Map<String, String>) f.get(
+                jdbcCodeList);
 
         // assert
         assertNull(exposedMapFirstFetch);
 
         jdbcCodeList.afterPropertiesSet();
 
-        Map<String, String> exposedMapSecondFetch = (Map<String, String>) f
-                .get(jdbcCodeList);
+        Map<String, String> exposedMapSecondFetch = (Map<String, String>) f.get(
+                jdbcCodeList);
         // assert
         assertThat(exposedMapSecondFetch.size(), is(mapInput.size()));
         for (String key : exposedMapSecondFetch.keySet()) {
@@ -209,8 +207,8 @@ public class JdbcCodeListTest {
 
         Field f = ReflectionUtils.findField(JdbcCodeList.class, "exposedMap");
         ReflectionUtils.makeAccessible(f);
-        Map<String, String> exposedMapFirstFetch = (Map<String, String>) f
-                .get(jdbcCodeList);
+        Map<String, String> exposedMapFirstFetch = (Map<String, String>) f.get(
+                jdbcCodeList);
 
         // assert
         assertNull(exposedMapFirstFetch);

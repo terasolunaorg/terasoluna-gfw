@@ -47,7 +47,7 @@ import org.springframework.util.Assert;
  * @since 3.2
  */
 public class CompositeSessionAuthenticationStrategy implements
-                                                   SessionAuthenticationStrategy {
+                                                    SessionAuthenticationStrategy {
     private final Log logger = LogFactory.getLog(getClass());
 
     private final List<SessionAuthenticationStrategy> delegateStrategies;
@@ -72,7 +72,8 @@ public class CompositeSessionAuthenticationStrategy implements
      * .security.core.Authentication, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
      */
     public void onAuthentication(Authentication authentication,
-            HttpServletRequest request, HttpServletResponse response) throws SessionAuthenticationException {
+            HttpServletRequest request,
+            HttpServletResponse response) throws SessionAuthenticationException {
         for (SessionAuthenticationStrategy delegate : delegateStrategies) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Delegating to " + delegate);

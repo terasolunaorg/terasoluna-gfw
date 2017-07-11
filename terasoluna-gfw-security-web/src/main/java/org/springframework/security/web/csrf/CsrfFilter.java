@@ -69,7 +69,8 @@ public final class CsrfFilter extends OncePerRequestFilter {
      */
     @Override
     protected void doFilterInternal(HttpServletRequest request,
-            HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+            HttpServletResponse response,
+            FilterChain filterChain) throws ServletException, IOException {
         CsrfToken csrfToken = tokenRepository.loadToken(request);
         if (csrfToken == null) {
             CsrfToken generatedToken = tokenRepository.generateToken(request);
@@ -89,8 +90,8 @@ public final class CsrfFilter extends OncePerRequestFilter {
         }
         if (!csrfToken.getToken().equals(actualToken)) {
             if (logger.isDebugEnabled()) {
-                logger.debug("Invalid CSRF token found for "
-                        + UrlUtils.buildFullRequestUrl(request));
+                logger.debug("Invalid CSRF token found for " + UrlUtils
+                        .buildFullRequestUrl(request));
             }
             accessDeniedHandler.handle(request, response,
                     new InvalidCsrfTokenException(csrfToken, actualToken));
@@ -122,7 +123,8 @@ public final class CsrfFilter extends OncePerRequestFilter {
      * </p>
      * @param accessDeniedHandler the {@link AccessDeniedHandler} to use
      */
-    public void setAccessDeniedHandler(AccessDeniedHandler accessDeniedHandler) {
+    public void setAccessDeniedHandler(
+            AccessDeniedHandler accessDeniedHandler) {
         Assert.notNull(accessDeniedHandler,
                 "accessDeniedHandler cannot be null");
         this.accessDeniedHandler = accessDeniedHandler;
@@ -170,8 +172,8 @@ public final class CsrfFilter extends OncePerRequestFilter {
         public int hashCode() {
             final int prime = 31;
             int result = 1;
-            result = prime * result
-                    + ((delegate == null) ? 0 : delegate.hashCode());
+            result = prime * result + ((delegate == null) ? 0
+                    : delegate.hashCode());
             return result;
         }
 
@@ -210,9 +212,9 @@ public final class CsrfFilter extends OncePerRequestFilter {
     }
 
     private static final class DefaultRequiresCsrfMatcher implements
-                                                         RequestMatcher {
-        private Pattern allowedMethods = Pattern
-                .compile("^(GET|HEAD|TRACE|OPTIONS)$");
+                                                          RequestMatcher {
+        private Pattern allowedMethods = Pattern.compile(
+                "^(GET|HEAD|TRACE|OPTIONS)$");
 
         /*
          * (non-Javadoc)

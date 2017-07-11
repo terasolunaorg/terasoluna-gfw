@@ -35,12 +35,13 @@ public class TransactionTokenTag extends AbstractHtmlElementTag {
      * @see org.springframework.web.servlet.tags.form.AbstractFormTag#writeTagContent(org.springframework.web.servlet.tags.form.TagWriter)
      */
     @Override
-    protected int writeTagContent(final TagWriter tagWriter) throws JspException {
+    protected int writeTagContent(
+            final TagWriter tagWriter) throws JspException {
         HttpServletRequest request = (HttpServletRequest) pageContext
                 .getRequest();
 
-        TransactionToken nextToken = (TransactionToken) request
-                .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
+        TransactionToken nextToken = (TransactionToken) request.getAttribute(
+                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
 
         if (nextToken != null) {
             tagWriter.startTag("input");

@@ -26,7 +26,7 @@ import org.terasoluna.gfw.common.message.ResultMessages;
  * </p>
  */
 public abstract class ResultMessagesNotificationException extends
-                                                         RuntimeException {
+                                                          RuntimeException {
 
     private static final long serialVersionUID = 1L;
 

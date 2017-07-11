@@ -290,12 +290,13 @@ public class ReadWriteLockMapWrapper<K, V> implements Map<K, V> {
      * @see java.util.Map#entrySet()
      */
     public Set<java.util.Map.Entry<K, V>> entrySet() {
-        return withReadLock(new LockedCallback<Set<java.util.Map.Entry<K, V>>>() {
-            @Override
-            public Set<java.util.Map.Entry<K, V>> apply() {
-                return map.entrySet();
-            }
-        });
+        return withReadLock(
+                new LockedCallback<Set<java.util.Map.Entry<K, V>>>() {
+                    @Override
+                    public Set<java.util.Map.Entry<K, V>> apply() {
+                        return map.entrySet();
+                    }
+                });
     }
 
     /**

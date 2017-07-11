@@ -91,7 +91,8 @@ public class AbstractMDCPutFilterTest {
         // setup mock.
         this.mockRequest = new MockHttpServletRequest();
         this.mockResponse = new MockHttpServletResponse();
-        this.mockFilterChain = spy(new MockFilterChainForAbstractMDCPutFilterTest());
+        this.mockFilterChain = spy(
+                new MockFilterChainForAbstractMDCPutFilterTest());
 
         // setup MDC.
         MDC.clear();
@@ -267,8 +268,8 @@ public class AbstractMDCPutFilterTest {
 
         testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
 
-        assertThat(mockFilterChain.actualMdcPutValue,
-                is("12345678901234567890123456789012"));
+        assertThat(mockFilterChain.actualMdcPutValue, is(
+                "12345678901234567890123456789012"));
 
     }
 
@@ -294,8 +295,8 @@ public class AbstractMDCPutFilterTest {
 
         testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
 
-        assertThat(mockFilterChain.actualMdcPutValue,
-                is("123456789012345678901234567890123"));
+        assertThat(mockFilterChain.actualMdcPutValue, is(
+                "123456789012345678901234567890123"));
 
     }
 
@@ -347,8 +348,8 @@ public class AbstractMDCPutFilterTest {
 
         testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
 
-        assertThat(mockFilterChain.actualMdcPutValue,
-                is("123456789012345678901234567890123a"));
+        assertThat(mockFilterChain.actualMdcPutValue, is(
+                "123456789012345678901234567890123a"));
 
     }
 
@@ -356,14 +357,15 @@ public class AbstractMDCPutFilterTest {
      * Mock class of FilterChain.
      */
     private class MockFilterChainForAbstractMDCPutFilterTest implements
-                                                            FilterChain {
+                                                             FilterChain {
         private String actualMdcPutValue;
 
         @SuppressWarnings("rawtypes")
         private Map actualMdcContextMap;
 
         @Override
-        public void doFilter(ServletRequest request, ServletResponse response) throws ServletException, IOException {
+        public void doFilter(ServletRequest request,
+                ServletResponse response) throws ServletException, IOException {
             this.actualMdcPutValue = MDC.get("key");
             this.actualMdcContextMap = MDC.getCopyOfContextMap();
         }
