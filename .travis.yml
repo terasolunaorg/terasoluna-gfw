@@ -13,6 +13,7 @@ cache:
 install: true
 
 script:
+  - ./mvn-build-all.sh xml:check-format
   - if [[ $TRAVIS_JDK_VERSION != "openjdk6" ]]; then ./mvn-build-all.sh formatter:validate; fi
   - ./mvn-build-all.sh clean install jacoco:report
   - if [[ $TRAVIS_JDK_VERSION != "openjdk6" ]]; then mvn -U coveralls:report -f terasoluna-gfw-parent/pom.xml; fi
