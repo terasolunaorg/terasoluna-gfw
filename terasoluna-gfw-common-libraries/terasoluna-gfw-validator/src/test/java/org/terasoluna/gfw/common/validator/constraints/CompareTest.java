@@ -207,6 +207,41 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     }
 
     /**
+     * specify operator. expected valid if input left value not equal right value.
+     * @throws Throwable
+     */
+    @Test
+    public void testSpecifyOperatorNotEqual() throws Throwable {
+
+        {
+            form.setLeft(101);
+            form.setRight(100);
+
+            violations = validator.validate(form, NotEqual.class);
+            assertThat(violations.size(), is(0));
+        }
+
+        {
+            form.setLeft(100);
+            form.setRight(100);
+
+            violations = validator.validate(form, NotEqual.class);
+            assertThat(violations.size(), is(1));
+            assertThat(violations.iterator().next().getMessage(), is(String
+                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
+        }
+
+        {
+            form.setLeft(99);
+            form.setRight(100);
+
+            violations = validator.validate(form, NotEqual.class);
+            assertThat(violations.size(), is(0));
+        }
+
+    }
+
+    /**
      * specify operator. expected valid if input left value less than right value.
      * @throws Throwable
      */
@@ -479,6 +514,12 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     }
 
     /**
+     * Validation group operator not equal.
+     */
+    private static interface NotEqual {
+    };
+
+    /**
      * Validation group operator less than or equal.
      */
     private static interface LessThanOrEqual {
@@ -552,6 +593,8 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
 
     @Compare.List({
             @Compare(left = "left", right = "right", operator = Operator.EQUAL),
+            @Compare(left = "left", right = "right", operator = Operator.NOT_EQUAL, groups = {
+                    NotEqual.class }),
             @Compare(left = "left", right = "right", operator = Operator.GREATER_THAN_OR_EQUAL, groups = {
                     GreaterThanOrEqual.class }),
             @Compare(left = "left", right = "right", operator = Operator.GREATER_THAN, groups = {
