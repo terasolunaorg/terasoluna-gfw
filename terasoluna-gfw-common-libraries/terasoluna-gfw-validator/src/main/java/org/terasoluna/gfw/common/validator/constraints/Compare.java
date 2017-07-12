@@ -140,6 +140,12 @@ public @interface Compare {
         EQUAL(CompareStrategy.EQ),
 
         /**
+         * Left side object must be not equal Right side object.
+         * @since 5.3.1
+         */
+        NOT_EQUAL(CompareStrategy.NE),
+
+        /**
          * Left side object must be greater than Right side object.
          */
         GREATER_THAN(CompareStrategy.GT),
@@ -193,6 +199,20 @@ public @interface Compare {
                 @Override
                 protected boolean isExpected(int comparisonResult) {
                     return comparisonResult == 0;
+                }
+            },
+
+            /**
+             * Expected not equals ZERO.
+             * @since 5.3.1
+             */
+            NE {
+                /**
+                 * {@inheritDoc}
+                 */
+                @Override
+                protected boolean isExpected(int comparisonResult) {
+                    return comparisonResult != 0;
                 }
             },
 
