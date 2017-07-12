@@ -54,14 +54,14 @@ public final class Functions {
     /**
      * Pattern of URL for replace to the link tag.
      */
-    private static final Pattern URL_PATTERN = Pattern
-            .compile("(http|https)://[A-Za-z0-9\\._~/:\\-?&=%;]+");
+    private static final Pattern URL_PATTERN = Pattern.compile(
+            "(http|https)://[A-Za-z0-9\\._~/:\\-?&=%;]+");
 
     /**
      * Pattern of line break.
      */
-    private static final Pattern LINE_BREAK_PATTERN = Pattern
-            .compile("(\\r\\n|\\r|\\n)");
+    private static final Pattern LINE_BREAK_PATTERN = Pattern.compile(
+            "(\\r\\n|\\r|\\n)");
 
     /**
      * line break tag string of HTML.
@@ -76,8 +76,8 @@ public final class Functions {
     /**
      * type descriptor of string for format a value.
      */
-    private static final TypeDescriptor STRING_DESC = TypeDescriptor
-            .valueOf(String.class);
+    private static final TypeDescriptor STRING_DESC = TypeDescriptor.valueOf(
+            String.class);
 
     /**
      * Default Constructor.
@@ -258,8 +258,8 @@ public final class Functions {
             } else {
                 sourceType = TypeDescriptor.forObject(value);
             }
-            uriVariables.put(name, CONVERSION_SERVICE.convert(value,
-                    sourceType, STRING_DESC));
+            uriVariables.put(name, CONVERSION_SERVICE.convert(value, sourceType,
+                    STRING_DESC));
         }
         String query = builder.buildAndExpand(uriVariables).encode().toString();
         // remove the beginning symbol character('?') of the query string.
@@ -281,8 +281,8 @@ public final class Functions {
             return "";
         }
         Class<?> clazz = params.getClass();
-        if (clazz.isArray() || params instanceof Iterable
-                || BeanUtils.isSimpleValueType(clazz)) {
+        if (clazz.isArray() || params instanceof Iterable || BeanUtils
+                .isSimpleValueType(clazz)) {
             return "";
         }
 

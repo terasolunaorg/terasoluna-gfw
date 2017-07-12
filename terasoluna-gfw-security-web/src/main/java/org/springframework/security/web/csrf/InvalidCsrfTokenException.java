@@ -31,8 +31,8 @@ public class InvalidCsrfTokenException extends AccessDeniedException {
     public InvalidCsrfTokenException(CsrfToken expectedAccessToken,
             String actualAccessToken) {
         super("Invalid CSRF Token '" + actualAccessToken
-                + "' was found on the request parameter '"
-                + expectedAccessToken.getParameterName() + "' or header '"
+                + "' was found on the request parameter '" + expectedAccessToken
+                        .getParameterName() + "' or header '"
                 + expectedAccessToken.getHeaderName() + "'.");
     }
 

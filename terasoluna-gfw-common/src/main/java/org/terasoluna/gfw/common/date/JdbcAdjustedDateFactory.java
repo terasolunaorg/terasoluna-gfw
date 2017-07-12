@@ -35,9 +35,9 @@ import org.springframework.util.Assert;
  * </P>
  */
 public class JdbcAdjustedDateFactory extends AbstractDateFactory implements
-                                                                InitializingBean {
-    private static final Logger logger = LoggerFactory
-            .getLogger(JdbcAdjustedDateFactory.class);
+                                     InitializingBean {
+    private static final Logger logger = LoggerFactory.getLogger(
+            JdbcAdjustedDateFactory.class);
 
     /**
      * JDBC Template used to access the database to fetch the adjustment value.

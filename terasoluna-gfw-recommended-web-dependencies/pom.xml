@@ -1,46 +1,46 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <artifactId>terasoluna-gfw-parent</artifactId>
-        <groupId>org.terasoluna.gfw</groupId>
-        <version>1.0.7-SNAPSHOT</version>
-        <relativePath>../terasoluna-gfw-parent/pom.xml</relativePath>
-    </parent>
-    <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
-    <packaging>pom</packaging>
-    <name>TERASOLUNA Global Framework recommended dependencies for web</name>
-    <description>Useful libraries for web recommended by TERASOLUNA Global Framework</description>
-    <url>http://terasoluna.org</url>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>terasoluna-gfw-parent</artifactId>
+    <groupId>org.terasoluna.gfw</groupId>
+    <version>1.0.7-SNAPSHOT</version>
+    <relativePath>../terasoluna-gfw-parent/pom.xml</relativePath>
+  </parent>
+  <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
+  <packaging>pom</packaging>
+  <name>TERASOLUNA Global Framework recommended dependencies for web</name>
+  <description>Useful libraries for web recommended by TERASOLUNA Global Framework</description>
+  <url>http://terasoluna.org</url>
 
-    <dependencies>
-        <!-- == Begin Tiles == -->
-        <dependency>
-            <groupId>org.apache.tiles</groupId>
-            <artifactId>tiles-core</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>commons-logging</artifactId>
-                    <groupId>commons-logging</groupId>
-                </exclusion>
-                <exclusion>
-                    <artifactId>jcl-over-slf4j</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tiles</groupId>
-            <artifactId>tiles-jsp</artifactId>
-        </dependency>
-        <!-- == End Tiles == -->
+  <dependencies>
+    <!-- == Begin Tiles == -->
+    <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-core</artifactId>
+      <exclusions>
+        <exclusion>
+          <artifactId>commons-logging</artifactId>
+          <groupId>commons-logging</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>jcl-over-slf4j</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.tiles</groupId>
+      <artifactId>tiles-jsp</artifactId>
+    </dependency>
+    <!-- == End Tiles == -->
 
-        <!-- == Begin Joda-Time == -->
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time-jsptags</artifactId>
-        </dependency>
-        <!-- == End Joda-Time == -->
-    </dependencies>
+    <!-- == Begin Joda-Time == -->
+    <dependency>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time-jsptags</artifactId>
+    </dependency>
+    <!-- == End Joda-Time == -->
+  </dependencies>
 
 </project>

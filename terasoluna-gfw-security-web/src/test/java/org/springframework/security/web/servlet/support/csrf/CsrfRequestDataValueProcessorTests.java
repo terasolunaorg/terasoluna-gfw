@@ -54,14 +54,13 @@ public class CsrfRequestDataValueProcessorTests {
 
     @Test
     public void assertAllMethodsDeclared() {
-        Method[] expectedMethods = ReflectionUtils
-                .getAllDeclaredMethods(RequestDataValueProcessor.class);
+        Method[] expectedMethods = ReflectionUtils.getAllDeclaredMethods(
+                RequestDataValueProcessor.class);
         for (Method expected : expectedMethods) {
-            assertThat(
-                    ReflectionUtils.findMethod(
-                            CsrfRequestDataValueProcessor.class, expected
-                                    .getName(), expected.getParameterTypes()))
-                    .as("Expected to find " + expected + " defined on "
+            assertThat(ReflectionUtils.findMethod(
+                    CsrfRequestDataValueProcessor.class, expected.getName(),
+                    expected.getParameterTypes())).as("Expected to find "
+                            + expected + " defined on "
                             + CsrfRequestDataValueProcessor.class).isNotNull();
         }
     }
@@ -117,9 +116,8 @@ public class CsrfRequestDataValueProcessorTests {
     @Test
     public void processFormFieldValue() {
         String value = "action";
-        assertThat(
-                processor.processFormFieldValue(request, "name", value,
-                        "hidden")).isEqualTo(value);
+        assertThat(processor.processFormFieldValue(request, "name", value,
+                "hidden")).isEqualTo(value);
     }
 
     @Test

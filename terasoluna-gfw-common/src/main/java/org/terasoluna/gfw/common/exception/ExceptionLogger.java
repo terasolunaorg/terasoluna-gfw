@@ -323,9 +323,9 @@ public class ExceptionLogger implements InitializingBean {
      * @param logMessageFormat Message formatter for log output.
      */
     protected void validateLogMessageFormat(String logMessageFormat) {
-        if (logMessageFormat == null
-                || !logMessageFormat.contains(PLACEHOLDER_OF_EXCEPTION_CODE)
-                || !logMessageFormat.contains(PLACEHOLDER_OF_EXCEPTION_MESSAGE)) {
+        if (logMessageFormat == null || !logMessageFormat.contains(
+                PLACEHOLDER_OF_EXCEPTION_CODE) || !logMessageFormat.contains(
+                        PLACEHOLDER_OF_EXCEPTION_MESSAGE)) {
             String message = "logMessageFormat must have placeholder({0} and {1})."
                     + " {0} is replaced with exception code."
                     + " {1} is replaced with exception message. current logMessageFormat is \""
@@ -467,8 +467,8 @@ public class ExceptionLogger implements InitializingBean {
          * @see org.terasoluna.gfw.common.exception.ExceptionLogger.LogLevelWrappingLogger#isEnabled()
          */
         public boolean isEnabled() {
-            return monitoringLogger.isInfoEnabled()
-                    || applicationLogger.isInfoEnabled();
+            return monitoringLogger.isInfoEnabled() || applicationLogger
+                    .isInfoEnabled();
         }
 
         /**
@@ -499,8 +499,8 @@ public class ExceptionLogger implements InitializingBean {
          * @see org.terasoluna.gfw.common.exception.ExceptionLogger.LogLevelWrappingLogger#isEnabled()
          */
         public boolean isEnabled() {
-            return monitoringLogger.isWarnEnabled()
-                    || applicationLogger.isWarnEnabled();
+            return monitoringLogger.isWarnEnabled() || applicationLogger
+                    .isWarnEnabled();
         }
 
         /**
@@ -531,8 +531,8 @@ public class ExceptionLogger implements InitializingBean {
          * @see org.terasoluna.gfw.common.exception.ExceptionLogger.LogLevelWrappingLogger#isEnabled()
          */
         public boolean isEnabled() {
-            return monitoringLogger.isErrorEnabled()
-                    || applicationLogger.isErrorEnabled();
+            return monitoringLogger.isErrorEnabled() || applicationLogger
+                    .isErrorEnabled();
         }
 
         /**

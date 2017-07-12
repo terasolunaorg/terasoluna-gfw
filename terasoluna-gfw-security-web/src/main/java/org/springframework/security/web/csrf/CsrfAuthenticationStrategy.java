@@ -30,7 +30,7 @@ import org.springframework.util.Assert;
  * @since 3.2
  */
 public final class CsrfAuthenticationStrategy implements
-                                             SessionAuthenticationStrategy {
+                                              SessionAuthenticationStrategy {
 
     private final CsrfTokenRepository csrfTokenRepository;
 
@@ -51,7 +51,8 @@ public final class CsrfAuthenticationStrategy implements
      * .security.core.Authentication, javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
      */
     public void onAuthentication(Authentication authentication,
-            HttpServletRequest request, HttpServletResponse response) throws SessionAuthenticationException {
+            HttpServletRequest request,
+            HttpServletResponse response) throws SessionAuthenticationException {
         this.csrfTokenRepository.saveToken(null, request, response);
     }
 }

@@ -34,15 +34,15 @@ import org.slf4j.LoggerFactory;
  * </p>
  */
 public class HttpSessionEventLoggingListener implements HttpSessionListener,
-                                            HttpSessionAttributeListener,
-                                            HttpSessionBindingListener,
-                                            HttpSessionActivationListener {
+                                             HttpSessionAttributeListener,
+                                             HttpSessionBindingListener,
+                                             HttpSessionActivationListener {
 
     /**
      * logger
      */
-    private static final Logger logger = LoggerFactory
-            .getLogger(HttpSessionEventLoggingListener.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            HttpSessionEventLoggingListener.class);
 
     /**
      * Logging when object bind to the session is activated.
@@ -151,9 +151,9 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
     public void attributeReplaced(HttpSessionBindingEvent se) {
         if (logger.isTraceEnabled()) {
             HttpSession session = se.getSession();
-            logger.trace(
-                    "SESSIONID#{} attributeReplaced : {}={}",
-                    new Object[] { session.getId(), se.getName(), se.getValue() });
+            logger.trace("SESSIONID#{} attributeReplaced : {}={}",
+                    new Object[] { session.getId(), se.getName(), se
+                            .getValue() });
         }
     }
 
@@ -168,8 +168,8 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
     public void sessionCreated(HttpSessionEvent se) {
         if (logger.isDebugEnabled()) {
             HttpSession session = se.getSession();
-            logger.debug("SESSIONID#{} sessionCreated : {}", session.getId(),
-                    se.getSource());
+            logger.debug("SESSIONID#{} sessionCreated : {}", session.getId(), se
+                    .getSource());
         }
     }
 

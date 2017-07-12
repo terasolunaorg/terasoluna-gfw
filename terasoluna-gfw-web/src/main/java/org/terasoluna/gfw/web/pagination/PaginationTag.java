@@ -167,7 +167,8 @@ public class PaginationTag extends RequestContextAwareTag {
      * @param value text of anchor
      * @throws JspException If fail a tag writing
      */
-    protected void writeAnchor(TagWriter tagWriter, String href, String value) throws JspException {
+    protected void writeAnchor(TagWriter tagWriter, String href,
+            String value) throws JspException {
         if (StringUtils.hasText(href)) {
             tagWriter.startTag(PaginationInfo.A_ELM);
             tagWriter.writeAttribute(PaginationInfo.HREF_ATTR, href);
@@ -286,7 +287,8 @@ public class PaginationTag extends RequestContextAwareTag {
      * @param info {@code PaginationInfo} instance the holds all the information required by the {@code PaginationTag}
      * @throws JspException If fail a tag writing
      */
-    protected void writeNextAndLastLink(TagWriter tagWriter, PaginationInfo info) throws JspException {
+    protected void writeNextAndLastLink(TagWriter tagWriter,
+            PaginationInfo info) throws JspException {
         if (info.isLastPage()) {
 
             if (StringUtils.hasText(nextLinkText)) {
@@ -515,7 +517,8 @@ public class PaginationTag extends RequestContextAwareTag {
      * @throws ClassNotFoundException
      * @see java.io.Serializable
      */
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    private void readObject(
+            ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
     }
 }

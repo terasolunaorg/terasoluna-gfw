@@ -416,7 +416,8 @@ public class PaginationTagTest {
         tag.setPage(page);
 
         // customize
-        tag.setQueryTmpl("page={page}&size={size}&sort={sortOrderProperty}&desc={sortOrderDirection}");
+        tag.setQueryTmpl(
+                "page={page}&size={size}&sort={sortOrderProperty}&desc={sortOrderDirection}");
 
         int ret = tag.doStartTagInternal();
 
@@ -510,8 +511,8 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        System.out.println(getOutput()
-                .replaceAll(Pattern.quote("\""), "\\\\\""));
+        System.out.println(getOutput().replaceAll(Pattern.quote("\""),
+                "\\\\\""));
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
         String expected = "<p><span><a href=\"?page=0&size=10\">&lt;&lt;</a></span><span><a href=\"?page=19&size=10\">&lt;</a></span><span><a href=\"?page=15&size=10\">16</a></span><span><a href=\"?page=16&size=10\">17</a></span><span><a href=\"?page=17&size=10\">18</a></span><span><a href=\"?page=18&size=10\">19</a></span><span><a href=\"?page=19&size=10\">20</a></span><span class=\"active\"><a href=\"?page=20&size=10\">21</a></span><span><a href=\"?page=21&size=10\">22</a></span><span><a href=\"?page=22&size=10\">23</a></span><span><a href=\"?page=23&size=10\">24</a></span><span><a href=\"?page=24&size=10\">25</a></span><span><a href=\"?page=21&size=10\">&gt;</a></span><span><a href=\"?page=99&size=10\">&gt;&gt;</a></span></p>";
@@ -618,7 +619,8 @@ public class PaginationTagTest {
         StringBuilder expected = new StringBuilder();
         String expectedCriteriaQuery = "&a=%2B&amp;b=+&amp;c=%3D&amp;d=%26";
         expected.append("<ul>");
-        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
+        expected.append(
+                "<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
         expected.append("<li class=\"disabled\"><a href=\"#\">&lt;</a></li>");
         expected.append("<li class=\"active\"><a href=\"?page=0&size=10"
                 + expectedCriteriaQuery + "\">1</a></li>");
@@ -628,8 +630,8 @@ public class PaginationTagTest {
                 + "\">3</a></li>");
         expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
                 + "\">&gt;</a></li>");
-        expected.append("<li><a href=\"?page=99&size=10"
-                + expectedCriteriaQuery + "\">&gt;&gt;</a></li>");
+        expected.append("<li><a href=\"?page=99&size=10" + expectedCriteriaQuery
+                + "\">&gt;&gt;</a></li>");
         expected.append("</ul>");
 
         // That the and-mark(&) is add
@@ -658,7 +660,8 @@ public class PaginationTagTest {
         StringBuilder expected = new StringBuilder();
         String expectedCriteriaQuery = "&a=%2B&amp;b=+&amp;c=%3D&amp;d=%26";
         expected.append("<ul>");
-        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
+        expected.append(
+                "<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
         expected.append("<li class=\"disabled\"><a href=\"#\">&lt;</a></li>");
         expected.append("<li class=\"active\"><a href=\"?page=0&size=10"
                 + expectedCriteriaQuery + "\">1</a></li>");
@@ -668,8 +671,8 @@ public class PaginationTagTest {
                 + "\">3</a></li>");
         expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
                 + "\">&gt;</a></li>");
-        expected.append("<li><a href=\"?page=99&size=10"
-                + expectedCriteriaQuery + "\">&gt;&gt;</a></li>");
+        expected.append("<li><a href=\"?page=99&size=10" + expectedCriteriaQuery
+                + "\">&gt;&gt;</a></li>");
         expected.append("</ul>");
 
         // That the question-mark(?) is remove
@@ -697,7 +700,8 @@ public class PaginationTagTest {
         StringBuilder expected = new StringBuilder();
         String expectedCriteriaQuery = "&a=%2B&b=+&c=%3D&d=%26&e=<>\"'";
         expected.append("<ul>");
-        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
+        expected.append(
+                "<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
         expected.append("<li class=\"disabled\"><a href=\"#\">&lt;</a></li>");
         expected.append("<li class=\"active\"><a href=\"?page=0&size=10"
                 + expectedCriteriaQuery + "\">1</a></li>");
@@ -707,8 +711,8 @@ public class PaginationTagTest {
                 + "\">3</a></li>");
         expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
                 + "\">&gt;</a></li>");
-        expected.append("<li><a href=\"?page=99&size=10"
-                + expectedCriteriaQuery + "\">&gt;&gt;</a></li>");
+        expected.append("<li><a href=\"?page=99&size=10" + expectedCriteriaQuery
+                + "\">&gt;&gt;</a></li>");
         expected.append("</ul>");
 
         // That the and-mark(&) is remove
@@ -736,9 +740,11 @@ public class PaginationTagTest {
 
         StringBuilder expected = new StringBuilder();
         expected.append("<ul>");
-        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
+        expected.append(
+                "<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
         expected.append("<li class=\"disabled\"><a href=\"#\">&lt;</a></li>");
-        expected.append("<li class=\"active\"><a href=\"/0/10?a=b\">1</a></li>");
+        expected.append(
+                "<li class=\"active\"><a href=\"/0/10?a=b\">1</a></li>");
         expected.append("<li><a href=\"/1/10?a=b\">2</a></li>");
         expected.append("<li><a href=\"/2/10?a=b\">3</a></li>");
         expected.append("<li><a href=\"/1/10?a=b\">&gt;</a></li>");
@@ -769,7 +775,8 @@ public class PaginationTagTest {
         StringBuilder expected = new StringBuilder();
         String expectedCriteriaQuery = "&a=%2B&amp;b=+&amp;c=%3D&amp;d=%26";
         expected.append("<ul>");
-        expected.append("<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
+        expected.append(
+                "<li class=\"disabled\"><a href=\"#\">&lt;&lt;</a></li>");
         expected.append("<li class=\"disabled\"><a href=\"#\">&lt;</a></li>");
         expected.append("<li class=\"active\"><a href=\"?page=0&size=10"
                 + expectedCriteriaQuery + "\">1</a></li>");
@@ -779,8 +786,8 @@ public class PaginationTagTest {
                 + "\">3</a></li>");
         expected.append("<li><a href=\"?page=1&size=10" + expectedCriteriaQuery
                 + "\">&gt;</a></li>");
-        expected.append("<li><a href=\"?page=99&size=10"
-                + expectedCriteriaQuery + "\">&gt;&gt;</a></li>");
+        expected.append("<li><a href=\"?page=99&size=10" + expectedCriteriaQuery
+                + "\">&gt;&gt;</a></li>");
         expected.append("</ul>");
 
         // That the and-mark(&) is remove
@@ -838,8 +845,8 @@ public class PaginationTagTest {
     @Test
     public void testSerialization() {
         try {
-            byte[] serialized = SerializationUtils
-                    .serialize(new PaginationTag());
+            byte[] serialized = SerializationUtils.serialize(
+                    new PaginationTag());
             SerializationUtils.deserialize(serialized);
         } catch (SerializationFailedException e) {
             fail();

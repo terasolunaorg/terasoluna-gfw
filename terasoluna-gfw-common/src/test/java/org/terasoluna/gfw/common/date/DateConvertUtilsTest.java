@@ -29,8 +29,8 @@ public class DateConvertUtilsTest {
     @Test
     public void testConvertToTimestamp01() throws Exception {
         DateTime date = new DateTime(2012, 9, 3, 23, 7, 11, 100);
-        Timestamp timestamp = DateConvertUtils
-                .convertToTimestamp(date.toDate());
+        Timestamp timestamp = DateConvertUtils.convertToTimestamp(date
+                .toDate());
         DateTime result = new DateTime(timestamp.getTime());
         assertThat(result.getYear(), is(2012));
         assertThat(result.getMonthOfYear(), is(9));
@@ -49,8 +49,8 @@ public class DateConvertUtilsTest {
     @Test
     public void testConvertToSqlDate01() throws Exception {
         DateTime date = new DateTime(2012, 9, 3, 23, 7, 11, 100);
-        java.sql.Date sqlDate = DateConvertUtils
-                .convertToSqlDate(date.toDate());
+        java.sql.Date sqlDate = DateConvertUtils.convertToSqlDate(date
+                .toDate());
         DateTime result = new DateTime(sqlDate.getTime());
         assertThat(result.getYear(), is(2012));
         assertThat(result.getMonthOfYear(), is(9));

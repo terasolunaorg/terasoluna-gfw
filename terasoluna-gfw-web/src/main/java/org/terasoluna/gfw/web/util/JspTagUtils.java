@@ -49,11 +49,11 @@ public final class JspTagUtils {
      * @return converted Boolean value
      * @throws JspTagException If value that is not true or false is specified.
      */
-    public static boolean toBoolean(String attributeValue,
-            boolean defaultValue, String attributeName) throws JspTagException {
+    public static boolean toBoolean(String attributeValue, boolean defaultValue,
+            String attributeName) throws JspTagException {
         if (StringUtils.hasText(attributeValue)) {
-            if (attributeValue.equalsIgnoreCase("true")
-                    || attributeValue.equalsIgnoreCase("false")) {
+            if (attributeValue.equalsIgnoreCase("true") || attributeValue
+                    .equalsIgnoreCase("false")) {
                 return Boolean.parseBoolean(attributeValue);
             } else {
                 throw new JspTagException("The value of " + attributeName

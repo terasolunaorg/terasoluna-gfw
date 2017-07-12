@@ -75,7 +75,8 @@ public class AbstractReloadableCodeListTest {
         Map<String, String> mapResult2 = reloadableCodeList.asMap();
         assertThat(mapResult2.size(), is(mapExpectedSecondFetch.size()));
         for (String key : mapResult2.keySet()) {
-            assertThat(mapResult2.get(key), is(mapExpectedSecondFetch.get(key)));
+            assertThat(mapResult2.get(key), is(mapExpectedSecondFetch.get(
+                    key)));
         }
 
     }

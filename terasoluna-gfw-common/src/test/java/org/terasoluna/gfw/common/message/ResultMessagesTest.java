@@ -225,8 +225,8 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
         ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
 
-        ResultMessages messages = ResultMessages.success().add("foo", "aa")
-                .add("bar", "bb");
+        ResultMessages messages = ResultMessages.success().add("foo", "aa").add(
+                "bar", "bb");
 
         assertThat(messages.getType(), is((ResultMessageType) SUCCESS));
         assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
@@ -247,8 +247,8 @@ public class ResultMessagesTest {
     @Test
     public void testSerialization() {
         try {
-            byte[] serialized = SerializationUtils
-                    .serialize(new ResultMessages((ResultMessageType) ERROR));
+            byte[] serialized = SerializationUtils.serialize(
+                    new ResultMessages((ResultMessageType) ERROR));
             SerializationUtils.deserialize(serialized);
         } catch (SerializationFailedException e) {
             fail();

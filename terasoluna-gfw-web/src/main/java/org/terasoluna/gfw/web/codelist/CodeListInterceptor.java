@@ -48,16 +48,14 @@ import org.terasoluna.gfw.common.codelist.i18n.I18nCodeList;
  * to {@link #setCodeListIdPattern(Pattern)} method.
  * </p>
  */
-public class CodeListInterceptor extends HandlerInterceptorAdapter
-                                                                  implements
-                                                                  ApplicationContextAware,
-                                                                  InitializingBean {
+public class CodeListInterceptor extends HandlerInterceptorAdapter implements
+                                 ApplicationContextAware, InitializingBean {
 
     /**
      * logger
      */
-    private static final Logger logger = LoggerFactory
-            .getLogger(CodeListInterceptor.class);
+    private static final Logger logger = LoggerFactory.getLogger(
+            CodeListInterceptor.class);
 
     /**
      * list of {@link CodeList}
@@ -127,11 +125,11 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter
      * @param requestLocale Locale of request
      * @return Map of codelists which match to the specified locale
      */
-    protected Map<String, String> getLocalizedCodeMap(
-            I18nCodeList i18nCodeList, Locale requestLocale) {
+    protected Map<String, String> getLocalizedCodeMap(I18nCodeList i18nCodeList,
+            Locale requestLocale) {
         Map<String, String> codeListMap = i18nCodeList.asMap(requestLocale);
-        if (codeListMap.isEmpty()
-                && (fallbackTo != null && !fallbackTo.equals(requestLocale))) {
+        if (codeListMap.isEmpty() && (fallbackTo != null && !fallbackTo.equals(
+                requestLocale))) {
             logger.debug("There is no mapping for '{}'. fall back to '{}'.",
                     requestLocale, fallbackTo);
             codeListMap = i18nCodeList.asMap(fallbackTo);
@@ -166,8 +164,8 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter
         for (CodeList codeList : definedCodeLists.values()) {
             String codeListId = codeList.getCodeListId();
             if (codeListId != null) {
-                Matcher codeListIdMatcher = codeListIdPattern
-                        .matcher(codeListId);
+                Matcher codeListIdMatcher = codeListIdPattern.matcher(
+                        codeListId);
                 if (codeListIdMatcher.matches()) {
                     targetCodeLists.put(codeListId, codeList);
                 }

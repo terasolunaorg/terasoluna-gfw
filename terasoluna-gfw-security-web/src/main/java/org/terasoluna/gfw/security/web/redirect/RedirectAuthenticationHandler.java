@@ -104,9 +104,8 @@ import org.springframework.util.StringUtils;
  * In this example, redirect is done to following path {@code /user/read?userCode=$ f:h(param.userCode)}
  */
 public class RedirectAuthenticationHandler extends
-                                          SavedRequestAwareAuthenticationSuccessHandler
-                                                                                       implements
-                                                                                       InitializingBean {
+                                           SavedRequestAwareAuthenticationSuccessHandler
+                                           implements InitializingBean {
     /**
      * RedirectStrategy to use if redirect path is specified as a request parameter. (default:"redirectTo")
      */
@@ -139,7 +138,8 @@ public class RedirectAuthenticationHandler extends
      */
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request,
-            HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+            HttpServletResponse response,
+            Authentication authentication) throws IOException, ServletException {
 
         String targetUrlParameter = getTargetUrlParameter();
 

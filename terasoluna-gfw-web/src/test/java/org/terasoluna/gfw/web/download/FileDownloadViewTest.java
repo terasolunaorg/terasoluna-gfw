@@ -158,9 +158,8 @@ public class FileDownloadViewTest {
             fileDownloadView.afterPropertiesSet();
             fail("must occur IllegalArgumentException.");
         } catch (IllegalArgumentException e) {
-            assertThat(
-                    e.getMessage(),
-                    is("chunkSize must be over 1. specified chunkSize is \"0\"."));
+            assertThat(e.getMessage(), is(
+                    "chunkSize must be over 1. specified chunkSize is \"0\"."));
         }
     }
 
@@ -172,9 +171,8 @@ public class FileDownloadViewTest {
             fileDownloadView.afterPropertiesSet();
             fail("must occur IllegalArgumentException.");
         } catch (IllegalArgumentException e) {
-            assertThat(
-                    e.getMessage(),
-                    is("chunkSize must be over 1. specified chunkSize is \"-1\"."));
+            assertThat(e.getMessage(), is(
+                    "chunkSize must be over 1. specified chunkSize is \"-1\"."));
         }
     }
 
