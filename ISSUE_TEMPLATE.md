@@ -13,6 +13,9 @@
 - [ ] 5.4.0 (master)
 - [ ] 5.3.1 (5.3.x)
 
+## Final Solution
+(To be written later by project member)
+
 ## Migrating Guide
 (To be selected later by project member)
 - [ ] Required
