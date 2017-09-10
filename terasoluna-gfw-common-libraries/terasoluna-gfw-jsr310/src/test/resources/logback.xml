@@ -1,0 +1,67 @@
+<!DOCTYPE logback>
+<configuration DEBUG="false">
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <Target>System.out</Target>
+    <layout class="ch.qos.logback.classic.PatternLayout">
+      <Pattern><![CDATA[%d{HH:mm:ss} [%thread] [%-5level] [%-48logger{48}] - %msg%n]]>
+      </Pattern>
+    </layout>
+  </appender>
+
+  <!-- Library Loggers -->
+  <logger name="org.terasoluna">
+    <level value="trace" />
+  </logger>
+
+  <!-- 3rdparty Loggers -->
+  <logger name="org.springframework.core">
+    <level value="warn" />
+  </logger>
+
+  <logger name="org.springframework.beans">
+    <level value="warn" />
+  </logger>
+
+  <logger name="org.springframework.context">
+    <level value="warn" />
+  </logger>
+
+  <logger name="org.springframework.web">
+    <level value="warn" />
+  </logger>
+
+  <logger name="org.springframework.web.servlet">
+    <level value="info" />
+  </logger>
+
+  <logger name="org.springframework.security.core.userdetails">
+    <level value="debug" />
+  </logger>
+
+  <!-- for hibernate3 -->
+  <logger name="org.hibernate.transaction">
+    <level value="debug" />
+  </logger>
+
+  <!-- for hibernate4 -->
+  <logger name="org.hibernate.engine.transaction">
+    <level value="debug" />
+  </logger>
+
+  <logger name="org.hibernate.cfg.annotations.QueryBinder">
+    <level value="debug" />
+  </logger>
+
+  <logger name="org.hibernate.tool">
+    <level value="debug" />
+  </logger>
+
+  <logger name="jdbc.sqltiming">
+    <level value="debug" />
+  </logger>
+
+  <root>
+    <level value="warn" />
+    <appender-ref ref="STDOUT" />
+  </root>
+</configuration>
