@@ -37,7 +37,7 @@ public abstract class ResultMessagesNotificationException extends
 
     /**
      * Single argument constructor
-     * @param messages Instance of {@link ResultMessages}
+     * @param messages instance of {@link ResultMessages}
      */
     protected ResultMessagesNotificationException(ResultMessages messages) {
         this(messages, null);
@@ -45,7 +45,7 @@ public abstract class ResultMessagesNotificationException extends
 
     /**
      * Two argument constructor
-     * @param messages Instance of {@link ResultMessages}
+     * @param messages instance of {@link ResultMessages}
      * @param cause {@link Throwable} instance
      */
     public ResultMessagesNotificationException(ResultMessages messages,
