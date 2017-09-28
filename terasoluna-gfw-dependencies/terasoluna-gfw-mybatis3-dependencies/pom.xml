@@ -22,10 +22,6 @@
       <groupId>org.mybatis</groupId>
       <artifactId>mybatis-spring</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis-typehandlers-jsr310</artifactId>
-    </dependency>
     <!-- == End MyBatis == -->
   </dependencies>
 </project>
