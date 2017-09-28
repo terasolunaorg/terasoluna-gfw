@@ -197,7 +197,7 @@ public class ToHalfwidthTest {
         assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ﾊﾞ"), is("バ"));
         assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ﾋﾞ"), is("ビ"));
         assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ﾌﾞ"), is("ブ"));
-        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ﾍﾞ"), is("べ"));
+        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ﾍﾞ"), is("ベ"));
         assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ﾎﾞ"), is("ボ"));
         assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ﾊﾟ"), is("パ"));
         assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ﾋﾟ"), is("ピ"));
