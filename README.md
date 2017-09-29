@@ -67,17 +67,70 @@ After adding above, add the following dependency definitions.
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-web</artifactId>
 </dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-web-jsp</artifactId>
+    <type>pom</type>
+</dependency>
+
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-jodatime</artifactId>
     <type>pom</type>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-string</artifactId>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-codepoints</artifactId>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw.codepoints</groupId>
+    <artifactId>terasoluna-gfw-codepoints-jisx0201</artifactId>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw.codepoints</groupId>
+    <artifactId>terasoluna-gfw-codepoints-jisx0208</artifactId>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw.codepoints</groupId>
+    <artifactId>terasoluna-gfw-codepoints-jisx0208kanji</artifactId>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw.codepoints</groupId>
+    <artifactId>terasoluna-gfw-codepoints-jisx0213kanji</artifactId>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-validator</artifactId>
+</dependency>
+
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
     <type>pom</type>
 </dependency>
+
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
@@ -89,6 +142,11 @@ After adding above, add the following dependency definitions.
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-security-web</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-security-core</artifactId>
+    <type>pom</type>
 </dependency>
 
 <!-- If MyBatis3 is to be used -->
@@ -124,6 +182,71 @@ Add the following dependency definitions.
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-web-jsp</artifactId>
+    <version>5.1.1.RELEASE</version>
+    <type>pom</type>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-jodatime</artifactId>
+    <version>5.1.1.RELEASE</version>
+    <type>pom</type>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-string</artifactId>
+    <version>5.1.1.RELEASE</version>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-codepoints</artifactId>
+    <version>5.1.1.RELEASE</version>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw.codepoints</groupId>
+    <artifactId>terasoluna-gfw-codepoints-jisx0201</artifactId>
+    <version>5.1.1.RELEASE</version>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw.codepoints</groupId>
+    <artifactId>terasoluna-gfw-codepoints-jisx0208</artifactId>
+    <version>5.1.1.RELEASE</version>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw.codepoints</groupId>
+    <artifactId>terasoluna-gfw-codepoints-jisx0208kanji</artifactId>
+    <version>5.1.1.RELEASE</version>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw.codepoints</groupId>
+    <artifactId>terasoluna-gfw-codepoints-jisx0213kanji</artifactId>
+    <version>5.1.1.RELEASE</version>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-validator</artifactId>
+    <version>5.1.1.RELEASE</version>
+</dependency>
+
+<!-- OPTIONAL -->
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
     <version>5.1.1.RELEASE</version>
     <type>pom</type>
@@ -142,6 +265,12 @@ Add the following dependency definitions.
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-security-web</artifactId>
     <version>5.1.1.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-security-core</artifactId>
+    <version>5.1.1.RELEASE</version>
+    <type>pom</type>
 </dependency>
 
 <!-- If MyBatis3 is to be used -->
