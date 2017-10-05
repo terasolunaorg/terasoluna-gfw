@@ -27,6 +27,7 @@
   <modules>
     <module>terasoluna-gfw-common</module>
     <module>terasoluna-gfw-jodatime</module>
+    <module>terasoluna-gfw-jsr310</module>
     <module>terasoluna-gfw-web</module>
     <module>terasoluna-gfw-web-jsp</module>
     <module>terasoluna-gfw-security-web</module>
@@ -129,6 +130,7 @@
             <jacocoReports>
               <jacocoReport>terasoluna-gfw-common/target/site/jacoco/jacoco.xml</jacocoReport>
               <jacocoReport>terasoluna-gfw-jodatime/target/site/jacoco/jacoco.xml</jacocoReport>
+              <jacocoReport>terasoluna-gfw-jsr310/target/site/jacoco/jacoco.xml</jacocoReport>
               <jacocoReport>terasoluna-gfw-web/target/site/jacoco/jacoco.xml</jacocoReport>
               <jacocoReport>terasoluna-gfw-web-jsp/target/site/jacoco/jacoco.xml</jacocoReport>
               <jacocoReport>terasoluna-gfw-security-web/target/site/jacoco/jacoco.xml</jacocoReport>
@@ -139,6 +141,7 @@
             <sourceDirectories>
               <sourceDirectory>terasoluna-gfw-common/src/main/java</sourceDirectory>
               <sourceDirectory>terasoluna-gfw-jodatime/src/main/java</sourceDirectory>
+              <sourceDirectory>terasoluna-gfw-jsr310/src/main/java</sourceDirectory>
               <sourceDirectory>terasoluna-gfw-web/src/main/java</sourceDirectory>
               <sourceDirectory>terasoluna-gfw-web-jsp/src/main/java</sourceDirectory>
               <sourceDirectory>terasoluna-gfw-security-web/src/main/java</sourceDirectory>
