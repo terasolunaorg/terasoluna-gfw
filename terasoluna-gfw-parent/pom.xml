@@ -97,7 +97,7 @@
           <configuration>
             <configFile>${project.basedir}/../eclipse/formatter.xml
             </configFile>
-            <lineEnding>CRLF</lineEnding>
+            <lineEnding>LF</lineEnding>
           </configuration>
         </plugin>
         <plugin>
