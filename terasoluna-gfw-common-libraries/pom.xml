@@ -95,7 +95,7 @@
           <configuration>
             <configFile>${project.root.basedir}/../eclipse/formatter.xml
             </configFile>
-            <lineEnding>CRLF</lineEnding>
+            <lineEnding>LF</lineEnding>
             <directories>
               <directory>${project.basedir}</directory>
             </directories>
