@@ -59,6 +59,7 @@
         <configuration>
           <excludes>
             <exclude>org/terasoluna/gfw/common/fullhalf/DefaultFullHalf.java</exclude>
+            <exclude>org/terasoluna/gfw/common/fullhalf/DefaultFullHalfCodePointsMap.java</exclude>
           </excludes>
         </configuration>
       </plugin>
