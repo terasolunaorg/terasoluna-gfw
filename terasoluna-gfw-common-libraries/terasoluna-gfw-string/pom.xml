@@ -55,7 +55,8 @@
         <artifactId>formatter-maven-plugin</artifactId>
         <configuration>
           <excludes>
-            <exclude>org/terasoluna/gfw/common/fullhalf/DefaultFullHalf.java</exclude>
+            <exclude>src/main/java/org/terasoluna/gfw/common/fullhalf/DefaultFullHalf.java</exclude>
+            <exclude>src/test/java/org/terasoluna/gfw/common/fullhalf/DefaultFullHalfCodePointsMap.java</exclude>
           </excludes>
         </configuration>
       </plugin>
