@@ -154,6 +154,7 @@
                 </includes>
                 <excludes>
                   <exclude>terasoluna-gfw-common-libraries/terasoluna-gfw-string/src/main/java/org/terasoluna/gfw/common/fullhalf/DefaultFullHalf.java</exclude>
+                  <exclude>terasoluna-gfw-common-libraries/terasoluna-gfw-string/src/test/java/org/terasoluna/gfw/common/fullhalf/DefaultFullHalfCodePointsMap.java</exclude>
                 </excludes>
               </configuration>
             </plugin>
