@@ -717,7 +717,7 @@ package org.terasoluna.gfw.common.fullhalf;
  * <td>ﾌﾞ</td>
  * </tr>
  * <tr>
- * <td>べ</td>
+ * <td>ベ</td>
  * <td>ﾍﾞ</td>
  * </tr>
  * <tr>
@@ -961,7 +961,7 @@ public final class DefaultFullHalf {
                 .pair("バ", "ﾊﾞ")
                 .pair("ビ", "ﾋﾞ")
                 .pair("ブ", "ﾌﾞ")
-                .pair("べ", "ﾍﾞ")
+                .pair("ベ", "ﾍﾞ")
                 .pair("ボ", "ﾎﾞ")
                 .pair("パ", "ﾊﾟ")
                 .pair("ピ", "ﾋﾟ")
