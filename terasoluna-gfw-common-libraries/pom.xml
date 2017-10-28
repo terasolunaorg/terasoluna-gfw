@@ -152,10 +152,42 @@
       </plugins>
     </pluginManagement>
   </build>
+  <profiles>
+    <profile>
+      <id>jdk9</id>
+      <activation>
+        <jdk>9</jdk>
+      </activation>
+      <properties>
+        <!-- coverall 4.3.0 or previous version does not work on Java 9, see https://github.com/trautonen/coveralls-maven-plugin/issues/112 -->
+        <coveralls.skip>true</coveralls.skip>
+      </properties>
+      <build>
+        <pluginManagement>
+          <plugins>
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <configuration>
+                <systemProperties>
+                  <!-- The workaround for https://github.com/eclipse/org.aspectj/commit/eae468d794cf215e05ec80d7be7d09a88e18ebe9#diff-e335230e6efdc87d4c393099a85c511d -->
+                  <!-- This workaround needs until upgrade to aspectj 1.8.11+ (or java.version format changed on Travis CI). -->
+                  <property>
+                    <name>java.version</name>
+                    <value>9.0</value>
+                  </property>
+                </systemProperties>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+  </profiles>
   <properties>
     <!-- == Maven Plugin Versions == -->
-    <maven-surefire-plugin.version>2.17</maven-surefire-plugin.version>
-    <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
+    <maven-surefire-plugin.version>2.20.1</maven-surefire-plugin.version>
+    <jacoco-maven-plugin.version>0.7.9</jacoco-maven-plugin.version>
     <maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
     <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
     <formatter-maven-plugin.version>2.0.1</formatter-maven-plugin.version>
