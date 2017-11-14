@@ -11,7 +11,7 @@
 ## Fix Version/s
 (To be written later by project member)
 - [ ] 5.4.0 (master)
-- [ ] 5.3.1 (5.3.x)
+- [ ] 5.3.2 (5.3.x)
 
 ## Final Solution
 (To be written later by project member)
