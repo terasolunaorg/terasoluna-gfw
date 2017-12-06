@@ -141,7 +141,7 @@ public @interface Compare {
 
         /**
          * Left side object must be not equal Right side object.
-         * @since 5.3.1
+         * @since 5.3.2
          */
         NOT_EQUAL(CompareStrategy.NE),
 
@@ -204,7 +204,7 @@ public @interface Compare {
 
             /**
              * Expected not equals ZERO.
-             * @since 5.3.1
+             * @since 5.3.2
              */
             NE {
                 /**
