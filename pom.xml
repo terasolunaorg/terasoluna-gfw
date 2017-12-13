@@ -70,7 +70,7 @@
     <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
     <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
     <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
-    <nexus-staging-maven-plugin.version>1.6.7</nexus-staging-maven-plugin.version>
+    <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
     <!-- == Project Properties == -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.deploy.skip>true</maven.deploy.skip>
