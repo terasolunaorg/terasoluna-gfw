@@ -416,8 +416,10 @@
     <!-- == Spring IO Platform == -->
     <io.spring.platform.version>Brussels-SR5</io.spring.platform.version>
     <!-- == Spring Framework== -->
+    <!-- == Upgrade Spring Framework from the Spring IO Platform as a security vulnerability update.(CVE-2017-8030) == -->
     <springframework.version>4.3.14.RELEASE</springframework.version>
     <!-- == Spring Security == -->
+    <!-- == Upgrade Spring Security from the Spring IO Platform as a security vulnerability update.(CVE-2017-8030) == -->
     <springframework.security.version>4.2.4.RELEASE</springframework.security.version>
     <!-- == MyBatis3 == -->
     <org.mybatis.version>3.4.5</org.mybatis.version>
