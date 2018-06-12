@@ -775,7 +775,7 @@ public class ExceptionLoggerTest {
         verify(mockAppender).doAppend(argThat(
                 new ArgumentMatcher<LoggingEvent>() {
                     @Override
-                    public boolean matches(Object argument) {
+                    public boolean matches(LoggingEvent argument) {
                         return ((LoggingEvent) argument).getFormattedMessage()
                                 .equals(expectedLogMessage);
                     }
@@ -783,7 +783,7 @@ public class ExceptionLoggerTest {
         verify(mockAppender).doAppend(argThat(
                 new ArgumentMatcher<LoggingEvent>() {
                     @Override
-                    public boolean matches(Object argument) {
+                    public boolean matches(LoggingEvent argument) {
                         return expectedLogLevel.equals(((LoggingEvent) argument)
                                 .getLevel());
                     }
@@ -791,7 +791,7 @@ public class ExceptionLoggerTest {
         verify(mockAppender).doAppend(argThat(
                 new ArgumentMatcher<LoggingEvent>() {
                     @Override
-                    public boolean matches(Object argument) {
+                    public boolean matches(LoggingEvent argument) {
                         LoggingEvent loggingEvent = (LoggingEvent) argument;
                         if (expectedException == null) {
                             return loggingEvent.getThrowableProxy() == null;

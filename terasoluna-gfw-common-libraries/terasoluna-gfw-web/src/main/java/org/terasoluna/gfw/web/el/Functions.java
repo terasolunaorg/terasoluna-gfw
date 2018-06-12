@@ -175,14 +175,7 @@ public final class Functions {
         if (value == null || value.isEmpty()) {
             return "";
         }
-        try {
-            return UriUtils.encodeQueryParam(value, "UTF-8");
-        } catch (UnsupportedEncodingException ignored) {
-            // This exception doesn't absolutely occur.
-            logger.warn("the given encoding parameter is not supported",
-                    ignored);
-            return value;
-        }
+        return UriUtils.encodeQueryParam(value, "UTF-8");
     }
 
     /**

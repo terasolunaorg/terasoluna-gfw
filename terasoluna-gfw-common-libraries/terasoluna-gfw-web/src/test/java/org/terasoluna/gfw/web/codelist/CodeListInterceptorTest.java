@@ -570,7 +570,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         verify(mockAppender).doAppend(argThat(
                 new ArgumentMatcher<LoggingEvent>() {
                     @Override
-                    public boolean matches(Object argument) {
+                    public boolean matches(LoggingEvent argument) {
                         return ((LoggingEvent) argument).getFormattedMessage()
                                 .equals(expectedLogMessage);
                     }
@@ -578,7 +578,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         verify(mockAppender).doAppend(argThat(
                 new ArgumentMatcher<LoggingEvent>() {
                     @Override
-                    public boolean matches(Object argument) {
+                    public boolean matches(LoggingEvent argument) {
                         return expectedLogLevel.equals(((LoggingEvent) argument)
                                 .getLevel());
                     }
