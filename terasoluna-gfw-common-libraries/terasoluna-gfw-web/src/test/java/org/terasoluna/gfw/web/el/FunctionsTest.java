@@ -317,7 +317,7 @@ public class FunctionsTest {
 
     @Test
     public void testU_EncodingDelimiter() {
-        assertThat(Functions.u("+"), is("%2B"));
+        assertThat(Functions.u("+"), is("+"));
         assertThat(Functions.u("="), is("%3D"));
         assertThat(Functions.u("&"), is("%26"));
     }
@@ -540,7 +540,7 @@ public class FunctionsTest {
         expectedQuery.append("&").append("key%5D3=value%5D3"); // ]
         expectedQuery.append("&").append("key%264=value%264"); // &
         expectedQuery.append("&").append("key%3D5=value%3D5"); // =
-        expectedQuery.append("&").append("key%2B6=value%2B6"); // +
+        expectedQuery.append("&").append("key+6=value+6"); // +
 
         assertThat(actualQuery, is(expectedQuery.toString()));
     }

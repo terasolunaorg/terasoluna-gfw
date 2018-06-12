@@ -775,24 +775,23 @@ public class ExceptionLoggerTest {
         verify(mockAppender).doAppend(argThat(
                 new ArgumentMatcher<LoggingEvent>() {
                     @Override
-                    public boolean matches(Object argument) {
-                        return ((LoggingEvent) argument).getFormattedMessage()
-                                .equals(expectedLogMessage);
+                    public boolean matches(LoggingEvent argument) {
+                        return argument.getFormattedMessage().equals(
+                                expectedLogMessage);
                     }
                 }));
         verify(mockAppender).doAppend(argThat(
                 new ArgumentMatcher<LoggingEvent>() {
                     @Override
-                    public boolean matches(Object argument) {
-                        return expectedLogLevel.equals(((LoggingEvent) argument)
-                                .getLevel());
+                    public boolean matches(LoggingEvent argument) {
+                        return expectedLogLevel.equals(argument.getLevel());
                     }
                 }));
         verify(mockAppender).doAppend(argThat(
                 new ArgumentMatcher<LoggingEvent>() {
                     @Override
-                    public boolean matches(Object argument) {
-                        LoggingEvent loggingEvent = (LoggingEvent) argument;
+                    public boolean matches(LoggingEvent argument) {
+                        LoggingEvent loggingEvent = argument;
                         if (expectedException == null) {
                             return loggingEvent.getThrowableProxy() == null;
                         }

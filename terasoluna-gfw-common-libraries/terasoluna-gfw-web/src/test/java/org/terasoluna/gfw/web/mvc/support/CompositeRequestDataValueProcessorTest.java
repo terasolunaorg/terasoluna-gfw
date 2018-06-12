@@ -18,8 +18,8 @@ package org.terasoluna.gfw.web.mvc.support;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Matchers.anyString;
+import static org.mockito.ArgumentMatchers.anyObject;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -30,6 +30,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.springframework.mock.web.MockHttpServletRequest;
 
 public class CompositeRequestDataValueProcessorTest {
@@ -51,14 +52,12 @@ public class CompositeRequestDataValueProcessorTest {
     @Test
     public void testProcessActionSameActionAndResult01() {
         // Set mock behavior
-        // for Spring3
         when(requestDataValueProcessor.processAction(
                 (HttpServletRequest) (anyObject()), anyString())).thenReturn(
                         "action");
-        // for Spring4
         when(requestDataValueProcessor.processAction(
-                (HttpServletRequest) (anyObject()), anyString(), anyString()))
-                        .thenReturn("action");
+                (HttpServletRequest) (anyObject()), anyString(), Mockito
+                        .isNull())).thenReturn("action");
         String result = compositeRequestDataValueProcessor.processAction(
                 request, "action");
         assertThat(result, is("action"));
@@ -67,14 +66,12 @@ public class CompositeRequestDataValueProcessorTest {
     @Test
     public void testProcessActionDifferectActionAndResult01() {
         // Set mock behavior
-        // for Spring3
         when(requestDataValueProcessor.processAction(
                 (HttpServletRequest) (anyObject()), anyString())).thenReturn(
                         "other_action");
-        // for Spring4
         when(requestDataValueProcessor.processAction(
-                (HttpServletRequest) (anyObject()), anyString(), anyString()))
-                        .thenReturn("other_action");
+                (HttpServletRequest) (anyObject()), anyString(), Mockito
+                        .isNull())).thenReturn("other_action");
         String result = compositeRequestDataValueProcessor.processAction(
                 request, "action");
         assertThat(result, is("other_action"));
