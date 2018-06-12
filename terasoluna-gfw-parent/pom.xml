@@ -392,7 +392,7 @@
     <!-- == TERASOLUNA == -->
     <terasoluna.gfw.version>5.5.0-SNAPSHOT</terasoluna.gfw.version>
     <!-- == Spring IO Platform == -->
-    <io.spring.platform.version>Cairo-SR1</io.spring.platform.version>
+    <io.spring.platform.version>Brussels-SR5</io.spring.platform.version>
     <!-- == MyBatis3 == -->
     <org.mybatis.version>3.4.5</org.mybatis.version>
     <org.mybatis.spring.version>1.3.1</org.mybatis.spring.version>
@@ -400,14 +400,14 @@
     <dozer.version>5.5.1</dozer.version>
     <!-- == Joda-Time == -->
     <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
-    <jadira-usertype-core.version>6.0.1.GA</jadira-usertype-core.version>
+    <jadira-usertype-core.version>5.0.0.GA</jadira-usertype-core.version>
     <!-- == Logging == -->
     <org.lazyluke.version>0.2.7</org.lazyluke.version>
     <!-- == Project Properties == -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <archetype.test.skip>true</archetype.test.skip>
     <encoding>UTF-8</encoding>
-    <java-version>1.8</java-version>
+    <java-version>1.7</java-version>
     <!-- == Cargo Plugin == -->
     <cargo.jvmargs>-Xms512m -Xmx1024m</cargo.jvmargs>
     <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
