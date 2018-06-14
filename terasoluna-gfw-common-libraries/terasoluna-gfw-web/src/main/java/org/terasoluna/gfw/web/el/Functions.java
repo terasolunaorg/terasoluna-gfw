@@ -15,12 +15,9 @@
  */
 package org.terasoluna.gfw.web.el;
 
-import java.io.UnsupportedEncodingException;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.core.convert.TypeDescriptor;
@@ -37,7 +34,8 @@ import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
  * <ul>
  * <li>Escaping HTML tag using {@code f:h}</li>
  * <li>Encoding URL using {@code f:u}</li>
- * <li>Replacing new line characters with {@code <br />} using {@code f:br}</li>
+ * <li>Replacing new line characters with {@code <br />
+ * } using {@code f:br}</li>
  * <li>Output only the specified characters {@code f:cut}</li>
  * <li>Output the link text in {@code <a>} tag using {@code f:link}</li>
  * <li>Build query string from the parameters using {@code f:query}</li>
@@ -48,12 +46,6 @@ import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
  * Refer JavaDoc of each method for information regarding how to use.<br>
  */
 public final class Functions {
-
-    /**
-     * logger
-     */
-    private static final Logger logger = LoggerFactory.getLogger(
-            Functions.class);
 
     /**
      * Pattern of URL for replace to the link tag.
