@@ -18,8 +18,8 @@ package org.terasoluna.gfw.web.message;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Matchers.eq;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -72,10 +72,10 @@ public class MessagesPanelTagTest {
     protected MockPageContext createPageContext() {
         MockServletContext sc = new MockServletContext();
         wac = mock(WebApplicationContext.class);
-        when(wac.getMessage(eq("hello.world"), eq(new Object[] {}),
-                (Locale) anyObject())).thenReturn("hello world!");
-        when(wac.getMessage(eq("foo.bar"), eq(new Object[] { 1, 2 }),
-                (Locale) anyObject())).thenReturn("foo1 and bar2");
+        when(wac.getMessage(eq("hello.world"), eq(new Object[] {}), any(
+                Locale.class))).thenReturn("hello world!");
+        when(wac.getMessage(eq("foo.bar"), eq(new Object[] { 1, 2 }), any(
+                Locale.class))).thenReturn("foo1 and bar2");
 
         when(wac.getServletContext()).thenReturn(sc);
         request = new MockHttpServletRequest(sc);
@@ -419,7 +419,8 @@ public class MessagesPanelTagTest {
     }
 
     /**
-     * Set default messages attribute name & Use ResultMessages & change PanelElement,OuterElement and InnerElement is empty.<br>
+     * Set default messages attribute name & Use ResultMessages & change PanelElement,OuterElement and InnerElement is
+     * empty.<br>
      * check JspTagException.
      */
     @Test(expected = JspTagException.class)

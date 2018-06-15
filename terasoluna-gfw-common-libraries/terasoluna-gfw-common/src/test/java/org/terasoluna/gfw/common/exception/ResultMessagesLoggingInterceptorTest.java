@@ -19,8 +19,7 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyObject;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
@@ -126,7 +125,7 @@ public class ResultMessagesLoggingInterceptorTest extends
             // do assert.
             assertThat(e, is(occurException));
             verify(mockExceptionLogger, times(1)).warn(occurException);
-            verify(mockExceptionLogger, times(1)).warn((Exception) anyObject());
+            verify(mockExceptionLogger, times(1)).warn(any(Exception.class));
         }
 
     }
@@ -157,7 +156,7 @@ public class ResultMessagesLoggingInterceptorTest extends
             // do assert.
             assertThat(e, is(occurException));
             verify(mockExceptionLogger, times(1)).warn(occurException);
-            verify(mockExceptionLogger, times(1)).warn((Exception) anyObject());
+            verify(mockExceptionLogger, times(1)).warn(any(Exception.class));
         }
 
     }
@@ -177,7 +176,7 @@ public class ResultMessagesLoggingInterceptorTest extends
             // do assert.
             assertThat(e, is(occurException));
             verify(mockExceptionLogger, times(1)).warn(occurException);
-            verify(mockExceptionLogger, times(1)).warn((Exception) anyObject());
+            verify(mockExceptionLogger, times(1)).warn(any(Exception.class));
         }
 
     }
@@ -201,7 +200,7 @@ public class ResultMessagesLoggingInterceptorTest extends
             // do assert.
             assertThat(e, is(occurException));
             verify(mockExceptionLogger, times(1)).warn(occurException);
-            verify(mockExceptionLogger, times(1)).warn((Exception) anyObject());
+            verify(mockExceptionLogger, times(1)).warn(any(Exception.class));
         }
 
     }
@@ -241,7 +240,7 @@ public class ResultMessagesLoggingInterceptorTest extends
             // do assert.
             assertThat(e, is(occurException));
             verify(mockExceptionLogger, times(1)).warn(occurException);
-            verify(mockExceptionLogger, times(1)).warn((Exception) anyObject());
+            verify(mockExceptionLogger, times(1)).warn(any(Exception.class));
         }
 
     }
@@ -266,7 +265,7 @@ public class ResultMessagesLoggingInterceptorTest extends
             // do assert.
             assertThat(e, is(occurException));
             verify(mockExceptionLogger, times(1)).warn(occurException);
-            verify(mockExceptionLogger, times(1)).warn((Exception) anyObject());
+            verify(mockExceptionLogger, times(1)).warn(any(Exception.class));
         }
 
     }
@@ -295,7 +294,7 @@ public class ResultMessagesLoggingInterceptorTest extends
         } catch (NullPointerException e) {
             // do assert.
             assertThat(e, is(occurException));
-            verify(mockExceptionLogger, never()).warn((Exception) anyObject());
+            verify(mockExceptionLogger, never()).warn(any(Exception.class));
         }
 
     }
@@ -339,7 +338,7 @@ public class ResultMessagesLoggingInterceptorTest extends
 
         // do assert.
         verify(mockExceptionLogger, times(2)).warn(occurException);
-        verify(mockExceptionLogger, times(2)).warn((Exception) anyObject());
+        verify(mockExceptionLogger, times(2)).warn(any(Exception.class));
 
     }
 
@@ -471,7 +470,7 @@ public class ResultMessagesLoggingInterceptorTest extends
 
         verify(mockExceptionLogger, times(1)).warn(occurExceptionForThread1);
         verify(mockExceptionLogger, times(1)).warn(occurExceptionForThread2);
-        verify(mockExceptionLogger, times(2)).warn((Exception) anyObject());
+        verify(mockExceptionLogger, times(2)).warn(any(Exception.class));
     }
 
     /**
@@ -540,7 +539,7 @@ public class ResultMessagesLoggingInterceptorTest extends
                 occurExceptionForThread2));
 
         verify(mockExceptionLogger, times(1)).warn(occurExceptionForThread2);
-        verify(mockExceptionLogger, times(1)).warn((Exception) anyObject());
+        verify(mockExceptionLogger, times(1)).warn(any(Exception.class));
     }
 
     /**
