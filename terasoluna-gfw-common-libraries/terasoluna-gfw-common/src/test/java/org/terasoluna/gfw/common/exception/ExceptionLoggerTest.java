@@ -18,7 +18,7 @@ package org.terasoluna.gfw.common.exception;
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
-import static org.mockito.Matchers.anyObject;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -308,8 +308,8 @@ public class ExceptionLoggerTest {
         String expectedLogMessage = "[code01] system error.";
         verifyLogging(expectedLogMessage, Level.WARN, ex,
                 mockApplicationLoggerAppender);
-        verify(mockMonitoringLoggerAppender, times(0)).doAppend(
-                (ILoggingEvent) anyObject());
+        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(
+                ILoggingEvent.class));
     }
 
     @Test
@@ -331,8 +331,8 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[code01] system error.";
-        verify(mockApplicationLoggerAppender, times(0)).doAppend(
-                (ILoggingEvent) anyObject());
+        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(
+                ILoggingEvent.class));
         verifyLogging(expectedLogMessage, Level.WARN,
                 mockMonitoringLoggerAppender);
 
@@ -356,10 +356,10 @@ public class ExceptionLoggerTest {
         testTarget.warn(ex);
 
         // do assert.
-        verify(mockApplicationLoggerAppender, times(0)).doAppend(
-                (ILoggingEvent) anyObject());
-        verify(mockMonitoringLoggerAppender, times(0)).doAppend(
-                (ILoggingEvent) anyObject());
+        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(
+                ILoggingEvent.class));
+        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(
+                ILoggingEvent.class));
 
     }
 
@@ -410,8 +410,8 @@ public class ExceptionLoggerTest {
         String expectedLogMessage = "[code01] system error.";
         verifyLogging(expectedLogMessage, Level.ERROR, ex,
                 mockApplicationLoggerAppender);
-        verify(mockMonitoringLoggerAppender, times(0)).doAppend(
-                (ILoggingEvent) anyObject());
+        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(
+                ILoggingEvent.class));
     }
 
     @Test
@@ -433,8 +433,8 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[code01] system error.";
-        verify(mockApplicationLoggerAppender, times(0)).doAppend(
-                (ILoggingEvent) anyObject());
+        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(
+                ILoggingEvent.class));
         verifyLogging(expectedLogMessage, Level.ERROR,
                 mockMonitoringLoggerAppender);
 
@@ -458,10 +458,10 @@ public class ExceptionLoggerTest {
         testTarget.error(ex);
 
         // do assert.
-        verify(mockApplicationLoggerAppender, times(0)).doAppend(
-                (ILoggingEvent) anyObject());
-        verify(mockMonitoringLoggerAppender, times(0)).doAppend(
-                (ILoggingEvent) anyObject());
+        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(
+                ILoggingEvent.class));
+        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(
+                ILoggingEvent.class));
 
     }
 
@@ -565,8 +565,8 @@ public class ExceptionLoggerTest {
         String expectedLogMessage = "[code01] system error.";
         verifyLogging(expectedLogMessage, Level.INFO, ex,
                 mockApplicationLoggerAppender);
-        verify(mockMonitoringLoggerAppender, times(0)).doAppend(
-                (ILoggingEvent) anyObject());
+        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(
+                ILoggingEvent.class));
     }
 
     @Test
@@ -588,8 +588,8 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[code01] system error.";
-        verify(mockApplicationLoggerAppender, times(0)).doAppend(
-                (ILoggingEvent) anyObject());
+        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(
+                ILoggingEvent.class));
         verifyLogging(expectedLogMessage, Level.INFO,
                 mockMonitoringLoggerAppender);
 
@@ -613,10 +613,10 @@ public class ExceptionLoggerTest {
         testTarget.info(ex);
 
         // do assert.
-        verify(mockApplicationLoggerAppender, times(0)).doAppend(
-                (ILoggingEvent) anyObject());
-        verify(mockMonitoringLoggerAppender, times(0)).doAppend(
-                (ILoggingEvent) anyObject());
+        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(
+                ILoggingEvent.class));
+        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(
+                ILoggingEvent.class));
 
     }
 
@@ -775,24 +775,23 @@ public class ExceptionLoggerTest {
         verify(mockAppender).doAppend(argThat(
                 new ArgumentMatcher<LoggingEvent>() {
                     @Override
-                    public boolean matches(Object argument) {
-                        return ((LoggingEvent) argument).getFormattedMessage()
-                                .equals(expectedLogMessage);
+                    public boolean matches(LoggingEvent argument) {
+                        return argument.getFormattedMessage().equals(
+                                expectedLogMessage);
                     }
                 }));
         verify(mockAppender).doAppend(argThat(
                 new ArgumentMatcher<LoggingEvent>() {
                     @Override
-                    public boolean matches(Object argument) {
-                        return expectedLogLevel.equals(((LoggingEvent) argument)
-                                .getLevel());
+                    public boolean matches(LoggingEvent argument) {
+                        return expectedLogLevel.equals(argument.getLevel());
                     }
                 }));
         verify(mockAppender).doAppend(argThat(
                 new ArgumentMatcher<LoggingEvent>() {
                     @Override
-                    public boolean matches(Object argument) {
-                        LoggingEvent loggingEvent = (LoggingEvent) argument;
+                    public boolean matches(LoggingEvent argument) {
+                        LoggingEvent loggingEvent = argument;
                         if (expectedException == null) {
                             return loggingEvent.getThrowableProxy() == null;
                         }

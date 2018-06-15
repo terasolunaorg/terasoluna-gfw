@@ -62,7 +62,7 @@ public class PaginationInfoTest {
         // 5(6 page) : 26-30
         // 6(7 page) : 31-35
         // ...
-        PageRequest pageable = new PageRequest(5, 5);
+        PageRequest pageable = PageRequest.of(5, 5);
 
         // set up the Page object for test.
         //
@@ -229,7 +229,7 @@ public class PaginationInfoTest {
     @Test
     public void testGetLastUrl() {
         List<String> mockedList = new ArrayList<String>();
-        PageRequest pageable = new PageRequest(2, 2);
+        PageRequest pageable = PageRequest.of(2, 2);
         page = new PageImpl<String>(mockedList, pageable, 4L);
 
         PaginationInfo info = new PaginationInfo(page, pathTmpl, queryTmpl, 0);
@@ -324,7 +324,7 @@ public class PaginationInfoTest {
     public void testIsLastPage_Last() {
         // parameter
         List<String> mockedList = new ArrayList<String>();
-        PageRequest pageable = new PageRequest(2, 2);
+        PageRequest pageable = PageRequest.of(2, 2);
         page = new PageImpl<String>(mockedList, pageable, 6L);
         PaginationInfo info = new PaginationInfo(page, pathTmpl, queryTmpl, 0);
 
