@@ -34,8 +34,7 @@ import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
  * <ul>
  * <li>Escaping HTML tag using {@code f:h}</li>
  * <li>Encoding URL using {@code f:u}</li>
- * <li>Replacing new line characters with {@code <br />
- * } using {@code f:br}</li>
+ * <li>Replacing new line characters with {@code <br />} using {@code f:br}</li>
  * <li>Output only the specified characters {@code f:cut}</li>
  * <li>Output the link text in {@code <a>} tag using {@code f:link}</li>
  * <li>Build query string from the parameters using {@code f:query}</li>
