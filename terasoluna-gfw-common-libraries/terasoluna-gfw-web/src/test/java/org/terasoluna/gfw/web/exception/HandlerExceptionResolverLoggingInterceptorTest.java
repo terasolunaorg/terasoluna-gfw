@@ -542,17 +542,16 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         verify(mockAppender).doAppend(argThat(
                 new ArgumentMatcher<LoggingEvent>() {
                     @Override
-                    public boolean matches(Object argument) {
-                        return ((LoggingEvent) argument).getFormattedMessage()
-                                .equals(expectedLogMessage);
+                    public boolean matches(LoggingEvent argument) {
+                        return argument.getFormattedMessage().equals(
+                                expectedLogMessage);
                     }
                 }));
         verify(mockAppender).doAppend(argThat(
                 new ArgumentMatcher<LoggingEvent>() {
                     @Override
-                    public boolean matches(Object argument) {
-                        return expectedLogLevel.equals(((LoggingEvent) argument)
-                                .getLevel());
+                    public boolean matches(LoggingEvent argument) {
+                        return expectedLogLevel.equals(argument.getLevel());
                     }
                 }));
 

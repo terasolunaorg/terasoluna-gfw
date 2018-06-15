@@ -15,16 +15,18 @@
  */
 package org.terasoluna.gfw.web.token.transaction;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
-import static org.hamcrest.CoreMatchers.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.mockito.Matchers.*;
 
 import org.junit.After;
 import org.junit.Before;
@@ -220,7 +222,7 @@ public class TransactionTokenInterceptorTest {
         TransactionTokenInfo tokenInfo = new TransactionTokenInfo("tokenName1", TransactionTokenType.IN);
 
         // Set mock behavior
-        when(tokenStore.getAndClear((TransactionToken) anyObject())).thenReturn(
+        when(tokenStore.getAndClear(any(TransactionToken.class))).thenReturn(
                 "differentValue");
 
         boolean result = interceptor.validateToken(inputToken, tokenStore,
