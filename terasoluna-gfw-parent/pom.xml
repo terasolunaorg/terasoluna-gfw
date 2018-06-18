@@ -212,6 +212,11 @@
         <artifactId>dozer-core</artifactId>
         <version>${dozer.version}</version>
       </dependency>
+      <dependency>
+        <groupId>com.github.dozermapper</groupId>
+        <artifactId>dozer-spring4</artifactId>
+        <version>${dozer.version}</version>
+      </dependency>
       <!-- == End Dozer== -->
 
       <!-- == Begin Joda-Time == -->
