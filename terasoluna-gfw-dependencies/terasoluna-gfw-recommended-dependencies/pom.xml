@@ -45,12 +45,12 @@
 
     <!-- == Begin Dozer== -->
     <dependency>
-      <groupId>net.sf.dozer</groupId>
-      <artifactId>dozer</artifactId>
+      <groupId>com.github.dozermapper</groupId>
+      <artifactId>dozer-core</artifactId>
     </dependency>
     <dependency>
-      <groupId>net.sf.dozer</groupId>
-      <artifactId>dozer-spring</artifactId>
+      <groupId>com.github.dozermapper</groupId>
+      <artifactId>dozer-spring4</artifactId>
     </dependency>
     <!-- == End Dozer== -->
 
