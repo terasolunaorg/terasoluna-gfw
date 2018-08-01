@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.terasoluna.gfw</groupId>
   <artifactId>terasoluna-gfw-parent</artifactId>
-  <version>5.5.0.RC2-SNAPSHOT</version>
+  <version>5.5.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>TERASOLUNA Server Framework for Java (5.x) Parent</name>
   <description>The parent of TERASOLUNA Server Framework for Java (5.x)</description>
@@ -390,7 +390,7 @@
     <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
     <!-- == Dependency Versions == -->
     <!-- == TERASOLUNA == -->
-    <terasoluna.gfw.version>5.5.0.RC2-SNAPSHOT</terasoluna.gfw.version>
+    <terasoluna.gfw.version>5.5.0-SNAPSHOT</terasoluna.gfw.version>
     <!-- == Spring IO Platform == -->
     <io.spring.platform.version>Cairo-SR1</io.spring.platform.version>
     <!-- == MyBatis3 == -->
