@@ -40,7 +40,6 @@ import org.springframework.mock.web.MockServletContext;
 import org.springframework.util.SerializationUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.form.TagWriter;
-import org.terasoluna.gfw.web.pagination.PaginationTag;
 
 @SuppressWarnings("unchecked")
 public class PaginationTagTest {
@@ -411,8 +410,8 @@ public class PaginationTagTest {
         when(page.getSize()).thenReturn(10);
         when(page.getTotalPages()).thenReturn(100);
         when(page.getTotalElements()).thenReturn(1000L);
-        when(page.getSort()).thenReturn(
-                new Sort(new Sort.Order(Direction.DESC, "id")));
+        when(page.getSort()).thenReturn(Sort.by(
+                new Sort.Order(Direction.DESC, "id")));
 
         tag.setPage(page);
 
