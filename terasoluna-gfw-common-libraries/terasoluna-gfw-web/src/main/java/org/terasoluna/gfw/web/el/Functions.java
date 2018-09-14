@@ -166,7 +166,8 @@ public final class Functions {
         if (value == null || value.isEmpty()) {
             return "";
         }
-        return UriUtils.encodeQueryParam(value, "UTF-8");
+        // replace "+" -> "%2B" due to Spring Framework 5.x specification change.
+        return UriUtils.encodeQueryParam(value, "UTF-8").replace("+", "%2B");
     }
 
     /**
@@ -236,7 +237,8 @@ public final class Functions {
         }
         String query = builder.build().encode().toString();
         // remove the beginning symbol character('?') of the query string.
-        return query.substring(1);
+        // replace "+" -> "%2B" due to Spring Framework 5.x specification change.
+        return query.substring(1).replace("+", "%2B");
     }
 
     /**
@@ -272,7 +274,8 @@ public final class Functions {
         }
         String query = builder.build().encode().toString();
         // remove the beginning symbol character('?') of the query string.
-        return query.substring(1);
+        // replace "+" -> "%2B" due to Spring Framework 5.x specification change.
+        return query.substring(1).replace("+", "%2B");
     }
 
     /**
