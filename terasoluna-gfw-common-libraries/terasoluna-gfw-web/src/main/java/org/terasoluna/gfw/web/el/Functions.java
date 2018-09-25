@@ -316,18 +316,6 @@ public final class Functions {
     }
 
     /**
-     * Percent-encode the "+" character in query string.
-     * This method is created for backward compatibility with spring 4.x or earlier version.
-     *
-     * @param query query string
-     * @return encoded query string
-     */
-    private static String extraEncodeQuery(String query) {
-        // replace "+" -> "%2B" due to Spring Framework 5.x specification change.
-        return PLUS_PATTERN.matcher(query).replaceAll("%2B");
-    }
-
-    /**
      * escape javascript in the given string supposed to be surrounded by single-quote.<br>
      * <p>
      * example
@@ -404,5 +392,17 @@ public final class Functions {
      */
     public static String hjs(String input) {
         return h(js(input));
+    }
+
+    /**
+     * Percent-encode the "+" character in query string.
+     * This method is created for backward compatibility with spring 4.x or earlier version.
+     *
+     * @param query query string
+     * @return encoded query string
+     */
+    private static String extraEncodeQuery(String query) {
+        // replace "+" -> "%2B" due to Spring Framework 5.x specification change.
+        return PLUS_PATTERN.matcher(query).replaceAll("%2B");
     }
 }
