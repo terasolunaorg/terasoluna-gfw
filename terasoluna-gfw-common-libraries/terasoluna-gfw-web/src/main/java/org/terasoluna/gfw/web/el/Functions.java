@@ -59,6 +59,11 @@ public final class Functions {
             "(\\r\\n|\\r|\\n)");
 
     /**
+     * Pattern of plus character.
+     */
+    private static final Pattern PLUS_PATTERN = Pattern.compile("\\+");
+
+    /**
      * line break tag string of HTML.
      */
     private static final String HTML_TAG_OF_LINE_BREAK = "<br />";
@@ -166,7 +171,7 @@ public final class Functions {
         if (value == null || value.isEmpty()) {
             return "";
         }
-        return UriUtils.encodeQueryParam(value, "UTF-8");
+        return extraEncodeQuery(UriUtils.encodeQueryParam(value, "UTF-8"));
     }
 
     /**
@@ -236,7 +241,7 @@ public final class Functions {
         }
         String query = builder.build().encode().toString();
         // remove the beginning symbol character('?') of the query string.
-        return query.substring(1);
+        return extraEncodeQuery(query.substring(1));
     }
 
     /**
@@ -272,7 +277,7 @@ public final class Functions {
         }
         String query = builder.build().encode().toString();
         // remove the beginning symbol character('?') of the query string.
-        return query.substring(1);
+        return extraEncodeQuery(query.substring(1));
     }
 
     /**
@@ -387,5 +392,17 @@ public final class Functions {
      */
     public static String hjs(String input) {
         return h(js(input));
+    }
+
+    /**
+     * Percent-encode the "+" character in query string.
+     * This method is created for backward compatibility with spring 4.x or earlier version.
+     *
+     * @param query query string
+     * @return encoded query string
+     */
+    private static String extraEncodeQuery(String query) {
+        // replace "+" -> "%2B" due to Spring Framework 5.x specification change.
+        return PLUS_PATTERN.matcher(query).replaceAll("%2B");
     }
 }
