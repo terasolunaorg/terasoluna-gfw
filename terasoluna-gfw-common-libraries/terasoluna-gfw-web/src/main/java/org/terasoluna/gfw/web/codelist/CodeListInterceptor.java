@@ -18,7 +18,6 @@ package org.terasoluna.gfw.web.codelist;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -34,9 +33,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.util.Assert;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import org.springframework.web.servlet.support.RequestContextUtils;
 import org.terasoluna.gfw.common.codelist.CodeList;
-import org.terasoluna.gfw.common.codelist.i18n.I18nCodeList;
 
 /**
  * Interceptor class for setting codelist in attribute of {@link HttpServletRequest}
@@ -72,14 +69,6 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter implements
     private Pattern codeListIdPattern;
 
     /**
-     * the default locale to fall back.<br>
-     * <p>
-     * this locale is used if the requested locale is not found in i18nCodeList.
-     * </p>
-     */
-    private Locale fallbackTo = Locale.getDefault();
-
-    /**
      * Sets codelist to the attribute of {@link HttpServletRequest}
      * <p>
      * Sets codelist to the attribute of {@link HttpServletRequest} before the execution of Controller.
@@ -96,47 +85,11 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter implements
             return true;
         }
 
-        Locale locale = RequestContextUtils.getLocale(request);
-        logger.debug("locale for I18nCodelist is '{}'.", locale);
-
         for (CodeList codeList : codeLists) {
             String attributeName = codeList.getCodeListId();
-            if (codeList instanceof I18nCodeList) {
-                I18nCodeList i18nCodeList = (I18nCodeList) codeList;
-                Map<String, String> codeListMap = getLocalizedCodeMap(
-                        i18nCodeList, locale);
-                request.setAttribute(attributeName, codeListMap);
-            } else {
-                request.setAttribute(attributeName, codeList.asMap());
-            }
+            request.setAttribute(attributeName, codeList.asMap());
         }
         return true;
-    }
-
-    /**
-     * Returns the map of codelists which match to the specified locale.
-     * <p>
-     * If the map of codelists which match to the specified locale does not exist, returns the map of codelists which match<br>
-     * with fallback locale. If the map corresponding to fallback locale also does not exist, then log of WARN level is output<br>
-     * and an empty map is returned.<br>
-     * </p>
-     * @param i18nCodeList International Codelist
-     * @param requestLocale Locale of request
-     * @return Map of codelists which match to the specified locale
-     */
-    protected Map<String, String> getLocalizedCodeMap(I18nCodeList i18nCodeList,
-            Locale requestLocale) {
-        Map<String, String> codeListMap = i18nCodeList.asMap(requestLocale);
-        if (codeListMap.isEmpty() && (fallbackTo != null && !fallbackTo.equals(
-                requestLocale))) {
-            logger.debug("There is no mapping for '{}'. fall back to '{}'.",
-                    requestLocale, fallbackTo);
-            codeListMap = i18nCodeList.asMap(fallbackTo);
-            if (codeListMap.isEmpty()) {
-                logger.warn("could not fall back to '{}'.", fallbackTo);
-            }
-        }
-        return codeListMap;
     }
 
     /**
@@ -199,17 +152,6 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter implements
      */
     public void setCodeListIdPattern(Pattern codeListIdPattern) {
         this.codeListIdPattern = codeListIdPattern;
-    }
-
-    /**
-     * Sets the default locale to fall back.
-     * <p>
-     * this locale is used if the requested locale is not found in i18nCodeList.
-     * </p>
-     * @param fallbackTo default locale used if the requested locale is not found in i18nCodeList
-     */
-    public void setFallbackTo(Locale fallbackTo) {
-        this.fallbackTo = fallbackTo;
     }
 
     /**

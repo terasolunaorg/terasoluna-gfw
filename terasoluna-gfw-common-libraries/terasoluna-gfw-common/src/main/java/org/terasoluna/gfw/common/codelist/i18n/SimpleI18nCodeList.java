@@ -22,6 +22,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.util.Assert;
 import org.terasoluna.gfw.common.codelist.CodeList;
 
@@ -215,6 +216,11 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     Table<Locale, String, String> codeListTable;
 
     /**
+     * the default locale as fallback.
+     */
+    private Locale fallbackTo = Locale.getDefault();
+
+    /**
      * supplier to return a {@link LinkedHashMap} object.
      */
     private static final Supplier<LinkedHashMap<String, String>> LINKED_HASH_MAP_SUPPLIER = new Supplier<LinkedHashMap<String, String>>() {
@@ -226,14 +232,54 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
 
     /**
      * <p>
-     * returns row of codelist table.
+     * Returns a codelist as map for the {@link org.springframework.context.i18n.LocaleContextHolder}'s locale.
+     * </p>
+     * @see org.terasoluna.gfw.common.codelist.CodeList#asMap()
+     */
+    @Override
+    public Map<String, String> asMap() {
+        return asMap(LocaleContextHolder.getLocale());
+    }
+
+    /**
+     * <p>
+     * returns row of codelist table.<br>
+     * if there is no codelist for the locale, throws an {@link IllegalStateException}.
      * </p>
      * @see org.terasoluna.gfw.common.codelist.i18n.I18nCodeList#asMap(java.util.Locale)
      */
     @Override
     public Map<String, String> asMap(Locale locale) {
         Assert.notNull(locale, "locale is null");
-        return codeListTable.row(locale);
+
+        if (codeListTable.containsRow(locale)) {
+            if (logger.isDebugEnabled()) {
+                logger.debug("Found codelist for specified locale '{}'.",
+                        locale);
+            }
+            return codeListTable.row(locale);
+        }
+
+        Locale langOnlyLocale = new Locale(locale.getLanguage());
+        if (codeListTable.containsRow(langOnlyLocale)) {
+            if (logger.isDebugEnabled()) {
+                logger.debug(
+                        "Found codelist for specified locale '{}' (language only).",
+                        locale);
+            }
+            return codeListTable.row(langOnlyLocale);
+        }
+
+        if (locale.equals(fallbackTo)) {
+            throw new IllegalStateException("No codelist found for specified locale and fail to fallback");
+        }
+
+        if (logger.isDebugEnabled()) {
+            logger.debug(
+                    "There is no codelist for specified locale '{}'. Use '{}' as fallback.",
+                    locale, fallbackTo);
+        }
+        return asMap(fallbackTo);
     }
 
     /**
@@ -334,5 +380,23 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     @Override
     public void afterPropertiesSet() {
         Assert.notNull(codeListTable, "codeListTable is not initialized!");
+    }
+
+    /**
+     * Gets the default locale as fallback.<br>
+     * @return the default locale as fallback
+     */
+    public Locale getFallbackTo() {
+        return fallbackTo;
+    }
+
+    /**
+     * Sets the default locale as fallback.<br>
+     * Defaults to {@link Locale#getDefault()}
+     * @param fallbackTo the default locale as fallback
+     */
+    public void setFallbackTo(Locale fallbackTo) {
+        Assert.notNull(fallbackTo, "fallbackTo must not be null");
+        this.fallbackTo = fallbackTo;
     }
 }
