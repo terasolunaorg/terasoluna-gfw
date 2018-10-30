@@ -193,6 +193,19 @@
       </dependency>
       <!-- == End Spring IO Platform == -->
 
+      <!-- == Begin Tomcat == -->
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-jsp-api</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-el</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
+      <!-- == End Tomcat == -->
+
       <!-- == Begin MyBatis == -->
       <dependency>
         <groupId>org.mybatis</groupId>
@@ -393,6 +406,8 @@
     <terasoluna.gfw.version>5.5.0-SNAPSHOT</terasoluna.gfw.version>
     <!-- == Spring IO Platform == -->
     <io.spring.platform.version>Cairo-SR3</io.spring.platform.version>
+    <!-- == Tomcat == -->
+    <tomcat.version>9.0.10</tomcat.version>
     <!-- == MyBatis3 == -->
     <org.mybatis.version>3.4.6</org.mybatis.version>
     <org.mybatis.spring.version>1.3.2</org.mybatis.spring.version>
