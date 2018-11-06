@@ -244,20 +244,34 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     /**
      * <p>
      * returns row of codelist table.<br>
-     * if there is no codelist for the locale, throws an {@link IllegalStateException}.
+     * if there is no codelist for the specified locale, returns it by {@code fallbackTo} locale.
      * </p>
      * @see org.terasoluna.gfw.common.codelist.i18n.I18nCodeList#asMap(java.util.Locale)
      */
     @Override
     public Map<String, String> asMap(Locale locale) {
         Assert.notNull(locale, "locale is null");
+        Locale resolvedLocale = resolveLocale(locale);
+        return codeListTable.row(resolvedLocale);
+    }
 
+    /**
+     * Returns the locale resolved in the following order.
+     * <ol>
+     * <li>Returns the specified locale if defined corresponding codelist.</li>
+     * <li>Returns the language part of the specified locale if defined corresponding codelist.</li>
+     * <li>Returns the {@code fallbackTo} locale.</li>
+     * </ol>
+     * @param locale locale for codelist
+     * @return resolved locale
+     */
+    protected Locale resolveLocale(Locale locale) {
         if (codeListTable.containsRow(locale)) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Found codelist for specified locale '{}'.",
                         locale);
             }
-            return codeListTable.row(locale);
+            return locale;
         }
 
         Locale langOnlyLocale = new Locale(locale.getLanguage());
@@ -267,7 +281,7 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
                         "Found codelist for specified locale '{}' (language only).",
                         locale);
             }
-            return codeListTable.row(langOnlyLocale);
+            return langOnlyLocale;
         }
 
         if (logger.isDebugEnabled()) {
@@ -275,7 +289,7 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
                     "There is no codelist for specified locale '{}'. Use '{}' as fallback.",
                     locale, fallbackTo);
         }
-        return codeListTable.row(fallbackTo);
+        return fallbackTo;
     }
 
     /**
