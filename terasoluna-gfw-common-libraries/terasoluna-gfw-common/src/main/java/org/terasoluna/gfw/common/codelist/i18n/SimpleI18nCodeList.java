@@ -202,6 +202,16 @@ import com.google.common.collect.Tables;
  *     &lt;/property&gt;
  * &lt;/bean&gt;
  * </pre>
+ * 
+ * <h3>Resolving a locale</h3>
+ * <p>
+ * This implementation resolve the locale in the following order.
+ * </p>
+ * <ol>
+ * <li>Returns the specified locale if defined corresponding codelist.</li>
+ * <li>Returns the language part of the specified locale if defined corresponding codelist.</li>
+ * <li>Returns the {@code fallbackTo} locale.</li>
+ * </ol>
  */
 public class SimpleI18nCodeList extends AbstractI18nCodeList implements
                                 InitializingBean {
