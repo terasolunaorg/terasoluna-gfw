@@ -24,6 +24,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 import org.terasoluna.gfw.common.codelist.CodeList;
 
 import com.google.common.base.Supplier;
@@ -274,14 +275,17 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
             return locale;
         }
 
-        Locale langOnlyLocale = new Locale(locale.getLanguage());
-        if (codeListTable.containsRow(langOnlyLocale)) {
-            if (logger.isDebugEnabled()) {
-                logger.debug(
-                        "Found codelist for specified locale '{}' (language only).",
-                        locale);
+        String lang = locale.getLanguage();
+        if (StringUtils.hasLength(lang) && !lang.equals(locale.toString())) {
+            Locale langOnlyLocale = new Locale(lang);
+            if (codeListTable.containsRow(langOnlyLocale)) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug(
+                            "Found codelist for specified locale '{}' (language only).",
+                            locale);
+                }
+                return langOnlyLocale;
             }
-            return langOnlyLocale;
         }
 
         if (logger.isDebugEnabled()) {
