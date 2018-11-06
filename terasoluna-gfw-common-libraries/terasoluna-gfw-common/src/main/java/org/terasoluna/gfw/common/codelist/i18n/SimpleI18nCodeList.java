@@ -375,6 +375,16 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     }
 
     /**
+     * Sets the default locale as fallback.<br>
+     * Defaults to {@link Locale#getDefault()}
+     * @param fallbackTo the default locale as fallback
+     */
+    public void setFallbackTo(Locale fallbackTo) {
+        Assert.notNull(fallbackTo, "fallbackTo must not be null");
+        this.fallbackTo = fallbackTo;
+    }
+
+    /**
      * create table which consist of {@link LinkedHashMap} factory.
      * @return table
      */
@@ -405,15 +415,5 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
      */
     public Locale getFallbackTo() {
         return fallbackTo;
-    }
-
-    /**
-     * Sets the default locale as fallback.<br>
-     * Defaults to {@link Locale#getDefault()}
-     * @param fallbackTo the default locale as fallback
-     */
-    public void setFallbackTo(Locale fallbackTo) {
-        Assert.notNull(fallbackTo, "fallbackTo must not be null");
-        this.fallbackTo = fallbackTo;
     }
 }
