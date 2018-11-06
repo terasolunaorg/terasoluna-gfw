@@ -270,16 +270,12 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
             return codeListTable.row(langOnlyLocale);
         }
 
-        if (locale.equals(fallbackTo)) {
-            throw new IllegalStateException("No codelist found for specified locale and fail to fallback");
-        }
-
         if (logger.isDebugEnabled()) {
             logger.debug(
                     "There is no codelist for specified locale '{}'. Use '{}' as fallback.",
                     locale, fallbackTo);
         }
-        return asMap(fallbackTo);
+        return codeListTable.row(fallbackTo);
     }
 
     /**
@@ -380,6 +376,9 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     @Override
     public void afterPropertiesSet() {
         Assert.notNull(codeListTable, "codeListTable is not initialized!");
+        Assert.isTrue(codeListTable.containsRow(fallbackTo),
+                "No codelist found for locale '" + fallbackTo
+                        + "', it must be defined.");
     }
 
     /**
