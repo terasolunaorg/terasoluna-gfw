@@ -43,6 +43,10 @@ import org.terasoluna.gfw.common.codelist.CodeList;
  * <br>
  * to {@link #setCodeListIdPattern(Pattern)} method.
  * </p>
+ * <p>
+ * <b>Note: </b>Role of resolving a locale for {@link org.terasoluna.gfw.common.codelist.i18n.I18nCodeList} has been moved to
+ * itself.
+ * </p>
  */
 public class CodeListInterceptor extends HandlerInterceptorAdapter implements
                                  ApplicationContextAware, InitializingBean {
