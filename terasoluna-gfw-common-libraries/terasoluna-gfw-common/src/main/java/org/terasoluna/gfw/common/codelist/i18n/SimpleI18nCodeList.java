@@ -22,7 +22,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 import org.terasoluna.gfw.common.codelist.CodeList;
@@ -240,17 +239,6 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
             return Maps.newLinkedHashMap();
         }
     };
-
-    /**
-     * <p>
-     * Returns a codelist as map for the {@link org.springframework.context.i18n.LocaleContextHolder}'s locale.
-     * </p>
-     * @see org.terasoluna.gfw.common.codelist.CodeList#asMap()
-     */
-    @Override
-    public Map<String, String> asMap() {
-        return asMap(LocaleContextHolder.getLocale());
-    }
 
     /**
      * <p>
