@@ -219,7 +219,7 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     /**
      * the default locale as fallback.
      */
-    private Locale fallbackTo = Locale.getDefault();
+    protected Locale fallbackTo = Locale.getDefault();
 
     /**
      * supplier to return a {@link LinkedHashMap} object.
@@ -407,13 +407,5 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
         Assert.isTrue(codeListTable.containsRow(fallbackTo),
                 "No codelist found for locale '" + fallbackTo
                         + "', it must be defined.");
-    }
-
-    /**
-     * Gets the default locale as fallback.<br>
-     * @return the default locale as fallback
-     */
-    public Locale getFallbackTo() {
-        return fallbackTo;
     }
 }
