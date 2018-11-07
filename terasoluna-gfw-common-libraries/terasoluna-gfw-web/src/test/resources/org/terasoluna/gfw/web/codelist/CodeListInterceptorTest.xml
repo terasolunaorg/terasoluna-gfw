@@ -20,8 +20,15 @@
 
   <bean id="simpleI18nCodeList" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
     <property name="rows">
-      <util:map />
+      <util:map>
+        <entry key="en">
+          <map>
+            <entry key="key2" value="value2" />
+          </map>
+        </entry>
+      </util:map>
     </property>
+    <property name="fallbackTo" value="en" />
   </bean>
 
   <bean id="A_simpleMapCodeList" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
@@ -32,8 +39,15 @@
 
   <bean id="A_simpleI18nCodeList" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
     <property name="rows">
-      <util:map />
+      <util:map>
+        <entry key="en">
+          <map>
+            <entry key="key2" value="value2" />
+          </map>
+        </entry>
+      </util:map>
     </property>
+    <property name="fallbackTo" value="en" />
   </bean>
 
 
@@ -45,8 +59,15 @@
 
   <bean id="B_simpleI18nCodeList" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
     <property name="rows">
-      <util:map />
+      <util:map>
+        <entry key="en">
+          <map>
+            <entry key="key2" value="value2" />
+          </map>
+        </entry>
+      </util:map>
     </property>
+    <property name="fallbackTo" value="en" />
   </bean>
 
   <bean id="C_simpleMapCodeList" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
@@ -67,6 +88,7 @@
         </entry>
       </map>
     </property>
+    <property name="fallbackTo" value="en" />
   </bean>
 
 </beans>
