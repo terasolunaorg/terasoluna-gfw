@@ -183,28 +183,6 @@
   <dependencyManagement>
     <dependencies>
 
-      <!-- == Begin Spring Framework == -->
-      <!-- == Upgrade Spring Framework from the Spring IO Platform as a security vulnerability update.(CVE-2017-8030) == -->
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-framework-bom</artifactId>
-        <version>${springframework.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <!-- == End Spring Framework == -->
-
-      <!-- == Begin Spring Security == -->
-      <!-- == Upgrade Spring Security from the Spring IO Platform as a security vulnerability update.(CVE-2017-8030) == -->
-      <dependency>
-        <groupId>org.springframework.security</groupId>
-        <artifactId>spring-security-bom</artifactId>
-        <version>${springframework.security.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <!-- == End Spring Security == -->
-
       <!-- == Begin Spring IO Platform == -->
       <dependency>
         <groupId>io.spring.platform</groupId>
@@ -413,12 +391,6 @@
     <!-- == Dependency Versions == -->
     <!-- == TERASOLUNA == -->
     <terasoluna.gfw.version>5.4.2-SNAPSHOT</terasoluna.gfw.version>
-    <!-- == Spring Framework== -->
-    <!-- == Upgrade Spring Framework from the Spring IO Platform as a security vulnerability update.(CVE-2017-8030) == -->
-    <springframework.version>4.3.14.RELEASE</springframework.version>
-    <!-- == Spring Security == -->
-    <!-- == Upgrade Spring Security from the Spring IO Platform as a security vulnerability update.(CVE-2017-8030) == -->
-    <springframework.security.version>4.2.4.RELEASE</springframework.security.version>
     <!-- == Spring IO Platform == -->
     <io.spring.platform.version>Brussels-SR5</io.spring.platform.version>
     <!-- == MyBatis3 == -->
