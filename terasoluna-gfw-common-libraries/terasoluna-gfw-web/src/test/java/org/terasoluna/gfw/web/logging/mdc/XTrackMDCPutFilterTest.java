@@ -124,4 +124,38 @@ public class XTrackMDCPutFilterTest {
         assertThat((String) request.getAttribute("X-Track"), is(
                 "12345678901234567890123456789012"));
     }
+
+    @Test
+    public void testGetMDCValue_useV4Uuid() throws ServletException {
+        mockFilterConfig.addInitParameter("useV4Uuid", "true");
+        xTrackMDCPutFilter.init(mockFilterConfig);
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        MockHttpServletResponse response = new MockHttpServletResponse();
+
+        String xTrack = xTrackMDCPutFilter.getMDCValue(request, response);
+        assertThat(xTrack, is(notNullValue()));
+        assertThat(xTrack.matches(
+                "^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$"),
+                is(true));
+        assertThat(response.getHeader("X-Track"), is(xTrack));
+        assertThat((String) request.getAttribute("X-Track"), is(xTrack));
+    }
+
+    @Test
+    public void testGetMDCValue_useV4Uuid_when_specified_maxMDCValueLength() throws ServletException {
+        mockFilterConfig.addInitParameter("useV4Uuid", "true");
+        mockFilterConfig.addInitParameter("maxMDCValueLength", "39");
+        xTrackMDCPutFilter.init(mockFilterConfig);
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        MockHttpServletResponse response = new MockHttpServletResponse();
+
+        request.addHeader("X-Track",
+                "1234567890123456789012345678901234567890");
+
+        String xTrack = xTrackMDCPutFilter.getMDCValue(request, response);
+        assertThat(xTrack, is("123456789012345678901234567890123456789"));
+        assertThat(response.getHeader("X-Track"), is(xTrack));
+        assertThat((String) request.getAttribute("X-Track"), is(xTrack));
+    }
+
 }
