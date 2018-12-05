@@ -13,13 +13,5 @@
 - [ ] 5.5.0 (master)
 - [ ] 5.4.2 (5.4.x)
 
-## Final Solution
-(To be written later by project member)
-
-## Migrating Guide
-(To be selected later by project member)
-- [ ] Required
-- Not Required
-
 ## Issue Links
 - #XXX
