@@ -22,6 +22,8 @@ import org.terasoluna.gfw.common.codelist.CodeList;
 
 /**
  * Adds Internationalization support to {@link CodeList}
+ * <p>
+ * Note : Locale resolution is done here.
  */
 public interface I18nCodeList extends CodeList {
     /**
