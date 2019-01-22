@@ -256,55 +256,6 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     }
 
     /**
-     * Returns the locale resolved in the following order.
-     * <ol>
-     * <li>Returns the specified locale if defined corresponding codelist.</li>
-     * <li>Returns the language part of the specified locale if defined corresponding codelist.</li>
-     * <li>Returns the {@code fallbackTo} locale.</li>
-     * </ol>
-     * @param locale locale for codelist
-     * @return resolved locale
-     */
-    protected Locale resolveLocale(Locale locale) {
-        if (codeListTable.containsRow(locale)) {
-            logger.debug("Found codelist for specified locale '{}'.", locale);
-            return locale;
-        }
-
-        String lang = locale.getLanguage();
-        if (StringUtils.hasLength(lang) && !lang.equals(locale.toString())) {
-            Locale langOnlyLocale = new Locale(lang);
-            if (codeListTable.containsRow(langOnlyLocale)) {
-                if (logger.isDebugEnabled()) {
-                    logger.debug(
-                            "Found codelist for specified locale '{}' (language only).",
-                            locale);
-                }
-                return langOnlyLocale;
-            }
-        }
-
-        if (logger.isDebugEnabled()) {
-            logger.debug(
-                    "There is no codelist for specified locale '{}'. Use '{}' as fallback.",
-                    locale, fallbackTo);
-        }
-        return fallbackTo;
-    }
-
-    /**
-     * check whether the code list table is null.<br>
-     * <p>
-     * output warn log in case of table is null.
-     * </p>
-     */
-    private void checkTable() {
-        if (codeListTable != null) {
-            logger.warn("Codelist table has already built, but re-build");
-        }
-    }
-
-    /**
      * set table by rows ({@link Map}).<br>
      * <p>
      * The key is {@link Locale} and the value is {@link Map} which represents {@link CodeList}.<br>
@@ -382,17 +333,6 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     }
 
     /**
-     * create table which consist of {@link LinkedHashMap} factory.
-     * @return table
-     */
-    private Table<Locale, String, String> createTable() {
-        Map<Locale, Map<String, String>> backingMap = Maps.newLinkedHashMap();
-        Table<Locale, String, String> table = Tables.newCustomTable(backingMap,
-                LINKED_HASH_MAP_SUPPLIER);
-        return table;
-    }
-
-    /**
      * <p>
      * check whether codeListTable is initialized.
      * </p>
@@ -404,5 +344,65 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
         Assert.isTrue(codeListTable.containsRow(fallbackTo),
                 "No codelist found for fallback locale '" + fallbackTo
                         + "', it must be defined.");
+    }
+
+    /**
+     * Returns the locale resolved in the following order.
+     * <ol>
+     * <li>Returns the specified locale if defined corresponding codelist.</li>
+     * <li>Returns the language part of the specified locale if defined corresponding codelist.</li>
+     * <li>Returns the {@code fallbackTo} locale.</li>
+     * </ol>
+     * @param locale locale for codelist
+     * @return resolved locale
+     */
+    protected Locale resolveLocale(Locale locale) {
+        if (codeListTable.containsRow(locale)) {
+            logger.debug("Found codelist for specified locale '{}'.", locale);
+            return locale;
+        }
+
+        String lang = locale.getLanguage();
+        if (StringUtils.hasLength(lang) && !lang.equals(locale.toString())) {
+            Locale langOnlyLocale = new Locale(lang);
+            if (codeListTable.containsRow(langOnlyLocale)) {
+                if (logger.isDebugEnabled()) {
+                    logger.debug(
+                            "Found codelist for specified locale '{}' (language only).",
+                            locale);
+                }
+                return langOnlyLocale;
+            }
+        }
+
+        if (logger.isDebugEnabled()) {
+            logger.debug(
+                    "There is no codelist for specified locale '{}'. Use '{}' as fallback.",
+                    locale, fallbackTo);
+        }
+        return fallbackTo;
+    }
+
+    /**
+     * check whether the code list table is null.<br>
+     * <p>
+     * output warn log in case of table is null.
+     * </p>
+     */
+    private void checkTable() {
+        if (codeListTable != null) {
+            logger.warn("Codelist table has already built, but re-build");
+        }
+    }
+
+    /**
+     * create table which consist of {@link LinkedHashMap} factory.
+     * @return table
+     */
+    private Table<Locale, String, String> createTable() {
+        Map<Locale, Map<String, String>> backingMap = Maps.newLinkedHashMap();
+        Table<Locale, String, String> table = Tables.newCustomTable(backingMap,
+                LINKED_HASH_MAP_SUPPLIER);
+        return table;
     }
 }
