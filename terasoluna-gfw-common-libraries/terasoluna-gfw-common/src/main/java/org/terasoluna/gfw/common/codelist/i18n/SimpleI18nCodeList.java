@@ -267,10 +267,7 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
      */
     protected Locale resolveLocale(Locale locale) {
         if (codeListTable.containsRow(locale)) {
-            if (logger.isDebugEnabled()) {
-                logger.debug("Found codelist for specified locale '{}'.",
-                        locale);
-            }
+            logger.debug("Found codelist for specified locale '{}'.", locale);
             return locale;
         }
 
