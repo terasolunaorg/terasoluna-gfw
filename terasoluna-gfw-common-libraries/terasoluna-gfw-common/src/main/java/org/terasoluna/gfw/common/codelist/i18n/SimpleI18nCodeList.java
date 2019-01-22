@@ -402,7 +402,7 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     public void afterPropertiesSet() {
         Assert.notNull(codeListTable, "codeListTable is not initialized!");
         Assert.isTrue(codeListTable.containsRow(fallbackTo),
-                "No codelist found for locale '" + fallbackTo
+                "No codelist found for fallback locale '" + fallbackTo
                         + "', it must be defined.");
     }
 }
