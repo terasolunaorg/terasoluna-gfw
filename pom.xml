@@ -218,5 +218,15 @@
         </pluginManagement>
       </build>
     </profile>
+    <profile>
+      <id>jdk11</id>
+      <activation>
+        <jdk>11</jdk>
+      </activation>
+      <properties>
+        <!-- coverall 4.3.0 or previous version does not work on Java 11, see https://github.com/trautonen/coveralls-maven-plugin/issues/112 -->
+        <coveralls.skip>true</coveralls.skip>
+      </properties>
+    </profile>
   </profiles>
 </project>
