@@ -35,6 +35,23 @@
     <property name="fallbackTo" value="en" />
   </bean>
 
+  <bean id="CL_testSetRows02" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+    <property name="rows">
+      <util:map>
+        <entry key="en_US">
+          <util:map>
+            <entry key="0" value="Sun." />
+            <entry key="1" value="Mon." />
+            <entry key="2" value="Tue." />
+            <entry key="3" value="Wed." />
+            <entry key="4" value="Thu." />
+            <entry key="5" value="Fri." />
+            <entry key="6" value="Sat." />
+          </util:map>
+        </entry>
+      </util:map>
+    </property>
+  </bean>
 
   <bean id="CL_WEEK_EN" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
     <property name="map">
@@ -72,6 +89,28 @@
       </util:map>
     </property>
     <property name="fallbackTo" value="en" />
+  </bean>
+
+  <bean id="CL_WEEK_EN_US" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+    <property name="map">
+      <util:map>
+        <entry key="0" value="Sun." />
+        <entry key="1" value="Mon." />
+        <entry key="2" value="Tue." />
+        <entry key="3" value="Wed." />
+        <entry key="4" value="Thu." />
+        <entry key="5" value="Fri." />
+        <entry key="6" value="Sat." />
+      </util:map>
+    </property>
+  </bean>
+
+  <bean id="CL_testSetRowsByCodeList02" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+    <property name="rowsByCodeList">
+      <util:map>
+        <entry key="en_US" value-ref="CL_WEEK_EN_US" />
+      </util:map>
+    </property>
   </bean>
 
   <bean id="CL_testSetColumns01" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
@@ -124,6 +163,47 @@
     <property name="fallbackTo" value="en" />
   </bean>
 
+  <bean id="CL_testSetColumns02" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+    <property name="columns">
+      <util:map>
+        <entry key="0">
+          <util:map>
+            <entry key="en_US" value="Sun." />
+          </util:map>
+        </entry>
+        <entry key="1">
+          <util:map>
+            <entry key="en_US" value="Mon." />
+          </util:map>
+        </entry>
+        <entry key="2">
+          <util:map>
+            <entry key="en_US" value="Tue." />
+          </util:map>
+        </entry>
+        <entry key="3">
+          <util:map>
+            <entry key="en_US" value="Wed." />
+          </util:map>
+        </entry>
+        <entry key="4">
+          <util:map>
+            <entry key="en_US" value="Thu." />
+          </util:map>
+        </entry>
+        <entry key="5">
+          <util:map>
+            <entry key="en_US" value="Fri." />
+          </util:map>
+        </entry>
+        <entry key="6">
+          <util:map>
+            <entry key="en_US" value="Sat." />
+          </util:map>
+        </entry>
+      </util:map>
+    </property>
+  </bean>
 
   <bean id="CL_testSetRows03" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
     <property name="rows">
