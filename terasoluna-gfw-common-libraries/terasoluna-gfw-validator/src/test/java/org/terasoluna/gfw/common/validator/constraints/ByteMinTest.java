@@ -15,12 +15,24 @@
  */
 package org.terasoluna.gfw.common.validator.constraints;
 
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 import java.nio.charset.UnsupportedCharsetException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
+import javax.validation.ConstraintViolation;
 import javax.validation.UnexpectedTypeException;
+import javax.validation.Valid;
+import javax.validation.Validation;
+import javax.validation.Validator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -145,6 +157,102 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
     }
 
     /**
+     * all values in the collection are valid.
+     * @throws Throwable
+     */
+    @Test
+    public void testCollectionValid() throws Throwable {
+        form.setListProperty(Arrays.asList("ああ", "ああ"));
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<ByteMinTestForm>> violations = validator
+                .validate(form);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(0));
+    }
+
+    /**
+     * first value in the collection is invalid.
+     * @throws Throwable
+     */
+    @Test
+    public void testCollectionFirstInvalid() throws Throwable {
+        form.setListProperty(Arrays.asList("あaa", "ああ"));
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<ByteMinTestForm>> violations = validator
+                .validate(form);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(1));
+        assertThat(violations.iterator().next().getPropertyPath().toString(),
+                is("listProperty[0].<list element>"));
+        assertThat(violations.iterator().next().getMessage(), is(String.format(
+                MESSAGE_VALIDATION_ERROR, 6)));
+    }
+
+    /**
+     * last value in the collection is invalid.
+     * @throws Throwable
+     */
+    @Test
+    public void testCollectionLastInvalid() throws Throwable {
+        form.setListProperty(Arrays.asList("ああ", "あaa"));
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<ByteMinTestForm>> violations = validator
+                .validate(form);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(1));
+        assertThat(violations.iterator().next().getPropertyPath().toString(),
+                is("listProperty[1].<list element>"));
+        assertThat(violations.iterator().next().getMessage(), is(String.format(
+                MESSAGE_VALIDATION_ERROR, 6)));
+    }
+
+    /**
+     * all values in the collection are invalid.
+     * @throws Throwable
+     */
+    @Test
+    public void testCollectionAllInvalid() throws Throwable {
+        form.setListProperty(Arrays.asList("あaa", "あaa"));
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<ByteMinTestForm>> violations = validator
+                .validate(form);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(2));
+
+        Iterator<ConstraintViolation<ByteMinTestForm>> iterator = violations
+                .iterator();
+        List<ConstraintViolation<ByteMinTestForm>> lst = new ArrayList<ConstraintViolation<ByteMinTestForm>>(2);
+        lst.add(iterator.next());
+        lst.add(iterator.next());
+        Collections.sort(lst,
+                new Comparator<ConstraintViolation<ByteMinTestForm>>() {
+                    @Override
+                    public int compare(ConstraintViolation<ByteMinTestForm> o1,
+                            ConstraintViolation<ByteMinTestForm> o2) {
+                        return o1.getPropertyPath().toString().compareTo(o2
+                                .getPropertyPath().toString());
+                    }
+                });
+
+        assertThat(lst.get(0).getPropertyPath().toString(), is(
+                "listProperty[0].<list element>"));
+        assertThat(lst.get(0).getMessage(), is(String.format(
+                MESSAGE_VALIDATION_ERROR, 6)));
+        assertThat(lst.get(1).getPropertyPath().toString(), is(
+                "listProperty[1].<list element>"));
+        assertThat(lst.get(1).getMessage(), is(String.format(
+                MESSAGE_VALIDATION_ERROR, 6)));
+    }
+
+    /**
      * Validation group encoding shift-jis.
      */
     private static interface SpecifyCharset {
@@ -163,11 +271,11 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
     };
 
     public class ByteMinTestForm {
-        @ByteMin.List({ @ByteMin(6),
-                @ByteMin(value = 6, charset = "shift-jis", groups = {
-                        SpecifyCharset.class }),
-                @ByteMin(value = 6, charset = "illegal-charset", groups = {
-                        IllegalCharset.class }) })
+        @ByteMin(6)
+        @ByteMin(value = 6, charset = "shift-jis", groups = {
+                SpecifyCharset.class })
+        @ByteMin(value = 6, charset = "illegal-charset", groups = {
+                IllegalCharset.class })
         private String stringProperty;
 
         @ByteMin(6)
@@ -175,6 +283,8 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
         @ByteMin(value = 6, groups = { UnexpectedType.class })
         private Integer intProperty;
+
+        private List<@Valid @ByteMin(6) String> listProperty;
 
         public String getStringProperty() {
             return stringProperty;
@@ -199,6 +309,14 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
         public void setIntProperty(Integer intProperty) {
             this.intProperty = intProperty;
+        }
+
+        public List<String> getListProperty() {
+            return listProperty;
+        }
+
+        public void setListProperty(List<String> listProperty) {
+            this.listProperty = listProperty;
         }
     }
 }

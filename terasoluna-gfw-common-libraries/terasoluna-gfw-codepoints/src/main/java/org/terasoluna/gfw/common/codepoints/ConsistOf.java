@@ -21,14 +21,16 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 import org.terasoluna.gfw.common.codepoints.validator.ConsistOfValidator;
+import org.terasoluna.gfw.common.codepoints.ConsistOf.List;
 
 /**
  * All code points in the string must be included in any {@link CodePoints} class specified by {@link #value()}.
  * @since 5.1.0
  */
 @Target({ ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE,
-        ElementType.PARAMETER })
+        ElementType.PARAMETER, ElementType.TYPE_USE })
 @Retention(RetentionPolicy.RUNTIME)
+@Repeatable(List.class)
 @Constraint(validatedBy = { ConsistOfValidator.class })
 @Documented
 public @interface ConsistOf {
@@ -61,7 +63,8 @@ public @interface ConsistOf {
      * @see ConsistOf
      */
     @Target({ ElementType.METHOD, ElementType.FIELD,
-            ElementType.ANNOTATION_TYPE, ElementType.PARAMETER })
+            ElementType.ANNOTATION_TYPE, ElementType.PARAMETER,
+            ElementType.TYPE_USE })
     @Retention(RetentionPolicy.RUNTIME)
     @Documented
     @interface List {

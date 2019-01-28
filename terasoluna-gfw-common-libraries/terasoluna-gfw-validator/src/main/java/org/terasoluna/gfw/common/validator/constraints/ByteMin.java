@@ -20,10 +20,12 @@ import static java.lang.annotation.ElementType.CONSTRUCTOR;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.PARAMETER;
+import static java.lang.annotation.ElementType.TYPE_USE;
 import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Documented;
+import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
@@ -32,6 +34,8 @@ import javax.validation.Payload;
 import javax.validation.ValidationException;
 
 import org.terasoluna.gfw.common.validator.constraintvalidators.ByteMinValidator;
+
+import org.terasoluna.gfw.common.validator.constraints.ByteMin.List;
 
 /**
  * The annotated element must be a {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte length must
@@ -52,8 +56,9 @@ import org.terasoluna.gfw.common.validator.constraintvalidators.ByteMinValidator
  */
 @Documented
 @Constraint(validatedBy = { ByteMinValidator.class })
-@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
+@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
 @Retention(RUNTIME)
+@Repeatable(List.class)
 public @interface ByteMin {
 
     /**
@@ -90,7 +95,8 @@ public @interface ByteMin {
      * @since 5.1.0
      */
     @Documented
-    @Target({ METHOD, FIELD, TYPE, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
+    @Target({ METHOD, FIELD, TYPE, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER,
+            TYPE_USE })
     @Retention(RUNTIME)
     @interface List {
         /**

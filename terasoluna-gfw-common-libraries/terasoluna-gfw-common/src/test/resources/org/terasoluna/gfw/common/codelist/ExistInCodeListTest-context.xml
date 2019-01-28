@@ -30,6 +30,15 @@
       </map>
     </property>
   </bean>
+  <bean id="CD_ROLE" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+    <property name="map">
+      <map>
+        <entry key="M" value="Manager" />
+        <entry key="A" value="Admin" />
+        <entry key="U" value="User" />
+      </map>
+    </property>
+  </bean>
   <bean id="CD_MULTIPLES_OF_3" class="org.terasoluna.gfw.common.codelist.NumberRangeCodeList">
     <property name="from" value="0" />
     <property name="to" value="12" />

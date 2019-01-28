@@ -1,0 +1,40 @@
+package org.terasoluna.gfw.common.codepoints.validator;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.terasoluna.gfw.common.codepoints.ConsistOf;
+
+public class Name_Collection {
+    private List<@Valid @ConsistOf({ AtoF.class,
+            GtoL.class }) String> firstNameList;
+
+    private List<@Valid @ConsistOf({ AtoF.class,
+            GtoL.class }) String> lastNameList;
+
+    public Name_Collection(List<String> firstNameList,
+            List<String> lastNameList) {
+        this.firstNameList = firstNameList;
+        this.lastNameList = lastNameList;
+    }
+
+    public Name_Collection() {
+    }
+
+    public List<String> getFirstNameList() {
+        return firstNameList;
+    }
+
+    public void setFirstNameList(List<String> firstNameList) {
+        this.firstNameList = firstNameList;
+    }
+
+    public List<String> getLastNameList() {
+        return lastNameList;
+    }
+
+    public void setLastNameList(List<String> lastNameList) {
+        this.lastNameList = lastNameList;
+    }
+}
