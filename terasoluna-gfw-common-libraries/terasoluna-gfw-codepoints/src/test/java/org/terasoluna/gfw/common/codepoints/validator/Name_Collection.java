@@ -2,16 +2,12 @@ package org.terasoluna.gfw.common.codepoints.validator;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.terasoluna.gfw.common.codepoints.ConsistOf;
 
 public class Name_Collection {
-    private List<@Valid @ConsistOf({ AtoF.class,
-            GtoL.class }) String> firstNameList;
+    private List<@ConsistOf({ AtoF.class, GtoL.class }) String> firstNameList;
 
-    private List<@Valid @ConsistOf({ AtoF.class,
-            GtoL.class }) String> lastNameList;
+    private List<@ConsistOf({ AtoF.class, GtoL.class }) String> lastNameList;
 
     public Name_Collection(List<String> firstNameList,
             List<String> lastNameList) {

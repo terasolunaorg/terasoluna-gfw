@@ -30,7 +30,6 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.UnexpectedTypeException;
-import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
@@ -284,7 +283,7 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
         @ByteMin(value = 6, groups = { UnexpectedType.class })
         private Integer intProperty;
 
-        private List<@Valid @ByteMin(6) String> listProperty;
+        private List<@ByteMin(6) String> listProperty;
 
         public String getStringProperty() {
             return stringProperty;

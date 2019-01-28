@@ -30,7 +30,6 @@ import java.util.Set;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.UnexpectedTypeException;
-import javax.validation.Valid;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
@@ -283,7 +282,7 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
         @ByteMax(value = 6, groups = { UnexpectedType.class })
         private Integer intProperty;
 
-        private List<@Valid @ByteMax(6) String> listProperty;
+        private List<@ByteMax(6) String> listProperty;
 
         public String getStringProperty() {
             return stringProperty;

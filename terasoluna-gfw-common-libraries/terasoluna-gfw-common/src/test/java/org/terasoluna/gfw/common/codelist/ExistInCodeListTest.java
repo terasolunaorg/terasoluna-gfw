@@ -29,7 +29,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import javax.validation.Valid;
 import javax.validation.Validator;
 
 import org.junit.Before;
@@ -452,7 +451,7 @@ class Order {
 }
 
 class Role {
-    private List<@Valid @ExistInCodeList(codeListId = "CD_ROLE") String> roles;
+    private List<@ExistInCodeList(codeListId = "CD_ROLE") String> roles;
 
     public void setRoles(List<String> roles) {
         this.roles = roles;
