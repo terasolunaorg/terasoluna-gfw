@@ -185,10 +185,12 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(1));
-        assertThat(violations.iterator().next().getPropertyPath().toString(),
-                is("listProperty[0].<list element>"));
-        assertThat(violations.iterator().next().getMessage(), is(String.format(
-                MESSAGE_VALIDATION_ERROR, 6)));
+
+        ConstraintViolation<ByteMinTestForm> v = violations.iterator().next();
+        assertThat(v.getPropertyPath().toString(), is(
+                "listProperty[0].<list element>"));
+        assertThat(v.getMessage(), is(String.format(MESSAGE_VALIDATION_ERROR,
+                6)));
     }
 
     /**
@@ -205,10 +207,12 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(1));
-        assertThat(violations.iterator().next().getPropertyPath().toString(),
-                is("listProperty[1].<list element>"));
-        assertThat(violations.iterator().next().getMessage(), is(String.format(
-                MESSAGE_VALIDATION_ERROR, 6)));
+
+        ConstraintViolation<ByteMinTestForm> v = violations.iterator().next();
+        assertThat(v.getPropertyPath().toString(), is(
+                "listProperty[1].<list element>"));
+        assertThat(v.getMessage(), is(String.format(MESSAGE_VALIDATION_ERROR,
+                6)));
     }
 
     /**
