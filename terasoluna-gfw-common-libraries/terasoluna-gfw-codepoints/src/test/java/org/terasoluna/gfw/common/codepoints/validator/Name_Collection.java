@@ -5,9 +5,9 @@ import java.util.List;
 import org.terasoluna.gfw.common.codepoints.ConsistOf;
 
 public class Name_Collection {
-    private List<@ConsistOf({ AtoF.class, GtoL.class }) String> firstNameList;
+    private List<@ConsistOf(AtoF.class) String> firstNameList;
 
-    private List<@ConsistOf({ AtoF.class, GtoL.class }) String> lastNameList;
+    private List<@ConsistOf(AtoF.class) String> lastNameList;
 
     public Name_Collection(List<String> firstNameList,
             List<String> lastNameList) {
