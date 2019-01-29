@@ -18,6 +18,7 @@ package org.terasoluna.gfw.common.validator.constraints;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
+import static java.util.Comparator.comparing;
 
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.ArrayList;
@@ -230,27 +231,18 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
         assertThat(violations.size(), is(2));
 
         Iterator<ConstraintViolation<ByteMaxTestForm>> iterator = violations
-                .iterator();
-        List<ConstraintViolation<ByteMaxTestForm>> lst = new ArrayList<ConstraintViolation<ByteMaxTestForm>>(2);
-        lst.add(iterator.next());
-        lst.add(iterator.next());
-        Collections.sort(lst,
-                new Comparator<ConstraintViolation<ByteMaxTestForm>>() {
-                    @Override
-                    public int compare(ConstraintViolation<ByteMaxTestForm> o1,
-                            ConstraintViolation<ByteMaxTestForm> o2) {
-                        return o1.getPropertyPath().toString().compareTo(o2
-                                .getPropertyPath().toString());
-                    }
-                });
+                .stream().sorted(comparing(v -> ((ConstraintViolation<?>) v)
+                        .getPropertyPath().toString())).iterator();
 
-        assertThat(lst.get(0).getPropertyPath().toString(), is(
+        ConstraintViolation<ByteMaxTestForm> violation = iterator.next();
+        assertThat(violation.getPropertyPath().toString(), is(
                 "listProperty[0].<list element>"));
-        assertThat(lst.get(0).getMessage(), is(String.format(
+        assertThat(violation.getMessage(), is(String.format(
                 MESSAGE_VALIDATION_ERROR, 6)));
-        assertThat(lst.get(1).getPropertyPath().toString(), is(
+        violation = iterator.next();
+        assertThat(violation.getPropertyPath().toString(), is(
                 "listProperty[1].<list element>"));
-        assertThat(lst.get(1).getMessage(), is(String.format(
+        assertThat(violation.getMessage(), is(String.format(
                 MESSAGE_VALIDATION_ERROR, 6)));
     }
 
