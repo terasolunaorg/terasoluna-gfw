@@ -161,7 +161,7 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
      */
     @Test
     public void testCollectionValid() throws Throwable {
-        form.setListProperty(Arrays.asList("ああ", "ああ"));
+        form.setPropertys(Arrays.asList("ああ", "ああ"));
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
         Set<ConstraintViolation<ByteMaxTestForm>> violations = validator
@@ -177,7 +177,7 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
      */
     @Test
     public void testCollectionFirstInvalid() throws Throwable {
-        form.setListProperty(Arrays.asList("ああa", "ああ"));
+        form.setPropertys(Arrays.asList("ああa", "ああ"));
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
         Set<ConstraintViolation<ByteMaxTestForm>> violations = validator
@@ -188,7 +188,7 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
 
         ConstraintViolation<ByteMaxTestForm> v = violations.iterator().next();
         assertThat(v.getPropertyPath().toString(), is(
-                "listProperty[0].<list element>"));
+                "propertys[0].<list element>"));
         assertThat(v.getMessage(), is(String.format(MESSAGE_VALIDATION_ERROR,
                 6)));
     }
@@ -199,7 +199,7 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
      */
     @Test
     public void testCollectionLastInvalid() throws Throwable {
-        form.setListProperty(Arrays.asList("ああ", "ああa"));
+        form.setPropertys(Arrays.asList("ああ", "ああa"));
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
         Set<ConstraintViolation<ByteMaxTestForm>> violations = validator
@@ -210,7 +210,7 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
 
         ConstraintViolation<ByteMaxTestForm> v = violations.iterator().next();
         assertThat(v.getPropertyPath().toString(), is(
-                "listProperty[1].<list element>"));
+                "propertys[1].<list element>"));
         assertThat(v.getMessage(), is(String.format(MESSAGE_VALIDATION_ERROR,
                 6)));
     }
@@ -221,7 +221,7 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
      */
     @Test
     public void testCollectionAllInvalid() throws Throwable {
-        form.setListProperty(Arrays.asList("ああa", "ああa"));
+        form.setPropertys(Arrays.asList("ああa", "ああa"));
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
         Set<ConstraintViolation<ByteMaxTestForm>> violations = validator
@@ -236,12 +236,12 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
 
         ConstraintViolation<ByteMaxTestForm> violation = iterator.next();
         assertThat(violation.getPropertyPath().toString(), is(
-                "listProperty[0].<list element>"));
+                "propertys[0].<list element>"));
         assertThat(violation.getMessage(), is(String.format(
                 MESSAGE_VALIDATION_ERROR, 6)));
         violation = iterator.next();
         assertThat(violation.getPropertyPath().toString(), is(
-                "listProperty[1].<list element>"));
+                "propertys[1].<list element>"));
         assertThat(violation.getMessage(), is(String.format(
                 MESSAGE_VALIDATION_ERROR, 6)));
     }
@@ -278,7 +278,7 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
         @ByteMax(value = 6, groups = { UnexpectedType.class })
         private Integer intProperty;
 
-        private List<@ByteMax(6) String> listProperty;
+        private List<@ByteMax(6) String> propertys;
 
         public String getStringProperty() {
             return stringProperty;
@@ -305,12 +305,12 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
             this.intProperty = intProperty;
         }
 
-        public List<String> getListProperty() {
-            return listProperty;
+        public List<String> getPropertys() {
+            return propertys;
         }
 
-        public void setListProperty(List<String> listProperty) {
-            this.listProperty = listProperty;
+        public void setPropertys(List<String> propertys) {
+            this.propertys = propertys;
         }
     }
 }

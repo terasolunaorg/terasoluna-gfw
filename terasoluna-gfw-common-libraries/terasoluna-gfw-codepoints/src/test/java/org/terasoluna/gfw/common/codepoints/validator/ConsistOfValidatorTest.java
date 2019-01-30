@@ -344,7 +344,7 @@ public class ConsistOfValidatorTest {
     }
 
     @Test
-    public void testIsValid_collection_firstNameList_is_invalid() throws Exception {
+    public void testIsValid_collection_firstNames_is_invalid() throws Exception {
         Name_Collection name = new Name_Collection(Arrays.asList("GHI",
                 "ABC"), Arrays.asList("ABC", "ABC"));
         Validator validator = Validation.buildDefaultValidatorFactory()
@@ -357,13 +357,13 @@ public class ConsistOfValidatorTest {
 
         ConstraintViolation<Name_Collection> v = violations.iterator().next();
         assertThat(v.getPropertyPath().toString(), is(
-                "firstNameList[0].<list element>"));
+                "firstNames[0].<list element>"));
         assertThat(v.getMessage(), is(
                 "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
     }
 
     @Test
-    public void testIsValid_collection_lastNameList_is_invalid() throws Exception {
+    public void testIsValid_collection_lastNames_is_invalid() throws Exception {
         Name_Collection name = new Name_Collection(Arrays.asList("ABC",
                 "ABC"), Arrays.asList("GHI", "ABC"));
         Validator validator = Validation.buildDefaultValidatorFactory()
@@ -376,7 +376,7 @@ public class ConsistOfValidatorTest {
 
         ConstraintViolation<Name_Collection> v = violations.iterator().next();
         assertThat(v.getPropertyPath().toString(), is(
-                "lastNameList[0].<list element>"));
+                "lastNames[0].<list element>"));
         assertThat(v.getMessage(), is(
                 "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
     }
@@ -399,12 +399,12 @@ public class ConsistOfValidatorTest {
 
         ConstraintViolation<Name_Collection> violation = iterator.next();
         assertThat(violation.getPropertyPath().toString(), is(
-                "firstNameList[0].<list element>"));
+                "firstNames[0].<list element>"));
         assertThat(violation.getMessage(), is(
                 "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
         violation = iterator.next();
         assertThat(violation.getPropertyPath().toString(), is(
-                "lastNameList[1].<list element>"));
+                "lastNames[1].<list element>"));
         assertThat(violation.getMessage(), is(
                 "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
 
