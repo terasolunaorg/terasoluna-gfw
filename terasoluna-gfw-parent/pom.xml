@@ -599,7 +599,7 @@
     <!-- == Logging == -->
     <org.lazyluke.version>0.2.7</org.lazyluke.version>
     <!-- == Google == -->
-    <guava.version>20.0</guava.version>
+    <guava.version>27.0.1-jre</guava.version>
     <!-- == Apache Commons == -->
     <commons-beanutils.version>1.9.3</commons-beanutils.version>
     <commons-collections.version>3.2.2</commons-collections.version>
