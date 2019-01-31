@@ -231,8 +231,8 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
         assertThat(violations.size(), is(2));
 
         Iterator<ConstraintViolation<ByteMaxTestForm>> iterator = violations
-                .stream().sorted(comparing(v -> ((ConstraintViolation<?>) v)
-                        .getPropertyPath().toString())).iterator();
+                .stream().sorted(comparing(v -> v.getPropertyPath().toString()))
+                .iterator();
 
         ConstraintViolation<ByteMaxTestForm> violation = iterator.next();
         assertThat(violation.getPropertyPath().toString(), is(

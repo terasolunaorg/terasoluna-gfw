@@ -394,8 +394,8 @@ public class ConsistOfValidatorTest {
         assertThat(violations.size(), is(2));
 
         Iterator<ConstraintViolation<Name_Collection>> iterator = violations
-                .stream().sorted(comparing(v -> ((ConstraintViolation<?>) v)
-                        .getPropertyPath().toString())).iterator();
+                .stream().sorted(comparing(v -> v.getPropertyPath().toString()))
+                .iterator();
 
         ConstraintViolation<Name_Collection> violation = iterator.next();
         assertThat(violation.getPropertyPath().toString(), is(
