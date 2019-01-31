@@ -7,7 +7,7 @@ import org.terasoluna.gfw.common.codepoints.ConsistOf;
 public class Name_Collection {
     private List<@ConsistOf(AtoF.class) String> firstNames;
 
-    private List<@ConsistOf(AtoF.class) String> lastNames;
+    private List<@ConsistOf(GtoL.class) String> lastNames;
 
     public Name_Collection(List<String> firstNames, List<String> lastNames) {
         this.firstNames = firstNames;

@@ -333,7 +333,7 @@ public class ConsistOfValidatorTest {
     @Test
     public void testIsValid_collection_all_valid() throws Exception {
         Name_Collection name = new Name_Collection(Arrays.asList("ABC",
-                "ABC"), Arrays.asList("ABC", "ABC"));
+                "ABC"), Arrays.asList("GHI", "GHI"));
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
         Set<ConstraintViolation<Name_Collection>> violations = validator
@@ -346,7 +346,7 @@ public class ConsistOfValidatorTest {
     @Test
     public void testIsValid_collection_firstNames_is_invalid() throws Exception {
         Name_Collection name = new Name_Collection(Arrays.asList("GHI",
-                "ABC"), Arrays.asList("ABC", "ABC"));
+                "ABC"), Arrays.asList("GHI", "GHI"));
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
         Set<ConstraintViolation<Name_Collection>> violations = validator
@@ -365,7 +365,7 @@ public class ConsistOfValidatorTest {
     @Test
     public void testIsValid_collection_lastNames_is_invalid() throws Exception {
         Name_Collection name = new Name_Collection(Arrays.asList("ABC",
-                "ABC"), Arrays.asList("GHI", "ABC"));
+                "ABC"), Arrays.asList("ABC", "GHI"));
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
         Set<ConstraintViolation<Name_Collection>> violations = validator
@@ -384,7 +384,7 @@ public class ConsistOfValidatorTest {
     @Test
     public void testIsValid_collection_all_is_invalid() throws Exception {
         Name_Collection name = new Name_Collection(Arrays.asList("GHI",
-                "ABC"), Arrays.asList("ABC", "GHI"));
+                "ABC"), Arrays.asList("GHI", "ABC"));
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
         Set<ConstraintViolation<Name_Collection>> violations = validator
