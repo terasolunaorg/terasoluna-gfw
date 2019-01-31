@@ -155,10 +155,9 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
     /**
      * all values in the collection are valid.
-     * @throws Throwable
      */
     @Test
-    public void testCollectionValid() throws Throwable {
+    public void testCollectionValid() {
         form.setListProperty(Arrays.asList("ああ", "ああ"));
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
@@ -171,10 +170,9 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
     /**
      * first value in the collection is invalid.
-     * @throws Throwable
      */
     @Test
-    public void testCollectionFirstInvalid() throws Throwable {
+    public void testCollectionFirstInvalid() {
         form.setListProperty(Arrays.asList("あaa", "ああ"));
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
@@ -193,10 +191,9 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
     /**
      * last value in the collection is invalid.
-     * @throws Throwable
      */
     @Test
-    public void testCollectionLastInvalid() throws Throwable {
+    public void testCollectionLastInvalid() {
         form.setListProperty(Arrays.asList("ああ", "あaa"));
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
@@ -215,10 +212,9 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
     /**
      * all values in the collection are invalid.
-     * @throws Throwable
      */
     @Test
-    public void testCollectionAllInvalid() throws Throwable {
+    public void testCollectionAllInvalid() {
         form.setListProperty(Arrays.asList("あaa", "あaa"));
         Validator validator = Validation.buildDefaultValidatorFactory()
                 .getValidator();
