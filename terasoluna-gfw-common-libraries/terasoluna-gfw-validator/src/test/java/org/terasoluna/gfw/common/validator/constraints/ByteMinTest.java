@@ -49,10 +49,9 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
     /**
      * input null value. expected valid.
-     * @throws Throwable
      */
     @Test
-    public void testInputNull() throws Throwable {
+    public void testInputNull() {
 
         violations = validator.validate(form);
         assertThat(violations.size(), is(0));
@@ -60,10 +59,9 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
     /**
      * specify min value. expected valid if input value encoded in UTF-8 is grater than or equal min value.
-     * @throws Throwable
      */
     @Test
-    public void testSpecifyMinValue() throws Throwable {
+    public void testSpecifyMinValue() {
 
         {
             form.setStringProperty("あaa");
@@ -84,10 +82,9 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
     /**
      * specify min value for StringBuilder(CharSequence).
-     * @throws Throwable
      */
     @Test
-    public void testSpecifyMinValueForStringBuilder() throws Throwable {
+    public void testSpecifyMinValueForStringBuilder() {
 
         {
             form.setStringBuilderProperty(new StringBuilder("あaa"));
@@ -108,10 +105,9 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
     /**
      * specify charset. expected valid if input value encoded in specified charset is grater than or equal min value.
-     * @throws Throwable
      */
     @Test
-    public void testSpecifyCharset() throws Throwable {
+    public void testSpecifyCharset() {
 
         {
             form.setStringProperty("ああa");
@@ -133,10 +129,9 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
     /**
      * specify illegal charset. expected {@code ValidationException} caused by {@code IllegalArgumentException} that message is
      * {@code failed to initialize validator by invalid argument}.
-     * @throws Throwable
      */
     @Test
-    public void testSpecifyIllegalCharset() throws Throwable {
+    public void testSpecifyIllegalCharset() {
         setExpectedFailedToInitialize(UnsupportedCharsetException.class);
 
         validator.validate(form, IllegalCharset.class);
@@ -144,10 +139,9 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
     /**
      * specify not support type. expected {@code UnexpectedTypeException}
-     * @throws Throwable
      */
     @Test
-    public void testAnnotateUnexpectedType() throws Throwable {
+    public void testAnnotateUnexpectedType() {
         thrown.expect(UnexpectedTypeException.class);
 
         validator.validate(form, UnexpectedType.class);

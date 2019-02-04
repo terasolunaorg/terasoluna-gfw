@@ -49,10 +49,9 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
 
     /**
      * input null value. expected valid.
-     * @throws Throwable
      */
     @Test
-    public void testInputNull() throws Throwable {
+    public void testInputNull() {
 
         violations = validator.validate(form);
         assertThat(violations.size(), is(0));
@@ -60,10 +59,9 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
 
     /**
      * specify max value. expected valid if input value encoded in UTF-8 is grater than or equal max value.
-     * @throws Throwable
      */
     @Test
-    public void testSpecifyMaxValue() throws Throwable {
+    public void testSpecifyMaxValue() {
 
         {
             form.setStringProperty("ああa");
@@ -86,7 +84,7 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
      * specify max value for StringBuilder(CharSequence).
      */
     @Test
-    public void testSpecifyMaxValueForStringBuilder() throws Throwable {
+    public void testSpecifyMaxValueForStringBuilder() {
 
         {
             form.setStringBuilderProperty(new StringBuilder("ああa"));
@@ -107,10 +105,9 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
 
     /**
      * specify charset. expected valid if input value encoded in specified charset is grater than or equal max value.
-     * @throws Throwable
      */
     @Test
-    public void testSpecifyCharset() throws Throwable {
+    public void testSpecifyCharset() {
 
         {
             form.setStringProperty("あああa");
@@ -132,10 +129,9 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
     /**
      * specify illegal charset. expected {@code ValidationException} caused by {@code IllegalArgumentException} that message is
      * {@code failed to initialize validator by invalid argument}.
-     * @throws Throwable
      */
     @Test
-    public void testSpecifyIllegalCharset() throws Throwable {
+    public void testSpecifyIllegalCharset() {
         setExpectedFailedToInitialize(UnsupportedCharsetException.class);
 
         validator.validate(form, IllegalCharset.class);
@@ -143,10 +139,9 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
 
     /**
      * specify not support type. expected {@code UnexpectedTypeException}
-     * @throws Throwable
      */
     @Test
-    public void testAnnotateUnexpectedType() throws Throwable {
+    public void testAnnotateUnexpectedType() {
         thrown.expect(UnexpectedTypeException.class);
 
         validator.validate(form, UnexpectedType.class);
