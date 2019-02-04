@@ -18,6 +18,7 @@ package org.terasoluna.gfw.common.codepoints.validator;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertThat;
+import static java.util.Comparator.comparing;
 
 import java.util.*;
 
@@ -328,4 +329,85 @@ public class ConsistOfValidatorTest {
         assertThat(v.getPropertyPath().toString(), is("lastName"));
         assertThat(v.getMessage(), is("not ascii printable!"));
     }
+
+    @Test
+    public void testIsValid_collection_all_valid() throws Exception {
+        Name_Collection name = new Name_Collection(Arrays.asList("ABC",
+                "ABC"), Arrays.asList("GHI", "GHI"));
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<Name_Collection>> violations = validator
+                .validate(name);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(0));
+    }
+
+    @Test
+    public void testIsValid_collection_firstNames_is_invalid() throws Exception {
+        Name_Collection name = new Name_Collection(Arrays.asList("GHI",
+                "ABC"), Arrays.asList("GHI", "GHI"));
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<Name_Collection>> violations = validator
+                .validate(name);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(1));
+
+        ConstraintViolation<Name_Collection> v = violations.iterator().next();
+        assertThat(v.getPropertyPath().toString(), is(
+                "firstNames[0].<list element>"));
+        assertThat(v.getMessage(), is(
+                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+    }
+
+    @Test
+    public void testIsValid_collection_lastNames_is_invalid() throws Exception {
+        Name_Collection name = new Name_Collection(Arrays.asList("ABC",
+                "ABC"), Arrays.asList("ABC", "GHI"));
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<Name_Collection>> violations = validator
+                .validate(name);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(1));
+
+        ConstraintViolation<Name_Collection> v = violations.iterator().next();
+        assertThat(v.getPropertyPath().toString(), is(
+                "lastNames[0].<list element>"));
+        assertThat(v.getMessage(), is(
+                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+    }
+
+    @Test
+    public void testIsValid_collection_all_is_invalid() throws Exception {
+        Name_Collection name = new Name_Collection(Arrays.asList("GHI",
+                "ABC"), Arrays.asList("GHI", "ABC"));
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<Name_Collection>> violations = validator
+                .validate(name);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(2));
+
+        Iterator<ConstraintViolation<Name_Collection>> iterator = violations
+                .stream().sorted(comparing(v -> v.getPropertyPath().toString()))
+                .iterator();
+
+        ConstraintViolation<Name_Collection> violation = iterator.next();
+        assertThat(violation.getPropertyPath().toString(), is(
+                "firstNames[0].<list element>"));
+        assertThat(violation.getMessage(), is(
+                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        violation = iterator.next();
+        assertThat(violation.getPropertyPath().toString(), is(
+                "lastNames[1].<list element>"));
+        assertThat(violation.getMessage(), is(
+                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+
+    }
+
 }

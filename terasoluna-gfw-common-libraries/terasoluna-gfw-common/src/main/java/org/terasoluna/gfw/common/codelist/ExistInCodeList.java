@@ -16,12 +16,15 @@
 package org.terasoluna.gfw.common.codelist;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
+import static java.lang.annotation.ElementType.CONSTRUCTOR;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.PARAMETER;
+import static java.lang.annotation.ElementType.TYPE_USE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Documented;
+import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
@@ -30,6 +33,8 @@ import javax.validation.Payload;
 
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharacter;
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharSequence;
+
+import org.terasoluna.gfw.common.codelist.ExistInCodeList.List;
 
 /**
  * Custom annotation that provides the functionality to check the existence of a code in the specified codelist.
@@ -52,8 +57,9 @@ import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForC
  * returned with the default error message represented by {@code message()} in it.
  */
 @Documented
-@Target({ METHOD, FIELD, ANNOTATION_TYPE, PARAMETER })
+@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
 @Retention(RUNTIME)
+@Repeatable(List.class)
 @Constraint(validatedBy = { ExistInCodeListValidatorForCharSequence.class,
         ExistInCodeListValidatorForCharacter.class })
 public @interface ExistInCodeList {
@@ -86,7 +92,8 @@ public @interface ExistInCodeList {
      * Defines several <code>@ExistInCodeList</code> annotations on the same element
      * @see ExistInCodeList
      */
-    @Target({ METHOD, FIELD, ANNOTATION_TYPE, PARAMETER })
+    @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER,
+            TYPE_USE })
     @Retention(RUNTIME)
     @Documented
     @interface List {

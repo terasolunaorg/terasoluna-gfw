@@ -18,7 +18,9 @@ package org.terasoluna.gfw.common.codelist;
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -353,6 +355,39 @@ public class ExistInCodeListTest {
         }
     }
 
+    @Test
+    public void testCollectionValid() {
+        Role r = new Role();
+        r.setRoles(Arrays.asList("M", "A", "U"));
+
+        Set<ConstraintViolation<Role>> violations = validator.validate(r);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(0));
+    }
+
+    @Test
+    public void testCollectionSingleElementInvalid() {
+        Role r = new Role();
+        r.setRoles(Arrays.asList("M", "A", "T"));
+
+        Set<ConstraintViolation<Role>> violations = validator.validate(r);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(1));
+    }
+
+    @Test
+    public void testCollectionMultipleElementInvalid() {
+        Role r = new Role();
+        r.setRoles(Arrays.asList("S", "A", "T"));
+
+        Set<ConstraintViolation<Role>> violations = validator.validate(r);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(2));
+    }
+
     @Validated
     public interface CodeService {
         String getGenderLabel(
@@ -398,9 +433,8 @@ class Employee {
 }
 
 class Order {
-    @ExistInCodeList.List(value = {
-            @ExistInCodeList(codeListId = "CD_MULTIPLES_OF_3", message = "number must be multiples of 3"),
-            @ExistInCodeList(codeListId = "CD_EVEN", message = "number must be even") })
+    @ExistInCodeList(codeListId = "CD_MULTIPLES_OF_3", message = "number must be multiples of 3")
+    @ExistInCodeList(codeListId = "CD_EVEN", message = "number must be even")
     private String orderNumber;
 
     public Order(String orderNumber) {
@@ -414,4 +448,17 @@ class Order {
     public String getOrderNumber() {
         return orderNumber;
     }
+}
+
+class Role {
+    private List<@ExistInCodeList(codeListId = "CD_ROLE") String> roles;
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
 }
