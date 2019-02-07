@@ -39,32 +39,28 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
         "classpath:org/terasoluna/gfw/common/codelist/i18n/simpleI18nCodeList.xml" })
 public class SimpleI18nCodeListTest {
     @Autowired
-    @Qualifier("CL_testSetRows01")
-    protected SimpleI18nCodeList testSetRows01;
+    @Qualifier("CL_testSetRows")
+    protected SimpleI18nCodeList testSetRows;
 
     @Autowired
-    @Qualifier("CL_testSetRows02")
-    protected SimpleI18nCodeList testSetRows02;
+    @Qualifier("CL_testSetRowsByCodeList")
+    protected SimpleI18nCodeList testSetRowsByCodeList;
 
     @Autowired
-    @Qualifier("CL_testSetRowsByCodeList01")
-    protected SimpleI18nCodeList testSetRowsByCodeList01;
-
-    @Autowired
-    @Qualifier("CL_testSetColumns01")
-    protected SimpleI18nCodeList testSetColumns01;
+    @Qualifier("CL_testSetColumns")
+    protected SimpleI18nCodeList testSetColumns;
 
     @Autowired
     @Qualifier("CL_testFallbackTo")
     protected SimpleI18nCodeList testSetFallbackTo;
 
     @Autowired
-    @Qualifier("CL_testResolveLocale01")
-    protected SimpleI18nCodeList testResolveLocale01;
+    @Qualifier("CL_testResolveLocale")
+    protected SimpleI18nCodeList testResolveLocale;
 
     @Autowired
-    @Qualifier("CL_testResolveLocale02")
-    protected SimpleI18nCodeList testResolveLocale02;
+    @Qualifier("CL_testResolveLocaleFallbackToUS")
+    protected SimpleI18nCodeList testResolveLocaleFallbackToUS;
 
     @BeforeClass
     public static void setDefaultLocale() {
@@ -72,12 +68,12 @@ public class SimpleI18nCodeListTest {
     }
 
     @Test
-    public void testAsMap01() {
+    public void testAsMap() {
 
-        Map<String, String> row1 = testSetRows01.asMap();
+        Map<String, String> row1 = testSetRows.asMap();
         assertThat(row1, is(notNullValue()));
-        assertThat(row1.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]")); // check
-                                                                           // order
+        assertThat(row1.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]"));
+
         assertThat(row1.get("0"), is("Sun."));
         assertThat(row1.get("1"), is("Mon."));
         assertThat(row1.get("2"), is("Tue."));
@@ -88,14 +84,12 @@ public class SimpleI18nCodeListTest {
     }
 
     @Test
-    public void testSetRows01() {
-        assertThat(testSetRows01.codeListTable.size(), is(14)); // 2 rows x 7
-                                                                // columns
+    public void testAsMap_locale_specification() {
 
-        Map<String, String> row1 = testSetRows01.asMap(Locale.ENGLISH);
+        Map<String, String> row1 = testSetRows.asMap(Locale.ENGLISH);
         assertThat(row1, is(notNullValue()));
-        assertThat(row1.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]")); // check
-                                                                           // order
+        assertThat(row1.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]"));
+
         assertThat(row1.get("0"), is("Sun."));
         assertThat(row1.get("1"), is("Mon."));
         assertThat(row1.get("2"), is("Tue."));
@@ -104,10 +98,10 @@ public class SimpleI18nCodeListTest {
         assertThat(row1.get("5"), is("Fri."));
         assertThat(row1.get("6"), is("Sat."));
 
-        Map<String, String> row2 = testSetRows01.asMap(Locale.JAPANESE);
+        Map<String, String> row2 = testSetRows.asMap(Locale.JAPANESE);
         assertThat(row2, is(notNullValue()));
-        assertThat(row2.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]")); // check
-                                                                           // order
+        assertThat(row2.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]"));
+
         assertThat(row2.get("0"), is("日"));
         assertThat(row2.get("1"), is("月"));
         assertThat(row2.get("2"), is("火"));
@@ -118,154 +112,31 @@ public class SimpleI18nCodeListTest {
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void testSetRows02() {
-        // check unmodifiable
-        testSetRows01.asMap(Locale.ENGLISH).put("0", "Sunday");
+    public void testAsMap_check_unmodifiable() {
+        testSetRows.asMap(Locale.ENGLISH).put("0", "Sunday");
     }
 
     @Test
-    public void testSetRows03() {
-        assertThat(testSetRows01.codeListTable.size(), is(14)); // 2 rows x 7
+    public void testSetRows() {
+        assertThat(testSetRows.codeListTable.size(), is(14)); // 2 rows x 7
                                                                 // columns
-
-        Map<String, String> row1 = testSetRows01.asMap(Locale.US);
-        assertThat(row1, is(notNullValue()));
-        assertThat(row1.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]")); // check
-                                                                           // order
-        assertThat(row1.get("0"), is("Sun."));
-        assertThat(row1.get("1"), is("Mon."));
-        assertThat(row1.get("2"), is("Tue."));
-        assertThat(row1.get("3"), is("Wed."));
-        assertThat(row1.get("4"), is("Thu."));
-        assertThat(row1.get("5"), is("Fri."));
-        assertThat(row1.get("6"), is("Sat."));
-
-        Map<String, String> row2 = testSetRows01.asMap(Locale.JAPAN);
-        assertThat(row2, is(notNullValue()));
-        assertThat(row2.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]")); // check
-                                                                           // order
-        assertThat(row2.get("0"), is("日"));
-        assertThat(row2.get("1"), is("月"));
-        assertThat(row2.get("2"), is("火"));
-        assertThat(row2.get("3"), is("水"));
-        assertThat(row2.get("4"), is("木"));
-        assertThat(row2.get("5"), is("金"));
-        assertThat(row2.get("6"), is("土"));
     }
 
     @Test
-    public void testSetRows04() {
-        assertThat(testSetRows01.codeListTable.size(), is(14)); // 2 rows x 7
-                                                                // columns
-
-        Map<String, String> row1 = testSetRows01.asMap(Locale.CHINESE);
-        assertThat(row1, is(notNullValue()));
-        assertThat(row1.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]")); // check
-                                                                           // order
-        assertThat(row1.get("0"), is("Sun."));
-        assertThat(row1.get("1"), is("Mon."));
-        assertThat(row1.get("2"), is("Tue."));
-        assertThat(row1.get("3"), is("Wed."));
-        assertThat(row1.get("4"), is("Thu."));
-        assertThat(row1.get("5"), is("Fri."));
-        assertThat(row1.get("6"), is("Sat."));
-    }
-
-    @Test
-    public void testSetRows05() {
-        Locale.setDefault(Locale.JAPAN);
-        assertThat(testSetRows02.codeListTable.size(), is(7)); // 1 rows x 7
-                                                               // columns
-
-        Map<String, String> row = testSetRows02.asMap(Locale.CHINESE);
-        assertThat(row, is(notNullValue()));
-        assertThat(row.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]")); // check
-                                                                          // order
-        assertThat(row.get("0"), is("Sun."));
-        assertThat(row.get("1"), is("Mon."));
-        assertThat(row.get("2"), is("Tue."));
-        assertThat(row.get("3"), is("Wed."));
-        assertThat(row.get("4"), is("Thu."));
-        assertThat(row.get("5"), is("Fri."));
-        assertThat(row.get("6"), is("Sat."));
-
-        Locale.setDefault(Locale.ENGLISH);
-    }
-
-    @Test
-    public void testSetRowsByCodeList01() {
-        assertThat(testSetRowsByCodeList01.codeListTable.size(), is(14)); // 2
-                                                                          // rows
-                                                                          // x 7
+    public void testSetRowsByCodeList() {
+        assertThat(testSetRowsByCodeList.codeListTable.size(), is(14)); // 2 rows x 7
                                                                           // columns
-
-        Map<String, String> row1 = testSetRowsByCodeList01.asMap(
-                Locale.ENGLISH);
-        assertThat(row1, is(notNullValue()));
-        assertThat(row1.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]")); // check
-                                                                           // order
-        assertThat(row1.get("0"), is("Sun."));
-        assertThat(row1.get("1"), is("Mon."));
-        assertThat(row1.get("2"), is("Tue."));
-        assertThat(row1.get("3"), is("Wed."));
-        assertThat(row1.get("4"), is("Thu."));
-        assertThat(row1.get("5"), is("Fri."));
-        assertThat(row1.get("6"), is("Sat."));
-
-        Map<String, String> row2 = testSetRowsByCodeList01.asMap(
-                Locale.JAPANESE);
-        assertThat(row2, is(notNullValue()));
-        assertThat(row2.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]")); // check
-                                                                           // order
-        assertThat(row2.get("0"), is("日"));
-        assertThat(row2.get("1"), is("月"));
-        assertThat(row2.get("2"), is("火"));
-        assertThat(row2.get("3"), is("水"));
-        assertThat(row2.get("4"), is("木"));
-        assertThat(row2.get("5"), is("金"));
-        assertThat(row2.get("6"), is("土"));
-    }
-
-    @Test(expected = UnsupportedOperationException.class)
-    public void testSetRowsByCodeList02() {
-        // check unmodifiable
-        testSetRowsByCodeList01.asMap(Locale.ENGLISH).put("0", "Sunday");
     }
 
     @Test
-    public void testSetColumns01() {
-        assertThat(testSetColumns01.codeListTable.size(), is(14)); // 2 rows x 7
+    public void testSetColumns() {
+        assertThat(testSetColumns.codeListTable.size(), is(14)); // 2 rows x 7
                                                                    // columns
-
-        Map<String, String> row1 = testSetColumns01.asMap(Locale.ENGLISH);
-        assertThat(row1, is(notNullValue()));
-        assertThat(row1.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]")); // check
-                                                                           // order
-        assertThat(row1.get("0"), is("Sun."));
-        assertThat(row1.get("1"), is("Mon."));
-        assertThat(row1.get("2"), is("Tue."));
-        assertThat(row1.get("3"), is("Wed."));
-        assertThat(row1.get("4"), is("Thu."));
-        assertThat(row1.get("5"), is("Fri."));
-        assertThat(row1.get("6"), is("Sat."));
-
-        Map<String, String> row2 = testSetColumns01.asMap(Locale.JAPANESE);
-        assertThat(row2, is(notNullValue()));
-        assertThat(row2.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]")); // check
-                                                                           // order
-        assertThat(row2.get("0"), is("日"));
-        assertThat(row2.get("1"), is("月"));
-        assertThat(row2.get("2"), is("火"));
-        assertThat(row2.get("3"), is("水"));
-        assertThat(row2.get("4"), is("木"));
-        assertThat(row2.get("5"), is("金"));
-        assertThat(row2.get("6"), is("土"));
     }
 
-    @Test(expected = UnsupportedOperationException.class)
-    public void testSetColumnss02() {
-        // check unmodifiable
-        testSetColumns01.asMap(Locale.ENGLISH).put("0", "Sunday");
+    public void testSetFallbackTo() {
+        testSetFallbackTo.setFallbackTo(Locale.JAPANESE);
+        testSetFallbackTo.afterPropertiesSet();
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -281,23 +152,28 @@ public class SimpleI18nCodeListTest {
     }
 
     @Test
-    public void testResolveLocale01() {
-        assertThat(testResolveLocale01.resolveLocale(Locale.ENGLISH),is(Locale.ENGLISH));
+    public void testResolveLocale() {
+        assertThat(testResolveLocale.resolveLocale(Locale.JAPANESE),is(Locale.JAPANESE));
     }
 
     @Test
-    public void testResolveLocale02() {
-        assertThat(testResolveLocale01.resolveLocale(Locale.US),is(Locale.ENGLISH));
+    public void testResolveLocale_prioritize_exact_match() {
+        assertThat(testResolveLocale.resolveLocale(Locale.UK),is(Locale.UK));
     }
 
     @Test
-    public void testResolveLocale03() {
-        assertThat(testResolveLocale01.resolveLocale(Locale.JAPANESE),is(Locale.ENGLISH));
+    public void testResolveLocale_match_language() {
+        assertThat(testResolveLocale.resolveLocale(Locale.US),is(Locale.ENGLISH));
     }
 
     @Test
-    public void testResolveLocale04() {
-        assertThat(testResolveLocale02.resolveLocale(Locale.ENGLISH),is(Locale.US));
+    public void testResolveLocale_use_fallbackTo() {
+        assertThat(testResolveLocale.resolveLocale(Locale.CHINESE),is(Locale.JAPAN));
+    }
+
+    @Test
+    public void testResolveLocale_unmatch_nation() {
+        assertThat(testResolveLocaleFallbackToUS.resolveLocale(Locale.ENGLISH),is(Locale.US));
     }
 
 }
