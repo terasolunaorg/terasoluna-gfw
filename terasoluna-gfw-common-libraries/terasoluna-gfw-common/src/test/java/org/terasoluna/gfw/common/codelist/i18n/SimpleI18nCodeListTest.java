@@ -51,6 +51,10 @@ public class SimpleI18nCodeListTest {
     @Qualifier("CL_testSetColumns01")
     protected SimpleI18nCodeList testSetColumns01;
 
+    @Autowired
+    @Qualifier("CL_testFallbackTo")
+    protected SimpleI18nCodeList testSetFallbackTo;
+
     @BeforeClass
     public static void setDefaultLocale() {
         Locale.setDefault(Locale.US);
@@ -235,6 +239,12 @@ public class SimpleI18nCodeListTest {
     public void testSetColumnss02() {
         // check unmodifiable
         testSetColumns01.asMap(Locale.ENGLISH).put("0", "Sunday");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetFallbackTo_invalid() {
+        testSetFallbackTo.setFallbackTo(Locale.US);
+        testSetFallbackTo.afterPropertiesSet();
     }
 
     @Test(expected = IllegalArgumentException.class)
