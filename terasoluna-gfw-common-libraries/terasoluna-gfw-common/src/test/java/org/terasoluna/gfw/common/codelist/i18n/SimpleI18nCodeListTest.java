@@ -119,19 +119,19 @@ public class SimpleI18nCodeListTest {
     @Test
     public void testSetRows() {
         assertThat(testSetRows.codeListTable.size(), is(14)); // 2 rows x 7
-                                                                // columns
+                                                              // columns
     }
 
     @Test
     public void testSetRowsByCodeList() {
         assertThat(testSetRowsByCodeList.codeListTable.size(), is(14)); // 2 rows x 7
-                                                                          // columns
+                                                                        // columns
     }
 
     @Test
     public void testSetColumns() {
         assertThat(testSetColumns.codeListTable.size(), is(14)); // 2 rows x 7
-                                                                   // columns
+                                                                 // columns
     }
 
     public void testSetFallbackTo() {
@@ -153,27 +153,31 @@ public class SimpleI18nCodeListTest {
 
     @Test
     public void testResolveLocale() {
-        assertThat(testResolveLocale.resolveLocale(Locale.JAPANESE),is(Locale.JAPANESE));
+        assertThat(testResolveLocale.resolveLocale(Locale.JAPANESE), is(
+                Locale.JAPANESE));
     }
 
     @Test
     public void testResolveLocale_prioritize_exact_match() {
-        assertThat(testResolveLocale.resolveLocale(Locale.UK),is(Locale.UK));
+        assertThat(testResolveLocale.resolveLocale(Locale.UK), is(Locale.UK));
     }
 
     @Test
     public void testResolveLocale_match_language() {
-        assertThat(testResolveLocale.resolveLocale(Locale.US),is(Locale.ENGLISH));
+        assertThat(testResolveLocale.resolveLocale(Locale.US), is(
+                Locale.ENGLISH));
     }
 
     @Test
     public void testResolveLocale_use_fallbackTo() {
-        assertThat(testResolveLocale.resolveLocale(Locale.CHINESE),is(Locale.JAPAN));
+        assertThat(testResolveLocale.resolveLocale(Locale.CHINESE), is(
+                Locale.JAPAN));
     }
 
     @Test
     public void testResolveLocale_unmatch_nation() {
-        assertThat(testResolveLocaleFallbackToUS.resolveLocale(Locale.ENGLISH),is(Locale.US));
+        assertThat(testResolveLocaleFallbackToUS.resolveLocale(Locale.ENGLISH),
+                is(Locale.US));
     }
 
 }
