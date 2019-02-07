@@ -69,6 +69,22 @@ public class SimpleI18nCodeListTest {
     }
 
     @Test
+    public void testAsMap01() {
+
+        Map<String, String> row1 = testSetRows01.asMap();
+        assertThat(row1, is(notNullValue()));
+        assertThat(row1.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]")); // check
+                                                                           // order
+        assertThat(row1.get("0"), is("Sun."));
+        assertThat(row1.get("1"), is("Mon."));
+        assertThat(row1.get("2"), is("Tue."));
+        assertThat(row1.get("3"), is("Wed."));
+        assertThat(row1.get("4"), is("Thu."));
+        assertThat(row1.get("5"), is("Fri."));
+        assertThat(row1.get("6"), is("Sat."));
+    }
+
+    @Test
     public void testSetRows01() {
         assertThat(testSetRows01.codeListTable.size(), is(14)); // 2 rows x 7
                                                                 // columns
