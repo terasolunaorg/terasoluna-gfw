@@ -55,6 +55,14 @@ public class SimpleI18nCodeListTest {
     @Qualifier("CL_testFallbackTo")
     protected SimpleI18nCodeList testSetFallbackTo;
 
+    @Autowired
+    @Qualifier("CL_testResolveLocale01")
+    protected SimpleI18nCodeList testResolveLocale01;
+
+    @Autowired
+    @Qualifier("CL_testResolveLocale02")
+    protected SimpleI18nCodeList testResolveLocale02;
+
     @BeforeClass
     public static void setDefaultLocale() {
         Locale.setDefault(Locale.US);
@@ -251,6 +259,26 @@ public class SimpleI18nCodeListTest {
     public void testAfterProperitesSet_invalid() {
         SimpleI18nCodeList codeList = new SimpleI18nCodeList();
         codeList.afterPropertiesSet();
+    }
+
+    @Test
+    public void testResolveLocale01() {
+        assertThat(testResolveLocale01.resolveLocale(Locale.ENGLISH),is(Locale.ENGLISH));
+    }
+
+    @Test
+    public void testResolveLocale02() {
+        assertThat(testResolveLocale01.resolveLocale(Locale.US),is(Locale.ENGLISH));
+    }
+
+    @Test
+    public void testResolveLocale03() {
+        assertThat(testResolveLocale01.resolveLocale(Locale.JAPANESE),is(Locale.ENGLISH));
+    }
+
+    @Test
+    public void testResolveLocale04() {
+        assertThat(testResolveLocale02.resolveLocale(Locale.ENGLISH),is(Locale.US));
     }
 
 }
