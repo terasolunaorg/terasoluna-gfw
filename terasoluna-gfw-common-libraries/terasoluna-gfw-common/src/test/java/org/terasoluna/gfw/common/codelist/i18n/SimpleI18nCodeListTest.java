@@ -30,10 +30,13 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+/***
+ * {@link Lazy} is used to fix Locale's setting. (see setDefaultLocale method)
+ */
+@Lazy
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
         "classpath:org/terasoluna/gfw/common/codelist/i18n/simpleI18nCodeList.xml" })
-@Lazy
 public class SimpleI18nCodeListTest {
     @Autowired
     @Qualifier("CL_testSetRows01")
