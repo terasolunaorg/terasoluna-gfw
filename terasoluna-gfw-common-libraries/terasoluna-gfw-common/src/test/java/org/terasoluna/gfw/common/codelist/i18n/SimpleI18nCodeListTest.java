@@ -84,7 +84,7 @@ public class SimpleI18nCodeListTest {
     }
 
     @Test
-    public void testAsMap_locale_specification() {
+    public void testAsMapLocaleSpecification() {
 
         Map<String, String> row1 = testSetRows.asMap(Locale.ENGLISH);
         assertThat(row1, is(notNullValue()));
@@ -112,7 +112,7 @@ public class SimpleI18nCodeListTest {
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void testAsMap_check_unmodifiable() {
+    public void testAsMapCheckUnmodifiable() {
         testSetRows.asMap(Locale.ENGLISH).put("0", "Sunday");
     }
 
@@ -140,13 +140,13 @@ public class SimpleI18nCodeListTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testSetFallbackTo_invalid() {
+    public void testSetFallbackToInvalid() {
         testSetFallbackTo.setFallbackTo(Locale.US);
         testSetFallbackTo.afterPropertiesSet();
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testAfterProperitesSet_invalid() {
+    public void testAfterProperitesSetInvalid() {
         SimpleI18nCodeList codeList = new SimpleI18nCodeList();
         codeList.afterPropertiesSet();
     }
@@ -158,24 +158,24 @@ public class SimpleI18nCodeListTest {
     }
 
     @Test
-    public void testResolveLocale_prioritize_exact_match() {
+    public void testResolveLocalePrioritizeExactMatch() {
         assertThat(testResolveLocale.resolveLocale(Locale.UK), is(Locale.UK));
     }
 
     @Test
-    public void testResolveLocale_match_language() {
+    public void testResolveLocaleMatchLanguage() {
         assertThat(testResolveLocale.resolveLocale(Locale.US), is(
                 Locale.ENGLISH));
     }
 
     @Test
-    public void testResolveLocale_use_fallbackTo() {
+    public void testResolveLocaleUseFallbackTo() {
         assertThat(testResolveLocale.resolveLocale(Locale.CHINESE), is(
                 Locale.JAPAN));
     }
 
     @Test
-    public void testResolveLocale_unmatch_nation() {
+    public void testResolveLocaleUnmatchNation() {
         assertThat(testResolveLocaleFallbackToUS.resolveLocale(Locale.ENGLISH),
                 is(Locale.US));
     }
