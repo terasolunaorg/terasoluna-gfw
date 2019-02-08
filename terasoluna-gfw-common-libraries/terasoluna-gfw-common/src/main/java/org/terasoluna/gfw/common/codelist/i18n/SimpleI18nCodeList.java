@@ -366,20 +366,16 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
         if (StringUtils.hasLength(lang) && !lang.equals(locale.toString())) {
             Locale langOnlyLocale = new Locale(lang);
             if (codeListTable.containsRow(langOnlyLocale)) {
-                if (logger.isDebugEnabled()) {
-                    logger.debug(
-                            "Found codelist for specified locale '{}' (language only).",
-                            locale);
-                }
+                logger.debug(
+                        "Found codelist for specified locale '{}' (language only).",
+                        locale);
                 return langOnlyLocale;
             }
         }
 
-        if (logger.isDebugEnabled()) {
-            logger.debug(
-                    "There is no codelist for specified locale '{}'. Use '{}' as fallback.",
-                    locale, fallbackTo);
-        }
+        logger.debug(
+                "There is no codelist for specified locale '{}'. Use '{}' as fallback.",
+                locale, fallbackTo);
         return fallbackTo;
     }
 
