@@ -532,7 +532,7 @@ public class PaginationTag extends RequestContextAwareTag {
     /**
      * special handling for the serialization and deserialization process
      * @param out ObjectOutputStream
-     * @throws IOException
+     * @throws IOException {@link java.io.ObjectOutputStream#defaultWriteObject()}
      * @see java.io.Serializable
      */
     private void writeObject(ObjectOutputStream out) throws IOException {
@@ -542,8 +542,8 @@ public class PaginationTag extends RequestContextAwareTag {
     /**
      * special handling for the serialization and deserialization process
      * @param in ObjectInputStream
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @throws IOException {@link java.io.ObjectInputStream#defaultReadObject()}
+     * @throws ClassNotFoundException {@link java.io.ObjectInputStream#defaultReadObject()}
      * @see java.io.Serializable
      */
     private void readObject(

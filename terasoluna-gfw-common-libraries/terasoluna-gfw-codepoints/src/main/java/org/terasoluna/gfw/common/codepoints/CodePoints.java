@@ -361,7 +361,7 @@ public class CodePoints implements Serializable {
     /**
      * Helper method to check whether all code points in the given string are included in any of the code points list.
      * @param s target string
-     * @param codePointsList
+     * @param codePointsList array of code points
      * @return {@code true} if all code points in the given string are included in any of the code points list. Otherwise
      *         {@code false} is returned.
      */
