@@ -147,7 +147,7 @@
         </entry>
       </util:map>
     </property>
-    <property name="fallbackTo" value="en" />
+    <property name="fallbackTo" value="ja" />
   </bean>
 
   <bean id="CL_testResolveLocale" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
