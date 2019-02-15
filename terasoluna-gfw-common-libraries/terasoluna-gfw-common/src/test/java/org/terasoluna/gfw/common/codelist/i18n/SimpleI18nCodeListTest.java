@@ -21,19 +21,13 @@ import static org.junit.Assert.*;
 import java.util.Locale;
 import java.util.Map;
 
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-/***
- * {@link Lazy} is used to fix Locale's setting. (see setDefaultLocale method)
- */
-@Lazy
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
         "classpath:org/terasoluna/gfw/common/codelist/i18n/simpleI18nCodeList.xml" })
@@ -62,8 +56,7 @@ public class SimpleI18nCodeListTest {
     @Qualifier("CL_testResolveLocaleFallbackToUS")
     protected SimpleI18nCodeList testResolveLocaleFallbackToUS;
 
-    @BeforeClass
-    public static void setDefaultLocale() {
+    public SimpleI18nCodeListTest() {
         Locale.setDefault(Locale.US);
     }
 
