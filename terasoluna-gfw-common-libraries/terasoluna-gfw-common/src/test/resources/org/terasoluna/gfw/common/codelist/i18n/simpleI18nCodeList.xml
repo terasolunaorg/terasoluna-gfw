@@ -166,13 +166,13 @@
         </entry>
         <entry key="en_GB">
           <util:map>
-            <entry key="0" value="Sun." />
-            <entry key="1" value="Mon." />
-            <entry key="2" value="Tue." />
-            <entry key="3" value="Wed." />
-            <entry key="4" value="Thu." />
-            <entry key="5" value="Fri." />
-            <entry key="6" value="Sat." />
+            <entry key="0" value="Sunday" />
+            <entry key="1" value="Monday" />
+            <entry key="2" value="Tuesday" />
+            <entry key="3" value="Wednesday" />
+            <entry key="4" value="Thursday" />
+            <entry key="5" value="Friday" />
+            <entry key="6" value="Saturday" />
           </util:map>
         </entry>
         <entry key="ja">
