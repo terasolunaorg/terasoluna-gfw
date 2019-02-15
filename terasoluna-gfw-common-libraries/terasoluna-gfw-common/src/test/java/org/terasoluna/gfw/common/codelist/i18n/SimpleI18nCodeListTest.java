@@ -127,6 +127,7 @@ public class SimpleI18nCodeListTest {
                                                                  // columns
     }
 
+    @Test
     public void testSetFallbackTo() {
         testSetFallbackTo.setFallbackTo(Locale.JAPANESE);
         testSetFallbackTo.afterPropertiesSet();
