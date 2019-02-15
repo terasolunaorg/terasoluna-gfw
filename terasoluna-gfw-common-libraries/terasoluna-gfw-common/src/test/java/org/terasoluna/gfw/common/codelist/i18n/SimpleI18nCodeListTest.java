@@ -134,6 +134,12 @@ public class SimpleI18nCodeListTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
+    public void testSetFallbackToNull() {
+        testSetFallbackTo.setFallbackTo(null);
+        testSetFallbackTo.afterPropertiesSet();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
     public void testSetFallbackToInvalid() {
         testSetFallbackTo.setFallbackTo(Locale.US);
         testSetFallbackTo.afterPropertiesSet();
