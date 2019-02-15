@@ -140,7 +140,13 @@ public class SimpleI18nCodeListTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testSetFallbackToInvalid() {
+    public void testSetFallbackToInvalidLanguage () {
+        testSetFallbackTo.setFallbackTo(Locale.FRENCH);
+        testSetFallbackTo.afterPropertiesSet();
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testSetFallbackToInvalidLanguageMatchingNation() {
         testSetFallbackTo.setFallbackTo(Locale.US);
         testSetFallbackTo.afterPropertiesSet();
     }
