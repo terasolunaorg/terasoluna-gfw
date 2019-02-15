@@ -227,7 +227,7 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
 
     /**
      * the default locale as fallback.
-     * @since 5.4.2
+     * @since 5.5.1
      */
     protected Locale fallbackTo = Locale.getDefault();
 
@@ -325,7 +325,7 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
      * Sets the default locale as fallback.<br>
      * Defaults to {@link Locale#getDefault()}
      * @param fallbackTo the default locale as fallback
-     * @since 5.4.2
+     * @since 5.5.1
      */
     public void setFallbackTo(Locale fallbackTo) {
         Assert.notNull(fallbackTo, "fallbackTo must not be null");
