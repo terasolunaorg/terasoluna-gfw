@@ -177,7 +177,7 @@ public class SimpleI18nCodeListTest {
     @Test
     public void testResolveLocaleUseFallbackTo() {
         assertThat(testResolveLocale.resolveLocale(Locale.CHINESE), is(
-                Locale.JAPAN));
+                Locale.JAPANESE));
     }
 
     @Test
