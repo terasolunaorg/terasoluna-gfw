@@ -52,10 +52,6 @@ public class SimpleI18nCodeListTest {
     @Qualifier("CL_testResolveLocale")
     protected SimpleI18nCodeList testResolveLocale;
 
-    @Autowired
-    @Qualifier("CL_testResolveLocaleFallbackToUS")
-    protected SimpleI18nCodeList testResolveLocaleFallbackToUS;
-
     public SimpleI18nCodeListTest() {
         Locale.setDefault(Locale.ENGLISH);
     }
@@ -140,7 +136,7 @@ public class SimpleI18nCodeListTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testSetFallbackToInvalidLanguage () {
+    public void testSetFallbackToInvalidLanguage() {
         testSetFallbackTo.setFallbackTo(Locale.FRENCH);
         testSetFallbackTo.afterPropertiesSet();
     }
@@ -159,31 +155,32 @@ public class SimpleI18nCodeListTest {
 
     @Test
     public void testResolveLocale() {
-        assertThat(testResolveLocale.resolveLocale(Locale.JAPANESE), is(
-                Locale.JAPANESE));
+        assertThat(testResolveLocale.resolveLocale(Locale.FRENCH), is(
+                Locale.FRENCH));
     }
 
     @Test
     public void testResolveLocalePrioritizeExactMatch() {
-        assertThat(testResolveLocale.resolveLocale(Locale.UK), is(Locale.UK));
+        assertThat(testResolveLocale.resolveLocale(Locale.CANADA_FRENCH), is(
+                Locale.CANADA_FRENCH));
     }
 
     @Test
     public void testResolveLocaleMatchLanguage() {
-        assertThat(testResolveLocale.resolveLocale(Locale.US), is(
-                Locale.ENGLISH));
-    }
-
-    @Test
-    public void testResolveLocaleUseFallbackTo() {
-        assertThat(testResolveLocale.resolveLocale(Locale.CHINESE), is(
+        assertThat(testResolveLocale.resolveLocale(Locale.JAPAN), is(
                 Locale.JAPANESE));
     }
 
     @Test
+    public void testResolveLocaleUseFallbackTo() {
+        assertThat(testResolveLocale.resolveLocale(Locale.ENGLISH), is(
+                Locale.GERMAN));
+    }
+
+    @Test
     public void testResolveLocaleUnmatchNation() {
-        assertThat(testResolveLocaleFallbackToUS.resolveLocale(Locale.ENGLISH),
-                is(Locale.US));
+        assertThat(testResolveLocale.resolveLocale(Locale.CANADA), is(
+                Locale.GERMAN));
     }
 
 }
