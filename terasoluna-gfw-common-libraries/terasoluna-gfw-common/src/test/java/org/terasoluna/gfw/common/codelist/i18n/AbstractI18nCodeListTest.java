@@ -22,6 +22,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.junit.Test;
+import org.springframework.context.i18n.LocaleContextHolder;
 
 public class AbstractI18nCodeListTest {
 
@@ -39,6 +40,27 @@ public class AbstractI18nCodeListTest {
         };
 
         // Call super class asMap method
+        Map<String, String> map = impl.asMap();
+        assertNotNull(map);
+    }
+
+    @Test
+    public void testAsMapUseLocaleContextHolder() {
+
+        LocaleContextHolder.setLocale(Locale.GERMAN);
+
+        AbstractI18nCodeList impl = new AbstractI18nCodeList() {
+
+            @Override
+            public Map<String, String> asMap(Locale locale) {
+                if (Locale.GERMAN.equals(locale)) {
+                    return new HashMap<String, String>();
+                }
+                return null;
+            }
+
+        };
+
         Map<String, String> map = impl.asMap();
         assertNotNull(map);
     }
