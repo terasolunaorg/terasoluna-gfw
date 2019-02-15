@@ -57,7 +57,7 @@ public class SimpleI18nCodeListTest {
     protected SimpleI18nCodeList testResolveLocaleFallbackToUS;
 
     public SimpleI18nCodeListTest() {
-        Locale.setDefault(Locale.US);
+        Locale.setDefault(Locale.ENGLISH);
     }
 
     @Test

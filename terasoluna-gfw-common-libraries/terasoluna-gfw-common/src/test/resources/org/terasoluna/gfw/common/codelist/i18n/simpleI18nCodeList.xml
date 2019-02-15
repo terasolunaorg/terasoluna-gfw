@@ -32,7 +32,6 @@
         </entry>
       </util:map>
     </property>
-    <property name="fallbackTo" value="en" />
   </bean>
 
   <bean id="CL_WEEK_EN" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
@@ -70,7 +69,6 @@
         <entry key="ja" value-ref="CL_WEEK_JA" />
       </util:map>
     </property>
-    <property name="fallbackTo" value="en" />
   </bean>
 
   <bean id="CL_testSetColumns" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
@@ -120,7 +118,6 @@
         </entry>
       </util:map>
     </property>
-    <property name="fallbackTo" value="en" />
   </bean>
 
   <bean id="CL_testFallbackTo" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
