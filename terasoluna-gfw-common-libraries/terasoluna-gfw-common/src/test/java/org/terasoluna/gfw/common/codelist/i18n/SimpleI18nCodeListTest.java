@@ -103,6 +103,7 @@ public class SimpleI18nCodeListTest {
     @Test(expected = UnsupportedOperationException.class)
     public void testAsMapCheckUnmodifiable() {
         testSetRows.asMap(Locale.ENGLISH).put("0", "Sunday");
+        fail("UnsupportedOperationException not occered.");
     }
 
     @Test
@@ -125,32 +126,54 @@ public class SimpleI18nCodeListTest {
 
     @Test
     public void testSetFallbackTo() {
-        testSetFallbackTo.setFallbackTo(Locale.JAPANESE);
-        testSetFallbackTo.afterPropertiesSet();
+        try {
+            testSetFallbackTo.setFallbackTo(Locale.JAPANESE);
+            testSetFallbackTo.afterPropertiesSet();
+        } catch (IllegalArgumentException e) {
+            fail("IllegalArgumentException occered.");
+        }
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testSetFallbackToNull() {
-        testSetFallbackTo.setFallbackTo(null);
-        testSetFallbackTo.afterPropertiesSet();
+        try {
+            testSetFallbackTo.setFallbackTo(null);
+        } catch (IllegalArgumentException e) {
+            assertThat(e.getMessage(), is("fallbackTo must not be null"));
+        }
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testSetFallbackToInvalidLanguage() {
         testSetFallbackTo.setFallbackTo(Locale.FRENCH);
-        testSetFallbackTo.afterPropertiesSet();
+        try {
+            testSetFallbackTo.afterPropertiesSet();
+        } catch (IllegalArgumentException e) {
+            assertThat(e.getMessage(), is(
+                    "No codelist found for fallback locale 'fr', it must be defined."));
+        }
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testSetFallbackToInvalidLanguageMatchingNation() {
         testSetFallbackTo.setFallbackTo(Locale.US);
-        testSetFallbackTo.afterPropertiesSet();
+        try {
+            testSetFallbackTo.afterPropertiesSet();
+        } catch (IllegalArgumentException e) {
+            assertThat(e.getMessage(), is(
+                    "No codelist found for fallback locale 'en_US', it must be defined."));
+        }
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAfterProperitesSetInvalid() {
         SimpleI18nCodeList codeList = new SimpleI18nCodeList();
-        codeList.afterPropertiesSet();
+        try {
+            codeList.afterPropertiesSet();
+        } catch (IllegalArgumentException e) {
+            assertThat(e.getMessage(), is("codeListTable is not initialized!"));
+        }
+
     }
 
     @Test
