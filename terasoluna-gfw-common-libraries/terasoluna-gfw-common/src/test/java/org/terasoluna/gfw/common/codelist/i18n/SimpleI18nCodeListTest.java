@@ -23,15 +23,17 @@ import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
         "classpath:org/terasoluna/gfw/common/codelist/i18n/simpleI18nCodeList.xml" })
-public class SimpleI18nCodeListTest {
+public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
     @Autowired
     @Qualifier("CL_testSetRows")
     protected SimpleI18nCodeList testSetRows;
@@ -136,8 +138,9 @@ public class SimpleI18nCodeListTest {
 
     @Test
     public void testSetFallbackToNull() {
+        SimpleI18nCodeList codeList = new SimpleI18nCodeList();
         try {
-            testSetFallbackTo.setFallbackTo(null);
+            codeList.setFallbackTo(null);
         } catch (IllegalArgumentException e) {
             assertThat(e.getMessage(), is("fallbackTo must not be null"));
         }
@@ -145,22 +148,28 @@ public class SimpleI18nCodeListTest {
 
     @Test
     public void testSetFallbackToInvalidLanguage() {
-        testSetFallbackTo.setFallbackTo(Locale.FRENCH);
         try {
-            testSetFallbackTo.afterPropertiesSet();
-        } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), is(
+            super.getApplicationContext().getBean(
+                    "CL_testFallbackToInvalidLanguage");
+            fail("BeanCreationException not occered.");
+        } catch (BeanCreationException e) {
+            Throwable cause = e.getCause();
+            assertThat(cause, instanceOf(IllegalArgumentException.class));
+            assertThat(cause.getMessage(), is(
                     "No codelist found for fallback locale 'fr', it must be defined."));
         }
     }
 
     @Test
     public void testSetFallbackToInvalidLanguageMatchingNation() {
-        testSetFallbackTo.setFallbackTo(Locale.US);
         try {
-            testSetFallbackTo.afterPropertiesSet();
-        } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), is(
+            super.getApplicationContext().getBean(
+                    "CL_testFallbackToInvalidLanguageMatchingNation");
+            fail("BeanCreationException not occered.");
+        } catch (BeanCreationException e) {
+            Throwable cause = e.getCause();
+            assertThat(cause, instanceOf(IllegalArgumentException.class));
+            assertThat(cause.getMessage(), is(
                     "No codelist found for fallback locale 'en_US', it must be defined."));
         }
     }

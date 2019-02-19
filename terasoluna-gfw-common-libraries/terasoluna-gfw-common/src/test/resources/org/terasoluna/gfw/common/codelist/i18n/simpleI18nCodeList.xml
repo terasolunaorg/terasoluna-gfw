@@ -150,6 +150,46 @@
     <property name="fallbackTo" value="ja" />
   </bean>
 
+  <bean id="CL_testFallbackToInvalidLanguage" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList"
+    lazy-init="true">
+    <property name="rows">
+      <util:map>
+        <entry key="en">
+          <util:map>
+            <entry key="0" value="Sun." />
+            <entry key="1" value="Mon." />
+            <entry key="2" value="Tue." />
+            <entry key="3" value="Wed." />
+            <entry key="4" value="Thu." />
+            <entry key="5" value="Fri." />
+            <entry key="6" value="Sat." />
+          </util:map>
+        </entry>
+      </util:map>
+    </property>
+    <property name="fallbackTo" value="fr" />
+  </bean>
+
+  <bean id="CL_testFallbackToInvalidLanguageMatchingNation" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList"
+    lazy-init="true">
+    <property name="rows">
+      <util:map>
+        <entry key="en">
+          <util:map>
+            <entry key="0" value="Sun." />
+            <entry key="1" value="Mon." />
+            <entry key="2" value="Tue." />
+            <entry key="3" value="Wed." />
+            <entry key="4" value="Thu." />
+            <entry key="5" value="Fri." />
+            <entry key="6" value="Sat." />
+          </util:map>
+        </entry>
+      </util:map>
+    </property>
+    <property name="fallbackTo" value="en_US" />
+  </bean>
+
   <bean id="CL_testResolveLocale" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
     <property name="rows">
       <util:map>
