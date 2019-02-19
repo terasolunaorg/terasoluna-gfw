@@ -126,7 +126,7 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
  * Result:<br>
  * 
  * <pre>
- * 
+ * (non output)
  * </pre>
  * <p>
  * <b>When the message is in empty {@code List} <br>

@@ -3,6 +3,8 @@ language: java
 jdk:
   - oraclejdk8
   - openjdk8
+  - oraclejdk11
+  - openjdk11
 
 cache:
   directories:
@@ -13,5 +15,5 @@ install: true
 script:
   - mvn xml:check-format -P xml-check-format
   - mvn formatter:validate -P common-libs
-  - mvn -U clean install
-  - mvn -U -P common-libs jacoco:report coveralls:report
+  - mvn -U clean install -P default
+  - mvn -U jacoco:report coveralls:report -P common-libs
