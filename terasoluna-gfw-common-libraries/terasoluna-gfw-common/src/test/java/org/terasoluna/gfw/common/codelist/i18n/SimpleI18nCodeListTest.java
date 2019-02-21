@@ -128,8 +128,12 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
 
     @Test
     public void testSetFallbackTo() {
-        testSetFallbackTo.setFallbackTo(Locale.JAPANESE);
-        testSetFallbackTo.afterPropertiesSet();
+        try {
+            testSetFallbackTo.setFallbackTo(Locale.JAPANESE);
+            testSetFallbackTo.afterPropertiesSet();
+        } catch (IllegalArgumentException e) {
+            fail("IllegalArgumentException occered.");
+        }
     }
 
     @Test
