@@ -37,6 +37,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatcher;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.context.i18n.SimpleLocaleContext;
 import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -73,11 +75,6 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      */
     private MockHttpServletResponse mockResponse;
 
-    /**
-     * mock instance of Appender.
-     */
-    private Appender<ILoggingEvent> mockAppender;
-
     @Before
     public void setUp() {
         this.testTarget = new CodeListInterceptor();
@@ -86,13 +83,6 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
         this.mockRequest = new MockHttpServletRequest();
         this.mockResponse = new MockHttpServletResponse();
-
-        @SuppressWarnings("unchecked")
-        Appender<ILoggingEvent> mockAppender = mock(Appender.class);
-        this.mockAppender = mockAppender;
-        Logger logger = (Logger) LoggerFactory.getLogger(
-                CodeListInterceptor.class);
-        logger.addAppender(mockAppender);
     }
 
     @After
@@ -182,6 +172,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
         // do setup.
         mockRequest.addPreferredLocale(Locale.ENGLISH);
+        LocaleContextHolder.setLocaleContext(new SimpleLocaleContext(mockRequest
+                .getLocale()));
 
         testTarget.setCodeListIdPattern(Pattern.compile("C_.+"));
         testTarget.afterPropertiesSet();
@@ -399,189 +391,6 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
             // do assert.
             assertThat("applicationContext is null.", is(e.getMessage()));
         }
-
-    }
-
-    /**
-     * [getLocalizedCodeListMap] Case of define localized CodeList.
-     * <p>
-     * [Expected Result]
-     * <ol>
-     * <li>get localized code list map.</li>
-     * </ol>
-     * </p>
-     * @throws Exception
-     */
-    @Test
-    public void testGetLocalizedCodeListMap_define_localized_odeList() {
-
-        // do setup.
-        SimpleI18nCodeList codeList = new SimpleI18nCodeList();
-        Map<Locale, Map<String, String>> rows = Maps.newLinkedHashMap();
-        Map<String, String> enMap = Collections.singletonMap("01", "XXX");
-        Map<String, String> jaMap = Collections.singletonMap("01", "YYY");
-        rows.put(Locale.ENGLISH, enMap);
-        rows.put(Locale.JAPANESE, jaMap);
-        codeList.setRows(rows);
-
-        // do test.
-        Map<String, String> actualEnMap = testTarget.getLocalizedCodeMap(
-                codeList, Locale.ENGLISH);
-        Map<String, String> actualJaMap = testTarget.getLocalizedCodeMap(
-                codeList, Locale.JAPANESE);
-
-        // do assert.
-        assertThat(actualEnMap, is(enMap));
-        assertThat(actualJaMap, is(jaMap));
-
-    }
-
-    /**
-     * [getLocalizedCodeListMap] Case of match fall back locale.
-     * <p>
-     * [Expected Result]
-     * <ol>
-     * <li>get localized code list map by fall back locale.</li>
-     * </ol>
-     * </p>
-     * @throws Exception
-     */
-    @Test
-    public void testGetLocalizedCodeListMap_match_fall_back_locale() {
-
-        // do setup.
-        testTarget.setFallbackTo(Locale.ENGLISH);
-
-        SimpleI18nCodeList codeList = new SimpleI18nCodeList();
-        Map<Locale, Map<String, String>> rows = Maps.newLinkedHashMap();
-        Map<String, String> enMap = Collections.singletonMap("01", "XXX");
-        rows.put(Locale.ENGLISH, enMap);
-        codeList.setRows(rows);
-
-        // do test.
-        Map<String, String> actualMap = testTarget.getLocalizedCodeMap(codeList,
-                Locale.JAPANESE);
-
-        // do assert.
-        assertThat(actualMap, is(enMap));
-    }
-
-    /**
-     * [getLocalizedCodeListMap] Case of locale and fall back local is same.
-     * <p>
-     * [Expected Result]
-     * <ol>
-     * <li>get empty map.(get localized code list map by locale.)</li>
-     * </ol>
-     * </p>
-     * @throws Exception
-     */
-    @Test
-    public void testGetLocalizedCodeListMap_locale_and_fall_back_locale_is_same() {
-
-        // do setup.
-        testTarget.setFallbackTo(Locale.ENGLISH);
-
-        SimpleI18nCodeList codeList = new SimpleI18nCodeList();
-        Map<Locale, Map<String, String>> rows = Maps.newLinkedHashMap();
-        Map<String, String> enMap = Collections.emptyMap();
-        rows.put(Locale.ENGLISH, enMap);
-        codeList.setRows(rows);
-
-        // do test.
-        Map<String, String> actualMap = testTarget.getLocalizedCodeMap(codeList,
-                Locale.ENGLISH);
-
-        // do assert.
-        assertThat(actualMap, is(enMap));
-
-    }
-
-    /**
-     * [getLocalizedCodeListMap] Case of fall back locale is null.
-     * <p>
-     * [Expected Result]
-     * <ol>
-     * <li>get empty map.(get localized code list map by locale.)</li>
-     * </ol>
-     * </p>
-     * @throws Exception
-     */
-    @Test
-    public void testGetLocalizedCodeListMap_fall_back_locale_is_null() {
-
-        // do setup.
-        testTarget.setFallbackTo(null);
-
-        SimpleI18nCodeList codeList = new SimpleI18nCodeList();
-        Map<Locale, Map<String, String>> rows = Maps.newLinkedHashMap();
-        Map<String, String> enMap = Collections.emptyMap();
-        rows.put(Locale.ENGLISH, enMap);
-        codeList.setRows(rows);
-
-        // do test.
-        Map<String, String> actualMap = testTarget.getLocalizedCodeMap(codeList,
-                Locale.ENGLISH);
-
-        // do assert.
-        assertThat(actualMap, is(enMap));
-
-    }
-
-    /**
-     * [getLocalizedCodeListMap] Case of not define.
-     * <p>
-     * [Expected Result]
-     * <ol>
-     * <li>get empty map.</li>
-     * <li>output warn log.</li>
-     * </ol>
-     * </p>
-     * @throws Exception
-     */
-    @Test
-    public void testGetLocalizedCodeListMap_not_define() {
-
-        // do setup.
-        testTarget.setFallbackTo(Locale.ENGLISH);
-
-        SimpleI18nCodeList codeList = new SimpleI18nCodeList();
-        Map<Locale, Map<String, String>> rows = Maps.newLinkedHashMap();
-        codeList.setRows(rows);
-
-        // do test.
-        Map<String, String> actualMap = testTarget.getLocalizedCodeMap(codeList,
-                Locale.JAPANESE);
-
-        // do assert.
-        assertThat(actualMap.isEmpty(), is(true));
-
-        verifyLogging("could not fall back to 'en'.", Level.WARN);
-
-    }
-
-    /**
-     * verify logging.
-     * @param expectedLogMessage expected log message.
-     * @param expectedLogLevel expected log level.
-     */
-    private void verifyLogging(final String expectedLogMessage,
-            final Level expectedLogLevel) {
-        verify(mockAppender).doAppend(argThat(
-                new ArgumentMatcher<LoggingEvent>() {
-                    @Override
-                    public boolean matches(LoggingEvent argument) {
-                        return argument.getFormattedMessage().equals(
-                                expectedLogMessage);
-                    }
-                }));
-        verify(mockAppender).doAppend(argThat(
-                new ArgumentMatcher<LoggingEvent>() {
-                    @Override
-                    public boolean matches(LoggingEvent argument) {
-                        return expectedLogLevel.equals(argument.getLevel());
-                    }
-                }));
 
     }
 

@@ -5,7 +5,7 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
 
-  <bean id="CL_testSetRows01" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+  <bean id="CL_testSetRows" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
     <property name="rows">
       <util:map>
         <entry key="en">
@@ -33,7 +33,6 @@
       </util:map>
     </property>
   </bean>
-
 
   <bean id="CL_WEEK_EN" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
     <property name="map">
@@ -63,7 +62,7 @@
     </property>
   </bean>
 
-  <bean id="CL_testSetRowsByCodeList01" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+  <bean id="CL_testSetRowsByCodeList" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
     <property name="rowsByCodeList">
       <util:map>
         <entry key="en" value-ref="CL_WEEK_EN" />
@@ -72,7 +71,7 @@
     </property>
   </bean>
 
-  <bean id="CL_testSetColumns01" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+  <bean id="CL_testSetColumns" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
     <property name="columns">
       <util:map>
         <entry key="0">
@@ -121,8 +120,7 @@
     </property>
   </bean>
 
-
-  <bean id="CL_testSetRows03" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+  <bean id="CL_testFallbackTo" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
     <property name="rows">
       <util:map>
         <entry key="en">
@@ -149,11 +147,110 @@
         </entry>
       </util:map>
     </property>
-    <property name="rowsByCodeList">
+    <property name="fallbackTo" value="ja" />
+  </bean>
+
+  <bean id="CL_testFallbackToInvalidLanguage" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList"
+    lazy-init="true">
+    <property name="rows">
       <util:map>
-        <entry key="en" value-ref="CL_WEEK_EN" />
-        <entry key="ja" value-ref="CL_WEEK_JA" />
+        <entry key="en">
+          <util:map>
+            <entry key="0" value="Sun." />
+            <entry key="1" value="Mon." />
+            <entry key="2" value="Tue." />
+            <entry key="3" value="Wed." />
+            <entry key="4" value="Thu." />
+            <entry key="5" value="Fri." />
+            <entry key="6" value="Sat." />
+          </util:map>
+        </entry>
       </util:map>
     </property>
+    <property name="fallbackTo" value="fr" />
   </bean>
+
+  <bean id="CL_testFallbackToInvalidLanguageMatchingNation" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList"
+    lazy-init="true">
+    <property name="rows">
+      <util:map>
+        <entry key="en">
+          <util:map>
+            <entry key="0" value="Sun." />
+            <entry key="1" value="Mon." />
+            <entry key="2" value="Tue." />
+            <entry key="3" value="Wed." />
+            <entry key="4" value="Thu." />
+            <entry key="5" value="Fri." />
+            <entry key="6" value="Sat." />
+          </util:map>
+        </entry>
+      </util:map>
+    </property>
+    <property name="fallbackTo" value="en_US" />
+  </bean>
+
+  <bean id="CL_testResolveLocale" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+    <property name="rows">
+      <util:map>
+        <entry key="de">
+          <util:map>
+            <entry key="0" value="Sonntag" />
+            <entry key="1" value="Montag" />
+            <entry key="2" value="Dienstag" />
+            <entry key="3" value="Mittwoch" />
+            <entry key="4" value="Donnerstag" />
+            <entry key="5" value="Freitag" />
+            <entry key="6" value="Samstag" />
+          </util:map>
+        </entry>
+        <entry key="fr">
+          <util:map>
+            <entry key="0" value="Dim" />
+            <entry key="1" value="Lun" />
+            <entry key="2" value="Mar" />
+            <entry key="3" value="Mer" />
+            <entry key="4" value="Jeu" />
+            <entry key="5" value="Ven" />
+            <entry key="6" value="Sam" />
+          </util:map>
+        </entry>
+        <entry key="fr_ca">
+          <util:map>
+            <entry key="0" value="dimanche" />
+            <entry key="1" value="lundi" />
+            <entry key="2" value="mardi" />
+            <entry key="3" value="mercredi" />
+            <entry key="4" value="jeudi" />
+            <entry key="5" value="vendredi" />
+            <entry key="6" value="samedi" />
+          </util:map>
+        </entry>
+        <entry key="ja">
+          <util:map>
+            <entry key="0" value="日" />
+            <entry key="1" value="月" />
+            <entry key="2" value="火" />
+            <entry key="3" value="水" />
+            <entry key="4" value="木" />
+            <entry key="5" value="金" />
+            <entry key="6" value="土" />
+          </util:map>
+        </entry>
+        <entry key="en_us">
+          <util:map>
+            <entry key="0" value="Sunday" />
+            <entry key="1" value="Monday" />
+            <entry key="2" value="Tuesday" />
+            <entry key="3" value="Wednesday" />
+            <entry key="4" value="Thursday" />
+            <entry key="5" value="Friday" />
+            <entry key="6" value="Saturday" />
+          </util:map>
+        </entry>
+      </util:map>
+    </property>
+    <property name="fallbackTo" value="de" />
+  </bean>
+
 </beans>

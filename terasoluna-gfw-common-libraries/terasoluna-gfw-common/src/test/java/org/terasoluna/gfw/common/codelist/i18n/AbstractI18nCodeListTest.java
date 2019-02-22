@@ -15,13 +15,15 @@
  */
 package org.terasoluna.gfw.common.codelist.i18n;
 
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
 
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
 
 import org.junit.Test;
+import org.springframework.context.i18n.LocaleContextHolder;
 
 public class AbstractI18nCodeListTest {
 
@@ -31,16 +33,27 @@ public class AbstractI18nCodeListTest {
 
             @Override
             public Map<String, String> asMap(Locale locale) {
-                // Following return value will be implementation specific
-                // Just returning an newly created instance for testing
-                return new HashMap<String, String>();
+                return Collections.singletonMap("language", locale
+                        .getLanguage());
             }
 
         };
 
-        // Call super class asMap method
-        Map<String, String> map = impl.asMap();
-        assertNotNull(map);
+        Locale.setDefault(Locale.ENGLISH);
+        assertThat(impl.asMap().get("language"), is(Locale.ENGLISH
+                .getLanguage()));
+
+        LocaleContextHolder.setLocale(Locale.GERMAN);
+        assertThat(impl.asMap().get("language"), is(Locale.GERMAN
+                .getLanguage()));
+
+        LocaleContextHolder.setLocale(Locale.FRENCH);
+        assertThat(impl.asMap().get("language"), is(Locale.FRENCH
+                .getLanguage()));
+
+        Locale.setDefault(Locale.JAPANESE);
+        assertThat(impl.asMap().get("language"), is(Locale.FRENCH
+                .getLanguage()));
     }
 
 }
