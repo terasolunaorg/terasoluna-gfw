@@ -22,6 +22,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.junit.Test;
+import org.junit.Test.None;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -126,14 +127,10 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
                                                                  // columns
     }
 
-    @Test
+    @Test(expected = None.class)
     public void testSetFallbackTo() {
-        try {
-            testSetFallbackTo.setFallbackTo(Locale.JAPANESE);
-            testSetFallbackTo.afterPropertiesSet();
-        } catch (IllegalArgumentException e) {
-            fail("IllegalArgumentException occered.");
-        }
+        testSetFallbackTo.setFallbackTo(Locale.JAPANESE);
+        testSetFallbackTo.afterPropertiesSet();
     }
 
     @Test
