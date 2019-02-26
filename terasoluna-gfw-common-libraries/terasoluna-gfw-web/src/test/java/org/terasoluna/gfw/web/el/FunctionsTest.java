@@ -570,6 +570,7 @@ public class FunctionsTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void test_Deprecated_mapToQuery() {
         Map<String, Object> map = new LinkedHashMap<String, Object>();
         map.put("name", "Ichiro Suzuki");
@@ -583,11 +584,13 @@ public class FunctionsTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void testDeprecatedMapToQueryIsNull() {
         assertThat(Functions.mapToQuery(null, null), is(""));
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void testDeprecatedMapToQueryIsEmpty() {
         Map<String, Object> map = new LinkedHashMap<String, Object>();
         assertThat(Functions.mapToQuery(map, null), is(""));

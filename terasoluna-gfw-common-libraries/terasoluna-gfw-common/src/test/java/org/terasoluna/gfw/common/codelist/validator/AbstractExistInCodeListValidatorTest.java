@@ -50,7 +50,32 @@ public class AbstractExistInCodeListValidatorTest {
         ExistInCodeListValidator<String> existInCodeListValidator = new ExistInCodeListValidator<String>();
         ApplicationContext context = new FileSystemXmlApplicationContext("src/test/resources/org/terasoluna/gfw/common/codelist/ExistInCodeListTest-context.xml");
         existInCodeListValidator.setApplicationContext(context);
-        existInCodeListValidator.initialize(new GenderCodeList());
+        existInCodeListValidator.initialize(new ExistInCodeList() {
+            @Override
+            public Class<? extends Annotation> annotationType() {
+                return null;
+            }
+
+            @Override
+            public String message() {
+                return null;
+            }
+
+            @Override
+            public String codeListId() {
+                return "CD_GENDER";
+            }
+
+            @Override
+            public Class<?>[] groups() {
+                return null;
+            }
+
+            @Override
+            public Class<? extends Payload>[] payload() {
+                return null;
+            }
+        });
 
         // test
         boolean isValid = existInCodeListValidator.isValid("Male",
@@ -64,42 +89,13 @@ public class AbstractExistInCodeListValidatorTest {
         LogLevelChangeUtil.resetLogLevel();
     }
 
-}
+    private class ExistInCodeListValidator<T> extends
+                                          AbstractExistInCodeListValidator<T> {
 
-class ExistInCodeListValidator<T> extends AbstractExistInCodeListValidator<T> {
+        @Override
+        protected String getCode(T value) {
+            return "M";
+        }
 
-    @Override
-    protected String getCode(T value) {
-        return "M";
     }
-
-}
-
-class GenderCodeList implements ExistInCodeList {
-
-    @Override
-    public Class<? extends Annotation> annotationType() {
-        return null;
-    }
-
-    @Override
-    public String message() {
-        return null;
-    }
-
-    @Override
-    public String codeListId() {
-        return "CD_GENDER";
-    }
-
-    @Override
-    public Class<?>[] groups() {
-        return null;
-    }
-
-    @Override
-    public Class<? extends Payload>[] payload() {
-        return null;
-    }
-
 }

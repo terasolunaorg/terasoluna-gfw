@@ -133,6 +133,7 @@ public class PaginationInfoTest {
         int size = 1;
 
         Sort sort = mock(Sort.class);
+        @SuppressWarnings("unchecked")
         Iterator<Order> orders = mock(Iterator.class);
         when(sort.iterator()).thenReturn(orders);
         when(orders.hasNext()).thenReturn(false);

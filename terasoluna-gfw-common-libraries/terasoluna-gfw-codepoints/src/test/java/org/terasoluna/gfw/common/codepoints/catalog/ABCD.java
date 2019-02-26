@@ -18,6 +18,9 @@ package org.terasoluna.gfw.common.codepoints.catalog;
 import org.terasoluna.gfw.common.codepoints.CodePoints;
 
 public class ABCD extends CodePoints {
+
+    private static final long serialVersionUID = 1L;
+
     public ABCD() {
         super("ABCD");
     }

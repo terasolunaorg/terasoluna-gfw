@@ -23,6 +23,9 @@ import org.terasoluna.gfw.common.codepoints.CodePoints;
  * @since 5.1.0
  */
 public class JIS_X_0201_Katakana extends CodePoints {
+
+    private static final long serialVersionUID = 1L;
+
     /**
      * Constructor
      */

@@ -24,6 +24,7 @@ public class DefaultDateFactoryTest {
 
     @Test
     public void testDefaultDateFactory() throws Exception {
+        @SuppressWarnings("deprecation")
         DefaultDateFactory defaultDateFactory = new DefaultDateFactory();
         assertThat(defaultDateFactory, notNullValue());
     }
