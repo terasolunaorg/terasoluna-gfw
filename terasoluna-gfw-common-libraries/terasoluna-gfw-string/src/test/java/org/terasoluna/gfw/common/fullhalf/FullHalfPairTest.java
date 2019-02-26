@@ -35,6 +35,7 @@ public class FullHalfPairTest {
     }
 
     @Test
+    @SuppressWarnings("unlikely-arg-type")
     public void testFullHalfPairEqualsNull() {
         // set up
         FullHalfPair FullHalfPair = new FullHalfPair("ａ", "a");
@@ -45,6 +46,7 @@ public class FullHalfPairTest {
     }
 
     @Test
+    @SuppressWarnings("unlikely-arg-type")
     public void testFullHalfPairEqualsDifferentClass() {
         // set up
         FullHalfPair FullHalfPair = new FullHalfPair("ａ", "a");

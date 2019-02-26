@@ -162,10 +162,9 @@ class ObjectToMapConverter {
      * @param value map instance to convert
      * @return converted map. all keys are prefixed with the given key
      */
-    private Map<String, String> convert(String prefix, Map value) {
+    private Map<String, String> convert(String prefix, Map<?, ?> value) {
         Map<String, String> map = new LinkedHashMap<String, String>();
-        for (Object entry : value.entrySet()) {
-            Map.Entry e = (Map.Entry) entry;
+        for (Map.Entry<?, ?> e : value.entrySet()) {
             if (StringUtils.isEmpty(prefix)) {
                 map.putAll(this.convert(e.getKey().toString(), e.getValue()));
             } else {
@@ -183,9 +182,9 @@ class ObjectToMapConverter {
      * @return converted map. all keys are prefixed with the given key. If given Iterable is empty, the pair of the given
      *         name(prefix) and an empty string is added into map of return value.
      */
-    private Map<String, String> convert(String prefix, Iterable value) {
+    private Map<String, String> convert(String prefix, Iterable<?> value) {
         Map<String, String> map = new LinkedHashMap<String, String>();
-        Iterator iterator = value.iterator();
+        Iterator<?> iterator = value.iterator();
         if (!iterator.hasNext()) {
             map.put(prefix, "");
             return map;
@@ -297,7 +296,7 @@ class ObjectToMapConverter {
                 // skip flatten
                 return true;
             }
-            Iterable iterable = (Iterable) value;
+            Iterable<?> iterable = (Iterable<?>) value;
             map.putAll(this.convert(key, iterable));
         } else if (clazz.isArray()) {
             if (StringUtils.isEmpty(name)) {
@@ -306,7 +305,7 @@ class ObjectToMapConverter {
             }
             map.putAll(this.convert(key, arrayObjectToList(value)));
         } else if (value instanceof Map) {
-            Map m = (Map) value;
+            Map<?, ?> m = (Map<?, ?>) value;
             map.putAll(this.convert(key, m));
         } else {
             TypeDescriptor descriptor = (sourceType != null) ? sourceType

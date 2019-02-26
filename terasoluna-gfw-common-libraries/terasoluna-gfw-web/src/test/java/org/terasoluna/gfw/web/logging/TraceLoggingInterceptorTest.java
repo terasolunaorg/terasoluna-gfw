@@ -20,11 +20,13 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
+import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -37,6 +39,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatcher;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
@@ -49,33 +52,40 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.terasoluna.gfw.web.logback.LogLevelChangeUtil;
 
+import com.google.common.collect.ImmutableList;
+
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.classic.spi.LoggingEvent;
+import ch.qos.logback.core.Appender;
 
 @ContextConfiguration(locations = "classpath:/test-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TraceLoggingInterceptorTest {
     @Inject
-    NamedParameterJdbcTemplate jdbcTemplate;
+    private NamedParameterJdbcTemplate jdbcTemplate;
 
-    TraceLoggingInterceptor interceptor;
+    private TraceLoggingInterceptor interceptor;
 
-    MockHttpServletRequest request;
+    private MockHttpServletRequest request;
 
-    MockHttpServletResponse response;
+    private MockHttpServletResponse response;
 
-    Method[] method;
+    private Method[] method;
 
-    TraceLoggingInterceptorController controller;
+    private TraceLoggingInterceptorController controller;
 
-    ModelAndView model;
+    private ModelAndView model;
 
-    Logger logger = (Logger) LoggerFactory.getLogger(
+    private Logger logger = (Logger) LoggerFactory.getLogger(
             TraceLoggingInterceptor.class);
+
+    @SuppressWarnings("unchecked")
+    private Appender<ILoggingEvent> mockAppender = mock(Appender.class);
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-
     }
 
     @Before
@@ -95,8 +105,10 @@ public class TraceLoggingInterceptorTest {
         method = controller.getClass().getMethods();
 
         model = mock(ModelAndView.class);
-
         interceptor = new TraceLoggingInterceptor();
+
+        when(mockAppender.getName()).thenReturn("MOCK");
+        logger.addAppender(mockAppender);
     }
 
     @After
@@ -255,11 +267,9 @@ public class TraceLoggingInterceptorTest {
 
         // expected
         String expectedLogStr = "TraceLoggingInterceptorController.second(SampleForm,Model)->";
-        List<Level> levelList = new ArrayList<Level>();
-        levelList.add(Level.TRACE);
 
         // assert
-        verifyLogging(expectedLogStr, levelList, 2);
+        verifyLogging(expectedLogStr, ImmutableList.of(Level.TRACE), 2);
 
     }
 
@@ -284,11 +294,9 @@ public class TraceLoggingInterceptorTest {
 
         // expected
         String expectedLogStr = "TraceLoggingInterceptorController.createForm()->";
-        List<Level> levelList = new ArrayList<Level>();
-        levelList.add(Level.TRACE);
 
         // assert
-        verifyLogging(expectedLogStr, levelList, 2);
+        verifyLogging(expectedLogStr, ImmutableList.of(Level.TRACE), 2);
 
     }
 
@@ -314,12 +322,10 @@ public class TraceLoggingInterceptorTest {
 
         // expected
         String expectedLogStr = "TraceLoggingInterceptorController.createForm()->";
-        List<Level> levelList = new ArrayList<Level>();
-        levelList.add(Level.TRACE);
-        levelList.add(Level.WARN);
 
         // assert
-        verifyLogging(expectedLogStr, levelList, 2);
+        verifyLogging(expectedLogStr, ImmutableList.of(Level.TRACE, Level.WARN),
+                2);
 
     }
 
@@ -341,17 +347,14 @@ public class TraceLoggingInterceptorTest {
 
         // expected
         String expectedLogStr = "TraceLoggingInterceptorController.createForm()->";
-        List<Level> levelList = new ArrayList<Level>();
-        levelList.add(Level.TRACE);
 
         // assert
-        verifyLogging(expectedLogStr, levelList, 1);
+        verifyLogging(expectedLogStr, ImmutableList.of(Level.TRACE), 1);
     }
 
     /**
      * not handler
      */
-    @Ignore
     @Test
     public void testPostHandle_NotHandler() {
         // parameter create
@@ -368,14 +371,7 @@ public class TraceLoggingInterceptorTest {
         final String expectedLogStr = "TraceLoggingInterceptorController.createForm()->";
 
         // assert
-        // verify(mockAppender, never()).doAppend(
-        // argThat(new ArgumentMatcher<LoggingEvent>() {
-        // @Override
-        // public boolean matches(Object argument) {
-        // return ((LoggingEvent) argument).getFormattedMessage()
-        // .contains(expectedLogStr);
-        // }
-        // }));
+        verifyLogging(expectedLogStr, ImmutableList.of(Level.TRACE), 0);
     }
 
     /**
@@ -399,11 +395,9 @@ public class TraceLoggingInterceptorTest {
 
         // expected
         String expectedLogStr = "[HANDLING TIME   ]->";
-        List<Level> levelList = new ArrayList<Level>();
-        levelList.add(Level.TRACE);
 
         // assert
-        verifyLogging(expectedLogStr, levelList, 1);
+        verifyLogging(expectedLogStr, ImmutableList.of(Level.TRACE), 1);
     }
 
     /**
@@ -428,11 +422,9 @@ public class TraceLoggingInterceptorTest {
 
         // expected
         String expectedLogStr = "[HANDLING TIME   ]->";
-        List<Level> levelList = new ArrayList<Level>();
-        levelList.add(Level.WARN);
 
         // assert
-        verifyLogging(expectedLogStr, levelList, 1);
+        verifyLogging(expectedLogStr, ImmutableList.of(Level.WARN), 1);
     }
 
     @Test
@@ -451,12 +443,10 @@ public class TraceLoggingInterceptorTest {
         }
 
         // expected
-        String expectedLogStr = "TraceLoggingInterceptorController.createForm()->";
-        List<Level> levelList = new ArrayList<Level>();
-        levelList.add(Level.TRACE);
+        String expectedLogStr = "[HANDLING TIME   ] TraceLoggingInterceptorController.createForm()->";
 
         // assert
-        verifyLogging(expectedLogStr, levelList, 2);
+        verifyLogging(expectedLogStr, ImmutableList.of(Level.WARN), 1);
     }
 
     @Test
@@ -519,22 +509,14 @@ public class TraceLoggingInterceptorTest {
      */
     private void verifyLogging(final String expectedLogMessage,
             final List<Level> expectedLogLevel, final int expectedCallCount) {
-        // verify(mockAppender, times(expectedCallCount)).doAppend(
-        // argThat(new ArgumentMatcher<LoggingEvent>() {
-        // @Override
-        // public boolean matches(Object argument) {
-        // return (((LoggingEvent) argument).getFormattedMessage()
-        // .contains(expectedLogMessage));
-        // }
-        // }));
-        // verify(mockAppender, times(expectedCallCount)).doAppend(
-        // argThat(new ArgumentMatcher<LoggingEvent>() {
-        // @Override
-        // public boolean matches(Object argument) {
-        // return expectedLogLevel
-        // .contains(((LoggingEvent) argument).getLevel());
-        // }
-        // }));
-
+        verify(mockAppender, times(expectedCallCount)).doAppend(argThat(
+                new ArgumentMatcher<LoggingEvent>() {
+                    @Override
+                    public boolean matches(LoggingEvent argument) {
+                        return expectedLogLevel.contains(argument.getLevel())
+                                && argument.getFormattedMessage().contains(
+                                        expectedLogMessage);
+                    }
+                }));
     }
 }

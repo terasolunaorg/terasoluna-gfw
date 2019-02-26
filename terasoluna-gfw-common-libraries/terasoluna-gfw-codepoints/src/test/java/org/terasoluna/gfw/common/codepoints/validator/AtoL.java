@@ -18,6 +18,9 @@ package org.terasoluna.gfw.common.codepoints.validator;
 import org.terasoluna.gfw.common.codepoints.CodePoints;
 
 public class AtoL extends CodePoints {
+
+    private static final long serialVersionUID = 1L;
+
     public AtoL() {
         super(new AtoF().union(new GtoL()));
     }

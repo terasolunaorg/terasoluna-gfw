@@ -15,6 +15,7 @@
  */
 package org.terasoluna.gfw.web.logging.mdc;
 
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 
 import javax.servlet.ServletException;
@@ -24,9 +25,6 @@ import org.junit.Test;
 import org.springframework.mock.web.MockFilterConfig;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-
-import static org.mockito.Mockito.*;
-import static org.hamcrest.CoreMatchers.*;
 
 public class XTrackMDCPutFilterTest {
     private XTrackMDCPutFilter xTrackMDCPutFilter;

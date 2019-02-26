@@ -24,6 +24,7 @@ public class JdbcFixedDateFactoryTest {
 
     @Test
     public void testJdbcFixedDateFactory() throws Exception {
+        @SuppressWarnings("deprecation")
         JdbcFixedDateFactory jdbcFixedDateFactory = new JdbcFixedDateFactory();
         assertThat(jdbcFixedDateFactory, notNullValue());
     }
