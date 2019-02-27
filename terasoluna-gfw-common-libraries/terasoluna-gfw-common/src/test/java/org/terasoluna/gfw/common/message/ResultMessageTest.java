@@ -95,6 +95,7 @@ public class ResultMessageTest {
     }
 
     @Test
+    @SuppressWarnings("unlikely-arg-type")
     public void testEquals01() {
         // set up
         Object[] object = new Object[0];

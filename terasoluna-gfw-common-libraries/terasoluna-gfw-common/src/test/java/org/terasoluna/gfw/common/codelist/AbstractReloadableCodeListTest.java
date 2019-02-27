@@ -21,7 +21,6 @@ import static org.junit.Assert.assertThat;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.After;
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
 import org.terasoluna.gfw.common.logback.LogLevelChangeUtil;

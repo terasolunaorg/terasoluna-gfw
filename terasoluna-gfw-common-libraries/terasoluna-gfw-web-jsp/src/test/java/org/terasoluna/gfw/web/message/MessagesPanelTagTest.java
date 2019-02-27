@@ -232,10 +232,10 @@ public class MessagesPanelTagTest {
     @Test
     public void test09() throws Exception {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                ResultMessages.warn().add(ResultMessage.fromText("hello")).add(
-                        ResultMessage.fromText("world")));
+                ResultMessages.warning().add(ResultMessage.fromText("hello"))
+                        .add(ResultMessage.fromText("world")));
         int ret = tag.doStartTag();
-        String expected = "<div class=\"alert alert-warn\"><ul><li>hello</li><li>world</li></ul></div>";
+        String expected = "<div class=\"alert alert-warning\"><ul><li>hello</li><li>world</li></ul></div>";
         assertThat(getOutput(), is(expected));
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
     }

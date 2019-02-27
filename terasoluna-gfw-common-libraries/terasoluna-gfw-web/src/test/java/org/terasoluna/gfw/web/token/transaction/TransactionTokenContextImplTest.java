@@ -201,6 +201,7 @@ public class TransactionTokenContextImplTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void TestCreateToken01() {
         // setup parameters
         TransactionTokenInfo beginTransactionToken = new TransactionTokenInfo("testTokenAttribute1", TransactionTokenType.BEGIN);
@@ -222,6 +223,7 @@ public class TransactionTokenContextImplTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void TestCreateToken02() {
         // setup parameters
         TransactionTokenInfo beginTransactionToken = new TransactionTokenInfo("testTokenAttribute1", TransactionTokenType.BEGIN);
@@ -242,6 +244,7 @@ public class TransactionTokenContextImplTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void TestRemoveToken01() {
         // setup parameters
         TransactionTokenInfo beginTransactionToken = new TransactionTokenInfo("testTokenAttribute1", TransactionTokenType.BEGIN);
@@ -263,6 +266,7 @@ public class TransactionTokenContextImplTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void TestCancelReservation01() throws IllegalArgumentException, IllegalAccessException {
         // setup parameters
         TransactionTokenInfo beginTransactionToken = new TransactionTokenInfo("testTokenAttribute1", TransactionTokenType.BEGIN);
@@ -287,6 +291,7 @@ public class TransactionTokenContextImplTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void TestCancelReservation02() throws IllegalArgumentException, IllegalAccessException {
 
         // setup parameters
@@ -310,6 +315,7 @@ public class TransactionTokenContextImplTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void TestCancelReservation03() throws IllegalArgumentException, IllegalAccessException {
 
         // setup parameters
@@ -333,6 +339,7 @@ public class TransactionTokenContextImplTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void TestCancelReservation04() throws IllegalArgumentException, IllegalAccessException {
 
         // setup parameters
@@ -356,6 +363,7 @@ public class TransactionTokenContextImplTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void TestCancelReservation05() throws IllegalArgumentException, IllegalAccessException {
 
         // setup parameters
@@ -379,6 +387,7 @@ public class TransactionTokenContextImplTest {
     }
 
     @Test
+    @SuppressWarnings("deprecation")
     public void TestCancelReservation06() throws IllegalArgumentException, IllegalAccessException {
 
         // setup parameters

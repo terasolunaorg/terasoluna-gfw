@@ -188,6 +188,8 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class CodePoints implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * shows no code point is found in the given string which is not included in the target code points.
      */
