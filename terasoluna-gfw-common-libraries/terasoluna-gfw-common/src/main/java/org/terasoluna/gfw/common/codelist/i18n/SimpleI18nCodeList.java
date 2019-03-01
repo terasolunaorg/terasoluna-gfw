@@ -361,7 +361,7 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
      * <ol>
      * <li>Returns the specified locale if defined corresponding codelist.</li>
      * <li>Returns the language part of the specified locale if defined corresponding codelist.</li>
-     * <li>Returns the {@code fallbackTo} locale.</li>
+     * <li>Returns the {@link SimpleI18nCodeList#fallbackTo fallbackTo} locale.</li>
      * </ol>
      * @param locale locale for codelist
      * @return resolved locale
