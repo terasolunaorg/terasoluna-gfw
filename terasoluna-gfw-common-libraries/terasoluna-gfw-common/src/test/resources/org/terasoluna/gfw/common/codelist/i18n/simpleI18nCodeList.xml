@@ -190,7 +190,7 @@
     <property name="fallbackTo" value="en_US" />
   </bean>
 
-  <bean id="CL_testAfterPropertiesSetInvalid" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList"
+  <bean id="CL_testAfterPropertiesSetInvalidResolveDefaultLocale" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList"
     lazy-init="true">
     <property name="rows">
       <util:map>

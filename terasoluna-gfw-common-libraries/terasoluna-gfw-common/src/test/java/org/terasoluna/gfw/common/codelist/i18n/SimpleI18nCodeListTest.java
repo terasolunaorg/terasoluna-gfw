@@ -186,7 +186,7 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
     public void testAfterProperitesSetInvalidResolveDefaultLocale() {
         try {
             super.getApplicationContext().getBean(
-                    "CL_testAfterPropertiesSetInvalid");
+                    "CL_testAfterPropertiesSetInvalidResolveDefaultLocale");
             fail("BeanCreationException not occered.");
         } catch (BeanCreationException e) {
             Throwable cause = e.getCause();
