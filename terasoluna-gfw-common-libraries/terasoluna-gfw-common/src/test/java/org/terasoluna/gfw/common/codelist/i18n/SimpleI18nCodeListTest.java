@@ -192,7 +192,7 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
             Throwable cause = e.getCause();
             assertThat(cause, instanceOf(IllegalArgumentException.class));
             assertThat(cause.getMessage(), is(
-                    "No codelist found for fallback default locale 'en', it must be defined."));
+                    "No codelist for 'en_US' and 'en'."));
         }
     }
 
