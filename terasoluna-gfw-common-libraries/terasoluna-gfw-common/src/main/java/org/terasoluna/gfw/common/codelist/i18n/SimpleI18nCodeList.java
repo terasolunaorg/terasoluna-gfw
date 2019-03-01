@@ -347,8 +347,8 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
                     + "' and '" + Locale.getDefault().getLanguage() + "'.");
         } else {
             Assert.isTrue(codeListTable.containsRow(fallbackTo),
-                    "No codelist found for fallback locale '" + fallbackTo
-                            + "', it must be defined.");
+                    "The resolution is to define codelist of default locale or to define '"
+                            + fallbackTo + "'.");
         }
     }
 
