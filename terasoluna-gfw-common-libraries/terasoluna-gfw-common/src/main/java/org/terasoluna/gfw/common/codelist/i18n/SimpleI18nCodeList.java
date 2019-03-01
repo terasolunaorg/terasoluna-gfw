@@ -323,7 +323,8 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
 
     /**
      * Sets the default locale as fallback.<br>
-     * Defaults to {@link Locale#getDefault()}
+     * If extend this and override default value of {@link SimpleI18nCodeList#fallbackTo fallbackTo}, affects
+     * {@link SimpleI18nCodeList#afterPropertiesSet afterPropertiesSet}.
      * @param fallbackTo the default locale as fallback
      * @since 5.5.1
      */
