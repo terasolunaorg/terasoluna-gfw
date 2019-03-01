@@ -229,7 +229,7 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
      * the default locale as fallback.
      * @since 5.5.1
      */
-    protected Locale fallbackTo = Locale.getDefault();
+    protected Locale fallbackTo;
 
     /**
      * supplier to return a {@link LinkedHashMap} object.
@@ -341,9 +341,17 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     @Override
     public void afterPropertiesSet() {
         Assert.notNull(codeListTable, "codeListTable is not initialized!");
-        Assert.isTrue(codeListTable.containsRow(fallbackTo),
-                "No codelist found for fallback locale '" + fallbackTo
-                        + "', it must be defined.");
+        if (fallbackTo == null) {
+            fallbackTo = resolveLocale(Locale.getDefault());
+            Assert.notNull(fallbackTo,
+                    "No codelist found for fallback default locale '" + Locale
+                            .getDefault().getLanguage()
+                            + "', it must be defined.");
+        } else {
+            Assert.isTrue(codeListTable.containsRow(fallbackTo),
+                    "No codelist found for fallback locale '" + fallbackTo
+                            + "', it must be defined.");
+        }
     }
 
     /**

@@ -190,6 +190,25 @@
     <property name="fallbackTo" value="en_US" />
   </bean>
 
+  <bean id="CL_testAfterPropertiesSetInvalid" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList"
+    lazy-init="true">
+    <property name="rows">
+      <util:map>
+        <entry key="fr">
+          <util:map>
+            <entry key="0" value="Dim" />
+            <entry key="1" value="Lun" />
+            <entry key="2" value="Mar" />
+            <entry key="3" value="Mer" />
+            <entry key="4" value="Jeu" />
+            <entry key="5" value="Ven" />
+            <entry key="6" value="Sam" />
+          </util:map>
+        </entry>
+      </util:map>
+    </property>
+  </bean>
+
   <bean id="CL_testResolveLocale" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
     <property name="rows">
       <util:map>
