@@ -226,7 +226,9 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     Table<Locale, String, String> codeListTable;
 
     /**
-     * the default locale as fallback.
+     * the default locale as fallback.<br>
+     * if extend this and override default value of fallbackTo, affects {@link SimpleI18nCodeList#afterPropertiesSet
+     * afterPropertiesSet}.
      * @since 5.5.1
      */
     protected Locale fallbackTo;
@@ -323,8 +325,6 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
 
     /**
      * Sets the default locale as fallback.<br>
-     * If extend this and override default value of {@link SimpleI18nCodeList#fallbackTo fallbackTo}, affects
-     * {@link SimpleI18nCodeList#afterPropertiesSet afterPropertiesSet}.
      * @param fallbackTo the default locale as fallback
      * @since 5.5.1
      */
