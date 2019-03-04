@@ -336,7 +336,7 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
      * <p>
      * check whether codeListTable is initialized.<br>
      * check whether codelist of fallbackTo locale is defined.<br>
-     * fallbackTo locale provided by {@link #fallbackTo fallbackTo} or default locale using {@link java.util.Locale#getDefaul
+     * fallbackTo locale provided by {@link #fallbackTo fallbackTo} or default locale using {@link Locale#getDefault
      * Locale#getDefault}.<br>
      * default locale is fallbackTo to it's language locale.
      * </p>
@@ -364,7 +364,7 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
      * <li>Returns the specified locale if defined corresponding codelist.</li>
      * <li>Returns the language part of the specified locale if defined corresponding codelist.</li>
      * <li>Returns the {@code fallbackTo} locale. fallbackTo locale is provided by {@link #fallbackTo fallbackTo} or default
-     * locale using language locale of {@link java.util.Locale#getDefaul Locale#getDefault}.</li>
+     * locale using language locale of {@link Locale#getDefault Locale#getDefault}.</li>
      * </ol>
      * @param locale locale for codelist
      * @return resolved locale
