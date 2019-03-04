@@ -153,7 +153,7 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
             Throwable cause = e.getCause();
             assertThat(cause, instanceOf(IllegalArgumentException.class));
             assertThat(cause.getMessage(), is(
-                    "The resolution is to define codelist of default locale or to define 'fr'."));
+                    "No codelist found for fallback locale 'fr', it must be defined."));
         }
     }
 
@@ -167,7 +167,7 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
             Throwable cause = e.getCause();
             assertThat(cause, instanceOf(IllegalArgumentException.class));
             assertThat(cause.getMessage(), is(
-                    "The resolution is to define codelist of default locale or to define 'en_US'."));
+                    "No codelist found for fallback locale 'en_US', it must be defined."));
         }
     }
 
@@ -192,7 +192,7 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
             Throwable cause = e.getCause();
             assertThat(cause, instanceOf(IllegalArgumentException.class));
             assertThat(cause.getMessage(), is(
-                    "No codelist for 'en_US' and 'en'."));
+                    "The resolution is to define codelist of default locale or to define 'null'."));
         }
     }
 
