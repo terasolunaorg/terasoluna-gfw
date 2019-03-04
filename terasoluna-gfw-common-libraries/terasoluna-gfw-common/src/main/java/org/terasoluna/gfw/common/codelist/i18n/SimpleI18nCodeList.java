@@ -335,9 +335,11 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
 
     /**
      * <p>
-     * check whether codeListTable is initialized.
-     * and check whether {@link SimpleI18nCodeList#fallbackTo fallbackTo} sets.<br>
-     * if no set {@link SimpleI18nCodeList#fallbackTo fallbackTo}, sets complementing fallback locale.
+     * check whether codeListTable is initialized.<br>
+     * check whether codelist of fallbackTo locale is defined.<br>
+     * fallbackTo locale provided by {@link SimpleI18nCodeList#fallbackTo fallbackTo} or default locale using
+     * {@link java.util.Locale#getDefaul Locale#getDefault}.<br>
+     * default locale is fallbackTo to it's language locale.
      * </p>
      * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
      */
