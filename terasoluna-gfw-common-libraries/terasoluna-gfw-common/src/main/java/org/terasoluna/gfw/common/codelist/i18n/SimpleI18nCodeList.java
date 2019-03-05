@@ -348,9 +348,9 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
         if (fallbackTo == null) {
             Locale defaultLocale = Locale.getDefault();
             fallbackTo = resolveLocale(defaultLocale);
-            Assert.notNull(fallbackTo,
-                    "The resolution is to define codelist of default locale or to define '"
-                            + fallbackTo + "'.");
+            Assert.notNull(fallbackTo, "No codelist for default locale ('"
+                    + defaultLocale + "' and '" + defaultLocale.getLanguage()
+                    + "'). Please define codelist for default locale or set locale already defined in codelist to fallbackTo.");
         } else {
             Assert.isTrue(codeListTable.containsRow(fallbackTo),
                     "No codelist found for fallback locale '" + fallbackTo
