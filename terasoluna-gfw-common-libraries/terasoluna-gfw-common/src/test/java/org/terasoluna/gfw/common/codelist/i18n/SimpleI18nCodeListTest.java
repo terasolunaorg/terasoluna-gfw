@@ -56,7 +56,7 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
     protected SimpleI18nCodeList testResolveLocale;
 
     public SimpleI18nCodeListTest() {
-        Locale.setDefault(Locale.ENGLISH);
+        Locale.setDefault(Locale.US);
     }
 
     @Test
@@ -172,7 +172,7 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
     }
 
     @Test
-    public void testAfterProperitesSetInvalid() {
+    public void testAfterProperitesSetInvalidInitializedCodeList() {
         SimpleI18nCodeList codeList = new SimpleI18nCodeList();
         try {
             codeList.afterPropertiesSet();
@@ -180,6 +180,21 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
             assertThat(e.getMessage(), is("codeListTable is not initialized!"));
         }
 
+    }
+
+    @Test
+    public void testAfterProperitesSetInvalidResolveDefaultLocale() {
+        try {
+            super.getApplicationContext().getBean(
+                    "CL_testAfterPropertiesSetInvalidResolveDefaultLocale");
+            fail("BeanCreationException not occered.");
+        } catch (BeanCreationException e) {
+            Throwable cause = e.getCause();
+            assertThat(cause, instanceOf(IllegalArgumentException.class));
+            assertThat(cause.getMessage(), is(
+                    "No codelist for default locale ('en_US' and 'en'). "
+                            + "Please define codelist for default locale or set locale already defined in codelist to fallbackTo."));
+        }
     }
 
     @Test

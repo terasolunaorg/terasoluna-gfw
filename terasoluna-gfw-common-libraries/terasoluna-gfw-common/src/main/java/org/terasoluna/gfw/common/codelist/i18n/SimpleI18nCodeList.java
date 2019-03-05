@@ -209,7 +209,9 @@ import com.google.common.collect.Tables;
  * <ol>
  * <li>Returns the specified locale if defined corresponding codelist.</li>
  * <li>Returns the language part of the specified locale if defined corresponding codelist.</li>
- * <li>Returns the {@code fallbackTo} locale.</li>
+ * <li>Returns the {@code fallbackTo} locale. fallbackTo locale is provided by {@link #fallbackTo fallbackTo}, default locale
+ * {@link Locale#getDefault Locale#getDefault}, or {@link Locale#getDefault Locale#getDefault} fallback to the language
+ * locale.</li>
  * </ol>
  */
 public class SimpleI18nCodeList extends AbstractI18nCodeList implements
@@ -226,10 +228,11 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     Table<Locale, String, String> codeListTable;
 
     /**
-     * the default locale as fallback.
+     * the default locale as fallback.<br>
+     * if extend this and override default value of fallbackTo, affects {@link #afterPropertiesSet afterPropertiesSet}.
      * @since 5.5.1
      */
-    protected Locale fallbackTo = Locale.getDefault();
+    protected Locale fallbackTo;
 
     /**
      * supplier to return a {@link LinkedHashMap} object.
@@ -323,7 +326,6 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
 
     /**
      * Sets the default locale as fallback.<br>
-     * Defaults to {@link Locale#getDefault()}
      * @param fallbackTo the default locale as fallback
      * @since 5.5.1
      */
@@ -334,16 +336,28 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
 
     /**
      * <p>
-     * check whether codeListTable is initialized.
+     * check whether codeListTable is initialized.<br>
+     * check whether codelist of fallbackTo locale is defined.<br>
+     * fallbackTo locale provided by {@link #fallbackTo fallbackTo} or default locale using {@link Locale#getDefault
+     * Locale#getDefault}.<br>
+     * default locale is fallbackTo to it's language locale.
      * </p>
      * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
      */
     @Override
     public void afterPropertiesSet() {
         Assert.notNull(codeListTable, "codeListTable is not initialized!");
-        Assert.isTrue(codeListTable.containsRow(fallbackTo),
-                "No codelist found for fallback locale '" + fallbackTo
-                        + "', it must be defined.");
+        if (fallbackTo == null) {
+            Locale defaultLocale = Locale.getDefault();
+            fallbackTo = resolveLocale(defaultLocale);
+            Assert.notNull(fallbackTo, "No codelist for default locale ('"
+                    + defaultLocale + "' and '" + defaultLocale.getLanguage()
+                    + "'). Please define codelist for default locale or set locale already defined in codelist to fallbackTo.");
+        } else {
+            Assert.isTrue(codeListTable.containsRow(fallbackTo),
+                    "No codelist found for fallback locale '" + fallbackTo
+                            + "', it must be defined.");
+        }
     }
 
     /**
