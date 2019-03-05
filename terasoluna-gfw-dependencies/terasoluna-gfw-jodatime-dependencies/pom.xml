@@ -36,5 +36,11 @@
       <!-- this dependency does not pull servlet-api -->
     </dependency>
     <!-- == End Joda-Time == -->
+    <!-- == Begin Jackson == -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-joda</artifactId>
+    </dependency>
+    <!-- == End Jackson == -->
   </dependencies>
 </project>
