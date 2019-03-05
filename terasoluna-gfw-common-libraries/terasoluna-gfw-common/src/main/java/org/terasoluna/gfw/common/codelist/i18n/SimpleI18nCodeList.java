@@ -209,8 +209,9 @@ import com.google.common.collect.Tables;
  * <ol>
  * <li>Returns the specified locale if defined corresponding codelist.</li>
  * <li>Returns the language part of the specified locale if defined corresponding codelist.</li>
- * <li>Returns the {@code fallbackTo} locale. fallbackTo locale is provided by {@link #fallbackTo fallbackTo} or default
- * locale using language locale of {@link Locale#getDefault Locale#getDefault}.</li>
+ * <li>Returns the {@code fallbackTo} locale. fallbackTo locale is provided by {@link #fallbackTo fallbackTo}, default locale
+ * {@link Locale#getDefault Locale#getDefault}, or {@link Locale#getDefault Locale#getDefault} fallback to the language
+ * locale.</li>
  * </ol>
  */
 public class SimpleI18nCodeList extends AbstractI18nCodeList implements
