@@ -66,12 +66,12 @@
       <artifactId>terasoluna-gfw-common</artifactId>
     </dependency>
 
-    <!-- == Begin Jackson == -->
+    <!-- == Begin Joda-Time == -->
     <dependency>
-      <groupId>com.fasterxml.jackson.datatype</groupId>
-      <artifactId>jackson-datatype-joda</artifactId>
+      <groupId>joda-time</groupId>
+      <artifactId>joda-time</artifactId>
     </dependency>
-    <!-- == End Jackson == -->
+    <!-- == End Joda-Time == -->
 
     <!-- Spring Test -->
     <dependency>
