@@ -32,15 +32,16 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ValidationException;
 
-import org.terasoluna.gfw.common.validator.constraintvalidators.ByteMaxValidator;
+import org.terasoluna.gfw.common.validator.constraintvalidators.ByteSizeValidator;
 
-import org.terasoluna.gfw.common.validator.constraints.ByteMax.List;
+import org.terasoluna.gfw.common.validator.constraints.ByteSize.List;
 
 /**
  * The annotated element must be a {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte length must
- * be lower or equal to the specified maximum.
+ * be between the specified minimum and maximum.
  * <p>
- * If you want to specify not only a maximum length but also a minimum length, it is recommended to use {@link ByteSize}.
+ * This is an annotation combining the functions {@link ByteMin} and {@link ByteMax}. Compared to using two annotations,
+ * the advantage is that overhead can be reduced by getting byte length at a time.
  * </p>
  * <p>
  * Supported types are:
@@ -50,26 +51,28 @@ import org.terasoluna.gfw.common.validator.constraints.ByteMax.List;
  * </ul>
  * <p>
  * {@code null} elements are considered valid. Determine the byte length By encoding the string in the specified
- * {@link ByteMax#charset()}. If not specify, encode with charset {@code "UTF-8"}.
+ * {@link ByteSize#charset()}. If not specify, encode with charset {@code "UTF-8"}.
  * An {@link IllegalArgumentException}(wrapped in {@link ValidationException}) is thrown if specify
- * {@link ByteMax#charset()} that can not be used or specify {@link ByteMax#value()} that is negative value.
+ * {@link ByteSize#charset()} that can not be used or specify {@link ByteSize#min()} or {@link ByteSize#max()}
+ * that is negative or specify {@link ByteSize#max()} that lower than {@link ByteSize#min()} value.
  * </p>
- * @since 5.1.0
- * @see ByteMaxValidator
- * @see ByteSize
+ * @since 5.4.2
+ * @see ByteSizeValidator
+ * @see ByteMin
+ * @see ByteMax
  */
 @Documented
-@Constraint(validatedBy = { ByteMaxValidator.class })
+@Constraint(validatedBy = { ByteSizeValidator.class })
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
 @Retention(RUNTIME)
 @Repeatable(List.class)
-public @interface ByteMax {
+public @interface ByteSize {
 
     /**
      * Error message or message key
      * @return error message or message key
      */
-    String message() default "{org.terasoluna.gfw.common.validator.constraints.ByteMax.message}";
+    String message() default "{org.terasoluna.gfw.common.validator.constraints.ByteSize.message}";
 
     /**
      * Constraint groups
@@ -84,9 +87,14 @@ public @interface ByteMax {
     Class<? extends Payload>[] payload() default {};
 
     /**
+     * @return value the element's byte length must be higher or equal to
+     */
+    long min() default 0;
+
+    /**
      * @return value the element's byte length must be lower or equal to
      */
-    long value();
+    long max() default Long.MAX_VALUE;
 
     /**
      * @return the charset name used in parse to a string
@@ -94,9 +102,9 @@ public @interface ByteMax {
     String charset() default "UTF-8";
 
     /**
-     * Defines several {@link ByteMax} annotations on the same element.
-     * @see ByteMax
-     * @since 5.1.0
+     * Defines several {@link ByteSize} annotations on the same element.
+     * @see ByteSize
+     * @since 5.4.2
      */
     @Documented
     @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER,
@@ -104,9 +112,9 @@ public @interface ByteMax {
     @Retention(RUNTIME)
     @interface List {
         /**
-         * <code>@ByteMax</code> annotations
+         * <code>@ByteSize</code> annotations
          * @return annotations
          */
-        ByteMax[] value();
+        ByteSize[] value();
     }
 }

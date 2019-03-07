@@ -21,7 +21,6 @@ import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.ElementType.TYPE_USE;
-import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Documented;
@@ -41,18 +40,23 @@ import org.terasoluna.gfw.common.validator.constraints.ByteMin.List;
  * The annotated element must be a {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte length must
  * be higher or equal to the specified minimum.
  * <p>
+ * If you want to specify not only a minimum length but also a maximum length, it is recommended to use {@link ByteSize}.
+ * </p>
+ * <p>
  * Supported types are:
  * </p>
  * <ul>
- * <li>{@code String}</li>
+ * <li>{@code CharSequence}</li>
  * </ul>
  * <p>
  * {@code null} elements are considered valid. Determine the byte length By encoding the string in the specified
- * {@link ByteMin#charset()}. If not specify, encode with charset {@code "UTF-8"}. If specify a charset that can not be used, it
- * is thrown {@link IllegalArgumentException}(wrapped in {@link ValidationException}).
+ * {@link ByteMin#charset()}. If not specify, encode with charset {@code "UTF-8"}.
+ * An {@link IllegalArgumentException}(wrapped in {@link ValidationException}) is thrown if specify
+ * {@link ByteMin#charset()} that can not be used or specify {@link ByteMin#value()} that is negative value.
  * </p>
  * @since 5.1.0
  * @see ByteMinValidator
+ * @see ByteSize
  */
 @Documented
 @Constraint(validatedBy = { ByteMinValidator.class })
@@ -95,7 +99,7 @@ public @interface ByteMin {
      * @since 5.1.0
      */
     @Documented
-    @Target({ METHOD, FIELD, TYPE, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER,
+    @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER,
             TYPE_USE })
     @Retention(RUNTIME)
     @interface List {
