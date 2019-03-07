@@ -56,25 +56,41 @@ abstract public class AbstractConstraintsTest<F> {
 
     /**
      * set {@code ExpectedException} for failed to initialize.
-     * @param cls expected inner exception.
+     * @param causeType expected type of inner exception.
      */
-    protected void setExpectedFailedToInitialize(Class<?> cls) {
+    protected void setExpectedFailedToInitialize(
+            Class<? extends Throwable> causeType) {
         thrown.expect(ValidationException.class);
         thrown.expectCause(allOf(Matchers.<Throwable> instanceOf(
                 IllegalArgumentException.class), hasProperty("message", is(
                         MESSAGE_INITIALIZE_ERROR)), hasProperty("cause",
-                                Matchers.<Throwable> instanceOf(cls))));
+                                Matchers.<Throwable> instanceOf(causeType))));
+    }
+
+    /**
+     * set {@code ExpectedException} for failed to initialize.
+     * @param causeType expected type of inner exception.
+     * @param message expected message of inner exception.
+     */
+    protected void setExpectedFailedToInitialize(
+            Class<? extends Throwable> causeType, String message) {
+        thrown.expect(ValidationException.class);
+        thrown.expectCause(allOf(Matchers.<Throwable> instanceOf(
+                IllegalArgumentException.class), hasProperty("message", is(
+                        MESSAGE_INITIALIZE_ERROR)), hasProperty("cause", allOf(
+                                Matchers.<Throwable> instanceOf(causeType),
+                                hasProperty("message", is(message))))));
     }
 
     /**
      * set {@code ExpectedException} for type not support.
-     * @param cls expected not support type.
+     * @param causeType expected not support type.
      */
-    protected void setExpectedTypeNotSupport(Class<?> cls) {
+    protected void setExpectedTypeNotSupport(Class<?> causeType) {
         thrown.expect(ValidationException.class);
         thrown.expectCause(allOf(Matchers.<Throwable> instanceOf(
                 IllegalArgumentException.class), hasProperty("message", is(
-                        String.format(MESSAGE_NOTSUPPORT_ERROR, cls
+                        String.format(MESSAGE_NOTSUPPORT_ERROR, causeType
                                 .getName())))));
     }
 
