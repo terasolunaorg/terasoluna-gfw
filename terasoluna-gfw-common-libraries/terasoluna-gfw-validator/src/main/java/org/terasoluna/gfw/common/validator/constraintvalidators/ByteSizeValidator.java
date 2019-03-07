@@ -30,7 +30,7 @@ import org.terasoluna.gfw.common.validator.constraints.ByteSize;
  * Validate the {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte length must be between the
  * specified minimum and maximum. Determine the byte length By encoding the string in the specified charset.
  * </p>
- * @since 5.4.0
+ * @since 5.4.2
  * @see ConstraintValidator
  * @see ByteSize
  */
