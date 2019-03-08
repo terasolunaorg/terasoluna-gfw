@@ -24,6 +24,7 @@ import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.util.StringUtils;
 import org.terasoluna.gfw.common.codelist.CodeList;
 import org.terasoluna.gfw.common.codelist.ExistInCodeList;
+import org.terasoluna.gfw.common.codelist.NumberRangeCodeList;
 
 /**
  * Abstract validation implementation class for {@link ExistInCodeList} custom annotation.
@@ -45,6 +46,12 @@ public abstract class AbstractExistInCodeListValidator<T> extends
     private CodeList codeList = null;
 
     /**
+     * code value format
+     * @see org.terasoluna.gfw.common.codelist.NumberRangeCodeList#getValueFormat()
+     */
+    protected String valueFormat = null;
+
+    /**
      * Initialize.
      * <p>
      * Get the codelist from applicationContext.
@@ -54,6 +61,10 @@ public abstract class AbstractExistInCodeListValidator<T> extends
     public void initialize(ExistInCodeList codeConstraint) {
         this.codeList = getApplicationContext().getBean(codeConstraint
                 .codeListId(), CodeList.class);
+        if (this.codeList instanceof NumberRangeCodeList) {
+            this.valueFormat = ((NumberRangeCodeList) this.codeList)
+                    .getValueFormat();
+        }
     }
 
     /**

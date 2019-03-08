@@ -32,6 +32,7 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharacter;
+import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForNumber;
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharSequence;
 
 import org.terasoluna.gfw.common.codelist.ExistInCodeList.List;
@@ -61,7 +62,8 @@ import org.terasoluna.gfw.common.codelist.ExistInCodeList.List;
 @Retention(RUNTIME)
 @Repeatable(List.class)
 @Constraint(validatedBy = { ExistInCodeListValidatorForCharSequence.class,
-        ExistInCodeListValidatorForCharacter.class })
+        ExistInCodeListValidatorForCharacter.class,
+        ExistInCodeListValidatorForNumber.class })
 public @interface ExistInCodeList {
 
     /**
