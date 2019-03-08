@@ -38,6 +38,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.validation.annotation.Validated;
+import org.terasoluna.gfw.common.codelist.BirthDay.FORMATTED;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration
@@ -183,20 +184,48 @@ public class ExistInCodeListTest {
     }
 
     @Test
+    public void test_validIntegerAndLongCode() {
+        BirthDay b = new BirthDay();
+        b.month = 1;
+        b.day = 1L;
+        Set<ConstraintViolation<BirthDay>> result = validator.validate(b);
+        assertThat(result.isEmpty(), is(true));
+    }
+
+    @Test
+    public void test_validIntegerAndLongFormattedCode() {
+        BirthDay b = new BirthDay();
+        b.month = 1;
+        b.day = 1L;
+        Set<ConstraintViolation<BirthDay>> result = validator.validate(b,
+                FORMATTED.class);
+        assertThat(result.isEmpty(), is(true));
+    }
+
+    @Test
+    public void test_invalidIntegerAndLongCode() {
+        BirthDay b = new BirthDay();
+        b.month = 13;
+        b.day = 32L;
+        Set<ConstraintViolation<BirthDay>> result = validator.validate(b);
+        assertThat(result.size(), is(2));
+    }
+
+    @Test
     public void test_validMultipleExistInCodeList() {
         // check 0~12
         {
-            Order order = new Order("0");
+            Order order = new Order(0);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result.isEmpty(), is(true));
         }
         {
-            Order order = new Order("6");
+            Order order = new Order(6);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result.isEmpty(), is(true));
         }
         {
-            Order order = new Order("12");
+            Order order = new Order(12);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result.isEmpty(), is(true));
         }
@@ -205,7 +234,7 @@ public class ExistInCodeListTest {
     @Test
     public void test_invalidMultipleExistInCodeList() {
         {
-            Order order = new Order("1");
+            Order order = new Order(1);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result.size(), is(2));
             SortedSet<String> messages = new TreeSet<String>();
@@ -217,7 +246,7 @@ public class ExistInCodeListTest {
             assertThat(iterator.next(), is("number must be multiples of 3"));
         }
         {
-            Order order = new Order("2");
+            Order order = new Order(2);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result.size(), is(1));
             SortedSet<String> messages = new TreeSet<String>();
@@ -228,7 +257,7 @@ public class ExistInCodeListTest {
             assertThat(iterator.next(), is("number must be multiples of 3"));
         }
         {
-            Order order = new Order("4");
+            Order order = new Order(4);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result.size(), is(1));
             SortedSet<String> messages = new TreeSet<String>();
@@ -239,7 +268,7 @@ public class ExistInCodeListTest {
             assertThat(iterator.next(), is("number must be multiples of 3"));
         }
         {
-            Order order = new Order("5");
+            Order order = new Order(5);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result.size(), is(2));
             SortedSet<String> messages = new TreeSet<String>();
@@ -251,7 +280,7 @@ public class ExistInCodeListTest {
             assertThat(iterator.next(), is("number must be multiples of 3"));
         }
         {
-            Order order = new Order("7");
+            Order order = new Order(7);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result.size(), is(2));
             SortedSet<String> messages = new TreeSet<String>();
@@ -263,7 +292,7 @@ public class ExistInCodeListTest {
             assertThat(iterator.next(), is("number must be multiples of 3"));
         }
         {
-            Order order = new Order("8");
+            Order order = new Order(8);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result.size(), is(1));
             SortedSet<String> messages = new TreeSet<String>();
@@ -274,7 +303,7 @@ public class ExistInCodeListTest {
             assertThat(iterator.next(), is("number must be multiples of 3"));
         }
         {
-            Order order = new Order("9");
+            Order order = new Order(9);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result.size(), is(1));
             SortedSet<String> messages = new TreeSet<String>();
@@ -285,7 +314,7 @@ public class ExistInCodeListTest {
             assertThat(iterator.next(), is("number must be even"));
         }
         {
-            Order order = new Order("10");
+            Order order = new Order(10);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result.size(), is(1));
             SortedSet<String> messages = new TreeSet<String>();
@@ -296,7 +325,7 @@ public class ExistInCodeListTest {
             assertThat(iterator.next(), is("number must be multiples of 3"));
         }
         {
-            Order order = new Order("11");
+            Order order = new Order(11);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result.size(), is(2));
             SortedSet<String> messages = new TreeSet<String>();
@@ -309,7 +338,7 @@ public class ExistInCodeListTest {
         }
         {
             // out of range!
-            Order order = new Order("18");
+            Order order = new Order(18);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result.size(), is(2));
             SortedSet<String> messages = new TreeSet<String>();
@@ -432,20 +461,33 @@ class Employee {
     public StringBuilder lang;
 }
 
+class BirthDay {
+    @ExistInCodeList(codeListId = "CD_MONTH")
+    @ExistInCodeList(codeListId = "CD_MONTH_FORMATTED", groups = FORMATTED.class)
+    public Integer month;
+
+    @ExistInCodeList(codeListId = "CD_DAY")
+    @ExistInCodeList(codeListId = "CD_DAY_FORMATTED", groups = FORMATTED.class)
+    public Long day;
+
+    public interface FORMATTED {
+    }
+}
+
 class Order {
     @ExistInCodeList(codeListId = "CD_MULTIPLES_OF_3", message = "number must be multiples of 3")
     @ExistInCodeList(codeListId = "CD_EVEN", message = "number must be even")
-    private String orderNumber;
+    private Integer orderNumber;
 
-    public Order(String orderNumber) {
+    public Order(Integer orderNumber) {
         this.orderNumber = orderNumber;
     }
 
-    public void setOrderNumber(String orderNumber) {
+    public void setOrderNumber(Integer orderNumber) {
         this.orderNumber = orderNumber;
     }
 
-    public String getOrderNumber() {
+    public Integer getOrderNumber() {
         return orderNumber;
     }
 }

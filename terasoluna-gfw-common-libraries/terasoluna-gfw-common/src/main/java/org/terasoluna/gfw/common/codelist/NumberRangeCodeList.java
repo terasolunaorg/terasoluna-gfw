@@ -139,6 +139,14 @@ public class NumberRangeCodeList extends AbstractCodeList implements
     }
 
     /**
+     * Gets the display format of the value part of the codelist 
+     * @return valueFormat format string for code value
+     */
+    public String getValueFormat() {
+        return this.valueFormat;
+    }
+
+    /**
      * Sets the display format of the name part of the codelist(default %s)
      * @see String#format(String, Object...)
      * @param labelFormat format string for code label
