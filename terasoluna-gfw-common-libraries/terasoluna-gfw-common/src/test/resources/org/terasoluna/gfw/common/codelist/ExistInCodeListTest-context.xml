@@ -30,6 +30,24 @@
       </map>
     </property>
   </bean>
+  <bean id="CD_MONTH" class="org.terasoluna.gfw.common.codelist.NumberRangeCodeList">
+    <property name="from" value="1" />
+    <property name="to" value="12" />
+  </bean>
+  <bean id="CD_MONTH_FORMATTED" class="org.terasoluna.gfw.common.codelist.NumberRangeCodeList">
+    <property name="from" value="1" />
+    <property name="to" value="12" />
+    <property name="valueFormat" value="%02d" />
+  </bean>
+  <bean id="CD_DAY" class="org.terasoluna.gfw.common.codelist.NumberRangeCodeList">
+    <property name="from" value="1" />
+    <property name="to" value="31" />
+  </bean>
+  <bean id="CD_DAY_FORMATTED" class="org.terasoluna.gfw.common.codelist.NumberRangeCodeList">
+    <property name="from" value="1" />
+    <property name="to" value="31" />
+    <property name="valueFormat" value="%02d" />
+  </bean>
   <bean id="CD_MULTIPLES_OF_3" class="org.terasoluna.gfw.common.codelist.NumberRangeCodeList">
     <property name="from" value="0" />
     <property name="to" value="12" />
