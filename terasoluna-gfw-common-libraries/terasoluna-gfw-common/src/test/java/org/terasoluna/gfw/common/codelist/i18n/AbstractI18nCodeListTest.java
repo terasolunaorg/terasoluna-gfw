@@ -21,9 +21,12 @@ import static org.junit.Assert.*;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import org.junit.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
+
+import com.google.common.collect.Sets;
 
 public class AbstractI18nCodeListTest {
 
@@ -32,11 +35,15 @@ public class AbstractI18nCodeListTest {
         AbstractI18nCodeList impl = new AbstractI18nCodeList() {
 
             @Override
-            public Map<String, String> asMap(Locale locale) {
+            protected Set<Locale> registerCodeListLocales() {
+                return Sets.newHashSet();
+            }
+
+            @Override
+            protected Map<String, String> obtainMap(Locale locale) {
                 return Collections.singletonMap("language", locale
                         .getLanguage());
             }
-
         };
 
         Locale.setDefault(Locale.ENGLISH);
@@ -56,4 +63,21 @@ public class AbstractI18nCodeListTest {
                 .getLanguage()));
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testRegisterAvailableLocalesNull() {
+        AbstractI18nCodeList impl = new AbstractI18nCodeList() {
+
+            @Override
+            protected Set<Locale> registerCodeListLocales() {
+                return null;
+            }
+
+            @Override
+            protected Map<String, String> obtainMap(Locale locale) {
+                return null;
+            }
+        };
+
+        impl.afterPropertiesSet();
+    }
 }
