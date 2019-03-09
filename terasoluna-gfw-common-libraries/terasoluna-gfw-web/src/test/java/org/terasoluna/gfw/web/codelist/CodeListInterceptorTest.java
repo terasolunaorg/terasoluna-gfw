@@ -100,7 +100,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
     }
 
     /**
-     * [preHandle] Case of CodeList is zero.
+     * [postHandle] Case of CodeList is zero.
      * <p>
      * [Expected Result]
      * <ol>
@@ -110,25 +110,23 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      * @throws Exception
      */
     @Test
-    public void testPreHandle_zero() throws Exception {
+    public void testPostHandle_zero() throws Exception {
 
         // do setup.
         testTarget.setApplicationContext(new StaticApplicationContext());
         testTarget.afterPropertiesSet();
 
         // do test.
-        boolean actualReturnValue = testTarget.preHandle(mockRequest,
-                mockResponse, null);
+        testTarget.postHandle(mockRequest, mockResponse, null, null);
 
         // do assert.
         assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(
                 false));
-        assertThat(actualReturnValue, is(true));
 
     }
 
     /**
-     * [preHandle] Case of CodeList is one.
+     * [postHandle] Case of CodeList is one.
      * <p>
      * [Expected Result]
      * <ol>
@@ -138,7 +136,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      * @throws Exception
      */
     @Test
-    public void testPreHandle_one() throws Exception {
+    public void testPostHandle_one() throws Exception {
 
         // do setup.
         StaticApplicationContext mockApplicationContext = new StaticApplicationContext();
@@ -152,8 +150,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do test.
-        boolean actualReturnValue = testTarget.preHandle(mockRequest,
-                mockResponse, null);
+        testTarget.postHandle(mockRequest, mockResponse, null, null);
 
         // do assert.
         Enumeration<String> actualAttributeNames = mockRequest
@@ -163,12 +160,11 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         assertThat(actualAttributeNames.hasMoreElements(), is(false));
         assertThat(mockRequest.getAttribute("simpleMapCodeList").toString(), is(
                 simpleMapCodeList.asMap().toString()));
-        assertThat(actualReturnValue, is(true));
 
     }
 
     /**
-     * [preHandle] Case of CodeList is one.
+     * [postHandle] Case of CodeList is one.
      * <p>
      * [Expected Result]
      * <ol>
@@ -178,7 +174,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      * @throws Exception
      */
     @Test
-    public void testPreHandle_multi() throws Exception {
+    public void testPostHandle_multi() throws Exception {
 
         // do setup.
         mockRequest.addPreferredLocale(Locale.ENGLISH);
@@ -187,8 +183,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do test.
-        boolean actualReturnValue = testTarget.preHandle(mockRequest,
-                mockResponse, null);
+        testTarget.postHandle(mockRequest, mockResponse, null, null);
 
         // do assert.
         SimpleMapCodeList simpleMapCodeList = getApplicationContext().getBean(
@@ -199,12 +194,11 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
                 is(simpleMapCodeList.asMap().toString()));
         assertThat(mockRequest.getAttribute("C_simpleI18nCodeList").toString(),
                 is(simpleI18nCodeList.asMap(Locale.ENGLISH).toString()));
-        assertThat(actualReturnValue, is(true));
 
     }
 
     /**
-     * [preHandle] Case of not call afterPropertiesSet.
+     * [postHandle] Case of not call afterPropertiesSet.
      * <p>
      * [Expected Result]
      * <ol>
@@ -214,19 +208,17 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      * @throws Exception
      */
     @Test
-    public void testPreHandle_not_call_afterPropertiesSet() throws Exception {
+    public void testPostHandle_not_call_afterPropertiesSet() throws Exception {
 
         // do setup.
         // do nothing.
 
         // do test.
-        boolean actualReturnValue = testTarget.preHandle(mockRequest,
-                mockResponse, null);
+        testTarget.postHandle(mockRequest, mockResponse, null, null);
 
         // do assert.
         assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(
                 false));
-        assertThat(actualReturnValue, is(true));
 
     }
 
