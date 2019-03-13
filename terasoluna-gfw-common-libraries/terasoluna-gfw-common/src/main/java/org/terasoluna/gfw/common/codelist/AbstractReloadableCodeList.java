@@ -16,7 +16,6 @@
 package org.terasoluna.gfw.common.codelist;
 
 import java.util.Collections;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -31,14 +30,9 @@ public abstract class AbstractReloadableCodeList extends AbstractCodeList
                                                  InitializingBean {
 
     /**
-     * {@link CodeList} must be thread safe.
-     */
-    private final ReadWriteLockMapWrapper<String, String> cachedMap = new ReadWriteLockMapWrapper<String, String>(new LinkedHashMap<String, String>());
-
-    /**
      * Codelist information visible externally. It is unmodifiable and thread safe.
      */
-    private volatile Map<String, String> exposedMap = null;
+    private Map<String, String> exposedMap = null;
 
     /**
      * Lazy initialization flag
@@ -83,10 +77,7 @@ public abstract class AbstractReloadableCodeList extends AbstractCodeList
         if (logger.isDebugEnabled()) {
             logger.debug("refresh codelist codeListId={}", getCodeListId());
         }
-        synchronized (cachedMap) {
-            cachedMap.clearAndPutAll(retrieveMap());
-            exposedMap = Collections.unmodifiableMap(cachedMap);
-        }
+        exposedMap = Collections.unmodifiableMap(retrieveMap());
     }
 
     /**
