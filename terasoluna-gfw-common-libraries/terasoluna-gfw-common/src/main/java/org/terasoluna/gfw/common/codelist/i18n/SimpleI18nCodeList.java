@@ -18,12 +18,12 @@ package org.terasoluna.gfw.common.codelist.i18n;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
-import org.springframework.util.StringUtils;
 import org.terasoluna.gfw.common.codelist.CodeList;
 
 import com.google.common.base.Supplier;
@@ -228,13 +228,6 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     Table<Locale, String, String> codeListTable;
 
     /**
-     * the default locale as fallback.<br>
-     * if extend this and override default value of fallbackTo, affects {@link #afterPropertiesSet afterPropertiesSet}.
-     * @since 5.5.1
-     */
-    protected Locale fallbackTo;
-
-    /**
      * supplier to return a {@link LinkedHashMap} object.
      */
     private static final Supplier<LinkedHashMap<String, String>> LINKED_HASH_MAP_SUPPLIER = new Supplier<LinkedHashMap<String, String>>() {
@@ -243,20 +236,6 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
             return Maps.newLinkedHashMap();
         }
     };
-
-    /**
-     * <p>
-     * returns row of codelist table.<br>
-     * if there is no codelist for the specified locale, returns it by {@code fallbackTo} locale.
-     * </p>
-     * @see org.terasoluna.gfw.common.codelist.i18n.I18nCodeList#asMap(java.util.Locale)
-     */
-    @Override
-    public Map<String, String> asMap(Locale locale) {
-        Assert.notNull(locale, "locale is null");
-        Locale resolvedLocale = resolveLocale(locale);
-        return codeListTable.row(resolvedLocale);
-    }
 
     /**
      * set table by rows ({@link Map}).<br>
@@ -325,72 +304,34 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     }
 
     /**
-     * Sets the default locale as fallback.<br>
-     * @param fallbackTo the default locale as fallback
-     * @since 5.5.1
+     * Resolve locale and obtain the codelist of specified locale.
+     * @see org.terasoluna.gfw.common.codelist.i18n.AbstractI18nCodeList#obtainMap(java.util.Locale)
      */
-    public void setFallbackTo(Locale fallbackTo) {
-        Assert.notNull(fallbackTo, "fallbackTo must not be null");
-        this.fallbackTo = fallbackTo;
+    @Override
+    protected Map<String, String> obtainMap(Locale locale) {
+        return codeListTable.row(resolveLocale(locale));
     }
 
     /**
+     * This method is called after the properties of the codelist are set.
      * <p>
-     * check whether codeListTable is initialized.<br>
-     * check whether codelist of fallbackTo locale is defined.<br>
-     * fallbackTo locale provided by {@link #fallbackTo fallbackTo} or default locale using {@link Locale#getDefault
-     * Locale#getDefault}.<br>
-     * default locale is fallbackTo to it's language locale.
+     * check whether codeListTable is initialized.
      * </p>
-     * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
+     * @see org.terasoluna.gfw.common.codelist.i18n.AbstractI18nCodeList#afterPropertiesSet()
      */
     @Override
     public void afterPropertiesSet() {
         Assert.notNull(codeListTable, "codeListTable is not initialized!");
-        if (fallbackTo == null) {
-            Locale defaultLocale = Locale.getDefault();
-            fallbackTo = resolveLocale(defaultLocale);
-            Assert.notNull(fallbackTo, "No codelist for default locale ('"
-                    + defaultLocale + "' and '" + defaultLocale.getLanguage()
-                    + "'). Please define codelist for default locale or set locale already defined in codelist to fallbackTo.");
-        } else {
-            Assert.isTrue(codeListTable.containsRow(fallbackTo),
-                    "No codelist found for fallback locale '" + fallbackTo
-                            + "', it must be defined.");
-        }
+        super.afterPropertiesSet();
     }
 
     /**
-     * Returns the locale resolved in the following order.
-     * <ol>
-     * <li>Returns the specified locale if defined corresponding codelist.</li>
-     * <li>Returns the language part of the specified locale if defined corresponding codelist.</li>
-     * <li>Returns the {@code fallbackTo} locale.</li>
-     * </ol>
-     * @param locale locale for codelist
-     * @return resolved locale
+     * Register locales of {@link #codeListTable}.
+     * @see org.terasoluna.gfw.common.codelist.i18n.AbstractI18nCodeList#registerCodeListLocales()
      */
-    protected Locale resolveLocale(Locale locale) {
-        if (codeListTable.containsRow(locale)) {
-            logger.debug("Found codelist for specified locale '{}'.", locale);
-            return locale;
-        }
-
-        String lang = locale.getLanguage();
-        if (StringUtils.hasLength(lang) && !lang.equals(locale.toString())) {
-            Locale langOnlyLocale = new Locale(lang);
-            if (codeListTable.containsRow(langOnlyLocale)) {
-                logger.debug(
-                        "Found codelist for specified locale '{}' (language only).",
-                        locale);
-                return langOnlyLocale;
-            }
-        }
-
-        logger.debug(
-                "There is no codelist for specified locale '{}'. Use '{}' as fallback.",
-                locale, fallbackTo);
-        return fallbackTo;
+    @Override
+    protected Set<Locale> registerCodeListLocales() {
+        return codeListTable.rowKeySet();
     }
 
     /**
