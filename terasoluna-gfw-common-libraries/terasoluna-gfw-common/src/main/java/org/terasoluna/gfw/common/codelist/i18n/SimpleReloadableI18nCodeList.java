@@ -78,7 +78,7 @@ import com.google.common.collect.Tables;
  *
  * </pre>
  *
- * @since 5.5.1
+ * @since 5.4.2
  */
 public class SimpleReloadableI18nCodeList extends AbstractI18nCodeList
                                           implements ReloadableI18nCodeList,

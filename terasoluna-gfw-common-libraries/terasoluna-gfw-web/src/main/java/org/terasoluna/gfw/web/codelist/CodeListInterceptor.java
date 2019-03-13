@@ -79,7 +79,7 @@ public class CodeListInterceptor extends HandlerInterceptorAdapter implements
      * Sets codelist to the attribute of {@link HttpServletRequest} after the execution of Controller.
      * </p>
      * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#postHandle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object, org.springframework.web.servlet.ModelAndView)
-     * @since 5.5.1
+     * @since 5.4.2
      */
     @Override
     public void postHandle(HttpServletRequest request,
