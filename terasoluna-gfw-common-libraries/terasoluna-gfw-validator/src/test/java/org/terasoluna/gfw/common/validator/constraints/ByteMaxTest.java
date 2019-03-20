@@ -141,10 +141,9 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
      * specify negative value. expected {@code ValidationException} caused by {@code IllegalArgumentException} that message is
      * {@code failed to initialize validator by invalid argument} and nested by {@code IllegalArgumentException} that message is
      * {@code value[-1] must not be negative value.}.
-     * @throws Throwable
      */
     @Test
-    public void testSpecifyNegativeValue() throws Throwable {
+    public void testSpecifyNegativeValue() {
         setExpectedFailedToInitialize(IllegalArgumentException.class,
                 "value[-1] must not be negative value.");
 
