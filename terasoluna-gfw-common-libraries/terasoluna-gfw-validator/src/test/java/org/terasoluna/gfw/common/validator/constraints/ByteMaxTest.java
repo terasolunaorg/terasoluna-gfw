@@ -40,10 +40,9 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
 
     /**
      * input null value. expected valid.
-     * @throws Throwable
      */
     @Test
-    public void testInputNull() throws Throwable {
+    public void testInputNull() {
 
         violations = validator.validate(form);
         assertThat(violations.size(), is(0));
@@ -51,10 +50,9 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
 
     /**
      * specify max value. expected valid if input value encoded in UTF-8 is grater than or equal max value.
-     * @throws Throwable
      */
     @Test
-    public void testSpecifyMaxValue() throws Throwable {
+    public void testSpecifyMaxValue() {
 
         {
             form.setStringProperty("ああa");
@@ -77,7 +75,7 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
      * specify max value for StringBuilder(CharSequence).
      */
     @Test
-    public void testSpecifyMaxValueForStringBuilder() throws Throwable {
+    public void testSpecifyMaxValueForStringBuilder() {
 
         {
             form.setStringBuilderProperty(new StringBuilder("ああa"));
@@ -98,10 +96,9 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
 
     /**
      * specify charset. expected valid if input value encoded in specified charset is grater than or equal max value.
-     * @throws Throwable
      */
     @Test
-    public void testSpecifyCharset() throws Throwable {
+    public void testSpecifyCharset() {
 
         {
             form.setStringProperty("あああa");
@@ -123,21 +120,32 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
     /**
      * specify illegal charset. expected {@code ValidationException} caused by {@code IllegalArgumentException} that message is
      * {@code failed to initialize validator by invalid argument}.
-     * @throws Throwable
      */
     @Test
-    public void testSpecifyIllegalCharset() throws Throwable {
+    public void testSpecifyIllegalCharset() {
         setExpectedFailedToInitialize(UnsupportedCharsetException.class);
 
         validator.validate(form, IllegalCharset.class);
     }
 
     /**
-     * specify not support type. expected {@code UnexpectedTypeException}
-     * @throws Throwable
+     * specify negative value. expected {@code ValidationException} caused by {@code IllegalArgumentException} that message is
+     * {@code failed to initialize validator by invalid argument} and nested by {@code IllegalArgumentException} that message is
+     * {@code value[-1] must not be negative value.}.
      */
     @Test
-    public void testAnnotateUnexpectedType() throws Throwable {
+    public void testSpecifyNegativeValue() {
+        setExpectedFailedToInitialize(IllegalArgumentException.class,
+                "value[-1] must not be negative value.");
+
+        validator.validate(form, NegativeValue.class);
+    }
+
+    /**
+     * specify not support type. expected {@code UnexpectedTypeException}
+     */
+    @Test
+    public void testAnnotateUnexpectedType() {
         thrown.expect(UnexpectedTypeException.class);
 
         validator.validate(form, UnexpectedType.class);
@@ -156,6 +164,12 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
     };
 
     /**
+     * Validation group value negative.
+     */
+    private static interface NegativeValue {
+    };
+
+    /**
      * Validation group unexpected type.
      */
     private static interface UnexpectedType {
@@ -166,7 +180,8 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
                 @ByteMax(value = 6, charset = "shift-jis", groups = {
                         SpecifyCharset.class }),
                 @ByteMax(value = 6, charset = "illegal-charset", groups = {
-                        IllegalCharset.class }) })
+                        IllegalCharset.class }), @ByteMax(value = -1, groups = {
+                                NegativeValue.class }) })
         private String stringProperty;
 
         @ByteMax(6)

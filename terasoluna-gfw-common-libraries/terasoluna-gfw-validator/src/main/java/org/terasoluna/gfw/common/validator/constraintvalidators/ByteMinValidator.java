@@ -50,7 +50,7 @@ public class ByteMinValidator implements
     /**
      * Initialize validator.
      * @param constraintAnnotation annotation instance for a given constraint declaration
-     * @throws IllegalArgumentException failed to get a charset by name.
+     * @throws IllegalArgumentException failed to get a charset by name, or value is invalid.
      * @see javax.validation.ConstraintValidator#initialize(java.lang.annotation.Annotation)
      */
     @Override
@@ -61,6 +61,10 @@ public class ByteMinValidator implements
             throw reportFailedToInitialize(e);
         }
         min = constraintAnnotation.value();
+        if (min < 0) {
+            throw reportFailedToInitialize(new IllegalArgumentException("value["
+                    + min + "] must not be negative value."));
+        }
     }
 
     /**
