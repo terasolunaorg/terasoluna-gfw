@@ -25,10 +25,12 @@ public class AbstractDateFactoryTest {
 
     @Test
     public void testAbstractDateFactory() throws Exception {
+        @SuppressWarnings("deprecation")
         AbstractDateFactory abstractDateFactory = new ExtendsAbstractDateFactory();
         assertThat(abstractDateFactory, notNullValue());
     }
 
+    @SuppressWarnings("deprecation")
     public class ExtendsAbstractDateFactory extends AbstractDateFactory {
 
         @Override

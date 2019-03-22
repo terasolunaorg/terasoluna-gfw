@@ -240,12 +240,12 @@ public final class Functions {
      * @param map map
      * @return query string. if map is not empty, return query string. ex) name1=value&amp;name2=value&amp;...
      */
-    public static String mapToQuery(Map<String, Object> map) {
+    public static String mapToQuery(Map<String, ?> map) {
         if (map == null || map.isEmpty()) {
             return "";
         }
         UriComponentsBuilder builder = UriComponentsBuilder.fromPath("");
-        for (Map.Entry<String, Object> e : map.entrySet()) {
+        for (Map.Entry<String, ?> e : map.entrySet()) {
             String name = e.getKey();
             Object value = e.getValue();
             builder.queryParam(name, value);
@@ -268,13 +268,13 @@ public final class Functions {
      * @deprecated (since 5.0.1, to support nested fields in f:query, Use {@link #mapToQuery(Map)} instead of this method.)
      */
     @Deprecated
-    public static String mapToQuery(Map<String, Object> map,
+    public static String mapToQuery(Map<String, ?> map,
             BeanWrapper beanWrapper) {
         if (map == null || map.isEmpty()) {
             return "";
         }
         UriComponentsBuilder builder = UriComponentsBuilder.fromPath("");
-        for (Map.Entry<String, Object> e : map.entrySet()) {
+        for (Map.Entry<String, ?> e : map.entrySet()) {
             String name = e.getKey();
             Object value = e.getValue();
             TypeDescriptor sourceType;
@@ -314,7 +314,6 @@ public final class Functions {
      * @return query string. returns empty string if <code>params</code> is <code>null</code> or empty string or
      *         {@link Iterable} or {@link BeanUtils#isSimpleValueType(Class)}.
      */
-    @SuppressWarnings("unchecked")
     public static String query(Object params) {
         if (params == null) {
             return "";
@@ -323,7 +322,7 @@ public final class Functions {
         if (BeanUtils.isSimpleValueType(clazz)) {
             return "";
         }
-        return mapToQuery((Map) OBJECT_TO_MAP_CONVERTER.convert(params));
+        return mapToQuery(OBJECT_TO_MAP_CONVERTER.convert(params));
     }
 
     /**

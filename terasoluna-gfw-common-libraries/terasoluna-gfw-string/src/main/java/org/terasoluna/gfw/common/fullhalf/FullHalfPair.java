@@ -22,6 +22,9 @@ import java.io.Serializable;
  * @since 5.1.0
  */
 public final class FullHalfPair implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     /**
      * fullwidth of the pair
      */

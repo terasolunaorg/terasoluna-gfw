@@ -131,14 +131,12 @@ public class ObjectToMapConverterTest {
 
     @Test
     public void testConvert4_MapOfJavaBean() throws Exception {
-        Map<String, String> map = converter.convert(
-                new SearchForm4(new LinkedHashMap<String, String>() {
-                    {
-                        put("aaa", "111");
-                        put("bbb", "222");
-                        put("ccc", "333");
-                    }
-                }));
+        Map<String, String> source = new LinkedHashMap<String, String>();
+        source.put("aaa", "111");
+        source.put("bbb", "222");
+        source.put("ccc", "333");
+        Map<String, String> map = converter.convert(new SearchForm4(source));
+
         assertThat(map.size(), is(3));
         assertThat(map, hasEntry("etc[aaa]", "111"));
         assertThat(map, hasEntry("etc[bbb]", "222"));
@@ -769,6 +767,7 @@ public class ObjectToMapConverterTest {
     public static class LackingGetterForm8 {
         private String value1;
 
+        @SuppressWarnings("unused")
         private String value2;
 
         public LackingGetterForm8() {
@@ -805,11 +804,7 @@ public class ObjectToMapConverterTest {
 
         private List<String> list;
 
-        private List<String> list2 = new ArrayList<String>() {
-            {
-                add(null);
-            }
-        };
+        private List<String> list2 = Collections.singletonList(null);
 
         private Map<String, String> map;
 
@@ -940,11 +935,7 @@ public class ObjectToMapConverterTest {
 
         private List<String> list;
 
-        private List<String> list2 = new ArrayList<String>() {
-            {
-                add(null);
-            }
-        };
+        private List<String> list2 = Collections.singletonList(null);
 
         private Map<String, String> map;
 

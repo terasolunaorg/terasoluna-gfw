@@ -23,6 +23,8 @@ import org.terasoluna.gfw.common.codepoints.CodePoints;
  */
 public final class CRLF extends CodePoints {
 
+    private static final long serialVersionUID = 1L;
+
     /**
      * Constructor
      */
