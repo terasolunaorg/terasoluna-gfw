@@ -401,7 +401,7 @@
     <!-- == TERASOLUNA == -->
     <terasoluna.gfw.version>5.4.2-SNAPSHOT</terasoluna.gfw.version>
     <!-- == Spring IO Platform == -->
-    <io.spring.platform.version>Brussels-SR16</io.spring.platform.version>
+    <io.spring.platform.version>Brussels-SR17</io.spring.platform.version>
     <!-- == Spring Security OAuth == -->
     <!-- == Upgrade Spring Security OAuth from the Spring IO Platform as a security vulnerability update.(CVE-2019-3778) == -->
     <spring-security-oauth.version>2.0.17.RELEASE</spring-security-oauth.version>
