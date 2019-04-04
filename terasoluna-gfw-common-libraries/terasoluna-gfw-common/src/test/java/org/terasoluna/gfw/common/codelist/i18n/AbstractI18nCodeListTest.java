@@ -30,17 +30,15 @@ public class AbstractI18nCodeListTest {
         AbstractI18nCodeList impl = new AbstractI18nCodeList() {
 
             @Override
-            public Map<String, String> asMap(Locale locale) {
+            protected Map<String, String> obtainMap(Locale locale) {
                 // Following return value will be implementation specific
                 // Just returning an newly created instance for testing
                 return new HashMap<String, String>();
             }
-
         };
 
         // Call super class asMap method
         Map<String, String> map = impl.asMap();
         assertNotNull(map);
     }
-
 }
