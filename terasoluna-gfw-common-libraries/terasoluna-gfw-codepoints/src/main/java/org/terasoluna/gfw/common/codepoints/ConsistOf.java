@@ -15,7 +15,16 @@
  */
 package org.terasoluna.gfw.common.codepoints;
 
-import java.lang.annotation.*;
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
+import static java.lang.annotation.ElementType.CONSTRUCTOR;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -26,9 +35,8 @@ import org.terasoluna.gfw.common.codepoints.validator.ConsistOfValidator;
  * All code points in the string must be included in any {@link CodePoints} class specified by {@link #value()}.
  * @since 5.1.0
  */
-@Target({ ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE,
-        ElementType.PARAMETER })
-@Retention(RetentionPolicy.RUNTIME)
+@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
+@Retention(RUNTIME)
 @Constraint(validatedBy = { ConsistOfValidator.class })
 @Documented
 public @interface ConsistOf {
@@ -60,9 +68,8 @@ public @interface ConsistOf {
      * Defines several <code>@ConsistOf</code> annotations on the same element
      * @see ConsistOf
      */
-    @Target({ ElementType.METHOD, ElementType.FIELD,
-            ElementType.ANNOTATION_TYPE, ElementType.PARAMETER })
-    @Retention(RetentionPolicy.RUNTIME)
+    @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
+    @Retention(RUNTIME)
     @Documented
     @interface List {
         /**

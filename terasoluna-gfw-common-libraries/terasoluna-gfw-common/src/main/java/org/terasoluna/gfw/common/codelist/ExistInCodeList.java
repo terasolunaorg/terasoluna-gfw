@@ -16,6 +16,7 @@
 package org.terasoluna.gfw.common.codelist;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
+import static java.lang.annotation.ElementType.CONSTRUCTOR;
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.PARAMETER;
@@ -53,7 +54,7 @@ import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForC
  * returned with the default error message represented by {@code message()} in it.
  */
 @Documented
-@Target({ METHOD, FIELD, ANNOTATION_TYPE, PARAMETER })
+@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
 @Retention(RUNTIME)
 @Constraint(validatedBy = { ExistInCodeListValidatorForCharSequence.class,
         ExistInCodeListValidatorForCharacter.class,
@@ -88,7 +89,7 @@ public @interface ExistInCodeList {
      * Defines several <code>@ExistInCodeList</code> annotations on the same element
      * @see ExistInCodeList
      */
-    @Target({ METHOD, FIELD, ANNOTATION_TYPE, PARAMETER })
+    @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
     @Retention(RUNTIME)
     @Documented
     @interface List {
