@@ -225,30 +225,6 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     };
 
     /**
-     * <p>
-     * returns row of codelist table.
-     * </p>
-     * @see org.terasoluna.gfw.common.codelist.i18n.I18nCodeList#asMap(java.util.Locale)
-     */
-    @Override
-    public Map<String, String> asMap(Locale locale) {
-        Assert.notNull(locale, "locale is null");
-        return codeListTable.row(locale);
-    }
-
-    /**
-     * check whether the code list table is null.<br>
-     * <p>
-     * output warn log in case of table is null.
-     * </p>
-     */
-    private void checkTable() {
-        if (codeListTable != null) {
-            logger.warn("Codelist table has already built, but re-build");
-        }
-    }
-
-    /**
      * set table by rows ({@link Map}).<br>
      * <p>
      * The key is {@link Locale} and the value is {@link Map} which represents {@link CodeList}.<br>
@@ -315,6 +291,38 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     }
 
     /**
+     * Obtain the codelist of specified locale.
+     * @see org.terasoluna.gfw.common.codelist.i18n.AbstractI18nCodeList#obtainMap(java.util.Locale)
+     */
+    @Override
+    protected Map<String, String> obtainMap(Locale locale) {
+        return codeListTable.row(locale);
+    }
+
+    /**
+     * This method is called after the properties of the codelist are set.
+     * <p>
+     * check whether codeListTable is initialized.
+     * </p>
+     */
+    @Override
+    public void afterPropertiesSet() {
+        Assert.notNull(codeListTable, "codeListTable is not initialized!");
+    }
+
+    /**
+     * check whether the code list table is null.<br>
+     * <p>
+     * output warn log in case of table is null.
+     * </p>
+     */
+    private void checkTable() {
+        if (codeListTable != null) {
+            logger.warn("Codelist table has already built, but re-build");
+        }
+    }
+
+    /**
      * create table which consist of {@link LinkedHashMap} factory.
      * @return table
      */
@@ -323,16 +331,5 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
         Table<Locale, String, String> table = Tables.newCustomTable(backingMap,
                 LINKED_HASH_MAP_SUPPLIER);
         return table;
-    }
-
-    /**
-     * <p>
-     * check whether codeListTable is initialized.
-     * </p>
-     * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
-     */
-    @Override
-    public void afterPropertiesSet() {
-        Assert.notNull(codeListTable, "codeListTable is not initialized!");
     }
 }
