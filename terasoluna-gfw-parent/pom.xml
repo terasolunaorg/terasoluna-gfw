@@ -370,6 +370,62 @@
         <type>pom</type>
       </dependency>
       <!-- == End TERASOLUNA == -->
+
+      <!-- == Begin Tomcat == -->
+      <!-- == Downgrade Tomcat from the Spring IO Platform as a Tomcat 8.5.39 bug. == -->
+      <!-- == (https://github.com/spring-projects/spring-boot/issues/16486) == -->
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-jsp-api</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-annotations-api</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-catalina</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-dbcp</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-jdbc</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat</groupId>
+        <artifactId>tomcat-websocket</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-core</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-el</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-jasper</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.tomcat.embed</groupId>
+        <artifactId>tomcat-embed-websocket</artifactId>
+        <version>${tomcat.version}</version>
+      </dependency>
+      <!-- == End Tomcat == -->
+
     </dependencies>
   </dependencyManagement>
   <properties>
@@ -403,6 +459,10 @@
     <jadira-usertype-core.version>5.0.0.GA</jadira-usertype-core.version>
     <!-- == Logging == -->
     <org.lazyluke.version>0.2.7</org.lazyluke.version>
+    <!-- == Tomcat == -->
+    <!-- == Downgrade Tomcat from the Spring IO Platform as a Tomcat 8.5.39 bug. == -->
+    <!-- == (https://github.com/spring-projects/spring-boot/issues/16486) == -->
+    <tomcat.version>8.5.38</tomcat.version>
     <!-- == Project Properties == -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <archetype.test.skip>true</archetype.test.skip>
@@ -413,7 +473,7 @@
     <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
     <cargo.container.id>tomcat8x</cargo.container.id>
     <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-8/v${cargo.tomcat8.version}/bin/apache-tomcat-${cargo.tomcat8.version}.zip</cargo.container.url>
-    <cargo.tomcat8.version>8.5.39</cargo.tomcat8.version>
+    <cargo.tomcat8.version>${tomcat.version}</cargo.tomcat8.version>
   </properties>
   <profiles>
     <profile>
