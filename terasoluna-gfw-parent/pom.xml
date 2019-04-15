@@ -462,7 +462,7 @@
     <!-- == Tomcat == -->
     <!-- == Downgrade Tomcat from the Spring IO Platform as a Tomcat 8.5.39 bug. == -->
     <!-- == (https://github.com/spring-projects/spring-boot/issues/16486) == -->
-    <tomcat.version>8.5.38</tomcat.version>
+    <tomcat.version>8.5.40</tomcat.version>
     <!-- == Project Properties == -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <archetype.test.skip>true</archetype.test.skip>
