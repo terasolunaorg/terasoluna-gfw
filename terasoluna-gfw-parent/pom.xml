@@ -372,7 +372,7 @@
       <!-- == End TERASOLUNA == -->
 
       <!-- == Begin Tomcat == -->
-      <!-- == Downgrade Tomcat from the Spring IO Platform as a Tomcat 8.5.39 bug. == -->
+      <!-- == Update Tomcat from the Spring IO Platform as a Tomcat 8.5.39 bug. == -->
       <!-- == (https://github.com/spring-projects/spring-boot/issues/16486) == -->
       <dependency>
         <groupId>org.apache.tomcat</groupId>
@@ -460,7 +460,7 @@
     <!-- == Logging == -->
     <org.lazyluke.version>0.2.7</org.lazyluke.version>
     <!-- == Tomcat == -->
-    <!-- == Downgrade Tomcat from the Spring IO Platform as a Tomcat 8.5.39 bug. == -->
+    <!-- == Update Tomcat from the Spring IO Platform as a Tomcat 8.5.39 bug. == -->
     <!-- == (https://github.com/spring-projects/spring-boot/issues/16486) == -->
     <tomcat.version>8.5.40</tomcat.version>
     <!-- == Project Properties == -->
