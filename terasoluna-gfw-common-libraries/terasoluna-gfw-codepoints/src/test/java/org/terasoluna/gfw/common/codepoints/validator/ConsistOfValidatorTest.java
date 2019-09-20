@@ -67,8 +67,7 @@ public class ConsistOfValidatorTest {
 
         ConstraintViolation<Name_Simple> v = violations.iterator().next();
         assertThat(v.getPropertyPath().toString(), is("firstName"));
-        assertThat(v.getMessage(), is(
-                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        assertThat(v.getMessage(), is("not consist of specified code points"));
     }
 
     @Test
@@ -84,8 +83,7 @@ public class ConsistOfValidatorTest {
 
         ConstraintViolation<Name_Simple> v = violations.iterator().next();
         assertThat(v.getPropertyPath().toString(), is("lastName"));
-        assertThat(v.getMessage(), is(
-                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        assertThat(v.getMessage(), is("not consist of specified code points"));
     }
 
     @Test
@@ -116,10 +114,10 @@ public class ConsistOfValidatorTest {
 
         assertThat(lst.get(0).getPropertyPath().toString(), is("firstName"));
         assertThat(lst.get(0).getMessage(), is(
-                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+                "not consist of specified code points"));
         assertThat(lst.get(1).getPropertyPath().toString(), is("lastName"));
         assertThat(lst.get(1).getMessage(), is(
-                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+                "not consist of specified code points"));
     }
 
     @Test
@@ -195,8 +193,7 @@ public class ConsistOfValidatorTest {
 
         ConstraintViolation<Name_Getter> v = violations.iterator().next();
         assertThat(v.getPropertyPath().toString(), is("firstName"));
-        assertThat(v.getMessage(), is(
-                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        assertThat(v.getMessage(), is("not consist of specified code points"));
     }
 
     @Test
@@ -212,8 +209,7 @@ public class ConsistOfValidatorTest {
 
         ConstraintViolation<Name_Getter> v = violations.iterator().next();
         assertThat(v.getPropertyPath().toString(), is("lastName"));
-        assertThat(v.getMessage(), is(
-                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        assertThat(v.getMessage(), is("not consist of specified code points"));
     }
 
     @Test
@@ -247,8 +243,7 @@ public class ConsistOfValidatorTest {
                 .next();
         assertThat(v.getPropertyPath().toString(), is(
                 "Name_ConstructorParameter.arg0"));
-        assertThat(v.getMessage(), is(
-                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        assertThat(v.getMessage(), is("not consist of specified code points"));
     }
 
     @Test
@@ -268,8 +263,7 @@ public class ConsistOfValidatorTest {
                 .next();
         assertThat(v.getPropertyPath().toString(), is(
                 "Name_ConstructorParameter.arg1"));
-        assertThat(v.getMessage(), is(
-                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        assertThat(v.getMessage(), is("not consist of specified code points"));
     }
 
     @Test
@@ -358,8 +352,7 @@ public class ConsistOfValidatorTest {
         ConstraintViolation<Name_Collection> v = violations.iterator().next();
         assertThat(v.getPropertyPath().toString(), is(
                 "firstNames[0].<list element>"));
-        assertThat(v.getMessage(), is(
-                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        assertThat(v.getMessage(), is("not consist of specified code points"));
     }
 
     @Test
@@ -377,8 +370,7 @@ public class ConsistOfValidatorTest {
         ConstraintViolation<Name_Collection> v = violations.iterator().next();
         assertThat(v.getPropertyPath().toString(), is(
                 "lastNames[0].<list element>"));
-        assertThat(v.getMessage(), is(
-                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+        assertThat(v.getMessage(), is("not consist of specified code points"));
     }
 
     @Test
@@ -401,12 +393,12 @@ public class ConsistOfValidatorTest {
         assertThat(violation.getPropertyPath().toString(), is(
                 "firstNames[0].<list element>"));
         assertThat(violation.getMessage(), is(
-                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+                "not consist of specified code points"));
         violation = iterator.next();
         assertThat(violation.getPropertyPath().toString(), is(
                 "lastNames[1].<list element>"));
         assertThat(violation.getMessage(), is(
-                "{org.terasoluna.gfw.common.codepoints.ConsistOf.message}"));
+                "not consist of specified code points"));
 
     }
 
