@@ -284,6 +284,12 @@ class ObjectToMapConverter {
     private boolean flatten(Map<String, String> map, String prefix, String name,
             Object value, TypeDescriptor sourceType) {
         String key = StringUtils.isEmpty(prefix) ? name : prefix + "." + name;
+        if (sourceType != null) {
+            if (sourceType.getType().equals(Boolean.class)) {
+                map.putAll(formattingBoolean(name, value));
+                return true;
+            }
+        }
         if (value == null) {
             String resetKey = "_" + key;
             map.put(resetKey, "");
@@ -321,6 +327,23 @@ class ObjectToMapConverter {
         }
         // the value has been flatten
         return true;
+    }
+
+    /**
+     * formatting of {@code Boolean}
+     * @param name name of the Boolean value
+     * @param booleanValue Boolean value
+     * @return formatted map.
+     */
+    private static Map<String, String> formattingBoolean(String name,
+            Object booleanValue) {
+        Map<String, String> map = new LinkedHashMap<String, String>();
+        if (booleanValue == null) {
+            map.put(name, "");
+        } else {
+            map.put(name, booleanValue.toString());
+        }
+        return map;
     }
 
     /**
