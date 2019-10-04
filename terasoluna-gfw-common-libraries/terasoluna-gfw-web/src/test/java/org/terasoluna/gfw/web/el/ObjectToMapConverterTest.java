@@ -307,7 +307,7 @@ public class ObjectToMapConverterTest {
     }
 
     @Test
-    public void testFormatting11_Boolean() {
+    public void testConvert11_Boolean() {
         BooleanForm11 form = new BooleanForm11(true, false, null);
         Map<String, String> map = converter.convert(form);
 
