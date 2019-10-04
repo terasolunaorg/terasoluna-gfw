@@ -284,14 +284,8 @@ class ObjectToMapConverter {
     private boolean flatten(Map<String, String> map, String prefix, String name,
             Object value, TypeDescriptor sourceType) {
         String key = StringUtils.isEmpty(prefix) ? name : prefix + "." + name;
-        if (sourceType != null) {
-            if (sourceType.getType().equals(Boolean.class)) {
-                map.putAll(formattingBoolean(name, value));
-                return true;
-            }
-        }
         if (value == null) {
-            String resetKey = "_" + key;
+            String resetKey = determineResetKey(key, sourceType);
             map.put(resetKey, "");
             // the value has been flatten
             return true;
@@ -330,20 +324,21 @@ class ObjectToMapConverter {
     }
 
     /**
-     * formatting of {@code Boolean}
-     * @param name name of the Boolean value
-     * @param booleanValue Boolean value
-     * @return formatted map.
+     * Determine whether to convert null value to field marker.
+     * <p>
+     * Should not convert Boolean null value to field marker.<br>
+     * {@link org.springframework.web.bind.WebDataBinder} bind boolean & Boolean field marker as same false value.
+     * @param key Property name with prefix
+     * @param sourceType {@link TypeDescriptor} to use
+     * @return ResetKey
      */
-    private static Map<String, String> formattingBoolean(String name,
-            Object booleanValue) {
-        Map<String, String> map = new LinkedHashMap<String, String>();
-        if (booleanValue == null) {
-            map.put(name, "");
-        } else {
-            map.put(name, booleanValue.toString());
+    private String determineResetKey(String key, TypeDescriptor sourceType) {
+        if (sourceType != null) {
+            if (Boolean.class == sourceType.getType()) {
+                return key;
+            }
         }
-        return map;
+        return "_" + key;
     }
 
     /**
