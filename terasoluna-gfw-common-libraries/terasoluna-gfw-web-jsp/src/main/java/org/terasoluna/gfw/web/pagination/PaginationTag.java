@@ -87,6 +87,12 @@ public class PaginationTag extends RequestContextAwareTag {
     private String innerElement = PaginationInfo.DEFAULT_INNER_ELM;
 
     /**
+     * Value of "class" attribute of inner tag of pagination
+     * @since 5.6.0
+     */
+    private String innerElementClass = PaginationInfo.DEFAULT_INNER_CLASS;
+
+    /**
      * Display text of the link of back to the top
      */
     private String firstLinkText = PaginationInfo.DEFAULT_FIRST_LINK_TEXT;
@@ -231,6 +237,10 @@ public class PaginationTag extends RequestContextAwareTag {
                 writeAnchor(tagWriter, disabledHref, String.valueOf(page + 1)); // a
             }
         } else {
+            if (StringUtils.hasText(innerElementClass)) {
+                tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
+                        innerElementClass);
+            }
             writeAnchor(tagWriter, info.getPageUrl(page), String.valueOf(page
                     + 1)); // a
         }
@@ -275,6 +285,10 @@ public class PaginationTag extends RequestContextAwareTag {
                 // write first link
 
                 tagWriter.startTag(innerElement); // <li>
+                if (StringUtils.hasText(innerElementClass)) {
+                    tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
+                            innerElementClass);
+                }
 
                 writeAnchor(tagWriter, info.getFirstUrl(), firstLinkText); // a
 
@@ -285,6 +299,10 @@ public class PaginationTag extends RequestContextAwareTag {
                 // write previous link
 
                 tagWriter.startTag(innerElement); // <li>
+                if (StringUtils.hasText(innerElementClass)) {
+                    tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
+                            innerElementClass);
+                }
 
                 writeAnchor(tagWriter, info.getPreviousUrl(), previousLinkText); // a
 
@@ -330,6 +348,10 @@ public class PaginationTag extends RequestContextAwareTag {
                 // write next link
 
                 tagWriter.startTag(innerElement); // <li>
+                if (StringUtils.hasText(innerElementClass)) {
+                    tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
+                            innerElementClass);
+                }
 
                 writeAnchor(tagWriter, info.getNextUrl(), nextLinkText); // a
 
@@ -340,6 +362,10 @@ public class PaginationTag extends RequestContextAwareTag {
                 // write last link
 
                 tagWriter.startTag(innerElement); // <li>
+                if (StringUtils.hasText(innerElementClass)) {
+                    tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
+                            innerElementClass);
+                }
 
                 writeAnchor(tagWriter, info.getLastUrl(), lastLinkText); // a
 
@@ -366,6 +392,7 @@ public class PaginationTag extends RequestContextAwareTag {
         this.outerElement = null;
         this.outerElementClass = null;
         this.innerElement = null;
+        this.innerElementClass = null;
         this.firstLinkText = null;
         this.previousLinkText = null;
         this.nextLinkText = null;
@@ -471,6 +498,15 @@ public class PaginationTag extends RequestContextAwareTag {
      */
     public void setInnerElement(String innerElement) {
         this.innerElement = innerElement;
+    }
+
+    /**
+     * Set value of "class" attribute of inner tag of pagination <br>
+     * @param innerElementClass Value of "class" attribute of inner tag of pagination
+     * @since 5.6.0
+     */
+    public void setInnerElementClass(String innerElementClass) {
+        this.innerElementClass = innerElementClass;
     }
 
     /**
