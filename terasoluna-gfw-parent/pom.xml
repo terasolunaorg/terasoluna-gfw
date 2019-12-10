@@ -532,7 +532,7 @@
     <!-- == TERASOLUNA == -->
     <terasoluna.gfw.version>5.6.0-SNAPSHOT</terasoluna.gfw.version>
     <!-- == Spring Boot == -->
-    <org.springframework.boot.version>2.2.0.RELEASE</org.springframework.boot.version>
+    <org.springframework.boot.version>2.2.2.RELEASE</org.springframework.boot.version>
     <!-- == Spring Security OAuth == -->
     <spring-security-oauth.version>2.4.0.RELEASE</spring-security-oauth.version>
     <!-- == MyBatis3 == -->
