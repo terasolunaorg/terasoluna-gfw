@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.terasoluna.gfw</groupId>
   <artifactId>terasoluna-gfw-parent</artifactId>
-  <version>5.6.0-SNAPSHOT</version>
+  <version>5.6.0.M2</version>
   <packaging>pom</packaging>
   <name>TERASOLUNA Server Framework for Java (5.x) Parent</name>
   <description>The parent of TERASOLUNA Server Framework for Java (5.x)</description>
@@ -535,7 +535,7 @@
     <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
     <!-- == Dependency Versions == -->
     <!-- == TERASOLUNA == -->
-    <terasoluna.gfw.version>5.6.0-SNAPSHOT</terasoluna.gfw.version>
+    <terasoluna.gfw.version>5.6.0.M2</terasoluna.gfw.version>
     <!-- == Spring Boot == -->
     <org.springframework.boot.version>2.2.2.RELEASE</org.springframework.boot.version>
     <!-- == Spring Security OAuth == -->
@@ -589,6 +589,16 @@
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
+      <distributionManagement>
+        <repository>
+          <id>terasoluna-gfw-releases</id>
+          <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
+        </repository>
+        <snapshotRepository>
+          <id>terasoluna-gfw-snapshots</id>
+          <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
+        </snapshotRepository>
+      </distributionManagement>
     </profile>
     <profile>
       <id>central</id>
