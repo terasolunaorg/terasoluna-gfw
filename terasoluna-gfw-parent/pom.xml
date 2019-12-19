@@ -486,6 +486,11 @@
         <version>${javax-jsp.version}</version>
       </dependency>
       <dependency>
+        <groupId>com.sun.mail</groupId>
+        <artifactId>javax.mail</artifactId>
+        <version>${javax-mail.version}</version>
+      </dependency>
+      <dependency>
         <groupId>org.apache.taglibs</groupId>
         <artifactId>taglibs-standard-impl</artifactId>
         <version>${taglibs-standard.version}</version>
@@ -562,6 +567,7 @@
     <javax-el.version>3.0.1-b06</javax-el.version>
     <javax-inject.version>1</javax-inject.version>
     <javax-jsp.version>2.3.3</javax-jsp.version>
+    <javax-mail.version>1.6.2</javax-mail.version>
     <taglibs-standard.version>1.2.5</taglibs-standard.version>
     <!-- == Unit Test == -->
     <hamcrest.version>1.3</hamcrest.version>
