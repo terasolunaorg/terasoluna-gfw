@@ -471,6 +471,11 @@
 
       <!-- == Begin Other JavaEE/SE APIs == -->
       <dependency>
+        <groupId>com.sun.mail</groupId>
+        <artifactId>javax.mail</artifactId>
+        <version>${javax-mail.version}</version>
+      </dependency>
+      <dependency>
         <groupId>javax.el</groupId>
         <artifactId>javax.el-api</artifactId>
         <version>${javax-el.version}</version>
@@ -559,6 +564,7 @@
     <!-- == Apache Tiles == -->
     <tiles.version>3.0.8</tiles.version>
     <!-- == Other JavaEE/SE APIs == -->
+    <javax-mail.version>1.6.2</javax-mail.version>
     <javax-el.version>3.0.1-b06</javax-el.version>
     <javax-inject.version>1</javax-inject.version>
     <javax-jsp.version>2.3.3</javax-jsp.version>
