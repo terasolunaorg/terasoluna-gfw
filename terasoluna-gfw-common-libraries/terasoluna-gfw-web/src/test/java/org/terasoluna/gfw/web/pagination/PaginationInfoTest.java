@@ -22,7 +22,6 @@ import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import static org.springframework.data.domain.Sort.by;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -111,10 +110,11 @@ public class PaginationInfoTest {
 
         int page = 1;
         int size = 1;
+        Sort mockedSort = Sort.by(Direction.DESC, "id");
 
         // run
         Map<String, Object> attributesMap = PaginationInfo.createAttributeMap(
-                page, size, by(Direction.DESC, "id"));
+                page, size, mockedSort);
 
         // assert
         assertThat(Integer.valueOf(attributesMap.get("page").toString()), is(
