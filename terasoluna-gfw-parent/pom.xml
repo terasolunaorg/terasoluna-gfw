@@ -532,8 +532,6 @@
     <!-- == Joda-Time == -->
     <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
     <jadira-usertype-core.version>6.0.1.GA</jadira-usertype-core.version>
-    <!-- == Logging == -->
-    <org.lazyluke.version>0.2.7</org.lazyluke.version>
     <!-- == Google == -->
     <guava.version>27.0.1-jre</guava.version>
     <!-- == Apache Commons == -->
