@@ -363,22 +363,6 @@
       </dependency>
       <!-- == End Joda-Time == -->
 
-      <!-- == Begin Logging == -->
-      <!-- Log4JDBC -->
-      <dependency>
-        <groupId>org.lazyluke</groupId>
-        <artifactId>log4jdbc-remix</artifactId>
-        <version>${org.lazyluke.version}</version>
-        <!-- this artifact depends on junit as compile scope -->
-        <exclusions>
-          <exclusion>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <!-- == End Logging == -->
-
       <!-- == Begin Google == -->
       <dependency>
         <groupId>com.google.guava</groupId>
@@ -548,8 +532,6 @@
     <!-- == Joda-Time == -->
     <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
     <jadira-usertype-core.version>6.0.1.GA</jadira-usertype-core.version>
-    <!-- == Logging == -->
-    <org.lazyluke.version>0.2.7</org.lazyluke.version>
     <!-- == Google == -->
     <guava.version>27.0.1-jre</guava.version>
     <!-- == Apache Commons == -->
