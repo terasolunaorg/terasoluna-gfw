@@ -453,6 +453,14 @@
       </dependency>
       <!-- == End Apache Tiles == -->
 
+      <!-- == Begin Bouncy Castle == -->
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcprov-jdk15on</artifactId>
+        <version>${bouncycastle.version}</version>
+      </dependency>
+      <!-- == Begin Bouncy Castle == -->
+
       <!-- == Begin Other JavaEE/SE APIs == -->
       <dependency>
         <groupId>com.sun.mail</groupId>
@@ -556,6 +564,8 @@
     <poi.version>4.1.1</poi.version>
     <!-- == Apache Tiles == -->
     <tiles.version>3.0.8</tiles.version>
+    <!-- == Bouncy Castle == -->
+    <bouncycastle.version>1.64</bouncycastle.version>
     <!-- == Other JavaEE/SE APIs == -->
     <javax-mail.version>1.6.2</javax-mail.version>
     <javax-activation.version>1.2.0</javax-activation.version>
