@@ -502,14 +502,6 @@
       </dependency>
       <!-- == End Other JavaEE/SE APIs == -->
 
-      <!-- == Begin Unit Test == -->
-      <dependency>
-        <groupId>org.hamcrest</groupId>
-        <artifactId>hamcrest-all</artifactId>
-        <version>${hamcrest.version}</version>
-      </dependency>
-      <!-- == Begin Unit Test == -->
-
     </dependencies>
   </dependencyManagement>
   <properties>
@@ -563,8 +555,6 @@
     <javax-inject.version>1</javax-inject.version>
     <javax-jsp.version>2.3.3</javax-jsp.version>
     <taglibs-standard.version>1.2.5</taglibs-standard.version>
-    <!-- == Unit Test == -->
-    <hamcrest.version>1.3</hamcrest.version>
     <!-- == Project Properties == -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <archetype.test.skip>true</archetype.test.skip>
