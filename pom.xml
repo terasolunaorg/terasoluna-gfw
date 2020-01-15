@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <artifactId>terasoluna-gfw</artifactId>
   <groupId>org.terasoluna.gfw</groupId>
-  <version>5.6.0-SNAPSHOT</version>
+  <version>5.6.0.M3</version>
   <packaging>pom</packaging>
   <name>TERASOLUNA Server Framework for Java (5.x) Build</name>
   <description>TERASOLUNA Server Framework for Java (5.x) Build</description>
@@ -56,6 +56,16 @@
         <module>terasoluna-gfw-common-libraries</module>
         <module>terasoluna-gfw-dependencies</module>
       </modules>
+      <distributionManagement>
+        <repository>
+          <id>terasoluna-gfw-releases</id>
+          <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-releases/</url>
+        </repository>
+        <snapshotRepository>
+          <id>terasoluna-gfw-snapshots</id>
+          <url>http://repo.terasoluna.org/nexus/content/repositories/terasoluna-gfw-snapshots/</url>
+        </snapshotRepository>
+      </distributionManagement>
     </profile>
     <profile>
       <id>central</id>
