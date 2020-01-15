@@ -110,7 +110,7 @@ public class PaginationInfoTest {
 
         int page = 1;
         int size = 1;
-        Sort mockedSort = Sort.by(Direction.DESC, "id");
+        Sort mockedSort = new Sort(Direction.DESC, "id");
 
         // run
         Map<String, Object> attributesMap = PaginationInfo.createAttributeMap(

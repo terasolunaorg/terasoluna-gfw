@@ -37,6 +37,11 @@
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-api</artifactId>
     </dependency>
+    <!-- Log4JDBC -->
+    <dependency>
+      <groupId>org.lazyluke</groupId>
+      <artifactId>log4jdbc-remix</artifactId>
+    </dependency>
     <!-- == End Logging == -->
 
     <!-- == Begin Spring == -->

@@ -78,15 +78,13 @@ public class JdbcSequencerTest {
 
         jdbcSequencer.setSequenceClass(String.class);
         jdbcSequencer.afterPropertiesSet();
-        String nextVal1 = jdbcSequencer.getNext();
         String currentVal1 = jdbcSequencer.getCurrent();
-        String nextVal2 = jdbcSequencer.getNext();
+        String nextVal = jdbcSequencer.getNext();
         String currentVal2 = jdbcSequencer.getCurrent();
 
-        assertThat(nextVal1, is(String.valueOf(1)));
-        assertThat(currentVal1, is(String.valueOf(1)));
-        assertThat(nextVal2, is(String.valueOf(2)));
-        assertThat(currentVal2, is(String.valueOf(2)));
+        assertThat(currentVal1, is(String.valueOf(0)));
+        assertThat(nextVal, is(String.valueOf(1)));
+        assertThat(currentVal2, is(String.valueOf(1)));
     }
 
     @Test(expected = IllegalArgumentException.class)
