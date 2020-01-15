@@ -79,11 +79,6 @@
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
     </dependency>
-    <!-- Log4JDBC -->
-    <dependency>
-      <groupId>org.lazyluke</groupId>
-      <artifactId>log4jdbc-remix</artifactId>
-    </dependency>
     <!-- == End Logging == -->
 
     <!-- == Begin Spring == -->
@@ -151,11 +146,6 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-library</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
