@@ -555,6 +555,7 @@ public class PaginationTagTest {
      * 
      * <pre>
      * -outer tag class change.
+     * -inner tag class change.
      * </pre>
      */
     @Test
@@ -571,11 +572,43 @@ public class PaginationTagTest {
 
         // customize
         tag.setOuterElementClass("all");
+        tag.setInnerElementClass("item");
 
         int ret = tag.doStartTagInternal();
 
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        String expected = "<ul class=\"all\"><li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;&lt;</a></li><li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;</a></li><li class=\"active\"><a href=\"javascript:void(0)\">1</a></li><li><a href=\"?page=1&size=10\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li><a href=\"?page=5&size=10\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=1&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
+        String expected = "<ul class=\"all\"><li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;&lt;</a></li><li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;</a></li><li class=\"active\"><a href=\"javascript:void(0)\">1</a></li><li class=\"item\"><a href=\"?page=1&size=10\">2</a></li><li class=\"item\"><a href=\"?page=2&size=10\">3</a></li><li class=\"item\"><a href=\"?page=3&size=10\">4</a></li><li class=\"item\"><a href=\"?page=4&size=10\">5</a></li><li class=\"item\"><a href=\"?page=5&size=10\">6</a></li><li class=\"item\"><a href=\"?page=6&size=10\">7</a></li><li class=\"item\"><a href=\"?page=7&size=10\">8</a></li><li class=\"item\"><a href=\"?page=8&size=10\">9</a></li><li class=\"item\"><a href=\"?page=9&size=10\">10</a></li><li class=\"item\"><a href=\"?page=1&size=10\">&gt;</a></li><li class=\"item\"><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
+        assertThat(getOutput(), is(expected));
+    }
+
+    /**
+     * customized case 7.
+     * 
+     * <pre>
+     * -outer tag class change.
+     * -inner tag class change.
+     * </pre>
+     */
+    @Test
+    public void testDoStartTagInternal17_2() throws Exception {
+
+        Page<String> page = mock(Page.class);
+        // set mock behavior
+        when(page.getNumber()).thenReturn(99);
+        when(page.getSize()).thenReturn(10);
+        when(page.getTotalPages()).thenReturn(100);
+        when(page.getTotalElements()).thenReturn(1000L);
+
+        tag.setPage(page);
+
+        // customize
+        tag.setOuterElementClass("all");
+        tag.setInnerElementClass("item");
+
+        int ret = tag.doStartTagInternal();
+
+        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        String expected = "<ul class=\"all\"><li class=\"item\"><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li class=\"item\"><a href=\"?page=98&size=10\">&lt;</a></li><li class=\"item\"><a href=\"?page=90&size=10\">91</a></li><li class=\"item\"><a href=\"?page=91&size=10\">92</a></li><li class=\"item\"><a href=\"?page=92&size=10\">93</a></li><li class=\"item\"><a href=\"?page=93&size=10\">94</a></li><li class=\"item\"><a href=\"?page=94&size=10\">95</a></li><li class=\"item\"><a href=\"?page=95&size=10\">96</a></li><li class=\"item\"><a href=\"?page=96&size=10\">97</a></li><li class=\"item\"><a href=\"?page=97&size=10\">98</a></li><li class=\"item\"><a href=\"?page=98&size=10\">99</a></li><li class=\"active\"><a href=\"javascript:void(0)\">100</a></li><li class=\"disabled\"><a href=\"javascript:void(0)\">&gt;</a></li><li class=\"disabled\"><a href=\"javascript:void(0)\">&gt;&gt;</a></li></ul>";
         assertThat(getOutput(), is(expected));
     }
 
