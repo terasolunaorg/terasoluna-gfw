@@ -285,7 +285,7 @@ class ObjectToMapConverter {
             Object value, TypeDescriptor sourceType) {
         String key = StringUtils.isEmpty(prefix) ? name : prefix + "." + name;
         if (value == null) {
-            String resetKey = determineResetKey(key, sourceType);
+            String resetKey = "_" + key;
             map.put(resetKey, "");
             // the value has been flatten
             return true;
@@ -321,24 +321,6 @@ class ObjectToMapConverter {
         }
         // the value has been flatten
         return true;
-    }
-
-    /**
-     * Determine whether to convert null value to field marker.
-     * <p>
-     * Should not convert Boolean null value to field marker.<br>
-     * {@link org.springframework.web.bind.WebDataBinder} bind boolean & Boolean field marker as same false value.
-     * @param key Property name with prefix
-     * @param sourceType {@link TypeDescriptor} to use
-     * @return ResetKey
-     */
-    private String determineResetKey(String key, TypeDescriptor sourceType) {
-        if (sourceType != null) {
-            if (Boolean.class == sourceType.getType()) {
-                return key;
-            }
-        }
-        return "_" + key;
     }
 
     /**
