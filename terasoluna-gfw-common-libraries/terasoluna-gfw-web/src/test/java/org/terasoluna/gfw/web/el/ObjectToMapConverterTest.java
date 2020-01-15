@@ -306,6 +306,17 @@ public class ObjectToMapConverterTest {
         assertThat(map, hasEntry("nestedForm.array", ""));
     }
 
+    @Test
+    public void testConvert11_Boolean() {
+        BooleanForm11 form = new BooleanForm11(true, false, null);
+        Map<String, String> map = converter.convert(form);
+
+        assertThat(map.size(), is(3));
+        assertThat(map, hasEntry("bool1", "true"));
+        assertThat(map, hasEntry("bool2", "false"));
+        assertThat(map, hasEntry("bool3", ""));
+    }
+
     public static class SearchUserForm0 {
         private String name;
 
@@ -1084,6 +1095,45 @@ public class ObjectToMapConverterTest {
         public void setArray(int[] array) {
             this.array = array;
         }
+    }
+
+    public static class BooleanForm11 {
+        private Boolean bool1;
+
+        private Boolean bool2;
+
+        private Boolean bool3;
+
+        public BooleanForm11(Boolean bool1, Boolean bool2, Boolean bool3) {
+            this.bool1 = bool1;
+            this.bool2 = bool2;
+            this.bool3 = bool3;
+        }
+
+        public Boolean getBool1() {
+            return bool1;
+        }
+
+        public void setBool1(Boolean bool1) {
+            this.bool1 = bool1;
+        }
+
+        public Boolean getBool2() {
+            return bool2;
+        }
+
+        public void setBool2(Boolean bool2) {
+            this.bool2 = bool2;
+        }
+
+        public Boolean getBool3() {
+            return bool3;
+        }
+
+        public void setBool3(Boolean bool3) {
+            this.bool3 = bool3;
+        }
+
     }
 
 }
