@@ -16,6 +16,7 @@
 package org.terasoluna.gfw.common.codepoints;
 
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -350,13 +351,13 @@ public class CodePoints implements Serializable {
             return (T) cache.get(clazz);
         }
         try {
-            T codePoints = clazz.newInstance();
+            T codePoints = clazz.getDeclaredConstructor().newInstance();
             cache.put(clazz, codePoints);
             return codePoints;
-        } catch (InstantiationException e) {
-            throw new IllegalArgumentException("exception occurred while initializing", e);
-        } catch (IllegalAccessException e) {
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException e) {
             throw new IllegalArgumentException("public default constructor not found", e);
+        } catch (InstantiationException | InvocationTargetException e) {
+            throw new IllegalArgumentException("exception occurred while initializing", e);
         }
     }
 
