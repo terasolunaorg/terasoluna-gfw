@@ -30,6 +30,11 @@ public final class DateConvertUtils {
     private static final int DEFAULT_YEAR = 1970;
 
     /**
+     * Message when argument is null.
+     */
+    private static final String MESSAGE_ARGUMENT_NULL_ERROR = "date must not be null";
+
+    /**
      * Default Constructor.
      */
     private DateConvertUtils() {
@@ -43,7 +48,7 @@ public final class DateConvertUtils {
      */
     public static Timestamp convertToTimestamp(java.util.Date date) {
         if (date == null) {
-            throw new IllegalArgumentException("date must not be null");
+            throw new IllegalArgumentException(MESSAGE_ARGUMENT_NULL_ERROR);
         }
         Timestamp timestamp = new Timestamp(date.getTime());
         return timestamp;
@@ -60,7 +65,7 @@ public final class DateConvertUtils {
      */
     public static java.sql.Date convertToSqlDate(java.util.Date date) {
         if (date == null) {
-            throw new IllegalArgumentException("date must not be null");
+            throw new IllegalArgumentException(MESSAGE_ARGUMENT_NULL_ERROR);
         }
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
@@ -83,7 +88,7 @@ public final class DateConvertUtils {
      */
     public static Time convertToTime(java.util.Date date) {
         if (date == null) {
-            throw new IllegalArgumentException("date must not be null");
+            throw new IllegalArgumentException(MESSAGE_ARGUMENT_NULL_ERROR);
         }
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
