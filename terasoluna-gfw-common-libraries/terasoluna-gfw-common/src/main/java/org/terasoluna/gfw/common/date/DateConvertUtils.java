@@ -30,11 +30,6 @@ public final class DateConvertUtils {
     private static final int DEFAULT_YEAR = 1970;
 
     /**
-     * Message when argument is null.
-     */
-    private static final String MESSAGE_ARGUMENT_NULL_ERROR = "date must not be null";
-
-    /**
      * Default Constructor.
      */
     private DateConvertUtils() {
@@ -100,7 +95,7 @@ public final class DateConvertUtils {
      */
     private static void CheckDate(java.util.Date date) {
         if (date == null) {
-            throw new IllegalArgumentException(MESSAGE_ARGUMENT_NULL_ERROR);
+            throw new IllegalArgumentException("date must not be null");
         }
     }
 }
