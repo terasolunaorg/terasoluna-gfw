@@ -47,9 +47,7 @@ public final class DateConvertUtils {
      * @throws IllegalArgumentException if the date is null
      */
     public static Timestamp convertToTimestamp(java.util.Date date) {
-        if (date == null) {
-            throw new IllegalArgumentException(MESSAGE_ARGUMENT_NULL_ERROR);
-        }
+        CheckDate(date);
         Timestamp timestamp = new Timestamp(date.getTime());
         return timestamp;
     }
@@ -64,9 +62,7 @@ public final class DateConvertUtils {
      * @throws IllegalArgumentException if the date is null
      */
     public static java.sql.Date convertToSqlDate(java.util.Date date) {
-        if (date == null) {
-            throw new IllegalArgumentException(MESSAGE_ARGUMENT_NULL_ERROR);
-        }
+        CheckDate(date);
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.set(Calendar.HOUR_OF_DAY, 0);
@@ -87,9 +83,7 @@ public final class DateConvertUtils {
      * @throws IllegalArgumentException if the date is null
      */
     public static Time convertToTime(java.util.Date date) {
-        if (date == null) {
-            throw new IllegalArgumentException(MESSAGE_ARGUMENT_NULL_ERROR);
-        }
+        CheckDate(date);
         Calendar cal = Calendar.getInstance();
         cal.setTime(date);
         cal.set(Calendar.YEAR, DEFAULT_YEAR);
@@ -97,5 +91,16 @@ public final class DateConvertUtils {
         cal.set(Calendar.DAY_OF_MONTH, 1);
         Time time = new Time(cal.getTimeInMillis());
         return time;
+    }
+
+    /**
+     * Check java.util.Date is not null<br>
+     * @param date check target
+     * @throws IllegalArgumentException if the date is null
+     */
+    private static void CheckDate(java.util.Date date) {
+        if (date == null) {
+            throw new IllegalArgumentException(MESSAGE_ARGUMENT_NULL_ERROR);
+        }
     }
 }
