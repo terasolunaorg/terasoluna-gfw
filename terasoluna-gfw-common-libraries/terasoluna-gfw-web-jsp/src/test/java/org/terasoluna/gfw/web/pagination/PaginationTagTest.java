@@ -23,8 +23,9 @@ import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import static org.springframework.test.util.ReflectionTestUtils.getField;
+
 import java.io.StringWriter;
-import java.lang.reflect.Field;
 import java.util.regex.Pattern;
 
 import javax.servlet.jsp.tagext.TagSupport;
@@ -40,7 +41,6 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockPageContext;
 import org.springframework.mock.web.MockServletContext;
-import org.springframework.util.ReflectionUtils;
 import org.springframework.util.SerializationUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.form.TagWriter;
@@ -89,74 +89,24 @@ public class PaginationTagTest {
 
         tag.release();
 
-        Field page = ReflectionUtils.findField(PaginationTag.class, "page");
-        ReflectionUtils.makeAccessible(page);
-        Field pathTmpl = ReflectionUtils.findField(PaginationTag.class,
-                "pathTmpl");
-        ReflectionUtils.makeAccessible(pathTmpl);
-        Field queryTmpl = ReflectionUtils.findField(PaginationTag.class,
-                "queryTmpl");
-        ReflectionUtils.makeAccessible(queryTmpl);
-        Field criteriaQuery = ReflectionUtils.findField(PaginationTag.class,
-                "criteriaQuery");
-        ReflectionUtils.makeAccessible(criteriaQuery);
-        Field disableHtmlEscapeOfCriteriaQuery = ReflectionUtils.findField(
-                PaginationTag.class, "disableHtmlEscapeOfCriteriaQuery");
-        ReflectionUtils.makeAccessible(disableHtmlEscapeOfCriteriaQuery);
-        Field enableLinkOfCurrentPage = ReflectionUtils.findField(
-                PaginationTag.class, "enableLinkOfCurrentPage");
-        ReflectionUtils.makeAccessible(enableLinkOfCurrentPage);
-        Field outerElement = ReflectionUtils.findField(PaginationTag.class,
-                "outerElement");
-        ReflectionUtils.makeAccessible(outerElement);
-        Field outerElementClass = ReflectionUtils.findField(PaginationTag.class,
-                "outerElementClass");
-        ReflectionUtils.makeAccessible(outerElementClass);
-        Field innerElement = ReflectionUtils.findField(PaginationTag.class,
-                "innerElement");
-        ReflectionUtils.makeAccessible(innerElement);
-        Field innerElementClass = ReflectionUtils.findField(PaginationTag.class,
-                "innerElementClass");
-        ReflectionUtils.makeAccessible(innerElementClass);
-        Field firstLinkText = ReflectionUtils.findField(PaginationTag.class,
-                "firstLinkText");
-        ReflectionUtils.makeAccessible(firstLinkText);
-        Field previousLinkText = ReflectionUtils.findField(PaginationTag.class,
-                "previousLinkText");
-        ReflectionUtils.makeAccessible(previousLinkText);
-        Field nextLinkText = ReflectionUtils.findField(PaginationTag.class,
-                "nextLinkText");
-        ReflectionUtils.makeAccessible(nextLinkText);
-        Field lastLinkText = ReflectionUtils.findField(PaginationTag.class,
-                "lastLinkText");
-        ReflectionUtils.makeAccessible(lastLinkText);
-        Field disabledHref = ReflectionUtils.findField(PaginationTag.class,
-                "disabledHref");
-        ReflectionUtils.makeAccessible(disabledHref);
-        Field activeClass = ReflectionUtils.findField(PaginationTag.class,
-                "activeClass");
-        ReflectionUtils.makeAccessible(activeClass);
-        Field disabledClass = ReflectionUtils.findField(PaginationTag.class,
-                "disabledClass");
-        ReflectionUtils.makeAccessible(disabledClass);
-
-        assertNull(page.get(tag));
-        assertNull(pathTmpl.get(tag));
-        assertNull(queryTmpl.get(tag));
-        assertNull(criteriaQuery.get(tag));
-        assertFalse((boolean) disableHtmlEscapeOfCriteriaQuery.get(tag));
-        assertFalse((boolean) enableLinkOfCurrentPage.get(tag));
-        assertNull(outerElement.get(tag));
-        assertNull(outerElementClass.get(tag));
-        assertNull(innerElement.get(tag));
-        assertNull(innerElementClass.get(tag));
-        assertNull(firstLinkText.get(tag));
-        assertNull(previousLinkText.get(tag));
-        assertNull(nextLinkText.get(tag));
-        assertNull(lastLinkText.get(tag));
-        assertNull(disabledHref.get(tag));
-        assertNull(activeClass.get(tag));
-        assertNull(disabledClass.get(tag));
+        assertNull(getField(tag, "page"));
+        assertNull(getField(tag, "pathTmpl"));
+        assertNull(getField(tag, "queryTmpl"));
+        assertNull(getField(tag, "criteriaQuery"));
+        assertFalse((boolean) getField(tag,
+                "disableHtmlEscapeOfCriteriaQuery"));
+        assertFalse((boolean) getField(tag, "enableLinkOfCurrentPage"));
+        assertNull(getField(tag, "outerElement"));
+        assertNull(getField(tag, "outerElementClass"));
+        assertNull(getField(tag, "innerElement"));
+        assertNull(getField(tag, "innerElementClass"));
+        assertNull(getField(tag, "firstLinkText"));
+        assertNull(getField(tag, "previousLinkText"));
+        assertNull(getField(tag, "nextLinkText"));
+        assertNull(getField(tag, "lastLinkText"));
+        assertNull(getField(tag, "disabledHref"));
+        assertNull(getField(tag, "activeClass"));
+        assertNull(getField(tag, "disabledClass"));
     }
 
     /**
