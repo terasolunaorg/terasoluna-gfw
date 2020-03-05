@@ -16,6 +16,8 @@
 package org.terasoluna.gfw.web.pagination;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
@@ -37,6 +39,7 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockPageContext;
 import org.springframework.mock.web.MockServletContext;
+import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.util.SerializationUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.form.TagWriter;
@@ -82,7 +85,28 @@ public class PaginationTagTest {
 
     @Test
     public void testRelease01() throws Exception {
+
         tag.release();
+
+        assertNull(ReflectionTestUtils.getField(tag, "page"));
+        assertNull(ReflectionTestUtils.getField(tag, "pathTmpl"));
+        assertNull(ReflectionTestUtils.getField(tag, "queryTmpl"));
+        assertNull(ReflectionTestUtils.getField(tag, "criteriaQuery"));
+        assertFalse((boolean) ReflectionTestUtils.getField(tag,
+                "disableHtmlEscapeOfCriteriaQuery"));
+        assertFalse((boolean) ReflectionTestUtils.getField(tag,
+                "enableLinkOfCurrentPage"));
+        assertNull(ReflectionTestUtils.getField(tag, "outerElement"));
+        assertNull(ReflectionTestUtils.getField(tag, "outerElementClass"));
+        assertNull(ReflectionTestUtils.getField(tag, "innerElement"));
+        assertNull(ReflectionTestUtils.getField(tag, "innerElementClass"));
+        assertNull(ReflectionTestUtils.getField(tag, "firstLinkText"));
+        assertNull(ReflectionTestUtils.getField(tag, "previousLinkText"));
+        assertNull(ReflectionTestUtils.getField(tag, "nextLinkText"));
+        assertNull(ReflectionTestUtils.getField(tag, "lastLinkText"));
+        assertNull(ReflectionTestUtils.getField(tag, "disabledHref"));
+        assertNull(ReflectionTestUtils.getField(tag, "activeClass"));
+        assertNull(ReflectionTestUtils.getField(tag, "disabledClass"));
     }
 
     /**
@@ -945,34 +969,6 @@ public class PaginationTagTest {
         // That the and-mark(&) is remove
         assertThat(getOutput(), is(expected.toString()));
     }
-
-    @Test
-    public void testDoStartTagInternal_disabledHref_and_firstLinkText_are_empty() throws Exception {
-    }
-
-    // @Test
-    // public void testWriteAnchor01() throws Exception {
-    // }
-    //
-    // @Test
-    // public void testStartOuterElement01() throws Exception {
-    // }
-    //
-    // @Test
-    // public void testEndOuterElement01() throws Exception {
-    // }
-    //
-    // @Test
-    // public void testWritePageLink01() throws Exception {
-    // }
-    //
-    // @Test
-    // public void testWriteFirstAndPreviousLink01() throws Exception {
-    // }
-    //
-    // @Test
-    // public void testWriteNextAndLastLink01() throws Exception {
-    // }
 
     @Test
     public void testSetters() {
