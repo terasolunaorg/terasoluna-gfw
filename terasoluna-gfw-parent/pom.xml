@@ -458,11 +458,6 @@
 
       <!-- == Begin Other JavaEE/SE APIs == -->
       <dependency>
-        <groupId>com.sun.mail</groupId>
-        <artifactId>javax.mail</artifactId>
-        <version>${javax-mail.version}</version>
-      </dependency>
-      <dependency>
         <groupId>javax.el</groupId>
         <artifactId>javax.el-api</artifactId>
         <version>${javax-el.version}</version>
@@ -476,6 +471,11 @@
         <groupId>javax.servlet.jsp</groupId>
         <artifactId>javax.servlet.jsp-api</artifactId>
         <version>${javax-jsp.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.sun.mail</groupId>
+        <artifactId>javax.mail</artifactId>
+        <version>${javax-mail.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.taglibs</groupId>
@@ -542,10 +542,10 @@
     <!-- == Bouncy Castle == -->
     <bouncycastle.version>1.64</bouncycastle.version>
     <!-- == Other JavaEE/SE APIs == -->
-    <javax-mail.version>1.6.2</javax-mail.version>
     <javax-el.version>3.0.1-b06</javax-el.version>
     <javax-inject.version>1</javax-inject.version>
     <javax-jsp.version>2.3.3</javax-jsp.version>
+    <javax-mail.version>1.6.2</javax-mail.version>
     <taglibs-standard.version>1.2.5</taglibs-standard.version>
     <!-- == Project Properties == -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
