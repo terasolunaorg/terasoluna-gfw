@@ -22,11 +22,18 @@
     </dependency>
     <!-- == End Spring == -->
 
-    <!-- Hibernate -->
+    <!-- == Begin Hibernate == -->
     <dependency>
       <groupId>org.hibernate</groupId>
       <artifactId>hibernate-core</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>javax.activation</groupId>
+          <artifactId>javax.activation-api</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
+    <!-- == End Hibernate == -->
 
     <!-- == Begin Joda-Time == -->
     <dependency>
@@ -34,6 +41,13 @@
       <artifactId>usertype.core</artifactId>
     </dependency>
     <!-- == End Joda-Time == -->
+
+    <!-- == Begin JakartaEE APIs == -->
+    <dependency>
+      <groupId>jakarta.activation</groupId>
+      <artifactId>jakarta.activation-api</artifactId>
+    </dependency>
+    <!-- == End JakartaEE APIs == -->
     <!-- == End JPA == -->
   </dependencies>
 </project>
