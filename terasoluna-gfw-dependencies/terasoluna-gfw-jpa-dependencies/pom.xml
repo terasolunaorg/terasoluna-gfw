@@ -33,6 +33,10 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>jakarta.activation</groupId>
+      <artifactId>jakarta.activation-api</artifactId>
+    </dependency>
     <!-- == End Hibernate == -->
 
     <!-- == Begin Joda-Time == -->
@@ -41,13 +45,6 @@
       <artifactId>usertype.core</artifactId>
     </dependency>
     <!-- == End Joda-Time == -->
-
-    <!-- == Begin JakartaEE APIs == -->
-    <dependency>
-      <groupId>jakarta.activation</groupId>
-      <artifactId>jakarta.activation-api</artifactId>
-    </dependency>
-    <!-- == End JakartaEE APIs == -->
     <!-- == End JPA == -->
   </dependencies>
 </project>
