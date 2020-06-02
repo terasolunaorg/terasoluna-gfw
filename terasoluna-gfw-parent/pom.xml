@@ -458,22 +458,6 @@
 
       <!-- == Begin Other JavaEE/SE APIs == -->
       <dependency>
-        <groupId>com.sun.mail</groupId>
-        <artifactId>javax.mail</artifactId>
-        <version>${javax-mail.version}</version>
-        <exclusions>
-          <exclusion>
-            <groupId>javax.activation</groupId>
-            <artifactId>activation</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <dependency>
-        <groupId>com.sun.activation</groupId>
-        <artifactId>javax.activation</artifactId>
-        <version>${javax-activation.version}</version>
-      </dependency>
-      <dependency>
         <groupId>javax.el</groupId>
         <artifactId>javax.el-api</artifactId>
         <version>${javax-el.version}</version>
@@ -553,8 +537,6 @@
     <!-- == Bouncy Castle == -->
     <bouncycastle.version>1.64</bouncycastle.version>
     <!-- == Other JavaEE/SE APIs == -->
-    <javax-mail.version>1.6.2</javax-mail.version>
-    <javax-activation.version>1.2.0</javax-activation.version>
     <javax-el.version>3.0.1-b06</javax-el.version>
     <javax-inject.version>1</javax-inject.version>
     <javax-jsp.version>2.3.3</javax-jsp.version>
