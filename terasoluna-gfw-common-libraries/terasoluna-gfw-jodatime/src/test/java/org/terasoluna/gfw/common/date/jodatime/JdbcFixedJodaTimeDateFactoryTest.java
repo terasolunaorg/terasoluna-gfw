@@ -15,8 +15,8 @@
  */
 package org.terasoluna.gfw.common.date.jodatime;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 import java.util.Collections;
 
@@ -30,7 +30,6 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
@@ -38,8 +37,6 @@ import org.springframework.transaction.annotation.Transactional;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:test-context.xml" })
 @Transactional
-@Rollback
-// Changed by SPR-13277
 public class JdbcFixedJodaTimeDateFactoryTest {
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;
