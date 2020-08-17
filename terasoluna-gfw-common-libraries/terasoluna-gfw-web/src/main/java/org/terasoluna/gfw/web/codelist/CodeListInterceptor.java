@@ -32,8 +32,8 @@ import org.springframework.beans.factory.InitializingBean;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.util.Assert;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.terasoluna.gfw.common.codelist.CodeList;
 
 /**
@@ -49,7 +49,7 @@ import org.terasoluna.gfw.common.codelist.CodeList;
  * </p>
  * @see org.terasoluna.gfw.common.codelist.i18n.I18nCodeList
  */
-public class CodeListInterceptor extends HandlerInterceptorAdapter implements
+public class CodeListInterceptor implements HandlerInterceptor,
                                  ApplicationContextAware, InitializingBean {
 
     /**
