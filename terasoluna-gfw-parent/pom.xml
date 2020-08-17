@@ -21,6 +21,13 @@
     <name>terasoluna.org</name>
     <url>http://terasoluna.org</url>
   </organization>
+  <repositories>
+    <repository>
+      <id>repository.spring.milestone</id>
+      <name>Spring Milestone Repository</name>
+      <url>https://repo.spring.io/milestone</url>
+    </repository>
+  </repositories>
   <developers>
     <developer>
       <name>NTT DATA</name>
@@ -353,6 +360,11 @@
       <!-- == Begin Joda-Time == -->
       <dependency>
         <groupId>joda-time</groupId>
+        <artifactId>joda-time</artifactId>
+        <version>${joda-time.joda-time.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>joda-time</groupId>
         <artifactId>joda-time-jsptags</artifactId>
         <version>${joda-time.joda-time-jsptags.version}</version>
       </dependency>
@@ -516,7 +528,7 @@
     <!-- == TERASOLUNA == -->
     <terasoluna.gfw.version>5.7.0-SNAPSHOT</terasoluna.gfw.version>
     <!-- == Spring Boot == -->
-    <org.springframework.boot.version>2.2.4.RELEASE</org.springframework.boot.version>
+    <org.springframework.boot.version>2.4.0-M2</org.springframework.boot.version>
     <!-- == Spring Security OAuth == -->
     <spring-security-oauth.version>2.4.0.RELEASE</spring-security-oauth.version>
     <!-- == MyBatis3 == -->
@@ -525,6 +537,7 @@
     <!-- == Dozer== -->
     <dozer.version>6.5.0</dozer.version>
     <!-- == Joda-Time == -->
+    <joda-time.joda-time.version>2.10.6</joda-time.joda-time.version>
     <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
     <jadira-usertype-core.version>6.0.1.GA</jadira-usertype-core.version>
     <!-- == Google == -->
@@ -557,7 +570,7 @@
     <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
     <cargo.container.id>tomcat9x</cargo.container.id>
     <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-9/v${cargo.tomcat9.version}/bin/apache-tomcat-${cargo.tomcat9.version}.zip</cargo.container.url>
-    <cargo.tomcat9.version>9.0.30</cargo.tomcat9.version>
+    <cargo.tomcat9.version>9.0.37</cargo.tomcat9.version>
   </properties>
   <profiles>
     <profile>
