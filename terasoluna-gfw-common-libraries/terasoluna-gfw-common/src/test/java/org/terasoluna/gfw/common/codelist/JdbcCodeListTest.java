@@ -16,8 +16,8 @@
 package org.terasoluna.gfw.common.codelist;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -227,7 +227,7 @@ public class JdbcCodeListTest {
                 jdbcCodeList);
 
         // assert
-        assertNull(exposedMapFirstFetch);
+        assertThat(exposedMapFirstFetch, is(nullValue()));
 
         jdbcCodeList.afterPropertiesSet();
 
@@ -265,13 +265,13 @@ public class JdbcCodeListTest {
                 jdbcCodeList);
 
         // assert
-        assertNull(exposedMapFirstFetch);
+        assertThat(exposedMapFirstFetch, is(nullValue()));
 
         // run
         jdbcCodeList.afterPropertiesSet();
 
         // assert again
-        assertNull(exposedMapFirstFetch);
+        assertThat(exposedMapFirstFetch, is(nullValue()));
     }
 
     @Test(expected = IllegalArgumentException.class)

@@ -16,8 +16,9 @@
 package org.terasoluna.gfw.web.token.transaction;
 
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -43,7 +44,7 @@ public class TransactionTokenInfoStoreTest {
 
         TransactionTokenInfo tokenInfo = store.createTransactionTokenInfo(
                 handlerMethod);
-        assertNotNull(tokenInfo);
+        assertThat(tokenInfo, is(notNullValue()));
 
     }
 
@@ -55,7 +56,7 @@ public class TransactionTokenInfoStoreTest {
 
         TransactionTokenInfo tokenInfo = store.createTransactionTokenInfo(
                 handlerMethod);
-        assertNotNull(tokenInfo);
+        assertThat(tokenInfo, is(notNullValue()));
 
     }
 
@@ -70,7 +71,8 @@ public class TransactionTokenInfoStoreTest {
         when(methodAnnotation.value()).thenReturn("test");
         when(classAnnotation.value()).thenReturn("test");
 
-        assertNotNull(store.createTokenName(classAnnotation, methodAnnotation));
+        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(
+                notNullValue()));
 
     }
 
@@ -83,7 +85,8 @@ public class TransactionTokenInfoStoreTest {
 
         when(methodAnnotation.value()).thenReturn("test");
 
-        assertNotNull(store.createTokenName(classAnnotation, methodAnnotation));
+        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(
+                notNullValue()));
 
     }
 
@@ -96,7 +99,8 @@ public class TransactionTokenInfoStoreTest {
 
         when(methodAnnotation.value()).thenReturn("");
 
-        assertNotNull(store.createTokenName(classAnnotation, methodAnnotation));
+        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(
+                notNullValue()));
 
     }
 
@@ -109,7 +113,8 @@ public class TransactionTokenInfoStoreTest {
 
         when(methodAnnotation.value()).thenReturn(null);
 
-        assertNotNull(store.createTokenName(classAnnotation, methodAnnotation));
+        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(
+                notNullValue()));
 
     }
 
@@ -124,7 +129,8 @@ public class TransactionTokenInfoStoreTest {
         when(methodAnnotation.value()).thenReturn("test");
         when(classAnnotation.value()).thenReturn("");
 
-        assertNotNull(store.createTokenName(classAnnotation, methodAnnotation));
+        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(
+                notNullValue()));
     }
 
     @Test
@@ -138,7 +144,8 @@ public class TransactionTokenInfoStoreTest {
         when(methodAnnotation.value()).thenReturn("test");
         when(classAnnotation.value()).thenReturn(null);
 
-        assertNotNull(store.createTokenName(classAnnotation, methodAnnotation));
+        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(
+                notNullValue()));
     }
 
     @Test
@@ -147,7 +154,8 @@ public class TransactionTokenInfoStoreTest {
         HandlerMethod handlerMethod = new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
                 .getDeclaredMethod("first", SampleForm.class, Model.class));
 
-        assertNotNull(store.getTransactionTokenInfo(handlerMethod));
+        assertThat(store.getTransactionTokenInfo(handlerMethod), is(
+                notNullValue()));
 
     }
 

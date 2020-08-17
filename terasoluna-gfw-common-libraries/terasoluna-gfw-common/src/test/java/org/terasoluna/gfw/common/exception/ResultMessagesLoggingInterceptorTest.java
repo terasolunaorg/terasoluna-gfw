@@ -16,8 +16,7 @@
 package org.terasoluna.gfw.common.exception;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -534,7 +533,7 @@ public class ResultMessagesLoggingInterceptorTest extends
         thread2.join();
 
         // do assert
-        assertFalse(actualBusinessException.containsKey(thread1));
+        assertThat(actualBusinessException.containsKey(thread1), is(false));
         assertThat(actualBusinessException.get(thread2), is(
                 occurExceptionForThread2));
 

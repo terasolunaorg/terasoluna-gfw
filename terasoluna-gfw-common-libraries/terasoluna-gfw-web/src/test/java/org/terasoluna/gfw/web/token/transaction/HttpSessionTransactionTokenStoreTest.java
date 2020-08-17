@@ -15,10 +15,10 @@
  */
 package org.terasoluna.gfw.web.token.transaction;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Enumeration;
 import java.util.concurrent.TimeUnit;
@@ -91,7 +91,7 @@ public class HttpSessionTransactionTokenStoreTest {
         String actuals = store.getAndClear(token);
 
         // assert
-        assertNull(actuals);
+        assertThat(actuals, is(nullValue()));
     }
 
     /**
@@ -116,9 +116,10 @@ public class HttpSessionTransactionTokenStoreTest {
 
         // assert
         assertThat(actuals, is(token.getTokenValue()));
-        assertNotNull(session.getAttribute(
+        assertThat(session.getAttribute(
                 HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
-                        + token.getTokenName() + token.getTokenKey()));
+                        + token.getTokenName() + token.getTokenKey()), is(
+                                notNullValue()));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -147,9 +148,10 @@ public class HttpSessionTransactionTokenStoreTest {
         store.remove(token);
 
         // assert
-        assertNull(session.getAttribute(
+        assertThat(session.getAttribute(
                 HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
-                        + token.getTokenName() + token.getTokenKey()));
+                        + token.getTokenName() + token.getTokenKey()), is(
+                                nullValue()));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -206,7 +208,7 @@ public class HttpSessionTransactionTokenStoreTest {
         // String expected = "";
 
         // assert
-        assertNotNull(actual);
+        assertThat(actual, is(notNullValue()));
         assertThat(session.getAttribute(store.createSessionAttributeName(
                 tokenA)), is(nullValue()));
         assertThat(session.getAttribute(store.createSessionAttributeName(
@@ -269,7 +271,7 @@ public class HttpSessionTransactionTokenStoreTest {
         // String expected = "";
 
         // assert
-        assertNotNull(actual);
+        assertThat(actual, is(notNullValue()));
         assertThat(session.getAttribute(store.createSessionAttributeName(
                 tokenA)), is(nullValue())); // check
         assertThat(session.getAttribute(store.createSessionAttributeName(
@@ -337,7 +339,7 @@ public class HttpSessionTransactionTokenStoreTest {
         // String expected = "";
 
         // assert
-        assertNotNull(actual);
+        assertThat(actual, is(notNullValue()));
         assertThat(session.getAttribute(store.createSessionAttributeName(
                 tokenA)), is(nullValue())); // check
         assertThat(session.getAttribute(store.createSessionAttributeName(
@@ -389,7 +391,7 @@ public class HttpSessionTransactionTokenStoreTest {
         // String expected = "";
 
         // assert
-        assertNotNull(actual);
+        assertThat(actual, is(notNullValue()));
         assertThat(session.getAttribute(store.createSessionAttributeName(
                 tokenA)), is(notNullValue()));
         assertThat(session.getAttribute(store.createSessionAttributeName(

@@ -16,15 +16,12 @@
 package org.terasoluna.gfw.common.fullhalf;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertThrows;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 public class FullHalfConverterTest {
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void unsymmetric() {
@@ -68,8 +65,8 @@ public class FullHalfConverterTest {
 
     @Test
     public void testNull() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("pairs must not be null.");
-        new FullHalfConverter(null);
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> new FullHalfConverter(null));
+        assertThat(ex.getMessage(), is("pairs must not be null."));
     }
 }

@@ -16,24 +16,20 @@
 package org.terasoluna.gfw.common.codelist;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 /**
  * Initializes codelist information with a range of numbers
  */
 public class NumberRangeCodeListTest {
-
-    @Rule
-    public ExpectedException exception = ExpectedException.none();
 
     /**
      * Tests the following : 1) the codelist is initialized with the range of numbers (contents & size) 2) the order of the
@@ -214,9 +210,6 @@ public class NumberRangeCodeListTest {
     @Test
     public void TestAfterPropertiesSet07() {
 
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("interval should be greater than 0");
-
         NumberRangeCodeList numberRangeCodeList = new NumberRangeCodeList();
         numberRangeCodeList.setFrom(1);
         numberRangeCodeList.setTo(3);
@@ -224,7 +217,9 @@ public class NumberRangeCodeListTest {
         numberRangeCodeList.setLabelFormat("label00%s");
         numberRangeCodeList.setInterval(-2);
 
-        numberRangeCodeList.afterPropertiesSet();
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> numberRangeCodeList.afterPropertiesSet());
+        assertThat(ex.getMessage(), is("interval should be greater than 0"));
     }
 
     /*
@@ -233,9 +228,6 @@ public class NumberRangeCodeListTest {
     @Test
     public void TestAfterPropertiesSet_valueFormat_isNull() {
 
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("valueFormat must not be empty");
-
         NumberRangeCodeList numberRangeCodeList = new NumberRangeCodeList();
         numberRangeCodeList.setFrom(1);
         numberRangeCodeList.setTo(3);
@@ -243,7 +235,9 @@ public class NumberRangeCodeListTest {
         numberRangeCodeList.setLabelFormat("label00%s");
         numberRangeCodeList.setInterval(1);
 
-        numberRangeCodeList.afterPropertiesSet();
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> numberRangeCodeList.afterPropertiesSet());
+        assertThat(ex.getMessage(), is("valueFormat must not be empty"));
     }
 
     /*
@@ -252,9 +246,6 @@ public class NumberRangeCodeListTest {
     @Test
     public void TestAfterPropertiesSet_valueFormat_isEmpty() {
 
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("valueFormat must not be empty");
-
         NumberRangeCodeList numberRangeCodeList = new NumberRangeCodeList();
         numberRangeCodeList.setFrom(1);
         numberRangeCodeList.setTo(3);
@@ -262,7 +253,9 @@ public class NumberRangeCodeListTest {
         numberRangeCodeList.setLabelFormat("label00%s");
         numberRangeCodeList.setInterval(1);
 
-        numberRangeCodeList.afterPropertiesSet();
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> numberRangeCodeList.afterPropertiesSet());
+        assertThat(ex.getMessage(), is("valueFormat must not be empty"));
     }
 
     /*
@@ -271,9 +264,6 @@ public class NumberRangeCodeListTest {
     @Test
     public void TestAfterPropertiesSet_labelFormat_isNull() {
 
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("labelFormat must not be empty");
-
         NumberRangeCodeList numberRangeCodeList = new NumberRangeCodeList();
         numberRangeCodeList.setFrom(1);
         numberRangeCodeList.setTo(3);
@@ -281,7 +271,9 @@ public class NumberRangeCodeListTest {
         numberRangeCodeList.setLabelFormat(null);
         numberRangeCodeList.setInterval(1);
 
-        numberRangeCodeList.afterPropertiesSet();
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> numberRangeCodeList.afterPropertiesSet());
+        assertThat(ex.getMessage(), is("labelFormat must not be empty"));
     }
 
     /*
@@ -290,9 +282,6 @@ public class NumberRangeCodeListTest {
     @Test
     public void TestAfterPropertiesSet_labelFormat_isEmpty() {
 
-        exception.expect(IllegalArgumentException.class);
-        exception.expectMessage("labelFormat must not be empty");
-
         NumberRangeCodeList numberRangeCodeList = new NumberRangeCodeList();
         numberRangeCodeList.setFrom(1);
         numberRangeCodeList.setTo(3);
@@ -300,6 +289,8 @@ public class NumberRangeCodeListTest {
         numberRangeCodeList.setLabelFormat("");
         numberRangeCodeList.setInterval(1);
 
-        numberRangeCodeList.afterPropertiesSet();
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> numberRangeCodeList.afterPropertiesSet());
+        assertThat(ex.getMessage(), is("labelFormat must not be empty"));
     }
 }

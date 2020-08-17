@@ -15,15 +15,17 @@
  */
 package org.terasoluna.gfw.common.validator.constraints;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertThrows;
 
 import java.beans.IntrospectionException;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Path.PropertyNode;
+import javax.validation.ValidationException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -481,9 +483,9 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
      */
     @Test
     public void testSpecifyUnknownLeft() throws Throwable {
-        setExpectedFailedToInitialize(IntrospectionException.class);
-
-        validator.validate(form, UnknownLeft.class);
+        ValidationException ex = assertThrows(ValidationException.class,
+                () -> validator.validate(form, UnknownLeft.class));
+        assertFailedToInitialize(ex, IntrospectionException.class);
     }
 
     /**
@@ -493,9 +495,9 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
      */
     @Test
     public void testSpecifyUnknownRight() throws Throwable {
-        setExpectedFailedToInitialize(IntrospectionException.class);
-
-        validator.validate(form, UnknownRight.class);
+        ValidationException ex = assertThrows(ValidationException.class,
+                () -> validator.validate(form, UnknownRight.class));
+        assertFailedToInitialize(ex, IntrospectionException.class);
     }
 
     /**
@@ -505,12 +507,12 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
      */
     @Test
     public void testSpecifyNotComparableLeft() throws Throwable {
-        setExpectedTypeNotSupport(Object.class);
-
         form.setObjectProperty(new Object());
         form.setRight(100);
 
-        validator.validate(form, NotComparableLeft.class);
+        ValidationException ex = assertThrows(ValidationException.class,
+                () -> validator.validate(form, NotComparableLeft.class));
+        assertTypeNotSupport(ex, Object.class);
     }
 
     /**

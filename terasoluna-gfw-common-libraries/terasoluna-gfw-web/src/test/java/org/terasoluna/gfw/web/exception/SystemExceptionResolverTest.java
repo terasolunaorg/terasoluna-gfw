@@ -17,8 +17,7 @@ package org.terasoluna.gfw.web.exception;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertSame;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Enumeration;
 import java.util.Locale;
@@ -236,8 +235,8 @@ public class SystemExceptionResolverTest {
 
         testTarget.setResultMessages(occurException, mockRequest);
 
-        assertSame(resultMessages, flashMap.get(
-                ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME));
+        assertThat(resultMessages, is(flashMap.get(
+                ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME)));
 
     }
 
@@ -315,8 +314,8 @@ public class SystemExceptionResolverTest {
                 "defaultCode"));
         assertThat(mockResponse.getHeader("X-Exception-Code"), is(
                 "defaultCode"));
-        assertSame(resultMessages, flashMap.get(
-                ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME));
+        assertThat(resultMessages, is(flashMap.get(
+                ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME)));
 
     }
 
@@ -368,16 +367,16 @@ public class SystemExceptionResolverTest {
         assertThat((Integer) mockRequest.getAttribute(
                 WebUtils.ERROR_STATUS_CODE_ATTRIBUTE), is(444));
 
-        assertSame(occurException, actualModleAndView.getModel().get(
-                SimpleMappingExceptionResolver.DEFAULT_EXCEPTION_ATTRIBUTE));
+        assertThat(occurException, is(actualModleAndView.getModel().get(
+                SimpleMappingExceptionResolver.DEFAULT_EXCEPTION_ATTRIBUTE)));
 
         assertThat(mockRequest.getAttribute("exceptionCode").toString(), is(
                 "defaultExceptionCode"));
         assertThat(mockResponse.getHeader("X-Exception-Code"), is(
                 "defaultExceptionCode"));
 
-        assertSame(resultMessages, flashMap.get(
-                ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME));
+        assertThat(resultMessages, is(flashMap.get(
+                ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME)));
 
     }
 

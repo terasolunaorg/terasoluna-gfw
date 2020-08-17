@@ -16,9 +16,8 @@
 package org.terasoluna.gfw.web.pagination;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -88,25 +87,39 @@ public class PaginationTagTest {
 
         tag.release();
 
-        assertNull(ReflectionTestUtils.getField(tag, "page"));
-        assertNull(ReflectionTestUtils.getField(tag, "pathTmpl"));
-        assertNull(ReflectionTestUtils.getField(tag, "queryTmpl"));
-        assertNull(ReflectionTestUtils.getField(tag, "criteriaQuery"));
-        assertFalse((boolean) ReflectionTestUtils.getField(tag,
-                "disableHtmlEscapeOfCriteriaQuery"));
-        assertFalse((boolean) ReflectionTestUtils.getField(tag,
-                "enableLinkOfCurrentPage"));
-        assertNull(ReflectionTestUtils.getField(tag, "outerElement"));
-        assertNull(ReflectionTestUtils.getField(tag, "outerElementClass"));
-        assertNull(ReflectionTestUtils.getField(tag, "innerElement"));
-        assertNull(ReflectionTestUtils.getField(tag, "innerElementClass"));
-        assertNull(ReflectionTestUtils.getField(tag, "firstLinkText"));
-        assertNull(ReflectionTestUtils.getField(tag, "previousLinkText"));
-        assertNull(ReflectionTestUtils.getField(tag, "nextLinkText"));
-        assertNull(ReflectionTestUtils.getField(tag, "lastLinkText"));
-        assertNull(ReflectionTestUtils.getField(tag, "disabledHref"));
-        assertNull(ReflectionTestUtils.getField(tag, "activeClass"));
-        assertNull(ReflectionTestUtils.getField(tag, "disabledClass"));
+        assertThat(ReflectionTestUtils.getField(tag, "page"), is(nullValue()));
+        assertThat(ReflectionTestUtils.getField(tag, "pathTmpl"), is(
+                nullValue()));
+        assertThat(ReflectionTestUtils.getField(tag, "queryTmpl"), is(
+                nullValue()));
+        assertThat(ReflectionTestUtils.getField(tag, "criteriaQuery"), is(
+                nullValue()));
+        assertThat((boolean) ReflectionTestUtils.getField(tag,
+                "disableHtmlEscapeOfCriteriaQuery"), is(false));
+        assertThat((boolean) ReflectionTestUtils.getField(tag,
+                "enableLinkOfCurrentPage"), is(false));
+        assertThat(ReflectionTestUtils.getField(tag, "outerElement"), is(
+                nullValue()));
+        assertThat(ReflectionTestUtils.getField(tag, "outerElementClass"), is(
+                nullValue()));
+        assertThat(ReflectionTestUtils.getField(tag, "innerElement"), is(
+                nullValue()));
+        assertThat(ReflectionTestUtils.getField(tag, "innerElementClass"), is(
+                nullValue()));
+        assertThat(ReflectionTestUtils.getField(tag, "firstLinkText"), is(
+                nullValue()));
+        assertThat(ReflectionTestUtils.getField(tag, "previousLinkText"), is(
+                nullValue()));
+        assertThat(ReflectionTestUtils.getField(tag, "nextLinkText"), is(
+                nullValue()));
+        assertThat(ReflectionTestUtils.getField(tag, "lastLinkText"), is(
+                nullValue()));
+        assertThat(ReflectionTestUtils.getField(tag, "disabledHref"), is(
+                nullValue()));
+        assertThat(ReflectionTestUtils.getField(tag, "activeClass"), is(
+                nullValue()));
+        assertThat(ReflectionTestUtils.getField(tag, "disabledClass"), is(
+                nullValue()));
     }
 
     /**

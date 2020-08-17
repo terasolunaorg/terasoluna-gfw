@@ -15,65 +15,62 @@
  */
 package org.terasoluna.gfw.common.fullhalf;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertThrows;
+
 import java.util.Set;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
-
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
 
 public class FullHalfPairsBuilderTest {
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void testFullIsNull() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage(
-                "fullwidth must be 1 length string (fullwidth = null)");
-        new FullHalfPairsBuilder().pair(null, "a").build();
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> new FullHalfPairsBuilder().pair(null, "a").build());
+        assertThat(ex.getMessage(), is(
+                "fullwidth must be 1 length string (fullwidth = null)"));
     }
 
     @Test
     public void testFullIsEmptyString() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage(
-                "fullwidth must be 1 length string (fullwidth = )");
-        new FullHalfPairsBuilder().pair("", "a").build();
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> new FullHalfPairsBuilder().pair("", "a").build());
+        assertThat(ex.getMessage(), is(
+                "fullwidth must be 1 length string (fullwidth = )"));
     }
 
     @Test
     public void testFullIsTwoString() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage(
-                "fullwidth must be 1 length string (fullwidth = aa)");
-        new FullHalfPairsBuilder().pair("aa", "a").build();
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> new FullHalfPairsBuilder().pair("aa", "a").build());
+        assertThat(ex.getMessage(), is(
+                "fullwidth must be 1 length string (fullwidth = aa)"));
     }
 
     @Test
     public void testHalfIsNull() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage(
-                "halfwidth must be 1 or 2 length string (halfwidth = null)");
-        new FullHalfPairsBuilder().pair("a", null).build();
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> new FullHalfPairsBuilder().pair("a", null).build());
+        assertThat(ex.getMessage(), is(
+                "halfwidth must be 1 or 2 length string (halfwidth = null)"));
     }
 
     @Test
     public void testHalfIsEmptyString() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage(
-                "halfwidth must be 1 or 2 length string (halfwidth = )");
-        new FullHalfPairsBuilder().pair("a", "").build();
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> new FullHalfPairsBuilder().pair("a", "").build());
+        assertThat(ex.getMessage(), is(
+                "halfwidth must be 1 or 2 length string (halfwidth = )"));
     }
 
     @Test
     public void testHalfIsThreeString() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage(
-                "halfwidth must be 1 or 2 length string (halfwidth = aaa)");
-        new FullHalfPairsBuilder().pair("a", "aaa").build();
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> new FullHalfPairsBuilder().pair("a", "aaa").build());
+        assertThat(ex.getMessage(), is(
+                "halfwidth must be 1 or 2 length string (halfwidth = aaa)"));
     }
 
     @Test

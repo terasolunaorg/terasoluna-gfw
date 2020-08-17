@@ -15,6 +15,7 @@
  */
 package org.terasoluna.gfw.common.validator.constraints;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
@@ -28,8 +29,6 @@ import javax.validation.Validator;
 
 import org.hamcrest.Matchers;
 import org.junit.BeforeClass;
-import org.junit.Rule;
-import org.junit.rules.ExpectedException;
 
 /**
  * Abstract Test class of {@code org.terasoluna.gfw.common.validator.constraints}
@@ -46,36 +45,33 @@ abstract public class AbstractConstraintsTest<F> {
 
     protected Set<ConstraintViolation<F>> violations;
 
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
-
     @BeforeClass
     public static void beforeClass() {
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
     /**
-     * set {@code ExpectedException} for failed to initialize.
+     * assertion for failed to initialize.
+     * @param ex validation exception.
      * @param causeType expected type of inner exception.
      */
-    protected void setExpectedFailedToInitialize(
+    protected void assertFailedToInitialize(ValidationException ex,
             Class<? extends Throwable> causeType) {
-        thrown.expect(ValidationException.class);
-        thrown.expectCause(allOf(Matchers.<Throwable> instanceOf(
+        assertThat(ex.getCause(), allOf(Matchers.<Throwable> instanceOf(
                 IllegalArgumentException.class), hasProperty("message", is(
                         MESSAGE_INITIALIZE_ERROR)), hasProperty("cause",
                                 Matchers.<Throwable> instanceOf(causeType))));
     }
 
     /**
-     * set {@code ExpectedException} for failed to initialize.
+     * assertion for failed to initialize.
+     * @param ex validation exception.
      * @param causeType expected type of inner exception.
      * @param message expected message of inner exception.
      */
-    protected void setExpectedFailedToInitialize(
+    protected void assertFailedToInitialize(ValidationException ex,
             Class<? extends Throwable> causeType, String message) {
-        thrown.expect(ValidationException.class);
-        thrown.expectCause(allOf(Matchers.<Throwable> instanceOf(
+        assertThat(ex.getCause(), allOf(Matchers.<Throwable> instanceOf(
                 IllegalArgumentException.class), hasProperty("message", is(
                         MESSAGE_INITIALIZE_ERROR)), hasProperty("cause", allOf(
                                 Matchers.<Throwable> instanceOf(causeType),
@@ -83,14 +79,14 @@ abstract public class AbstractConstraintsTest<F> {
     }
 
     /**
-     * set {@code ExpectedException} for type not support.
-     * @param causeType expected not support type.
+     * assertion for type not support.
+     * @param ex validation exception.
+     * @param type expected not support type.
      */
-    protected void setExpectedTypeNotSupport(Class<?> causeType) {
-        thrown.expect(ValidationException.class);
-        thrown.expectCause(allOf(Matchers.<Throwable> instanceOf(
+    protected void assertTypeNotSupport(ValidationException ex, Class<?> type) {
+        assertThat(ex.getCause(), allOf(Matchers.<Throwable> instanceOf(
                 IllegalArgumentException.class), hasProperty("message", is(
-                        String.format(MESSAGE_NOTSUPPORT_ERROR, causeType
+                        String.format(MESSAGE_NOTSUPPORT_ERROR, type
                                 .getName())))));
     }
 

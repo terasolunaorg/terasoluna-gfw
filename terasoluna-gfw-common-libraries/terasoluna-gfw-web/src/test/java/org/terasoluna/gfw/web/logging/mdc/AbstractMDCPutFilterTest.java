@@ -16,9 +16,8 @@
 package org.terasoluna.gfw.web.logging.mdc;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertNull;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.spy;
@@ -126,16 +125,16 @@ public class AbstractMDCPutFilterTest {
 
         // do assert.
         // put value to MDC.
-        assertEquals(2, mockFilterChain.actualMdcContextMap.size());
-        assertEquals("value", mockFilterChain.actualMdcPutValue);
+        assertThat(mockFilterChain.actualMdcContextMap.size(), is(2));
+        assertThat(mockFilterChain.actualMdcPutValue, is("value"));
 
         // call filter chain.
         verify(mockFilterChain, times(1)).doFilter(mockRequest, mockResponse);
 
         // remove value in MDC.
         // not remove other value from MDC.
-        assertEquals(1, MDC.getCopyOfContextMap().size());
-        assertEquals("dummyValue", MDC.get("dummyKey"));
+        assertThat(MDC.getCopyOfContextMap().size(), is(1));
+        assertThat(MDC.get("dummyKey"), is("dummyValue"));
 
     }
 
@@ -175,8 +174,8 @@ public class AbstractMDCPutFilterTest {
         // do assert.
         // remove value in MDC.
         // not remove other value from MDC.
-        assertEquals(1, MDC.getCopyOfContextMap().size());
-        assertEquals("dummyValue", MDC.get("dummyKey"));
+        assertThat(MDC.getCopyOfContextMap().size(), is(1));
+        assertThat(MDC.get("dummyKey"), is("dummyValue"));
 
     }
 
@@ -202,9 +201,9 @@ public class AbstractMDCPutFilterTest {
 
         // do assert.
         // not remove other value from MDC.
-        assertEquals(2, MDC.getCopyOfContextMap().size());
-        assertEquals("dummyValue", MDC.get("dummyKey"));
-        assertEquals("value", MDC.get("key"));
+        assertThat(MDC.getCopyOfContextMap().size(), is(2));
+        assertThat(MDC.get("dummyKey"), is("dummyValue"));
+        assertThat(MDC.get("key"), is("value"));
 
     }
 
@@ -243,9 +242,9 @@ public class AbstractMDCPutFilterTest {
 
         // do assert.
         // not remove other value from MDC.
-        assertEquals(2, MDC.getCopyOfContextMap().size());
-        assertEquals("dummyValue", MDC.get("dummyKey"));
-        assertEquals("value", MDC.get("key"));
+        assertThat(MDC.getCopyOfContextMap().size(), is(2));
+        assertThat(MDC.get("dummyKey"), is("dummyValue"));
+        assertThat(MDC.get("key"), is("value"));
 
     }
 
@@ -373,7 +372,7 @@ public class AbstractMDCPutFilterTest {
         };
 
         // assert
-        assertNull(testTarget.cutValue(null));
+        assertThat(testTarget.cutValue(null), is(nullValue()));
     }
 
     /**

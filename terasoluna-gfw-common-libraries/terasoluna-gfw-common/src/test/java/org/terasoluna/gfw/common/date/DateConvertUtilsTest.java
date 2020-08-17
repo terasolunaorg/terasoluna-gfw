@@ -16,21 +16,17 @@
 package org.terasoluna.gfw.common.date;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertThrows;
 
 import java.lang.reflect.Constructor;
 import java.sql.Time;
 import java.sql.Timestamp;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 public class DateConvertUtilsTest {
-
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void testDateConvertUtils() throws Exception {
@@ -68,12 +64,10 @@ public class DateConvertUtilsTest {
 
     @Test
     public void testConvertToTimestamp02() {
-        // set up a exception assertion
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage(is("date must not be null"));
-
         // testing
-        DateConvertUtils.convertToTimestamp(null);
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> DateConvertUtils.convertToTimestamp(null));
+        assertThat(ex.getMessage(), is("date must not be null"));
     }
 
     @Test
@@ -98,12 +92,10 @@ public class DateConvertUtilsTest {
 
     @Test
     public void testConvertToSqlDate02() {
-        // set up a exception assertion
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage(is("date must not be null"));
-
         // testing
-        DateConvertUtils.convertToSqlDate(null);
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> DateConvertUtils.convertToSqlDate(null));
+        assertThat(ex.getMessage(), is("date must not be null"));
     }
 
     @Test
@@ -127,12 +119,10 @@ public class DateConvertUtilsTest {
 
     @Test
     public void testConvertToTime02() {
-        // set up a exception assertion
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage(is("date must not be null"));
-
         // testing
-        DateConvertUtils.convertToTime(null);
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> DateConvertUtils.convertToTime(null));
+        assertThat(ex.getMessage(), is("date must not be null"));
     }
 
 }
