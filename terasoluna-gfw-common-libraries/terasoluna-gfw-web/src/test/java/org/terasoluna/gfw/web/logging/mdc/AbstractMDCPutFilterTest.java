@@ -39,7 +39,6 @@ import org.junit.Test;
 import org.slf4j.MDC;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.terasoluna.gfw.web.logging.mdc.AbstractMDCPutFilter;
 
 /**
  * Test class for AbstractMDCPutFilter.

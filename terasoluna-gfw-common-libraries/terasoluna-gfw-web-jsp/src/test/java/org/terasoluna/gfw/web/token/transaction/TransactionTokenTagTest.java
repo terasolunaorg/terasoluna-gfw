@@ -31,9 +31,6 @@ import javax.servlet.jsp.PageContext;
 
 import org.junit.Test;
 import org.springframework.web.servlet.tags.form.TagWriter;
-import org.terasoluna.gfw.web.token.transaction.TransactionToken;
-import org.terasoluna.gfw.web.token.transaction.TransactionTokenInterceptor;
-import org.terasoluna.gfw.web.token.transaction.TransactionTokenTag;
 
 /**
  * Test class for TransactionTokenTag

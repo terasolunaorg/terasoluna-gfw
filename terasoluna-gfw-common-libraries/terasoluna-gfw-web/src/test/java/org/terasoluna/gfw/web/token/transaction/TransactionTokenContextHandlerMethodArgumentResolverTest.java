@@ -30,9 +30,6 @@ import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.method.support.ModelAndViewContainer;
-import org.terasoluna.gfw.web.token.transaction.TransactionTokenContext;
-import org.terasoluna.gfw.web.token.transaction.TransactionTokenContextHandlerMethodArgumentResolver;
-import org.terasoluna.gfw.web.token.transaction.TransactionTokenInterceptor;
 
 /**
  * Test class for TransactionTokenContextHandlerMethodArgumentResolver

@@ -33,7 +33,6 @@ import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.terasoluna.gfw.common.exception.ExceptionLogger;
-import org.terasoluna.gfw.web.exception.ExceptionLoggingFilter;
 
 public class ExceptionLoggingFilterTest {
 

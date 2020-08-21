@@ -15,8 +15,8 @@
  */
 package org.terasoluna.gfw.common.date;
 
-import static org.hamcrest.core.IsNull.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.core.IsNull.notNullValue;
 
 import org.junit.Test;
 

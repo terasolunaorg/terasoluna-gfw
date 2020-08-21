@@ -20,7 +20,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.terasoluna.gfw.common.exception.ExceptionLevel;
 
 public class DefaultExceptionLevelResolverTest {
 

@@ -21,7 +21,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.terasoluna.gfw.web.token.transaction.TransactionToken;
 
 public class TransactionTokenTest {
 

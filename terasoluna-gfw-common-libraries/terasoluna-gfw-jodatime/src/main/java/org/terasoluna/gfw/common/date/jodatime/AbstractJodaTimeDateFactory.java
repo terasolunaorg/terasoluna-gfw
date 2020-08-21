@@ -15,9 +15,9 @@
  */
 package org.terasoluna.gfw.common.date.jodatime;
 
-import org.terasoluna.gfw.common.date.DefaultClassicDateFactory;
-
 import java.util.Date;
+
+import org.terasoluna.gfw.common.date.DefaultClassicDateFactory;
 
 /**
  * Abstract implementation of {@link org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory}.

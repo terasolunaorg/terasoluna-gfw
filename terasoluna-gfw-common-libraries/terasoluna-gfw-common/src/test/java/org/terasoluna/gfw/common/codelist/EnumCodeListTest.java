@@ -18,10 +18,10 @@ package org.terasoluna.gfw.common.codelist;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.Test;
-
 import java.util.LinkedHashMap;
 import java.util.Map;
+
+import org.junit.Test;
 
 public class EnumCodeListTest {
     public static enum OrderStatus implements EnumCodeList.CodeListItem {

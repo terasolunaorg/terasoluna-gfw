@@ -15,6 +15,13 @@
  */
 package org.terasoluna.gfw.common.message;
 
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.DANGER;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.ERROR;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.INFO;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.SUCCESS;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.WARN;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.WARNING;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -25,8 +32,6 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.springframework.util.StringUtils;
-
-import static org.terasoluna.gfw.common.message.StandardResultMessageType.*;
 
 /**
  * Messages which have {@link ResultMessageType} and list of {@link ResultMessage}

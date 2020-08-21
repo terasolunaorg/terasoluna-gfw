@@ -25,9 +25,6 @@ import java.util.LinkedHashMap;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.terasoluna.gfw.common.exception.BusinessException;
-import org.terasoluna.gfw.common.exception.SimpleMappingExceptionCodeResolver;
-import org.terasoluna.gfw.common.exception.SystemException;
 import org.terasoluna.gfw.common.message.ResultMessages;
 
 /**

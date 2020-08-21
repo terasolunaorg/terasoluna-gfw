@@ -15,11 +15,11 @@
  */
 package org.terasoluna.gfw.common.validator.constraints;
 
+import static java.util.Comparator.comparing;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThrows;
-import static java.util.Comparator.comparing;
 
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.Arrays;

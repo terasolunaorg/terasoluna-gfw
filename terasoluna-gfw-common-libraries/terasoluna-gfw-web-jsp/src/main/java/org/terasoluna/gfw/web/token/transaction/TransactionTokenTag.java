@@ -20,8 +20,6 @@ import javax.servlet.jsp.JspException;
 
 import org.springframework.web.servlet.tags.form.AbstractHtmlElementTag;
 import org.springframework.web.servlet.tags.form.TagWriter;
-import org.terasoluna.gfw.web.token.transaction.TransactionToken;
-import org.terasoluna.gfw.web.token.transaction.TransactionTokenInterceptor;
 
 /**
  * An {@link javax.servlet.jsp.tagext.Tag} implementation that renders transaction token in a hidden tag

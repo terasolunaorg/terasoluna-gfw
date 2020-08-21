@@ -15,15 +15,16 @@
  */
 package org.terasoluna.gfw.common.date.jodatime;
 
+import java.util.concurrent.atomic.AtomicLong;
+
+import javax.sql.DataSource;
+
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.Assert;
-
-import javax.sql.DataSource;
-import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * Concrete Implementation class of {@link org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory}.

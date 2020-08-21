@@ -16,8 +16,8 @@
 package org.terasoluna.gfw.web.token.transaction;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Enumeration;
@@ -39,8 +39,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.terasoluna.gfw.web.token.TokenStringGenerator;
-import org.terasoluna.gfw.web.token.transaction.HttpSessionTransactionTokenStore;
-import org.terasoluna.gfw.web.token.transaction.TransactionToken;
 
 /**
  * Test class for HttpSessionTransactionTokenStore
