@@ -17,7 +17,7 @@ package org.terasoluna.gfw.web.logging.mdc;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.spy;
@@ -35,7 +35,6 @@ import org.junit.Test;
 import org.slf4j.MDC;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.terasoluna.gfw.web.logging.mdc.MDCClearFilter;
 
 public class MDCClearFilterTest {
     /**

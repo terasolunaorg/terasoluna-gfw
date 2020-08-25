@@ -20,7 +20,7 @@ package org.terasoluna.gfw.web.token.transaction;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -30,9 +30,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.junit.Test;
-import org.terasoluna.gfw.web.token.transaction.TransactionToken;
-import org.terasoluna.gfw.web.token.transaction.TransactionTokenInterceptor;
-import org.terasoluna.gfw.web.token.transaction.TransactionTokenRequestDataValueProcessor;
 
 /**
  * Test class for TransactionTokenRequestDataValueProcessor

@@ -16,7 +16,7 @@
 package org.terasoluna.gfw.common.codelist.i18n;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Collections;
 import java.util.Locale;

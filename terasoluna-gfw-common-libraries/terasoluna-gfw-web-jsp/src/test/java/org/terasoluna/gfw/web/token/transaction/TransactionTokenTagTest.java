@@ -16,7 +16,7 @@
 package org.terasoluna.gfw.web.token.transaction;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doThrow;
@@ -31,9 +31,6 @@ import javax.servlet.jsp.PageContext;
 
 import org.junit.Test;
 import org.springframework.web.servlet.tags.form.TagWriter;
-import org.terasoluna.gfw.web.token.transaction.TransactionToken;
-import org.terasoluna.gfw.web.token.transaction.TransactionTokenInterceptor;
-import org.terasoluna.gfw.web.token.transaction.TransactionTokenTag;
 
 /**
  * Test class for TransactionTokenTag

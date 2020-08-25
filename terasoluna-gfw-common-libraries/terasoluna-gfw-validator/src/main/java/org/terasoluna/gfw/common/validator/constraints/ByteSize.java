@@ -32,9 +32,8 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ValidationException;
 
-import org.terasoluna.gfw.common.validator.constraintvalidators.ByteSizeValidator;
-
 import org.terasoluna.gfw.common.validator.constraints.ByteSize.List;
+import org.terasoluna.gfw.common.validator.constraintvalidators.ByteSizeValidator;
 
 /**
  * The annotated element must be a {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte length must

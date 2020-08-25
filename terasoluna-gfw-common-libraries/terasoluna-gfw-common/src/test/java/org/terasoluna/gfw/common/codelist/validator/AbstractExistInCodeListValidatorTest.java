@@ -16,7 +16,7 @@
 package org.terasoluna.gfw.common.codelist.validator;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 
 import java.lang.annotation.Annotation;

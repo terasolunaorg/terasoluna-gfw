@@ -16,7 +16,7 @@
 package org.terasoluna.gfw.common.codelist;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,7 +24,6 @@ import java.util.Map;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.terasoluna.gfw.common.codelist.SimpleMapCodeList;
 
 public class SimpleMapCodeListTest {
 

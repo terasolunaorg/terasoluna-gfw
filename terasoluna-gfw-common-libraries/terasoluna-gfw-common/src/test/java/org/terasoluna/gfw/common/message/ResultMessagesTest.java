@@ -15,8 +15,15 @@
  */
 package org.terasoluna.gfw.common.message;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.fail;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.DANGER;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.ERROR;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.INFO;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.SUCCESS;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.WARN;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.WARNING;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,11 +33,6 @@ import java.util.List;
 import org.junit.Test;
 import org.springframework.core.serializer.support.SerializationFailedException;
 import org.springframework.util.SerializationUtils;
-import org.terasoluna.gfw.common.message.ResultMessage;
-import org.terasoluna.gfw.common.message.ResultMessageType;
-import org.terasoluna.gfw.common.message.ResultMessages;
-
-import static org.terasoluna.gfw.common.message.StandardResultMessageType.*;
 
 public class ResultMessagesTest {
     @Test(expected = IllegalArgumentException.class)

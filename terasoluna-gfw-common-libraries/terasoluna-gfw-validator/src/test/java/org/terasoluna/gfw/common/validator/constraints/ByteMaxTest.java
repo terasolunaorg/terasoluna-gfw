@@ -15,10 +15,11 @@
  */
 package org.terasoluna.gfw.common.validator.constraints;
 
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
 import static java.util.Comparator.comparing;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThrows;
 
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.Arrays;
@@ -29,6 +30,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.UnexpectedTypeException;
 import javax.validation.Validation;
+import javax.validation.ValidationException;
 import javax.validation.Validator;
 
 import org.junit.Before;
@@ -132,9 +134,9 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
      */
     @Test
     public void testSpecifyIllegalCharset() {
-        setExpectedFailedToInitialize(UnsupportedCharsetException.class);
-
-        validator.validate(form, IllegalCharset.class);
+        ValidationException ex = assertThrows(ValidationException.class,
+                () -> validator.validate(form, IllegalCharset.class));
+        assertFailedToInitialize(ex, UnsupportedCharsetException.class);
     }
 
     /**
@@ -144,10 +146,10 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
      */
     @Test
     public void testSpecifyNegativeValue() {
-        setExpectedFailedToInitialize(IllegalArgumentException.class,
+        ValidationException ex = assertThrows(ValidationException.class,
+                () -> validator.validate(form, NegativeValue.class));
+        assertFailedToInitialize(ex, IllegalArgumentException.class,
                 "value[-1] must not be negative value.");
-
-        validator.validate(form, NegativeValue.class);
     }
 
     /**
@@ -155,9 +157,8 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
      */
     @Test
     public void testAnnotateUnexpectedType() {
-        thrown.expect(UnexpectedTypeException.class);
-
-        validator.validate(form, UnexpectedType.class);
+        assertThrows(UnexpectedTypeException.class, () -> validator.validate(
+                form, UnexpectedType.class));
     }
 
     /**

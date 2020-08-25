@@ -15,28 +15,29 @@
  */
 package org.terasoluna.gfw.common.fullhalf;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertThrows;
+
 import java.util.Collections;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 
 public class FullHalfPairsTest {
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void testNullPairs() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("pairs must not be null");
-        new FullHalfPairs(null, null);
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> new FullHalfPairs(null, null));
+        assertThat(ex.getMessage(), is("pairs must not be null"));
     }
 
     @Test
     public void testEmptyPairs() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("pairs must not be empty");
-        new FullHalfPairs(Collections.<FullHalfPair> emptySet(), null);
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> new FullHalfPairs(Collections
+                        .<FullHalfPair> emptySet(), null));
+        assertThat(ex.getMessage(), is("pairs must not be empty"));
     }
 
 }

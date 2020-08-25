@@ -31,8 +31,8 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import org.terasoluna.gfw.common.codepoints.validator.ConsistOfValidator;
 import org.terasoluna.gfw.common.codepoints.ConsistOf.List;
+import org.terasoluna.gfw.common.codepoints.validator.ConsistOfValidator;
 
 /**
  * All code points in the string must be included in any {@link CodePoints} class specified by {@link #value()}.

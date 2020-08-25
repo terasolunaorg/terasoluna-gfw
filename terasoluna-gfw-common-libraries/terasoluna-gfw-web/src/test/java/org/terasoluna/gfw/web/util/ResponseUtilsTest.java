@@ -16,7 +16,9 @@
 package org.terasoluna.gfw.web.util;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.fail;
 
 import java.lang.reflect.Constructor;
 
@@ -57,6 +59,6 @@ public class ResponseUtilsTest {
         Constructor<ResponseUtils> c = ResponseUtils.class
                 .getDeclaredConstructor();
         c.setAccessible(true);
-        assertNotNull(c.newInstance());
+        assertThat(c.newInstance(), is(notNullValue()));
     }
 }

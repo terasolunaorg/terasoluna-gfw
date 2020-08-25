@@ -15,7 +15,12 @@
  */
 package org.terasoluna.gfw.common.fullhalf;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 
 /**
  * Convert which converts from fullwidth to halfwidth and from halfwidth to fullwidth. This implementation does not have the

@@ -31,11 +31,10 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
+import org.terasoluna.gfw.common.codelist.ExistInCodeList.List;
+import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharSequence;
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharacter;
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForNumber;
-import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharSequence;
-
-import org.terasoluna.gfw.common.codelist.ExistInCodeList.List;
 
 /**
  * Custom annotation that provides the functionality to check the existence of a code in the specified codelist.

@@ -17,20 +17,21 @@ package org.terasoluna.gfw.common.codepoints;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.sameInstance;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertThrows;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.terasoluna.gfw.common.codepoints.catalog.ABCD;
 import org.terasoluna.gfw.common.codepoints.catalog.AbstractCodePoints;
 import org.terasoluna.gfw.common.codepoints.catalog.IllegalCodePoints;
 
 public class CodePointsTest {
-    @Rule
-    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void testContainsAll() {
@@ -463,7 +464,7 @@ public class CodePointsTest {
         boolean result = new CodePoints(allowedCodePointSet).containsAll(
                 testStr);
 
-        assertFalse(result);
+        assertThat(result, is(false));
     }
 
     @Test
@@ -472,7 +473,7 @@ public class CodePointsTest {
                 + SURROGATE_PAIR_CHAR_2000B;
         boolean result = new CodePoints("あいうえお").containsAll(testStr);
 
-        assertFalse(result);
+        assertThat(result, is(false));
     }
 
     @Test
@@ -490,7 +491,7 @@ public class CodePointsTest {
         boolean result = new CodePoints(allowedCodePointSet).containsAll(
                 testStr);
 
-        assertFalse(result);
+        assertThat(result, is(false));
     }
 
     @Test
@@ -615,7 +616,7 @@ public class CodePointsTest {
                 .allExcludedCodePoints(testStr);
 
         assertThat(result.size(), is(1));
-        assertTrue(result.contains("か".codePointAt(0)));
+        assertThat(result.contains("か".codePointAt(0)), is(true));
     }
 
     @Test
@@ -655,17 +656,17 @@ public class CodePointsTest {
 
     @Test
     public void testOf_illegal_access() throws Exception {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("public default constructor not found");
-        CodePoints.of(IllegalCodePoints.class);
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> CodePoints.of(IllegalCodePoints.class));
+        assertThat(ex.getMessage(), is("public default constructor not found"));
     }
 
     @Test
     public void testOf_instantiation_fail() {
-        expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage(
-                "exception occurred while initializing");
-        CodePoints.of(AbstractCodePoints.class);
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> CodePoints.of(AbstractCodePoints.class));
+        assertThat(ex.getMessage(), is(
+                "exception occurred while initializing"));
     }
 
     @Test

@@ -16,10 +16,8 @@
 package org.terasoluna.gfw.web.pagination;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -98,8 +96,8 @@ public class PaginationInfoTest {
                 page));
         assertThat(Integer.valueOf(attributesMap.get("size").toString()), is(
                 size));
-        assertNull(attributesMap.get("sortOrderProperty"));
-        assertNull(attributesMap.get("sortOrderDirection"));
+        assertThat(attributesMap.get("sortOrderProperty"), is(nullValue()));
+        assertThat(attributesMap.get("sortOrderDirection"), is(nullValue()));
     }
 
     /**
@@ -147,8 +145,8 @@ public class PaginationInfoTest {
                 page));
         assertThat(Integer.valueOf(attributesMap.get("size").toString()), is(
                 size));
-        assertNull(attributesMap.get("sortOrderProperty"));
-        assertNull(attributesMap.get("sortOrderDirection"));
+        assertThat(attributesMap.get("sortOrderProperty"), is(nullValue()));
+        assertThat(attributesMap.get("sortOrderDirection"), is(nullValue()));
     }
 
     @Test
@@ -284,7 +282,7 @@ public class PaginationInfoTest {
         boolean result = info.isFirstPage();
 
         // assert
-        assertFalse(result);
+        assertThat(result, is(false));
     }
 
     /**
@@ -301,7 +299,7 @@ public class PaginationInfoTest {
         boolean result = info.isFirstPage();
 
         // assert
-        assertTrue(result);
+        assertThat(result, is(true));
     }
 
     /**
@@ -315,7 +313,7 @@ public class PaginationInfoTest {
         boolean result = info.isLastPage();
 
         // assert
-        assertFalse(result);
+        assertThat(result, is(false));
     }
 
     /**
@@ -333,7 +331,7 @@ public class PaginationInfoTest {
         boolean result = info.isLastPage();
 
         // assert
-        assertTrue(result);
+        assertThat(result, is(true));
     }
 
     /**
@@ -347,7 +345,7 @@ public class PaginationInfoTest {
         boolean result = info.isCurrent(5);
 
         // assert
-        assertTrue(result);
+        assertThat(result, is(true));
     }
 
     /**
@@ -361,7 +359,7 @@ public class PaginationInfoTest {
         boolean result = info.isCurrent(1);
 
         // assert
-        assertFalse(result);
+        assertThat(result, is(false));
     }
 
     /**

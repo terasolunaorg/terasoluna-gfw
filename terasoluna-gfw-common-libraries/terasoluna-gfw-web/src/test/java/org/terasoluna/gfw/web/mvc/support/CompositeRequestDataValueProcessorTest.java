@@ -15,9 +15,9 @@
  */
 package org.terasoluna.gfw.web.mvc.support;
 
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.ArgumentMatchers.nullable;
@@ -173,7 +173,7 @@ public class CompositeRequestDataValueProcessorTest {
 
         Map<String, String> map = compositeRequestDataValueProcessor
                 .getExtraHiddenFields(request);
-        assertNotNull(map);
+        assertThat(map, is(notNullValue()));
     }
 
     @Test
@@ -186,7 +186,7 @@ public class CompositeRequestDataValueProcessorTest {
 
         Map<String, String> map = compositeRequestDataValueProcessor
                 .getExtraHiddenFields(request);
-        assertNotNull(map);
+        assertThat(map, is(notNullValue()));
     }
 
     @Test
@@ -195,7 +195,7 @@ public class CompositeRequestDataValueProcessorTest {
         compositeRequestDataValueProcessor = new CompositeRequestDataValueProcessor();
         Map<String, String> map = compositeRequestDataValueProcessor
                 .getExtraHiddenFields(request);
-        assertNotNull(map);
+        assertThat(map, is(notNullValue()));
     }
 
     @Test

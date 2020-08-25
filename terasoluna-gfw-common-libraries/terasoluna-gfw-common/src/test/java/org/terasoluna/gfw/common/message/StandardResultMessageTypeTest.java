@@ -15,11 +15,10 @@
  */
 package org.terasoluna.gfw.common.message;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.Test;
-import org.terasoluna.gfw.common.message.StandardResultMessageType;
 
 public class StandardResultMessageTypeTest {
 

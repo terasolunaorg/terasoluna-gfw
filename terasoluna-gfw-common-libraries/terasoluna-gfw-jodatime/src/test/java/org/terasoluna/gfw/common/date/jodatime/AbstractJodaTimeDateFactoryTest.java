@@ -16,7 +16,7 @@
 package org.terasoluna.gfw.common.date.jodatime;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.sql.Time;
 import java.sql.Timestamp;

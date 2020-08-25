@@ -15,8 +15,9 @@
  */
 package org.terasoluna.gfw.web.logging.mdc;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import javax.servlet.ServletException;
 

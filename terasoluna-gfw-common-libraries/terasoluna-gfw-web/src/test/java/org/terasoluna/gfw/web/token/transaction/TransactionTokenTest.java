@@ -16,14 +16,11 @@
 package org.terasoluna.gfw.web.token.transaction;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.terasoluna.gfw.web.token.transaction.TransactionToken;
 
 public class TransactionTokenTest {
 
@@ -82,7 +79,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertTrue(valid);
+        assertThat(valid, is(true));
     }
 
     @Test
@@ -92,7 +89,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertFalse(valid);
+        assertThat(valid, is(false));
     }
 
     @Test
@@ -102,7 +99,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertFalse(valid);
+        assertThat(valid, is(false));
     }
 
     @Test
@@ -112,7 +109,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertFalse(valid);
+        assertThat(valid, is(false));
     }
 
     @Test
@@ -122,7 +119,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertFalse(valid);
+        assertThat(valid, is(false));
     }
 
     @Test
@@ -132,7 +129,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertFalse(valid);
+        assertThat(valid, is(false));
     }
 
     @Test
@@ -142,7 +139,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertFalse(valid);
+        assertThat(valid, is(false));
     }
 
     @Test
@@ -152,7 +149,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertFalse(valid);
+        assertThat(valid, is(false));
     }
 
     @Test

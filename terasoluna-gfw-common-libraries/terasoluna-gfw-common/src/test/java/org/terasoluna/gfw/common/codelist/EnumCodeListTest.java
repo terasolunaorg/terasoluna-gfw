@@ -15,13 +15,13 @@
  */
 package org.terasoluna.gfw.common.codelist;
 
-import org.junit.Test;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import org.junit.Test;
 
 public class EnumCodeListTest {
     public static enum OrderStatus implements EnumCodeList.CodeListItem {

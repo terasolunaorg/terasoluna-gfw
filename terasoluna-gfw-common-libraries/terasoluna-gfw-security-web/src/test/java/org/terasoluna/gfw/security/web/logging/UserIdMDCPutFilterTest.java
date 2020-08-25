@@ -16,7 +16,8 @@
 package org.terasoluna.gfw.security.web.logging;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -110,7 +111,7 @@ public class UserIdMDCPutFilterTest {
     public void testGetMDCValueNullAuthentication() {
         UserIdMDCPutFilter mdcPutFilter = new UserIdMDCPutFilter();
         String mdcValueStr = mdcPutFilter.getMDCValue(request, response);
-        assertNull(mdcValueStr);
+        assertThat(mdcValueStr, is(nullValue()));
     }
 
     @Test

@@ -15,8 +15,9 @@
  */
 package org.terasoluna.gfw.web.mvc.support;
 
-import static org.junit.Assert.*;
-import static org.hamcrest.core.Is.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Map;
 
@@ -59,7 +60,7 @@ public class RequestDataValueProcessorAdaptorTest {
     public void testGetExtraHiddenFields() {
         Map<String, String> map = requestDataValueProcessorAdaptor
                 .getExtraHiddenFields(request);
-        assertNull(map);
+        assertThat(map, is(nullValue()));
     }
 
     @Test

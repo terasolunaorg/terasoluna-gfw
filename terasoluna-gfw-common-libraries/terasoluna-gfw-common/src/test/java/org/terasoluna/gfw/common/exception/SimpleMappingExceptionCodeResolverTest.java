@@ -17,7 +17,7 @@ package org.terasoluna.gfw.common.exception;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.io.FileNotFoundException;
 import java.text.ParseException;
@@ -25,9 +25,6 @@ import java.util.LinkedHashMap;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.terasoluna.gfw.common.exception.BusinessException;
-import org.terasoluna.gfw.common.exception.SimpleMappingExceptionCodeResolver;
-import org.terasoluna.gfw.common.exception.SystemException;
 import org.terasoluna.gfw.common.message.ResultMessages;
 
 /**

@@ -29,8 +29,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
 import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 /**
  * Interceptor for log output of performance measurement<br>
@@ -60,7 +60,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
  * Set {@link TraceLoggingInterceptor} as definition of interceptor class.<br>
  * By specifying nano-seconds in value of {@code warnHandlingNanos}, timing of warning log output can be changed.<br>
  */
-public class TraceLoggingInterceptor extends HandlerInterceptorAdapter {
+public class TraceLoggingInterceptor implements HandlerInterceptor {
 
     /**
      * logger
