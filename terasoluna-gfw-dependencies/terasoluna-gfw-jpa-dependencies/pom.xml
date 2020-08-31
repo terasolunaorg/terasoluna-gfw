@@ -43,6 +43,12 @@
     <dependency>
       <groupId>org.jadira.usertype</groupId>
       <artifactId>usertype.core</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-entitymanager</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <!-- == End Joda-Time == -->
     <!-- == End JPA == -->
