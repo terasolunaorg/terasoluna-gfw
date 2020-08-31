@@ -532,8 +532,8 @@
     <!-- == Spring Security OAuth == -->
     <spring-security-oauth.version>2.4.0.RELEASE</spring-security-oauth.version>
     <!-- == MyBatis3 == -->
-    <org.mybatis.version>3.5.3</org.mybatis.version>
-    <org.mybatis.spring.version>2.0.3</org.mybatis.spring.version>
+    <org.mybatis.version>3.5.5</org.mybatis.version>
+    <org.mybatis.spring.version>2.0.5</org.mybatis.spring.version>
     <!-- == Dozer== -->
     <dozer.version>6.5.0</dozer.version>
     <!-- == Joda-Time == -->
