@@ -272,7 +272,7 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
     private static interface UnexpectedType {
     };
 
-    public class ByteMinTestForm {
+    public static class ByteMinTestForm {
         @ByteMin(6)
         @ByteMin(value = 6, charset = "shift-jis", groups = {
                 SpecifyCharset.class })

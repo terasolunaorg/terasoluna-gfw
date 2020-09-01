@@ -272,7 +272,7 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
     private static interface UnexpectedType {
     };
 
-    public class ByteMaxTestForm {
+    public static class ByteMaxTestForm {
         @ByteMax(6)
         @ByteMax(value = 6, charset = "shift-jis", groups = {
                 SpecifyCharset.class })

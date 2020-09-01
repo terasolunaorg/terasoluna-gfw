@@ -26,6 +26,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import javax.validation.ConstraintViolation;
@@ -35,6 +36,10 @@ import javax.validation.Validator;
 import org.junit.Test;
 
 public class ConsistOfValidatorTest {
+
+    public ConsistOfValidatorTest() {
+        Locale.setDefault(Locale.ENGLISH);
+    }
 
     @Test
     public void testIsValid_all_valid() throws Exception {
@@ -406,6 +411,24 @@ public class ConsistOfValidatorTest {
         assertThat(violation.getMessage(), is(
                 "not consist of specified code points"));
 
+    }
+
+    @Test
+    public void testIsValid_message_japanese() throws Exception {
+        Locale.setDefault(Locale.JAPANESE);
+        Name_Simple name = new Name_Simple("abc", "GHI");
+        Validator validator = Validation.buildDefaultValidatorFactory()
+                .getValidator();
+        Set<ConstraintViolation<Name_Simple>> violations = validator.validate(
+                name);
+
+        assertThat(violations, is(notNullValue()));
+        assertThat(violations.size(), is(1));
+
+        ConstraintViolation<Name_Simple> v = violations.iterator().next();
+        assertThat(v.getPropertyPath().toString(), is("firstName"));
+        assertThat(v.getMessage(), is("指定されたコードポイントで構成されていません"));
+        Locale.setDefault(Locale.ENGLISH);
     }
 
 }

@@ -23,6 +23,7 @@ import static org.junit.Assert.fail;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
@@ -51,6 +52,10 @@ public class ExistInCodeListTest {
 
     @Inject
     CodeService codeService;
+
+    public ExistInCodeListTest() {
+        Locale.setDefault(Locale.ENGLISH);
+    }
 
     @Before
     public void setUp() throws Exception {
@@ -417,6 +422,20 @@ public class ExistInCodeListTest {
 
         assertThat(violations, is(notNullValue()));
         assertThat(violations.size(), is(2));
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void test_messageJapanese() {
+        Locale.setDefault(Locale.JAPANESE);
+        Customer c = new Customer();
+        c.gender = 'G';
+        c.lang = "JP";
+        Set<ConstraintViolation<Customer>> result = validator.validate(c);
+        assertThat(result.size(), is(1));
+        assertThat(((ConstraintViolation<Customer>) result.toArray()[0])
+                .getMessage(), is("CD_GENDER にありません"));
+        Locale.setDefault(Locale.ENGLISH);
     }
 
     @Validated
