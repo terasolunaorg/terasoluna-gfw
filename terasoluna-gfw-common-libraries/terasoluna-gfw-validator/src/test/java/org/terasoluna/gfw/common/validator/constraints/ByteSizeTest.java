@@ -424,7 +424,7 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
     private static interface MaxLowerThanMin {
     };
 
-    public class ByteSizeTestForm {
+    public static class ByteSizeTestForm {
         @ByteSize(min = 3, max = 6)
         @ByteSize(min = 3, max = 6, charset = "shift-jis", groups = {
                 SpecifyCharset.class })

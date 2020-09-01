@@ -621,7 +621,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
                     UnknownRight.class }),
             @Compare(left = "objectProperty", right = "right", operator = Operator.EQUAL, groups = {
                     NotComparableLeft.class }) })
-    public class CompareTestForm {
+    public static class CompareTestForm {
         private Integer left;
 
         private Integer right;
