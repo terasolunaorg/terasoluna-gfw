@@ -424,20 +424,6 @@ public class ExistInCodeListTest {
         assertThat(violations.size(), is(2));
     }
 
-    @SuppressWarnings("unchecked")
-    @Test
-    public void test_messageJapanese() {
-        Locale.setDefault(Locale.JAPANESE);
-        Customer c = new Customer();
-        c.gender = 'G';
-        c.lang = "JP";
-        Set<ConstraintViolation<Customer>> result = validator.validate(c);
-        assertThat(result.size(), is(1));
-        assertThat(((ConstraintViolation<Customer>) result.toArray()[0])
-                .getMessage(), is("CD_GENDER にありません"));
-        Locale.setDefault(Locale.ENGLISH);
-    }
-
     @Validated
     public interface CodeService {
         String getGenderLabel(

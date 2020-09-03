@@ -413,22 +413,4 @@ public class ConsistOfValidatorTest {
 
     }
 
-    @Test
-    public void testIsValid_message_japanese() throws Exception {
-        Locale.setDefault(Locale.JAPANESE);
-        Name_Simple name = new Name_Simple("abc", "GHI");
-        Validator validator = Validation.buildDefaultValidatorFactory()
-                .getValidator();
-        Set<ConstraintViolation<Name_Simple>> violations = validator.validate(
-                name);
-
-        assertThat(violations, is(notNullValue()));
-        assertThat(violations.size(), is(1));
-
-        ConstraintViolation<Name_Simple> v = violations.iterator().next();
-        assertThat(v.getPropertyPath().toString(), is("firstName"));
-        assertThat(v.getMessage(), is("指定されたコードポイントで構成されていません"));
-        Locale.setDefault(Locale.ENGLISH);
-    }
-
 }
