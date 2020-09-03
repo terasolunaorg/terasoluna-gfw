@@ -530,7 +530,7 @@
     <!-- == Spring Boot == -->
     <org.springframework.boot.version>2.4.0-M2</org.springframework.boot.version>
     <!-- == Spring Security OAuth == -->
-    <spring-security-oauth.version>2.4.0.RELEASE</spring-security-oauth.version>
+    <spring-security-oauth.version>2.5.0.RELEASE</spring-security-oauth.version>
     <!-- == MyBatis3 == -->
     <org.mybatis.version>3.5.5</org.mybatis.version>
     <org.mybatis.spring.version>2.0.5</org.mybatis.spring.version>
