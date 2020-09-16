@@ -169,8 +169,11 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
      */
     public ResultMessages addAll(Collection<ResultMessage> messages) {
         if (messages != null) {
-            for (ResultMessage message : messages) {
-                add(message);
+            // prevent fail fast
+            if (messages != list) {
+                for (ResultMessage message : messages) {
+                    add(message);
+                }
             }
         } else {
             throw new IllegalArgumentException("messages must not be null");
