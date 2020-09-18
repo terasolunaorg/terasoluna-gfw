@@ -107,7 +107,7 @@ public class TypesResultMessages implements Serializable, Iterable<ResultMessage
      */
     @Override
     public String toString() {
-        return "ResultMessages [main type=" + mainType + ", map=" + map + "]";
+        return "TypesResultMessages [main type=" + mainType + ", map=" + map + "]";
     }
 
     /**
