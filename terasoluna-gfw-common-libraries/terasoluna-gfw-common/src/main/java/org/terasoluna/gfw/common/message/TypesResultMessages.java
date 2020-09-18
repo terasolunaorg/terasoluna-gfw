@@ -131,6 +131,26 @@ public class TypesResultMessages implements Serializable, Iterable<ResultMessage
         push(new ResultMessages(type).add(code, args));
         return this;
     }
+    
+    /**
+     * add message to create by type and add map
+     * @param message message
+     * @return this result types messages
+     */
+    public TypesResultMessages add(ResultMessage message) {
+        return add(mainType, message);
+    }
+
+    /**
+     * add message to create by type and add map
+     * @param type message type
+     * @param message message
+     * @return this result types messages
+     */
+    public TypesResultMessages add(ResultMessageType type, ResultMessage message) {
+        push(new ResultMessages(type).add(message));
+        return this;
+    }
 
     /**
      * add a ResultMessages
