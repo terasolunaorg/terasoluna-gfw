@@ -181,20 +181,6 @@ public class TypesResultMessages implements Serializable, Iterable<ResultMessage
     }
 
     /**
-     * add all types resultMessages (excludes <code>null</code> types resultMessages)<br>
-     * <p>
-     * if <code>types resultMessages</code> is <code>null</code>, no types resultMessages is added.
-     * </p>
-     * @param typesMessages types messages to add
-     * @return this result types messages
-     */
-    public TypesResultMessages addAll(Collection<ResultMessages> typesMessages) {
-        Assert.notNull(typesMessages, "types resultMessages must not be null");
-        typesMessages.forEach(resultMessages -> add(resultMessages));
-        return this;
-    }
-
-    /**
      * Returns {@link Iterator} instance that iterates over main type list of {@link ResultMessage}
      * @see java.lang.Iterable#iterator()
      */
@@ -366,7 +352,7 @@ public class TypesResultMessages implements Serializable, Iterable<ResultMessage
      */
     @Override
     public void putAll(Map<? extends ResultMessageType, ? extends ResultMessages> map) {
-        map.forEach((k, v) -> put(k, v));
+        this.map.putAll(map);
     }
 
     /**
