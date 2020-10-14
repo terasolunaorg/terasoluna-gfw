@@ -117,6 +117,12 @@
       <rtexprvalue>true</rtexprvalue>
     </attribute>
     <attribute>
+      <description>Value of "class" attribute of anchor tag of pagination</description>
+      <name>anchorClass</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+    <attribute>
       <description>Display text of the link of back to the top</description>
       <name>firstLinkText</name>
       <required>false</required>

@@ -145,6 +145,12 @@ public class PaginationInfo {
     public static final String DEFAULT_INNER_CLASS = "";
 
     /**
+     * Value of "class" attribute of anchor tag of pagination
+     * @since 5.7.0
+     */
+    public static final String DEFAULT_A_CLASS = "";
+
+    /**
      * Display text of the link of back to the top
      */
     public static final String DEFAULT_FIRST_LINK_TEXT = "&lt;&lt;";

@@ -24,6 +24,11 @@ package org.terasoluna.gfw.common.message;
  * <li><code>warn</code>(Deprecated from 5.0.0, will be removed in the future)</li>
  * <li><code>warning(Added from 5.0.0)</code></li>
  * <li><code>error</code></li>
+ * <li><code>danger</code></li>
+ * <li><code>primary(Added from 5.7.0)</code></li>
+ * <li><code>secondary(Added from 5.7.0)</code></li>
+ * <li><code>light(Added from 5.7.0)</code></li>
+ * <li><code>dark(Added from 5.7.0)</code></li>
  * </ul>
  * The level of <code>danger</code> is as same as <code>error</code> and <code>danger</code> is usually used as alias for
  * <code>error</code>.
@@ -54,7 +59,27 @@ public enum StandardResultMessageType implements ResultMessageType {
     /**
      * message type is <code>danger</code>.
      */
-    DANGER("danger");
+    DANGER("danger"),
+    /**
+     * message type is <code>primary</code>.
+     * @since 5.7.0
+     */
+    PRIMARY("primary"),
+    /**
+     * message type is <code>secondary</code>.
+     * @since 5.7.0
+     */
+    SECONDARY("secondary"),
+    /**
+     * message type is <code>light</code>.
+     * @since 5.7.0
+     */
+    LIGHT("light"),
+    /**
+     * message type is <code>dark</code>.
+     * @since 5.7.0
+     */
+    DARK("dark");
 
     /**
      * message type

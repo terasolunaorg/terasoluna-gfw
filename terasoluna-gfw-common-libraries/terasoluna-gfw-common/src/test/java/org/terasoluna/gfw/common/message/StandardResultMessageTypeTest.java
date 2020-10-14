@@ -59,4 +59,30 @@ public class StandardResultMessageTypeTest {
         assertThat(StandardResultMessageType.WARNING.toString(), is("warning"));
     }
 
+    @Test
+    public void testPrimary() {
+        assertThat(StandardResultMessageType.PRIMARY.getType(), is("primary"));
+        assertThat(StandardResultMessageType.PRIMARY.toString(), is("primary"));
+    }
+
+    @Test
+    public void testSecondary() {
+        assertThat(StandardResultMessageType.SECONDARY.getType(), is(
+                "secondary"));
+        assertThat(StandardResultMessageType.SECONDARY.toString(), is(
+                "secondary"));
+    }
+
+    @Test
+    public void testLight() {
+        assertThat(StandardResultMessageType.LIGHT.getType(), is("light"));
+        assertThat(StandardResultMessageType.LIGHT.toString(), is("light"));
+    }
+
+    @Test
+    public void testDark() {
+        assertThat(StandardResultMessageType.DARK.getType(), is("dark"));
+        assertThat(StandardResultMessageType.DARK.toString(), is("dark"));
+    }
+
 }

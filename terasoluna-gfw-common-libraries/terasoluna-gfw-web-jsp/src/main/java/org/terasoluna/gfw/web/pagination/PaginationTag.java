@@ -93,6 +93,12 @@ public class PaginationTag extends RequestContextAwareTag {
     private String innerElementClass = PaginationInfo.DEFAULT_INNER_CLASS;
 
     /**
+     * Value of "class" attribute of anchor tag of pagination
+     * @since 5.7.0
+     */
+    private String anchorClass = PaginationInfo.DEFAULT_A_CLASS;
+
+    /**
      * Display text of the link of back to the top
      */
     private String firstLinkText = PaginationInfo.DEFAULT_FIRST_LINK_TEXT;
@@ -183,6 +189,10 @@ public class PaginationTag extends RequestContextAwareTag {
             String value) throws JspException {
         if (StringUtils.hasText(href)) {
             tagWriter.startTag(PaginationInfo.A_ELM);
+            if (StringUtils.hasText(anchorClass)) {
+                tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
+                        anchorClass);
+            }
             tagWriter.writeAttribute(PaginationInfo.HREF_ATTR, href);
             tagWriter.appendValue(value);
             tagWriter.endTag(true);
@@ -393,6 +403,7 @@ public class PaginationTag extends RequestContextAwareTag {
         this.outerElementClass = null;
         this.innerElement = null;
         this.innerElementClass = null;
+        this.anchorClass = null;
         this.firstLinkText = null;
         this.previousLinkText = null;
         this.nextLinkText = null;
@@ -507,6 +518,15 @@ public class PaginationTag extends RequestContextAwareTag {
      */
     public void setInnerElementClass(String innerElementClass) {
         this.innerElementClass = innerElementClass;
+    }
+
+    /**
+     * Set value of "class" attribute of anchor tag of pagination <br>
+     * @param anchorClass Value of "class" attribute of anchor tag of pagination
+     * @since 5.7.0
+     */
+    public void setAnchorClass(String anchorClass) {
+        this.anchorClass = anchorClass;
     }
 
     /**
