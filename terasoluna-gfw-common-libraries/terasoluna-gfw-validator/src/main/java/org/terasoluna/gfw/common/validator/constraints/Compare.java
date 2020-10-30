@@ -16,14 +16,12 @@
 package org.terasoluna.gfw.common.validator.constraints;
 
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
-import static java.lang.annotation.ElementType.CONSTRUCTOR;
-import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.METHOD;
-import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.ElementType.TYPE_USE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Documented;
+import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
@@ -31,6 +29,7 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ValidationException;
 
+import org.terasoluna.gfw.common.validator.constraints.Compare.List;
 import org.terasoluna.gfw.common.validator.constraintvalidators.CompareValidator;
 
 /**
@@ -53,8 +52,9 @@ import org.terasoluna.gfw.common.validator.constraintvalidators.CompareValidator
  */
 @Documented
 @Constraint(validatedBy = { CompareValidator.class })
-@Target({ TYPE, ANNOTATION_TYPE })
+@Target({ TYPE, ANNOTATION_TYPE, TYPE_USE })
 @Retention(RUNTIME)
+@Repeatable(List.class)
 public @interface Compare {
 
     /**
@@ -108,7 +108,7 @@ public @interface Compare {
      * @since 5.1.0
      */
     @Documented
-    @Target({ METHOD, FIELD, TYPE, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER })
+    @Target({ TYPE, ANNOTATION_TYPE, TYPE_USE })
     @Retention(RUNTIME)
     @interface List {
         /**
