@@ -15,12 +15,19 @@
  */
 package org.terasoluna.gfw.common.validator.constraints;
 
+import static org.hamcrest.CoreMatchers.allOf;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.hasToString;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThat;
 
 import java.beans.IntrospectionException;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Path.PropertyNode;
@@ -514,6 +521,75 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     }
 
     /**
+     * all values in the collection are valid.
+     */
+    @Test
+    public void testCollectionValid() {
+        form.setListProperty(Arrays.asList(new Pair(100, 100),
+                new Pair(100, 100)));
+
+        violations = validator.validate(form);
+        assertThat(violations.size(), is(0));
+    }
+
+    /**
+     * first value in the collection is invalid.
+     */
+    @Test
+    public void testCollectionFirstInvalid() {
+        form.setListProperty(Arrays.asList(new Pair(101, 100),
+                new Pair(100, 100)));
+
+        violations = validator.validate(form);
+        assertThat(violations.size(), is(1));
+        assertThat(violations, contains(allOf( //
+                hasProperty("propertyPath", hasToString(
+                        "listProperty[0].<list element>.left")), //
+                hasProperty("message", is(String.format(
+                        MESSAGE_VALIDATION_ERROR, "left", "right"))))));
+    }
+
+    /**
+     * last value in the collection is invalid.
+     */
+    @Test
+    public void testCollectionLastInvalid() {
+        form.setListProperty(Arrays.asList(new Pair(100, 100),
+                new Pair(100, 101)));
+
+        violations = validator.validate(form);
+        assertThat(violations.size(), is(1));
+        assertThat(violations, contains(allOf( //
+                hasProperty("propertyPath", hasToString(
+                        "listProperty[1].<list element>.left")), //
+                hasProperty("message", is(String.format(
+                        MESSAGE_VALIDATION_ERROR, "left", "right"))))));
+    }
+
+    /**
+     * all values in the collection are invalid.
+     */
+    @Test
+    public void testCollectionAllInvalid() {
+        form.setListProperty(Arrays.asList(new Pair(101, 100),
+                new Pair(100, 101)));
+
+        violations = validator.validate(form);
+        assertThat(violations.size(), is(2));
+        assertThat(violations, containsInAnyOrder( //
+                allOf( //
+                        hasProperty("propertyPath", hasToString(
+                                "listProperty[0].<list element>.left")), //
+                        hasProperty("message", is(String.format(
+                                MESSAGE_VALIDATION_ERROR, "left", "right")))), //
+                allOf( //
+                        hasProperty("propertyPath", hasToString(
+                                "listProperty[1].<list element>.left")), //
+                        hasProperty("message", is(String.format(
+                                MESSAGE_VALIDATION_ERROR, "left", "right"))))));
+    }
+
+    /**
      * Validation group operator not equal.
      */
     private static interface NotEqual {
@@ -591,34 +667,33 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     private static interface NotComparableLeft {
     };
 
-    @Compare.List({
-            @Compare(left = "left", right = "right", operator = Operator.EQUAL),
-            @Compare(left = "left", right = "right", operator = Operator.NOT_EQUAL, groups = {
-                    NotEqual.class }),
-            @Compare(left = "left", right = "right", operator = Operator.GREATER_THAN_OR_EQUAL, groups = {
-                    GreaterThanOrEqual.class }),
-            @Compare(left = "left", right = "right", operator = Operator.GREATER_THAN, groups = {
-                    GreaterThan.class }),
-            @Compare(left = "left", right = "right", operator = Operator.LESS_THAN_OR_EQUAL, groups = {
-                    LessThanOrEqual.class }),
-            @Compare(left = "left", right = "right", operator = Operator.LESS_THAN, groups = {
-                    LessThan.class }),
-            @Compare(left = "left", right = "right", operator = Operator.EQUAL, requireBoth = true, groups = {
-                    RequireBoth.class }),
-            @Compare(left = "left", right = "right", operator = Operator.EQUAL, requireBoth = false, groups = {
-                    RequireEither.class }),
-            @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.PROPERTY, groups = {
-                    NodeProperty.class }),
-            @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.ROOT_BEAN, groups = {
-                    PathRootBean.class }),
-            @Compare(left = "left", right = "stringProperty", operator = Operator.EQUAL, groups = {
-                    TypeUnmatch.class }),
-            @Compare(left = "unknown", right = "right", operator = Operator.EQUAL, groups = {
-                    UnknownLeft.class }),
-            @Compare(left = "left", right = "unknown", operator = Operator.EQUAL, groups = {
-                    UnknownRight.class }),
-            @Compare(left = "objectProperty", right = "right", operator = Operator.EQUAL, groups = {
-                    NotComparableLeft.class }) })
+    @Compare(left = "left", right = "right", operator = Operator.EQUAL)
+    @Compare(left = "left", right = "right", operator = Operator.NOT_EQUAL, groups = {
+            NotEqual.class })
+    @Compare(left = "left", right = "right", operator = Operator.GREATER_THAN_OR_EQUAL, groups = {
+            GreaterThanOrEqual.class })
+    @Compare(left = "left", right = "right", operator = Operator.GREATER_THAN, groups = {
+            GreaterThan.class })
+    @Compare(left = "left", right = "right", operator = Operator.LESS_THAN_OR_EQUAL, groups = {
+            LessThanOrEqual.class })
+    @Compare(left = "left", right = "right", operator = Operator.LESS_THAN, groups = {
+            LessThan.class })
+    @Compare(left = "left", right = "right", operator = Operator.EQUAL, requireBoth = true, groups = {
+            RequireBoth.class })
+    @Compare(left = "left", right = "right", operator = Operator.EQUAL, requireBoth = false, groups = {
+            RequireEither.class })
+    @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.PROPERTY, groups = {
+            NodeProperty.class })
+    @Compare(left = "left", right = "right", operator = Operator.EQUAL, node = Node.ROOT_BEAN, groups = {
+            PathRootBean.class })
+    @Compare(left = "left", right = "stringProperty", operator = Operator.EQUAL, groups = {
+            TypeUnmatch.class })
+    @Compare(left = "unknown", right = "right", operator = Operator.EQUAL, groups = {
+            UnknownLeft.class })
+    @Compare(left = "left", right = "unknown", operator = Operator.EQUAL, groups = {
+            UnknownRight.class })
+    @Compare(left = "objectProperty", right = "right", operator = Operator.EQUAL, groups = {
+            NotComparableLeft.class })
     public class CompareTestForm {
         private Integer left;
 
@@ -627,6 +702,8 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
         private String stringProperty;
 
         private Object objectProperty;
+
+        private List<@Compare(left = "left", right = "right", operator = Operator.EQUAL) Pair> listProperty;
 
         public Integer getLeft() {
             return left;
@@ -658,6 +735,41 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
 
         public void setObjectProperty(Object objectProperty) {
             this.objectProperty = objectProperty;
+        }
+
+        public List<Pair> getListProperty() {
+            return listProperty;
+        }
+
+        public void setListProperty(List<Pair> listProperty) {
+            this.listProperty = listProperty;
+        }
+    }
+
+    public static class Pair {
+        private Integer left;
+
+        private Integer right;
+
+        public Pair(Integer left, Integer right) {
+            this.left = left;
+            this.right = right;
+        }
+
+        public Integer getLeft() {
+            return left;
+        }
+
+        public void setLeft(Integer left) {
+            this.left = left;
+        }
+
+        public Integer getRight() {
+            return right;
+        }
+
+        public void setRight(Integer right) {
+            this.right = right;
         }
     }
 }
