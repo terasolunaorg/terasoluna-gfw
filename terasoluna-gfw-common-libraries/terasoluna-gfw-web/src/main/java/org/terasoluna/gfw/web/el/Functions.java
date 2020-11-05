@@ -23,6 +23,8 @@ import org.springframework.beans.BeanWrapper;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.web.util.UriUtils;
 import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
@@ -168,7 +170,7 @@ public final class Functions {
      * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986 3.4.Query</a>
      */
     public static String u(String value) {
-        if (value == null || value.isEmpty()) {
+        if (!StringUtils.hasLength(value)) {
             return "";
         }
         return extraEncodeQuery(UriUtils.encodeQueryParam(value, "UTF-8"));
@@ -180,7 +182,7 @@ public final class Functions {
      * @return converted string. returns empty string if <code>value</code> is <code>null</code> or empty.
      */
     public static String br(String value) {
-        if (value == null || value.isEmpty()) {
+        if (!StringUtils.hasLength(value)) {
             return "";
         }
         String replacedValue = LINE_BREAK_PATTERN.matcher(value).replaceAll(
@@ -195,7 +197,7 @@ public final class Functions {
      * @return cut string. returns empty string if <code>value</code> is <code>null</code> or empty.
      */
     public static String cut(String value, int length) {
-        if (value == null || value.isEmpty()) {
+        if (!StringUtils.hasLength(value)) {
             return "";
         }
         StringBuilder sb = new StringBuilder();
@@ -214,7 +216,7 @@ public final class Functions {
      * @return converted string. returns empty string if <code>value</code> is <code>null</code> or empty.
      */
     public static String link(String value) {
-        if (value == null || value.isEmpty()) {
+        if (!StringUtils.hasLength(value)) {
             return "";
         }
         return URL_PATTERN.matcher(value).replaceAll("<a href=\"$0\">$0</a>");
@@ -230,7 +232,7 @@ public final class Functions {
      * @return query string. if map is not empty, return query string. ex) name1=value&amp;name2=value&amp;...
      */
     public static String mapToQuery(Map<String, ?> map) {
-        if (map == null || map.isEmpty()) {
+        if (CollectionUtils.isEmpty(map)) {
             return "";
         }
         UriComponentsBuilder builder = UriComponentsBuilder.fromPath("");
@@ -259,7 +261,7 @@ public final class Functions {
     @Deprecated
     public static String mapToQuery(Map<String, ?> map,
             BeanWrapper beanWrapper) {
-        if (map == null || map.isEmpty()) {
+        if (CollectionUtils.isEmpty(map)) {
             return "";
         }
         UriComponentsBuilder builder = UriComponentsBuilder.fromPath("");
@@ -340,7 +342,7 @@ public final class Functions {
      * @return escaped string. returns empty string if <code>value</code> is <code>null</code> or empty.
      */
     public static String js(String value) {
-        if (value == null || value.isEmpty()) {
+        if (!StringUtils.hasLength(value)) {
             return "";
         }
         StringBuilder result = new StringBuilder();

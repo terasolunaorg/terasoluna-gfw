@@ -267,7 +267,7 @@ public class PaginationInfo {
      * @since 1.0.1
      */
     private String removeHeadDelimiterOfQueryString(String queryString) {
-        if (!StringUtils.hasLength(queryString)) {
+        if (!StringUtils.hasText(queryString)) {
             return queryString;
         }
         if (queryString.startsWith("?") || queryString.startsWith("&")) {
@@ -366,7 +366,7 @@ public class PaginationInfo {
                 page.getSort());
         StringBuilder pageUriBuilder = new StringBuilder(pageUri.expand(attr)
                 .encode().toUriString());
-        if (StringUtils.hasLength(criteriaQuery)) {
+        if (StringUtils.hasText(criteriaQuery)) {
             if (pageUri.getQueryParams().isEmpty()) {
                 pageUriBuilder.append("?");
             } else {

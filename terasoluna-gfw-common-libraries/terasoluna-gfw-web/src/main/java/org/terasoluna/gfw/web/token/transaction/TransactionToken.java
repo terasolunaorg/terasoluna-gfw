@@ -17,6 +17,8 @@ package org.terasoluna.gfw.web.token.transaction;
 
 import java.io.Serializable;
 
+import org.springframework.util.StringUtils;
+
 /**
  * Class representing the transaction token string
  */
@@ -58,7 +60,7 @@ public class TransactionToken implements Serializable {
         String tokenNameTmp = "";
         String tokenKeyTmp = "";
         String tokenValueTmp = "";
-        if (tokenString != null && !tokenString.isEmpty()) {
+        if (StringUtils.hasText(tokenString)) {
             String[] strs = tokenString.split(TOKEN_STRING_SEPARATOR);
             if (strs.length == 3) {
                 tokenNameTmp = strs[0];
@@ -117,13 +119,13 @@ public class TransactionToken implements Serializable {
      * @return if all values are present, return <code>true</code>
      */
     public boolean valid() {
-        if (tokenKey == null || tokenKey.isEmpty()) {
+        if (!StringUtils.hasText(tokenKey)) {
             return false;
         }
-        if (tokenValue == null || tokenValue.isEmpty()) {
+        if (!StringUtils.hasText(tokenValue)) {
             return false;
         }
-        if (tokenName == null || tokenName.isEmpty()) {
+        if (!StringUtils.hasText(tokenName)) {
             return false;
         }
         return true;

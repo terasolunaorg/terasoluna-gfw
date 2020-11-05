@@ -20,6 +20,7 @@ import java.util.Map.Entry;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.CollectionUtils;
 
 /**
  * Class for resolving exception code.
@@ -112,7 +113,7 @@ public class SimpleMappingExceptionCodeResolver implements
             }
         }
 
-        if (exceptionMappings == null || exceptionMappings.isEmpty()) {
+        if (CollectionUtils.isEmpty(exceptionMappings)) {
             return defaultExceptionCode;
         }
 

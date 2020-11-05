@@ -292,7 +292,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
             String type) {
         if (panelTypeClassPrefix != null && StringUtils.hasText(type)) {
 
-            if (StringUtils.hasLength(className)) {
+            if (StringUtils.hasText(className)) {
                 className.append(" ");
             }
             className.append(panelTypeClassPrefix);
