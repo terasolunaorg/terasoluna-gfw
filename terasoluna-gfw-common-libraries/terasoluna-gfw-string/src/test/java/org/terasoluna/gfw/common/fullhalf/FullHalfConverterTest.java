@@ -53,20 +53,16 @@ public class FullHalfConverterTest {
     public void testWithCustomAppenadablePredicate() {
         FullHalfConverter converter = new FullHalfConverter(new FullHalfPairsBuilder()
                 .pair("バ", "ﾊﾞ").pair("ハ", "ﾊ").pair("゛", "ﾞ").pair("゜", "ﾟ")
-                .appendablePredicate(new FullHalfPairs.AppendablePredicate() {
-                    @Override
-                    public boolean isAppendable(char c) {
-                        return c == 'ﾞ';
-                    }
-                }).build());
+                .appendablePredicate(c -> c == 'ﾞ').build());
         assertThat(converter.toFullwidth("ﾊﾞ"), is("バ"));
         assertThat(converter.toFullwidth("ﾊﾟ"), is("ハ゜"));
     }
 
     @Test
     public void testNull() {
-        Exception ex = assertThrows(IllegalArgumentException.class,
-                () -> new FullHalfConverter(null));
+        Exception ex = assertThrows(IllegalArgumentException.class, () -> {
+            new FullHalfConverter(null);
+        });
         assertThat(ex.getMessage(), is("pairs must not be null."));
     }
 }

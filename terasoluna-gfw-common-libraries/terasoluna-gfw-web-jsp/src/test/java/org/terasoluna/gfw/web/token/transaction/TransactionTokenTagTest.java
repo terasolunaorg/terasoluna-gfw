@@ -17,7 +17,9 @@ package org.terasoluna.gfw.web.token.transaction;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.hamcrest.Matchers.hasLength;
+import static org.hamcrest.Matchers.hasToString;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -41,7 +43,7 @@ public class TransactionTokenTagTest {
      * TransactionToken is null
      */
     @Test
-    public void testWriteTagContentTagWriter01() {
+    public void testWriteTagContentTagWriter01() throws Exception {
 
         // setup arguments
         TransactionTokenTag tag = new TransactionTokenTag();
@@ -58,15 +60,10 @@ public class TransactionTokenTagTest {
                         .thenReturn(null);
 
         // run
-        int result = 1;
-        try {
-            result = tag.writeTagContent(tagWriter);
-        } catch (JspException e) {
-            fail();
-        }
+        int result = tag.writeTagContent(tagWriter);
 
         // assert
-        assertThat(sw.getBuffer().toString(), is(""));
+        assertThat(sw.getBuffer(), hasLength(0));
         assertThat(result, is(0));
     }
 
@@ -74,7 +71,7 @@ public class TransactionTokenTagTest {
      * TransactionToken is not null
      */
     @Test
-    public void testWriteTagContentTagWriter02() {
+    public void testWriteTagContentTagWriter02() throws Exception {
 
         // setup arguments
         TransactionTokenTag tag = new TransactionTokenTag();
@@ -92,12 +89,7 @@ public class TransactionTokenTagTest {
                         .thenReturn(token);
 
         // run
-        int result = 1;
-        try {
-            result = tag.writeTagContent(tagWriter);
-        } catch (JspException e) {
-            fail();
-        }
+        int result = tag.writeTagContent(tagWriter);
 
         // capture
         String expected = "<input type=\"hidden\" name=\""
@@ -105,7 +97,7 @@ public class TransactionTokenTagTest {
                 + "\" value=\"" + token.getTokenString() + "\"/>";
 
         // assert
-        assertThat(sw.getBuffer().toString(), is(expected));
+        assertThat(sw.getBuffer(), hasToString(expected));
         assertThat(result, is(0));
     }
 
@@ -130,13 +122,9 @@ public class TransactionTokenTagTest {
                         .thenReturn(token);
 
         // run
-        int result = 1;
-        try {
+        assertThrows(JspException.class, () -> {
             doThrow(new JspException()).when(tagWriter).startTag(anyString());
-            result = tag.writeTagContent(tagWriter);
-        } catch (JspException e) {
-            e.printStackTrace();
-        }
-        assertThat(result, is(1));
+            tag.writeTagContent(tagWriter);
+        });
     }
 }

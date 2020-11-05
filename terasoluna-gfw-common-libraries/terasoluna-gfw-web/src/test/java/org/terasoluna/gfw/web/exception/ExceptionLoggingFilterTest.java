@@ -15,7 +15,9 @@
  */
 package org.terasoluna.gfw.web.exception;
 
-import static org.junit.Assert.assertSame;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
@@ -92,18 +94,16 @@ public class ExceptionLoggingFilterTest {
     }
 
     @Test
-    public void testDoFilter_occur_ioexception() throws IOException, ServletException {
+    public void testDoFilter_occur_ioexception() {
 
         IOException occurException = new IOException("io exception.");
 
-        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
-                mockResponse);
-
-        try {
+        IOException e = assertThrows(IOException.class, () -> {
+            doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
+                    mockResponse);
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
-        } catch (IOException e) {
-            assertSame(occurException, e);
-        }
+        });
+        assertThat(e, is(occurException));
 
         verify(mockExceptionLogger, times(1)).error(occurException);
 
@@ -114,14 +114,12 @@ public class ExceptionLoggingFilterTest {
 
         ServletException occurException = new ServletException("servlet exception.");
 
-        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
-                mockResponse);
-
-        try {
+        ServletException e = assertThrows(ServletException.class, () -> {
+            doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
+                    mockResponse);
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
-        } catch (ServletException e) {
-            assertSame(occurException, e);
-        }
+        });
+        assertThat(e, is(occurException));
 
         verify(mockExceptionLogger, times(1)).error(occurException);
 
@@ -132,14 +130,14 @@ public class ExceptionLoggingFilterTest {
 
         NullPointerException occurException = new NullPointerException("null pointer exception.");
 
-        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
-                mockResponse);
-
-        try {
-            testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
-        } catch (NullPointerException e) {
-            assertSame(occurException, e);
-        }
+        NullPointerException e = assertThrows(NullPointerException.class,
+                () -> {
+                    doThrow(occurException).when(mockFilterChain).doFilter(
+                            mockRequest, mockResponse);
+                    testTarget.doFilter(mockRequest, mockResponse,
+                            mockFilterChain);
+                });
+        assertThat(e, is(occurException));
 
         verify(mockExceptionLogger, times(1)).error(occurException);
 
@@ -153,11 +151,12 @@ public class ExceptionLoggingFilterTest {
         doThrow(occurError).when(mockFilterChain).doFilter(mockRequest,
                 mockResponse);
 
-        try {
+        OutOfMemoryError e = assertThrows(OutOfMemoryError.class, () -> {
+            doThrow(occurError).when(mockFilterChain).doFilter(mockRequest,
+                    mockResponse);
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
-        } catch (OutOfMemoryError e) {
-            assertSame(occurError, e);
-        }
+        });
+        assertThat(e, is(occurError));
 
         verify(mockExceptionLogger, times(0)).error((Exception) any());
 
@@ -173,14 +172,12 @@ public class ExceptionLoggingFilterTest {
 
         IOException occurException = new IOException("io exception.");
 
-        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
-                mockResponse);
-
-        try {
+        IOException e = assertThrows(IOException.class, () -> {
+            doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
+                    mockResponse);
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
-        } catch (IOException e) {
-            assertSame(occurException, e);
-        }
+        });
+        assertThat(e, is(occurException));
 
         verify(mockExceptionLogger, times(1)).error(occurException);
 

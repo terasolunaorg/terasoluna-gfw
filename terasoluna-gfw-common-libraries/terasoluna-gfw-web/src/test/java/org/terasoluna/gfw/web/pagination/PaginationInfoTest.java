@@ -16,8 +16,10 @@
 package org.terasoluna.gfw.web.pagination;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasEntry;
+import static org.hamcrest.Matchers.hasKey;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -92,12 +94,10 @@ public class PaginationInfoTest {
                 page, size, null);
 
         // assert
-        assertThat(Integer.valueOf(attributesMap.get("page").toString()), is(
-                page));
-        assertThat(Integer.valueOf(attributesMap.get("size").toString()), is(
-                size));
-        assertThat(attributesMap.get("sortOrderProperty"), is(nullValue()));
-        assertThat(attributesMap.get("sortOrderDirection"), is(nullValue()));
+        assertThat(attributesMap, hasEntry("page", page));
+        assertThat(attributesMap, hasEntry("size", size));
+        assertThat(attributesMap, not(hasKey("sortOrderProperty")));
+        assertThat(attributesMap, not(hasKey("sortOrderDirection")));
     }
 
     /**
@@ -115,13 +115,10 @@ public class PaginationInfoTest {
                 page, size, mockedSort);
 
         // assert
-        assertThat(Integer.valueOf(attributesMap.get("page").toString()), is(
-                page));
-        assertThat(Integer.valueOf(attributesMap.get("size").toString()), is(
-                size));
-        assertThat(attributesMap.get("sortOrderProperty").toString(), is("id"));
-        assertThat(attributesMap.get("sortOrderDirection").toString(), is(
-                "DESC"));
+        assertThat(attributesMap, hasEntry("page", page));
+        assertThat(attributesMap, hasEntry("size", size));
+        assertThat(attributesMap, hasEntry("sortOrderProperty", "id"));
+        assertThat(attributesMap, hasEntry("sortOrderDirection", "DESC"));
     }
 
     @Test
@@ -141,12 +138,10 @@ public class PaginationInfoTest {
                 page, size, sort);
 
         // assert
-        assertThat(Integer.valueOf(attributesMap.get("page").toString()), is(
-                page));
-        assertThat(Integer.valueOf(attributesMap.get("size").toString()), is(
-                size));
-        assertThat(attributesMap.get("sortOrderProperty"), is(nullValue()));
-        assertThat(attributesMap.get("sortOrderDirection"), is(nullValue()));
+        assertThat(attributesMap, hasEntry("page", page));
+        assertThat(attributesMap, hasEntry("size", size));
+        assertThat(attributesMap, not(hasKey("sortOrderProperty")));
+        assertThat(attributesMap, not(hasKey("sortOrderDirection")));
     }
 
     @Test

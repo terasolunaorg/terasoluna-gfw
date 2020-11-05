@@ -19,7 +19,9 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.hamcrest.Matchers.aMapWithSize;
+import static org.hamcrest.Matchers.hasEntry;
+import static org.junit.Assert.assertThrows;
 
 import java.util.Locale;
 import java.util.Map;
@@ -67,15 +69,15 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
 
         Map<String, String> row1 = testSetRows.asMap();
         assertThat(row1, is(notNullValue()));
-        assertThat(row1.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]"));
+        assertThat(row1, aMapWithSize(7));
 
-        assertThat(row1.get("0"), is("Sun."));
-        assertThat(row1.get("1"), is("Mon."));
-        assertThat(row1.get("2"), is("Tue."));
-        assertThat(row1.get("3"), is("Wed."));
-        assertThat(row1.get("4"), is("Thu."));
-        assertThat(row1.get("5"), is("Fri."));
-        assertThat(row1.get("6"), is("Sat."));
+        assertThat(row1, hasEntry("0", "Sun."));
+        assertThat(row1, hasEntry("1", "Mon."));
+        assertThat(row1, hasEntry("2", "Tue."));
+        assertThat(row1, hasEntry("3", "Wed."));
+        assertThat(row1, hasEntry("4", "Thu."));
+        assertThat(row1, hasEntry("5", "Fri."));
+        assertThat(row1, hasEntry("6", "Sat."));
     }
 
     @Test
@@ -83,33 +85,32 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
 
         Map<String, String> row1 = testSetRows.asMap(Locale.ENGLISH);
         assertThat(row1, is(notNullValue()));
-        assertThat(row1.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]"));
+        assertThat(row1, aMapWithSize(7));
 
-        assertThat(row1.get("0"), is("Sun."));
-        assertThat(row1.get("1"), is("Mon."));
-        assertThat(row1.get("2"), is("Tue."));
-        assertThat(row1.get("3"), is("Wed."));
-        assertThat(row1.get("4"), is("Thu."));
-        assertThat(row1.get("5"), is("Fri."));
-        assertThat(row1.get("6"), is("Sat."));
+        assertThat(row1, hasEntry("0", "Sun."));
+        assertThat(row1, hasEntry("1", "Mon."));
+        assertThat(row1, hasEntry("2", "Tue."));
+        assertThat(row1, hasEntry("3", "Wed."));
+        assertThat(row1, hasEntry("4", "Thu."));
+        assertThat(row1, hasEntry("5", "Fri."));
+        assertThat(row1, hasEntry("6", "Sat."));
 
         Map<String, String> row2 = testSetRows.asMap(Locale.JAPANESE);
         assertThat(row2, is(notNullValue()));
-        assertThat(row2.keySet().toString(), is("[0, 1, 2, 3, 4, 5, 6]"));
+        assertThat(row2, aMapWithSize(7));
 
-        assertThat(row2.get("0"), is("日"));
-        assertThat(row2.get("1"), is("月"));
-        assertThat(row2.get("2"), is("火"));
-        assertThat(row2.get("3"), is("水"));
-        assertThat(row2.get("4"), is("木"));
-        assertThat(row2.get("5"), is("金"));
-        assertThat(row2.get("6"), is("土"));
+        assertThat(row2, hasEntry("0", "日"));
+        assertThat(row2, hasEntry("1", "月"));
+        assertThat(row2, hasEntry("2", "火"));
+        assertThat(row2, hasEntry("3", "水"));
+        assertThat(row2, hasEntry("4", "木"));
+        assertThat(row2, hasEntry("5", "金"));
+        assertThat(row2, hasEntry("6", "土"));
     }
 
     @Test(expected = UnsupportedOperationException.class)
     public void testAsMapCheckUnmodifiable() {
         testSetRows.asMap(Locale.ENGLISH).put("0", "Sunday");
-        fail("UnsupportedOperationException not occered.");
     }
 
     @Test
@@ -139,65 +140,64 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
     @Test
     public void testSetFallbackToNull() {
         SimpleI18nCodeList codeList = new SimpleI18nCodeList();
-        try {
-            codeList.setFallbackTo(null);
-        } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), is("fallbackTo must not be null"));
-        }
+
+        IllegalArgumentException e = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    codeList.setFallbackTo(null);
+                });
+        assertThat(e.getMessage(), is("fallbackTo must not be null"));
     }
 
     @Test
     public void testSetFallbackToInvalidLanguage() {
-        try {
-            super.getApplicationContext().getBean(
-                    "CL_testFallbackToInvalidLanguage");
-            fail("BeanCreationException not occered.");
-        } catch (BeanCreationException e) {
-            Throwable cause = e.getCause();
-            assertThat(cause, instanceOf(IllegalArgumentException.class));
-            assertThat(cause.getMessage(), is(
-                    "No codelist found for fallback locale 'fr', it must be defined."));
-        }
+        BeanCreationException e = assertThrows(BeanCreationException.class,
+                () -> {
+                    super.getApplicationContext().getBean(
+                            "CL_testFallbackToInvalidLanguage");
+                });
+        Throwable cause = e.getCause();
+        assertThat(cause, instanceOf(IllegalArgumentException.class));
+        assertThat(cause.getMessage(), is(
+                "No codelist found for fallback locale 'fr', it must be defined."));
     }
 
     @Test
     public void testSetFallbackToInvalidLanguageMatchingNation() {
-        try {
-            super.getApplicationContext().getBean(
-                    "CL_testFallbackToInvalidLanguageMatchingNation");
-            fail("BeanCreationException not occered.");
-        } catch (BeanCreationException e) {
-            Throwable cause = e.getCause();
-            assertThat(cause, instanceOf(IllegalArgumentException.class));
-            assertThat(cause.getMessage(), is(
-                    "No codelist found for fallback locale 'en_US', it must be defined."));
-        }
+        BeanCreationException e = assertThrows(BeanCreationException.class,
+                () -> {
+                    super.getApplicationContext().getBean(
+                            "CL_testFallbackToInvalidLanguageMatchingNation");
+                });
+        Throwable cause = e.getCause();
+        assertThat(cause, instanceOf(IllegalArgumentException.class));
+        assertThat(cause.getMessage(), is(
+                "No codelist found for fallback locale 'en_US', it must be defined."));
     }
 
     @Test
     public void testAfterProperitesSetInvalidInitializedCodeList() {
         SimpleI18nCodeList codeList = new SimpleI18nCodeList();
-        try {
-            codeList.afterPropertiesSet();
-        } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), is("codeListTable is not initialized!"));
-        }
+
+        IllegalArgumentException e = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    codeList.afterPropertiesSet();
+                });
+        assertThat(e.getMessage(), is("codeListTable is not initialized!"));
 
     }
 
     @Test
     public void testAfterProperitesSetInvalidResolveDefaultLocale() {
-        try {
-            super.getApplicationContext().getBean(
-                    "CL_testAfterPropertiesSetInvalidResolveDefaultLocale");
-            fail("BeanCreationException not occered.");
-        } catch (BeanCreationException e) {
-            Throwable cause = e.getCause();
-            assertThat(cause, instanceOf(IllegalArgumentException.class));
-            assertThat(cause.getMessage(), is(
-                    "No codelist for default locale ('en_US' and 'en'). "
-                            + "Please define codelist for default locale or set locale already defined in codelist to fallbackTo."));
-        }
+        BeanCreationException e = assertThrows(BeanCreationException.class,
+                () -> {
+                    super.getApplicationContext().getBean(
+                            "CL_testAfterPropertiesSetInvalidResolveDefaultLocale");
+                });
+        Throwable cause = e.getCause();
+        assertThat(cause, instanceOf(IllegalArgumentException.class));
+        assertThat(cause.getMessage(), is(
+                "No codelist for default locale ('en_US' and 'en'). "
+                        + "Please define codelist for default locale or set locale already defined in codelist to fallbackTo."));
     }
 
     @Test

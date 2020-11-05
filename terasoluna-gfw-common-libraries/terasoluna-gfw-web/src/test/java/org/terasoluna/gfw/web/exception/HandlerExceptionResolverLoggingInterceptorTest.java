@@ -33,7 +33,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.aopalliance.intercept.MethodInvocation;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentMatcher;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
@@ -47,7 +46,6 @@ import org.terasoluna.gfw.common.exception.ResourceNotFoundException;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.classic.spi.LoggingEvent;
 import ch.qos.logback.core.Appender;
 
 public class HandlerExceptionResolverLoggingInterceptorTest {
@@ -539,21 +537,10 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
      */
     private void verifyLogging(final String expectedLogMessage,
             final Level expectedLogLevel) {
-        verify(mockAppender).doAppend(argThat(
-                new ArgumentMatcher<LoggingEvent>() {
-                    @Override
-                    public boolean matches(LoggingEvent argument) {
-                        return argument.getFormattedMessage().equals(
-                                expectedLogMessage);
-                    }
-                }));
-        verify(mockAppender).doAppend(argThat(
-                new ArgumentMatcher<LoggingEvent>() {
-                    @Override
-                    public boolean matches(LoggingEvent argument) {
-                        return expectedLogLevel.equals(argument.getLevel());
-                    }
-                }));
+        verify(mockAppender).doAppend(argThat(argument -> argument
+                .getFormattedMessage().equals(expectedLogMessage)));
+        verify(mockAppender).doAppend(argThat(argument -> expectedLogLevel
+                .equals(argument.getLevel())));
 
     }
 }

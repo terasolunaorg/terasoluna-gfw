@@ -17,13 +17,14 @@ package org.terasoluna.gfw.web.codelist;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.empty;
+import static org.junit.Assert.assertThrows;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
@@ -138,8 +139,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         assertThat(actualAttributeNames.hasMoreElements(), is(true));
         actualAttributeNames.nextElement();
         assertThat(actualAttributeNames.hasMoreElements(), is(false));
-        assertThat(mockRequest.getAttribute("simpleMapCodeList").toString(), is(
-                simpleMapCodeList.asMap().toString()));
+        assertThat(mockRequest.getAttribute("simpleMapCodeList"), is(
+                simpleMapCodeList.asMap()));
 
     }
 
@@ -172,10 +173,10 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
                 "C_simpleMapCodeList", SimpleMapCodeList.class);
         SimpleI18nCodeList simpleI18nCodeList = getApplicationContext().getBean(
                 "C_simpleI18nCodeList", SimpleI18nCodeList.class);
-        assertThat(mockRequest.getAttribute("C_simpleMapCodeList").toString(),
-                is(simpleMapCodeList.asMap().toString()));
-        assertThat(mockRequest.getAttribute("C_simpleI18nCodeList").toString(),
-                is(simpleI18nCodeList.asMap(Locale.ENGLISH).toString()));
+        assertThat(mockRequest.getAttribute("C_simpleMapCodeList"), is(
+                simpleMapCodeList.asMap()));
+        assertThat(mockRequest.getAttribute("C_simpleI18nCodeList"), is(
+                simpleI18nCodeList.asMap(Locale.ENGLISH)));
 
     }
 
@@ -228,8 +229,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         Map<String, CodeList> expectedCodeListMap = new HashMap<String, CodeList>(getApplicationContext()
                 .getBeansOfType(CodeList.class));
 
-        assertThat(testTarget.getCodeLists().toString(), is(expectedCodeListMap
-                .values().toString()));
+        assertThat(testTarget.getCodeLists(), contains(expectedCodeListMap
+                .values().toArray()));
 
     }
 
@@ -282,7 +283,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do assert.
-        assertThat(testTarget.getCodeLists().isEmpty(), is(true));
+        assertThat(testTarget.getCodeLists(), is(empty()));
 
     }
 
@@ -310,7 +311,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do assert.
-        assertThat(testTarget.getCodeLists().isEmpty(), is(true));
+        assertThat(testTarget.getCodeLists(), is(empty()));
         assertThat(logger.isDebugEnabled(), is(false));
 
         // init log level.
@@ -341,12 +342,10 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do assert.
-        List<CodeList> expectedCodeLists = new ArrayList<CodeList>();
-        expectedCodeLists.add(mockApplicationContext.getBean(
-                "simpleMapCodeList", CodeList.class));
+        CodeList expectedCodeList = mockApplicationContext.getBean(
+                "simpleMapCodeList", CodeList.class);
 
-        assertThat(testTarget.getCodeLists().toString(), is(expectedCodeLists
-                .toString()));
+        assertThat(testTarget.getCodeLists(), contains(expectedCodeList));
 
     }
 
@@ -367,12 +366,12 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.setApplicationContext(null);
 
         // do test.
-        try {
-            testTarget.afterPropertiesSet();
-        } catch (IllegalArgumentException e) {
-            // do assert.
-            assertThat("applicationContext is null.", is(e.getMessage()));
-        }
+        IllegalArgumentException e = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    testTarget.afterPropertiesSet();
+                });
+        // do assert.
+        assertThat(e.getMessage(), is("applicationContext is null."));
 
     }
 

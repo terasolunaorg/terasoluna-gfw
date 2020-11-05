@@ -93,12 +93,8 @@ public class TransactionTokenContextHandlerMethodArgumentResolverTest {
                 RequestAttributes.SCOPE_REQUEST)).thenReturn(str);
 
         Object result = null;
-        try {
-            result = resolver.resolveArgument(parameter, mavContainer,
-                    webRequest, binderFactory);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        result = resolver.resolveArgument(parameter, mavContainer, webRequest,
+                binderFactory);
 
         assertThat(result, is(instanceOf(String.class)));
     }

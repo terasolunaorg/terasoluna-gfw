@@ -18,11 +18,12 @@ package org.terasoluna.gfw.common.codepoints;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.sameInstance;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.empty;
 import static org.junit.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -569,7 +570,7 @@ public class CodePointsTest {
         Set<Integer> result = new CodePoints(allowedCodePointSet)
                 .allExcludedCodePoints(testStr);
 
-        assertThat(result.size(), is(0));
+        assertThat(result, is(empty()));
     }
 
     @Test
@@ -580,7 +581,7 @@ public class CodePointsTest {
         Set<Integer> result = new CodePoints(allowedCodePointSet)
                 .allExcludedCodePoints(testStr);
 
-        assertThat(result.size(), is(0));
+        assertThat(result, is(empty()));
     }
 
     @Test
@@ -598,7 +599,7 @@ public class CodePointsTest {
         Set<Integer> result = new CodePoints(allowedCodePointSet)
                 .allExcludedCodePoints(testStr);
 
-        assertThat(result.size(), is(0));
+        assertThat(result, is(empty()));
     }
 
     @Test
@@ -615,8 +616,7 @@ public class CodePointsTest {
         Set<Integer> result = new CodePoints(allowedCodePointSet)
                 .allExcludedCodePoints(testStr);
 
-        assertThat(result.size(), is(1));
-        assertThat(result.contains("か".codePointAt(0)), is(true));
+        assertThat(result, contains("か".codePointAt(0)));
     }
 
     @Test
@@ -626,8 +626,7 @@ public class CodePointsTest {
         Set<Integer> result = new CodePoints("あいうえお").allExcludedCodePoints(
                 testStr);
 
-        assertThat(result.size(), is(1));
-        assertThat(result.contains(0x2000B), is(true));
+        assertThat(result, contains(0x2000B));
     }
 
     @Test
@@ -638,13 +637,8 @@ public class CodePointsTest {
         Set<Integer> result = new CodePoints("あいうえお").allExcludedCodePoints(
                 testStr);
 
-        assertThat(result.size(), is(5));
-        Iterator<Integer> it = result.iterator();
-        assertThat(it.next().intValue(), is(0x2000B));
-        assertThat(it.next().intValue(), is("き".codePointAt(0)));
-        assertThat(it.next().intValue(), is("か".codePointAt(0)));
-        assertThat(it.next().intValue(), is("く".codePointAt(0)));
-        assertThat(it.next().intValue(), is(0x20B9F));
+        assertThat(result, contains(0x2000B, "き".codePointAt(0), "か"
+                .codePointAt(0), "く".codePointAt(0), 0x20B9F));
     }
 
     @Test

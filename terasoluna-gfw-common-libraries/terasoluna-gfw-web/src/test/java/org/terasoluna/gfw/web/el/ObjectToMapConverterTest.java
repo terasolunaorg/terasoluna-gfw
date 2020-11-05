@@ -16,7 +16,9 @@
 package org.terasoluna.gfw.web.el;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.aMapWithSize;
 import static org.hamcrest.Matchers.hasEntry;
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 
@@ -41,7 +43,7 @@ public class ObjectToMapConverterTest {
     public void testConvert0_SimpleJavaBean() throws Exception {
         Map<String, String> map = converter.convert(
                 new SearchUserForm0("yamada", 20));
-        assertThat(map.size(), is(2));
+        assertThat(map, aMapWithSize(2));
         assertThat(map, hasEntry("name", "yamada"));
         assertThat(map, hasEntry("age", "20"));
 
@@ -57,7 +59,7 @@ public class ObjectToMapConverterTest {
     public void testConvert0_With_Prefix() throws Exception {
         Map<String, String> map = converter.convert("pre",
                 new SearchUserForm0("yamada", 20));
-        assertThat(map.size(), is(2));
+        assertThat(map, aMapWithSize(2));
         assertThat(map, hasEntry("pre.name", "yamada"));
         assertThat(map, hasEntry("pre.age", "20"));
     }
@@ -66,7 +68,7 @@ public class ObjectToMapConverterTest {
     public void testConvert1_NestedJavaBean() throws Exception {
         Map<String, String> map = converter.convert(
                 new SearchUserForm1(new SearchUserCriteriaForm1("yamada", 20), true));
-        assertThat(map.size(), is(3));
+        assertThat(map, aMapWithSize(3));
         assertThat(map, hasEntry("criteria.name", "yamada"));
         assertThat(map, hasEntry("criteria.age", "20"));
         assertThat(map, hasEntry("rememberCriteria", "true"));
@@ -87,7 +89,7 @@ public class ObjectToMapConverterTest {
                 new BatchUpdateUserForm2(Arrays.asList(
                         new UpdateUserCriteriaForm2("yamada", 20),
                         new UpdateUserCriteriaForm2("tanaka", 50)), LogicalOperator2.AND));
-        assertThat(map.size(), is(5));
+        assertThat(map, aMapWithSize(5));
         assertThat(map, hasEntry("criteria[0].name", "yamada"));
         assertThat(map, hasEntry("criteria[0].age", "20"));
         assertThat(map, hasEntry("criteria[1].name", "tanaka"));
@@ -99,7 +101,7 @@ public class ObjectToMapConverterTest {
         WebDataBinder binder = new WebDataBinder(form);
         binder.bind(new MutablePropertyValues(map));
         assertThat(form.getCriteria(), is(notNullValue()));
-        assertThat(form.getCriteria().size(), is(2));
+        assertThat(form.getCriteria(), hasSize(2));
         assertThat(form.getCriteria().get(0).getName(), is("yamada"));
         assertThat(form.getCriteria().get(0).getAge(), is(20));
         assertThat(form.getCriteria().get(1).getName(), is("tanaka"));
@@ -113,7 +115,7 @@ public class ObjectToMapConverterTest {
                 new SearchAndBatchUpdateUserForm3(new SearchUserCriteriaForm3("suzuki", 30), Arrays
                         .asList(new User3("yamada", 20),
                                 new User3("tanaka", 50))));
-        assertThat(map.size(), is(6));
+        assertThat(map, aMapWithSize(6));
         assertThat(map, hasEntry("criteria.name", "suzuki"));
         assertThat(map, hasEntry("criteria.age", "30"));
         assertThat(map, hasEntry("users[0].name", "yamada"));
@@ -129,7 +131,7 @@ public class ObjectToMapConverterTest {
         assertThat(form.getCriteria().getName(), is("suzuki"));
         assertThat(form.getCriteria().getAge(), is(30));
         assertThat(form.getUsers(), is(notNullValue()));
-        assertThat(form.getUsers().size(), is(2));
+        assertThat(form.getUsers(), hasSize(2));
         assertThat(form.getUsers().get(0).getName(), is("yamada"));
         assertThat(form.getUsers().get(0).getAge(), is(20));
         assertThat(form.getUsers().get(1).getName(), is("tanaka"));
@@ -144,7 +146,7 @@ public class ObjectToMapConverterTest {
         source.put("ccc", "333");
         Map<String, String> map = converter.convert(new SearchForm4(source));
 
-        assertThat(map.size(), is(3));
+        assertThat(map, aMapWithSize(3));
         assertThat(map, hasEntry("etc[aaa]", "111"));
         assertThat(map, hasEntry("etc[bbb]", "222"));
         assertThat(map, hasEntry("etc[ccc]", "333"));
@@ -154,7 +156,7 @@ public class ObjectToMapConverterTest {
         WebDataBinder binder = new WebDataBinder(form);
         binder.bind(new MutablePropertyValues(map));
         assertThat(form.getEtc(), is(notNullValue()));
-        assertThat(form.getEtc().size(), is(3));
+        assertThat(form.getEtc(), aMapWithSize(3));
         assertThat(form.getEtc(), hasEntry("aaa", "111"));
         assertThat(form.getEtc(), hasEntry("bbb", "222"));
         assertThat(form.getEtc(), hasEntry("ccc", "333"));
@@ -170,7 +172,7 @@ public class ObjectToMapConverterTest {
         Map<String, String> map = converter.convert(new DateForm5(date1
                 .toDate(), localDate1, new DateFormItem5(date2
                         .toDate(), localDate2)));
-        assertThat(map.size(), is(4));
+        assertThat(map, aMapWithSize(4));
         assertThat(map, hasEntry("date", "2015-04-01"));
         assertThat(map, hasEntry("localDate", "2015-06-10"));
         assertThat(map, hasEntry("item.date", "2015-05-01"));
@@ -197,7 +199,7 @@ public class ObjectToMapConverterTest {
                                                         16 }, new String[] {
                                                                 "d", "e",
                                                                 "f" })));
-        assertThat(map.size(), is(22));
+        assertThat(map, aMapWithSize(22));
         assertThat(map, hasEntry("array1[0]", "1"));
         assertThat(map, hasEntry("array1[1]", "2"));
         assertThat(map, hasEntry("array1[2]", "3"));
@@ -278,7 +280,7 @@ public class ObjectToMapConverterTest {
         form.setNestedForm2(nestedForm);
         Map<String, String> map = converter.convert(form);
 
-        assertThat(map.size(), is(20));
+        assertThat(map, aMapWithSize(20));
         assertThat(map, hasEntry("_string", ""));
         assertThat(map, hasEntry("_integer", ""));
         assertThat(map, hasEntry("_date", ""));
@@ -306,7 +308,7 @@ public class ObjectToMapConverterTest {
         EmptyElementForm10 form = new EmptyElementForm10();
         Map<String, String> map = converter.convert(form);
 
-        assertThat(map.size(), is(4));
+        assertThat(map, aMapWithSize(4));
         assertThat(map, hasEntry("list", ""));
         assertThat(map, hasEntry("array", ""));
         assertThat(map, hasEntry("nestedForm.list", ""));
@@ -318,7 +320,7 @@ public class ObjectToMapConverterTest {
         BooleanForm11 form = new BooleanForm11(true, false, null);
         Map<String, String> map = converter.convert(form);
 
-        assertThat(map.size(), is(3));
+        assertThat(map, aMapWithSize(3));
         assertThat(map, hasEntry("bool1", "true"));
         assertThat(map, hasEntry("bool2", "false"));
         assertThat(map, hasEntry("bool3", ""));

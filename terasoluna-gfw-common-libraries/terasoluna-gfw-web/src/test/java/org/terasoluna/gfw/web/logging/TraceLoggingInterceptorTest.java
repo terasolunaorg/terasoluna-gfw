@@ -19,7 +19,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -39,7 +38,6 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatcher;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
@@ -57,7 +55,6 @@ import com.google.common.collect.ImmutableList;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.classic.spi.LoggingEvent;
 import ch.qos.logback.core.Appender;
 
 @ContextConfiguration(locations = "classpath:/test-context.xml")
@@ -129,12 +126,8 @@ public class TraceLoggingInterceptorTest {
         HandlerMethod paramHandler = new HandlerMethod(controller, TraceLoggingInterceptorController.class
                 .getMethod("createForm"));
 
-        try {
-            // run
-            interceptor.preHandle(request, response, paramHandler);
-        } catch (Exception e) {
-            fail("illegal case");
-        }
+        // run
+        interceptor.preHandle(request, response, paramHandler);
 
         String logMessage = jdbcTemplate.queryForObject(
                 "SELECT FORMATTED_MESSAGE FROM LOGGING_EVENT WHERE EVENT_ID=:id",
@@ -157,12 +150,8 @@ public class TraceLoggingInterceptorTest {
         // parameter create
         Object paramHandler = new Object();
 
-        try {
-            // run
-            interceptor.preHandle(request, response, paramHandler);
-        } catch (Exception e) {
-            fail("illegal case");
-        }
+        // run
+        interceptor.preHandle(request, response, paramHandler);
 
         // expected
         Long startTime = (Long) request.getAttribute(
@@ -184,12 +173,8 @@ public class TraceLoggingInterceptorTest {
         // parameter create
         Object paramHandler = new Object();
 
-        try {
-            // run
-            interceptor.preHandle(request, response, paramHandler);
-        } catch (Exception e) {
-            fail("illegal case");
-        }
+        // run
+        interceptor.preHandle(request, response, paramHandler);
 
         // expected
         Long startTime = (Long) request.getAttribute(
@@ -220,12 +205,8 @@ public class TraceLoggingInterceptorTest {
         request.setAttribute(TraceLoggingInterceptor.class.getName()
                 + ".startTime", startTime);
 
-        try {
-            // run
-            interceptor.postHandle(request, response, paramHandler, model);
-        } catch (Exception e) {
-            fail("illegal case");
-        }
+        // run
+        interceptor.postHandle(request, response, paramHandler, model);
 
         // expected
         String logMessage1 = jdbcTemplate.queryForObject(
@@ -258,12 +239,8 @@ public class TraceLoggingInterceptorTest {
         View view = mock(View.class);
         when(model.getView()).thenReturn(view);
 
-        try {
-            // run
-            interceptor.postHandle(request, response, paramHandler, model);
-        } catch (Exception e) {
-            fail("illegal case");
-        }
+        // run
+        interceptor.postHandle(request, response, paramHandler, model);
 
         // expected
         String expectedLogStr = "TraceLoggingInterceptorController.second(SampleForm,Model)->";
@@ -285,12 +262,8 @@ public class TraceLoggingInterceptorTest {
                 + ".startTime", startTime);
         HandlerMethod paramHandler = new HandlerMethod(controller, method[0]);
 
-        try {
-            // run
-            interceptor.postHandle(request, response, paramHandler, null);
-        } catch (Exception e) {
-            fail("illegal case");
-        }
+        // run
+        interceptor.postHandle(request, response, paramHandler, null);
 
         // expected
         String expectedLogStr = "TraceLoggingInterceptorController.createForm()->";
@@ -312,13 +285,9 @@ public class TraceLoggingInterceptorTest {
                 + ".startTime", startTime);
         HandlerMethod paramHandler = new HandlerMethod(controller, method[0]);
 
-        try {
-            // run
-            interceptor.setWarnHandlingNanos(1L);
-            interceptor.postHandle(request, response, paramHandler, model);
-        } catch (Exception e) {
-            fail("illegal case");
-        }
+        // run
+        interceptor.setWarnHandlingNanos(1L);
+        interceptor.postHandle(request, response, paramHandler, model);
 
         // expected
         String expectedLogStr = "TraceLoggingInterceptorController.createForm()->";
@@ -338,12 +307,8 @@ public class TraceLoggingInterceptorTest {
         // parameter create
         HandlerMethod paramHandler = new HandlerMethod(controller, method[0]);
 
-        try {
-            // run
-            interceptor.postHandle(request, response, paramHandler, model);
-        } catch (Exception e) {
-            fail("illegal case");
-        }
+        // run
+        interceptor.postHandle(request, response, paramHandler, model);
 
         // expected
         String expectedLogStr = "TraceLoggingInterceptorController.createForm()->";
@@ -360,12 +325,8 @@ public class TraceLoggingInterceptorTest {
         // parameter create
         Object paramHandler = new Object();
 
-        try {
-            // run
-            interceptor.postHandle(request, response, paramHandler, model);
-        } catch (Exception e) {
-            fail("illegal case");
-        }
+        // run
+        interceptor.postHandle(request, response, paramHandler, model);
 
         // expected
         final String expectedLogStr = "TraceLoggingInterceptorController.createForm()->";
@@ -386,12 +347,8 @@ public class TraceLoggingInterceptorTest {
                 + ".startTime", startTime);
         Object paramHandler = new Object();
 
-        try {
-            // run
-            interceptor.postHandle(request, response, paramHandler, model);
-        } catch (Exception e) {
-            fail("illegal case");
-        }
+        // run
+        interceptor.postHandle(request, response, paramHandler, model);
 
         // expected
         String expectedLogStr = "[HANDLING TIME   ]->";
@@ -412,13 +369,9 @@ public class TraceLoggingInterceptorTest {
                 + ".startTime", startTime);
         Object paramHandler = new Object();
 
-        try {
-            // run
-            interceptor.setWarnHandlingNanos(1L);
-            interceptor.postHandle(request, response, paramHandler, model);
-        } catch (Exception e) {
-            fail("illegal case");
-        }
+        // run
+        interceptor.setWarnHandlingNanos(1L);
+        interceptor.postHandle(request, response, paramHandler, model);
 
         // expected
         String expectedLogStr = "[HANDLING TIME   ]->";
@@ -435,12 +388,8 @@ public class TraceLoggingInterceptorTest {
         request.setAttribute(TraceLoggingInterceptor.class.getName()
                 + ".startTime", null);
 
-        try {
-            // run
-            interceptor.postHandle(request, response, paramHandler, null);
-        } catch (Exception e) {
-            fail("illegal case");
-        }
+        // run
+        interceptor.postHandle(request, response, paramHandler, null);
 
         // expected
         String expectedLogStr = "[HANDLING TIME   ] TraceLoggingInterceptorController.createForm()->";
@@ -461,12 +410,8 @@ public class TraceLoggingInterceptorTest {
         request.setAttribute(TraceLoggingInterceptor.class.getName()
                 + ".startTime", startTime);
 
-        try {
-            // run
-            interceptor.postHandle(request, response, paramHandler, model);
-        } catch (Exception e) {
-            fail("illegal case");
-        }
+        // run
+        interceptor.postHandle(request, response, paramHandler, model);
 
         // assert
         assertThat(logger.isDebugEnabled(), is(false));
@@ -487,12 +432,8 @@ public class TraceLoggingInterceptorTest {
         request.setAttribute(TraceLoggingInterceptor.class.getName()
                 + ".startTime", startTime);
 
-        try {
-            // run
-            interceptor.postHandle(request, response, paramHandler, model);
-        } catch (Exception e) {
-            fail("illegal case");
-        }
+        // run
+        interceptor.postHandle(request, response, paramHandler, model);
 
         // assert
         assertThat(logger.isDebugEnabled(), is(false));
@@ -510,13 +451,8 @@ public class TraceLoggingInterceptorTest {
     private void verifyLogging(final String expectedLogMessage,
             final List<Level> expectedLogLevel, final int expectedCallCount) {
         verify(mockAppender, times(expectedCallCount)).doAppend(argThat(
-                new ArgumentMatcher<LoggingEvent>() {
-                    @Override
-                    public boolean matches(LoggingEvent argument) {
-                        return expectedLogLevel.contains(argument.getLevel())
-                                && argument.getFormattedMessage().contains(
-                                        expectedLogMessage);
-                    }
-                }));
+                argument -> expectedLogLevel.contains(argument.getLevel())
+                        && argument.getFormattedMessage().contains(
+                                expectedLogMessage)));
     }
 }

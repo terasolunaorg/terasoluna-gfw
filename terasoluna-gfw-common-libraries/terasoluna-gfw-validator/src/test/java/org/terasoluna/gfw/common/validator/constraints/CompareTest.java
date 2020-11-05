@@ -17,21 +17,18 @@ package org.terasoluna.gfw.common.validator.constraints;
 
 import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.emptyString;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.hasToString;
-import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assert.assertThrows;
 
 import java.beans.IntrospectionException;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.validation.ConstraintViolation;
-import javax.validation.Path.PropertyNode;
 import javax.validation.ValidationException;
 
 import org.junit.Before;
@@ -63,7 +60,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setLeft(100);
 
             violations = validator.validate(form);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
 
         {
@@ -71,7 +68,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
 
         {
@@ -79,7 +76,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(null);
 
             violations = validator.validate(form);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
     }
 
@@ -95,9 +92,9 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(99);
 
             violations = validator.validate(form);
-            assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
+            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
+                    String.format(MESSAGE_VALIDATION_ERROR, "left",
+                            "right")))));
         }
 
         {
@@ -105,7 +102,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
     }
 
@@ -121,9 +118,9 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, LessThanOrEqual.class);
-            assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
+            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
+                    String.format(MESSAGE_VALIDATION_ERROR, "left",
+                            "right")))));
         }
 
         {
@@ -131,7 +128,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, LessThanOrEqual.class);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
 
         {
@@ -139,7 +136,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, LessThanOrEqual.class);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
     }
 
@@ -155,9 +152,9 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, LessThan.class);
-            assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
+            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
+                    String.format(MESSAGE_VALIDATION_ERROR, "left",
+                            "right")))));
         }
 
         {
@@ -165,9 +162,9 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, LessThan.class);
-            assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
+            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
+                    String.format(MESSAGE_VALIDATION_ERROR, "left",
+                            "right")))));
         }
 
         {
@@ -175,7 +172,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, LessThan.class);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
     }
 
@@ -191,9 +188,9 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form);
-            assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
+            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
+                    String.format(MESSAGE_VALIDATION_ERROR, "left",
+                            "right")))));
         }
 
         {
@@ -201,7 +198,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
 
         {
@@ -209,9 +206,9 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form);
-            assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
+            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
+                    String.format(MESSAGE_VALIDATION_ERROR, "left",
+                            "right")))));
         }
     }
 
@@ -227,7 +224,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, NotEqual.class);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
 
         {
@@ -235,9 +232,9 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, NotEqual.class);
-            assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
+            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
+                    String.format(MESSAGE_VALIDATION_ERROR, "left",
+                            "right")))));
         }
 
         {
@@ -245,7 +242,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, NotEqual.class);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
 
     }
@@ -262,9 +259,9 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, GreaterThan.class);
-            assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
+            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
+                    String.format(MESSAGE_VALIDATION_ERROR, "left",
+                            "right")))));
         }
 
         {
@@ -272,9 +269,9 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, GreaterThan.class);
-            assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
+            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
+                    String.format(MESSAGE_VALIDATION_ERROR, "left",
+                            "right")))));
         }
 
         {
@@ -282,7 +279,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, GreaterThan.class);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
     }
 
@@ -298,9 +295,9 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, GreaterThanOrEqual.class);
-            assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "left", "right")));
+            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
+                    String.format(MESSAGE_VALIDATION_ERROR, "left",
+                            "right")))));
         }
 
         {
@@ -308,7 +305,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, GreaterThanOrEqual.class);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
 
         {
@@ -316,7 +313,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, GreaterThanOrEqual.class);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
     }
 
@@ -332,7 +329,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, RequireBoth.class);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
 
         {
@@ -340,16 +337,12 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(null);
 
             violations = validator.validate(form, RequireBoth.class);
-            assertThat(violations.size(), is(1));
-            for (ConstraintViolation<CompareTestForm> violation : violations) {
-                assertThat(violation.getMessage(), is(String.format(
-                        MESSAGE_VALIDATION_ERROR, "left", "right")));
-                for (javax.validation.Path.Node node : violation
-                        .getPropertyPath()) {
-                    assertThat(node, instanceOf(PropertyNode.class));
-                    assertThat(node.getName(), is("left"));
-                }
-            }
+            assertThat(violations, containsInAnyOrder( //
+                    allOf( //
+                            hasProperty("propertyPath", hasToString("left")), //
+                            hasProperty("message", is(String.format(
+                                    MESSAGE_VALIDATION_ERROR, "left",
+                                    "right"))))));
         }
 
         {
@@ -357,16 +350,12 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, RequireBoth.class);
-            assertThat(violations.size(), is(1));
-            for (ConstraintViolation<CompareTestForm> violation : violations) {
-                assertThat(violation.getMessage(), is(String.format(
-                        MESSAGE_VALIDATION_ERROR, "left", "right")));
-                for (javax.validation.Path.Node node : violation
-                        .getPropertyPath()) {
-                    assertThat(node, instanceOf(PropertyNode.class));
-                    assertThat(node.getName(), is("left"));
-                }
-            }
+            assertThat(violations, containsInAnyOrder( //
+                    allOf( //
+                            hasProperty("propertyPath", hasToString("left")), //
+                            hasProperty("message", is(String.format(
+                                    MESSAGE_VALIDATION_ERROR, "left",
+                                    "right"))))));
         }
 
         {
@@ -374,7 +363,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(null);
 
             violations = validator.validate(form, RequireBoth.class);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
     }
 
@@ -390,7 +379,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, RequireEither.class);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
 
         {
@@ -398,7 +387,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(null);
 
             violations = validator.validate(form, RequireEither.class);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
 
         {
@@ -406,7 +395,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(100);
 
             violations = validator.validate(form, RequireEither.class);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
 
         {
@@ -414,7 +403,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setRight(null);
 
             violations = validator.validate(form, RequireEither.class);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
     }
 
@@ -429,16 +418,11 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
         form.setRight(99);
 
         violations = validator.validate(form, NodeProperty.class);
-        assertThat(violations.size(), is(1));
-        for (ConstraintViolation<CompareTestForm> violation : violations) {
-            assertThat(violation.getMessage(), is(String.format(
-                    MESSAGE_VALIDATION_ERROR, "left", "right")));
-            for (javax.validation.Path.Node node : violation
-                    .getPropertyPath()) {
-                assertThat(node, instanceOf(PropertyNode.class));
-                assertThat(node.getName(), is("left"));
-            }
-        }
+        assertThat(violations, containsInAnyOrder( //
+                allOf( //
+                        hasProperty("propertyPath", hasToString("left")), //
+                        hasProperty("message", is(String.format(
+                                MESSAGE_VALIDATION_ERROR, "left", "right"))))));
     }
 
     /**
@@ -452,16 +436,11 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
         form.setRight(99);
 
         violations = validator.validate(form, PathRootBean.class);
-        assertThat(violations.size(), is(1));
-        for (ConstraintViolation<CompareTestForm> violation : violations) {
-            assertThat(violation.getMessage(), is(String.format(
-                    MESSAGE_VALIDATION_ERROR, "left", "right")));
-            for (javax.validation.Path.Node node : violation
-                    .getPropertyPath()) {
-                assertThat(node, instanceOf(PropertyNode.class));
-                assertThat(node.getName(), nullValue());
-            }
-        }
+        assertThat(violations, containsInAnyOrder( //
+                allOf( //
+                        hasProperty("propertyPath", hasToString(emptyString())), //
+                        hasProperty("message", is(String.format(
+                                MESSAGE_VALIDATION_ERROR, "left", "right"))))));
     }
 
     /**
@@ -476,10 +455,9 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
             form.setStringProperty("100");
 
             violations = validator.validate(form, TypeUnmatch.class);
-            assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, "left",
-                            "stringProperty")));
+            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
+                    String.format(MESSAGE_VALIDATION_ERROR, "left",
+                            "stringProperty")))));
         }
     }
 
@@ -523,72 +501,67 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
     }
 
     /**
-     * all values in the collection are valid.
+     * validate collection element values.
      */
     @Test
-    public void testCollectionValid() {
-        form.setListProperty(Arrays.asList(new Pair(100, 100),
-                new Pair(100, 100)));
+    public void testElementTypeTypeUse() {
 
-        violations = validator.validate(form);
-        assertThat(violations.size(), is(0));
-    }
+        {
+            form.setListProperty(Arrays.asList(new Pair(100, 100),
+                    new Pair(100, 100)));
 
-    /**
-     * first value in the collection is invalid.
-     */
-    @Test
-    public void testCollectionFirstInvalid() {
-        form.setListProperty(Arrays.asList(new Pair(101, 100),
-                new Pair(100, 100)));
+            violations = validator.validate(form);
+            assertThat(violations, is(empty()));
+        }
 
-        violations = validator.validate(form);
-        assertThat(violations.size(), is(1));
-        assertThat(violations, contains(allOf( //
-                hasProperty("propertyPath", hasToString(
-                        "listProperty[0].<list element>.left")), //
-                hasProperty("message", is(String.format(
-                        MESSAGE_VALIDATION_ERROR, "left", "right"))))));
-    }
+        {
+            form.setListProperty(Arrays.asList(new Pair(101, 100),
+                    new Pair(100, 100)));
 
-    /**
-     * last value in the collection is invalid.
-     */
-    @Test
-    public void testCollectionLastInvalid() {
-        form.setListProperty(Arrays.asList(new Pair(100, 100),
-                new Pair(100, 101)));
+            violations = validator.validate(form);
+            assertThat(violations, containsInAnyOrder( //
+                    allOf( //
+                            hasProperty("propertyPath", hasToString(
+                                    "listProperty[0].<list element>.left")), //
+                            hasProperty("message", is(String.format(
+                                    MESSAGE_VALIDATION_ERROR, "left",
+                                    "right"))))));
+        }
 
-        violations = validator.validate(form);
-        assertThat(violations.size(), is(1));
-        assertThat(violations, contains(allOf( //
-                hasProperty("propertyPath", hasToString(
-                        "listProperty[1].<list element>.left")), //
-                hasProperty("message", is(String.format(
-                        MESSAGE_VALIDATION_ERROR, "left", "right"))))));
-    }
+        {
+            form.setListProperty(Arrays.asList(new Pair(100, 100),
+                    new Pair(100, 101)));
 
-    /**
-     * all values in the collection are invalid.
-     */
-    @Test
-    public void testCollectionAllInvalid() {
-        form.setListProperty(Arrays.asList(new Pair(101, 100),
-                new Pair(100, 101)));
+            violations = validator.validate(form);
+            assertThat(violations, containsInAnyOrder( //
+                    allOf( //
+                            hasProperty("propertyPath", hasToString(
+                                    "listProperty[1].<list element>.left")), //
+                            hasProperty("message", is(String.format(
+                                    MESSAGE_VALIDATION_ERROR, "left",
+                                    "right"))))));
+        }
 
-        violations = validator.validate(form);
-        assertThat(violations.size(), is(2));
-        assertThat(violations, containsInAnyOrder( //
-                allOf( //
-                        hasProperty("propertyPath", hasToString(
-                                "listProperty[0].<list element>.left")), //
-                        hasProperty("message", is(String.format(
-                                MESSAGE_VALIDATION_ERROR, "left", "right")))), //
-                allOf( //
-                        hasProperty("propertyPath", hasToString(
-                                "listProperty[1].<list element>.left")), //
-                        hasProperty("message", is(String.format(
-                                MESSAGE_VALIDATION_ERROR, "left", "right"))))));
+        {
+            form.setListProperty(Arrays.asList(new Pair(101, 100),
+                    new Pair(100, 101)));
+
+            violations = validator.validate(form);
+            assertThat(violations, containsInAnyOrder( //
+                    allOf( //
+                            hasProperty("propertyPath", hasToString(
+                                    "listProperty[0].<list element>.left")), //
+                            hasProperty("message", is(String.format(
+                                    MESSAGE_VALIDATION_ERROR, "left",
+                                    "right")))), allOf( //
+                                            hasProperty("propertyPath",
+                                                    hasToString(
+                                                            "listProperty[1].<list element>.left")), //
+                                            hasProperty("message", is(String
+                                                    .format(MESSAGE_VALIDATION_ERROR,
+                                                            "left",
+                                                            "right"))))));
+        }
     }
 
     /**

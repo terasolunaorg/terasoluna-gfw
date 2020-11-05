@@ -18,7 +18,6 @@ package org.terasoluna.gfw.web.pagination;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -30,7 +29,7 @@ import javax.servlet.jsp.tagext.TagSupport;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.core.serializer.support.SerializationFailedException;
+import org.junit.Test.None;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -43,7 +42,6 @@ import org.springframework.util.SerializationUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.form.TagWriter;
 
-@SuppressWarnings("unchecked")
 public class PaginationTagTest {
 
     protected StringWriter writer;
@@ -51,6 +49,8 @@ public class PaginationTagTest {
     protected MockPageContext pageContext;
 
     protected PaginationTag tag;
+
+    Page<String> page;
 
     protected MockPageContext createPageContext() {
         MockServletContext sc = new MockServletContext();
@@ -64,7 +64,7 @@ public class PaginationTagTest {
         return new MockPageContext(sc, request, response);
     }
 
-    @SuppressWarnings("serial")
+    @SuppressWarnings({ "serial", "unchecked" })
     @Before
     public void setUp() throws Exception {
         this.writer = new StringWriter();
@@ -76,6 +76,7 @@ public class PaginationTagTest {
             }
         };
         tag.setPageContext(pageContext);
+        this.page = mock(Page.class);
     }
 
     @After
@@ -135,7 +136,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal01() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(0);
         when(page.getSize()).thenReturn(10);
@@ -164,7 +164,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal02() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(1);
         when(page.getSize()).thenReturn(10);
@@ -193,7 +192,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal03() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(5);
         when(page.getSize()).thenReturn(10);
@@ -222,7 +220,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal04() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(20);
         when(page.getSize()).thenReturn(10);
@@ -251,7 +248,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal05() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(95);
         when(page.getSize()).thenReturn(10);
@@ -280,7 +276,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal06() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(99);
         when(page.getSize()).thenReturn(10);
@@ -309,7 +304,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal07() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(100);
         when(page.getSize()).thenReturn(10);
@@ -335,7 +329,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal08() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(20);
         when(page.getSize()).thenReturn(10);
@@ -382,7 +375,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal10() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(20);
         when(page.getSize()).thenReturn(10);
@@ -411,7 +403,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal11() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(20);
         when(page.getSize()).thenReturn(10);
@@ -441,7 +432,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal12() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(20);
         when(page.getSize()).thenReturn(10);
@@ -473,7 +463,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal13() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(20);
         when(page.getSize()).thenReturn(10);
@@ -503,7 +492,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal14() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(20);
         when(page.getSize()).thenReturn(10);
@@ -533,7 +521,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal15() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(20);
         when(page.getSize()).thenReturn(10);
@@ -566,7 +553,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal16() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(20);
         when(page.getSize()).thenReturn(10);
@@ -598,7 +584,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal17() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(0);
         when(page.getSize()).thenReturn(10);
@@ -629,7 +614,6 @@ public class PaginationTagTest {
     @Test
     public void testDoStartTagInternal17_2() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(99);
         when(page.getSize()).thenReturn(10);
@@ -651,7 +635,7 @@ public class PaginationTagTest {
 
     @Test
     public void testDoStartTagInternal_disabledHref_is_empty() throws Exception {
-        Page<String> page = mock(Page.class);
+
         // set mock behavior
         when(page.getNumber()).thenReturn(0);
         when(page.getSize()).thenReturn(10);
@@ -670,7 +654,7 @@ public class PaginationTagTest {
 
     @Test
     public void issue12_testDoStartTagInternal_criteriaQuery_specified() throws Exception {
-        Page<String> page = mock(Page.class);
+
         // set mock behavior
         when(page.getNumber()).thenReturn(0);
         when(page.getSize()).thenReturn(10);
@@ -712,7 +696,7 @@ public class PaginationTagTest {
 
     @Test
     public void issue12_testDoStartTagInternal_criteriaQuery_specified_startWith_questionMark() throws Exception {
-        Page<String> page = mock(Page.class);
+
         // set mock behavior
         when(page.getNumber()).thenReturn(0);
         when(page.getSize()).thenReturn(10);
@@ -753,7 +737,7 @@ public class PaginationTagTest {
 
     @Test
     public void issue12_testDoStartTagInternal_disableHtmlEscapeOfCriteriaQuery_specified_true() throws Exception {
-        Page<String> page = mock(Page.class);
+
         // set mock behavior
         when(page.getNumber()).thenReturn(0);
         when(page.getSize()).thenReturn(10);
@@ -794,7 +778,7 @@ public class PaginationTagTest {
 
     @Test
     public void issue12_testDoStartTagInternal_criteriaQuery_specified_queryImpl_notSpecified() throws Exception {
-        Page<String> page = mock(Page.class);
+
         // set mock behavior
         when(page.getNumber()).thenReturn(0);
         when(page.getSize()).thenReturn(10);
@@ -831,7 +815,7 @@ public class PaginationTagTest {
 
     @Test
     public void issue13_14_testDoStartTagInternal_linkOfCurrentPage_specified_true() throws Exception {
-        Page<String> page = mock(Page.class);
+
         // set mock behavior
         when(page.getNumber()).thenReturn(0);
         when(page.getSize()).thenReturn(10);
@@ -869,7 +853,7 @@ public class PaginationTagTest {
 
     @Test
     public void issue13_14_testDoStartTagInternal_linkOfCurrentPage_specified_false() throws Exception {
-        Page<String> page = mock(Page.class);
+
         // set mock behavior
         when(page.getNumber()).thenReturn(0);
         when(page.getSize()).thenReturn(10);
@@ -907,7 +891,7 @@ public class PaginationTagTest {
 
     @Test
     public void issue13_14_testDoStartTagInternal_linkOfCurrentPage_isEmpty() throws Exception {
-        Page<String> page = mock(Page.class);
+
         // set mock behavior
         when(page.getNumber()).thenReturn(0);
         when(page.getSize()).thenReturn(10);
@@ -945,7 +929,7 @@ public class PaginationTagTest {
 
     @Test
     public void issue12_testDoStartTagInternal_criteriaQuery_specified_startWith_andMark() throws Exception {
-        Page<String> page = mock(Page.class);
+
         // set mock behavior
         when(page.getNumber()).thenReturn(0);
         when(page.getSize()).thenReturn(10);
@@ -983,36 +967,26 @@ public class PaginationTagTest {
         assertThat(getOutput(), is(expected.toString()));
     }
 
-    @Test
-    public void testSetters() {
+    @Test(expected = None.class)
+    public void testSetters() throws Exception {
 
         PaginationTag tag1 = new PaginationTag();
         tag1.setPageContext(pageContext);
 
-        try {
-            // Just for ensuring coverage
-            tag1.createTagWriter();
-            tag1.setPreviousLinkText("");
-            tag1.setNextLinkText("");
-            tag1.setDisabledHref("");
-            tag1.setActiveClass("");
-            tag1.setDisabledClass("");
-            tag1.setEnableLinkOfCurrentPage("");
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            fail();
-        }
+        // Just for ensuring coverage
+        tag1.createTagWriter();
+        tag1.setPreviousLinkText("");
+        tag1.setNextLinkText("");
+        tag1.setDisabledHref("");
+        tag1.setActiveClass("");
+        tag1.setDisabledClass("");
+        tag1.setEnableLinkOfCurrentPage("");
     }
 
-    @Test
+    @Test(expected = None.class)
     public void testSerialization() {
-        try {
-            byte[] serialized = SerializationUtils.serialize(
-                    new PaginationTag());
-            SerializationUtils.deserialize(serialized);
-        } catch (SerializationFailedException e) {
-            fail();
-        }
+        byte[] serialized = SerializationUtils.serialize(new PaginationTag());
+        SerializationUtils.deserialize(serialized);
     }
 
     /**
@@ -1033,7 +1007,6 @@ public class PaginationTagTest {
     @Test
     public void testEndOuterElement() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(0);
         when(page.getSize()).thenReturn(0);
@@ -1056,7 +1029,6 @@ public class PaginationTagTest {
     @Test
     public void testEndOuterElement2() throws Exception {
 
-        Page<String> page = mock(Page.class);
         // set mock behavior
         when(page.getNumber()).thenReturn(1);
         when(page.getSize()).thenReturn(0);

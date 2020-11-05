@@ -15,23 +15,21 @@
  */
 package org.terasoluna.gfw.common.validator.constraints;
 
-import static java.util.Comparator.comparing;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.allOf;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.hasToString;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThrows;
 
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Set;
 
-import javax.validation.ConstraintViolation;
 import javax.validation.UnexpectedTypeException;
-import javax.validation.Validation;
 import javax.validation.ValidationException;
-import javax.validation.Validator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -56,7 +54,7 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
     public void testInputNull() {
 
         violations = validator.validate(form);
-        assertThat(violations.size(), is(0));
+        assertThat(violations, is(empty()));
     }
 
     /**
@@ -69,16 +67,15 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
             form.setStringProperty("ああa");
 
             violations = validator.validate(form);
-            assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, 6)));
+            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
+                    String.format(MESSAGE_VALIDATION_ERROR, 6)))));
         }
 
         {
             form.setStringProperty("ああ");
 
             violations = validator.validate(form);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
     }
 
@@ -92,16 +89,15 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
             form.setStringBuilderProperty(new StringBuilder("ああa"));
 
             violations = validator.validate(form);
-            assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, 6)));
+            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
+                    String.format(MESSAGE_VALIDATION_ERROR, 6)))));
         }
 
         {
             form.setStringBuilderProperty(new StringBuilder("ああ"));
 
             violations = validator.validate(form);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
     }
 
@@ -115,16 +111,15 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
             form.setStringProperty("あああa");
 
             violations = validator.validate(form, SpecifyCharset.class);
-            assertThat(violations.size(), is(1));
-            assertThat(violations.iterator().next().getMessage(), is(String
-                    .format(MESSAGE_VALIDATION_ERROR, 6)));
+            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
+                    String.format(MESSAGE_VALIDATION_ERROR, 6)))));
         }
 
         {
             form.setStringProperty("あああ");
 
             violations = validator.validate(form, SpecifyCharset.class);
-            assertThat(violations.size(), is(0));
+            assertThat(violations, is(empty()));
         }
     }
 
@@ -162,90 +157,58 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
     }
 
     /**
-     * all values in the collection are valid.
+     * validate collection element values.
      */
     @Test
-    public void testCollectionValid() {
-        form.setListProperty(Arrays.asList("ああ", "ああ"));
-        Validator validator = Validation.buildDefaultValidatorFactory()
-                .getValidator();
-        Set<ConstraintViolation<ByteMaxTestForm>> violations = validator
-                .validate(form);
+    public void testElementTypeTypeUse() {
 
-        assertThat(violations, is(notNullValue()));
-        assertThat(violations.size(), is(0));
-    }
+        {
+            form.setListProperty(Arrays.asList("ああ", "ああ"));
 
-    /**
-     * first value in the collection is invalid.
-     */
-    @Test
-    public void testCollectionFirstInvalid() {
-        form.setListProperty(Arrays.asList("ああa", "ああ"));
-        Validator validator = Validation.buildDefaultValidatorFactory()
-                .getValidator();
-        Set<ConstraintViolation<ByteMaxTestForm>> violations = validator
-                .validate(form);
+            violations = validator.validate(form);
+            assertThat(violations, is(empty()));
+        }
 
-        assertThat(violations, is(notNullValue()));
-        assertThat(violations.size(), is(1));
+        {
+            form.setListProperty(Arrays.asList("ああa", "ああ"));
 
-        ConstraintViolation<ByteMaxTestForm> v = violations.iterator().next();
-        assertThat(v.getPropertyPath().toString(), is(
-                "listProperty[0].<list element>"));
-        assertThat(v.getMessage(), is(String.format(MESSAGE_VALIDATION_ERROR,
-                6)));
-    }
+            violations = validator.validate(form);
+            assertThat(violations, containsInAnyOrder( //
+                    allOf( //
+                            hasProperty("propertyPath", hasToString(
+                                    "listProperty[0].<list element>")), //
+                            hasProperty("message", is(String.format(
+                                    MESSAGE_VALIDATION_ERROR, 6))))));
+        }
 
-    /**
-     * last value in the collection is invalid.
-     */
-    @Test
-    public void testCollectionLastInvalid() {
-        form.setListProperty(Arrays.asList("ああ", "ああa"));
-        Validator validator = Validation.buildDefaultValidatorFactory()
-                .getValidator();
-        Set<ConstraintViolation<ByteMaxTestForm>> violations = validator
-                .validate(form);
+        {
+            form.setListProperty(Arrays.asList("ああ", "ああa"));
 
-        assertThat(violations, is(notNullValue()));
-        assertThat(violations.size(), is(1));
+            violations = validator.validate(form);
+            assertThat(violations, containsInAnyOrder( //
+                    allOf( //
+                            hasProperty("propertyPath", hasToString(
+                                    "listProperty[1].<list element>")), //
+                            hasProperty("message", is(String.format(
+                                    MESSAGE_VALIDATION_ERROR, 6))))));
+        }
 
-        ConstraintViolation<ByteMaxTestForm> v = violations.iterator().next();
-        assertThat(v.getPropertyPath().toString(), is(
-                "listProperty[1].<list element>"));
-        assertThat(v.getMessage(), is(String.format(MESSAGE_VALIDATION_ERROR,
-                6)));
-    }
+        {
+            form.setListProperty(Arrays.asList("ああa", "ああa"));
 
-    /**
-     * all values in the collection are invalid.
-     */
-    @Test
-    public void testCollectionAllInvalid() {
-        form.setListProperty(Arrays.asList("ああa", "ああa"));
-        Validator validator = Validation.buildDefaultValidatorFactory()
-                .getValidator();
-        Set<ConstraintViolation<ByteMaxTestForm>> violations = validator
-                .validate(form);
-
-        assertThat(violations, is(notNullValue()));
-        assertThat(violations.size(), is(2));
-
-        Iterator<ConstraintViolation<ByteMaxTestForm>> iterator = violations
-                .stream().sorted(comparing(v -> v.getPropertyPath().toString()))
-                .iterator();
-
-        ConstraintViolation<ByteMaxTestForm> violation = iterator.next();
-        assertThat(violation.getPropertyPath().toString(), is(
-                "listProperty[0].<list element>"));
-        assertThat(violation.getMessage(), is(String.format(
-                MESSAGE_VALIDATION_ERROR, 6)));
-        violation = iterator.next();
-        assertThat(violation.getPropertyPath().toString(), is(
-                "listProperty[1].<list element>"));
-        assertThat(violation.getMessage(), is(String.format(
-                MESSAGE_VALIDATION_ERROR, 6)));
+            violations = validator.validate(form);
+            assertThat(violations, containsInAnyOrder( //
+                    allOf( //
+                            hasProperty("propertyPath", hasToString(
+                                    "listProperty[0].<list element>")), //
+                            hasProperty("message", is(String.format(
+                                    MESSAGE_VALIDATION_ERROR, 6)))), //
+                    allOf( //
+                            hasProperty("propertyPath", hasToString(
+                                    "listProperty[1].<list element>")), //
+                            hasProperty("message", is(String.format(
+                                    MESSAGE_VALIDATION_ERROR, 6))))));
+        }
     }
 
     /**

@@ -15,8 +15,8 @@
  */
 package org.terasoluna.gfw.common.codelist.i18n;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasEntry;
 
 import java.util.Collections;
 import java.util.Locale;
@@ -47,19 +47,19 @@ public class AbstractI18nCodeListTest {
         };
 
         Locale.setDefault(Locale.ENGLISH);
-        assertThat(impl.asMap().get("language"), is(Locale.ENGLISH
+        assertThat(impl.asMap(), hasEntry("language", Locale.ENGLISH
                 .getLanguage()));
 
         LocaleContextHolder.setLocale(Locale.GERMAN);
-        assertThat(impl.asMap().get("language"), is(Locale.GERMAN
+        assertThat(impl.asMap(), hasEntry("language", Locale.GERMAN
                 .getLanguage()));
 
         LocaleContextHolder.setLocale(Locale.FRENCH);
-        assertThat(impl.asMap().get("language"), is(Locale.FRENCH
+        assertThat(impl.asMap(), hasEntry("language", Locale.FRENCH
                 .getLanguage()));
 
         Locale.setDefault(Locale.JAPANESE);
-        assertThat(impl.asMap().get("language"), is(Locale.FRENCH
+        assertThat(impl.asMap(), hasEntry("language", Locale.FRENCH
                 .getLanguage()));
     }
 

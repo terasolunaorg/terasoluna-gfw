@@ -53,10 +53,7 @@ public class NumberRangeCodeListTest {
         Map<String, String> mapResult = numberRangeCodeList.asMap();
 
         // check that the codelist is initialized with range of numbers
-        assertThat(mapResult.size(), is(mapTest.size()));
-        for (String key : mapResult.keySet()) {
-            assertThat(mapResult.get(key), is(mapTest.get(key)));
-        }
+        assertThat(mapResult, is(mapTest));
 
         // check the order of range of numbers
         assertThat(mapResult.equals(mapTest), is(true));

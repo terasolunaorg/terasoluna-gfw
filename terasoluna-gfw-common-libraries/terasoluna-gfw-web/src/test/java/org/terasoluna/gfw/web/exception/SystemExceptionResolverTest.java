@@ -18,6 +18,10 @@ package org.terasoluna.gfw.web.exception;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.anEmptyMap;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.hasEntry;
+import static org.hamcrest.Matchers.hasToString;
 
 import java.util.Enumeration;
 import java.util.Locale;
@@ -74,7 +78,7 @@ public class SystemExceptionResolverTest {
 
         assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(
                 false));
-        assertThat(mockResponse.getHeaderNames().isEmpty(), is(true));
+        assertThat(mockResponse.getHeaderNames(), is(empty()));
 
     }
 
@@ -90,11 +94,11 @@ public class SystemExceptionResolverTest {
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
         Enumeration<String> attributeNames = mockRequest.getAttributeNames();
-        assertThat(attributeNames.nextElement().equals(
-                DispatcherServlet.OUTPUT_FLASH_MAP_ATTRIBUTE), is(true));
+        assertThat(attributeNames.nextElement(), is(
+                DispatcherServlet.OUTPUT_FLASH_MAP_ATTRIBUTE));
         assertThat(attributeNames.hasMoreElements(), is(false));
-        assertThat(mockResponse.getHeaderNames().isEmpty(), is(true));
-        assertThat(flashMap.isEmpty(), is(true));
+        assertThat(mockResponse.getHeaderNames(), is(empty()));
+        assertThat(flashMap, is(anEmptyMap()));
 
     }
 
@@ -109,11 +113,11 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttribute("exceptionCode").toString(), is(
+        assertThat(mockRequest.getAttribute("exceptionCode"), hasToString(
                 "code001"));
         assertThat(mockResponse.getHeader("X-Exception-Code"), is("code001"));
 
-        assertThat((String) flashMap.get("exceptionCode"), is("code001"));
+        assertThat(flashMap, hasEntry("exceptionCode", "code001"));
 
     }
 
@@ -129,7 +133,7 @@ public class SystemExceptionResolverTest {
 
         assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(
                 false));
-        assertThat(mockResponse.getHeaderNames().isEmpty(), is(true));
+        assertThat(mockResponse.getHeaderNames(), is(empty()));
 
     }
 
@@ -145,7 +149,7 @@ public class SystemExceptionResolverTest {
 
         assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(
                 false));
-        assertThat(mockResponse.getHeaderNames().isEmpty(), is(true));
+        assertThat(mockResponse.getHeaderNames(), is(empty()));
 
     }
 
@@ -188,9 +192,9 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttribute("exceptionCode").toString(), is(
+        assertThat(mockRequest.getAttribute("exceptionCode"), hasToString(
                 "code001"));
-        assertThat(mockResponse.getHeaderNames().isEmpty(), is(true));
+        assertThat(mockResponse.getHeaderNames(), is(empty()));
 
     }
 
@@ -203,9 +207,9 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttribute("exceptionCode").toString(), is(
+        assertThat(mockRequest.getAttribute("exceptionCode"), hasToString(
                 "code001"));
-        assertThat(mockResponse.getHeaderNames().isEmpty(), is(true));
+        assertThat(mockResponse.getHeaderNames(), is(empty()));
 
     }
 
@@ -251,7 +255,7 @@ public class SystemExceptionResolverTest {
 
         testTarget.setResultMessages(occurException, mockRequest);
 
-        assertThat(flashMap.isEmpty(), is(true));
+        assertThat(flashMap, is(anEmptyMap()));
 
     }
 
@@ -269,7 +273,7 @@ public class SystemExceptionResolverTest {
 
         testTarget.setResultMessages(occurException, mockRequest);
 
-        assertThat(flashMap.isEmpty(), is(true));
+        assertThat(flashMap, is(anEmptyMap()));
 
     }
 
@@ -287,7 +291,7 @@ public class SystemExceptionResolverTest {
 
         testTarget.setResultMessages(occurException, mockRequest);
 
-        assertThat(flashMap.isEmpty(), is(true));
+        assertThat(flashMap, is(anEmptyMap()));
 
     }
 
@@ -310,7 +314,7 @@ public class SystemExceptionResolverTest {
         testTarget.setExceptionInfo(occurException, mockRequest, mockResponse);
 
         // do assert.
-        assertThat(mockRequest.getAttribute("exceptionCode").toString(), is(
+        assertThat(mockRequest.getAttribute("exceptionCode"), hasToString(
                 "defaultCode"));
         assertThat(mockResponse.getHeader("X-Exception-Code"), is(
                 "defaultCode"));
@@ -370,7 +374,7 @@ public class SystemExceptionResolverTest {
         assertThat(occurException, is(actualModleAndView.getModel().get(
                 SimpleMappingExceptionResolver.DEFAULT_EXCEPTION_ATTRIBUTE)));
 
-        assertThat(mockRequest.getAttribute("exceptionCode").toString(), is(
+        assertThat(mockRequest.getAttribute("exceptionCode"), hasToString(
                 "defaultExceptionCode"));
         assertThat(mockResponse.getHeader("X-Exception-Code"), is(
                 "defaultExceptionCode"));

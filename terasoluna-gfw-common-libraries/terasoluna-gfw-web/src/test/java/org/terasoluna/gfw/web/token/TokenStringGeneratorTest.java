@@ -19,7 +19,8 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.hamcrest.Matchers.hasLength;
+import static org.junit.Assert.assertThrows;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -27,29 +28,25 @@ import org.junit.Test;
 
 public class TokenStringGeneratorTest {
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testInvalidTokenGeneratorAlgorithm() throws Exception {
-        try {
-            new TokenStringGenerator("InvalidAlgorithm");
-        } catch (Exception e) {
-            assertThat(e.getCause(), is(instanceOf(
-                    NoSuchAlgorithmException.class)));
-            assertThat(e.getMessage(), is(
-                    "The given algorithm is invalid. algorithm=InvalidAlgorithm"));
-            throw e;
-        }
-        fail();
+    @Test
+    public void testInvalidTokenGeneratorAlgorithm() {
+        IllegalArgumentException e = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    new TokenStringGenerator("InvalidAlgorithm");
+                });
+        assertThat(e.getCause(), is(instanceOf(
+                NoSuchAlgorithmException.class)));
+        assertThat(e.getMessage(), is(
+                "The given algorithm is invalid. algorithm=InvalidAlgorithm"));
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void testNullTokenGeneratorAlgorithm() throws Exception {
-        try {
-            new TokenStringGenerator(null);
-        } catch (Exception e) {
-            assertThat(e.getMessage(), is("algorithm must not be null"));
-            throw e;
-        }
-        fail();
+    @Test
+    public void testNullTokenGeneratorAlgorithm() {
+        IllegalArgumentException e = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    new TokenStringGenerator(null);
+                });
+        assertThat(e.getMessage(), is("algorithm must not be null"));
     }
 
     @Test
@@ -57,7 +54,7 @@ public class TokenStringGeneratorTest {
         TokenStringGenerator generator = new TokenStringGenerator();
         String value = generator.generate("hoge");
         assertThat(value, is(notNullValue()));
-        assertThat(value.length(), is(32));
+        assertThat(value, hasLength(32));
     }
 
     @Test
@@ -65,7 +62,7 @@ public class TokenStringGeneratorTest {
         TokenStringGenerator generator = new TokenStringGenerator();
         String value = generator.generate("");
         assertThat(value, is(notNullValue()));
-        assertThat(value.length(), is(32));
+        assertThat(value, hasLength(32));
     }
 
     @Test
@@ -73,18 +70,18 @@ public class TokenStringGeneratorTest {
         TokenStringGenerator generator = new TokenStringGenerator("SHA-256");
         String value = generator.generate("hoge");
         assertThat(value, is(notNullValue()));
-        assertThat(value.length(), is(64));
+        assertThat(value, hasLength(64));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testGenerate_nullValue() throws Exception {
         TokenStringGenerator generator = new TokenStringGenerator();
-        try {
-            generator.generate(null);
-        } catch (Exception e) {
-            assertThat(e.getMessage(), is("seed must not be null"));
-            throw e;
-        }
+
+        IllegalArgumentException e = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    generator.generate(null);
+                });
+        assertThat(e.getMessage(), is("seed must not be null"));
     }
 
 }

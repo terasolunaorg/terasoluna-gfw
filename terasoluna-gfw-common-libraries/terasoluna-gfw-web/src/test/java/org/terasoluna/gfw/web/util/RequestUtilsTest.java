@@ -15,9 +15,9 @@
  */
 package org.terasoluna.gfw.web.util;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.lang.reflect.Constructor;
 
@@ -38,13 +38,13 @@ public class RequestUtilsTest {
     public void testIsAjaxRequest() {
         request.addHeader("X-Requested-With", "XMLHttpRequest");
 
-        assertTrue(RequestUtils.isAjaxRequest(request));
+        assertThat(RequestUtils.isAjaxRequest(request), is(true));
     }
 
     @Test
     public void testNotAjaxRequest() {
 
-        assertFalse(RequestUtils.isAjaxRequest(request));
+        assertThat(RequestUtils.isAjaxRequest(request), is(false));
     }
 
     @Test
@@ -52,7 +52,7 @@ public class RequestUtilsTest {
         Constructor<RequestUtils> c = RequestUtils.class
                 .getDeclaredConstructor();
         c.setAccessible(true);
-        assertNotNull(c.newInstance());
+        assertThat(c.newInstance(), is(notNullValue()));
     }
 
 }
