@@ -170,11 +170,11 @@ class ObjectToMapConverter {
     private Map<String, String> convert(String prefix, Map<?, ?> value) {
         Map<String, String> map = new LinkedHashMap<String, String>();
         for (Map.Entry<?, ?> e : value.entrySet()) {
-            if (StringUtils.isEmpty(prefix)) {
-                map.putAll(this.convert(e.getKey().toString(), e.getValue()));
-            } else {
+            if (StringUtils.hasText(prefix)) {
                 map.putAll(this.convert(prefix + "[" + e.getKey() + "]", e
                         .getValue()));
+            } else {
+                map.putAll(this.convert(e.getKey().toString(), e.getValue()));
             }
         }
         return map;
@@ -288,7 +288,7 @@ class ObjectToMapConverter {
      */
     private boolean flatten(Map<String, String> map, String prefix, String name,
             Object value, TypeDescriptor sourceType) {
-        String key = StringUtils.isEmpty(prefix) ? name : prefix + "." + name;
+        String key = StringUtils.hasText(prefix) ? prefix + "." + name : name;
         if (value == null) {
             String resetKey = determineResetKey(key, sourceType);
             map.put(resetKey, "");
@@ -297,14 +297,14 @@ class ObjectToMapConverter {
         }
         Class<?> clazz = value.getClass();
         if (value instanceof Iterable) {
-            if (StringUtils.isEmpty(name)) {
+            if (!StringUtils.hasText(name)) {
                 // skip flatten
                 return true;
             }
             Iterable<?> iterable = (Iterable<?>) value;
             map.putAll(this.convert(key, iterable));
         } else if (clazz.isArray()) {
-            if (StringUtils.isEmpty(name)) {
+            if (!StringUtils.hasText(name)) {
                 // skip flatten
                 return true;
             }

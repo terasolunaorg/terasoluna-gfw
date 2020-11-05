@@ -15,6 +15,8 @@
  */
 package org.terasoluna.gfw.common.exception;
 
+import org.springframework.util.StringUtils;
+
 /**
  * Default class for resolving exception level
  */
@@ -66,7 +68,7 @@ public class DefaultExceptionLevelResolver implements ExceptionLevelResolver {
     @Override
     public ExceptionLevel resolveExceptionLevel(Exception ex) {
         String exceptionCode = resolveExceptionCode(ex);
-        if (exceptionCode == null || exceptionCode.isEmpty()) {
+        if (!StringUtils.hasText(exceptionCode)) {
             return ExceptionLevel.ERROR;
         }
         String exceptionCodePrefix = exceptionCode.substring(0, 1);

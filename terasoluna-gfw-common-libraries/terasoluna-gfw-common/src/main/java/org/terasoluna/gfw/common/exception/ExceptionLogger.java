@@ -380,10 +380,10 @@ public class ExceptionLogger implements InitializingBean {
 
         String bindingExceptionCode = exceptionCode;
         String bindingExceptionMessage = exceptionMessage;
-        if (StringUtils.isEmpty(bindingExceptionCode)) {
+        if (!StringUtils.hasText(bindingExceptionCode)) {
             bindingExceptionCode = defaultCode;
         }
-        if (StringUtils.isEmpty(bindingExceptionMessage)) {
+        if (!StringUtils.hasText(bindingExceptionMessage)) {
             bindingExceptionMessage = defaultMessage;
         }
 

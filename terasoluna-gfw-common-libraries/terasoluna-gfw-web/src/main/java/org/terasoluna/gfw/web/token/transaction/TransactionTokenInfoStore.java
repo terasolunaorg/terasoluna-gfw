@@ -20,6 +20,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 import org.springframework.core.annotation.AnnotationUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 
 /**
@@ -109,10 +110,10 @@ public class TransactionTokenInfoStore {
                 : classAnnotation.value();
 
         StringBuilder tokenNameStringBuilder = new StringBuilder();
-        if (classTokenName != null && !classTokenName.isEmpty()) {
+        if (StringUtils.hasText(classTokenName)) {
             tokenNameStringBuilder.append(classTokenName);
         }
-        if (methodTokenName != null && !methodTokenName.isEmpty()) {
+        if (StringUtils.hasText(methodTokenName)) {
             if (tokenNameStringBuilder.length() != 0) {
                 tokenNameStringBuilder.append("/");
             }
