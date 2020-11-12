@@ -18,12 +18,12 @@ package org.terasoluna.gfw.web.util;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
 
 import java.lang.reflect.Constructor;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Test.None;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 public class ResponseUtilsTest {
@@ -44,14 +44,10 @@ public class ResponseUtilsTest {
                 "Thu, 01 Jan 1970 00:00:00 GMT")); // Changed by SPR-11912
     }
 
-    @Test
+    @Test(expected = None.class)
     public void testSetPreventionCachingHeadersWithNullResponse() {
-        try {
-            ResponseUtils.setPreventionCachingHeaders(null);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-            fail();
-        }
+
+        ResponseUtils.setPreventionCachingHeaders(null);
     }
 
     @Test

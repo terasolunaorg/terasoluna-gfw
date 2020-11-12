@@ -18,7 +18,9 @@ package org.terasoluna.gfw.web.logging.mdc;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.hamcrest.Matchers.aMapWithSize;
+import static org.hamcrest.Matchers.hasKey;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.spy;
 
@@ -99,9 +101,9 @@ public class MDCClearFilterTest {
 
         // do assert.
         // not remove existing values from MDC on before chain.
-        assertThat(mockFilterChain.actualMdcContextMap.size(), is(1));
-        assertThat(mockFilterChain.actualMdcContextMap.containsKey("key0"), is(
-                true));
+        Map<?, ?> actualMdcContextMap = mockFilterChain.actualMdcContextMap;
+        assertThat(actualMdcContextMap, aMapWithSize(1));
+        assertThat(actualMdcContextMap, hasKey("key0"));
         // remove all values from MDC on after chain.
         assertThat(MDC.getCopyOfContextMap(), is(nullValue()));
     }
@@ -126,15 +128,13 @@ public class MDCClearFilterTest {
         MDC.put("key0", "value0");
 
         // do test.
-        try {
+        ServletException e = assertThrows(ServletException.class, () -> {
             testTarget.doFilterInternal(mockRequest, mockResponse,
                     mockFilterChain);
-            fail("don't occur ServletException.");
-        } catch (ServletException e) {
-            // do assert.
-            // throws original exception.
-            assertThat(e, is(occurException));
-        }
+        });
+        // do assert.
+        // throws original exception.
+        assertThat(e, is(occurException));
 
         // do assert.
         // remove all values from MDC on after chain.

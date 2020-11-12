@@ -16,17 +16,17 @@
 package org.terasoluna.gfw.common.codelist;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.empty;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.hasSize;
+import static org.junit.Assert.assertThrows;
 
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -67,7 +67,7 @@ public class ExistInCodeListTest {
         p.gender = "F";
         p.lang = "JP";
         Set<ConstraintViolation<Person>> result = validator.validate(p);
-        assertThat(result.isEmpty(), is(true));
+        assertThat(result, is(empty()));
     }
 
     @Test
@@ -76,7 +76,7 @@ public class ExistInCodeListTest {
         e.gender = new StringBuilder("F");
         e.lang = new StringBuilder("JP");
         Set<ConstraintViolation<Employee>> result = validator.validate(e);
-        assertThat(result.isEmpty(), is(true));
+        assertThat(result, is(empty()));
     }
 
     @Test
@@ -85,7 +85,7 @@ public class ExistInCodeListTest {
         p.gender = null;
         p.lang = "JP";
         Set<ConstraintViolation<Person>> result = validator.validate(p);
-        assertThat(result.isEmpty(), is(true));
+        assertThat(result, is(empty()));
     }
 
     @Test
@@ -94,7 +94,7 @@ public class ExistInCodeListTest {
         e.gender = null;
         e.lang = new StringBuilder("JP");
         Set<ConstraintViolation<Employee>> result = validator.validate(e);
-        assertThat(result.isEmpty(), is(true));
+        assertThat(result, is(empty()));
     }
 
     @Test
@@ -103,7 +103,7 @@ public class ExistInCodeListTest {
         p.gender = "";
         p.lang = "JP";
         Set<ConstraintViolation<Person>> result = validator.validate(p);
-        assertThat(result.isEmpty(), is(true));
+        assertThat(result, is(empty()));
     }
 
     @Test
@@ -112,7 +112,7 @@ public class ExistInCodeListTest {
         e.gender = new StringBuilder("");
         e.lang = new StringBuilder("JP");
         Set<ConstraintViolation<Employee>> result = validator.validate(e);
-        assertThat(result.isEmpty(), is(true));
+        assertThat(result, is(empty()));
     }
 
     @Test
@@ -121,7 +121,7 @@ public class ExistInCodeListTest {
         p.gender = "G";
         p.lang = "JP";
         Set<ConstraintViolation<Person>> result = validator.validate(p);
-        assertThat(result.size(), is(1));
+        assertThat(result, hasSize(1));
     }
 
     @Test
@@ -130,7 +130,7 @@ public class ExistInCodeListTest {
         e.gender = new StringBuilder("G");
         e.lang = new StringBuilder("JP");
         Set<ConstraintViolation<Employee>> result = validator.validate(e);
-        assertThat(result.size(), is(1));
+        assertThat(result, hasSize(1));
     }
 
     @Test
@@ -139,7 +139,7 @@ public class ExistInCodeListTest {
         p.gender = "G";
         p.lang = "FR";
         Set<ConstraintViolation<Person>> result = validator.validate(p);
-        assertThat(result.size(), is(2));
+        assertThat(result, hasSize(2));
     }
 
     @Test
@@ -148,7 +148,7 @@ public class ExistInCodeListTest {
         e.gender = new StringBuilder("G");
         e.lang = new StringBuilder("FR");
         Set<ConstraintViolation<Employee>> result = validator.validate(e);
-        assertThat(result.size(), is(2));
+        assertThat(result, hasSize(2));
     }
 
     @Test
@@ -157,7 +157,7 @@ public class ExistInCodeListTest {
         c.gender = 'F';
         c.lang = "JP";
         Set<ConstraintViolation<Customer>> result = validator.validate(c);
-        assertThat(result.isEmpty(), is(true));
+        assertThat(result, is(empty()));
     }
 
     @Test
@@ -166,19 +166,17 @@ public class ExistInCodeListTest {
         c.gender = null;
         c.lang = "JP";
         Set<ConstraintViolation<Customer>> result = validator.validate(c);
-        assertThat(result.isEmpty(), is(true));
+        assertThat(result, is(empty()));
     }
 
-    @SuppressWarnings("unchecked")
     @Test
     public void test_hasInValidCharacterCode() {
         Customer c = new Customer();
         c.gender = 'G';
         c.lang = "JP";
         Set<ConstraintViolation<Customer>> result = validator.validate(c);
-        assertThat(result.size(), is(1));
-        assertThat(((ConstraintViolation<Customer>) result.toArray()[0])
-                .getMessage(), is("Does not exist in CD_GENDER"));
+        assertThat(result, containsInAnyOrder(hasProperty("message", is(
+                "Does not exist in CD_GENDER"))));
     }
 
     @Test
@@ -187,7 +185,7 @@ public class ExistInCodeListTest {
         c.gender = 'G';
         c.lang = "FR";
         Set<ConstraintViolation<Customer>> result = validator.validate(c);
-        assertThat(result.size(), is(2));
+        assertThat(result, hasSize(2));
     }
 
     @Test
@@ -196,7 +194,7 @@ public class ExistInCodeListTest {
         b.month = 1;
         b.day = 1L;
         Set<ConstraintViolation<BirthDay>> result = validator.validate(b);
-        assertThat(result.isEmpty(), is(true));
+        assertThat(result, is(empty()));
     }
 
     @Test
@@ -206,7 +204,7 @@ public class ExistInCodeListTest {
         b.day = 1L;
         Set<ConstraintViolation<BirthDay>> result = validator.validate(b,
                 FORMATTED.class);
-        assertThat(result.isEmpty(), is(true));
+        assertThat(result, is(empty()));
     }
 
     @Test
@@ -215,7 +213,7 @@ public class ExistInCodeListTest {
         b.month = 13;
         b.day = 32L;
         Set<ConstraintViolation<BirthDay>> result = validator.validate(b);
-        assertThat(result.size(), is(2));
+        assertThat(result, hasSize(2));
     }
 
     @Test
@@ -224,17 +222,17 @@ public class ExistInCodeListTest {
         {
             Order order = new Order(0);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result.isEmpty(), is(true));
+            assertThat(result, is(empty()));
         }
         {
             Order order = new Order(6);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result.isEmpty(), is(true));
+            assertThat(result, is(empty()));
         }
         {
             Order order = new Order(12);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result.isEmpty(), is(true));
+            assertThat(result, is(empty()));
         }
     }
 
@@ -243,118 +241,73 @@ public class ExistInCodeListTest {
         {
             Order order = new Order(1);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result.size(), is(2));
-            SortedSet<String> messages = new TreeSet<String>();
-            for (ConstraintViolation<Order> violation : result) {
-                messages.add(violation.getMessage());
-            }
-            Iterator<String> iterator = messages.iterator();
-            assertThat(iterator.next(), is("number must be even"));
-            assertThat(iterator.next(), is("number must be multiples of 3"));
+            assertThat(result, containsInAnyOrder( //
+                    hasProperty("message", is("number must be even")), //
+                    hasProperty("message", is(
+                            "number must be multiples of 3"))));
         }
         {
             Order order = new Order(2);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result.size(), is(1));
-            SortedSet<String> messages = new TreeSet<String>();
-            for (ConstraintViolation<Order> violation : result) {
-                messages.add(violation.getMessage());
-            }
-            Iterator<String> iterator = messages.iterator();
-            assertThat(iterator.next(), is("number must be multiples of 3"));
+            assertThat(result, containsInAnyOrder(hasProperty("message", is(
+                    "number must be multiples of 3"))));
         }
         {
             Order order = new Order(4);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result.size(), is(1));
-            SortedSet<String> messages = new TreeSet<String>();
-            for (ConstraintViolation<Order> violation : result) {
-                messages.add(violation.getMessage());
-            }
-            Iterator<String> iterator = messages.iterator();
-            assertThat(iterator.next(), is("number must be multiples of 3"));
+            assertThat(result, containsInAnyOrder(hasProperty("message", is(
+                    "number must be multiples of 3"))));
         }
         {
             Order order = new Order(5);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result.size(), is(2));
-            SortedSet<String> messages = new TreeSet<String>();
-            for (ConstraintViolation<Order> violation : result) {
-                messages.add(violation.getMessage());
-            }
-            Iterator<String> iterator = messages.iterator();
-            assertThat(iterator.next(), is("number must be even"));
-            assertThat(iterator.next(), is("number must be multiples of 3"));
+            assertThat(result, containsInAnyOrder( //
+                    hasProperty("message", is("number must be even")), //
+                    hasProperty("message", is(
+                            "number must be multiples of 3"))));
         }
         {
             Order order = new Order(7);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result.size(), is(2));
-            SortedSet<String> messages = new TreeSet<String>();
-            for (ConstraintViolation<Order> violation : result) {
-                messages.add(violation.getMessage());
-            }
-            Iterator<String> iterator = messages.iterator();
-            assertThat(iterator.next(), is("number must be even"));
-            assertThat(iterator.next(), is("number must be multiples of 3"));
+            assertThat(result, containsInAnyOrder( //
+                    hasProperty("message", is("number must be even")), //
+                    hasProperty("message", is(
+                            "number must be multiples of 3"))));
         }
         {
             Order order = new Order(8);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result.size(), is(1));
-            SortedSet<String> messages = new TreeSet<String>();
-            for (ConstraintViolation<Order> violation : result) {
-                messages.add(violation.getMessage());
-            }
-            Iterator<String> iterator = messages.iterator();
-            assertThat(iterator.next(), is("number must be multiples of 3"));
+            assertThat(result, containsInAnyOrder(hasProperty("message", is(
+                    "number must be multiples of 3"))));
         }
         {
             Order order = new Order(9);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result.size(), is(1));
-            SortedSet<String> messages = new TreeSet<String>();
-            for (ConstraintViolation<Order> violation : result) {
-                messages.add(violation.getMessage());
-            }
-            Iterator<String> iterator = messages.iterator();
-            assertThat(iterator.next(), is("number must be even"));
+            assertThat(result, containsInAnyOrder(hasProperty("message", is(
+                    "number must be even"))));
         }
         {
             Order order = new Order(10);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result.size(), is(1));
-            SortedSet<String> messages = new TreeSet<String>();
-            for (ConstraintViolation<Order> violation : result) {
-                messages.add(violation.getMessage());
-            }
-            Iterator<String> iterator = messages.iterator();
-            assertThat(iterator.next(), is("number must be multiples of 3"));
+            assertThat(result, containsInAnyOrder(hasProperty("message", is(
+                    "number must be multiples of 3"))));
         }
         {
             Order order = new Order(11);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result.size(), is(2));
-            SortedSet<String> messages = new TreeSet<String>();
-            for (ConstraintViolation<Order> violation : result) {
-                messages.add(violation.getMessage());
-            }
-            Iterator<String> iterator = messages.iterator();
-            assertThat(iterator.next(), is("number must be even"));
-            assertThat(iterator.next(), is("number must be multiples of 3"));
+            assertThat(result, containsInAnyOrder( //
+                    hasProperty("message", is("number must be even")), //
+                    hasProperty("message", is(
+                            "number must be multiples of 3"))));
         }
         {
             // out of range!
             Order order = new Order(18);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result.size(), is(2));
-            SortedSet<String> messages = new TreeSet<String>();
-            for (ConstraintViolation<Order> violation : result) {
-                messages.add(violation.getMessage());
-            }
-            Iterator<String> iterator = messages.iterator();
-            assertThat(iterator.next(), is("number must be even"));
-            assertThat(iterator.next(), is("number must be multiples of 3"));
+            assertThat(result, containsInAnyOrder( //
+                    hasProperty("message", is("number must be even")), //
+                    hasProperty("message", is(
+                            "number must be multiples of 3"))));
         }
     }
 
@@ -364,7 +317,7 @@ public class ExistInCodeListTest {
         p.gender = "X"; // invalid value
         p.lang = "JP";
         Set<ConstraintViolation<Person>> result = validator.validate(p);
-        assertThat(result.size(), is(1));
+        assertThat(result, hasSize(1));
         ConstraintViolation<Person> error = result.iterator().next();
         assertThat(error.getMessageTemplate(), is(
                 "{org.terasoluna.gfw.common.codelist.ExistInCodeList.message}"));
@@ -379,16 +332,12 @@ public class ExistInCodeListTest {
 
     @Test
     public void issue401_testMethodValidationByInvalidValue() {
-        try {
-            codeService.getGenderLabel("U"); // call a method using invalid code value
-            fail("should be become a validation error.");
-        } catch (ConstraintViolationException e) {
-            Set<ConstraintViolation<?>> actualViolations = e
-                    .getConstraintViolations();
-            assertThat(actualViolations.size(), is(1));
-            assertThat(actualViolations.iterator().next().getMessage(), is(
-                    "Does not exist in CD_GENDER"));
-        }
+        ConstraintViolationException e = assertThrows(
+                ConstraintViolationException.class, () -> {
+                    codeService.getGenderLabel("U"); // call a method using invalid code value
+                });
+        assertThat(e.getConstraintViolations(), containsInAnyOrder(hasProperty(
+                "message", is("Does not exist in CD_GENDER"))));
     }
 
     @Test
@@ -397,9 +346,7 @@ public class ExistInCodeListTest {
         r.setRoles(Arrays.asList("M", "A", "U"));
 
         Set<ConstraintViolation<Role>> violations = validator.validate(r);
-
-        assertThat(violations, is(notNullValue()));
-        assertThat(violations.size(), is(0));
+        assertThat(violations, is(empty()));
     }
 
     @Test
@@ -408,9 +355,7 @@ public class ExistInCodeListTest {
         r.setRoles(Arrays.asList("M", "A", "T"));
 
         Set<ConstraintViolation<Role>> violations = validator.validate(r);
-
-        assertThat(violations, is(notNullValue()));
-        assertThat(violations.size(), is(1));
+        assertThat(violations, hasSize(1));
     }
 
     @Test
@@ -419,9 +364,7 @@ public class ExistInCodeListTest {
         r.setRoles(Arrays.asList("S", "A", "T"));
 
         Set<ConstraintViolation<Role>> violations = validator.validate(r);
-
-        assertThat(violations, is(notNullValue()));
-        assertThat(violations.size(), is(2));
+        assertThat(violations, hasSize(2));
     }
 
     @Validated

@@ -17,7 +17,7 @@ package org.terasoluna.gfw.common.exception;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.mock;
@@ -29,12 +29,11 @@ import java.io.FileNotFoundException;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentMatcher;
 
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.classic.spi.LoggingEvent;
+import ch.qos.logback.classic.spi.IThrowableProxy;
 import ch.qos.logback.core.Appender;
 
 public class ExceptionLoggerTest {
@@ -685,13 +684,12 @@ public class ExceptionLoggerTest {
 
         testTarget.setLogMessageFormat(null);
 
-        try {
-            testTarget.afterPropertiesSet();
-            fail("if logMessageFormat is null, must be occur IllegalArgumentException.");
-        } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), is(
-                    "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"null\"."));
-        }
+        IllegalArgumentException e = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    testTarget.afterPropertiesSet();
+                });
+        assertThat(e.getMessage(), is(
+                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"null\"."));
 
     }
 
@@ -700,13 +698,12 @@ public class ExceptionLoggerTest {
 
         testTarget.setLogMessageFormat("");
 
-        try {
-            testTarget.afterPropertiesSet();
-            fail("if logMessageFormat is null, must be occur IllegalArgumentException.");
-        } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), is(
-                    "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"\"."));
-        }
+        IllegalArgumentException e = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    testTarget.afterPropertiesSet();
+                });
+        assertThat(e.getMessage(), is(
+                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"\"."));
 
     }
 
@@ -715,13 +712,12 @@ public class ExceptionLoggerTest {
 
         testTarget.setLogMessageFormat("{1}");
 
-        try {
-            testTarget.afterPropertiesSet();
-            fail("if logMessageFormat not contains placeholder({0}), must be occur IllegalArgumentException.");
-        } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), is(
-                    "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"{1}\"."));
-        }
+        IllegalArgumentException e = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    testTarget.afterPropertiesSet();
+                });
+        assertThat(e.getMessage(), is(
+                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"{1}\"."));
 
     }
 
@@ -730,13 +726,12 @@ public class ExceptionLoggerTest {
 
         testTarget.setLogMessageFormat("{0}");
 
-        try {
-            testTarget.afterPropertiesSet();
-            fail("if logMessageFormat not contains placeholder({1}), must be occur IllegalArgumentException.");
-        } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), is(
-                    "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"{0}\"."));
-        }
+        IllegalArgumentException e = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    testTarget.afterPropertiesSet();
+                });
+        assertThat(e.getMessage(), is(
+                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"{0}\"."));
 
     }
 
@@ -772,41 +767,24 @@ public class ExceptionLoggerTest {
     private void verifyLogging(final String expectedLogMessage,
             final Level expectedLogLevel, final Exception expectedException,
             final Appender<ILoggingEvent> mockAppender) {
-        verify(mockAppender).doAppend(argThat(
-                new ArgumentMatcher<LoggingEvent>() {
-                    @Override
-                    public boolean matches(LoggingEvent argument) {
-                        return argument.getFormattedMessage().equals(
-                                expectedLogMessage);
-                    }
-                }));
-        verify(mockAppender).doAppend(argThat(
-                new ArgumentMatcher<LoggingEvent>() {
-                    @Override
-                    public boolean matches(LoggingEvent argument) {
-                        return expectedLogLevel.equals(argument.getLevel());
-                    }
-                }));
-        verify(mockAppender).doAppend(argThat(
-                new ArgumentMatcher<LoggingEvent>() {
-                    @Override
-                    public boolean matches(LoggingEvent argument) {
-                        LoggingEvent loggingEvent = argument;
-                        if (expectedException == null) {
-                            return loggingEvent.getThrowableProxy() == null;
-                        }
-                        if (!expectedException.getClass().getName().equals(
-                                loggingEvent.getThrowableProxy()
-                                        .getClassName())) {
-                            return false;
-                        }
-                        if (!expectedException.getMessage().equals(loggingEvent
-                                .getThrowableProxy().getMessage())) {
-                            return false;
-                        }
-                        return true;
-                    }
-                }));
+        verify(mockAppender).doAppend(argThat(argument -> argument
+                .getFormattedMessage().equals(expectedLogMessage)));
+        verify(mockAppender).doAppend(argThat(argument -> expectedLogLevel
+                .equals(argument.getLevel())));
+        verify(mockAppender).doAppend(argThat(argument -> {
+            IThrowableProxy proxy = argument.getThrowableProxy();
+            if (expectedException == null) {
+                return proxy == null;
+            }
+            if (!expectedException.getClass().getName().equals(proxy
+                    .getClassName())) {
+                return false;
+            }
+            if (!expectedException.getMessage().equals(proxy.getMessage())) {
+                return false;
+            }
+            return true;
+        }));
 
     }
 }

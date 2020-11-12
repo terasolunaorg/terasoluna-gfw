@@ -16,8 +16,11 @@
 package org.terasoluna.gfw.common.codepoints.validator;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.hasProperty;
+import static org.hamcrest.Matchers.hasToString;
 
 import java.util.Locale;
 import java.util.Set;
@@ -30,24 +33,24 @@ import org.junit.Test;
 
 public class ConsistOfValidatorJaTest {
 
+    private Validator validator;
+
     public ConsistOfValidatorJaTest() {
         Locale.setDefault(Locale.JAPANESE);
+        validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
     @Test
     public void testIsValid_message_japanese() throws Exception {
         Name_Simple name = new Name_Simple("abc", "GHI");
-        Validator validator = Validation.buildDefaultValidatorFactory()
-                .getValidator();
+
         Set<ConstraintViolation<Name_Simple>> violations = validator.validate(
                 name);
 
-        assertThat(violations, is(notNullValue()));
-        assertThat(violations.size(), is(1));
-
-        ConstraintViolation<Name_Simple> v = violations.iterator().next();
-        assertThat(v.getPropertyPath().toString(), is("firstName"));
-        assertThat(v.getMessage(), is("指定されたコードポイントで構成されていません"));
+        assertThat(violations, containsInAnyOrder( //
+                allOf( //
+                        hasProperty("propertyPath", hasToString("firstName")), //
+                        hasProperty("message", is("指定されたコードポイントで構成されていません")))));
     }
 
 }

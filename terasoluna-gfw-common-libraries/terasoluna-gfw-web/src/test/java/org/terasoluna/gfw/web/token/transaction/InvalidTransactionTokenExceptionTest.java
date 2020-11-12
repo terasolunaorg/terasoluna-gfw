@@ -17,6 +17,7 @@ package org.terasoluna.gfw.web.token.transaction;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertThrows;
 
 import org.junit.Test;
 
@@ -25,30 +26,22 @@ public class InvalidTransactionTokenExceptionTest {
     @Test
     public void testExceptionConstructor() {
 
-        try {
-            process();
-        } catch (InvalidTransactionTokenException e) {
-            assertThat(e.getMessage(), is(
-                    "Invalid Transaction Token Exception !!!"));
-        }
+        InvalidTransactionTokenException e = assertThrows(
+                InvalidTransactionTokenException.class, () -> {
+                    throw new InvalidTransactionTokenException();
+                });
+        assertThat(e.getMessage(), is(
+                "Invalid Transaction Token Exception !!!"));
     }
 
     @Test
     public void testExceptionConstructorWithCustomMessage() {
 
-        try {
-            processOther();
-        } catch (InvalidTransactionTokenException e) {
-            assertThat(e.getMessage(), is("Custom Message"));
-        }
-    }
-
-    private void processOther() {
-        throw new InvalidTransactionTokenException("Custom Message");
-    }
-
-    private void process() {
-        throw new InvalidTransactionTokenException();
+        InvalidTransactionTokenException e = assertThrows(
+                InvalidTransactionTokenException.class, () -> {
+                    throw new InvalidTransactionTokenException("Custom Message");
+                });
+        assertThat(e.getMessage(), is("Custom Message"));
     }
 
 }

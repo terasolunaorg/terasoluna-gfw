@@ -19,18 +19,12 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.mock;
 
-import java.io.IOException;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.DefaultRedirectStrategy;
-import org.springframework.security.web.RedirectStrategy;
 
 @SuppressWarnings("deprecation")
 public class RedirectAuthenticationHandlerTest {
@@ -232,13 +226,9 @@ public class RedirectAuthenticationHandlerTest {
     @Test
     public void testOnAuthenticationSuccess_SetCustomeRedirectToRedirectStrategy() throws Exception {
         RedirectAuthenticationHandler redireHandler = new RedirectAuthenticationHandler();
-        redireHandler.setRedirectToRedirectStrategy(new RedirectStrategy() {
-            @Override
-            public void sendRedirect(HttpServletRequest request,
-                    HttpServletResponse response,
-                    String url) throws IOException {
-                response.sendRedirect("http://google.com");
-            }
+        redireHandler.setRedirectToRedirectStrategy((request, response,
+                url) -> {
+            response.sendRedirect("http://google.com");
         });
         redireHandler.afterPropertiesSet();
 

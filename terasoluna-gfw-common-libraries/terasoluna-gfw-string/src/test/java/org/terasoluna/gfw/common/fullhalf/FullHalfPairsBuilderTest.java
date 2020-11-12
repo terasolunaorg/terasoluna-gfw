@@ -17,6 +17,7 @@ package org.terasoluna.gfw.common.fullhalf;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.Assert.assertThrows;
 
 import java.util.Set;
@@ -77,6 +78,6 @@ public class FullHalfPairsBuilderTest {
     public void testSamePairIsIgnored() {
         Set<FullHalfPair> set = new FullHalfPairsBuilder().pair("ａ", "a").pair(
                 "ａ", "a").build().pairs();
-        assertThat(set.size(), is(1));
+        assertThat(set, hasSize(1));
     }
 }

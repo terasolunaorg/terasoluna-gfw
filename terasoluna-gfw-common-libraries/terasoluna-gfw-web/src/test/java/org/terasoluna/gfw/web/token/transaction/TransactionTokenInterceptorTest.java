@@ -19,7 +19,6 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -27,6 +26,7 @@ import static org.mockito.Mockito.when;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Test.None;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -254,28 +254,18 @@ public class TransactionTokenInterceptorTest {
         assertThat(token.getTokenName(), is("a"));
     }
 
-    @Test
+    @Test(expected = None.class)
     public void testRemoveEmptyToken() {
         // This test case should always pass
-        // This will ensure that neither valid/invalid token removal generates
-        // exception
-        try {
-            interceptor.removeToken(new TransactionToken(""));
-            interceptor.removeToken(new TransactionToken("a~b~c"));
-        } catch (Exception ex) {
-            fail();
-        }
-
+        // This will ensure that neither valid/invalid token removal generates exception
+        interceptor.removeToken(new TransactionToken(""));
+        interceptor.removeToken(new TransactionToken("a~b~c"));
     }
 
-    @Test
+    @Test(expected = None.class)
     public void testPostHandleIncorrectHandler() throws Exception {
 
-        try {
-            interceptor.postHandle(request, response, null, null);
-        } catch (Exception ex) {
-            fail();
-        }
+        interceptor.postHandle(request, response, null, null);
     }
 
     @Test
@@ -412,7 +402,7 @@ public class TransactionTokenInterceptorTest {
         assertThat(tokenStore.getAndClear(nextToken), is("222"));
     }
 
-    @Test
+    @Test(expected = None.class)
     public void testPostHandleWithNoneOperation() throws Exception {
 
         TransactionTokenContextImpl context = mock(
@@ -425,84 +415,60 @@ public class TransactionTokenInterceptorTest {
         when(context.getReserveCommand()).thenReturn(
                 TransactionTokenContextImpl.ReserveCommand.NONE);
 
-        try {
-            interceptor.postHandle(request, response,
-                    new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                            .getDeclaredMethod("third", SampleForm.class,
-                                    Model.class)), null);
-        } catch (Exception e) {
-            fail();
-        }
+        interceptor.postHandle(request, response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("third", SampleForm.class,
+                                Model.class)), null);
 
     }
 
-    @Test
+    @Test(expected = None.class)
     public void testAfterCompletionWithoutException() {
-        try {
-            interceptor.afterCompletion(request, response, null, null);
-        } catch (Exception e) {
-            fail();
-        }
+
+        interceptor.afterCompletion(request, response, null, null);
     }
 
     @Test
-    public void testAfterCompletionWithException() {
-        try {
+    public void testAfterCompletionWithException() throws Exception {
 
-            HttpSessionTransactionTokenStore tokenStore = new HttpSessionTransactionTokenStore();
-            TransactionToken inputToken = new TransactionToken("testTokenAttr", "111", "222");
-            tokenStore.store(inputToken);
+        HttpSessionTransactionTokenStore tokenStore = new HttpSessionTransactionTokenStore();
+        TransactionToken inputToken = new TransactionToken("testTokenAttr", "111", "222");
+        tokenStore.store(inputToken);
 
-            request.setParameter(
-                    TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER,
-                    "testTokenAttr~111~222");
+        request.setParameter(
+                TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER,
+                "testTokenAttr~111~222");
 
-            interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
+        interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(), new TransactionTokenInfoStore(), tokenStore);
 
-            interceptor.preHandle(request, response,
-                    new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                            .getDeclaredMethod("third", SampleForm.class,
-                                    Model.class)));
+        interceptor.preHandle(request, response,
+                new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
+                        .getDeclaredMethod("third", SampleForm.class,
+                                Model.class)));
 
-            // Confirm that token is stored in session
-            assertThat(tokenStore.getSession().getAttribute(
-                    HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
-                            + inputToken.getTokenName() + "~" + inputToken
-                                    .getTokenKey()), is(notNullValue()));
+        // Confirm that token is stored in session
+        assertThat(tokenStore.getSession().getAttribute(
+                HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
+                        + inputToken.getTokenName() + "~" + inputToken
+                                .getTokenKey()), is(notNullValue()));
 
-            // Consider that exception has occured and call afterCompletion()
-            // method
-            // This call should remove the token from the store
-            Exception ex = new InvalidTransactionTokenException();
-            interceptor.afterCompletion(request, response, null, ex);
+        // Consider that exception has occured and call afterCompletion()
+        // method
+        // This call should remove the token from the store
+        Exception ex = new InvalidTransactionTokenException();
+        interceptor.afterCompletion(request, response, null, ex);
 
-            // Confirm that token is removed from session
-            assertThat(tokenStore.getSession().getAttribute(
-                    HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
-                            + inputToken.getTokenName() + "~" + inputToken
-                                    .getTokenKey()), is(nullValue()));
+        // Confirm that token is removed from session
+        assertThat(tokenStore.getSession().getAttribute(
+                HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
+                        + inputToken.getTokenName() + "~" + inputToken
+                                .getTokenKey()), is(nullValue()));
 
-        } catch (Exception e) {
-            fail();
-        }
     }
 
-    @Test
+    @Test(expected = None.class)
     public void testAfterCompletionWithExceptionHasNoTransactionTokenContextImpl() {
-        try {
-            interceptor.afterCompletion(request, response, null,
-                    new Exception());
-        } catch (Exception e) {
-            fail();
-        }
-    }
 
-    /*
-     * @Test public void testCreateTokenSynchronization() throws Exception { int size = 2000; Thread arrThreads[] = new
-     * Thread[size]; for (int i = 0; i <size ; i++) { Thread thread = new Thread(new Runnable() {
-     * @Override public void run() { try { interceptor.createToken(request, session1, tokenInfo1, generator1, tokenStore1); }
-     * catch (Exception ex) { ex.printStackTrace(); } } }, "Thread_" + (i+1)); arrThreads[i] = thread; } for (Thread thread :
-     * arrThreads) { try { thread.start(); thread.join(); } catch (Exception e) { // TODO Auto-generated catch block
-     * e.printStackTrace(); } } }
-     */
+        interceptor.afterCompletion(request, response, null, new Exception());
+    }
 }

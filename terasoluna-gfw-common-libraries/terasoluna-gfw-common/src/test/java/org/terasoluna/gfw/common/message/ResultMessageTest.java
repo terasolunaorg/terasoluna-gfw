@@ -15,16 +15,18 @@
  */
 package org.terasoluna.gfw.common.message;
 
+import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.hamcrest.Matchers.arrayContaining;
+import static org.hamcrest.Matchers.emptyArray;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
-import org.springframework.core.serializer.support.SerializationFailedException;
+import org.junit.Test.None;
 import org.springframework.util.SerializationUtils;
 
 public class ResultMessageTest {
@@ -35,7 +37,7 @@ public class ResultMessageTest {
 
         assertThat(message.getText(), is("text"));
         assertThat(message.getCode(), is(nullValue()));
-        assertThat(message.getArgs(), is(new Object[] {}));
+        assertThat(message.getArgs(), is(emptyArray()));
     }
 
     @Test
@@ -44,7 +46,7 @@ public class ResultMessageTest {
 
         assertThat(message.getText(), is(nullValue()));
         assertThat(message.getCode(), is("xxx.yyy.code"));
-        assertThat(message.getArgs(), is(new Object[] {}));
+        assertThat(message.getArgs(), is(emptyArray()));
     }
 
     @Test
@@ -55,7 +57,7 @@ public class ResultMessageTest {
 
         assertThat(message.getText(), is(nullValue()));
         assertThat(message.getCode(), is("xxx.yyy.code"));
-        assertThat(message.getArgs(), is(new Object[] { "a", 1, "x" }));
+        assertThat(message.getArgs(), arrayContaining("a", 1, "x"));
     }
 
     @Test
@@ -65,7 +67,7 @@ public class ResultMessageTest {
 
         assertThat(message.getText(), is(nullValue()));
         assertThat(message.getCode(), is("xxx.yyy.code"));
-        assertThat(message.getArgs(), is(new Object[] {}));
+        assertThat(message.getArgs(), is(emptyArray()));
     }
 
     @Test(expected = IllegalArgumentException.class)
@@ -83,15 +85,11 @@ public class ResultMessageTest {
         ResultMessage.fromText(null);
     }
 
-    @Test
+    @Test(expected = None.class)
     public void test10() {
-        try {
-            byte[] serialized = SerializationUtils.serialize(ResultMessage
-                    .fromText("foo"));
-            SerializationUtils.deserialize(serialized);
-        } catch (SerializationFailedException e) {
-            fail();
-        }
+        byte[] serialized = SerializationUtils.serialize(ResultMessage.fromText(
+                "foo"));
+        SerializationUtils.deserialize(serialized);
     }
 
     @Test
@@ -120,10 +118,10 @@ public class ResultMessageTest {
         set.add(msg1);
         set.add(msg2);
         set.add(msg3);
-        assertThat(set.contains(msg1), is(true));
-        assertThat(set.contains(ResultMessage.fromText("foo")), is(true));
-        assertThat(set.contains(ResultMessage.fromCode("foo")), is(true));
-        assertThat(set.contains(ResultMessage.fromCode("foo", "a")), is(true));
+        assertThat(set, hasItem(msg1));
+        assertThat(set, hasItem(ResultMessage.fromText("foo")));
+        assertThat(set, hasItem(ResultMessage.fromCode("foo")));
+        assertThat(set, hasItem(ResultMessage.fromCode("foo", "a")));
     }
 
 }

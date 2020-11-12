@@ -18,7 +18,7 @@ package org.terasoluna.gfw.web.util;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertThrows;
 
 import java.lang.reflect.Constructor;
 
@@ -65,19 +65,17 @@ public class JspTagUtilsTest {
 
     @Test
     public void toBoolean_valueIsNotTrueOrFalse() throws JspException {
-        try {
+
+        JspTagException e = assertThrows(JspTagException.class, () -> {
             JspTagUtils.toBoolean("on", true, "field1");
-            fail("should be occurred JspTagException.");
-        } catch (JspTagException e) {
-            assertThat(e.getMessage(), is(
-                    "The value of field1 must be either true or false."));
-        }
-        try {
+        });
+        assertThat(e.getMessage(), is(
+                "The value of field1 must be either true or false."));
+
+        e = assertThrows(JspTagException.class, () -> {
             JspTagUtils.toBoolean("off", false, "field2");
-            fail("should be occurred JspTagException.");
-        } catch (JspTagException e) {
-            assertThat(e.getMessage(), is(
-                    "The value of field2 must be either true or false."));
-        }
+        });
+        assertThat(e.getMessage(), is(
+                "The value of field2 must be either true or false."));
     }
 }

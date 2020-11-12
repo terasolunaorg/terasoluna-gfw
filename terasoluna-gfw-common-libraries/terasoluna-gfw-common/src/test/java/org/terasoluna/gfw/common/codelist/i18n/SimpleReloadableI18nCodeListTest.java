@@ -18,6 +18,7 @@ package org.terasoluna.gfw.common.codelist.i18n;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.aMapWithSize;
 
 import java.util.Locale;
 import java.util.Map;
@@ -224,7 +225,7 @@ public class SimpleReloadableI18nCodeListTest {
             Map<String, String> mapInput = tableInput.row(locale);
             Map<String, String> mapOutput = reloadableI18nCodeList.asMap(
                     locale);
-            assertThat(mapOutput.size(), is(mapSize));
+            assertThat(mapOutput, aMapWithSize(mapSize));
             for (int i = 0; i < mapSize; i++) {
                 assertThat(mapOutput.get(String.format("%03d", i)), is(mapInput
                         .get(String.format("%03d", i))));

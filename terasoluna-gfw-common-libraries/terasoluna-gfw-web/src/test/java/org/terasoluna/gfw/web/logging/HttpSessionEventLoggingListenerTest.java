@@ -27,7 +27,6 @@ import javax.servlet.http.HttpSessionEvent;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentMatcher;
 import org.slf4j.LoggerFactory;
 import org.springframework.mock.web.MockHttpSession;
 import org.terasoluna.gfw.web.logback.LogLevelChangeUtil;
@@ -35,7 +34,6 @@ import org.terasoluna.gfw.web.logback.LogLevelChangeUtil;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
-import ch.qos.logback.classic.spi.LoggingEvent;
 import ch.qos.logback.core.Appender;
 
 public class HttpSessionEventLoggingListenerTest {
@@ -276,21 +274,10 @@ public class HttpSessionEventLoggingListenerTest {
      */
     private void verifyLogging(final String expectedLogMessage,
             final Level expectedLogLevel) {
-        verify(mockAppender).doAppend(argThat(
-                new ArgumentMatcher<LoggingEvent>() {
-                    @Override
-                    public boolean matches(LoggingEvent argument) {
-                        return argument.getFormattedMessage().equals(
-                                expectedLogMessage);
-                    }
-                }));
-        verify(mockAppender).doAppend(argThat(
-                new ArgumentMatcher<LoggingEvent>() {
-                    @Override
-                    public boolean matches(LoggingEvent argument) {
-                        return expectedLogLevel.equals(argument.getLevel());
-                    }
-                }));
+        verify(mockAppender).doAppend(argThat(argument -> argument
+                .getFormattedMessage().equals(expectedLogMessage)));
+        verify(mockAppender).doAppend(argThat(argument -> expectedLogLevel
+                .equals(argument.getLevel())));
     }
 
 }

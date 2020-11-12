@@ -17,7 +17,7 @@ package org.terasoluna.gfw.common.message;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.fail;
+import static org.hamcrest.Matchers.contains;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.DANGER;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.ERROR;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.INFO;
@@ -31,7 +31,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.junit.Test;
-import org.springframework.core.serializer.support.SerializationFailedException;
+import org.junit.Test.None;
 import org.springframework.util.SerializationUtils;
 
 public class ResultMessagesTest {
@@ -42,8 +42,8 @@ public class ResultMessagesTest {
 
     @Test
     public void testGetType() {
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR);
-        assertThat(messages.getType(), is((ResultMessageType) ERROR));
+        ResultMessages messages = new ResultMessages(ERROR);
+        assertThat(messages.getType(), is(ERROR));
     }
 
     @Test
@@ -51,8 +51,8 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo");
         ResultMessage msg2 = ResultMessage.fromCode("bar");
 
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR, msg1, msg2);
-        assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
+        ResultMessages messages = new ResultMessages(ERROR, msg1, msg2);
+        assertThat(messages.getList(), contains(msg1, msg2));
     }
 
     @Test
@@ -60,17 +60,16 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo");
         ResultMessage msg2 = ResultMessage.fromCode("bar");
 
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR, msg1);
+        ResultMessages messages = new ResultMessages(ERROR, msg1);
         messages.add(msg2);
-        assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
-        System.out.println(messages);
+        assertThat(messages.getList(), contains(msg1, msg2));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testAdd02_null() {
         ResultMessage msg1 = ResultMessage.fromCode("foo");
 
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR, msg1);
+        ResultMessages messages = new ResultMessages(ERROR, msg1);
         messages.add((ResultMessage) null);
     }
 
@@ -79,9 +78,9 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromText("foo");
         ResultMessage msg2 = ResultMessage.fromText("bar");
 
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR, msg1);
+        ResultMessages messages = new ResultMessages(ERROR, msg1);
         messages.add(msg2);
-        assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
+        assertThat(messages.getList(), contains(msg1, msg2));
         System.out.println(messages);
     }
 
@@ -90,15 +89,15 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo");
         ResultMessage msg2 = ResultMessage.fromCode("bar");
 
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR);
+        ResultMessages messages = new ResultMessages(ERROR);
         messages.add("foo");
         messages.add("bar");
-        assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
+        assertThat(messages.getList(), contains(msg1, msg2));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testAdd12_null() {
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR);
+        ResultMessages messages = new ResultMessages(ERROR);
         messages.add("foo");
         messages.add((String) null);
     }
@@ -108,16 +107,16 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
         ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
 
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR);
+        ResultMessages messages = new ResultMessages(ERROR);
         messages.add("foo", "aa");
         messages.add("bar", "bb");
-        assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
+        assertThat(messages.getList(), contains(msg1, msg2));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testAdd22_null() {
 
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR);
+        ResultMessages messages = new ResultMessages(ERROR);
         messages.add("foo", "aa");
         messages.add((String) null, "bb");
     }
@@ -127,15 +126,15 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
         ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
 
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR);
+        ResultMessages messages = new ResultMessages(ERROR);
         messages.addAll(msg1, msg2);
-        assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
+        assertThat(messages.getList(), contains(msg1, msg2));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testAddAll02_null() {
 
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR);
+        ResultMessages messages = new ResultMessages(ERROR);
         messages.addAll((ResultMessage[]) null);
     }
 
@@ -144,28 +143,27 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
         ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
 
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR);
+        ResultMessages messages = new ResultMessages(ERROR);
         messages.addAll(Arrays.asList(msg1, msg2));
-        assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
+        assertThat(messages.getList(), contains(msg1, msg2));
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testAddAll12_null() {
 
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR);
+        ResultMessages messages = new ResultMessages(ERROR);
         messages.addAll((Collection<ResultMessage>) null);
     }
 
     @Test
     public void testIsNotEmpty01() {
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR)
-                .add("foo");
+        ResultMessages messages = new ResultMessages(ERROR).add("foo");
         assertThat(messages.isNotEmpty(), is(true));
     }
 
     @Test
     public void testIsNotEmpty02() {
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR);
+        ResultMessages messages = new ResultMessages(ERROR);
         assertThat(messages.isNotEmpty(), is(false));
     }
 
@@ -174,7 +172,7 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
         ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
 
-        ResultMessages messages = new ResultMessages((ResultMessageType) ERROR);
+        ResultMessages messages = new ResultMessages(ERROR);
         messages.addAll(Arrays.asList(msg1, msg2));
 
         List<ResultMessage> result = new ArrayList<ResultMessage>();
@@ -182,7 +180,7 @@ public class ResultMessagesTest {
             result.add(message);
         }
 
-        assertThat(result, is(Arrays.asList(msg1, msg2)));
+        assertThat(result, contains(msg1, msg2));
     }
 
     @Test
@@ -193,8 +191,8 @@ public class ResultMessagesTest {
         ResultMessages messages = ResultMessages.error().add("foo", "aa").add(
                 "bar", "bb");
 
-        assertThat(messages.getType(), is((ResultMessageType) ERROR));
-        assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
+        assertThat(messages.getType(), is(ERROR));
+        assertThat(messages.getList(), contains(msg1, msg2));
     }
 
     @SuppressWarnings("deprecation")
@@ -206,8 +204,8 @@ public class ResultMessagesTest {
         ResultMessages messages = ResultMessages.warn().add("foo", "aa").add(
                 "bar", "bb");
 
-        assertThat(messages.getType(), is((ResultMessageType) WARN));
-        assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
+        assertThat(messages.getType(), is(WARN));
+        assertThat(messages.getList(), contains(msg1, msg2));
     }
 
     @Test
@@ -218,8 +216,8 @@ public class ResultMessagesTest {
         ResultMessages messages = ResultMessages.info().add("foo", "aa").add(
                 "bar", "bb");
 
-        assertThat(messages.getType(), is((ResultMessageType) INFO));
-        assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
+        assertThat(messages.getType(), is(INFO));
+        assertThat(messages.getList(), contains(msg1, msg2));
     }
 
     @Test
@@ -230,8 +228,8 @@ public class ResultMessagesTest {
         ResultMessages messages = ResultMessages.success().add("foo", "aa").add(
                 "bar", "bb");
 
-        assertThat(messages.getType(), is((ResultMessageType) SUCCESS));
-        assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
+        assertThat(messages.getType(), is(SUCCESS));
+        assertThat(messages.getList(), contains(msg1, msg2));
     }
 
     @Test
@@ -242,8 +240,8 @@ public class ResultMessagesTest {
         ResultMessages messages = ResultMessages.danger().add("foo", "aa").add(
                 "bar", "bb");
 
-        assertThat(messages.getType(), is((ResultMessageType) DANGER));
-        assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
+        assertThat(messages.getType(), is(DANGER));
+        assertThat(messages.getList(), contains(msg1, msg2));
     }
 
     @Test
@@ -254,18 +252,14 @@ public class ResultMessagesTest {
         ResultMessages messages = ResultMessages.warning().add("foo", "aa").add(
                 "bar", "bb");
 
-        assertThat(messages.getType(), is((ResultMessageType) WARNING));
-        assertThat(messages.getList(), is(Arrays.asList(msg1, msg2)));
+        assertThat(messages.getType(), is(WARNING));
+        assertThat(messages.getList(), contains(msg1, msg2));
     }
 
-    @Test
+    @Test(expected = None.class)
     public void testSerialization() {
-        try {
-            byte[] serialized = SerializationUtils.serialize(
-                    new ResultMessages((ResultMessageType) ERROR));
-            SerializationUtils.deserialize(serialized);
-        } catch (SerializationFailedException e) {
-            fail();
-        }
+        byte[] serialized = SerializationUtils.serialize(
+                new ResultMessages(ERROR));
+        SerializationUtils.deserialize(serialized);
     }
 }

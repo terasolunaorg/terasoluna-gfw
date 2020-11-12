@@ -17,7 +17,7 @@ package org.terasoluna.gfw.web.download;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -32,6 +32,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.Test.None;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
@@ -113,78 +114,63 @@ public class FileDownloadViewTest {
         fileDownloadView.renderMergedOutputModel(model, request, response);
     }
 
-    @Test
-    public void testWriteResponseStreamWithBothStreamsNull() {
-        try {
-            fileDownloadView.writeResponseStream(null, null);
-        } catch (IOException e) {
-            e.printStackTrace();
-            fail();
-        }
+    @Test(expected = None.class)
+    public void testWriteResponseStreamWithBothStreamsNull() throws Exception {
+        fileDownloadView.writeResponseStream(null, null);
+    }
+
+    @Test(expected = None.class)
+    public void testWriteResponseStreamWithNullOutputStream() throws Exception {
+        fileDownloadView.writeResponseStream(inputStream, null);
+    }
+
+    @Test(expected = None.class)
+    public void testSetChunkSize() throws Exception {
+        fileDownloadView.setChunkSize(512);
     }
 
     @Test
-    public void testWriteResponseStreamWithNullOutputStream() {
-        try {
-            fileDownloadView.writeResponseStream(inputStream, null);
-        } catch (IOException e) {
-            e.printStackTrace();
-            fail();
-        }
-    }
-
-    @Test
-    public void testSetChunkSize() {
-        try {
-            fileDownloadView.setChunkSize(512);
-        } catch (Exception e) {
-            e.printStackTrace();
-            fail();
-        }
-    }
-
-    @Test(expected = IOException.class)
-    public void testOutputStreamException() throws IOException {
+    public void testOutputStreamException() {
         // Set Mock Behavior
         response = mock(HttpServletResponse.class);
-        when(response.getOutputStream()).thenThrow(new IOException());
-        fileDownloadView.renderMergedOutputModel(model, request, response);
+
+        assertThrows(IOException.class, () -> {
+            when(response.getOutputStream()).thenThrow(new IOException());
+            fileDownloadView.renderMergedOutputModel(model, request, response);
+        });
     }
 
     @Test
-    public void testAfterPropertiesSet_chunkSize_is0() throws IOException {
+    public void testAfterPropertiesSet_chunkSize_is0() {
         // Set Mock Behavior
         fileDownloadView.setChunkSize(0);
-        try {
-            fileDownloadView.afterPropertiesSet();
-            fail("must occur IllegalArgumentException.");
-        } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), is(
-                    "chunkSize must be over 1. specified chunkSize is \"0\"."));
-        }
+
+        IllegalArgumentException e = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    fileDownloadView.afterPropertiesSet();
+                });
+        assertThat(e.getMessage(), is(
+                "chunkSize must be over 1. specified chunkSize is \"0\"."));
     }
 
     @Test
-    public void testAfterPropertiesSet_chunkSize_isNegative1() throws IOException {
+    public void testAfterPropertiesSet_chunkSize_isNegative1() {
         // Set Mock Behavior
         fileDownloadView.setChunkSize(-1);
-        try {
-            fileDownloadView.afterPropertiesSet();
-            fail("must occur IllegalArgumentException.");
-        } catch (IllegalArgumentException e) {
-            assertThat(e.getMessage(), is(
-                    "chunkSize must be over 1. specified chunkSize is \"-1\"."));
-        }
+
+        IllegalArgumentException e = assertThrows(
+                IllegalArgumentException.class, () -> {
+                    fileDownloadView.afterPropertiesSet();
+                });
+        assertThat(e.getMessage(), is(
+                "chunkSize must be over 1. specified chunkSize is \"-1\"."));
     }
 
-    @Test
-    public void testAfterPropertiesSet_chunkSize_is1() throws IOException {
+    @Test(expected = None.class)
+    public void testAfterPropertiesSet_chunkSize_is1() {
         // Set Mock Behavior
         fileDownloadView.setChunkSize(1);
-        try {
-            fileDownloadView.afterPropertiesSet();
-        } catch (IllegalArgumentException e) {
-            fail("must not occur IllegalArgumentException.");
-        }
+
+        fileDownloadView.afterPropertiesSet();
     }
 }
