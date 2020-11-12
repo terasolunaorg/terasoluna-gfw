@@ -553,14 +553,13 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
                                     "listProperty[0].<list element>.left")), //
                             hasProperty("message", is(String.format(
                                     MESSAGE_VALIDATION_ERROR, "left",
-                                    "right")))), allOf( //
-                                            hasProperty("propertyPath",
-                                                    hasToString(
-                                                            "listProperty[1].<list element>.left")), //
-                                            hasProperty("message", is(String
-                                                    .format(MESSAGE_VALIDATION_ERROR,
-                                                            "left",
-                                                            "right"))))));
+                                    "right")))), //
+                    allOf( //
+                            hasProperty("propertyPath", hasToString(
+                                    "listProperty[1].<list element>.left")), //
+                            hasProperty("message", is(String.format(
+                                    MESSAGE_VALIDATION_ERROR, "left",
+                                    "right"))))));
         }
     }
 

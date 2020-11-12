@@ -84,7 +84,7 @@ public class ConsistOfValidatorTest {
         Set<ConstraintViolation<Name_Simple>> violations = validator.validate(
                 name);
 
-        assertThat(violations, containsInAnyOrder( //]
+        assertThat(violations, containsInAnyOrder( //
                 allOf( //
                         hasProperty("propertyPath", hasToString("lastName")), //
                         hasProperty("message", is(
