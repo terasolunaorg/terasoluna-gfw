@@ -38,7 +38,6 @@
     <formatter-maven-plugin.version>2.0.1</formatter-maven-plugin.version>
     <xml-maven-plugin.version>1.0.1</xml-maven-plugin.version>
     <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
-    <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
     <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
     <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
     <!-- == Project Properties == -->
@@ -158,33 +157,6 @@
                 </excludes>
               </configuration>
             </plugin>
-            <plugin>
-              <groupId>org.eluder.coveralls</groupId>
-              <artifactId>coveralls-maven-plugin</artifactId>
-              <version>${coveralls-maven-plugin.version}</version>
-              <configuration>
-                <jacocoReports>
-                  <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-common/target/site/jacoco/jacoco.xml</jacocoReport>
-                  <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-jodatime/target/site/jacoco/jacoco.xml</jacocoReport>
-                  <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-web/target/site/jacoco/jacoco.xml</jacocoReport>
-                  <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-web-jsp/target/site/jacoco/jacoco.xml</jacocoReport>
-                  <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-security-web/target/site/jacoco/jacoco.xml</jacocoReport>
-                  <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-validator/target/site/jacoco/jacoco.xml</jacocoReport>
-                  <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints/target/site/jacoco/jacoco.xml</jacocoReport>
-                  <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-string/target/site/jacoco/jacoco.xml</jacocoReport>
-                </jacocoReports>
-                <sourceDirectories>
-                  <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-common/src/main/java</sourceDirectory>
-                  <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-jodatime/src/main/java</sourceDirectory>
-                  <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-web/src/main/java</sourceDirectory>
-                  <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-web-jsp/src/main/java</sourceDirectory>
-                  <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-security-web/src/main/java</sourceDirectory>
-                  <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-validator/src/main/java</sourceDirectory>
-                  <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints/src/main/java</sourceDirectory>
-                  <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-string/src/main/java</sourceDirectory>
-                </sourceDirectories>
-              </configuration>
-            </plugin>
           </plugins>
         </pluginManagement>
       </build>
@@ -217,16 +189,6 @@
           </plugins>
         </pluginManagement>
       </build>
-    </profile>
-    <profile>
-      <id>jdk11</id>
-      <activation>
-        <jdk>11</jdk>
-      </activation>
-      <properties>
-        <!-- coverall 4.3.0 or previous version does not work on Java 11, see https://github.com/trautonen/coveralls-maven-plugin/issues/112 -->
-        <coveralls.skip>true</coveralls.skip>
-      </properties>
     </profile>
   </profiles>
 </project>

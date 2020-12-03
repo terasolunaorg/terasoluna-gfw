@@ -122,33 +122,6 @@
           <artifactId>maven-antrun-plugin</artifactId>
           <version>${maven-antrun-plugin.version}</version>
         </plugin>
-        <plugin>
-          <groupId>org.eluder.coveralls</groupId>
-          <artifactId>coveralls-maven-plugin</artifactId>
-          <version>${coveralls-maven-plugin.version}</version>
-          <configuration>
-            <jacocoReports>
-              <jacocoReport>terasoluna-gfw-common/target/site/jacoco/jacoco.xml</jacocoReport>
-              <jacocoReport>terasoluna-gfw-jodatime/target/site/jacoco/jacoco.xml</jacocoReport>
-              <jacocoReport>terasoluna-gfw-web/target/site/jacoco/jacoco.xml</jacocoReport>
-              <jacocoReport>terasoluna-gfw-web-jsp/target/site/jacoco/jacoco.xml</jacocoReport>
-              <jacocoReport>terasoluna-gfw-security-web/target/site/jacoco/jacoco.xml</jacocoReport>
-              <jacocoReport>terasoluna-gfw-validator/target/site/jacoco/jacoco.xml</jacocoReport>
-              <jacocoReport>terasoluna-gfw-codepoints/target/site/jacoco/jacoco.xml</jacocoReport>
-              <jacocoReport>terasoluna-gfw-string/target/site/jacoco/jacoco.xml</jacocoReport>
-            </jacocoReports>
-            <sourceDirectories>
-              <sourceDirectory>terasoluna-gfw-common/src/main/java</sourceDirectory>
-              <sourceDirectory>terasoluna-gfw-jodatime/src/main/java</sourceDirectory>
-              <sourceDirectory>terasoluna-gfw-web/src/main/java</sourceDirectory>
-              <sourceDirectory>terasoluna-gfw-web-jsp/src/main/java</sourceDirectory>
-              <sourceDirectory>terasoluna-gfw-security-web/src/main/java</sourceDirectory>
-              <sourceDirectory>terasoluna-gfw-validator/src/main/java</sourceDirectory>
-              <sourceDirectory>terasoluna-gfw-codepoints/src/main/java</sourceDirectory>
-              <sourceDirectory>terasoluna-gfw-string/src/main/java</sourceDirectory>
-            </sourceDirectories>
-          </configuration>
-        </plugin>
       </plugins>
     </pluginManagement>
   </build>
@@ -160,7 +133,6 @@
     <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
     <formatter-maven-plugin.version>2.0.1</formatter-maven-plugin.version>
     <xml-maven-plugin.version>1.0.1</xml-maven-plugin.version>
-    <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
     <!-- == Project Properties == -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <archetype.test.skip>true</archetype.test.skip>
@@ -175,8 +147,6 @@
         <jdk>11</jdk>
       </activation>
       <properties>
-        <!-- coverall 4.3.0 or previous version does not work on Java 11, see https://github.com/trautonen/coveralls-maven-plugin/issues/112 -->
-        <coveralls.skip>true</coveralls.skip>
         <!-- javadoc does not work on Java 11.0.2, see https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=920020 -->
         <maven.javadoc.skip>true</maven.javadoc.skip>
       </properties>
