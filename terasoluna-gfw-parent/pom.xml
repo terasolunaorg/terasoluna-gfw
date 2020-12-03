@@ -537,7 +537,7 @@
     <org.mybatis.spring.version>2.0.3</org.mybatis.spring.version>
     <!-- == Hibernate == -->
     <!--The version was changed independently as a countermeasure against vulnerabilities of CVE-2020-25638.-->
-    <org.hibernate.version>5.4.24.Final</org.hibernate.version>
+    <org.hibernate.version>5.4.25.Final</org.hibernate.version>
     <!-- == Dozer== -->
     <dozer.version>6.5.0</dozer.version>
     <!-- == Joda-Time == -->
