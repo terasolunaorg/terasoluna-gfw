@@ -235,7 +235,7 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
 
     /**
      * factory method for danger messages.
-     * @return error messages
+     * @return danger messages
      */
     public static ResultMessages danger() {
         return new ResultMessages(DANGER);
@@ -243,7 +243,7 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
 
     /**
      * factory method for primary messages.
-     * @return error messages
+     * @return primary messages
      * @since 5.7.0
      */
     public static ResultMessages primary() {
@@ -252,7 +252,7 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
 
     /**
      * factory method for secondary messages.
-     * @return error messages
+     * @return secondary messages
      * @since 5.7.0
      */
     public static ResultMessages secondary() {
@@ -261,7 +261,7 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
 
     /**
      * factory method for light messages.
-     * @return error messages
+     * @return light messages
      * @since 5.7.0
      */
     public static ResultMessages light() {
@@ -270,7 +270,7 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
 
     /**
      * factory method for dark messages.
-     * @return error messages
+     * @return dark messages
      * @since 5.7.0
      */
     public static ResultMessages dark() {
