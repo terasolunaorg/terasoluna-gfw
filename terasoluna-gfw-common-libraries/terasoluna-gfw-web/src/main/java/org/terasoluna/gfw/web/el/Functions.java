@@ -19,8 +19,6 @@ import java.util.Map;
 import java.util.regex.Pattern;
 
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.BeanWrapper;
-import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
 import org.springframework.util.CollectionUtils;
@@ -74,12 +72,6 @@ public final class Functions {
      * conversion service for format a value.
      */
     private static final FormattingConversionService CONVERSION_SERVICE = new DefaultFormattingConversionService();
-
-    /**
-     * type descriptor of string for format a value.
-     */
-    private static final TypeDescriptor STRING_DESC = TypeDescriptor.valueOf(
-            String.class);
 
     /**
      * converter from object to map
@@ -240,42 +232,6 @@ public final class Functions {
             String name = e.getKey();
             Object value = e.getValue();
             builder.queryParam(name, value);
-        }
-        String query = builder.build().encode().toString();
-        // remove the beginning symbol character('?') of the query string.
-        return extraEncodeQuery(query.substring(1));
-    }
-
-    /**
-     * build query string from map with the specified {@link BeanWrapper}.
-     * <p>
-     * query string is encoded with "UTF-8".<br>
-     * <strong>Use {@link #mapToQuery(Map)} instead of this method.</strong>
-     * </p>
-     * @see ObjectToMapConverter
-     * @param map map
-     * @param beanWrapper beanWrapper which has the definition of each field.
-     * @return query string. if map is not empty, return query string. ex) name1=value&amp;name2=value&amp;...
-     * @deprecated (since 5.0.1, to support nested fields in f:query, Use {@link #mapToQuery(Map)} instead of this method.)
-     */
-    @Deprecated
-    public static String mapToQuery(Map<String, ?> map,
-            BeanWrapper beanWrapper) {
-        if (CollectionUtils.isEmpty(map)) {
-            return "";
-        }
-        UriComponentsBuilder builder = UriComponentsBuilder.fromPath("");
-        for (Map.Entry<String, ?> e : map.entrySet()) {
-            String name = e.getKey();
-            Object value = e.getValue();
-            TypeDescriptor sourceType;
-            if (beanWrapper != null) {
-                sourceType = beanWrapper.getPropertyTypeDescriptor(name);
-            } else {
-                sourceType = TypeDescriptor.forObject(value);
-            }
-            builder.queryParam(name, CONVERSION_SERVICE.convert(value,
-                    sourceType, STRING_DESC));
         }
         String query = builder.build().encode().toString();
         // remove the beginning symbol character('?') of the query string.

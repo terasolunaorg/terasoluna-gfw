@@ -21,20 +21,6 @@ package org.terasoluna.gfw.web.token.transaction;
 public interface TransactionTokenContext {
 
     /**
-     * Defines the contract for implementations of token creation
-     * @deprecated not work properly
-     */
-    @Deprecated
-    void createToken();
-
-    /**
-     * Defines the contract for implementations of token removal
-     * @deprecated not work properly
-     */
-    @Deprecated
-    void removeToken();
-
-    /**
      * Returns received transaction token object<br>
      * @return received transaction token
      */
