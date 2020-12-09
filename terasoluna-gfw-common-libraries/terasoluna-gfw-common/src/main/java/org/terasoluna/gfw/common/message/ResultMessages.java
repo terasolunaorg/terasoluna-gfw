@@ -16,8 +16,12 @@
 package org.terasoluna.gfw.common.message;
 
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.DANGER;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.DARK;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.ERROR;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.INFO;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.LIGHT;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.PRIMARY;
+import static org.terasoluna.gfw.common.message.StandardResultMessageType.SECONDARY;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.SUCCESS;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.WARN;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.WARNING;
@@ -231,10 +235,46 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
 
     /**
      * factory method for danger messages.
-     * @return error messages
+     * @return danger messages
      */
     public static ResultMessages danger() {
         return new ResultMessages(DANGER);
+    }
+
+    /**
+     * factory method for primary messages.
+     * @return primary messages
+     * @since 5.7.0
+     */
+    public static ResultMessages primary() {
+        return new ResultMessages(PRIMARY);
+    }
+
+    /**
+     * factory method for secondary messages.
+     * @return secondary messages
+     * @since 5.7.0
+     */
+    public static ResultMessages secondary() {
+        return new ResultMessages(SECONDARY);
+    }
+
+    /**
+     * factory method for light messages.
+     * @return light messages
+     * @since 5.7.0
+     */
+    public static ResultMessages light() {
+        return new ResultMessages(LIGHT);
+    }
+
+    /**
+     * factory method for dark messages.
+     * @return dark messages
+     * @since 5.7.0
+     */
+    public static ResultMessages dark() {
+        return new ResultMessages(DARK);
     }
 
     /**
