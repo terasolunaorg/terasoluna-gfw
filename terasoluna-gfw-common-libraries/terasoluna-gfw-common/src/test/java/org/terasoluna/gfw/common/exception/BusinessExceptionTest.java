@@ -17,6 +17,7 @@ package org.terasoluna.gfw.common.exception;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertThrows;
 
@@ -51,6 +52,8 @@ public class BusinessExceptionTest {
             throw exception;
         });
         assertThat(ex.getResultMessages(), is(resultMessages));
+        assertThat(ex.getMessage(), is(resultMessages.toString()));
+        assertThat(ex.getCause(), is(nullValue()));
     }
 
     @Test
@@ -69,6 +72,7 @@ public class BusinessExceptionTest {
             throw exception;
         });
         assertThat(ex.getResultMessages(), is(resultMessages));
+        assertThat(ex.getMessage(), is(resultMessages.toString()));
         assertThat(ex.getCause(), is(instanceOf(
                 IllegalArgumentException.class)));
     }

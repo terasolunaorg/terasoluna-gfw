@@ -18,25 +18,39 @@ package org.terasoluna.gfw.web.download;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThrows;
+import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Test.None;
+import org.slf4j.LoggerFactory;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.Appender;
+
 public class FileDownloadViewTest {
+
+    @SuppressWarnings("unchecked")
+    private Appender<ILoggingEvent> mockAppender = mock(Appender.class);
 
     private FileDownloadView fileDownloadView;
 
@@ -80,6 +94,14 @@ public class FileDownloadViewTest {
         }
     }
 
+    private class FileDownloadViewWriteFailed extends FileDownloadView {
+        @Override
+        protected void writeResponseStream(InputStream inputStream,
+                OutputStream outputStream) throws IOException {
+            throw new IOException("test intentionally failed");
+        }
+    }
+
     @Before
     public void setup() throws FileNotFoundException {
 
@@ -92,6 +114,10 @@ public class FileDownloadViewTest {
         response = new MockHttpServletResponse();
         model = new HashMap<String, Object>();
 
+        // mock logger
+        Logger logger = (Logger) LoggerFactory.getLogger(
+                FileDownloadView.class);
+        logger.addAppender(mockAppender);
     }
 
     @Test
@@ -112,6 +138,40 @@ public class FileDownloadViewTest {
         // Set flag so that getInputStream will throw exception in any case
         fileDownloadView.setThrowIOException(true);
         fileDownloadView.renderMergedOutputModel(model, request, response);
+    }
+
+    @Test(expected = IOException.class)
+    public void testrenderMergedOutputModelWithWriteStreamFailed() throws IOException {
+        FileDownloadView fdlv = new FileDownloadViewWriteFailed();
+        fdlv.setInputStream(inputStream);
+        fdlv.setThrowIOException(false);
+
+        fdlv.renderMergedOutputModel(model, request, response);
+        verify(mockAppender).doAppend(argThat(argument -> argument.getLevel()
+                .equals(Level.ERROR)));
+    }
+
+    @Test(expected = IOException.class)
+    public void testrenderMergedOutputModelFlushFailed() throws IOException {
+        ServletOutputStream sos = mock(ServletOutputStream.class);
+        doThrow(new IOException("test intentionally failed")).when(sos).flush();
+        response = mock(MockHttpServletResponse.class);
+        when(response.getOutputStream()).thenReturn(sos);
+
+        fileDownloadView.renderMergedOutputModel(model, request, response);
+        verify(mockAppender).doAppend(argThat(argument -> argument.getLevel()
+                .equals(Level.ERROR)));
+    }
+
+    @Test(expected = None.class)
+    public void testrenderMergedOutputModelCloseFailed() throws IOException {
+        InputStream is = mock(InputStream.class);
+        doThrow(new IOException("test intentionally failed")).when(is).close();
+        fileDownloadView.setInputStream(is);
+
+        fileDownloadView.renderMergedOutputModel(model, request, response);
+        verify(mockAppender).doAppend(argThat(argument -> argument.getLevel()
+                .equals(Level.WARN)));
     }
 
     @Test(expected = None.class)

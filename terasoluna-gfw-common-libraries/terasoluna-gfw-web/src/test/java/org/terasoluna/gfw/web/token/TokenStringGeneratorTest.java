@@ -25,6 +25,7 @@ import static org.junit.Assert.assertThrows;
 import java.security.NoSuchAlgorithmException;
 
 import org.junit.Test;
+import org.springframework.test.util.ReflectionTestUtils;
 
 public class TokenStringGeneratorTest {
 
@@ -82,6 +83,15 @@ public class TokenStringGeneratorTest {
                     generator.generate(null);
                 });
         assertThat(e.getMessage(), is("seed must not be null"));
+    }
+
+    @Test
+    public void testGenerate_illegalState() throws Exception {
+        TokenStringGenerator generator = new TokenStringGenerator();
+        ReflectionTestUtils.setField(generator, "algorithm", "");
+
+        assertThrows(IllegalStateException.class, () -> generator.generate(
+                "hoge"));
     }
 
 }

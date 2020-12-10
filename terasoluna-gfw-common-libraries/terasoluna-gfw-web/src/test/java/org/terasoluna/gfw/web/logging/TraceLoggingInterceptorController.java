@@ -36,7 +36,7 @@ public class TraceLoggingInterceptorController {
 
     @RequestMapping(value = "/first")
     public void first(SampleForm form, Model model) {
-        logger.debug("createForm");
+        logger.debug("first");
     }
 
     @RequestMapping(value = "/second")
