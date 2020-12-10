@@ -31,7 +31,6 @@ import java.util.Map;
 
 import org.joda.time.LocalDate;
 import org.junit.Test;
-import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.format.annotation.DateTimeFormat;
 
 public class FunctionsTest {
@@ -567,33 +566,6 @@ public class FunctionsTest {
                 + "&participants%5B1%5D.date=1991-01-01"
                 + "&_participants%5B1%5D.list="
                 + "&participants%5B1%5D.name=%E9%88%B4%E6%9C%A8"));
-    }
-
-    @Test
-    @SuppressWarnings("deprecation")
-    public void test_Deprecated_mapToQuery() {
-        Map<String, Object> map = new LinkedHashMap<String, Object>();
-        map.put("name", "Ichiro Suzuki");
-        map.put("age", 10);
-        map.put("list", Arrays.asList("xxx", "yyy"));
-        assertThat(Functions.mapToQuery(map, null), is(
-                "name=Ichiro%20Suzuki&age=10&list=xxx,yyy"));
-        assertThat(Functions.mapToQuery(map, new BeanWrapperImpl(new Person())),
-                is("name=Ichiro%20Suzuki&age=10&list=xxx,yyy"));
-
-    }
-
-    @Test
-    @SuppressWarnings("deprecation")
-    public void testDeprecatedMapToQueryIsNull() {
-        assertThat(Functions.mapToQuery(null, null), is(""));
-    }
-
-    @Test
-    @SuppressWarnings("deprecation")
-    public void testDeprecatedMapToQueryIsEmpty() {
-        Map<String, Object> map = new LinkedHashMap<String, Object>();
-        assertThat(Functions.mapToQuery(map, null), is(""));
     }
 
     @Test

@@ -23,7 +23,6 @@ import static org.terasoluna.gfw.common.message.StandardResultMessageType.LIGHT;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.PRIMARY;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.SECONDARY;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.SUCCESS;
-import static org.terasoluna.gfw.common.message.StandardResultMessageType.WARN;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.WARNING;
 
 import java.io.IOException;
@@ -204,16 +203,6 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
      */
     public static ResultMessages info() {
         return new ResultMessages(INFO);
-    }
-
-    /**
-     * factory method for warn messages.
-     * @return warn messages
-     * @deprecated Instead of this method, please use {@link #warning()}. This method will be removed in the future.
-     */
-    @Deprecated
-    public static ResultMessages warn() {
-        return new ResultMessages(WARN);
     }
 
     /**

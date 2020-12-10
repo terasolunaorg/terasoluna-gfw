@@ -26,7 +26,6 @@ import static org.terasoluna.gfw.common.message.StandardResultMessageType.LIGHT;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.PRIMARY;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.SECONDARY;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.SUCCESS;
-import static org.terasoluna.gfw.common.message.StandardResultMessageType.WARN;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.WARNING;
 
 import java.util.ArrayList;
@@ -196,19 +195,6 @@ public class ResultMessagesTest {
                 "bar", "bb");
 
         assertThat(messages.getType(), is(ERROR));
-        assertThat(messages.getList(), contains(msg1, msg2));
-    }
-
-    @SuppressWarnings("deprecation")
-    @Test
-    public void testWarn() {
-        ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
-        ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
-
-        ResultMessages messages = ResultMessages.warn().add("foo", "aa").add(
-                "bar", "bb");
-
-        assertThat(messages.getType(), is(WARN));
         assertThat(messages.getList(), contains(msg1, msg2));
     }
 

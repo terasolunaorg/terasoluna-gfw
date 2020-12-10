@@ -21,7 +21,6 @@ package org.terasoluna.gfw.common.message;
  * <ul>
  * <li><code>success</code></li>
  * <li><code>info</code></li>
- * <li><code>warn</code>(Deprecated from 5.0.0, will be removed in the future)</li>
  * <li><code>warning(Added from 5.0.0)</code></li>
  * <li><code>error</code></li>
  * <li><code>danger</code></li>
@@ -42,11 +41,6 @@ public enum StandardResultMessageType implements ResultMessageType {
      * message type is <code>info</code>.
      */
     INFO("info"),
-    /**
-     * message type is <code>warn</code>.
-     * @deprecated Instead of this value, please use {@link #WARNING}. This value will be removed in the future.
-     */
-    @Deprecated WARN("warn"),
     /**
      * message type is <code>warning</code>.
      * @since 5.0.0
