@@ -46,12 +46,6 @@ public class CompositeRequestDataValueProcessor implements
     private final List<RequestDataValueProcessor> reversedProcessors;
 
     /**
-     * Helper for invoke the {@code processAction()} method of {@link RequestDataValueProcessor}.
-     * @since 1.0.2
-     */
-    private final ProcessActionInvocationHelper processActionInvocationHelper;
-
-    /**
      * Constructor<br>
      * <p>
      * Sets and initializes a list of {@link RequestDataValueProcessor}
@@ -66,39 +60,17 @@ public class CompositeRequestDataValueProcessor implements
         List<RequestDataValueProcessor> reverse = Arrays.asList(processors);
         Collections.reverse(reverse);
         this.reversedProcessors = Collections.unmodifiableList(reverse);
-        this.processActionInvocationHelper = new ProcessActionInvocationHelper();
     }
 
     /**
      * Calls the {@code processAction()} method of all the {@link RequestDataValueProcessor} implementations <br>
-     * this class holds. This method is for compatibility with Spring 3.
-     * @param request the current request
-     * @param action action of form tag. must not be null.
-     * @return the action to use, possibly modified
-     */
-    public String processAction(HttpServletRequest request, String action) {
-
-        String result = action;
-        for (RequestDataValueProcessor processor : processors) {
-            result = processActionInvocationHelper.invokeProcessAction(
-                    processor, request, action, null);
-            if (!action.equals(result)) {
-                break;
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * Calls the {@code processAction()} method of all the {@link RequestDataValueProcessor} implementations <br>
-     * this class holds. This method is for compatibility with Spring 4 or higher.
+     * this class holds.
      * @param request the current request
      * @param action action of form tag. must not be null.
      * @param method http method of form tag.
      * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processAction(javax.servlet.http.HttpServletRequest,
      *      java.lang.String, java.lang.String)
-     * @since 1.0.2
+     * @since 1.0.2 for Spring 4 or higher
      */
     @Override
     public String processAction(HttpServletRequest request, String action,
@@ -106,8 +78,7 @@ public class CompositeRequestDataValueProcessor implements
 
         String result = action;
         for (RequestDataValueProcessor processor : processors) {
-            result = processActionInvocationHelper.invokeProcessAction(
-                    processor, request, action, method);
+            result = processor.processAction(request, action, method);
             if (!action.equals(result)) {
                 break;
             }
