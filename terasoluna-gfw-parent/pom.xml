@@ -337,6 +337,19 @@
       </dependency>
       <!-- == End MyBatis == -->
 
+      <!-- == Begin Hibernate == -->
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-core</artifactId>
+        <version>${org.hibernate.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.hibernate</groupId>
+        <artifactId>hibernate-entitymanager</artifactId>
+        <version>${org.hibernate.version}</version>
+      </dependency>
+      <!-- == End Hibernate == -->
+
       <!-- == Begin Dozer== -->
       <dependency>
         <groupId>com.github.dozermapper</groupId>
@@ -591,6 +604,9 @@
     <!-- == MyBatis3 == -->
     <org.mybatis.version>3.5.0</org.mybatis.version>
     <org.mybatis.spring.version>2.0.0</org.mybatis.spring.version>
+    <!-- == Hibernate == -->
+    <!--Changed from Spring Boot as a countermeasure against CVE-2020-25638.-->
+    <org.hibernate.version>5.3.20.Final</org.hibernate.version>
     <!-- == Dozer== -->
     <dozer.version>6.4.1</dozer.version>
     <!-- == Joda-Time == -->
