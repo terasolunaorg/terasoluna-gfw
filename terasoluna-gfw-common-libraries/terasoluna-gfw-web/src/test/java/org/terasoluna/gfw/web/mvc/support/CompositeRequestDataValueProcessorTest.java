@@ -20,7 +20,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.nullable;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -50,48 +49,8 @@ public class CompositeRequestDataValueProcessorTest {
     }
 
     @Test
-    public void testProcessActionSameActionAndResult01() {
+    public void testProcessActionSameActionAndResult() {
         // Set mock behavior
-        when(requestDataValueProcessor.processAction(any(
-                HttpServletRequest.class), anyString())).thenReturn("action");
-        when(requestDataValueProcessor.processAction(any(
-                HttpServletRequest.class), anyString(), nullable(String.class)))
-                        .thenReturn("action");
-        String result = compositeRequestDataValueProcessor.processAction(
-                request, "action");
-        assertThat(result, is("action"));
-    }
-
-    @Test
-    public void testProcessActionDifferectActionAndResult01() {
-        // Set mock behavior
-        when(requestDataValueProcessor.processAction(any(
-                HttpServletRequest.class), anyString())).thenReturn(
-                        "other_action");
-        when(requestDataValueProcessor.processAction(any(
-                HttpServletRequest.class), anyString(), nullable(String.class)))
-                        .thenReturn("other_action");
-        String result = compositeRequestDataValueProcessor.processAction(
-                request, "action");
-        assertThat(result, is("other_action"));
-    }
-
-    @Test
-    public void testProcessActionNoProcessors01() {
-        // No processors assigned
-        compositeRequestDataValueProcessor = new CompositeRequestDataValueProcessor();
-        String result = compositeRequestDataValueProcessor.processAction(
-                request, "action");
-        assertThat(result, is("action"));
-    }
-
-    @Test
-    public void testProcessActionSameActionAndResult02() {
-        // Set mock behavior
-        // for Spring3
-        when(requestDataValueProcessor.processAction(any(
-                HttpServletRequest.class), anyString())).thenReturn("action");
-        // for Spring4
         when(requestDataValueProcessor.processAction(any(
                 HttpServletRequest.class), anyString(), anyString()))
                         .thenReturn("action");
@@ -103,13 +62,8 @@ public class CompositeRequestDataValueProcessorTest {
     }
 
     @Test
-    public void testProcessActionDifferectActionAndResult02() {
+    public void testProcessActionDifferectActionAndResult() {
         // Set mock behavior
-        // for Spring3
-        when(requestDataValueProcessor.processAction(any(
-                HttpServletRequest.class), anyString())).thenReturn(
-                        "other_action");
-        // for Spring4
         when(requestDataValueProcessor.processAction(any(
                 HttpServletRequest.class), anyString(), anyString()))
                         .thenReturn("other_action");
@@ -121,7 +75,7 @@ public class CompositeRequestDataValueProcessorTest {
     }
 
     @Test
-    public void testProcessActionNoProcessors02() {
+    public void testProcessActionNoProcessors() {
         // No processors assigned
         compositeRequestDataValueProcessor = new CompositeRequestDataValueProcessor();
         String result = compositeRequestDataValueProcessor.processAction(
