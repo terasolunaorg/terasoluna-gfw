@@ -20,6 +20,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -52,6 +54,14 @@ public class DefaultClassicDateFactoryTest {
         assertThat(result.getMinuteOfHour(), is(7));
         assertThat(result.getSecondOfMinute(), is(11));
         assertThat(result.getMillisOfSecond(), is(100));
+
+        // use actual #newDate().
+        DefaultClassicDateFactory actualFactory = new DefaultClassicDateFactory();
+        Date actualNow = actualFactory.newDate();
+        LocalDateTime actualResult = actualNow.toInstant().atZone(ZoneId
+                .systemDefault()).toLocalDateTime();
+        assertThat(actualResult.isAfter(LocalDateTime.now().minusDays(1)), is(
+                true));
     }
 
     @Test

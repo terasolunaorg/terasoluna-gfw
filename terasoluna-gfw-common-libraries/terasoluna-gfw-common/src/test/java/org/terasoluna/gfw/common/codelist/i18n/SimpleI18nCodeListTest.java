@@ -22,19 +22,31 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.aMapWithSize;
 import static org.hamcrest.Matchers.hasEntry;
 import static org.junit.Assert.assertThrows;
+import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import java.util.Locale;
 import java.util.Map;
 
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.Test.None;
 import org.junit.runner.RunWith;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.Appender;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -60,8 +72,18 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
     @Qualifier("CL_testResolveLocale")
     protected SimpleI18nCodeList testResolveLocale;
 
+    @SuppressWarnings("unchecked")
+    private static Appender<ILoggingEvent> mockAppender = mock(Appender.class);
+
     public SimpleI18nCodeListTest() {
         Locale.setDefault(Locale.US);
+    }
+
+    @BeforeClass
+    public static void setUpBeforeClass() {
+        Logger logger = (Logger) LoggerFactory.getLogger(
+                SimpleI18nCodeList.class);
+        logger.addAppender(mockAppender);
     }
 
     @Test
@@ -129,6 +151,21 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
     public void testSetColumns() {
         assertThat(testSetColumns.codeListTable.size(), is(14)); // 2 rows x 7
                                                                  // columns
+    }
+
+    @Test
+    public void testDuplicateCodeListTable() {
+        verify(mockAppender, never()).doAppend(argThat(argument -> argument
+                .getLevel().equals(Level.WARN)));
+
+        // load lazy-init bean.
+        SimpleI18nCodeList testDuplicateCodeListTable = getApplicationContext()
+                .getBean("CL_testDuplicateCodeListTable",
+                        SimpleI18nCodeList.class);
+        assertThat(testDuplicateCodeListTable.codeListTable.size(), is(14)); // 2 rows x 7
+                                                                             // columns
+        verify(mockAppender, times(2)).doAppend(argThat(argument -> argument
+                .getLevel().equals(Level.WARN)));
     }
 
     @Test(expected = None.class)

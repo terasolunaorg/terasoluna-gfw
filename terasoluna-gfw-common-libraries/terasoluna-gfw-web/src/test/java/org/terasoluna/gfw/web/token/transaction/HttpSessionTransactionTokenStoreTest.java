@@ -20,6 +20,11 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertThrows;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.Mockito.doThrow;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,6 +33,7 @@ import javax.servlet.http.HttpSession;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -39,6 +45,11 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.terasoluna.gfw.web.token.TokenStringGenerator;
+
+import ch.qos.logback.classic.Level;
+import ch.qos.logback.classic.Logger;
+import ch.qos.logback.classic.spi.ILoggingEvent;
+import ch.qos.logback.core.Appender;
 
 /**
  * Test class for HttpSessionTransactionTokenStore
@@ -59,6 +70,9 @@ public class HttpSessionTransactionTokenStoreTest {
 
     HttpSessionTransactionTokenStore store;
 
+    @SuppressWarnings("unchecked")
+    private Appender<ILoggingEvent> mockAppender = mock(Appender.class);
+
     @Before
     public void setUp() throws Exception {
         // prepare request object
@@ -70,6 +84,11 @@ public class HttpSessionTransactionTokenStoreTest {
         // set ServletRequestAttributes to RequestContextHolder
         ServletRequestAttributes attributes = new ServletRequestAttributes(request);
         RequestContextHolder.setRequestAttributes(attributes);
+
+        // mock logger
+        Logger logger = (Logger) LoggerFactory.getLogger(
+                HttpSessionTransactionTokenStore.class);
+        logger.addAppender(mockAppender);
     }
 
     /**
@@ -161,6 +180,27 @@ public class HttpSessionTransactionTokenStoreTest {
                     store.remove(null);
                 });
         assertThat(e.getMessage(), is("token must not be null"));
+    }
+
+    @Test
+    public void testRemoveIllegalState() {
+        // setup parameters
+        HttpSession session = mock(MockHttpSession.class);
+        doThrow(IllegalStateException.class).when(session).removeAttribute(
+                anyString());
+        request.setSession(session);
+        TransactionToken token = new TransactionToken("tokenName", "tokenKey", "tokenValue");
+
+        // prepare store instance
+        store = new HttpSessionTransactionTokenStore();
+        store.store(token);
+
+        // run
+        store.remove(token);
+
+        // assert
+        verify(mockAppender).doAppend(argThat(argument -> argument.getLevel()
+                .equals(Level.DEBUG)));
     }
 
     /**

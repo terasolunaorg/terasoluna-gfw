@@ -27,7 +27,9 @@ import static org.mockito.Mockito.when;
 
 import java.lang.reflect.Method;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -69,7 +71,7 @@ public class TraceLoggingInterceptorTest {
 
     private MockHttpServletResponse response;
 
-    private Method[] method;
+    private Map<String, Method> methods;
 
     private TraceLoggingInterceptorController controller;
 
@@ -99,7 +101,10 @@ public class TraceLoggingInterceptorTest {
         response = new MockHttpServletResponse();
 
         controller = new TraceLoggingInterceptorController();
-        method = controller.getClass().getMethods();
+        methods = new HashMap<>();
+        for (Method method : controller.getClass().getDeclaredMethods()) {
+            methods.put(method.getName(), method);
+        }
 
         model = mock(ModelAndView.class);
         interceptor = new TraceLoggingInterceptor();
@@ -233,7 +238,8 @@ public class TraceLoggingInterceptorTest {
         long startTime = System.nanoTime();
         request.setAttribute(TraceLoggingInterceptor.class.getName()
                 + ".startTime", startTime);
-        HandlerMethod paramHandler = new HandlerMethod(controller, method[3]);
+        HandlerMethod paramHandler = new HandlerMethod(controller, methods.get(
+                "second"));
 
         // mocketd
         View view = mock(View.class);
@@ -260,7 +266,8 @@ public class TraceLoggingInterceptorTest {
         long startTime = System.nanoTime();
         request.setAttribute(TraceLoggingInterceptor.class.getName()
                 + ".startTime", startTime);
-        HandlerMethod paramHandler = new HandlerMethod(controller, method[0]);
+        HandlerMethod paramHandler = new HandlerMethod(controller, methods.get(
+                "createForm"));
 
         // run
         interceptor.postHandle(request, response, paramHandler, null);
@@ -276,26 +283,54 @@ public class TraceLoggingInterceptorTest {
     /**
      * Warn Log Output
      */
-    @Ignore
     @Test
-    public void testPostHandle_WarnlLogOutput() {
+    public void testPostHandle_WarnlLogOutput() throws Exception {
         // parameter create
         long startTime = System.nanoTime();
         request.setAttribute(TraceLoggingInterceptor.class.getName()
                 + ".startTime", startTime);
-        HandlerMethod paramHandler = new HandlerMethod(controller, method[0]);
+        HandlerMethod paramHandler = new HandlerMethod(controller, methods.get(
+                "first"));
 
         // run
-        interceptor.setWarnHandlingNanos(1L);
+        interceptor.setWarnHandlingNanos(0L);
         interceptor.postHandle(request, response, paramHandler, model);
 
         // expected
-        String expectedLogStr = "TraceLoggingInterceptorController.createForm()->";
+        String expectedLogStr = "TraceLoggingInterceptorController.first(SampleForm,Model)->";
 
         // assert
         verifyLogging(expectedLogStr, ImmutableList.of(Level.TRACE, Level.WARN),
                 2);
+    }
 
+    /**
+     * Warn Log Output
+     */
+    @Test
+    public void testPostHandle_WarnlLogNotOutput() throws Exception {
+        LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.ERROR);
+
+        // parameter create
+        long startTime = System.nanoTime();
+        request.setAttribute(TraceLoggingInterceptor.class.getName()
+                + ".startTime", startTime);
+        HandlerMethod paramHandler = new HandlerMethod(controller, methods.get(
+                "first"));
+
+        // run
+        interceptor.setWarnHandlingNanos(0L);
+        interceptor.postHandle(request, response, paramHandler, model);
+
+        // expected
+        String expectedLogStr = "TraceLoggingInterceptorController.first(SampleForm,Model)->";
+
+        // assert
+        verifyLogging(expectedLogStr, ImmutableList.of(Level.TRACE, Level.WARN),
+                0);
+
+        // reset log level
+        LogLevelChangeUtil.resetLogLevel();
     }
 
     /**
@@ -305,7 +340,8 @@ public class TraceLoggingInterceptorTest {
     @Test
     public void testPostHandle_NotStarted() {
         // parameter create
-        HandlerMethod paramHandler = new HandlerMethod(controller, method[0]);
+        HandlerMethod paramHandler = new HandlerMethod(controller, methods.get(
+                "createForm"));
 
         // run
         interceptor.postHandle(request, response, paramHandler, model);
@@ -383,8 +419,8 @@ public class TraceLoggingInterceptorTest {
     @Test
     public void testPostHandleNullStartAttr() throws Exception {
         // parameter create
-        HandlerMethod paramHandler = new HandlerMethod(controller, TraceLoggingInterceptorController.class
-                .getMethod("createForm"));
+        HandlerMethod paramHandler = new HandlerMethod(controller, methods.get(
+                "createForm"));
         request.setAttribute(TraceLoggingInterceptor.class.getName()
                 + ".startTime", null);
 
@@ -404,8 +440,8 @@ public class TraceLoggingInterceptorTest {
         LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
         // parameter create
-        HandlerMethod paramHandler = new HandlerMethod(controller, TraceLoggingInterceptorController.class
-                .getMethod("createForm"));
+        HandlerMethod paramHandler = new HandlerMethod(controller, methods.get(
+                "createForm"));
         long startTime = System.nanoTime();
         request.setAttribute(TraceLoggingInterceptor.class.getName()
                 + ".startTime", startTime);
@@ -426,8 +462,8 @@ public class TraceLoggingInterceptorTest {
         LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
         // parameter create
-        HandlerMethod paramHandler = new HandlerMethod(controller, TraceLoggingInterceptorController.class
-                .getMethod("createForm"));
+        HandlerMethod paramHandler = new HandlerMethod(controller, methods.get(
+                "createForm"));
         long startTime = System.nanoTime();
         request.setAttribute(TraceLoggingInterceptor.class.getName()
                 + ".startTime", startTime);

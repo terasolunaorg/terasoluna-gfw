@@ -128,7 +128,6 @@ public class TransactionTokenInterceptorTest {
                 new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
                         .getDeclaredMethod("third", SampleForm.class,
                                 Model.class)));
-
     }
 
     @Test
