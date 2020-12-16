@@ -24,6 +24,7 @@ import static org.hamcrest.Matchers.hasEntry;
 import static org.junit.Assert.assertThrows;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -62,10 +63,6 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
     @Autowired
     @Qualifier("CL_testSetColumns")
     protected SimpleI18nCodeList testSetColumns;
-
-    @Autowired
-    @Qualifier("CL_testDuplicateCodeListTable")
-    protected SimpleI18nCodeList testDuplicateCodeListTable;
 
     @Autowired
     @Qualifier("CL_testFallbackTo")
@@ -158,8 +155,15 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
 
     @Test
     public void testDuplicateCodeListTable() {
-        assertThat(testSetColumns.codeListTable.size(), is(14)); // 2 rows x 7
-                                                                 // columns
+        verify(mockAppender, never()).doAppend(argThat(argument -> argument
+                .getLevel().equals(Level.WARN)));
+
+        // load lazy-init bean.
+        SimpleI18nCodeList testDuplicateCodeListTable = getApplicationContext()
+                .getBean("CL_testDuplicateCodeListTable",
+                        SimpleI18nCodeList.class);
+        assertThat(testDuplicateCodeListTable.codeListTable.size(), is(14)); // 2 rows x 7
+                                                                             // columns
         verify(mockAppender, times(2)).doAppend(argThat(argument -> argument
                 .getLevel().equals(Level.WARN)));
     }

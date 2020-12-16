@@ -120,7 +120,8 @@
     </property>
   </bean>
 
-  <bean id="CL_testDuplicateCodeListTable" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+  <bean id="CL_testDuplicateCodeListTable" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList"
+    lazy-init="true">
     <property name="rows">
       <util:map>
         <entry key="en">
