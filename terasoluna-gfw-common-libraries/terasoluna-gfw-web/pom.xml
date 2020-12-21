@@ -84,7 +84,7 @@
     <!-- == End Spring == -->
 
     <!-- == Begin Tomcat == -->
-    <!-- Servlet API 3.0 -->
+    <!-- Servlet API 4.0 -->
     <dependency>
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
