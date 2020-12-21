@@ -92,7 +92,7 @@
     <!-- == End Spring == -->
 
     <!-- == Begin Tomcat == -->
-    <!-- Servlet API 3.0 & JSP API 2.2 -->
+    <!-- Servlet API 4.0 & JSP API 2.3 -->
     <dependency>
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
