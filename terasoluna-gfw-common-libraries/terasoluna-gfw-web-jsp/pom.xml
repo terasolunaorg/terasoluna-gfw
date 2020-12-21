@@ -105,7 +105,7 @@
     </dependency>
     <!-- == End Tomcat == -->
 
-    <!-- == Begin Other JavaEE/SE APIs == -->
+    <!-- == Begin Other JakartaEE/SE APIs == -->
     <dependency>
       <groupId>org.apache.taglibs</groupId>
       <artifactId>taglibs-standard-jstlel</artifactId>
@@ -117,7 +117,7 @@
       <artifactId>jakarta.el-api</artifactId>
       <scope>provided</scope>
     </dependency>
-    <!-- == End Other JavaEE/SE APIs == -->
+    <!-- == End Other JakartaEE/SE APIs == -->
 
     <!-- == Begin Unit Test == -->
     <dependency>
