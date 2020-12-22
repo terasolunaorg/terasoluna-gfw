@@ -92,20 +92,20 @@
     <!-- == End Spring == -->
 
     <!-- == Begin Tomcat == -->
-    <!-- Servlet API 3.0 & JSP API 2.2 -->
+    <!-- Servlet API 4.0 & JSP API 2.3 -->
     <dependency>
-      <groupId>javax.servlet</groupId>
-      <artifactId>javax.servlet-api</artifactId>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>javax.servlet.jsp</groupId>
-      <artifactId>javax.servlet.jsp-api</artifactId>
+      <groupId>jakarta.servlet.jsp</groupId>
+      <artifactId>jakarta.servlet.jsp-api</artifactId>
       <scope>provided</scope>
     </dependency>
     <!-- == End Tomcat == -->
 
-    <!-- == Begin Other JavaEE/SE APIs == -->
+    <!-- == Begin Other == -->
     <dependency>
       <groupId>org.apache.taglibs</groupId>
       <artifactId>taglibs-standard-jstlel</artifactId>
@@ -113,11 +113,11 @@
       <optional>true</optional>
     </dependency>
     <dependency>
-      <groupId>javax.el</groupId>
-      <artifactId>javax.el-api</artifactId>
+      <groupId>jakarta.el</groupId>
+      <artifactId>jakarta.el-api</artifactId>
       <scope>provided</scope>
     </dependency>
-    <!-- == End Other JavaEE/SE APIs == -->
+    <!-- == End Other == -->
 
     <!-- == Begin Unit Test == -->
     <dependency>

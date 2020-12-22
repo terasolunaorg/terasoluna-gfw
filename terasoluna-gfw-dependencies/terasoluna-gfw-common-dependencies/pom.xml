@@ -54,11 +54,19 @@
       <artifactId>spring-context</artifactId>
     </dependency>
     <!-- == End Spring == -->
-    <!-- == Begin Other JavaEE/SE APIs == -->
+
+    <!-- == Begin BeanValidation == -->
     <dependency>
-      <groupId>javax.inject</groupId>
-      <artifactId>javax.inject</artifactId>
+      <groupId>org.hibernate.validator</groupId>
+      <artifactId>hibernate-validator</artifactId>
     </dependency>
-    <!-- == End Other JavaEE/SE APIs == -->
+    <!-- == End BeanValidation == -->
+
+    <!-- == Begin Other == -->
+    <dependency>
+      <groupId>jakarta.inject</groupId>
+      <artifactId>jakarta.inject-api</artifactId>
+    </dependency>
+    <!-- == End Other == -->
   </dependencies>
 </project>

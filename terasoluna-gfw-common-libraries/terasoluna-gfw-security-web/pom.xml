@@ -88,7 +88,7 @@
     <!-- == End Spring == -->
 
     <!-- == Begin Tomcat == -->
-    <!-- Servlet API 3.0 & JSP API 2.2 -->
+    <!-- Servlet API 4.0 & JSP API 2.3 -->
     <dependency>
       <groupId>org.apache.tomcat</groupId>
       <artifactId>tomcat-jsp-api</artifactId>

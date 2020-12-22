@@ -486,21 +486,21 @@
       </dependency>
       <!-- == Begin Bouncy Castle == -->
 
-      <!-- == Begin Other JavaEE/SE APIs == -->
+      <!-- == Begin Other == -->
       <dependency>
-        <groupId>javax.el</groupId>
-        <artifactId>javax.el-api</artifactId>
-        <version>${javax-el.version}</version>
+        <groupId>jakarta.el</groupId>
+        <artifactId>jakarta.el-api</artifactId>
+        <version>${jakarta-el.version}</version>
       </dependency>
       <dependency>
-        <groupId>javax.inject</groupId>
-        <artifactId>javax.inject</artifactId>
-        <version>${javax-inject.version}</version>
+        <groupId>jakarta.inject</groupId>
+        <artifactId>jakarta.inject-api</artifactId>
+        <version>${jakarta-inject.version}</version>
       </dependency>
       <dependency>
-        <groupId>javax.servlet.jsp</groupId>
-        <artifactId>javax.servlet.jsp-api</artifactId>
-        <version>${javax-jsp.version}</version>
+        <groupId>jakarta.servlet.jsp</groupId>
+        <artifactId>jakarta.servlet.jsp-api</artifactId>
+        <version>${jakarta-jsp.version}</version>
       </dependency>
       <dependency>
         <groupId>org.apache.taglibs</groupId>
@@ -517,7 +517,7 @@
         <artifactId>taglibs-standard-spec</artifactId>
         <version>${taglibs-standard.version}</version>
       </dependency>
-      <!-- == End Other JavaEE/SE APIs == -->
+      <!-- == End Other == -->
 
     </dependencies>
   </dependencyManagement>
@@ -571,10 +571,10 @@
     <tiles.version>3.0.8</tiles.version>
     <!-- == Bouncy Castle == -->
     <bouncycastle.version>1.64</bouncycastle.version>
-    <!-- == Other JavaEE/SE APIs == -->
-    <javax-el.version>3.0.1-b06</javax-el.version>
-    <javax-inject.version>1</javax-inject.version>
-    <javax-jsp.version>2.3.3</javax-jsp.version>
+    <!-- == Other == -->
+    <jakarta-el.version>3.0.3</jakarta-el.version>
+    <jakarta-inject.version>1.0.3</jakarta-inject.version>
+    <jakarta-jsp.version>2.3.6</jakarta-jsp.version>
     <taglibs-standard.version>1.2.5</taglibs-standard.version>
     <!-- == Project Properties == -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
