@@ -127,7 +127,7 @@
     </dependency>
     <!-- == End Spring == -->
 
-    <!-- == Begin Other JakartaEE/SE APIs == -->
+    <!-- == Begin Other == -->
     <dependency>
       <groupId>org.apache.tomcat.embed</groupId>
       <artifactId>tomcat-embed-el</artifactId>
@@ -137,7 +137,7 @@
       <groupId>jakarta.inject</groupId>
       <artifactId>jakarta.inject-api</artifactId>
     </dependency>
-    <!-- == End Other JakartaEE/SE APIs == -->
+    <!-- == End Other == -->
 
     <!-- == Begin Database == -->
     <!-- H2 (for test) -->
