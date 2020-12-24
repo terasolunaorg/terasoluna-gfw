@@ -344,19 +344,6 @@
       </dependency>
       <!-- == End MyBatis == -->
 
-      <!-- == Begin Hibernate == -->
-      <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-core</artifactId>
-        <version>${org.hibernate.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.hibernate</groupId>
-        <artifactId>hibernate-entitymanager</artifactId>
-        <version>${org.hibernate.version}</version>
-      </dependency>
-      <!-- == End Hibernate == -->
-
       <!-- == Begin Dozer== -->
       <dependency>
         <groupId>com.github.dozermapper</groupId>
@@ -541,15 +528,12 @@
     <!-- == TERASOLUNA == -->
     <terasoluna.gfw.version>5.7.0-SNAPSHOT</terasoluna.gfw.version>
     <!-- == Spring Boot == -->
-    <org.springframework.boot.version>2.4.0</org.springframework.boot.version>
+    <org.springframework.boot.version>2.4.1</org.springframework.boot.version>
     <!-- == Spring Security OAuth == -->
     <spring-security-oauth.version>2.5.0.RELEASE</spring-security-oauth.version>
     <!-- == MyBatis3 == -->
     <org.mybatis.version>3.5.6</org.mybatis.version>
     <org.mybatis.spring.version>2.0.6</org.mybatis.spring.version>
-    <!-- == Hibernate == -->
-    <!--Changed from Spring Boot as a countermeasure against CVE-2020-25638.-->
-    <org.hibernate.version>5.4.25.Final</org.hibernate.version>
     <!-- == Dozer== -->
     <dozer.version>6.5.0</dozer.version>
     <!-- == Joda-Time == -->
@@ -586,7 +570,7 @@
     <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
     <cargo.container.id>tomcat9x</cargo.container.id>
     <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-9/v${cargo.tomcat9.version}/bin/apache-tomcat-${cargo.tomcat9.version}.zip</cargo.container.url>
-    <cargo.tomcat9.version>9.0.39</cargo.tomcat9.version>
+    <cargo.tomcat9.version>9.0.41</cargo.tomcat9.version>
   </properties>
   <profiles>
     <profile>
