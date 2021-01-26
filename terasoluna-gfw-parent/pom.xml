@@ -97,6 +97,7 @@
             <archive>
               <addMavenDescriptor>false</addMavenDescriptor>
             </archive>
+            <doclint>none</doclint>
           </configuration>
           <executions>
             <execution>
