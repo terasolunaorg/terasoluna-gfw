@@ -4,7 +4,6 @@ target
 .project
 .springBeans
 *~
-.git
 .idea
 .DS_Store
 *.iml
