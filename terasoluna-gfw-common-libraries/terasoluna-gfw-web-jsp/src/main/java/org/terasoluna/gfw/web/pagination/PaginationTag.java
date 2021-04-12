@@ -266,57 +266,22 @@ public class PaginationTag extends RequestContextAwareTag {
     protected void writeFirstAndPreviousLink(TagWriter tagWriter,
             PaginationInfo info) throws JspException {
         if (info.isFirstPage()) {
-
             if (StringUtils.hasText(firstLinkText)) {
                 // write first link
-
-                tagWriter.startTag(innerElement); // <li>
-                tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
-                        disabledClass);
-
-                writeAnchor(tagWriter, disabledHref, firstLinkText); // a
-
-                tagWriter.endTag(true); // </li>
+                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref, firstLinkText);
             }
-
             if (StringUtils.hasText(previousLinkText)) {
                 // write previous link
-
-                tagWriter.startTag(innerElement); // <li>
-                tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
-                        disabledClass);
-
-                writeAnchor(tagWriter, disabledHref, previousLinkText); // a
-
-                tagWriter.endTag(true); // </li>
+                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref, previousLinkText);
             }
         } else {
             if (StringUtils.hasText(firstLinkText)) {
                 // write first link
-
-                tagWriter.startTag(innerElement); // <li>
-                if (StringUtils.hasText(innerElementClass)) {
-                    tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
-                            innerElementClass);
-                }
-
-                writeAnchor(tagWriter, info.getFirstUrl(), firstLinkText); // a
-
-                tagWriter.endTag(true); // </li>
+                writeListItemAndAnchor(innerElementClass, tagWriter, info.getFirstUrl(), firstLinkText);
             }
-
             if (StringUtils.hasText(previousLinkText)) {
                 // write previous link
-
-                tagWriter.startTag(innerElement); // <li>
-                if (StringUtils.hasText(innerElementClass)) {
-                    tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
-                            innerElementClass);
-                }
-
-                writeAnchor(tagWriter, info.getPreviousUrl(), previousLinkText); // a
-
-                tagWriter.endTag(true); // </li>
+                writeListItemAndAnchor(innerElementClass, tagWriter, info.getPreviousUrl(), previousLinkText);
             }
         }
     }
@@ -330,56 +295,22 @@ public class PaginationTag extends RequestContextAwareTag {
     protected void writeNextAndLastLink(TagWriter tagWriter,
             PaginationInfo info) throws JspException {
         if (info.isLastPage()) {
-
             if (StringUtils.hasText(nextLinkText)) {
                 // write next link
-
-                tagWriter.startTag(innerElement); // <li>
-                tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
-                        disabledClass);
-
-                writeAnchor(tagWriter, disabledHref, nextLinkText); // a
-
-                tagWriter.endTag(true); // </li>
-
+                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref, nextLinkText);
             }
-
             if (StringUtils.hasText(lastLinkText)) {
                 // write last link
-
-                tagWriter.startTag(innerElement); // <li>
-                tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
-                        disabledClass); // a
-                writeAnchor(tagWriter, disabledHref, lastLinkText);
-                tagWriter.endTag(true); // </li>
+                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref, lastLinkText);
             }
         } else {
             if (StringUtils.hasText(nextLinkText)) {
                 // write next link
-
-                tagWriter.startTag(innerElement); // <li>
-                if (StringUtils.hasText(innerElementClass)) {
-                    tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
-                            innerElementClass);
-                }
-
-                writeAnchor(tagWriter, info.getNextUrl(), nextLinkText); // a
-
-                tagWriter.endTag(true); // </li>
+                writeListItemAndAnchor(innerElementClass, tagWriter, info.getNextUrl(), nextLinkText);
             }
-
             if (StringUtils.hasText(lastLinkText)) {
                 // write last link
-
-                tagWriter.startTag(innerElement); // <li>
-                if (StringUtils.hasText(innerElementClass)) {
-                    tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
-                            innerElementClass);
-                }
-
-                writeAnchor(tagWriter, info.getLastUrl(), lastLinkText); // a
-
-                tagWriter.endTag(true); // </li>
+                writeListItemAndAnchor(innerElementClass, tagWriter, info.getLastUrl(), lastLinkText);
             }
         }
     }
@@ -605,5 +536,23 @@ public class PaginationTag extends RequestContextAwareTag {
     private void readObject(
             ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
+    }
+
+    /**
+     * Renders a list item and anchor for a given page
+     * @param classValue value of "class" attribute of the list item
+     * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP page
+     * @param href url of anchor
+     * @param linkText text of anchor
+     * @throws JspException If fail a tag writing
+     */
+    private void writeListItemAndAnchor(String classValue, TagWriter tagWriter, String href,
+            String linkText) throws JspException {
+        tagWriter.startTag(innerElement); // <li>
+        if (StringUtils.hasText(classValue)) {
+            tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR, classValue);
+        }
+        writeAnchor(tagWriter, href, linkText); // a
+        tagWriter.endTag(true); // </li>
     }
 }
