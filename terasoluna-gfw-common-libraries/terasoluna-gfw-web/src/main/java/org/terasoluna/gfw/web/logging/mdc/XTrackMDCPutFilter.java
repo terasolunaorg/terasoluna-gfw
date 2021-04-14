@@ -22,22 +22,39 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Set random value per request to MDC and HTTP Response Header and HTTP Request Attribute (request scope). <br>
+ * Set random value(track ID) per request to MDC and HTTP Response Header and HTTP Request Attribute (request scope). <br>
  * <p>
- * default attribute name is "X-Track". You can change this name by configure. The value of X-Track is retrieved from HTTP
- * Request Header (same attribute name).<br>
- * If the attibute is not set in HTTP Request Header, this filter creates random value as X-Track and use it.
- * 
+ * The value of track ID is retrieved from HTTP Request Header.<br>
+ * If the attribute is not set in HTTP Request Header, this filter creates random value as track ID and use it.
+ *
+ * <p>
+ * An attribute name of track ID is "X-Track" by default.
+ * Also you can change to an any name as follow:
+ *
  * <pre>
+ * in web.xml
  * <code>
  * &lt;init-param&gt;
  *     &lt;param-name&gt;attributeName&lt;/param-name&gt;
- *     &lt;param-value&gt;XXXX&lt;/param-value&gt;
+ *     &lt;param-value&gt;Tracking-Id&lt;/param-value&gt;
  * &lt;/init-param&gt;
  * </code>
  * </pre>
- * 
+ *
+ * <p>
+ * A random value is the 32 length HEX string(trimmed the '-' character from version 4 uuid string) by default.
+ * Also you can change to use a version 4 uuid string(not trimmed the '-' character) as follow:
+ *
+ * <pre>
  * in web.xml
+ * <code>
+ * &lt;init-param&gt;
+ *     &lt;param-name&gt;useV4Uuid&lt;/param-name&gt;
+ *     &lt;param-value&gt;true&lt;/param-value&gt;
+ * &lt;/init-param&gt;
+ * </code>
+ * </pre>
+ *
  */
 public class XTrackMDCPutFilter extends AbstractMDCPutFilter {
 
@@ -52,11 +69,52 @@ public class XTrackMDCPutFilter extends AbstractMDCPutFilter {
     private String attributeName = "X-Track";
 
     /**
+     * Whether use the version 4 uuid string when a track ID will create
+     */
+    private boolean useV4Uuid;
+
+    /**
+     * Whether there was specified the {@code maxMDCValueLength} by user
+     */
+    private boolean specifiedMaxMDCValueLength;
+
+    /**
      * set attribute name to set MDC and HTTP Response Header<br>
      * @param attributeName attribute name
      */
     public void setAttributeName(String attributeName) {
         this.attributeName = attributeName;
+    }
+
+    /**
+     * set whether use the version 4 uuid string when a track ID will create.
+     * <p>
+     *   Default is {@code false}.
+     * </p>
+     * @param useV4Uuid If use the version 4 uuid string, set to {@code true}
+     */
+    public void setUseV4Uuid(boolean useV4Uuid) {
+        this.useV4Uuid = useV4Uuid;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setMaxMDCValueLength(int maxMDCValueLength) {
+        super.setMaxMDCValueLength(maxMDCValueLength);
+        this.specifiedMaxMDCValueLength = true;
+    }
+
+    /**
+     * If the {@code useV4Uuid} is {@code true} and the {@code maxMDCValueLength } not present,
+     * set the {@code maxMDCValueLength} to {@code 36}(length of version 4 uuid string).
+     */
+    @Override
+    protected void initFilterBean() {
+        if (!specifiedMaxMDCValueLength && useV4Uuid) {
+            setMaxMDCValueLength(36);
+        }
     }
 
     /**
@@ -75,13 +133,14 @@ public class XTrackMDCPutFilter extends AbstractMDCPutFilter {
     /**
      * Create track ID (X-Track)<br>
      * <p>
-     * returns 32-length random HEX string.
+     * returns 32-length random HEX string or version 4 uuid string.
      * </p>
      * @return X-Track
      */
     protected String createXTrack() {
         String uuid = UUID.randomUUID().toString();
-        String xTrack = UUID_REPLACE_PATTERN.matcher(uuid).replaceAll("");
+        String xTrack = useV4Uuid ? uuid
+                : UUID_REPLACE_PATTERN.matcher(uuid).replaceAll("");
         return xTrack;
     }
 
