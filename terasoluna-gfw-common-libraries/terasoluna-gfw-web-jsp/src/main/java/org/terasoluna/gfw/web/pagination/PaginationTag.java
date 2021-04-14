@@ -237,24 +237,18 @@ public class PaginationTag extends RequestContextAwareTag {
      */
     protected void writePageLink(TagWriter tagWriter, PaginationInfo info,
             int page) throws JspException {
-        tagWriter.startTag(innerElement); // <li>
         if (info.isCurrent(page)) {
-            tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR, activeClass);
             if (enableLinkOfCurrentPage) {
-                writeAnchor(tagWriter, info.getPageUrl(page), String.valueOf(
-                        page + 1)); // a
+                writeListItemAndAnchor(activeClass, tagWriter, info.getPageUrl(
+                        page), String.valueOf(page + 1));
             } else {
-                writeAnchor(tagWriter, disabledHref, String.valueOf(page + 1)); // a
+                writeListItemAndAnchor(activeClass, tagWriter, disabledHref,
+                        String.valueOf(page + 1));
             }
         } else {
-            if (StringUtils.hasText(innerElementClass)) {
-                tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
-                        innerElementClass);
-            }
-            writeAnchor(tagWriter, info.getPageUrl(page), String.valueOf(page
-                    + 1)); // a
+            writeListItemAndAnchor(innerElementClass, tagWriter, info
+                    .getPageUrl(page), String.valueOf(page + 1));
         }
-        tagWriter.endTag(true); // </li>
     }
 
     /**
