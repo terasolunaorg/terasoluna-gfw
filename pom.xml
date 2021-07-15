@@ -34,13 +34,13 @@
   </scm>
   <properties>
     <!-- == Maven Plugin Versions == -->
-    <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
-    <formatter-maven-plugin.version>2.15.0</formatter-maven-plugin.version>
-    <xml-maven-plugin.version>1.0.2</xml-maven-plugin.version>
-    <license-maven-plugin.version>4.1</license-maven-plugin.version>
-    <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
-    <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
-    <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
+    <org.jacoco.jacoco-maven-plugin.version>0.8.7</org.jacoco.jacoco-maven-plugin.version>
+    <net.revelc.code.formatter.formatter-maven-plugin.version>2.15.0</net.revelc.code.formatter.formatter-maven-plugin.version>
+    <org.codehaus.mojo.xml-maven-plugin.version>1.0.2</org.codehaus.mojo.xml-maven-plugin.version>
+    <com.mycila.license-maven-plugin.version>4.1</com.mycila.license-maven-plugin.version>
+    <org.eluder.coveralls.coveralls-maven-plugin.version>4.1.0</org.eluder.coveralls.coveralls-maven-plugin.version>
+    <org.apache.maven.plugins.maven-gpg-plugin.version>3.0.1</org.apache.maven.plugins.maven-gpg-plugin.version>
+    <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.6.8</org.sonatype.plugins.nexus-staging-maven-plugin.version>
     <!-- == Project Properties == -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.deploy.skip>true</maven.deploy.skip>
@@ -81,7 +81,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>${maven-gpg-plugin.version}</version>
+            <version>${org.apache.maven.plugins.maven-gpg-plugin.version}</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
@@ -101,7 +101,7 @@
           <plugin>
             <groupId>org.sonatype.plugins</groupId>
             <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>${nexus-staging-maven-plugin.version}</version>
+            <version>${org.sonatype.plugins.nexus-staging-maven-plugin.version}</version>
             <extensions>true</extensions>
             <configuration>
               <serverId>ossrh</serverId>
@@ -133,7 +133,7 @@
             <plugin>
               <groupId>org.jacoco</groupId>
               <artifactId>jacoco-maven-plugin</artifactId>
-              <version>${jacoco-maven-plugin.version}</version>
+              <version>${org.jacoco.jacoco-maven-plugin.version}</version>
               <configuration>
                 <skip>true</skip>
               </configuration>
@@ -141,12 +141,12 @@
             <plugin>
               <groupId>com.mycila</groupId>
               <artifactId>license-maven-plugin</artifactId>
-              <version>${license-maven-plugin.version}</version>
+              <version>${com.mycila.license-maven-plugin.version}</version>
             </plugin>
             <plugin>
               <groupId>net.revelc.code.formatter</groupId>
               <artifactId>formatter-maven-plugin</artifactId>
-              <version>${formatter-maven-plugin.version}</version>
+              <version>${net.revelc.code.formatter.formatter-maven-plugin.version}</version>
               <configuration>
                 <configFile>${project.basedir}/eclipse/formatter.xml
                 </configFile>
@@ -167,7 +167,7 @@
             <plugin>
               <groupId>org.eluder.coveralls</groupId>
               <artifactId>coveralls-maven-plugin</artifactId>
-              <version>${coveralls-maven-plugin.version}</version>
+              <version>${org.eluder.coveralls.coveralls-maven-plugin.version}</version>
               <configuration>
                 <jacocoReports>
                   <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-common/target/site/jacoco/jacoco.xml</jacocoReport>
@@ -207,7 +207,7 @@
             <plugin>
               <groupId>org.codehaus.mojo</groupId>
               <artifactId>xml-maven-plugin</artifactId>
-              <version>${xml-maven-plugin.version}</version>
+              <version>${org.codehaus.mojo.xml-maven-plugin.version}</version>
               <configuration>
                 <indentSize>2</indentSize>
                 <formatFileSets>
