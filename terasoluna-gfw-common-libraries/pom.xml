@@ -73,9 +73,9 @@
           </executions>
         </plugin>
         <plugin>
-          <groupId>com.google.code.maven-license-plugin</groupId>
-          <artifactId>maven-license-plugin</artifactId>
-          <version>${com.google.code.maven-license-plugin.version}</version>
+          <groupId>com.mycila</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>${license-maven-plugin.version}</version>
           <configuration>
             <header>${project.root.basedir}/../license/header.txt</header>
             <includes>
@@ -118,11 +118,6 @@
           </configuration>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-antrun-plugin</artifactId>
-          <version>${maven-antrun-plugin.version}</version>
-        </plugin>
-        <plugin>
           <groupId>org.eluder.coveralls</groupId>
           <artifactId>coveralls-maven-plugin</artifactId>
           <version>${coveralls-maven-plugin.version}</version>
@@ -154,12 +149,11 @@
   </build>
   <properties>
     <!-- == Maven Plugin Versions == -->
-    <maven-surefire-plugin.version>3.0.0-M3</maven-surefire-plugin.version>
-    <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
-    <maven-antrun-plugin.version>1.7</maven-antrun-plugin.version>
-    <com.google.code.maven-license-plugin.version>1.4.0</com.google.code.maven-license-plugin.version>
-    <formatter-maven-plugin.version>2.0.1</formatter-maven-plugin.version>
-    <xml-maven-plugin.version>1.0.1</xml-maven-plugin.version>
+    <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
+    <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+    <license-maven-plugin.version>4.1</license-maven-plugin.version>
+    <formatter-maven-plugin.version>2.15.0</formatter-maven-plugin.version>
+    <xml-maven-plugin.version>1.0.2</xml-maven-plugin.version>
     <coveralls-maven-plugin.version>4.1.0</coveralls-maven-plugin.version>
     <!-- == Project Properties == -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
