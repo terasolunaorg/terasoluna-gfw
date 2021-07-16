@@ -42,7 +42,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>xml-maven-plugin</artifactId>
-          <version>${xml-maven-plugin.version}</version>
+          <version>${org.codehaus.mojo.xml-maven-plugin.version}</version>
           <configuration>
             <indentSize>2</indentSize>
           </configuration>
@@ -52,6 +52,6 @@
   </build>
   <properties>
     <!-- == Maven Plugin Versions == -->
-    <xml-maven-plugin.version>1.0.1</xml-maven-plugin.version>
+    <org.codehaus.mojo.xml-maven-plugin.version>1.0.2</org.codehaus.mojo.xml-maven-plugin.version>
   </properties>
 </project>
