@@ -13,5 +13,6 @@ install: true
 script:
   - mvn xml:check-format -P xml-check-format
   - mvn formatter:validate -P common-libs
+  - mvn license:check -P common-libs
   - mvn -U clean install -P default
   - mvn -U jacoco:report coveralls:report -P common-libs
