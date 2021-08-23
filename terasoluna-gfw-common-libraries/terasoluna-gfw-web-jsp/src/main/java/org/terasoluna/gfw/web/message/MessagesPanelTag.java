@@ -35,7 +35,8 @@ import org.terasoluna.gfw.web.util.JspTagUtils;
 /**
  * Tag for displaying messages in panel format in JSP page<br>
  * <p>
- * Creates display tag, converts the object which is set in {@code pageContext} to String and sets this string inside the tag <br>
+ * Creates display tag, converts the object which is set in {@code pageContext} to String and sets this string inside the tag
+ * <br>
  * This tag displays the contents of {@code org.terasoluna.gfw.common.message.ResultMessages} by default. However,
  * {@code String} or {@code List<string>} set in {@code Model} can also be displayed using this tag
  * </p>

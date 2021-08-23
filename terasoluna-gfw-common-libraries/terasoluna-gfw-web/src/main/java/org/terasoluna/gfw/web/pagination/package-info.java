@@ -15,6 +15,5 @@
  */
 /**
  * Package containing classes related to pagination functionality.
- *
  */
 package org.terasoluna.gfw.web.pagination;

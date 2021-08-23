@@ -14,7 +14,6 @@
  * governing permissions and limitations under the License.
  */
 /**
- * Contains classes that provide functionalities related to MVC.
- * For Ex. Request data processing of incoming request data
+ * Contains classes that provide functionalities related to MVC. For Ex. Request data processing of incoming request data
  */
 package org.terasoluna.gfw.web.mvc;

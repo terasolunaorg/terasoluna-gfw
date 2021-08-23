@@ -85,7 +85,8 @@ public class ByteSizeValidator implements
      * Validate execute.
      * @param value object to validate
      * @param context context in which the constraint is evaluated
-     * @return {@code true} if {@code value} length is between the specified minimum and maximum, or null. otherwise {@code false}.
+     * @return {@code true} if {@code value} length is between the specified minimum and maximum, or null. otherwise
+     *         {@code false}.
      * @see javax.validation.ConstraintValidator#isValid(java.lang.Object, javax.validation.ConstraintValidatorContext)
      */
     @Override

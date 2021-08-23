@@ -49,9 +49,9 @@ import org.terasoluna.gfw.common.validator.constraintvalidators.ByteMinValidator
  * </ul>
  * <p>
  * {@code null} elements are considered valid. Determine the byte length By encoding the string in the specified
- * {@link ByteMin#charset()}. If not specify, encode with charset {@code "UTF-8"}.
- * An {@link IllegalArgumentException}(wrapped in {@link ValidationException}) is thrown if specify
- * {@link ByteMin#charset()} that can not be used or specify {@link ByteMin#value()} that is negative value.
+ * {@link ByteMin#charset()}. If not specify, encode with charset {@code "UTF-8"}. An {@link IllegalArgumentException}(wrapped
+ * in {@link ValidationException}) is thrown if specify {@link ByteMin#charset()} that can not be used or specify
+ * {@link ByteMin#value()} that is negative value.
  * </p>
  * @since 5.1.0
  * @see ByteMinValidator
