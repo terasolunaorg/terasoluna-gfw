@@ -56,7 +56,8 @@ import org.springframework.web.servlet.view.AbstractView;
  * <h3>Example of bean definition file</h3>
  * 
  * <pre>
- * &lt;bean id=<strong style=color:red>&quot;sampleFileDownloadView&quot;</strong> class=&quot;org.terasoluna.gfw.web.sample.SampleFileDownloadView&quot;&gt;
+ * &lt;bean id=<strong style=
+color:red>&quot;sampleFileDownloadView&quot;</strong> class=&quot;org.terasoluna.gfw.web.sample.SampleFileDownloadView&quot;&gt;
  *     &lt;!-- injections.. --&gt;
  * &lt;/bean&gt;
  * </pre>

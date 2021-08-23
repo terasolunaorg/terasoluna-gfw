@@ -16,6 +16,5 @@
 /**
  * Contains class to provide Message Management functionality on the web layer. <br>
  * Mainly deals with the display of messages in View.
- * 
  */
 package org.terasoluna.gfw.web.message;

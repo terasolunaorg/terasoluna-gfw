@@ -16,6 +16,5 @@
 /**
  * Package that contains classes to process the database query string <br>
  * For Ex. Escaping the query string.
- *
  */
 package org.terasoluna.gfw.common.query;

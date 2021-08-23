@@ -15,7 +15,6 @@
  */
 /**
  * Package related to processing of Tokens <br>
- * For Ex. Token generation 
- *
+ * For Ex. Token generation
  */
 package org.terasoluna.gfw.web.token;

@@ -15,6 +15,5 @@
  */
 /**
  * Package that contains classes and interface that provide CodeList functionality
- *
  */
 package org.terasoluna.gfw.web.codelist;

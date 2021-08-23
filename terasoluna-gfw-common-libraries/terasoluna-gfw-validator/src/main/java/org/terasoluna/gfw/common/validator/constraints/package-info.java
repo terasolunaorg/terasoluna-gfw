@@ -15,7 +15,6 @@
  */
 /**
  * Constraint annotations for validating a any object using Bean Validation functionality.
- *
  * @since 5.1.0
  */
 package org.terasoluna.gfw.common.validator.constraints;

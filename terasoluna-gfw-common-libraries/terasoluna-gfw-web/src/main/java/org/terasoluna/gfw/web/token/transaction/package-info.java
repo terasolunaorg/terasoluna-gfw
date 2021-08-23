@@ -14,9 +14,8 @@
  * governing permissions and limitations under the License.
  */
 /**
- * Package related to Transaction Token functionality. <br> 
- * Transaction Token functionality provides flow management and <br> 
- * prevention of double submit. 
- *
+ * Package related to Transaction Token functionality. <br>
+ * Transaction Token functionality provides flow management and <br>
+ * prevention of double submit.
  */
 package org.terasoluna.gfw.web.token.transaction;

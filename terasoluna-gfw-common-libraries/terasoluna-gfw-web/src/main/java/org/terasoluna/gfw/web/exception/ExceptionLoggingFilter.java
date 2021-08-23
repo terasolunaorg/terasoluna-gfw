@@ -52,7 +52,6 @@ import org.terasoluna.gfw.common.exception.ExceptionLogger;
  * class=&quot;org.terasoluna.gfw.web.exception.ExceptionLoggingFilter&quot;&gt;
  *   &lt;property name=&quot;exceptionLogger&quot; ref=&quot;exceptionLogger&quot; /&gt;
  * &lt;/bean&gt;
- * 
  * </pre>
  * 
  * <strong>[web.xml]</strong><br>
