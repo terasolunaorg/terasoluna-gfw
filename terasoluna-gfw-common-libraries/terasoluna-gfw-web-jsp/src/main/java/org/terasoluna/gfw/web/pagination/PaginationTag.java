@@ -262,20 +262,24 @@ public class PaginationTag extends RequestContextAwareTag {
         if (info.isFirstPage()) {
             if (StringUtils.hasText(firstLinkText)) {
                 // write first link
-                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref, firstLinkText);
+                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref,
+                        firstLinkText);
             }
             if (StringUtils.hasText(previousLinkText)) {
                 // write previous link
-                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref, previousLinkText);
+                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref,
+                        previousLinkText);
             }
         } else {
             if (StringUtils.hasText(firstLinkText)) {
                 // write first link
-                writeListItemAndAnchor(innerElementClass, tagWriter, info.getFirstUrl(), firstLinkText);
+                writeListItemAndAnchor(innerElementClass, tagWriter, info
+                        .getFirstUrl(), firstLinkText);
             }
             if (StringUtils.hasText(previousLinkText)) {
                 // write previous link
-                writeListItemAndAnchor(innerElementClass, tagWriter, info.getPreviousUrl(), previousLinkText);
+                writeListItemAndAnchor(innerElementClass, tagWriter, info
+                        .getPreviousUrl(), previousLinkText);
             }
         }
     }
@@ -291,20 +295,24 @@ public class PaginationTag extends RequestContextAwareTag {
         if (info.isLastPage()) {
             if (StringUtils.hasText(nextLinkText)) {
                 // write next link
-                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref, nextLinkText);
+                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref,
+                        nextLinkText);
             }
             if (StringUtils.hasText(lastLinkText)) {
                 // write last link
-                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref, lastLinkText);
+                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref,
+                        lastLinkText);
             }
         } else {
             if (StringUtils.hasText(nextLinkText)) {
                 // write next link
-                writeListItemAndAnchor(innerElementClass, tagWriter, info.getNextUrl(), nextLinkText);
+                writeListItemAndAnchor(innerElementClass, tagWriter, info
+                        .getNextUrl(), nextLinkText);
             }
             if (StringUtils.hasText(lastLinkText)) {
                 // write last link
-                writeListItemAndAnchor(innerElementClass, tagWriter, info.getLastUrl(), lastLinkText);
+                writeListItemAndAnchor(innerElementClass, tagWriter, info
+                        .getLastUrl(), lastLinkText);
             }
         }
     }
@@ -540,8 +548,8 @@ public class PaginationTag extends RequestContextAwareTag {
      * @param linkText text of anchor
      * @throws JspException If fail a tag writing
      */
-    private void writeListItemAndAnchor(String classValue, TagWriter tagWriter, String href,
-            String linkText) throws JspException {
+    private void writeListItemAndAnchor(String classValue, TagWriter tagWriter,
+            String href, String linkText) throws JspException {
         tagWriter.startTag(innerElement); // <li>
         if (StringUtils.hasText(classValue)) {
             tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR, classValue);

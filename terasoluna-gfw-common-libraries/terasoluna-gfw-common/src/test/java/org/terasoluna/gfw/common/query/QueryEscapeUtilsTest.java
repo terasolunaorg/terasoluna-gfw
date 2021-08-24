@@ -236,17 +236,23 @@ public class QueryEscapeUtilsTest {
                     ? new StringBuilder()
                     : new StringBuilder(expectedToLikeConditionWithFullWidth);
             this.expectedStartingWithCondition = (expectedToLikeCondition == null)
-                    ? null : expectedToLikeCondition + "%";
+                    ? null
+                    : expectedToLikeCondition + "%";
             this.expectedStartingWithConditionWithFullWidth = (expectedToLikeConditionWithFullWidth == null)
-                    ? null : expectedToLikeConditionWithFullWidth + "%";
+                    ? null
+                    : expectedToLikeConditionWithFullWidth + "%";
             this.expectedEndingWithCondition = (expectedToLikeCondition == null)
-                    ? null : "%" + expectedToLikeCondition;
+                    ? null
+                    : "%" + expectedToLikeCondition;
             this.expectedEndingWithConditionWithFullWidth = (expectedToLikeConditionWithFullWidth == null)
-                    ? null : "%" + expectedToLikeConditionWithFullWidth;
+                    ? null
+                    : "%" + expectedToLikeConditionWithFullWidth;
             this.expectedContainingCondition = (expectedToLikeCondition == null)
-                    ? null : "%" + expectedToLikeCondition + "%";
+                    ? null
+                    : "%" + expectedToLikeCondition + "%";
             this.expectedContainingConditionWithFullWidth = (expectedToLikeConditionWithFullWidth == null)
-                    ? null : "%" + expectedToLikeConditionWithFullWidth + "%";
+                    ? null
+                    : "%" + expectedToLikeConditionWithFullWidth + "%";
             this.expectedToLikeConditionIsNull = (expectedToLikeCondition == null)
                     ? new StringBuilder()
                     : new StringBuilder(expectedToLikeCondition);

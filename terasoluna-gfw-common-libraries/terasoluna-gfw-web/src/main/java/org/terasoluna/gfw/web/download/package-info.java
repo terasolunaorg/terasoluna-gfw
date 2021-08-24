@@ -15,6 +15,5 @@
  */
 /**
  * Contains classes that provide the functionality to use file download in View.
- *
  */
 package org.terasoluna.gfw.web.download;

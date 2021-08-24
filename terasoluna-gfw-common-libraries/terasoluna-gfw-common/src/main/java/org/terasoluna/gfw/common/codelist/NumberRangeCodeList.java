@@ -139,7 +139,7 @@ public class NumberRangeCodeList extends AbstractCodeList implements
     }
 
     /**
-     * Gets the display format of the value part of the codelist 
+     * Gets the display format of the value part of the codelist
      * @return valueFormat format string for code value
      */
     public String getValueFormat() {

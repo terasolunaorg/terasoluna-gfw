@@ -24,14 +24,10 @@ import java.sql.Timestamp;
  * create current system date as
  * </p>
  * <ul>
- * <li>
- * {@link java.util.Date}</li>
- * <li>
- * {@link java.sql.Date}</li>
- * <li>
- * {@link java.sql.Timestamp}</li>
- * <li>
- * {@link java.sql.Time}</li>
+ * <li>{@link java.util.Date}</li>
+ * <li>{@link java.sql.Date}</li>
+ * <li>{@link java.sql.Timestamp}</li>
+ * <li>{@link java.sql.Time}</li>
  * </ul>
  * @since 5.0.0
  */

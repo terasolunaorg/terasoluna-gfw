@@ -18,7 +18,7 @@ package org.terasoluna.gfw.common.fullhalf;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class DefaultFullHalfCodePointsMap extends
-                                       ConcurrentHashMap<String, String> {
+                                          ConcurrentHashMap<String, String> {
 
     private static final long serialVersionUID = 1L;
 

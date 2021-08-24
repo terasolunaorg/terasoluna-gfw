@@ -15,6 +15,5 @@
  */
 /**
  * Classes related to internationalization support of {@code CodeList} functionality
- *
  */
 package org.terasoluna.gfw.common.codelist.i18n;

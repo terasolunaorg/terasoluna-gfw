@@ -39,7 +39,8 @@ import org.terasoluna.gfw.common.codelist.CodeList;
 /**
  * Interceptor class for setting codelist in attribute of {@link HttpServletRequest}
  * <p>
- * Default behavior is to set all the implementation beans of {@code CodeList} in the attribute of {@link HttpServletRequest}<br>
+ * Default behavior is to set all the implementation beans of {@code CodeList} in the attribute of
+ * {@link HttpServletRequest}<br>
  * In order to narrow down the target beans, pass the pattern (regular expression) corresponding to codelist ID of target beans
  * <br>
  * to {@link #setCodeListIdPattern(Pattern)} method.
@@ -78,7 +79,8 @@ public class CodeListInterceptor implements HandlerInterceptor,
      * <p>
      * Sets codelist to the attribute of {@link HttpServletRequest} after the execution of Controller.
      * </p>
-     * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#postHandle(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse, java.lang.Object, org.springframework.web.servlet.ModelAndView)
+     * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#postHandle(javax.servlet.http.HttpServletRequest,
+     *      javax.servlet.http.HttpServletResponse, java.lang.Object, org.springframework.web.servlet.ModelAndView)
      * @since 5.4.2
      */
     @Override

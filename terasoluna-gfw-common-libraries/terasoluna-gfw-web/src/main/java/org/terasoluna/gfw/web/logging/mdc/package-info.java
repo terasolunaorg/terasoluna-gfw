@@ -15,6 +15,5 @@
  */
 /**
  * Package for classes that provide logging functionality using MDC<br>
- * 
  */
 package org.terasoluna.gfw.web.logging.mdc;

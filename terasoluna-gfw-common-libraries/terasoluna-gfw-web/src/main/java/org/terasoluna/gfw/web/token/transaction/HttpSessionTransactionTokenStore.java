@@ -137,7 +137,8 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
     }
 
     /**
-     * Fetches the value stored in session corresponding to the {@link TransactionToken} received as argument to this method. <br>
+     * Fetches the value stored in session corresponding to the {@link TransactionToken} received as argument to this method.
+     * <br>
      * <p>
      * This value corresponding to the same transactionToken instance can be fetched only once. Once the value is fetched, its
      * value is cleared from the session. For all further invocations to this method for the same transactionToken instance,

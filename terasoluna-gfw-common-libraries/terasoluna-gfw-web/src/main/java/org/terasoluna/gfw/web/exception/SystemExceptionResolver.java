@@ -85,7 +85,7 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
      * <p>
      * Calling this method overwrites the default value {@code "resultMessages"}. <br>
      * If {@code null} or blank or space is set, then {@code ResultMessages} will not be set in request scope and
-     * {@code FlashMap}　when　{@link #setResultMessages(Exception, HttpServletRequest)} is called.
+     * {@code FlashMap} when {@link #setResultMessages(Exception, HttpServletRequest)} is called.
      * </p>
      * @param resultMessagesAttribute Attribute name used for storing result message in request scope and {@code FlashMap}.
      */
@@ -96,7 +96,7 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     /**
      * Sets the object for resolving exception code.
      * <p>
-     * If not set, exception code will not be set in request scope and response header　when
+     * If not set, exception code will not be set in request scope and response header when
      * {@link #setExceptionCode(Exception, HttpServletRequest, HttpServletResponse)} is called.
      * </p>
      * @param exceptionCodeResolver Exception code resolution object.

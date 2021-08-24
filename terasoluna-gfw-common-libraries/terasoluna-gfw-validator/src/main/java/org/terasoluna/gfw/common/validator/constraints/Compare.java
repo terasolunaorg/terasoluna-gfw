@@ -43,8 +43,8 @@ import org.terasoluna.gfw.common.validator.constraintvalidators.CompareValidator
  * </ul>
  * <p>
  * {@code null} elements are considered valid. If any of the specified two properties is {@code null}, are considered valid. If
- * specify two properties of different types, are considered invalid.
- * An {@link IllegalArgumentException}(wrapped in {@link ValidationException}) is thrown if specify a property not {@link Comparable}.
+ * specify two properties of different types, are considered invalid. An {@link IllegalArgumentException}(wrapped in
+ * {@link ValidationException}) is thrown if specify a property not {@link Comparable}.
  * </p>
  * @since 5.1.0
  * @see CompareValidator

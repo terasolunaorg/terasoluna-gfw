@@ -14,8 +14,6 @@
  * governing permissions and limitations under the License.
  */
 /**
- * Package for class that provide Message management functionality for 
- * messages displayed on screen or in reports.
- *
+ * Package for class that provide Message management functionality for messages displayed on screen or in reports.
  */
 package org.terasoluna.gfw.common.message;
