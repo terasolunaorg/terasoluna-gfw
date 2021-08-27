@@ -180,7 +180,8 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
     }
 
     /**
-     * not specify min and max. expected valid if input value encoded in UTF-8 is between {@code 0} and {@link Long#MAX_VALUE} value.
+     * not specify min and max. expected valid if input value encoded in UTF-8 is between {@code 0} and {@link Long#MAX_VALUE}
+     * value.
      */
     @Test
     public void testSpecifyNotSpecifyMinAndMax() {
@@ -258,9 +259,9 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
     }
 
     /**
-     * specify max lower than min value. expected {@code ValidationException} caused by {@code IllegalArgumentException} that message is
-     * {@code failed to initialize validator by invalid argument} and nested by {@code IllegalArgumentException} that message is
-     * {@code max[2] must be higher or equal to min[3].}.
+     * specify max lower than min value. expected {@code ValidationException} caused by {@code IllegalArgumentException} that
+     * message is {@code failed to initialize validator by invalid argument} and nested by {@code IllegalArgumentException} that
+     * message is {@code max[2] must be higher or equal to min[3].}.
      */
     @Test
     public void testAnnotateMaxLowerThanMinValue() {

@@ -15,6 +15,5 @@
  */
 /**
  * servlet.jsp.el package.
- *
  */
 package org.terasoluna.gfw.web.el;

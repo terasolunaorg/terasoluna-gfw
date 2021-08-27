@@ -15,7 +15,5 @@
  */
 /**
  * date package.
- *
- *
  */
 package org.terasoluna.gfw.common.date;

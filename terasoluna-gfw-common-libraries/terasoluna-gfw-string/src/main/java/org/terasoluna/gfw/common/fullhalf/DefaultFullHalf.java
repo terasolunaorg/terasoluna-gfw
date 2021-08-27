@@ -765,7 +765,7 @@ package org.terasoluna.gfw.common.fullhalf;
  * <td>ﾟ</td>
  * </tr>
  * <tr>
- * <td>　</td>
+ * <td></td>
  * <td>&nbsp;</td>
  * </tr>
  * </table>
@@ -786,6 +786,7 @@ public final class DefaultFullHalf {
      * a singleton instance with default mapping table.
      * @see DefaultFullHalf
      */
+    // @formatter:off
     public static final FullHalfConverter INSTANCE = new FullHalfConverter(
             new FullHalfPairsBuilder()
                 .pair("！", "!")
@@ -975,4 +976,5 @@ public final class DefaultFullHalf {
                 .pair("゜", "ﾟ")
                 .pair("　", " ")
                 .build());
+    // @formatter:on
 }

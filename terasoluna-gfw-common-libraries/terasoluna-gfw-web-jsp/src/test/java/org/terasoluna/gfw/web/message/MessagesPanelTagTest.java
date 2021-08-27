@@ -418,7 +418,8 @@ public class MessagesPanelTagTest {
     }
 
     /**
-     * Set default messages attribute name & Use ResultMessages & change PanelElement,OuterElement and InnerElement is empty.<br>
+     * Set default messages attribute name & Use ResultMessages & change PanelElement,OuterElement and InnerElement is
+     * empty.<br>
      * check JspTagException.
      */
     @Test(expected = JspTagException.class)

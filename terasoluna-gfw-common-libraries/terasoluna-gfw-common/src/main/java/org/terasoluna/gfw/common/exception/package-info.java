@@ -14,8 +14,6 @@
  * governing permissions and limitations under the License.
  */
 /**
- * Package containing functionality for handling exceptions that occur 
- * in logic under Spring MVC
- *
+ * Package containing functionality for handling exceptions that occur in logic under Spring MVC
  */
 package org.terasoluna.gfw.common.exception;

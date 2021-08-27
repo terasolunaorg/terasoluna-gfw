@@ -23,16 +23,11 @@ import org.terasoluna.gfw.common.date.ClassicDateFactory;
  * create current system date as
  * </p>
  * <ul>
- * <li>
- * {@link org.joda.time.DateTime}</li>
- * <li>
- * {@link java.util.Date}</li>
- * <li>
- * {@link java.sql.Date}</li>
- * <li>
- * {@link java.sql.Timestamp}</li>
- * <li>
- * {@link java.sql.Time}</li>
+ * <li>{@link org.joda.time.DateTime}</li>
+ * <li>{@link java.util.Date}</li>
+ * <li>{@link java.sql.Date}</li>
+ * <li>{@link java.sql.Timestamp}</li>
+ * <li>{@link java.sql.Time}</li>
  * </ul>
  * @since 5.0.0
  */

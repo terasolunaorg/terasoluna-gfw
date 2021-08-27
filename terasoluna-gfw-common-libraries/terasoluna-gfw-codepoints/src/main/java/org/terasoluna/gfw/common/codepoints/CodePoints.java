@@ -191,6 +191,7 @@ import java.util.concurrent.ConcurrentMap;
  *   }
  * }</code>
  * </pre>
+ * 
  * @since 5.1.0
  */
 public class CodePoints implements Serializable {

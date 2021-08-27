@@ -15,6 +15,5 @@
  */
 /**
  * exception package.
- *
  */
 package org.terasoluna.gfw.web.exception;

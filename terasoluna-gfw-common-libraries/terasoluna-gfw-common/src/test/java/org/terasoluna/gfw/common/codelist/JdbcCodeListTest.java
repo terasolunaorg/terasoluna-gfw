@@ -117,7 +117,7 @@ public class JdbcCodeListTest {
     }
 
     /**
-     * check retrieveMap method.　Setting jdbcTemplate instead of dataSource.
+     * check retrieveMap method. Setting jdbcTemplate instead of dataSource.
      */
     @Test
     public void testRetrieveMap03() {

@@ -19,6 +19,5 @@
  * <pre>
  * Package for CodeList functionality
  * </pre>
- *
  */
 package org.terasoluna.gfw.common.codelist;

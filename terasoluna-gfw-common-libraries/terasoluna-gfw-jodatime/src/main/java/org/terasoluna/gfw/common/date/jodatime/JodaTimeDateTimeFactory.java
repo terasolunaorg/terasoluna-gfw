@@ -23,8 +23,7 @@ import org.joda.time.DateTime;
  * create current system date as
  * </p>
  * <ul>
- * <li>
- * {@link org.joda.time.DateTime}</li>
+ * <li>{@link org.joda.time.DateTime}</li>
  * </ul>
  * @since 5.0.0
  */
