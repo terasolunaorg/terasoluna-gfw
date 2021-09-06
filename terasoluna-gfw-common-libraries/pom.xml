@@ -77,15 +77,19 @@
           <artifactId>license-maven-plugin</artifactId>
           <version>${com.mycila.license-maven-plugin.version}</version>
           <configuration>
-            <header>${project.root.basedir}/../license/header.txt</header>
-            <includes>
-              <include>src/main/java/**/*.java</include>
-              <include>src/test/java/**/*.java</include>
-            </includes>
+            <licenseSets>
+              <licenseSet>
+                <header>${project.root.basedir}/../license/header.txt</header>
+                <includes>
+                  <include>src/main/java/**/*.java</include>
+                  <include>src/test/java/**/*.java</include>
+                </includes>
+                <headerDefinitions>
+                  <headerDefinition>${project.root.basedir}/../license/header-definition.xml</headerDefinition>
+                </headerDefinitions>
+              </licenseSet>
+            </licenseSets>
             <encoding>${encoding}</encoding>
-            <headerDefinitions>
-              <headerDefinition>${project.root.basedir}/../license/header-definition.xml</headerDefinition>
-            </headerDefinitions>
           </configuration>
         </plugin>
         <plugin>
