@@ -539,7 +539,7 @@
     <!-- == TERASOLUNA == -->
     <terasoluna.gfw.version>5.7.1-SNAPSHOT</terasoluna.gfw.version>
     <!-- == Spring Boot == -->
-    <org.springframework.boot.version>2.5.3</org.springframework.boot.version>
+    <org.springframework.boot.version>2.6.0-M3</org.springframework.boot.version>
     <!-- == Spring Security OAuth == -->
     <spring-security-oauth.version>2.5.0.RELEASE</spring-security-oauth.version>
     <!-- == MyBatis3 == -->
@@ -581,7 +581,7 @@
     <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
     <cargo.container.id>tomcat9x</cargo.container.id>
     <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-9/v${cargo.tomcat9.version}/bin/apache-tomcat-${cargo.tomcat9.version}.zip</cargo.container.url>
-    <cargo.tomcat9.version>9.0.50</cargo.tomcat9.version>
+    <cargo.tomcat9.version>9.0.53</cargo.tomcat9.version>
   </properties>
   <profiles>
     <profile>
