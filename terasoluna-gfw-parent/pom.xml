@@ -557,7 +557,7 @@
     <commons-beanutils.version>1.9.4</commons-beanutils.version>
     <commons-collections.version>3.2.2</commons-collections.version>
     <commons-fileupload.version>1.3.3</commons-fileupload.version>
-    <commons-io.version>2.6</commons-io.version>
+    <commons-io.version>2.11.0</commons-io.version>
     <!-- == OpenPDF == -->
     <openpdf.version>1.0.5</openpdf.version>
     <!-- == Apache POI == -->
