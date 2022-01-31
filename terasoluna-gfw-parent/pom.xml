@@ -333,14 +333,6 @@
       </dependency>
       <!-- == End Spring Boot == -->
 
-      <!-- == Begin Spring Security OAuth == -->
-      <dependency>
-        <groupId>org.springframework.security.oauth</groupId>
-        <artifactId>spring-security-oauth2</artifactId>
-        <version>${spring-security-oauth.version}</version>
-      </dependency>
-      <!-- == End Spring Security OAuth == -->
-
       <!-- == Begin MyBatis == -->
       <dependency>
         <groupId>org.mybatis</groupId>
@@ -540,8 +532,6 @@
     <terasoluna.gfw.version>5.8.0-SNAPSHOT</terasoluna.gfw.version>
     <!-- == Spring Boot == -->
     <org.springframework.boot.version>2.6.1</org.springframework.boot.version>
-    <!-- == Spring Security OAuth == -->
-    <spring-security-oauth.version>2.5.0.RELEASE</spring-security-oauth.version>
     <!-- == MyBatis3 == -->
     <org.mybatis.version>3.5.7</org.mybatis.version>
     <org.mybatis.spring.version>2.0.6</org.mybatis.spring.version>
