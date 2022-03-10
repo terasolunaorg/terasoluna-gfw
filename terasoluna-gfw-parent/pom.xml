@@ -434,6 +434,14 @@
       </dependency>
       <!-- == End Apache POI == -->
 
+      <!-- == Begin Apache Commons Compress == -->
+      <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-compress</artifactId>
+        <version>${commons.compress.version}</version>
+      </dependency>
+      <!-- == End Apache Commons Compress == -->
+
       <!-- == Begin Apache Tiles == -->
       <dependency>
         <groupId>org.apache.tiles</groupId>
@@ -552,6 +560,8 @@
     <openpdf.version>1.0.5</openpdf.version>
     <!-- == Apache POI == -->
     <poi.version>4.1.2</poi.version>
+    <!-- == Apache Commons Compress == -->
+    <commons.compress.version>1.21</commons.compress.version>
     <!-- == Apache Tiles == -->
     <tiles.version>3.0.8</tiles.version>
     <!-- == Bouncy Castle == -->
