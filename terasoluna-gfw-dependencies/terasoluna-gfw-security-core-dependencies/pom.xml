@@ -5,7 +5,7 @@
   <parent>
     <artifactId>terasoluna-gfw-dependencies</artifactId>
     <groupId>org.terasoluna.gfw</groupId>
-    <version>5.6.1.RELEASE</version>
+    <version>5.6.1.SP1.RELEASE</version>
     <relativePath>../../terasoluna-gfw-dependencies/pom.xml</relativePath>
   </parent>
   <artifactId>terasoluna-gfw-security-core-dependencies</artifactId>

@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.terasoluna.gfw</groupId>
   <artifactId>terasoluna-gfw-parent</artifactId>
-  <version>5.6.1.RELEASE</version>
+  <version>5.6.1.SP1.RELEASE</version>
   <packaging>pom</packaging>
   <name>TERASOLUNA Server Framework for Java (5.x) Parent</name>
   <description>The parent of TERASOLUNA Server Framework for Java (5.x)</description>
@@ -537,7 +537,7 @@
     <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
     <!-- == Dependency Versions == -->
     <!-- == TERASOLUNA == -->
-    <terasoluna.gfw.version>5.6.1.RELEASE</terasoluna.gfw.version>
+    <terasoluna.gfw.version>5.6.1.SP1.RELEASE</terasoluna.gfw.version>
     <!-- == Spring Framework == -->
     <!-- Changed from Spring Boot as a countermeasure against CVE-2022-22965. -->
     <org.springframework.version>5.2.20.RELEASE</org.springframework.version>

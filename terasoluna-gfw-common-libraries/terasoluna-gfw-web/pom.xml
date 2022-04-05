@@ -5,7 +5,7 @@
   <parent>
     <artifactId>terasoluna-gfw-common-libraries</artifactId>
     <groupId>org.terasoluna.gfw</groupId>
-    <version>5.6.1.RELEASE</version>
+    <version>5.6.1.SP1.RELEASE</version>
     <relativePath>../../terasoluna-gfw-common-libraries/pom.xml</relativePath>
   </parent>
   <artifactId>terasoluna-gfw-web</artifactId>
