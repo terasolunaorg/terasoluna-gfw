@@ -306,6 +306,16 @@
       </dependency>
       <!-- == End TERASOLUNA == -->
 
+      <!-- == Begin Spring Framework == -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-framework-bom</artifactId>
+        <version>${org.springframework.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- == End Spring Framework == -->
+
       <!-- == Begin Spring Boot == -->
       <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -515,6 +525,9 @@
     <!-- == Dependency Versions == -->
     <!-- == TERASOLUNA == -->
     <terasoluna.gfw.version>5.6.0.RELEASE</terasoluna.gfw.version>
+    <!-- == Spring Framework == -->
+    <!-- Changed from Spring Boot as a countermeasure against CVE-2022-22965. -->
+    <org.springframework.version>5.2.20.RELEASE</org.springframework.version>
     <!-- == Spring Boot == -->
     <org.springframework.boot.version>2.2.4.RELEASE</org.springframework.boot.version>
     <!-- == Spring Security OAuth == -->
