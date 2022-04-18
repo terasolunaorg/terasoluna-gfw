@@ -10,4 +10,4 @@ assignees: ''
 ## Original Issue
 > Links to the original issues.
 
-- Backport terasolunaorg/[repository-name]#[issue-num]
+- Backport #XXX
