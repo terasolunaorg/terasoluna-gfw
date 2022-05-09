@@ -17,10 +17,10 @@ package org.terasoluna.gfw.web.exception;
 
 import java.io.IOException;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
 
 import org.springframework.web.filter.GenericFilterBean;
 import org.terasoluna.gfw.common.exception.ExceptionLogger;
@@ -36,7 +36,7 @@ import org.terasoluna.gfw.common.exception.ExceptionLogger;
  * <strong>[Example of handling done in this class]</strong>
  * <ul>
  * <li>Exceptions that occur in {@link org.springframework.web.servlet.View}({@code JSP} etc)</li>
- * <li>Exceptions that occur beyond the boundary of SpringMVC ({@code javax.servlet.Filter} etc).</li>
+ * <li>Exceptions that occur beyond the boundary of SpringMVC ({@code jakarta.servlet.Filter} etc).</li>
  * <li>Fatal errors that occur within the boundary of SpringMVC (classed inherited from {@code java.lang.Error}).</li>
  * </ul>
  * <h2>Example of the Settings for inject a custom ExceptionLogger</h2><br>
@@ -88,8 +88,8 @@ public class ExceptionLoggingFilter extends GenericFilterBean {
      * @param servletRequest {@link ServletRequest}
      * @param servletResponse {@link ServletResponse}
      * @param filterChain {@link FilterChain}
-     * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest, javax.servlet.ServletResponse,
-     *      javax.servlet.FilterChain)
+     * @see jakarta.servlet.Filter#doFilter(jakarta.servlet.ServletRequest, jakarta.servlet.ServletResponse,
+     *      jakarta.servlet.FilterChain)
      */
     @Override
     public void doFilter(ServletRequest servletRequest,

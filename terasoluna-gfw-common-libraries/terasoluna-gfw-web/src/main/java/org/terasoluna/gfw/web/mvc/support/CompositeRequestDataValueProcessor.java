@@ -21,7 +21,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.springframework.web.servlet.support.RequestDataValueProcessor;
 
@@ -68,7 +68,7 @@ public class CompositeRequestDataValueProcessor implements
      * @param request the current request
      * @param action action of form tag. must not be null.
      * @param method http method of form tag.
-     * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processAction(javax.servlet.http.HttpServletRequest,
+     * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processAction(jakarta.servlet.http.HttpServletRequest,
      *      java.lang.String, java.lang.String)
      * @since 1.0.2 for Spring 4 or higher
      */
@@ -94,7 +94,7 @@ public class CompositeRequestDataValueProcessor implements
      * @param name the form field name
      * @param value the form field value.must not be null.
      * @param type the form field type ("text", "hidden", etc.)
-     * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processFormFieldValue(javax.servlet.http.HttpServletRequest,
+     * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processFormFieldValue(jakarta.servlet.http.HttpServletRequest,
      *      java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
@@ -117,7 +117,7 @@ public class CompositeRequestDataValueProcessor implements
      * Calls the {@code getExtraHiddenFields()} method of all the {@link RequestDataValueProcessor} implementations <br>
      * this class holds.
      * @param request the current request
-     * @see org.springframework.web.servlet.support.RequestDataValueProcessor#getExtraHiddenFields(javax.servlet.http.HttpServletRequest)
+     * @see org.springframework.web.servlet.support.RequestDataValueProcessor#getExtraHiddenFields(jakarta.servlet.http.HttpServletRequest)
      */
     @Override
     public Map<String, String> getExtraHiddenFields(
@@ -137,7 +137,7 @@ public class CompositeRequestDataValueProcessor implements
      * this class holds.
      * @param request the current request
      * @param url the URL value.must not be null.
-     * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processUrl(javax.servlet.http.HttpServletRequest,
+     * @see org.springframework.web.servlet.support.RequestDataValueProcessor#processUrl(jakarta.servlet.http.HttpServletRequest,
      *      java.lang.String)
      */
     @Override

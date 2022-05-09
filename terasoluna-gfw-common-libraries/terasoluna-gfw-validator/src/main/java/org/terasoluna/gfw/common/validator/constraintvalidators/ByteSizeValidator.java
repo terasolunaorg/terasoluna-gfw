@@ -19,8 +19,8 @@ import static org.terasoluna.gfw.common.validator.constraintvalidators.Constrain
 
 import java.nio.charset.Charset;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 import org.terasoluna.gfw.common.validator.constraints.ByteSize;
 
@@ -56,7 +56,7 @@ public class ByteSizeValidator implements
      * Initialize validator.
      * @param constraintAnnotation annotation instance for a given constraint declaration
      * @throws IllegalArgumentException failed to get a charset by name, or min and max are invalid.
-     * @see javax.validation.ConstraintValidator#initialize(java.lang.annotation.Annotation)
+     * @see jakarta.validation.ConstraintValidator#initialize(java.lang.annotation.Annotation)
      */
     @Override
     public void initialize(ByteSize constraintAnnotation) {
@@ -87,7 +87,7 @@ public class ByteSizeValidator implements
      * @param context context in which the constraint is evaluated
      * @return {@code true} if {@code value} length is between the specified minimum and maximum, or null. otherwise
      *         {@code false}.
-     * @see javax.validation.ConstraintValidator#isValid(java.lang.Object, javax.validation.ConstraintValidatorContext)
+     * @see jakarta.validation.ConstraintValidator#isValid(java.lang.Object, jakarta.validation.ConstraintValidatorContext)
      */
     @Override
     public boolean isValid(CharSequence value,

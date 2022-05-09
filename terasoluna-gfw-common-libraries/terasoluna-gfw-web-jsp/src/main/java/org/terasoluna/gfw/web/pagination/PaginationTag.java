@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import javax.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspException;
 
 import org.springframework.data.domain.Page;
 import org.springframework.util.StringUtils;
@@ -149,7 +149,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Renders a pagination link.
-     * @return {@link javax.servlet.jsp.tagext.Tag#EVAL_BODY_INCLUDE}
+     * @return {@link jakarta.servlet.jsp.tagext.Tag#EVAL_BODY_INCLUDE}
      * @throws Exception If fail a tag writing
      */
     @Override

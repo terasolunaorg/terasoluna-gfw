@@ -119,6 +119,15 @@
     </dependency>
     <!-- == End Unit Test == -->
 
+    <!-- == Begin Logging == -->
+    <!-- Logback -->
+    <dependency>
+      <groupId>ch.qos.logback.db</groupId>
+      <artifactId>logback-clasisc-db</artifactId>
+      <version>1.2.11</version>
+    </dependency>
+    <!-- == End Logging == -->
+
   </dependencies>
   <properties>
     <project.root.basedir>${project.parent.basedir}</project.root.basedir>

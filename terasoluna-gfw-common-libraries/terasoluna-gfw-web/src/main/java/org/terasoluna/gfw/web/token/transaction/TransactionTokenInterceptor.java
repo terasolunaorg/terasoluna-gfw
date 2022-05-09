@@ -15,9 +15,9 @@
  */
 package org.terasoluna.gfw.web.token.transaction;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -138,8 +138,8 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
      * This method expects the handler argument to be an instance of <code>HandlerMethod</code> class. If the handler is not an
      * instance of <code>HandlerMethod</code> class, the method returns true without executing the validation. <br>
      * @throws InvalidTransactionTokenException in case of Transaction Token Validation error.<br>
-     * @see org.springframework.web.servlet.HandlerInterceptor#preHandle(javax.servlet.http.HttpServletRequest,
-     *      javax.servlet.http.HttpServletResponse, java.lang.Object)
+     * @see org.springframework.web.servlet.HandlerInterceptor#preHandle(jakarta.servlet.http.HttpServletRequest,
+     *      jakarta.servlet.http.HttpServletResponse, java.lang.Object)
      */
     @Override
     public boolean preHandle(final HttpServletRequest request,
@@ -243,8 +243,8 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
      * @param response current HTTP response
      * @param handler chosen handler to execute, for type and/or instance examination
      * @param modelAndView the <code>ModelAndView</code> that the handler returned (can also be <code>null</code>)
-     * @see org.springframework.web.servlet.HandlerInterceptor#postHandle(javax.servlet.http.HttpServletRequest,
-     *      javax.servlet.http.HttpServletResponse, java.lang.Object, org.springframework.web.servlet.ModelAndView)
+     * @see org.springframework.web.servlet.HandlerInterceptor#postHandle(jakarta.servlet.http.HttpServletRequest,
+     *      jakarta.servlet.http.HttpServletResponse, java.lang.Object, org.springframework.web.servlet.ModelAndView)
      */
     @Override
     public void postHandle(final HttpServletRequest request,
@@ -290,8 +290,8 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
      * <p>
      * Token Context is fetched from the request attribute named <code>TransactionTokenInterceptor.TOKEN_CONTEXT</code>
      * Arguments <code>response</code> and <code>handler</code> are not used in this implementation
-     * @see org.springframework.web.servlet.HandlerInterceptor#afterCompletion(javax.servlet.http.HttpServletRequest,
-     *      javax.servlet.http.HttpServletResponse, java.lang.Object, java.lang.Exception)
+     * @see org.springframework.web.servlet.HandlerInterceptor#afterCompletion(jakarta.servlet.http.HttpServletRequest,
+     *      jakarta.servlet.http.HttpServletResponse, java.lang.Object, java.lang.Exception)
      */
     @Override
     public void afterCompletion(final HttpServletRequest request,

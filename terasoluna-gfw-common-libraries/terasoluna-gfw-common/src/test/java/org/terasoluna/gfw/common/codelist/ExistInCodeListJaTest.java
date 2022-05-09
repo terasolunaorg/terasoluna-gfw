@@ -23,9 +23,9 @@ import static org.hamcrest.Matchers.hasProperty;
 import java.util.Locale;
 import java.util.Set;
 
-import javax.inject.Inject;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validator;
+import jakarta.inject.Inject;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 
 import org.junit.Before;
 import org.junit.Test;

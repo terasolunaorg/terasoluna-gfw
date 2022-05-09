@@ -18,8 +18,8 @@ package org.terasoluna.gfw.web.logging.mdc;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * Set random value per request to MDC and HTTP Response Header and HTTP Request Attribute (request scope). <br>
@@ -63,8 +63,8 @@ public class XTrackMDCPutFilter extends AbstractMDCPutFilter {
      * <p>
      * get attribute name to set MDC and HTTP Response Header. (default: X-Track)
      * </p>
-     * @see org.terasoluna.gfw.web.logging.mdc.AbstractMDCPutFilter#getMDCKey(javax.servlet.http.HttpServletRequest,
-     *      javax.servlet.http.HttpServletResponse)
+     * @see org.terasoluna.gfw.web.logging.mdc.AbstractMDCPutFilter#getMDCKey(jakarta.servlet.http.HttpServletRequest,
+     *      jakarta.servlet.http.HttpServletResponse)
      */
     @Override
     protected String getMDCKey(HttpServletRequest request,
@@ -90,8 +90,8 @@ public class XTrackMDCPutFilter extends AbstractMDCPutFilter {
      * return track ID (X-Track) and set it HTTP Response Header and HTTP Request Attribute (request scope).<br>
      * If track ID is set in HTTP Request Header, then use it. Unless track ID is created by {@link #createXTrack()}.
      * </p>
-     * @see org.terasoluna.gfw.web.logging.mdc.AbstractMDCPutFilter#getMDCValue(javax.servlet.http.HttpServletRequest,
-     *      javax.servlet.http.HttpServletResponse)
+     * @see org.terasoluna.gfw.web.logging.mdc.AbstractMDCPutFilter#getMDCValue(jakarta.servlet.http.HttpServletRequest,
+     *      jakarta.servlet.http.HttpServletResponse)
      */
     @Override
     protected String getMDCValue(HttpServletRequest request,

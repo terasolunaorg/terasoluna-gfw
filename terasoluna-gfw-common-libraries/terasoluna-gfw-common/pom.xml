@@ -78,6 +78,7 @@
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
+      <version>1.3.0-alpha15</version>
     </dependency>
     <!-- == End Logging == -->
 

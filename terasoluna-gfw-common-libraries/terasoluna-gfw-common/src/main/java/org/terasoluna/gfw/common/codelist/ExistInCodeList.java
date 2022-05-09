@@ -28,8 +28,8 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
 import org.terasoluna.gfw.common.codelist.ExistInCodeList.List;
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharSequence;
@@ -53,7 +53,7 @@ import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForN
  * In the above code, ExistInCodeList annotation checks whether the code in gender field <br>
  * exists in {@code CD_GENDER} {@link CodeList}. <br>
  * <br>
- * If the the code does not exist in the {@link CodeList}, an instance of {@link javax.validation.ConstraintViolation} is
+ * If the the code does not exist in the {@link CodeList}, an instance of {@link jakarta.validation.ConstraintViolation} is
  * returned with the default error message represented by {@code message()} in it.
  */
 @Documented

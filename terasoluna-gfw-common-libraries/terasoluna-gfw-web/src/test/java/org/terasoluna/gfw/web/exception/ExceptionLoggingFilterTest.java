@@ -27,8 +27,8 @@ import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 
 import org.junit.Before;
 import org.junit.Test;

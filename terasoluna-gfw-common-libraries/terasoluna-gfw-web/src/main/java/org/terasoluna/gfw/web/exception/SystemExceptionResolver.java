@@ -15,8 +15,8 @@
  */
 package org.terasoluna.gfw.web.exception;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.FlashMap;
@@ -115,8 +115,8 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
      * @param response {@link HttpServletResponse}
      * @param handler Request handler
      * @param ex Exception
-     * @see org.springframework.web.servlet.handler.SimpleMappingExceptionResolver#doResolveException(javax.servlet.http.HttpServletRequest,
-     *      javax.servlet.http.HttpServletResponse, java.lang.Object, java.lang.Exception)
+     * @see org.springframework.web.servlet.handler.SimpleMappingExceptionResolver#doResolveException(jakarta.servlet.http.HttpServletRequest,
+     *      jakarta.servlet.http.HttpServletResponse, java.lang.Object, java.lang.Exception)
      */
     @Override
     protected ModelAndView doResolveException(HttpServletRequest request,

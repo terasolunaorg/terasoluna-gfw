@@ -15,14 +15,14 @@
  */
 package org.terasoluna.gfw.web.token.transaction;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.jsp.JspException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.jsp.JspException;
 
 import org.springframework.web.servlet.tags.form.AbstractHtmlElementTag;
 import org.springframework.web.servlet.tags.form.TagWriter;
 
 /**
- * An {@link javax.servlet.jsp.tagext.Tag} implementation that renders transaction token in a hidden tag
+ * An {@link jakarta.servlet.jsp.tagext.Tag} implementation that renders transaction token in a hidden tag
  */
 public class TransactionTokenTag extends AbstractHtmlElementTag {
 

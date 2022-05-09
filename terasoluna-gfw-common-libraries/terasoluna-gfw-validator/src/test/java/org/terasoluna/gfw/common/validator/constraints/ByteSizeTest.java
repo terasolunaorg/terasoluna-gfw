@@ -28,8 +28,8 @@ import java.nio.charset.UnsupportedCharsetException;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.validation.UnexpectedTypeException;
-import javax.validation.ValidationException;
+import jakarta.validation.UnexpectedTypeException;
+import jakarta.validation.ValidationException;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -194,8 +194,7 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
         }
 
         {
-            form.setStringProperty(String.format("%" + Long.MAX_VALUE + "d",
-                    0));
+            form.setStringProperty(String.format("%" + 600000000 + "d", 0));
 
             violations = validator.validate(form, NotSpecifyMinAndMax.class);
             assertThat(violations, is(empty()));

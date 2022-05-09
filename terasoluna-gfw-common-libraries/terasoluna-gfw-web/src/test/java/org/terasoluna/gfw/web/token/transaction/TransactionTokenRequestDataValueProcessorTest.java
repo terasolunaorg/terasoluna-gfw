@@ -27,7 +27,7 @@ import static org.mockito.Mockito.when;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.junit.Test;
 
@@ -38,7 +38,7 @@ public class TransactionTokenRequestDataValueProcessorTest {
 
     /**
      * Test method for
-     * {@link org.terasoluna.gfw.web.token.transaction.TransactionTokenRequestDataValueProcessor#getExtraHiddenFields(javax.servlet.http.HttpServletRequest)}
+     * {@link org.terasoluna.gfw.web.token.transaction.TransactionTokenRequestDataValueProcessor#getExtraHiddenFields(jakarta.servlet.http.HttpServletRequest)}
      * request has no next token.
      */
     @Test
@@ -61,7 +61,7 @@ public class TransactionTokenRequestDataValueProcessorTest {
 
     /**
      * Test method for
-     * {@link org.terasoluna.gfw.web.token.transaction.TransactionTokenRequestDataValueProcessor#getExtraHiddenFields(javax.servlet.http.HttpServletRequest)}
+     * {@link org.terasoluna.gfw.web.token.transaction.TransactionTokenRequestDataValueProcessor#getExtraHiddenFields(jakarta.servlet.http.HttpServletRequest)}
      * request has next token.
      */
     @Test
