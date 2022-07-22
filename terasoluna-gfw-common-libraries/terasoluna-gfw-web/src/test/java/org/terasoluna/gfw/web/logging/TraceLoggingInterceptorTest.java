@@ -31,6 +31,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import jakarta.inject.Inject;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;

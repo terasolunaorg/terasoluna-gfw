@@ -15,7 +15,7 @@
  */
 package org.terasoluna.gfw.web.util;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * utility class about HttpRequest

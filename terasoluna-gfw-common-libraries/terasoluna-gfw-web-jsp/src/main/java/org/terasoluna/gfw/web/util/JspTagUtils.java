@@ -15,7 +15,7 @@
  */
 package org.terasoluna.gfw.web.util;
 
-import javax.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.JspTagException;
 
 import org.springframework.util.StringUtils;
 

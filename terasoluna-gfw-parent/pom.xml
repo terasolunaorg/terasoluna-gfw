@@ -539,7 +539,7 @@
     <!-- == TERASOLUNA == -->
     <terasoluna.gfw.version>5.8.0-SNAPSHOT</terasoluna.gfw.version>
     <!-- == Spring Boot == -->
-    <org.springframework.boot.version>2.6.1</org.springframework.boot.version>
+    <org.springframework.boot.version>3.0.0-M4</org.springframework.boot.version>
     <!-- == MyBatis3 == -->
     <org.mybatis.version>3.5.7</org.mybatis.version>
     <org.mybatis.spring.version>2.0.6</org.mybatis.spring.version>
@@ -567,9 +567,9 @@
     <!-- == Bouncy Castle == -->
     <bouncycastle.version>1.69</bouncycastle.version>
     <!-- == Other == -->
-    <jakarta-el.version>3.0.3</jakarta-el.version>
-    <jakarta-inject.version>1.0.5</jakarta-inject.version>
-    <jakarta-jsp.version>2.3.6</jakarta-jsp.version>
+    <jakarta-el.version>4.0.0</jakarta-el.version>
+    <jakarta-inject.version>2.0.1</jakarta-inject.version>
+    <jakarta-jsp.version>3.0.0</jakarta-jsp.version>
     <taglibs-standard.version>1.2.5</taglibs-standard.version>
     <!-- == Project Properties == -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

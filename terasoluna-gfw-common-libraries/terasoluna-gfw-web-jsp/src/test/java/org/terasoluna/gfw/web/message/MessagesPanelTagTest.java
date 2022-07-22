@@ -28,8 +28,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
-import javax.servlet.jsp.JspTagException;
-import javax.servlet.jsp.tagext.TagSupport;
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 import org.junit.Before;
 import org.junit.Test;

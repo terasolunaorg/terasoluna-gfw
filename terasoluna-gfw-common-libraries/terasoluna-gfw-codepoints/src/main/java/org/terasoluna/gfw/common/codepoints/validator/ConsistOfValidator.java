@@ -15,8 +15,8 @@
  */
 package org.terasoluna.gfw.common.codepoints.validator;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 import org.terasoluna.gfw.common.codepoints.CodePoints;
 import org.terasoluna.gfw.common.codepoints.ConsistOf;

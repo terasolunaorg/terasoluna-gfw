@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletResponse;
 
 import org.aopalliance.intercept.MethodInvocation;
 import org.junit.Before;

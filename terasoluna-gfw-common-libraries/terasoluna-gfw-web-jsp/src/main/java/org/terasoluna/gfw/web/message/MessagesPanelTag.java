@@ -18,8 +18,8 @@ package org.terasoluna.gfw.web.message;
 import java.lang.reflect.Array;
 import java.util.Locale;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspTagException;
 
 import org.springframework.context.MessageSource;
 import org.springframework.util.StringUtils;

@@ -28,8 +28,8 @@ import java.nio.charset.UnsupportedCharsetException;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.validation.UnexpectedTypeException;
-import javax.validation.ValidationException;
+import jakarta.validation.UnexpectedTypeException;
+import jakarta.validation.ValidationException;
 
 import org.junit.Before;
 import org.junit.Test;

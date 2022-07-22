@@ -21,8 +21,8 @@ import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-import javax.servlet.http.HttpSessionBindingEvent;
-import javax.servlet.http.HttpSessionEvent;
+import jakarta.servlet.http.HttpSessionBindingEvent;
+import jakarta.servlet.http.HttpSessionEvent;
 
 import org.junit.After;
 import org.junit.Before;

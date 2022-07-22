@@ -15,12 +15,12 @@
  */
 package org.terasoluna.gfw.web.logging;
 
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpSessionActivationListener;
-import javax.servlet.http.HttpSessionAttributeListener;
-import javax.servlet.http.HttpSessionBindingEvent;
-import javax.servlet.http.HttpSessionEvent;
-import javax.servlet.http.HttpSessionListener;
+import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.HttpSessionActivationListener;
+import jakarta.servlet.http.HttpSessionAttributeListener;
+import jakarta.servlet.http.HttpSessionBindingEvent;
+import jakarta.servlet.http.HttpSessionEvent;
+import jakarta.servlet.http.HttpSessionListener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

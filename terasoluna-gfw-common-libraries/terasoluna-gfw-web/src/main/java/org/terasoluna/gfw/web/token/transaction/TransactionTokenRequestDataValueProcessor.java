@@ -18,7 +18,7 @@ package org.terasoluna.gfw.web.token.transaction;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 
 import org.terasoluna.gfw.web.mvc.support.RequestDataValueProcessorAdaptor;
 

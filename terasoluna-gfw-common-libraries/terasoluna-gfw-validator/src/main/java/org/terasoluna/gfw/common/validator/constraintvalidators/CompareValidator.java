@@ -18,8 +18,8 @@ package org.terasoluna.gfw.common.validator.constraintvalidators;
 import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.getPropertyValue;
 import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.reportUnexpectedType;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 import org.terasoluna.gfw.common.validator.constraints.Compare;
 import org.terasoluna.gfw.common.validator.constraints.Compare.Node;

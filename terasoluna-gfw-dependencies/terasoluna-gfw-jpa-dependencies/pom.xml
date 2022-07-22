@@ -24,14 +24,8 @@
 
     <!-- == Begin Hibernate == -->
     <dependency>
-      <groupId>org.hibernate</groupId>
+      <groupId>org.hibernate.orm</groupId>
       <artifactId>hibernate-core</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>javax.activation</groupId>
-          <artifactId>javax.activation-api</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>jakarta.activation</groupId>
