@@ -21,8 +21,8 @@ import static org.mockito.Mockito.mock;
 
 import java.lang.annotation.Annotation;
 
-import javax.validation.ConstraintValidatorContext;
-import javax.validation.Payload;
+import jakarta.validation.ConstraintValidatorContext;
+import jakarta.validation.Payload;
 
 import org.junit.Test;
 import org.slf4j.LoggerFactory;

@@ -29,7 +29,7 @@ import java.beans.IntrospectionException;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.validation.ValidationException;
+import jakarta.validation.ValidationException;
 
 import org.junit.Before;
 import org.junit.Test;

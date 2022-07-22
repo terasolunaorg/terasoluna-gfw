@@ -27,9 +27,9 @@ import static org.mockito.Mockito.when;
 
 import java.io.StringWriter;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.PageContext;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.PageContext;
 
 import org.junit.Test;
 import org.springframework.web.servlet.tags.form.TagWriter;

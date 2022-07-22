@@ -28,9 +28,9 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import javax.validation.Constraint;
-import javax.validation.Payload;
-import javax.validation.ValidationException;
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
+import jakarta.validation.ValidationException;
 
 import org.terasoluna.gfw.common.validator.constraints.ByteSize.List;
 import org.terasoluna.gfw.common.validator.constraintvalidators.ByteSizeValidator;
