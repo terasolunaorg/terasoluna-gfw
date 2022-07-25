@@ -20,20 +20,19 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.Mockito.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.lang.reflect.Method;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
-import org.h2.Driver;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -42,7 +41,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
@@ -62,8 +60,6 @@ import ch.qos.logback.core.Appender;
 @ContextConfiguration(locations = "classpath:/test-context.xml")
 @RunWith(SpringJUnit4ClassRunner.class)
 public class TraceLoggingInterceptorTest {
-    @Inject
-    private NamedParameterJdbcTemplate jdbcTemplate;
 
     private TraceLoggingInterceptor interceptor;
 
@@ -89,11 +85,6 @@ public class TraceLoggingInterceptorTest {
 
     @Before
     public void setUp() throws Exception {
-        // reset log
-        new SimpleDriverDataSource(Driver
-                .load(), "jdbc:h2:mem:terasolung-gfw-web;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:h2.sql'", "sa", "")
-                        .getConnection().close();
-
         // prepare request object
         request = new MockHttpServletRequest();
 
@@ -134,14 +125,13 @@ public class TraceLoggingInterceptorTest {
         // run
         interceptor.preHandle(request, response, paramHandler);
 
-        String logMessage = jdbcTemplate.queryForObject(
-                "SELECT FORMATTED_MESSAGE FROM LOGGING_EVENT WHERE EVENT_ID=:id",
-                Collections.singletonMap("id", 1), String.class);
+        // expected
         Long startTime = (Long) request.getAttribute(
                 TraceLoggingInterceptor.class.getName() + ".startTime");
+        String expectedLogStr = "[START CONTROLLER] TraceLoggingInterceptorController.createForm()";
 
-        assertThat(logMessage, is(
-                "[START CONTROLLER] TraceLoggingInterceptorController.createForm()"));
+        // assert
+        verifyLogging(expectedLogStr, ImmutableList.of(Level.TRACE), 1);
         assertThat(startTime, notNullValue());
     }
 
@@ -162,12 +152,9 @@ public class TraceLoggingInterceptorTest {
         Long startTime = (Long) request.getAttribute(
                 TraceLoggingInterceptor.class.getName() + ".startTime");
 
-        long count = jdbcTemplate.queryForObject(
-                "SELECT COUNT(*) FROM LOGGING_EVENT", Collections.singletonMap(
-                        "", ""), Long.class);
         // assert
         assertThat(startTime, nullValue());
-        assertThat(count, is(0L));
+        verify(mockAppender, times(0)).doAppend(any());
     }
 
     @Test
@@ -185,12 +172,9 @@ public class TraceLoggingInterceptorTest {
         Long startTime = (Long) request.getAttribute(
                 TraceLoggingInterceptor.class.getName() + ".startTime");
 
-        long count = jdbcTemplate.queryForObject(
-                "SELECT COUNT(*) FROM LOGGING_EVENT", Collections.singletonMap(
-                        "", ""), Long.class);
         // assert
         assertThat(startTime, nullValue());
-        assertThat(count, is(0L));
+        verify(mockAppender, times(0)).doAppend(any());
         assertThat(logger.isDebugEnabled(), is(false));
 
         // init log level
@@ -214,18 +198,12 @@ public class TraceLoggingInterceptorTest {
         interceptor.postHandle(request, response, paramHandler, model);
 
         // expected
-        String logMessage1 = jdbcTemplate.queryForObject(
-                "SELECT FORMATTED_MESSAGE FROM LOGGING_EVENT WHERE EVENT_ID=:id",
-                Collections.singletonMap("id", 1), String.class);
-        String logMessage2 = jdbcTemplate.queryForObject(
-                "SELECT FORMATTED_MESSAGE FROM LOGGING_EVENT WHERE EVENT_ID=:id",
-                Collections.singletonMap("id", 2), String.class);
-
-        assertThat(logMessage1, is(
-                "[END CONTROLLER  ] TraceLoggingInterceptorController.createForm()-> view=null, model={}"));
-        assertThat(logMessage2.startsWith(
-                "[HANDLING TIME   ] TraceLoggingInterceptorController.createForm()->"),
-                is(true));
+        verifyLogging(
+                "[END CONTROLLER  ] TraceLoggingInterceptorController.createForm()-> view=null, model={}",
+                ImmutableList.of(Level.TRACE), 1);
+        verifyLogging(
+                "[HANDLING TIME   ] TraceLoggingInterceptorController.createForm()->",
+                ImmutableList.of(Level.TRACE), 1);
     }
 
     /**
