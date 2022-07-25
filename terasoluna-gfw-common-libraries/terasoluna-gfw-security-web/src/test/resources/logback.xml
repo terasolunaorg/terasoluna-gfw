@@ -10,7 +10,6 @@
   <!-- Library Loggers -->
   <logger name="org.terasoluna">
     <level value="trace" />
-    <appender-ref ref="DB" />
   </logger>
 
   <!-- 3rdparty Loggers -->
