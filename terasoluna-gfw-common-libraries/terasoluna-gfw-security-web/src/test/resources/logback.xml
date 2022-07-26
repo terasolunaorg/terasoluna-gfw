@@ -5,20 +5,11 @@
       <pattern><![CDATA[date:%d{yyyy-MM-dd HH:mm:ss}\tthread:%thread\tlevel:%-5level\tlogger:%-48logger{48}\tmessage:%replace(%msg){'(\r\n|\r|\n)','$1  '}%n%replace(%replace(%xEx){'(\r\n|\r|\n)','$1  '}){'  $',''}%nopex]]></pattern>
     </encoder>
   </appender>
-  <appender name="DB" class="ch.qos.logback.classic.db.DBAppender">
-    <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
-      <driverClass>org.h2.Driver</driverClass>
-      <url>jdbc:h2:mem:terasolung-gfw-web;DB_CLOSE_DELAY=-1</url>
-      <user>sa</user>
-      <password></password>
-    </connectionSource>
-  </appender>
 
 
   <!-- Library Loggers -->
   <logger name="org.terasoluna">
     <level value="trace" />
-    <appender-ref ref="DB" />
   </logger>
 
   <!-- 3rdparty Loggers -->
