@@ -92,15 +92,6 @@
     </dependency>
     <!-- == End Tomcat == -->
 
-    <!-- == Begin Database == -->
-    <!-- H2 (for test) -->
-    <dependency>
-      <groupId>com.h2database</groupId>
-      <artifactId>h2</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <!-- == End Database == -->
-
     <!-- == Begin Unit Test == -->
     <dependency>
       <groupId>junit</groupId>

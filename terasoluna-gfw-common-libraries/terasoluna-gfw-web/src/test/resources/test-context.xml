@@ -9,16 +9,6 @@
         http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
-  <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-    <property name="driverClass" value="org.h2.Driver" />
-    <property name="url" value="jdbc:h2:mem:terasolung-gfw-web;DB_CLOSE_DELAY=-1" />
-    <property name="username" value="sa" />
-  </bean>
-
-  <bean class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-    <constructor-arg name="dataSource" ref="dataSource" />
-  </bean>
-
   <mvc:annotation-driven>
     <mvc:argument-resolvers>
       <bean
