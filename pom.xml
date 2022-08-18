@@ -230,5 +230,15 @@
         <coveralls.skip>true</coveralls.skip>
       </properties>
     </profile>
+    <profile>
+      <id>jdk17</id>
+      <activation>
+        <jdk>17</jdk>
+      </activation>
+      <properties>
+        <!-- coverall 4.3.0 or previous version does not work on Java 11, see https://github.com/trautonen/coveralls-maven-plugin/issues/112 -->
+        <coveralls.skip>true</coveralls.skip>
+      </properties>
+    </profile>
   </profiles>
 </project>
