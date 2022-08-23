@@ -29,7 +29,9 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.joda.time.LocalDate;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import org.junit.Test;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -164,14 +166,15 @@ public class ObjectToMapConverterTest {
 
     @Test
     public void testConvert5_at_DateTimeFormat() throws Exception {
-        LocalDate date1 = new LocalDate(2015, 4, 1);
-        LocalDate localDate1 = new LocalDate(2015, 6, 10);
-        LocalDate date2 = new LocalDate(2015, 5, 1);
-        LocalDate localDate2 = new LocalDate(2015, 7, 10);
+        Date date1 = Date.from(LocalDateTime.of(2015, 4, 1, 0, 0).toInstant(
+                ZoneOffset.UTC));
+        LocalDate localDate1 = LocalDate.of(2015, 6, 10);
+        Date date2 = Date.from(LocalDateTime.of(2015, 5, 1, 0, 0).toInstant(
+                ZoneOffset.UTC));
+        LocalDate localDate2 = LocalDate.of(2015, 7, 10);
 
-        Map<String, String> map = converter.convert(new DateForm5(date1
-                .toDate(), localDate1, new DateFormItem5(date2
-                        .toDate(), localDate2)));
+        Map<String, String> map = converter.convert(
+                new DateForm5(date1, localDate1, new DateFormItem5(date2, localDate2)));
         assertThat(map, aMapWithSize(4));
         assertThat(map, hasEntry("date", "2015-04-01"));
         assertThat(map, hasEntry("localDate", "2015-06-10"));
@@ -182,9 +185,9 @@ public class ObjectToMapConverterTest {
         WebDataBinder binder = new WebDataBinder(form);
         binder.setConversionService(new DefaultFormattingConversionService());
         binder.bind(new MutablePropertyValues(map));
-        assertThat(form.getDate(), is(date1.toDate()));
+        assertThat(form.getDate(), is(date1));
         assertThat(form.getLocalDate(), is(localDate1));
-        assertThat(form.getItem().getDate(), is(date2.toDate()));
+        assertThat(form.getItem().getDate(), is(date2));
         assertThat(form.getItem().getLocalDate(), is(localDate2));
     }
 
