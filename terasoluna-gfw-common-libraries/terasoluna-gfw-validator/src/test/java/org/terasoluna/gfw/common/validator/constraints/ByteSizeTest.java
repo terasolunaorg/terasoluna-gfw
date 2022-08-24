@@ -180,7 +180,7 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
     }
 
     /**
-     * not specify min and max. expected valid if input value encoded in UTF-8 is between {@code 0} and {@link Long#MAX_VALUE}
+     * not specify min and max. expected valid if input value encoded in UTF-8 is between {@code 0} and {@link Integer#MAX_VALUE}
      * value.
      */
     @Test
@@ -194,7 +194,7 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
         }
 
         {
-            form.setStringProperty(String.format("%" + Long.MAX_VALUE + "d",
+            form.setStringProperty(String.format("%" + Integer.MAX_VALUE + "d",
                     0));
 
             violations = validator.validate(form, NotSpecifyMinAndMax.class);
