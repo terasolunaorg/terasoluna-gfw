@@ -159,7 +159,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <archetype.test.skip>true</archetype.test.skip>
     <encoding>UTF-8</encoding>
-    <java-version>1.8</java-version>
+    <java-version>17</java-version>
     <project.root.basedir>${project.basedir}</project.root.basedir>
     <!-- coverall 4.3.0 or previous version does not work on Java 11, see https://github.com/trautonen/coveralls-maven-plugin/issues/112 -->
     <coveralls.skip>true</coveralls.skip>
