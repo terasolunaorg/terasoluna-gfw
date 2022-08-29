@@ -19,8 +19,8 @@ import static org.terasoluna.gfw.common.validator.constraintvalidators.Constrain
 
 import java.nio.charset.Charset;
 
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 import org.terasoluna.gfw.common.validator.constraints.ByteSize;
 

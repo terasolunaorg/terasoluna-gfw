@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 import java.io.StringWriter;
 import java.util.regex.Pattern;
 
-import javax.servlet.jsp.tagext.TagSupport;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 import org.junit.After;
 import org.junit.Before;

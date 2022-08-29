@@ -22,8 +22,8 @@ import static org.junit.Assert.assertThrows;
 
 import java.lang.reflect.Constructor;
 
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspTagException;
 
 import org.junit.Test;
 

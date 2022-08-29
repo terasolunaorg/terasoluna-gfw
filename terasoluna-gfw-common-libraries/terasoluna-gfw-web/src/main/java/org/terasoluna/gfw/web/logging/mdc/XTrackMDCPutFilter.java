@@ -18,8 +18,8 @@ package org.terasoluna.gfw.web.logging.mdc;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * Set random value per request to MDC and HTTP Response Header and HTTP Request Attribute (request scope). <br>
