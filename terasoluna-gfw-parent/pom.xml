@@ -59,6 +59,26 @@
           <configuration>
             <source>${java-version}</source>
             <target>${java-version}</target>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.mapstruct</groupId>
+                <artifactId>mapstruct-processor</artifactId>
+                <version>${mapstruct.version}</version>
+              </path>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+              </path>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-mapstruct-binding</artifactId>
+                <version>${lombok-mapstruct-binding.version}</version>
+              </path>
+            </annotationProcessorPaths>
+            <compilerArgs>
+              <arg>-Amapstruct.defaultComponentModel=spring</arg>
+            </compilerArgs>
           </configuration>
         </plugin>
         <plugin>
@@ -100,13 +120,6 @@
             <archive>
               <addMavenDescriptor>false</addMavenDescriptor>
             </archive>
-              <annotationProcessorPaths>
-                <path>
-                  <groupId>org.mapstruct</groupId>
-                  <artifactId>mapstruct-processor</artifactId>
-                  <version>${mapstruct.version}</version>
-                </path>
-              </annotationProcessorPaths>
           </configuration>
         </plugin>
         <plugin>
@@ -547,6 +560,9 @@
     <org.mybatis.spring.version>2.0.6</org.mybatis.spring.version>
     <!-- == MapStrcut== -->
     <mapstruct.version>1.5.2.Final</mapstruct.version>
+    <!-- == Lombok== -->
+    <lombok.version>1.18.24</lombok.version>
+    <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
     <!-- == Joda-Time == -->
     <joda-time.joda-time.version>2.10.9</joda-time.joda-time.version>
     <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
@@ -581,9 +597,9 @@
     <!-- == Cargo Plugin == -->
     <cargo.jvmargs>-Xms512m -Xmx1024m</cargo.jvmargs>
     <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
-    <cargo.container.id>tomcat9x</cargo.container.id>
-    <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-9/v${cargo.tomcat9.version}/bin/apache-tomcat-${cargo.tomcat9.version}.zip</cargo.container.url>
-    <cargo.tomcat9.version>9.0.55</cargo.tomcat9.version>
+    <cargo.container.id>tomcat10x</cargo.container.id>
+    <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-10/v${cargo.tomcat9.version}/bin/apache-tomcat-${cargo.tomcat9.version}.zip</cargo.container.url>
+    <cargo.tomcat9.version>10.0.16</cargo.tomcat9.version>
   </properties>
   <profiles>
     <profile>
