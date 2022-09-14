@@ -59,26 +59,6 @@
           <configuration>
             <source>${java-version}</source>
             <target>${java-version}</target>
-            <annotationProcessorPaths>
-              <path>
-                <groupId>org.mapstruct</groupId>
-                <artifactId>mapstruct-processor</artifactId>
-                <version>${mapstruct.version}</version>
-              </path>
-              <path>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>${lombok.version}</version>
-              </path>
-              <path>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok-mapstruct-binding</artifactId>
-                <version>${lombok-mapstruct-binding.version}</version>
-              </path>
-            </annotationProcessorPaths>
-            <compilerArgs>
-              <arg>-Amapstruct.defaultComponentModel=spring</arg>
-            </compilerArgs>
           </configuration>
         </plugin>
         <plugin>
@@ -560,9 +540,6 @@
     <org.mybatis.spring.version>2.0.6</org.mybatis.spring.version>
     <!-- == MapStrcut== -->
     <mapstruct.version>1.5.2.Final</mapstruct.version>
-    <!-- == Lombok== -->
-    <lombok.version>1.18.24</lombok.version>
-    <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
     <!-- == Joda-Time == -->
     <joda-time.joda-time.version>2.10.9</joda-time.joda-time.version>
     <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
