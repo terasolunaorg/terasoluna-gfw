@@ -43,16 +43,12 @@
     </dependency>
     <!-- == End Apache Commons == -->
 
-    <!-- == Begin Dozer== -->
+    <!-- == Begin MapStruct== -->
     <dependency>
-      <groupId>com.github.dozermapper</groupId>
-      <artifactId>dozer-core</artifactId>
+      <groupId>org.mapstruct</groupId>
+      <artifactId>mapstruct</artifactId>
     </dependency>
-    <dependency>
-      <groupId>com.github.dozermapper</groupId>
-      <artifactId>dozer-spring4</artifactId>
-    </dependency>
-    <!-- == End Dozer== -->
+    <!-- == End MapStruct== -->
 
     <!-- == Begin Joda-Time == -->
     <dependency>
