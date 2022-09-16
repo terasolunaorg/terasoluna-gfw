@@ -56,7 +56,7 @@ public interface ClassicDateFactory {
     /**
      * returns current system date as {@link java.sql.Time}.
      * <p>
-     * normalize year=1970,,month=1,day=1.
+     * normalize year=1970,month=1,day=1.
      * </p>
      * @return current system date
      */

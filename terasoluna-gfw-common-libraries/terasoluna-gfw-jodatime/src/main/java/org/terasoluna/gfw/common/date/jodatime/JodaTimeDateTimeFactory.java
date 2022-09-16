@@ -27,6 +27,7 @@ import org.joda.time.DateTime;
  * </ul>
  * @since 5.0.0
  */
+@Deprecated
 public interface JodaTimeDateTimeFactory {
     /**
      * returns current system date as {@link org.joda.time.DateTime} in the default time zone.

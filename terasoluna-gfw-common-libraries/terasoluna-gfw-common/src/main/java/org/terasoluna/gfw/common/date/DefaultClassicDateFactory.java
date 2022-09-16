@@ -63,7 +63,7 @@ public class DefaultClassicDateFactory implements ClassicDateFactory {
     /**
      * Returns {@link java.sql.Time} instance for the current time.
      * <p>
-     * normalize year=1970,,month=1,day=1.
+     * normalize year=1970,month=1,day=1.
      * </p>
      * @return Time {@link java.sql.Time} instance for current time
      */

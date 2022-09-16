@@ -22,6 +22,7 @@ import org.joda.time.DateTime;
  * this class returns current system date as it is.
  * @since 5.0.0
  */
+@Deprecated
 public class DefaultJodaTimeDateFactory extends AbstractJodaTimeDateFactory {
 
     /**

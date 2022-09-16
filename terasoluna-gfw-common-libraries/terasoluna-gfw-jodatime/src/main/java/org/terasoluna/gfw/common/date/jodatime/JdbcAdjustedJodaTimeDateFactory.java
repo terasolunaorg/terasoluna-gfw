@@ -35,6 +35,7 @@ import org.springframework.util.Assert;
  * </P>
  * @since 5.0.0
  */
+@Deprecated
 public class JdbcAdjustedJodaTimeDateFactory extends AbstractJodaTimeDateFactory
                                              implements InitializingBean {
     private static final Logger logger = LoggerFactory.getLogger(

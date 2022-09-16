@@ -28,6 +28,7 @@ import org.terasoluna.gfw.common.date.DefaultClassicDateFactory;
  * </p>
  * @since 5.0.0
  */
+@Deprecated
 public abstract class AbstractJodaTimeDateFactory extends
                                                   DefaultClassicDateFactory
                                                   implements

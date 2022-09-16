@@ -22,6 +22,8 @@ import static org.hamcrest.core.IsNull.notNullValue;
 import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.LinkedHashMap;
@@ -29,7 +31,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import org.joda.time.LocalDate;
 import org.junit.Test;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -549,11 +550,11 @@ public class FunctionsTest {
         Person p1 = new Person();
         p1.setName("山田");
         p1.setAge(20);
-        p1.setDate(new LocalDate(2001, 1, 1).toDate());
+        p1.setDate(Date.from(LocalDate.of(2001,1,1).atStartOfDay().toInstant(ZoneOffset.ofHours(9))));
         Person p2 = new Person();
         p2.setName("鈴木");
         p2.setAge(30);
-        p2.setDate(new LocalDate(1991, 1, 1).toDate());
+        p2.setDate(Date.from(LocalDate.of(1991,1,1).atStartOfDay().toInstant(ZoneOffset.ofHours(9))));
         MeetingRegisterForm form = new MeetingRegisterForm();
         form.setMeetingId(10);
         form.setParticipants(Arrays.asList(p1, p2));

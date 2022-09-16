@@ -13,25 +13,8 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.terasoluna.gfw.common.date.jodatime;
-
-import org.terasoluna.gfw.common.date.ClassicDateFactory;
-
 /**
- * Interface that creates current system date.<br>
- * <p>
- * create current system date as
- * </p>
- * <ul>
- * <li>{@link org.joda.time.DateTime}</li>
- * <li>{@link java.util.Date}</li>
- * <li>{@link java.sql.Date}</li>
- * <li>{@link java.sql.Timestamp}</li>
- * <li>{@link java.sql.Time}</li>
- * </ul>
- * @since 5.0.0
+ * date package with Joda-Time
+ * @since 5.0.0.
  */
-@Deprecated
-public interface JodaTimeDateFactory extends ClassicDateFactory,
-                                     JodaTimeDateTimeFactory {
-}
+package org.terasoluna.gfw.common.date.dateandtime;

@@ -32,6 +32,7 @@ import org.springframework.jdbc.core.RowMapper;
  * </P>
  * @since 5.0.0
  */
+@Deprecated
 public class JdbcFixedJodaTimeDateFactory extends AbstractJodaTimeDateFactory {
 
     /**

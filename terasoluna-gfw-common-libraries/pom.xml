@@ -26,6 +26,7 @@
   </organization>
   <modules>
     <module>terasoluna-gfw-common</module>
+    <module>terasoluna-gfw-dateandtime</module>
     <module>terasoluna-gfw-jodatime</module>
     <module>terasoluna-gfw-web</module>
     <module>terasoluna-gfw-web-jsp</module>
