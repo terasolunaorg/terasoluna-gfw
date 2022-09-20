@@ -540,6 +540,9 @@
     <org.mybatis.spring.version>2.0.6</org.mybatis.spring.version>
     <!-- == MapStrcut== -->
     <mapstruct.version>1.5.2.Final</mapstruct.version>
+    <!-- == Lombok == -->
+    <lombok.version>1.18.24</lombok.version>
+    <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
     <!-- == Joda-Time == -->
     <joda-time.joda-time.version>2.10.9</joda-time.joda-time.version>
     <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
@@ -577,9 +580,6 @@
     <cargo.container.id>tomcat9x</cargo.container.id>
     <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-9/v${cargo.tomcat9.version}/bin/apache-tomcat-${cargo.tomcat9.version}.zip</cargo.container.url>
     <cargo.tomcat9.version>9.0.55</cargo.tomcat9.version>
-    <!-- == Lombok == -->
-    <lombok.version>1.18.24</lombok.version>
-    <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
   </properties>
   <profiles>
     <profile>
