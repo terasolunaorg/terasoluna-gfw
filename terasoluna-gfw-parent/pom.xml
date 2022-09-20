@@ -540,6 +540,10 @@
     <org.mybatis.spring.version>2.0.6</org.mybatis.spring.version>
     <!-- == MapStrcut== -->
     <mapstruct.version>1.5.2.Final</mapstruct.version>
+    <!-- == Lombok == -->
+    <!-- lombok.version is the same as the version managed by Spring Boot. -->
+    <lombok.version>1.18.24</lombok.version>
+    <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
     <!-- == Joda-Time == -->
     <joda-time.joda-time.version>2.10.9</joda-time.joda-time.version>
     <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
