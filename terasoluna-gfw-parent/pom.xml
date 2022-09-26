@@ -471,6 +471,7 @@
       <!-- == End Apache Tiles == -->
 
       <!-- == Begin Logback and SLF4J == -->
+      <!-- tentative support until Spring Boot supports it -->
       <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
