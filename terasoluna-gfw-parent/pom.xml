@@ -597,9 +597,9 @@
     <!-- == Cargo Plugin == -->
     <cargo.jvmargs>-Xms512m -Xmx1024m</cargo.jvmargs>
     <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
-    <cargo.container.id>tomcat9x</cargo.container.id>
-    <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-9/v${cargo.tomcat9.version}/bin/apache-tomcat-${cargo.tomcat9.version}.zip</cargo.container.url>
-    <cargo.tomcat9.version>9.0.55</cargo.tomcat9.version>
+    <cargo.container.id>tomcat10x</cargo.container.id>
+    <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-10/v${cargo.tomcat10.version}/bin/apache-tomcat-${cargo.tomcat10.version}.zip</cargo.container.url>
+    <cargo.tomcat10.version>10.0.22</cargo.tomcat10.version>
   </properties>
   <profiles>
     <profile>
