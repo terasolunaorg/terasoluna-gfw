@@ -13,17 +13,4 @@
   <description>Useful libraries for web recommended by TERASOLUNA Server Framework for Java (5.x)</description>
   <url>http://terasoluna.org</url>
 
-  <dependencies>
-    <!-- == Begin Tiles == -->
-    <dependency>
-      <groupId>org.apache.tiles</groupId>
-      <artifactId>tiles-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tiles</groupId>
-      <artifactId>tiles-jsp</artifactId>
-    </dependency>
-    <!-- == End Tiles == -->
-  </dependencies>
-
 </project>
