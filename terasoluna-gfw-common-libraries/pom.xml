@@ -37,6 +37,7 @@
     <module>terasoluna-gfw-codepoints/catalog/terasoluna-gfw-codepoints-jisx0208</module>
     <module>terasoluna-gfw-codepoints/catalog/terasoluna-gfw-codepoints-jisx0208kanji</module>
     <module>terasoluna-gfw-codepoints/catalog/terasoluna-gfw-codepoints-jisx0213kanji</module>
+    <module>spring-tiles-adapter</module>
   </modules>
   <build>
     <pluginManagement>
