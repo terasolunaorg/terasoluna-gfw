@@ -437,25 +437,6 @@
       </dependency>
       <!-- == End Apache Commons Compress == -->
 
-      <!-- == Begin Logback and SLF4J == -->
-      <!-- tentative support until Spring Boot supports it -->
-      <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-classic</artifactId>
-        <version>1.4.1</version>
-      </dependency>
-      <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-core</artifactId>
-        <version>1.4.1</version>
-      </dependency>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>2.0.0</version>
-      </dependency>
-      <!-- == End Logback and SLF4J == -->
-
       <!-- == Begin Bouncy Castle == -->
       <dependency>
         <groupId>org.bouncycastle</groupId>
@@ -520,7 +501,7 @@
     <!-- == TERASOLUNA == -->
     <terasoluna.gfw.version>5.8.0-SNAPSHOT</terasoluna.gfw.version>
     <!-- == Spring Boot == -->
-    <org.springframework.boot.version>3.0.0-M4</org.springframework.boot.version>
+    <org.springframework.boot.version>3.0.0</org.springframework.boot.version>
     <!-- == MyBatis3 == -->
     <org.mybatis.version>3.5.7</org.mybatis.version>
     <org.mybatis.spring.version>2.0.6</org.mybatis.spring.version>
