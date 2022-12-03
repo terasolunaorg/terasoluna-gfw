@@ -16,8 +16,8 @@
 package org.terasoluna.gfw.common.time;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.junit.Assert.assertThat;
 
 import java.time.Clock;
 import java.time.ZoneId;

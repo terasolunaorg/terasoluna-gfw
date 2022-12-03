@@ -16,7 +16,7 @@
 package org.terasoluna.gfw.common.time;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.time.Clock;
 import java.time.ZoneOffset;
