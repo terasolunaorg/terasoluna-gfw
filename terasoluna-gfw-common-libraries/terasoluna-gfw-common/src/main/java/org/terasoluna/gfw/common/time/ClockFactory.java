@@ -20,8 +20,7 @@ import java.time.ZoneId;
 
 /**
  * Interface that obtains a {@link Clock}.
- * 
- * @since 5.6.0
+ * @since 5.8.0
  * @author Atsushi Yoshikawa
  * @see Clock
  */
@@ -29,7 +28,6 @@ public interface ClockFactory {
 
     /**
      * Obtains a fixed clock with specific time-zone.
-     *
      * @param zone time-zone
      * @return fixed clock
      */
@@ -37,7 +35,6 @@ public interface ClockFactory {
 
     /**
      * Obtains a fixed clock with system default time-zone.
-     *
      * @return fixed clock
      */
     default Clock fixed() {
@@ -46,7 +43,6 @@ public interface ClockFactory {
 
     /**
      * Obtains a tick(not fixed) clock with system default time-zone.
-     *
      * @param zone time-zone
      * @return tick(not fixed) clock
      */
@@ -54,7 +50,6 @@ public interface ClockFactory {
 
     /**
      * Obtains a tick(not fixed) available clock with system default time-zone.
-     *
      * @return tick(not fixed) clock
      */
     default Clock tick() {

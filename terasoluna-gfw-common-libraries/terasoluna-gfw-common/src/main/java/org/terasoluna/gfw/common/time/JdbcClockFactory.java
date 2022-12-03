@@ -26,8 +26,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  * Implementation of {@link ClockFactory} that obtain a clock based on database column of time stamp.
- *
- * @since 5.6.0
+ * @since 5.8.0
  * @author Atsushi Yoshikawa
  */
 public class JdbcClockFactory implements ClockFactory {
@@ -38,7 +37,6 @@ public class JdbcClockFactory implements ClockFactory {
 
     /**
      * Set up data source and query to get current time stamp.
-     *
      * @param dataSource data source used in {@link JdbcTemplate}
      * @param currentTimestampQuery query to get current time stamp
      */
@@ -68,7 +66,6 @@ public class JdbcClockFactory implements ClockFactory {
 
     /**
      * Obtain a instant of date and time based on database column of time stamp.
-     *
      * @param zone time-zone
      * @return instant of date and time
      */

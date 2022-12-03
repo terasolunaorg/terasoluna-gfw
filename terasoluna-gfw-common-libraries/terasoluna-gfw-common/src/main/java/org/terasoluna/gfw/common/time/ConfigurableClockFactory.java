@@ -26,7 +26,7 @@ import java.time.format.FormatStyle;
 /**
  * Implementation of {@link ClockFactory} that obtain a clock based on specified date and time as string.
  *
- * @since 5.6.0
+ * @since 5.8.0
  * @author Atsushi Yoshikawa
  */
 public class ConfigurableClockFactory implements ClockFactory {
@@ -91,7 +91,6 @@ public class ConfigurableClockFactory implements ClockFactory {
 
     /**
      * Obtain a instant of date and time based on specified date and time as string.
-     *
      * @param zone time-zone
      * @return instant of date and time
      */

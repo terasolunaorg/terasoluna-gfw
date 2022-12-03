@@ -21,9 +21,9 @@ import java.time.ZoneId;
 import java.time.temporal.TemporalUnit;
 
 /**
- * Implementation of {@link ClockFactory} that obtain a Clock adjusted specific duration using value and unit from system default clock.
- *
- * @since 5.6.0
+ * Implementation of {@link ClockFactory} that obtain a Clock adjusted specific duration using value and unit from system
+ * default clock.
+ * @since 5.8.0
  * @author Atsushi Yoshikawa
  */
 public class ConfigurableAdjustClockFactory implements ClockFactory {
@@ -34,9 +34,8 @@ public class ConfigurableAdjustClockFactory implements ClockFactory {
 
     /**
      * Set up duration value and unit to be adjusted.
-     *
      * @param adjustedValue duration value to be adjusted
-     * @param adjustedValueUnit duration unit of value to be adjusted
+     * @param adjustedValueUnit estimable duration units of the value to be adjusted
      */
     public ConfigurableAdjustClockFactory(long adjustedValue,
             TemporalUnit adjustedValueUnit) {

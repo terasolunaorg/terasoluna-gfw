@@ -20,8 +20,7 @@ import java.time.ZoneId;
 
 /**
  * Implementation of {@link ClockFactory} that obtain a system default clock.
- *
- * @since 5.6.0
+ * @since 5.8.0
  * @author Atsushi Yoshikawa
  */
 public class DefaultClockFactory implements ClockFactory {
