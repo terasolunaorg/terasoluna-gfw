@@ -522,7 +522,7 @@
     <!-- == Date and Time API == -->
     <net.sargue.java-time-jsptags.version>2.0.0</net.sargue.java-time-jsptags.version>
     <!-- == Joda-Time == -->
-    <joda-time.joda-time.version>2.10.9</joda-time.joda-time.version>
+    <joda-time.joda-time.version>2.12.2</joda-time.joda-time.version>
     <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
     <jadira-usertype-core.version>6.0.1.GA</jadira-usertype-core.version>
     <!-- == Google == -->
