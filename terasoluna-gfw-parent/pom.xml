@@ -501,8 +501,8 @@
     <!-- == Spring Boot == -->
     <org.springframework.boot.version>3.0.0</org.springframework.boot.version>
     <!-- == MyBatis3 == -->
-    <org.mybatis.version>3.5.7</org.mybatis.version>
-    <org.mybatis.spring.version>2.0.6</org.mybatis.spring.version>
+    <org.mybatis.version>3.5.11</org.mybatis.version>
+    <org.mybatis.spring.version>3.0.0</org.mybatis.spring.version>
     <!-- == MapStrcut== -->
     <mapstruct.version>1.5.2.Final</mapstruct.version>
     <!-- == Lombok == -->
