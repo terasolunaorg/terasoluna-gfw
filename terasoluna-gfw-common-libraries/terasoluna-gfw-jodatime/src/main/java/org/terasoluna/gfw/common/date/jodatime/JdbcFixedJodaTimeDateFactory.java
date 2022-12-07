@@ -31,7 +31,9 @@ import org.springframework.jdbc.core.RowMapper;
  * The {@link org.joda.time.DateTime} value which is to be returned as current system date is stored in database. <br>
  * </P>
  * @since 5.0.0
+ * @deprecated It is recommended to migrate to java.time (JSR-310). {@link org.terasoluna.gfw.common.time.JdbcClockFactory}
  */
+@Deprecated
 public class JdbcFixedJodaTimeDateFactory extends AbstractJodaTimeDateFactory {
 
     /**

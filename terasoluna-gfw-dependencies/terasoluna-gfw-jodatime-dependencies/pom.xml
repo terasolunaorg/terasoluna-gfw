@@ -30,11 +30,6 @@
       <groupId>joda-time</groupId>
       <artifactId>joda-time</artifactId>
     </dependency>
-    <dependency>
-      <groupId>joda-time</groupId>
-      <artifactId>joda-time-jsptags</artifactId>
-      <!-- this dependency does not pull servlet-api -->
-    </dependency>
     <!-- == End Joda-Time == -->
     <!-- == Begin Jackson == -->
     <dependency>

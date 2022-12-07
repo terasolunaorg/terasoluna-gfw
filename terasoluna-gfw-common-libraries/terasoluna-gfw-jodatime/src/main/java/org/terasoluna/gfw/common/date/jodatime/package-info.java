@@ -17,4 +17,5 @@
  * date package with Joda-Time
  * @since 5.0.0.
  */
+@Deprecated
 package org.terasoluna.gfw.common.date.jodatime;

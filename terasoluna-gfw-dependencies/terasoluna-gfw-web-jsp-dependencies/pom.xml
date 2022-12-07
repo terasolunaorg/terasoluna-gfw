@@ -25,5 +25,11 @@
       <artifactId>terasoluna-gfw-web-jsp</artifactId>
     </dependency>
     <!-- == End TERASOLUNA == -->
+    <!-- == Begin Date and Time API == -->
+    <dependency>
+      <groupId>net.sargue</groupId>
+      <artifactId>java-time-jsptags</artifactId>
+    </dependency>
+    <!-- == End Date and Time API == -->
   </dependencies>
 </project>

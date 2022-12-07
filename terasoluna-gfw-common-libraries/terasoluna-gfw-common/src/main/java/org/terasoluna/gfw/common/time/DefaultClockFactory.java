@@ -13,26 +13,31 @@
  * either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-package org.terasoluna.gfw.common.date.jodatime;
+package org.terasoluna.gfw.common.time;
 
-import org.joda.time.DateTime;
+import java.time.Clock;
+import java.time.ZoneId;
 
 /**
- * Interface that creates current system date.<br>
- * <p>
- * create current system date as
- * </p>
- * <ul>
- * <li>{@link org.joda.time.DateTime}</li>
- * </ul>
- * @since 5.0.0
- * @deprecated It is recommended to migrate to java.time (JSR-310). {@link org.terasoluna.gfw.common.time.ClockFactory}
+ * Implementation of {@link ClockFactory} that obtain a system default clock.
+ * @since 5.8.0
+ * @author Atsushi Yoshikawa
  */
-@Deprecated
-public interface JodaTimeDateTimeFactory {
+public class DefaultClockFactory implements ClockFactory {
+
     /**
-     * returns current system date as {@link org.joda.time.DateTime} in the default time zone.
-     * @return current system date
+     * {@inheritDoc}
      */
-    DateTime newDateTime();
+    @Override
+    public Clock fixed(ZoneId zone) {
+        return Clock.fixed(tick(zone).instant(), zone);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Clock tick(ZoneId zone) {
+        return Clock.system(zone);
+    }
 }
