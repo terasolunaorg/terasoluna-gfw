@@ -30,7 +30,9 @@ import org.terasoluna.gfw.common.date.ClassicDateFactory;
  * <li>{@link java.sql.Time}</li>
  * </ul>
  * @since 5.0.0
+ * @deprecated It is recommended to migrate to java.time (JSR-310). {@link org.terasoluna.gfw.common.time.ClockFactory}
  */
+@Deprecated
 public interface JodaTimeDateFactory extends ClassicDateFactory,
                                      JodaTimeDateTimeFactory {
 }

@@ -34,7 +34,10 @@ import org.springframework.util.Assert;
  * Depending on the settings, the adjustment value can also be cached. <br>
  * </P>
  * @since 5.0.0
+ * @deprecated It is recommended to migrate to java.time (JSR-310).
+ *             {@link org.terasoluna.gfw.common.time.JdbcAdjustClockFactory}
  */
+@Deprecated
 public class JdbcAdjustedJodaTimeDateFactory extends AbstractJodaTimeDateFactory
                                              implements InitializingBean {
     private static final Logger logger = LoggerFactory.getLogger(

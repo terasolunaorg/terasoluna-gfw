@@ -27,7 +27,9 @@ import org.terasoluna.gfw.common.date.DefaultClassicDateFactory;
  * so all things that concrete classes do is to return current {@link org.joda.time.DateTime}.
  * </p>
  * @since 5.0.0
+ * @deprecated It is recommended to migrate to java.time (JSR-310).
  */
+@Deprecated
 public abstract class AbstractJodaTimeDateFactory extends
                                                   DefaultClassicDateFactory
                                                   implements
