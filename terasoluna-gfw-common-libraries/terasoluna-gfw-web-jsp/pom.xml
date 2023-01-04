@@ -91,8 +91,8 @@
     </dependency>
     <!-- == End Spring == -->
 
-    <!-- == Begin Tomcat == -->
-    <!-- Servlet API 4.0 & JSP API 2.3 -->
+    <!-- == Begin Servlet == -->
+    <!-- Servlet API 6.0 & JSP API 3.0 -->
     <dependency>
       <groupId>jakarta.servlet</groupId>
       <artifactId>jakarta.servlet-api</artifactId>
@@ -103,12 +103,12 @@
       <artifactId>jakarta.servlet.jsp-api</artifactId>
       <scope>provided</scope>
     </dependency>
-    <!-- == End Tomcat == -->
+    <!-- == End Servlet == -->
 
     <!-- == Begin Other == -->
     <dependency>
-      <groupId>org.apache.taglibs</groupId>
-      <artifactId>taglibs-standard-jstlel</artifactId>
+      <groupId>org.glassfish.web</groupId>
+      <artifactId>jakarta.servlet.jsp.jstl</artifactId>
       <scope>provided</scope>
       <optional>true</optional>
     </dependency>
