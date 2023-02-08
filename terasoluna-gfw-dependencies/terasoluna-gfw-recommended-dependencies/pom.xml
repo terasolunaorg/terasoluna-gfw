@@ -49,13 +49,6 @@
       <artifactId>mapstruct</artifactId>
     </dependency>
     <!-- == End MapStruct== -->
-
-    <!-- == Begin Joda-Time == -->
-    <dependency>
-      <groupId>joda-time</groupId>
-      <artifactId>joda-time</artifactId>
-    </dependency>
-    <!-- == End Joda-Time == -->
   </dependencies>
 
 </project>
