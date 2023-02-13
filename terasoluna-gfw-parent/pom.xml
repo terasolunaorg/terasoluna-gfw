@@ -465,21 +465,21 @@
   </dependencyManagement>
   <properties>
     <!-- == Maven Plugin Versions == -->
-    <org.apache.maven.plugins.maven-project-info-reports-plugin.version>3.1.2</org.apache.maven.plugins.maven-project-info-reports-plugin.version>
-    <org.apache.maven.plugins.maven-compiler-plugin.version>3.8.1</org.apache.maven.plugins.maven-compiler-plugin.version>
-    <org.apache.maven.plugins.maven-dependency-plugin.version>3.2.0</org.apache.maven.plugins.maven-dependency-plugin.version>
-    <org.apache.maven.plugins.maven-resources-plugin.version>3.2.0</org.apache.maven.plugins.maven-resources-plugin.version>
+    <org.apache.maven.plugins.maven-project-info-reports-plugin.version>3.4.1</org.apache.maven.plugins.maven-project-info-reports-plugin.version>
+    <org.apache.maven.plugins.maven-compiler-plugin.version>3.10.1</org.apache.maven.plugins.maven-compiler-plugin.version>
+    <org.apache.maven.plugins.maven-dependency-plugin.version>3.3.0</org.apache.maven.plugins.maven-dependency-plugin.version>
+    <org.apache.maven.plugins.maven-resources-plugin.version>3.3.0</org.apache.maven.plugins.maven-resources-plugin.version>
     <org.apache.maven.plugins.maven-source-plugin.version>3.2.1</org.apache.maven.plugins.maven-source-plugin.version>
-    <org.apache.maven.plugins.maven-javadoc-plugin.version>3.3.0</org.apache.maven.plugins.maven-javadoc-plugin.version>
-    <org.apache.maven.plugins.maven-jar-plugin.version>3.2.0</org.apache.maven.plugins.maven-jar-plugin.version>
-    <org.apache.maven.plugins.maven-assembly-plugin.version>3.3.0</org.apache.maven.plugins.maven-assembly-plugin.version>
-    <org.apache.maven.plugins.maven-clean-plugin.version>3.1.0</org.apache.maven.plugins.maven-clean-plugin.version>
-    <org.apache.maven.plugins.maven-install-plugin.version>3.0.0-M1</org.apache.maven.plugins.maven-install-plugin.version>
-    <org.apache.maven.plugins.maven-deploy-plugin.version>3.0.0-M1</org.apache.maven.plugins.maven-deploy-plugin.version>
-    <org.apache.maven.plugins.maven-site-plugin.version>3.9.1</org.apache.maven.plugins.maven-site-plugin.version>
-    <org.codehaus.cargo.cargo-maven3-plugin.version>1.9.5</org.codehaus.cargo.cargo-maven3-plugin.version>
+    <org.apache.maven.plugins.maven-javadoc-plugin.version>3.4.1</org.apache.maven.plugins.maven-javadoc-plugin.version>
+    <org.apache.maven.plugins.maven-jar-plugin.version>3.2.2</org.apache.maven.plugins.maven-jar-plugin.version>
+    <org.apache.maven.plugins.maven-assembly-plugin.version>3.4.2</org.apache.maven.plugins.maven-assembly-plugin.version>
+    <org.apache.maven.plugins.maven-clean-plugin.version>3.2.0</org.apache.maven.plugins.maven-clean-plugin.version>
+    <org.apache.maven.plugins.maven-install-plugin.version>3.0.1</org.apache.maven.plugins.maven-install-plugin.version>
+    <org.apache.maven.plugins.maven-deploy-plugin.version>3.0.0</org.apache.maven.plugins.maven-deploy-plugin.version>
+    <org.apache.maven.plugins.maven-site-plugin.version>4.0.0-M3</org.apache.maven.plugins.maven-site-plugin.version>
+    <org.codehaus.cargo.cargo-maven3-plugin.version>1.10.1</org.codehaus.cargo.cargo-maven3-plugin.version>
     <org.apache.maven.plugins.maven-gpg-plugin.version>3.0.1</org.apache.maven.plugins.maven-gpg-plugin.version>
-    <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.6.8</org.sonatype.plugins.nexus-staging-maven-plugin.version>
+    <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.6.13</org.sonatype.plugins.nexus-staging-maven-plugin.version>
     <!-- == Dependency Versions == -->
     <!-- == TERASOLUNA == -->
     <terasoluna.gfw.version>5.8.0-SNAPSHOT</terasoluna.gfw.version>
@@ -489,7 +489,7 @@
     <org.mybatis.version>3.5.11</org.mybatis.version>
     <org.mybatis.spring.version>3.0.1</org.mybatis.spring.version>
     <!-- == MapStrcut== -->
-    <mapstruct.version>1.5.3.Final</mapstruct.version>
+    <mapstruct.version>1.5.2.Final</mapstruct.version>
     <!-- == Lombok == -->
     <!-- lombok.version is the same as the version managed by Spring Boot. -->
     <lombok.version>1.18.24</lombok.version>
@@ -515,7 +515,7 @@
     <!-- == Other == -->
     <jakarta-el.version>5.0.1</jakarta-el.version>
     <jakarta-inject.version>2.0.1</jakarta-inject.version>
-    <jakarta-jsp.version>3.1.0</jakarta-jsp.version>
+    <jakarta-jsp.version>3.0.0</jakarta-jsp.version>
     <jakarta.servlet.jsp.jstl.version>3.0.1</jakarta.servlet.jsp.jstl.version>
     <!-- == Project Properties == -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
