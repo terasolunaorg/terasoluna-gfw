@@ -489,7 +489,7 @@
     <org.mybatis.version>3.5.11</org.mybatis.version>
     <org.mybatis.spring.version>3.0.1</org.mybatis.spring.version>
     <!-- == MapStrcut== -->
-    <mapstruct.version>1.5.2.Final</mapstruct.version>
+    <mapstruct.version>1.5.3.Final</mapstruct.version>
     <!-- == Lombok == -->
     <!-- lombok.version is the same as the version managed by Spring Boot. -->
     <lombok.version>1.18.24</lombok.version>
@@ -515,7 +515,7 @@
     <!-- == Other == -->
     <jakarta-el.version>5.0.1</jakarta-el.version>
     <jakarta-inject.version>2.0.1</jakarta-inject.version>
-    <jakarta-jsp.version>3.0.0</jakarta-jsp.version>
+    <jakarta-jsp.version>3.1.0</jakarta-jsp.version>
     <jakarta.servlet.jsp.jstl.version>3.0.1</jakarta.servlet.jsp.jstl.version>
     <!-- == Project Properties == -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
