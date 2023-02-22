@@ -149,7 +149,7 @@
   </build>
   <properties>
     <!-- == Maven Plugin Versions == -->
-    <org.apache.maven.plugins.maven-surefire-plugin.version>3.0.0-M5</org.apache.maven.plugins.maven-surefire-plugin.version>
+    <org.apache.maven.plugins.maven-surefire-plugin.version>3.0.0-M7</org.apache.maven.plugins.maven-surefire-plugin.version>
     <org.jacoco.jacoco-maven-plugin.version>0.8.8</org.jacoco.jacoco-maven-plugin.version>
     <com.mycila.license-maven-plugin.version>4.2.rc3</com.mycila.license-maven-plugin.version>
     <net.revelc.code.formatter.formatter-maven-plugin.version>2.20.0</net.revelc.code.formatter.formatter-maven-plugin.version>
