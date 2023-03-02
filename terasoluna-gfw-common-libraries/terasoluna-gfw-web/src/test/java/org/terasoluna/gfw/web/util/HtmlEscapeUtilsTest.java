@@ -30,7 +30,7 @@ public class HtmlEscapeUtilsTest {
         // set up
         Constructor<HtmlEscapeUtils> constructor = HtmlEscapeUtils.class
                 .getDeclaredConstructor();
-        assertThat(constructor.isAccessible(), is(false));
+        assertThat(constructor.canAccess(null), is(false));
         constructor.setAccessible(true);
 
         // assert

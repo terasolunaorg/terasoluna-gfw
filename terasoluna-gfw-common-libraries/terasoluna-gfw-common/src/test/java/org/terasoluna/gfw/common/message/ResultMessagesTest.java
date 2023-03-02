@@ -294,6 +294,11 @@ public class ResultMessagesTest {
         assertThat(messages.getList(), contains(msg1, msg2));
     }
 
+    /**
+     * This test uses SerializationUtils#deserialize(byte[]) Although this mechanism is deprecated, it is still used because the
+     * data to be deserialized is guaranteed.
+     */
+    @SuppressWarnings("deprecation")
     @Test(expected = None.class)
     public void testSerialization() {
         byte[] serialized = SerializationUtils.serialize(

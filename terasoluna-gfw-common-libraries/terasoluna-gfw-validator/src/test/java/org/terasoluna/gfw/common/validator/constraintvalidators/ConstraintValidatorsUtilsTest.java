@@ -31,7 +31,7 @@ public class ConstraintValidatorsUtilsTest {
         // set up
         Constructor<ConstraintValidatorsUtils> constructor = ConstraintValidatorsUtils.class
                 .getDeclaredConstructor();
-        assertThat(constructor.isAccessible(), is(false));
+        assertThat(constructor.canAccess(null), is(false));
         constructor.setAccessible(true);
 
         // assert

@@ -190,7 +190,7 @@ public class QueryEscapeUtilsTest {
         // set up
         Constructor<QueryEscapeUtils> constructor = QueryEscapeUtils.class
                 .getDeclaredConstructor();
-        assertThat(constructor.isAccessible(), is(false));
+        assertThat(constructor.canAccess(null), is(false));
         constructor.setAccessible(true);
 
         // assert

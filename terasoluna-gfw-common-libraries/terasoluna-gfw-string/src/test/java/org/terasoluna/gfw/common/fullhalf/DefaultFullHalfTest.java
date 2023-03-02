@@ -30,7 +30,7 @@ public class DefaultFullHalfTest {
         // set up
         Constructor<DefaultFullHalf> constructor = DefaultFullHalf.class
                 .getDeclaredConstructor();
-        assertThat(constructor.isAccessible(), is(false));
+        assertThat(constructor.canAccess(null), is(false));
         constructor.setAccessible(true);
 
         // assert

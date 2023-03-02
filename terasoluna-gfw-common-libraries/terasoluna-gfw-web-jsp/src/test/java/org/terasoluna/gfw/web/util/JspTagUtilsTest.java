@@ -34,7 +34,7 @@ public class JspTagUtilsTest {
         // set up
         Constructor<JspTagUtils> constructor = JspTagUtils.class
                 .getDeclaredConstructor();
-        assertThat(constructor.isAccessible(), is(false));
+        assertThat(constructor.canAccess(null), is(false));
         constructor.setAccessible(true);
 
         // assert

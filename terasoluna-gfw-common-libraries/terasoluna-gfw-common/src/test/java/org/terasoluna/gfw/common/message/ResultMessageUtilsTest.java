@@ -42,7 +42,7 @@ public class ResultMessageUtilsTest {
         // set up
         Constructor<ResultMessageUtils> constructor = ResultMessageUtils.class
                 .getDeclaredConstructor();
-        assertThat(constructor.isAccessible(), is(false));
+        assertThat(constructor.canAccess(null), is(false));
         constructor.setAccessible(true);
 
         // assert

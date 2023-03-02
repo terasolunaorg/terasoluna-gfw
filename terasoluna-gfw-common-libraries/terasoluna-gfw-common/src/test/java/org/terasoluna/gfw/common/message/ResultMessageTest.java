@@ -85,6 +85,11 @@ public class ResultMessageTest {
         ResultMessage.fromText(null);
     }
 
+    /**
+     * This test uses SerializationUtils#deserialize(byte[]) Although this mechanism is deprecated, it is still used because the
+     * data to be deserialized is guaranteed.
+     */
+    @SuppressWarnings("deprecation")
     @Test(expected = None.class)
     public void test10() {
         byte[] serialized = SerializationUtils.serialize(ResultMessage.fromText(
