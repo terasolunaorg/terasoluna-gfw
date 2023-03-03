@@ -22,10 +22,10 @@ import static org.junit.Assert.assertThrows;
 
 import java.lang.reflect.Constructor;
 
+import org.junit.Test;
+
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspTagException;
-
-import org.junit.Test;
 
 public class JspTagUtilsTest {
 

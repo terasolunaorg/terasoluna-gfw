@@ -18,9 +18,9 @@ package org.terasoluna.gfw.web.token.transaction;
 import java.util.HashMap;
 import java.util.Map;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.terasoluna.gfw.web.mvc.support.RequestDataValueProcessorAdaptor;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * A {@code RequestDataValueProcessor} implementation class which returns a map containing the {@link TransactionToken} received

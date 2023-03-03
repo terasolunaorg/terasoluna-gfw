@@ -28,13 +28,13 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import jakarta.validation.Constraint;
-import jakarta.validation.Payload;
-
 import org.terasoluna.gfw.common.codelist.ExistInCodeList.List;
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharSequence;
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharacter;
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForNumber;
+
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
 /**
  * Custom annotation that provides the functionality to check the existence of a code in the specified codelist.

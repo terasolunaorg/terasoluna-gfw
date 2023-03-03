@@ -28,12 +28,12 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import org.terasoluna.gfw.common.validator.constraints.ByteMin.List;
+import org.terasoluna.gfw.common.validator.constraintvalidators.ByteMinValidator;
+
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import jakarta.validation.ValidationException;
-
-import org.terasoluna.gfw.common.validator.constraints.ByteMin.List;
-import org.terasoluna.gfw.common.validator.constraintvalidators.ByteMinValidator;
 
 /**
  * The annotated element must be a {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte length must

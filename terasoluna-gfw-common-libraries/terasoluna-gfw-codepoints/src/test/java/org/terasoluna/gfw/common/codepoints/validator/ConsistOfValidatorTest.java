@@ -28,11 +28,11 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Set;
 
+import org.junit.Test;
+
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
-
-import org.junit.Test;
 
 public class ConsistOfValidatorTest {
 

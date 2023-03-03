@@ -28,12 +28,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-import jakarta.inject.Inject;
-import jakarta.inject.Named;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
-import jakarta.validation.Validator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,6 +36,12 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.validation.annotation.Validated;
 import org.terasoluna.gfw.common.codelist.BirthDay.FORMATTED;
+
+import jakarta.inject.Inject;
+import jakarta.inject.Named;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.Validator;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration

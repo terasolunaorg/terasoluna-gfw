@@ -28,12 +28,12 @@ import java.nio.charset.UnsupportedCharsetException;
 import java.util.Arrays;
 import java.util.List;
 
-import jakarta.validation.UnexpectedTypeException;
-import jakarta.validation.ValidationException;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.terasoluna.gfw.common.validator.constraints.ByteMaxTest.ByteMaxTestForm;
+
+import jakarta.validation.UnexpectedTypeException;
+import jakarta.validation.ValidationException;
 
 /**
  * Test class of {@link ByteMax}

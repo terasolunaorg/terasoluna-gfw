@@ -20,15 +20,15 @@ import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.util.WebUtils;
 import org.terasoluna.gfw.web.token.TokenStringGenerator;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Implementation of {@link TransactionTokenStore} interface which uses HTTP session to store the token <br>

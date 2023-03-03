@@ -15,11 +15,11 @@
  */
 package org.terasoluna.gfw.common.codepoints.validator;
 
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
-
 import org.terasoluna.gfw.common.codepoints.CodePoints;
 import org.terasoluna.gfw.common.codepoints.ConsistOf;
+
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * Validator implementation corresponding to {@link ConsistOf} annotation. This validator checks whether all code points in the

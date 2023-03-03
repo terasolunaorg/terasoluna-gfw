@@ -27,9 +27,9 @@ import static org.mockito.Mockito.when;
 import java.util.HashMap;
 import java.util.Map;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.junit.Test;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 /**
  * Test class for TransactionTokenRequestDataValueProcessor

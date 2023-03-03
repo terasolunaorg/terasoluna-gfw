@@ -28,8 +28,6 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.servlet.http.HttpServletResponse;
-
 import org.aopalliance.intercept.MethodInvocation;
 import org.junit.Before;
 import org.junit.Test;
@@ -47,6 +45,7 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Appender;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class HandlerExceptionResolverLoggingInterceptorTest {
     /**

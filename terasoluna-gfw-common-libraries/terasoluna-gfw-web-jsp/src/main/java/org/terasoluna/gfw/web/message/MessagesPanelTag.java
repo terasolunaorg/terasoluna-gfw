@@ -18,9 +18,6 @@ package org.terasoluna.gfw.web.message;
 import java.lang.reflect.Array;
 import java.util.Locale;
 
-import jakarta.servlet.jsp.JspException;
-import jakarta.servlet.jsp.JspTagException;
-
 import org.springframework.context.MessageSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.tags.RequestContextAwareTag;
@@ -31,6 +28,9 @@ import org.terasoluna.gfw.common.message.ResultMessageUtils;
 import org.terasoluna.gfw.common.message.ResultMessages;
 import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
 import org.terasoluna.gfw.web.util.JspTagUtils;
+
+import jakarta.servlet.jsp.JspException;
+import jakarta.servlet.jsp.JspTagException;
 
 /**
  * Tag for displaying messages in panel format in JSP page<br>

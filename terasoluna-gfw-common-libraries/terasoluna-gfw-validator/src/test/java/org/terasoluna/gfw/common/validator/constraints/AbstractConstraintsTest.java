@@ -24,12 +24,12 @@ import static org.hamcrest.Matchers.is;
 import java.util.Locale;
 import java.util.Set;
 
+import org.junit.BeforeClass;
+
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.ValidationException;
 import jakarta.validation.Validator;
-
-import org.junit.BeforeClass;
 
 /**
  * Abstract Test class of {@code org.terasoluna.gfw.common.validator.constraints}

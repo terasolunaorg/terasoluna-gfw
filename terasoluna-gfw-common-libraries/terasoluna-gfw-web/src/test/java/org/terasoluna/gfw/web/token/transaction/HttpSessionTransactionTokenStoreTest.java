@@ -28,8 +28,6 @@ import static org.mockito.Mockito.verify;
 
 import java.util.concurrent.TimeUnit;
 
-import jakarta.servlet.http.HttpSession;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -50,6 +48,7 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Appender;
+import jakarta.servlet.http.HttpSession;
 
 /**
  * Test class for HttpSessionTransactionTokenStore

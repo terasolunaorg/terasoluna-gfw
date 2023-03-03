@@ -24,8 +24,6 @@ import static org.mockito.Mockito.when;
 import java.io.StringWriter;
 import java.util.regex.Pattern;
 
-import jakarta.servlet.jsp.tagext.TagSupport;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,6 +39,8 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.util.SerializationUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.form.TagWriter;
+
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 public class PaginationTagTest {
 

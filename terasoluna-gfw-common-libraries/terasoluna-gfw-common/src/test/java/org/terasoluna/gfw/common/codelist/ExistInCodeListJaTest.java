@@ -23,15 +23,15 @@ import static org.hamcrest.Matchers.hasProperty;
 import java.util.Locale;
 import java.util.Set;
 
-import jakarta.inject.Inject;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import jakarta.inject.Inject;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validator;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("ExistInCodeListTest-context.xml")

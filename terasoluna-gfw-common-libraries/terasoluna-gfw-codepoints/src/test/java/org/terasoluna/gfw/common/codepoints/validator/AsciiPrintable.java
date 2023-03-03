@@ -21,12 +21,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+import org.terasoluna.gfw.common.codepoints.ConsistOf;
+import org.terasoluna.gfw.common.codepoints.catalog.ASCIIPrintableChars;
+
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import jakarta.validation.ReportAsSingleViolation;
-
-import org.terasoluna.gfw.common.codepoints.ConsistOf;
-import org.terasoluna.gfw.common.codepoints.catalog.ASCIIPrintableChars;
 
 @Target({ ElementType.METHOD, ElementType.FIELD, ElementType.ANNOTATION_TYPE,
         ElementType.PARAMETER })

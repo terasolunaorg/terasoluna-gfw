@@ -25,12 +25,12 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
+import org.terasoluna.gfw.common.validator.constraints.Compare.List;
+import org.terasoluna.gfw.common.validator.constraintvalidators.CompareValidator;
+
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 import jakarta.validation.ValidationException;
-
-import org.terasoluna.gfw.common.validator.constraints.Compare.List;
-import org.terasoluna.gfw.common.validator.constraintvalidators.CompareValidator;
 
 /**
  * The annotated element, the result of comparing the two properties specified, must match the specified operator. Operator can

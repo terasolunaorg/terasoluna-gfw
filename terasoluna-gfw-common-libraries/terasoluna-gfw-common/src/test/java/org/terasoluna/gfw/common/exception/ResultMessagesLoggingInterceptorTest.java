@@ -32,8 +32,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import jakarta.inject.Inject;
-
 import org.aopalliance.intercept.MethodInvocation;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,6 +43,8 @@ import org.terasoluna.gfw.common.exception.test.TestFacade;
 import org.terasoluna.gfw.common.exception.test.TestRepository;
 import org.terasoluna.gfw.common.exception.test.TestService;
 import org.terasoluna.gfw.common.message.ResultMessages;
+
+import jakarta.inject.Inject;
 
 /**
  * TestCase class of ResultMessagesLoggingInterceptor.
