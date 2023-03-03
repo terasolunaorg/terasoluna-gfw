@@ -989,6 +989,11 @@ public class PaginationTagTest {
         tag1.setEnableLinkOfCurrentPage("");
     }
 
+    /**
+     * This test uses SerializationUtils#deserialize(byte[]) Although this mechanism is deprecated, it is still used because the
+     * data to be deserialized is guaranteed.
+     */
+    @SuppressWarnings("deprecation")
     @Test(expected = None.class)
     public void testSerialization() {
         byte[] serialized = SerializationUtils.serialize(new PaginationTag());

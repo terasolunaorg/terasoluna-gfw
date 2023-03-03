@@ -43,7 +43,7 @@ public class FunctionsTest {
         // set up
         Constructor<Functions> constructor = Functions.class
                 .getDeclaredConstructor();
-        assertThat(constructor.isAccessible(), is(false));
+        assertThat(constructor.canAccess(null), is(false));
         constructor.setAccessible(true);
 
         // assert

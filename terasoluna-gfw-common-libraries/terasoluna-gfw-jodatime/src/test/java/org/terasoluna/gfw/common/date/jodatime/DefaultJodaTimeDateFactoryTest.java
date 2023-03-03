@@ -22,6 +22,7 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeUtils;
 import org.junit.Test;
 
+@SuppressWarnings("deprecation")
 public class DefaultJodaTimeDateFactoryTest {
 
     @Test

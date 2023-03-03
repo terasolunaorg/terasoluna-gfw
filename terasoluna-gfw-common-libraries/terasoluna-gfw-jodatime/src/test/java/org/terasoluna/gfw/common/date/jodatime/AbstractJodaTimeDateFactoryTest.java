@@ -25,6 +25,7 @@ import java.util.Date;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
+@SuppressWarnings("deprecation")
 public class AbstractJodaTimeDateFactoryTest {
 
     @Test
@@ -84,6 +85,7 @@ public class AbstractJodaTimeDateFactoryTest {
     }
 }
 
+@SuppressWarnings("deprecation")
 class StubDateFactory extends AbstractJodaTimeDateFactory {
     @Override
     public DateTime newDateTime() {

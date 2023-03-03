@@ -33,7 +33,7 @@ public class DateConvertUtilsTest {
         // set up
         Constructor<DateConvertUtils> constructor = DateConvertUtils.class
                 .getDeclaredConstructor();
-        assertThat(constructor.isAccessible(), is(false));
+        assertThat(constructor.canAccess(null), is(false));
         constructor.setAccessible(true);
 
         // assert
