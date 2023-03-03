@@ -27,7 +27,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * class that stores the authentication user name in {@code MDC} and also returns the same.
  * <p>
  * default attribute name is "USER". You can change this name by configure.<br>
- * 
+ *
  * <pre>
  * <code>
  * &lt;init-param&gt;
@@ -36,7 +36,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * &lt;/init-param&gt;
  * </code>
  * </pre>
- * 
+ *
  * in web.xml
  */
 public class UserIdMDCPutFilter extends AbstractMDCPutFilter {

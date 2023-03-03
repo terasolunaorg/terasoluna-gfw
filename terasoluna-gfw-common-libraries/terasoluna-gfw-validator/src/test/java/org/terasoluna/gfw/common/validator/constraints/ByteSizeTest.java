@@ -181,8 +181,8 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
     }
 
     /**
-     * not specify min and max. expected valid if input value encoded in UTF-8 is between {@code 0} and {@link Integer#MAX_VALUE}
-     * value.
+     * not specify min and max. expected valid if input value encoded in UTF-8 is between {@code 0} and
+     * {@link Integer#MAX_VALUE} value.
      */
     @Ignore("Integer.MAX_VALUE causes OutOfMemoryError")
     @Test

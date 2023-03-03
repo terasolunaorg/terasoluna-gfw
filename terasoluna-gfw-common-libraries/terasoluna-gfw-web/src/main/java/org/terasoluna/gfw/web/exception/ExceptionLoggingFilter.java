@@ -42,22 +42,22 @@ import jakarta.servlet.ServletResponse;
  * <h2>Example of the Settings for inject a custom ExceptionLogger</h2><br>
  * <strong>[applicationContext.xml]</strong><br>
  * define bean of custom ExceptionLogger and ExceptionLoggingFilter.
- * 
+ *
  * <pre>
  * &lt;bean id=&quot;exceptionLogger&quot; class=&quot;org.terasoluna.gfw.common.exception.ExceptionLogger&quot;&gt;
  *   &lt;!-- ... --&gt;
  * &lt;/bean&gt;
- * 
+ *
  * &lt;bean id=&quot;exceptionLoggingFilter&quot;
  * class=&quot;org.terasoluna.gfw.web.exception.ExceptionLoggingFilter&quot;&gt;
  *   &lt;property name=&quot;exceptionLogger&quot; ref=&quot;exceptionLogger&quot; /&gt;
  * &lt;/bean&gt;
  * </pre>
- * 
+ *
  * <strong>[web.xml]</strong><br>
  * filter-class specify the 'org.springframework.web.filter.DelegatingFilterProxy', and fiter-name specify the bean name of
  * ExceptionLoggingFilter.
- * 
+ *
  * <pre>
  * &lt;filter&gt;
  *   &lt;filter-name&gt;exceptionLoggingFilter&lt;/filter-name&gt;

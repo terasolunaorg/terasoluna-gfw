@@ -127,7 +127,7 @@ public class PaginationTagTest {
 
     /**
      * default case 1.
-     * 
+     *
      * <pre>
      *  - current page 0 = first page
      *  - page size 10
@@ -155,7 +155,7 @@ public class PaginationTagTest {
 
     /**
      * normal case 2.
-     * 
+     *
      * <pre>
      *  - current page 1 > first page
      *  - page size 10
@@ -183,7 +183,7 @@ public class PaginationTagTest {
 
     /**
      * normal case 3.
-     * 
+     *
      * <pre>
      *  - current page 5 = maxDisplayCount/2
      *  - page size 10
@@ -211,7 +211,7 @@ public class PaginationTagTest {
 
     /**
      * normal case 4.
-     * 
+     *
      * <pre>
      *  - current page 20 > maxDisplayCount
      *  - page size 10
@@ -239,7 +239,7 @@ public class PaginationTagTest {
 
     /**
      * normal case 5.
-     * 
+     *
      * <pre>
      *  - current page 95 = total - maxDisplayCount/2
      *  - page size 10
@@ -267,7 +267,7 @@ public class PaginationTagTest {
 
     /**
      * normal case 6.
-     * 
+     *
      * <pre>
      *  - current page 99 = last page
      *  - page size 10
@@ -295,7 +295,7 @@ public class PaginationTagTest {
 
     /**
      * normal case 7.
-     * 
+     *
      * <pre>
      *  - current page 100 > last page
      *  - page size 10
@@ -323,7 +323,7 @@ public class PaginationTagTest {
 
     /**
      * abnormal case 1.
-     * 
+     *
      * <pre>
      *  - total elements 0
      * </pre>
@@ -348,7 +348,7 @@ public class PaginationTagTest {
 
     /**
      * abnormal case 2.
-     * 
+     *
      * <pre>
      *  - page is null
      * </pre>
@@ -369,7 +369,7 @@ public class PaginationTagTest {
 
     /**
      * customized case 1.
-     * 
+     *
      * <pre>
      * -queryTmpl
      * </pre>
@@ -397,7 +397,7 @@ public class PaginationTagTest {
 
     /**
      * customized case 2.
-     * 
+     *
      * <pre>
      * -pathTmpl
      * </pre>
@@ -426,7 +426,7 @@ public class PaginationTagTest {
 
     /**
      * customized case 2.
-     * 
+     *
      * <pre>
      * -use sort order
      * </pre>
@@ -457,7 +457,7 @@ public class PaginationTagTest {
 
     /**
      * customized case 3.
-     * 
+     *
      * <pre>
      * -maxDisplayCount
      * </pre>
@@ -485,7 +485,7 @@ public class PaginationTagTest {
 
     /**
      * customized case 4.
-     * 
+     *
      * <pre>
      * -outerElement is empty
      * -innerElement
@@ -515,7 +515,7 @@ public class PaginationTagTest {
 
     /**
      * customized case 5.
-     * 
+     *
      * <pre>
      * -innerElement is span
      * </pre>
@@ -547,7 +547,7 @@ public class PaginationTagTest {
 
     /**
      * customized case 6.
-     * 
+     *
      * <pre>
      * -no display
      * </pre>
@@ -577,7 +577,7 @@ public class PaginationTagTest {
 
     /**
      * customized case 7.
-     * 
+     *
      * <pre>
      * -outer tag class change.
      * -inner tag class change.
@@ -609,7 +609,7 @@ public class PaginationTagTest {
 
     /**
      * customized case 7.
-     * 
+     *
      * <pre>
      * -outer tag class change.
      * -inner tag class change.

@@ -27,16 +27,16 @@ import org.springframework.beans.factory.InitializingBean;
  * <h2>Example of the Settings for inject a custom ExceptionLogger</h2><br>
  * <strong>[applicationContext.xml]</strong><br>
  * define bean of custom ExceptionLogger.
- * 
+ *
  * <pre>
  * &lt;bean id=&quot;exceptionLogger&quot; class=&quot;org.terasoluna.gfw.common.exception.ExceptionLogger&quot;&gt;
  *   &lt;!-- ... --&gt;
  * &lt;/bean&gt;
  * </pre>
- * 
+ *
  * <strong>[xxx-domain.xml]</strong><br>
  * inject bean of custom ExceptionLogger.
- * 
+ *
  * <pre>
  * &lt;bean id=&quot;resultMessagesLoggingInterceptor&quot;
  *   class=&quot;org.terasoluna.gfw.common.exception.ResultMessagesLoggingInterceptor&quot;&gt;

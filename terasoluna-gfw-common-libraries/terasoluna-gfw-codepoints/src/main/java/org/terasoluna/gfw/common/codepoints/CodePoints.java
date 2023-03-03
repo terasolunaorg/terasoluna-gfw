@@ -38,39 +38,39 @@ import java.util.concurrent.ConcurrentMap;
  * <pre>
  * <code>CodePoints cp = CodePoints.of(ASCIIPrintableChars.class);</code>
  * </pre>
- * 
+ *
  * The constructor can be also used. In this case, of course, the set of code points are not cached and created every time.
- * 
+ *
  * <pre>
  * <code>CodePoints cp = new ASCIIPrintableChars();</code>
  * </pre>
- * 
+ *
  * There are three types of constructor:
  * <ol>
  * <li>Pass {@code int} varargs
- * 
+ *
  * <pre>
  * <code>CodePoints cp = new CodePoints(0x0061, 0x0062); // a b</code>
  * </pre>
- * 
+ *
  * </li>
  * <li>Pass {@link java.util.Collection} of {@link java.lang.Integer}
- * 
+ *
  * <pre>
  * <code>{@literal Set<Integer>} set = new {@literal HashSet<>}();
  * set.add(0x0061); // a
  * set.add(0x0062); // b
  * CodePoints cp = new CodePoints(set);</code>
  * </pre>
- * 
+ *
  * </li>
  * <li>Pass {@link java.lang.String} varargs including the target code points
- * 
+ *
  * <pre>
  * <code>CodePoints cp = new CodePoints("ab");
  * CodePoints cp = new CodePoints("a", "b"); // is same </code>
  * </pre>
- * 
+ *
  * </li>
  * <li>Pass existing {@link CodePoints}. This type is intended to use for the definition of new code points. The set in the
  * {@link CodePoints} are shared.
@@ -84,7 +84,7 @@ import java.util.concurrent.ConcurrentMap;
  * </ol>
  * <h3>How to check strings</h3> {@link #containsAll(String)} returns {@code true} if all code points in the given string are
  * included in the target code points. Otherwise {@code false} is returned.
- * 
+ *
  * <pre>
  * <code>CodePoints cp = new CodePoints(0x0061, 0x0062); // a b
  * cp.containsAll("a"); // true
@@ -94,7 +94,7 @@ import java.util.concurrent.ConcurrentMap;
  * cp.containsAll("abc"); // false
  * </code>
  * </pre>
- * 
+ *
  * {@link #firstExcludedCodePoint(String)} return the first code point in the given string which is not included in the target
  * code points.
  *
@@ -108,7 +108,7 @@ import java.util.concurrent.ConcurrentMap;
  *
  * {@link #allExcludedCodePoints(String)} returns set of code points in the given string which are not not included in the
  * target.
- * 
+ *
  * <pre>
  * <code>CodePoints cp = new CodePoints(0x0061, 0x0062); // a b
  * cp.allExcludedCodePoints("abc"); // [0x0063 (c)]
@@ -154,12 +154,12 @@ import java.util.concurrent.ConcurrentMap;
  * CodePoints cde = new CodePoints(0x0063, 0x0064, 0x0064 ); // c d e
  * CodePoints cd = abcd.intersect(cde); // c d</code>
  * </pre>
- * 
+ *
  * <h3>How to define new code points</h3>
  * <p>
  * Extend {@link CodePoints} to define new code points. Following is a simple code points:
  * </p>
- * 
+ *
  * <pre>
  * <code>public class ABCD extends CodePoints {
  *   public ABCD() {
@@ -170,7 +170,7 @@ import java.util.concurrent.ConcurrentMap;
  * <p>
  * New code points can be created using the combination of existing code points.
  * </p>
- * 
+ *
  * <pre>
  * <code>public class X_JIS_0208_Hiragana_Katakana extends CodePoints {
  *   public X_JIS_0208_Hiragana_Katakana() {
@@ -183,7 +183,7 @@ import java.util.concurrent.ConcurrentMap;
  * {@code X_JIS_0208_Hiragana_Katakana} are also intended to be used, use {@link #of(Class)} instead of {@code new} so that
  * these are cached:
  * </p>
- * 
+ *
  * <pre>
  * <code>public class X_JIS_0208_Hiragana_Katakana extends CodePoints {
  *   public X_JIS_0208_Hiragana_Katakana() {
@@ -191,7 +191,7 @@ import java.util.concurrent.ConcurrentMap;
  *   }
  * }</code>
  * </pre>
- * 
+ *
  * @since 5.1.0
  */
 public class CodePoints implements Serializable {

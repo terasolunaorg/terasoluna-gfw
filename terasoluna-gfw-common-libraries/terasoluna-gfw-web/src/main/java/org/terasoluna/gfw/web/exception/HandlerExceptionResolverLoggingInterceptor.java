@@ -38,16 +38,16 @@ import jakarta.servlet.http.HttpServletResponse;
  * <h2>Example of the Settings for inject a custom ExceptionLogger</h2><br>
  * <strong>[applicationContext.xml]</strong><br>
  * define bean of custom ExceptionLogger.
- * 
+ *
  * <pre>
  * &lt;bean id=&quot;exceptionLogger&quot; class=&quot;org.terasoluna.gfw.common.exception.ExceptionLogger&quot;&gt;
  *   &lt;!-- ... --&gt;
  * &lt;/bean&gt;
  * </pre>
- * 
+ *
  * <strong>[spring-mvc.xml]</strong><br>
  * inject bean of custom ExceptionLogger.
- * 
+ *
  * <pre>
  * &lt;bean id=&quot;handlerExceptionResolverLoggingInterceptor&quot;
  *   class=&quot;org.terasoluna.gfw.web.exception.HandlerExceptionResolverLoggingInterceptor&quot;&gt;

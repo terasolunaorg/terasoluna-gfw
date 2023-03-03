@@ -42,7 +42,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * {@code org.springframework.web.servlet.view.BeanNameViewResolver} should be done.
  * </p>
  * <h3>Example of bean definition file</h3>
- * 
+ *
  * <pre>
  * &lt;bean id=&quot;beanNameViewResolver&quot;
  *     class=&quot;org.springframework.web.servlet.view.BeanNameViewResolver&quot;&gt;
@@ -54,7 +54,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * binary data to response
  * </p>
  * <h3>Example of bean definition file</h3>
- * 
+ *
  * <pre>
  * &lt;bean id=<strong style=color:red>&quot;sampleFileDownloadView&quot;</strong>
  *     class=&quot;org.terasoluna.gfw.web.sample.SampleFileDownloadView&quot;&gt;
@@ -65,7 +65,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * Further, the view name should be returned in the corresponding RequestMapping method method in a controller.
  * </p>
  * <h3>Example of bean definition file</h3>
- * 
+ *
  * <pre>
  * {@literal @}Controller
  * {@literal @}RequestMapping(&quot;sample&quot;)

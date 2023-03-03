@@ -32,24 +32,24 @@ import org.springframework.util.StringUtils;
  * </p>
  * <p>
  * <strong>[Default Log format]</strong><br>
- * 
+ *
  * <pre>
  *   Application Log :
  *       [{exceptionCode}] {exceptionMessage}
  *       {StackTrace}
- *    
+ *
  *   Monitoring Log :
  *       [{exceptionCode}] {exceptionMessage}
  * </pre>
- * 
+ *
  * <strong>[Output example]</strong>
- * 
+ *
  * <pre>
  * throw new SystemException(&quot;e.xx.xx.0001&quot;, &quot;system error.&quot;, e);
  * </pre>
- * 
+ *
  * <strong>Application Log :</strong>
- * 
+ *
  * <pre>
  *       [e.xx.xx.0001] system error.
  *       org.terasoluna.gfw.common.exception.SystemException: system error.
@@ -61,9 +61,9 @@ import org.springframework.util.StringUtils;
  *           at org.xxxx ...
  *           at org.xxxx ...
  * </pre>
- * 
+ *
  * <strong>Monitoring Log :</strong>
- * 
+ *
  * <pre>
  *   Monitoring Log :
  *       [e.xx.xx.0001] system error.

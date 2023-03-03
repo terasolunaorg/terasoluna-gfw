@@ -43,7 +43,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * <p>
  * Below is usage example
  * <h3>Example of bean definition which should be loaded by {@code org.springframework.web.servlet.DispatcherServlet}</h3>
- * 
+ *
  * <pre>
  *  &lt;mvc:interceptors&gt;
  *      ....
@@ -56,7 +56,7 @@ import jakarta.servlet.http.HttpServletResponse;
  *      ....
  *  &lt;/mvc:interceptors&gt;
  * </pre>
- * 
+ *
  * Set {@link TraceLoggingInterceptor} as definition of interceptor class.<br>
  * By specifying nano-seconds in value of {@code warnHandlingNanos}, timing of warning log output can be changed.<br>
  */

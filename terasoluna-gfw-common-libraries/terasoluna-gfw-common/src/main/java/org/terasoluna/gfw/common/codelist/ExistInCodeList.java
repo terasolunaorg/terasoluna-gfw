@@ -42,12 +42,12 @@ import jakarta.validation.Payload;
  * The annotation has the functionality to check whether a Code, which can be the <br>
  * value of field or return value of method to which the annotation is applied, exists in the {@link CodeList} bean specified as
  * argument to the annotation. <br>
- * 
+ *
  * <pre>
  * &#064;ExistInCodeList(codeListId = &quot;CD_GENDER&quot;)
  * private String gender;
  * </pre>
- * 
+ *
  * <br>
  * {@code CD_GENDER} is a {@link CodeList} bean defined in the bean definition file. <br>
  * In the above code, ExistInCodeList annotation checks whether the code in gender field <br>

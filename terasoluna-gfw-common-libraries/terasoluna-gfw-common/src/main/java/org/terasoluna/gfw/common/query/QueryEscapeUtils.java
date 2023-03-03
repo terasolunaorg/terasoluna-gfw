@@ -51,7 +51,7 @@ public final class QueryEscapeUtils {
      *
      * <pre>
      * <code>
-     * 
+     *
      * toLikeCondition("a")    -&gt; "a"
      * toLikeCondition("a~")   -&gt; "a~~"
      * toLikeCondition("a%")   -&gt; "a~%"
@@ -177,7 +177,7 @@ public final class QueryEscapeUtils {
      * withFullWidth().toLikeCondition(null)   -&gt; null
      * </code>
      * </pre>
-     * 
+     *
      * @return LikeConditionEscape that escape full-width wildcards.
      * @since 1.0.2
      */
