@@ -15,19 +15,19 @@
  */
 package org.terasoluna.gfw.security.web.logging;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.terasoluna.gfw.web.logging.mdc.AbstractMDCPutFilter;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 /**
  * class that stores the authentication user name in {@code MDC} and also returns the same.
  * <p>
  * default attribute name is "USER". You can change this name by configure.<br>
- * 
+ *
  * <pre>
  * <code>
  * &lt;init-param&gt;
@@ -36,7 +36,7 @@ import org.terasoluna.gfw.web.logging.mdc.AbstractMDCPutFilter;
  * &lt;/init-param&gt;
  * </code>
  * </pre>
- * 
+ *
  * in web.xml
  */
 public class UserIdMDCPutFilter extends AbstractMDCPutFilter {

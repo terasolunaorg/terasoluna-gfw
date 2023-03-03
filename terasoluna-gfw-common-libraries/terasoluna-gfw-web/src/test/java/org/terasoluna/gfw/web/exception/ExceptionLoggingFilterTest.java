@@ -27,14 +27,14 @@ import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
 
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.terasoluna.gfw.common.exception.ExceptionLogger;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
 
 public class ExceptionLoggingFilterTest {
 

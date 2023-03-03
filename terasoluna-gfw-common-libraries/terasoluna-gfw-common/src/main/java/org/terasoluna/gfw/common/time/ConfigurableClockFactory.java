@@ -25,7 +25,6 @@ import java.time.format.FormatStyle;
 
 /**
  * Implementation of {@link ClockFactory} that obtain a clock based on specified date and time as string.
- *
  * @since 5.8.0
  * @author Atsushi Yoshikawa
  */
@@ -37,7 +36,6 @@ public class ConfigurableClockFactory implements ClockFactory {
 
     /**
      * Use date and time string formatted in {@link DateTimeFormatter#ISO_LOCAL_DATE_TIME}.
-     *
      * @param localDateTimeString date and time as string
      */
     public ConfigurableClockFactory(String localDateTimeString) {
@@ -47,7 +45,6 @@ public class ConfigurableClockFactory implements ClockFactory {
 
     /**
      * Use date and time string formatted in specific format pattern.
-     *
      * @param localDateTimeString date and time as string
      * @param pattern format pattern
      */
@@ -59,7 +56,6 @@ public class ConfigurableClockFactory implements ClockFactory {
 
     /**
      * Use date and time string formatted in specific {@link FormatStyle}.
-     *
      * @param localDateTimeString date and time as string
      * @param dateStyle format style of date
      * @param timeStyle format style of time

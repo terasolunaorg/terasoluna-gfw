@@ -27,12 +27,12 @@ import static org.mockito.Mockito.when;
 
 import java.io.StringWriter;
 
+import org.junit.Test;
+import org.springframework.web.servlet.tags.form.TagWriter;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.PageContext;
-
-import org.junit.Test;
-import org.springframework.web.servlet.tags.form.TagWriter;
 
 /**
  * Test class for TransactionTokenTag

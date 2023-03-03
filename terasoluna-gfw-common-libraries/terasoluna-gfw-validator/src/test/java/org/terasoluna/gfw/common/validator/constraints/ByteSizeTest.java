@@ -28,13 +28,13 @@ import java.nio.charset.UnsupportedCharsetException;
 import java.util.Arrays;
 import java.util.List;
 
-import jakarta.validation.UnexpectedTypeException;
-import jakarta.validation.ValidationException;
-
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.terasoluna.gfw.common.validator.constraints.ByteSizeTest.ByteSizeTestForm;
+
+import jakarta.validation.UnexpectedTypeException;
+import jakarta.validation.ValidationException;
 
 /**
  * Test class of {@link ByteSize}
@@ -181,8 +181,8 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
     }
 
     /**
-     * not specify min and max. expected valid if input value encoded in UTF-8 is between {@code 0} and {@link Integer#MAX_VALUE}
-     * value.
+     * not specify min and max. expected valid if input value encoded in UTF-8 is between {@code 0} and
+     * {@link Integer#MAX_VALUE} value.
      */
     @Ignore("Integer.MAX_VALUE causes OutOfMemoryError")
     @Test

@@ -28,7 +28,7 @@ import org.springframework.util.Assert;
  * There are 3 way to create a message.
  * <hr>
  * Way1. to specify message code and args
- * 
+ *
  * <pre>
  * <code>
  * ResultMessage message = ResultMessage.fromCode(code, args);
@@ -36,7 +36,7 @@ import org.springframework.util.Assert;
  * </pre>
  * <hr>
  * Way2. to specify message text directly
- * 
+ *
  * <pre>
  * <code>
  * ResultMessage message = ResultMessage.fromText(text);
@@ -44,7 +44,7 @@ import org.springframework.util.Assert;
  * </pre>
  * <hr>
  * Way3. if you want to set code (+ args) and message text (as default text used when code is not found)
- * 
+ *
  * <pre>
  * <code>
  * ResultMessage message = new ResultMessage(code, args, defaultText);

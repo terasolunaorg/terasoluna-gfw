@@ -72,7 +72,7 @@ public class LikeConditionEscape {
      *
      * <pre>
      * <code>
-     *     
+     *
      * toLikeCondition("a")    -&gt; "a"
      * toLikeCondition("a~")   -&gt; "a~~"
      * toLikeCondition("a%")   -&gt; "a~%"

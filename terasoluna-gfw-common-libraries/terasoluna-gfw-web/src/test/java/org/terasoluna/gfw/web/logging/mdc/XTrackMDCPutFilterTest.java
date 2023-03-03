@@ -19,13 +19,13 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.matchesPattern;
 
-import jakarta.servlet.ServletException;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockFilterConfig;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
+
+import jakarta.servlet.ServletException;
 
 public class XTrackMDCPutFilterTest {
     private XTrackMDCPutFilter xTrackMDCPutFilter;

@@ -18,9 +18,6 @@ package org.terasoluna.gfw.web.exception;
 import java.util.HashSet;
 import java.util.Set;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 import org.aopalliance.intercept.MethodInterceptor;
 import org.aopalliance.intercept.MethodInvocation;
 import org.slf4j.Logger;
@@ -30,6 +27,9 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.terasoluna.gfw.common.exception.ExceptionLogger;
 import org.terasoluna.gfw.common.exception.ResultMessagesNotificationException;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
 /**
  * Interceptor class for logging exceptions which are handled by {@link HandlerExceptionResolver}.
  * <p>
@@ -38,16 +38,16 @@ import org.terasoluna.gfw.common.exception.ResultMessagesNotificationException;
  * <h2>Example of the Settings for inject a custom ExceptionLogger</h2><br>
  * <strong>[applicationContext.xml]</strong><br>
  * define bean of custom ExceptionLogger.
- * 
+ *
  * <pre>
  * &lt;bean id=&quot;exceptionLogger&quot; class=&quot;org.terasoluna.gfw.common.exception.ExceptionLogger&quot;&gt;
  *   &lt;!-- ... --&gt;
  * &lt;/bean&gt;
  * </pre>
- * 
+ *
  * <strong>[spring-mvc.xml]</strong><br>
  * inject bean of custom ExceptionLogger.
- * 
+ *
  * <pre>
  * &lt;bean id=&quot;handlerExceptionResolverLoggingInterceptor&quot;
  *   class=&quot;org.terasoluna.gfw.web.exception.HandlerExceptionResolverLoggingInterceptor&quot;&gt;

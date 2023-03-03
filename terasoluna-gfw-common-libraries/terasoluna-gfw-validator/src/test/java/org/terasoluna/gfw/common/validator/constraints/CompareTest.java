@@ -29,13 +29,13 @@ import java.beans.IntrospectionException;
 import java.util.Arrays;
 import java.util.List;
 
-import jakarta.validation.ValidationException;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.terasoluna.gfw.common.validator.constraints.Compare.Node;
 import org.terasoluna.gfw.common.validator.constraints.Compare.Operator;
 import org.terasoluna.gfw.common.validator.constraints.CompareTest.CompareTestForm;
+
+import jakarta.validation.ValidationException;
 
 /**
  * Test class of {@link Compare}

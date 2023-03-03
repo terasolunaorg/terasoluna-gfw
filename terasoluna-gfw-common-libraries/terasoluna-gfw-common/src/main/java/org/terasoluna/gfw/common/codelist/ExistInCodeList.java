@@ -28,13 +28,13 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import jakarta.validation.Constraint;
-import jakarta.validation.Payload;
-
 import org.terasoluna.gfw.common.codelist.ExistInCodeList.List;
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharSequence;
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharacter;
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForNumber;
+
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
 /**
  * Custom annotation that provides the functionality to check the existence of a code in the specified codelist.
@@ -42,12 +42,12 @@ import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForN
  * The annotation has the functionality to check whether a Code, which can be the <br>
  * value of field or return value of method to which the annotation is applied, exists in the {@link CodeList} bean specified as
  * argument to the annotation. <br>
- * 
+ *
  * <pre>
  * &#064;ExistInCodeList(codeListId = &quot;CD_GENDER&quot;)
  * private String gender;
  * </pre>
- * 
+ *
  * <br>
  * {@code CD_GENDER} is a {@link CodeList} bean defined in the bean definition file. <br>
  * In the above code, ExistInCodeList annotation checks whether the code in gender field <br>

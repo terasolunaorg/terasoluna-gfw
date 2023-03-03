@@ -21,10 +21,10 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.Map;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 public class RequestDataValueProcessorAdaptorTest {
 

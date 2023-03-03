@@ -21,9 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
@@ -31,6 +28,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 /**
  * Interceptor for log output of performance measurement<br>
@@ -43,7 +43,7 @@ import org.springframework.web.servlet.ModelAndView;
  * <p>
  * Below is usage example
  * <h3>Example of bean definition which should be loaded by {@code org.springframework.web.servlet.DispatcherServlet}</h3>
- * 
+ *
  * <pre>
  *  &lt;mvc:interceptors&gt;
  *      ....
@@ -56,7 +56,7 @@ import org.springframework.web.servlet.ModelAndView;
  *      ....
  *  &lt;/mvc:interceptors&gt;
  * </pre>
- * 
+ *
  * Set {@link TraceLoggingInterceptor} as definition of interceptor class.<br>
  * By specifying nano-seconds in value of {@code warnHandlingNanos}, timing of warning log output can be changed.<br>
  */

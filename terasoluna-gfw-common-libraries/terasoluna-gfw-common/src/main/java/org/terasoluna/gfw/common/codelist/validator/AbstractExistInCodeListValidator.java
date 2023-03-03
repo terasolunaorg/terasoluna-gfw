@@ -15,9 +15,6 @@
  */
 package org.terasoluna.gfw.common.codelist.validator;
 
-import jakarta.validation.ConstraintValidator;
-import jakarta.validation.ConstraintValidatorContext;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ApplicationObjectSupport;
@@ -25,6 +22,9 @@ import org.springframework.util.StringUtils;
 import org.terasoluna.gfw.common.codelist.CodeList;
 import org.terasoluna.gfw.common.codelist.ExistInCodeList;
 import org.terasoluna.gfw.common.codelist.NumberRangeCodeList;
+
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 
 /**
  * Abstract validation implementation class for {@link ExistInCodeList} custom annotation.

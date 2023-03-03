@@ -19,10 +19,10 @@ import static org.terasoluna.gfw.common.validator.constraintvalidators.Constrain
 
 import java.nio.charset.Charset;
 
+import org.terasoluna.gfw.common.validator.constraints.ByteSize;
+
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
-
-import org.terasoluna.gfw.common.validator.constraints.ByteSize;
 
 /**
  * Constraint validator class of {@link ByteSize} annotation.

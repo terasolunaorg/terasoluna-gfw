@@ -26,11 +26,11 @@ import static org.mockito.Mockito.when;
 import java.util.HashMap;
 import java.util.Map;
 
-import jakarta.servlet.http.HttpServletRequest;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 public class CompositeRequestDataValueProcessorTest {
 

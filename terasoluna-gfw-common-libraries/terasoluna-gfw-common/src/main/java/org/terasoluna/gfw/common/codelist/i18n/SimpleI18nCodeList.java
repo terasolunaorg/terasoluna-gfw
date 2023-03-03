@@ -73,7 +73,7 @@ import com.google.common.collect.Tables;
  * </tr>
  * </table>
  * <h3>(Way 1) set by rows</h3>
- * 
+ *
  * <pre>
  * &lt;bean id=&quot;CL_I18N_WEEK&quot;
  *     class=&quot;org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList&quot;&gt;
@@ -105,9 +105,9 @@ import com.google.common.collect.Tables;
  *     &lt;/property&gt;
  * &lt;/bean&gt;
  * </pre>
- * 
+ *
  * <h3>(Way2) set by rows with codelist</h3>
- * 
+ *
  * <pre>
  * &lt;bean id=&quot;CL_I18N_WEEK&quot;
  *     class=&quot;org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList&quot;&gt;
@@ -118,7 +118,7 @@ import com.google.common.collect.Tables;
  *         &lt;/util:map&gt;
  *     &lt;/property&gt;
  * &lt;/bean&gt;
- * 
+ *
  *  &lt;bean id=&quot;CL_WEEK_EN&quot; class=&quot;org.terasoluna.gfw.common.codelist.SimpleMapCodeList&quot;&gt;
  *     &lt;property name=&quot;map&quot;&gt;
  *         &lt;util:map&gt;
@@ -132,7 +132,7 @@ import com.google.common.collect.Tables;
  *         &lt;/util:map&gt;
  *     &lt;/property&gt;
  * &lt;/bean&gt;
- * 
+ *
  * &lt;bean id=&quot;CL_WEEK_JA&quot; class=&quot;org.terasoluna.gfw.common.codelist.SimpleMapCodeList&quot;&gt;
  *     &lt;property name=&quot;map&quot;&gt;
  *         &lt;util:map&gt;
@@ -147,9 +147,9 @@ import com.google.common.collect.Tables;
  *     &lt;/property&gt;
  * &lt;/bean&gt;
  * </pre>
- * 
+ *
  * <h3>(Way3) set by columns</h3>
- * 
+ *
  * <pre>
  * &lt;bean id=&quot;CL_I18N_WEEK&quot;
  *     class=&quot;org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList&quot;&gt;
@@ -201,7 +201,7 @@ import com.google.common.collect.Tables;
  *     &lt;/property&gt;
  * &lt;/bean&gt;
  * </pre>
- * 
+ *
  * <h3>Resolving a locale</h3>
  * <p>
  * This implementation resolve the locale in the following order.

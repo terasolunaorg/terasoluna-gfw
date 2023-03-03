@@ -21,9 +21,6 @@ import static org.mockito.Mockito.mock;
 
 import java.lang.annotation.Annotation;
 
-import jakarta.validation.ConstraintValidatorContext;
-import jakarta.validation.Payload;
-
 import org.junit.Test;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -32,6 +29,8 @@ import org.terasoluna.gfw.common.codelist.ExistInCodeList;
 import org.terasoluna.gfw.common.logback.LogLevelChangeUtil;
 
 import ch.qos.logback.classic.Logger;
+import jakarta.validation.ConstraintValidatorContext;
+import jakarta.validation.Payload;
 
 public class AbstractExistInCodeListValidatorTest {
 

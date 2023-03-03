@@ -28,9 +28,6 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
 
-import jakarta.servlet.jsp.JspTagException;
-import jakarta.servlet.jsp.tagext.TagSupport;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -41,6 +38,9 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.form.TagWriter;
 import org.terasoluna.gfw.common.message.ResultMessage;
 import org.terasoluna.gfw.common.message.ResultMessages;
+
+import jakarta.servlet.jsp.JspTagException;
+import jakarta.servlet.jsp.tagext.TagSupport;
 
 /**
  * Test class for MessagesPanelTag.

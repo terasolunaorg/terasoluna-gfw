@@ -28,11 +28,11 @@ import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-import jakarta.validation.Constraint;
-import jakarta.validation.Payload;
-
 import org.terasoluna.gfw.common.codepoints.ConsistOf.List;
 import org.terasoluna.gfw.common.codepoints.validator.ConsistOfValidator;
+
+import jakarta.validation.Constraint;
+import jakarta.validation.Payload;
 
 /**
  * All code points in the string must be included in any {@link CodePoints} class specified by {@link #value()}.

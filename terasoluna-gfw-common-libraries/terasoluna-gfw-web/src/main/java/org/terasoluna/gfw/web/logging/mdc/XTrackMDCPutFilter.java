@@ -27,7 +27,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * default attribute name is "X-Track". You can change this name by configure. The value of X-Track is retrieved from HTTP
  * Request Header (same attribute name).<br>
  * If the attibute is not set in HTTP Request Header, this filter creates random value as X-Track and use it.
- * 
+ *
  * <pre>
  * <code>
  * &lt;init-param&gt;
@@ -36,7 +36,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * &lt;/init-param&gt;
  * </code>
  * </pre>
- * 
+ *
  * in web.xml
  */
 public class XTrackMDCPutFilter extends AbstractMDCPutFilter {

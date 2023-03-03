@@ -23,16 +23,16 @@ import static org.hamcrest.Matchers.is;
 import java.util.Locale;
 import java.util.Set;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.terasoluna.gfw.common.validator.constraints.ByteMaxTest.ByteMaxTestForm;
 import org.terasoluna.gfw.common.validator.constraints.ByteMinTest.ByteMinTestForm;
 import org.terasoluna.gfw.common.validator.constraints.ByteSizeTest.ByteSizeTestForm;
 import org.terasoluna.gfw.common.validator.constraints.CompareTest.CompareTestForm;
+
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
 
 /**
  * Test class of {@code ContributorValidationMessages_ja.properties}
