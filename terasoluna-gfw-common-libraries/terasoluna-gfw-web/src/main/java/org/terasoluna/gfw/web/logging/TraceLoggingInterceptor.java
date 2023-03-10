@@ -101,9 +101,8 @@ public class TraceLoggingInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request,
             HttpServletResponse response, Object handler) {
-        if (handler instanceof HandlerMethod) {
+        if (handler instanceof HandlerMethod handlerMethod) {
             if (logger.isTraceEnabled()) {
-                HandlerMethod handlerMethod = (HandlerMethod) handler;
                 Method m = handlerMethod.getMethod();
                 logger.trace("[START CONTROLLER] {}.{}({})", new Object[] { m
                         .getDeclaringClass().getSimpleName(), m.getName(),
