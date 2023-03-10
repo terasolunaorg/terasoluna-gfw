@@ -974,7 +974,7 @@ public final class DefaultFullHalf {
                 .pair("\u30fa", "ｦﾞ")
                 .pair("゛", "ﾞ")
                 .pair("゜", "ﾟ")
-                .pair("　", " ")
+                .pair("\u3000", " ")
                 .build());
     // @formatter:on
 }
