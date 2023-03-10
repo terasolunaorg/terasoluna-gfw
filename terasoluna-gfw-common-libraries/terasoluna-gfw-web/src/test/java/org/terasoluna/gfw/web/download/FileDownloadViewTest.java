@@ -190,12 +190,13 @@ public class FileDownloadViewTest {
     }
 
     @Test
-    public void testOutputStreamException() {
+    public void testOutputStreamException() throws IOException {
         // Set Mock Behavior
         response = mock(HttpServletResponse.class);
 
+        when(response.getOutputStream()).thenThrow(new IOException());
+
         assertThrows(IOException.class, () -> {
-            when(response.getOutputStream()).thenThrow(new IOException());
             fileDownloadView.renderMergedOutputModel(model, request, response);
         });
     }
