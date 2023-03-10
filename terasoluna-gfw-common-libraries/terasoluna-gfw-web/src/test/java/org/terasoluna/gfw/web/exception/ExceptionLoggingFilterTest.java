@@ -94,13 +94,14 @@ public class ExceptionLoggingFilterTest {
     }
 
     @Test
-    public void testDoFilter_occur_ioexception() {
+    public void testDoFilter_occur_ioexception() throws IOException, ServletException {
 
         IOException occurException = new IOException("io exception.");
 
+        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
+                mockResponse);
+
         IOException e = assertThrows(IOException.class, () -> {
-            doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
-                    mockResponse);
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
         });
         assertThat(e, is(occurException));
@@ -114,9 +115,10 @@ public class ExceptionLoggingFilterTest {
 
         ServletException occurException = new ServletException("servlet exception.");
 
+        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
+                mockResponse);
+
         ServletException e = assertThrows(ServletException.class, () -> {
-            doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
-                    mockResponse);
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
         });
         assertThat(e, is(occurException));
@@ -172,9 +174,10 @@ public class ExceptionLoggingFilterTest {
 
         IOException occurException = new IOException("io exception.");
 
+        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
+                mockResponse);
+
         IOException e = assertThrows(IOException.class, () -> {
-            doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
-                    mockResponse);
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
         });
         assertThat(e, is(occurException));
