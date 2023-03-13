@@ -103,9 +103,10 @@ public class TransactionTokenTagTest {
 
     /**
      * JspException occurs
+     * @throws JspException
      */
     @Test
-    public void testWriteTagContentTagWriter03() {
+    public void testWriteTagContentTagWriter03() throws JspException {
 
         // setup arguments
         TransactionTokenTag tag = new TransactionTokenTag();
@@ -121,9 +122,10 @@ public class TransactionTokenTagTest {
                 TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
                         .thenReturn(token);
 
+        doThrow(new JspException()).when(tagWriter).startTag(anyString());
+
         // run
         assertThrows(JspException.class, () -> {
-            doThrow(new JspException()).when(tagWriter).startTag(anyString());
             tag.writeTagContent(tagWriter);
         });
     }
