@@ -164,6 +164,6 @@
     <!-- coverall 4.3.0 or previous version does not work on Java 11, see https://github.com/trautonen/coveralls-maven-plugin/issues/112 -->
     <coveralls.skip>true</coveralls.skip>
     <!-- javadoc does not work on Java 11.0.2, see https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=920020 -->
-    <maven.javadoc.skip>true</maven.javadoc.skip>
+    <maven.javadoc.skip>false</maven.javadoc.skip>
   </properties>
 </project>
