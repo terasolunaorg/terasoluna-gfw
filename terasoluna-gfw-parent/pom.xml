@@ -581,7 +581,7 @@
     <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
     <cargo.container.id>tomcat9x</cargo.container.id>
     <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-9/v${cargo.tomcat9.version}/bin/apache-tomcat-${cargo.tomcat9.version}.zip</cargo.container.url>
-    <cargo.tomcat9.version>9.0.70</cargo.tomcat9.version>
+    <cargo.tomcat9.version>9.0.73</cargo.tomcat9.version>
   </properties>
   <profiles>
     <profile>
