@@ -32,6 +32,7 @@ import javax.validation.UnexpectedTypeException;
 import javax.validation.ValidationException;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.terasoluna.gfw.common.validator.constraints.ByteSizeTest.ByteSizeTestForm;
 
@@ -180,9 +181,12 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
     }
 
     /**
-     * not specify min and max. expected valid if input value encoded in UTF-8 is between {@code 0} and {@link Long#MAX_VALUE}
-     * value.
+     * not specify min and max. expected valid if input value encoded in UTF-8 is between {@code 0} and
+     * {@link Integer#MAX_VALUE} value. If the number of digits exceeds the value of Integer.MAX_VALUE, the number of digits
+     * becomes -1 in the internal processing of String#format, and the process of appending blanks to StringBuilder is not
+     * performed, so the function of String#format cannot be fulfilled.
      */
+    @Ignore("Integer.MAX_VALUE causes OutOfMemoryError")
     @Test
     public void testSpecifyNotSpecifyMinAndMax() {
 
@@ -194,7 +198,7 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
         }
 
         {
-            form.setStringProperty(String.format("%" + Long.MAX_VALUE + "d",
+            form.setStringProperty(String.format("%" + Integer.MAX_VALUE + "d",
                     0));
 
             violations = validator.validate(form, NotSpecifyMinAndMax.class);
