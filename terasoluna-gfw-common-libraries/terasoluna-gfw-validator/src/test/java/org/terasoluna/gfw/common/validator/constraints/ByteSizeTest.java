@@ -182,9 +182,9 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
 
     /**
      * not specify min and max. expected valid if input value encoded in UTF-8 is between {@code 0} and
-     * {@link Integer#MAX_VALUE} value. Since the the number of digits in the format string of the argument of String#format is
-     * Long.MAX_VALUE and is larger than Integer.MAX_VALUE, the processing of String#format is interrupted and ends normally.
-     * Therefore, if you set the number of digits to Integer.MAX_VALUE and execute it, you will get an OutOfMemoryError.
+     * {@link Integer#MAX_VALUE} value. If you set the number of digits of the format string of the argument of String#format to
+     * Integer.MAX_VALUE and execute it, OutOfMemoryError will occur due to the problem of the specification of the execution
+     * environment, so the test will be skipped.
      */
     @Ignore("Integer.MAX_VALUE causes OutOfMemoryError")
     @Test
