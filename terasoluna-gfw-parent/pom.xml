@@ -477,7 +477,7 @@
     <org.apache.maven.plugins.maven-install-plugin.version>3.0.1</org.apache.maven.plugins.maven-install-plugin.version>
     <org.apache.maven.plugins.maven-deploy-plugin.version>3.0.0</org.apache.maven.plugins.maven-deploy-plugin.version>
     <org.apache.maven.plugins.maven-site-plugin.version>4.0.0-M3</org.apache.maven.plugins.maven-site-plugin.version>
-    <org.codehaus.cargo.cargo-maven3-plugin.version>1.10.1</org.codehaus.cargo.cargo-maven3-plugin.version>
+    <org.codehaus.cargo.cargo-maven3-plugin.version>1.10.6</org.codehaus.cargo.cargo-maven3-plugin.version>
     <org.apache.maven.plugins.maven-gpg-plugin.version>3.0.1</org.apache.maven.plugins.maven-gpg-plugin.version>
     <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.6.13</org.sonatype.plugins.nexus-staging-maven-plugin.version>
     <!-- == Dependency Versions == -->
