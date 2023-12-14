@@ -484,10 +484,10 @@
     <!-- == TERASOLUNA == -->
     <terasoluna.gfw.version>5.9.0-SNAPSHOT</terasoluna.gfw.version>
     <!-- == Spring Boot == -->
-    <org.springframework.boot.version>3.1.1</org.springframework.boot.version>
+    <org.springframework.boot.version>3.2.0</org.springframework.boot.version>
     <!-- == MyBatis3 == -->
     <org.mybatis.version>3.5.11</org.mybatis.version>
-    <org.mybatis.spring.version>3.0.1</org.mybatis.spring.version>
+    <org.mybatis.spring.version>3.0.3</org.mybatis.spring.version>
     <!-- == MapStrcut== -->
     <mapstruct.version>1.5.3.Final</mapstruct.version>
     <!-- == Lombok == -->
@@ -527,7 +527,7 @@
     <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
     <cargo.container.id>tomcat10x</cargo.container.id>
     <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-10/v${cargo.tomcat10.version}/bin/apache-tomcat-${cargo.tomcat10.version}.zip</cargo.container.url>
-    <cargo.tomcat10.version>10.1.10</cargo.tomcat10.version>
+    <cargo.tomcat10.version>10.1.16</cargo.tomcat10.version>
   </properties>
   <profiles>
     <profile>
