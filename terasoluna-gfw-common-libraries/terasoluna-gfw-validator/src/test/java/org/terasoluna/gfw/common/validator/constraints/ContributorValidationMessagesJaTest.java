@@ -23,6 +23,7 @@ import static org.hamcrest.Matchers.is;
 import java.util.Locale;
 import java.util.Set;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.terasoluna.gfw.common.validator.constraints.ByteMaxTest.ByteMaxTestForm;
@@ -41,10 +42,22 @@ public class ContributorValidationMessagesJaTest {
 
     private static Validator validator;
 
+    private static Locale originalLocale;
+
     @BeforeClass
     public static void beforeClass() {
-        Locale.setDefault(Locale.JAPANESE);
         validator = Validation.buildDefaultValidatorFactory().getValidator();
+    }
+
+    @BeforeClass
+    public static void setLocaleJapanese() {
+        originalLocale = Locale.getDefault();
+        Locale.setDefault(Locale.JAPANESE);
+    }
+
+    @AfterClass
+    public static void setOriginalLocale() {
+        Locale.setDefault(originalLocale);
     }
 
     /**

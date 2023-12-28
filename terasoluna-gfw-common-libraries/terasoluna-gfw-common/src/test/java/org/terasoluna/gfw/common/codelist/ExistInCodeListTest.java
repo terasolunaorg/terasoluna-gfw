@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -35,6 +36,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.terasoluna.gfw.common.codelist.BirthDay.FORMATTED;
 
 import jakarta.inject.Inject;
@@ -53,8 +55,18 @@ public class ExistInCodeListTest {
     @Inject
     CodeService codeService;
 
-    public ExistInCodeListTest() {
+    private Locale originalLocale;
+
+    @Before
+    public void setLocaleEnglish() {
+        ((LocalValidatorFactoryBean)validator).afterPropertiesSet();
+        originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.ENGLISH);
+    }
+
+    @After
+    public void setOriginalLocale() {
+        Locale.setDefault(originalLocale);
     }
 
     @Before

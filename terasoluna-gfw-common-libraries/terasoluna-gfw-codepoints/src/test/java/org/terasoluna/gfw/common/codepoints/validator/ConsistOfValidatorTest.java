@@ -28,6 +28,8 @@ import java.util.Arrays;
 import java.util.Locale;
 import java.util.Set;
 
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import jakarta.validation.ConstraintViolation;
@@ -38,9 +40,21 @@ public class ConsistOfValidatorTest {
 
     private Validator validator;
 
+    private static Locale originalLocale;
+
     public ConsistOfValidatorTest() {
-        Locale.setDefault(Locale.ENGLISH);
         validator = Validation.buildDefaultValidatorFactory().getValidator();
+    }
+
+    @BeforeClass
+    public static void setLocaleEnglish() {
+        originalLocale = Locale.getDefault();
+        Locale.setDefault(Locale.ENGLISH);
+    }
+
+    @AfterClass
+    public static void setOriginalLocale() {
+        Locale.setDefault(originalLocale);
     }
 
     @Test

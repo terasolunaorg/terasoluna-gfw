@@ -68,8 +68,17 @@ public class SimpleReloadableI18nCodeListTest {
 
     JdbcCodeList codeListJapanese;
 
-    public SimpleReloadableI18nCodeListTest() {
+    private Locale originalLocale;
+
+    @Before
+    public void setLocaleUs() {
+        originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.US);
+    }
+
+    @After
+    public void setOriginalLocale() {
+        Locale.setDefault(originalLocale);
     }
 
     @Before
