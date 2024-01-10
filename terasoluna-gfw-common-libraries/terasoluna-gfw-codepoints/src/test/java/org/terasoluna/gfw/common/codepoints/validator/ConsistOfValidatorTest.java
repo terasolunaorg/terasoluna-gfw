@@ -47,13 +47,13 @@ public class ConsistOfValidatorTest {
     }
 
     @BeforeClass
-    public static void setLocaleEnglish() {
+    public static void beforeClass() {
         originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.ENGLISH);
     }
 
     @AfterClass
-    public static void setOriginalLocale() {
+    public static void afterClass() {
         Locale.setDefault(originalLocale);
     }
 

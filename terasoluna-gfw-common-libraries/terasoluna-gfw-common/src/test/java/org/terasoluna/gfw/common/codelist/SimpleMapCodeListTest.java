@@ -27,14 +27,6 @@ import org.junit.Test;
 
 public class SimpleMapCodeListTest {
 
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
     /**
      * check whether the Map returned by asMap is same as the one set through setMap also check whether getCodeListID returns
      * the same value as the one set through setBeanName

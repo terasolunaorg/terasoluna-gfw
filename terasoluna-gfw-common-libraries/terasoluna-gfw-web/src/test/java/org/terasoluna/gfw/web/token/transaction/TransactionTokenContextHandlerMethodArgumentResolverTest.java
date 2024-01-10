@@ -36,14 +36,6 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  */
 public class TransactionTokenContextHandlerMethodArgumentResolverTest {
 
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
     /**
      * case of supportsParameter returns true
      */

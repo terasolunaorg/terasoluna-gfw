@@ -46,17 +46,14 @@ public class ContributorValidationMessagesJaTest {
 
     @BeforeClass
     public static void beforeClass() {
+        originalLocale = Locale.getDefault();
+        Locale.setDefault(Locale.JAPANESE);
+
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
-    @BeforeClass
-    public static void setLocaleJapanese() {
-        originalLocale = Locale.getDefault();
-        Locale.setDefault(Locale.JAPANESE);
-    }
-
     @AfterClass
-    public static void setOriginalLocale() {
+    public static void afterClass() {
         Locale.setDefault(originalLocale);
     }
 

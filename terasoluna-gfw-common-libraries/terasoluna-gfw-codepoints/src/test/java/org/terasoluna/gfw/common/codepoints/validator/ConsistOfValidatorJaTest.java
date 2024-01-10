@@ -44,13 +44,13 @@ public class ConsistOfValidatorJaTest {
     }
 
     @Before
-    public void setLocaleJapanaese() {
+    public void before() {
         originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.JAPANESE);
     }
 
     @After
-    public void setOriginalLocale() {
+    public void after() {
         Locale.setDefault(originalLocale);
     }
 

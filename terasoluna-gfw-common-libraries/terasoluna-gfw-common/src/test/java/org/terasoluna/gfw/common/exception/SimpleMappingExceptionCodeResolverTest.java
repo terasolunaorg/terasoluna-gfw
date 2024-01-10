@@ -38,7 +38,7 @@ public class SimpleMappingExceptionCodeResolverTest {
      * set up.
      */
     @Before
-    public void setUp() {
+    public void before() {
         testTarget = new SimpleMappingExceptionCodeResolver();
     }
 

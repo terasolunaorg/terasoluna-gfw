@@ -67,17 +67,13 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
     private MockHttpServletResponse mockResponse;
 
     @Before
-    public void setUp() {
+    public void before() {
         this.testTarget = new CodeListInterceptor();
         testTarget.setApplicationContext(
                 new StaticApplicationContext(getApplicationContext()));
 
         this.mockRequest = new MockHttpServletRequest();
         this.mockResponse = new MockHttpServletResponse();
-    }
-
-    @After
-    public void tearDown() throws Exception {
     }
 
     /**

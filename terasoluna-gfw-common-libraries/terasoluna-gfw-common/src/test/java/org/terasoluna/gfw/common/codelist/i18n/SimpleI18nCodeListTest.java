@@ -79,20 +79,17 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
     private static Locale originalLocale;
 
     @BeforeClass
-    public static void setUpBeforeClass() {
+    public static void beforeClass() {
         Logger logger = (Logger) LoggerFactory.getLogger(
                 SimpleI18nCodeList.class);
         logger.addAppender(mockAppender);
-    }
 
-    @BeforeClass
-    public static void setLocaleUs() {
         originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.US);
     }
 
     @AfterClass
-    public static void setOriginalLocale() {
+    public static void afterClass() {
         Locale.setDefault(originalLocale);
     }
 

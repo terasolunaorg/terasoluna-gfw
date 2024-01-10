@@ -48,14 +48,6 @@ public class JdbcFixedJodaTimeDateFactoryTest {
     @Autowired
     DataSource dataSource;
 
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
     /**
      * normal case 1. <br>
      * use prepared table.

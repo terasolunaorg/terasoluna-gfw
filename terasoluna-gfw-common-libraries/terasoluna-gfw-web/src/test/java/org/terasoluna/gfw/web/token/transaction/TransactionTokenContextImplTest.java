@@ -25,14 +25,6 @@ import org.terasoluna.gfw.web.token.transaction.TransactionTokenContextImpl.Rese
 
 public class TransactionTokenContextImplTest {
 
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
     @Test
     public void TestTransactionTokenContextImpl01() {
 

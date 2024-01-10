@@ -54,7 +54,7 @@ public class TransactionTokenInterceptorTest {
     MockHttpServletResponse response;
 
     @Before
-    public void setUp() throws Exception {
+    public void before() throws Exception {
 
         // prepare request object
         request = new MockHttpServletRequest();
@@ -70,10 +70,6 @@ public class TransactionTokenInterceptorTest {
 
         // prepare intercepter instance
         interceptor = new TransactionTokenInterceptor();
-    }
-
-    @After
-    public void tearDown() throws Exception {
     }
 
     @Test

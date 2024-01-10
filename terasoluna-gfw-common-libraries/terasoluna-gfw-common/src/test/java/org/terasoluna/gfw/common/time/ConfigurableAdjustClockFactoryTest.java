@@ -35,13 +35,13 @@ public class ConfigurableAdjustClockFactoryTest {
     private Locale originalLocale;
 
     @Before
-    public void setLocaleJapan() {
+    public void before() {
         originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.JAPAN);
     }
 
     @After
-    public void setOriginalLocale() {
+    public void after() {
         Locale.setDefault(originalLocale);
     }
 

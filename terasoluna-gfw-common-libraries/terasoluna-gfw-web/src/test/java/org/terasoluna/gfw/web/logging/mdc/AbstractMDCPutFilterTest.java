@@ -70,7 +70,7 @@ public class AbstractMDCPutFilterTest {
      * setup all test case.
      */
     @Before
-    public void setup() {
+    public void before() {
 
         // create test target.
         this.testTarget = new AbstractMDCPutFilter() {

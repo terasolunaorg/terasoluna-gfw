@@ -45,14 +45,14 @@ public class ExistInCodeListJaTest {
     private Locale originalLocale;
 
     @Before
-    public void setLocaleJapanese() {
-        ((LocalValidatorFactoryBean)validator).afterPropertiesSet();
+    public void before() {
+        ((LocalValidatorFactoryBean) validator).afterPropertiesSet();
         originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.JAPANESE);
     }
 
     @After
-    public void setOriginalLocale() {
+    public void after() {
         Locale.setDefault(originalLocale);
     }
 

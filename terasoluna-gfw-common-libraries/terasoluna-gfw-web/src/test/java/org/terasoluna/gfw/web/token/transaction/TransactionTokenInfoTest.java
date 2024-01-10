@@ -24,14 +24,6 @@ import org.junit.Test;
 
 public class TransactionTokenInfoTest {
 
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
     @Test
     public void TestTransactionTokenInfo01() {
         // setup input parameters
