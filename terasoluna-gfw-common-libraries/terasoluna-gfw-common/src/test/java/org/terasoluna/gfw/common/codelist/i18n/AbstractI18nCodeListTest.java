@@ -23,6 +23,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
 
@@ -31,6 +33,17 @@ import com.google.common.collect.Sets;
 public class AbstractI18nCodeListTest {
 
     private Locale originalLocale;
+
+    @Before
+    public void before() {
+        originalLocale = Locale.getDefault();
+        Locale.setDefault(Locale.ENGLISH);
+    }
+
+    @After
+    public void after() {
+        Locale.setDefault(originalLocale);
+    }
 
     @Test
     public void testAsMap() {
@@ -48,8 +61,6 @@ public class AbstractI18nCodeListTest {
             }
         };
 
-        originalLocale = Locale.getDefault();
-        Locale.setDefault(Locale.ENGLISH);
         assertThat(impl.asMap(), hasEntry("language", Locale.ENGLISH
                 .getLanguage()));
 
@@ -60,7 +71,6 @@ public class AbstractI18nCodeListTest {
         LocaleContextHolder.setLocale(Locale.FRENCH);
         assertThat(impl.asMap(), hasEntry("language", Locale.FRENCH
                 .getLanguage()));
-        Locale.setDefault(originalLocale);
         assertThat(impl.asMap(), hasEntry("language", Locale.FRENCH
                 .getLanguage()));
     }
