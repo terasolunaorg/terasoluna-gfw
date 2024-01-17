@@ -31,6 +31,7 @@ import static org.mockito.Mockito.verify;
 import java.util.Locale;
 import java.util.Map;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.Test.None;
@@ -75,15 +76,21 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
     @SuppressWarnings("unchecked")
     private static Appender<ILoggingEvent> mockAppender = mock(Appender.class);
 
-    public SimpleI18nCodeListTest() {
-        Locale.setDefault(Locale.US);
-    }
+    private static Locale originalLocale;
 
     @BeforeClass
-    public static void setUpBeforeClass() {
+    public static void beforeClass() {
         Logger logger = (Logger) LoggerFactory.getLogger(
                 SimpleI18nCodeList.class);
         logger.addAppender(mockAppender);
+
+        originalLocale = Locale.getDefault();
+        Locale.setDefault(Locale.US);
+    }
+
+    @AfterClass
+    public static void afterClass() {
+        Locale.setDefault(originalLocale);
     }
 
     @Test

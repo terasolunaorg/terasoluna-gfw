@@ -50,7 +50,7 @@ public class HttpSessionEventLoggingListenerTest {
     private Logger logger;
 
     @Before
-    public void setup() throws Exception {
+    public void before() throws Exception {
         mockHttpSession = new MockHttpSession();
         httpSessionEvent = new HttpSessionEvent(mockHttpSession);
         sessionBindingEvent = new HttpSessionBindingEvent(mockHttpSession, "terasoluna", "AA");
@@ -66,7 +66,7 @@ public class HttpSessionEventLoggingListenerTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void after() throws Exception {
         // init log level
         LogLevelChangeUtil.resetLogLevel();
     }

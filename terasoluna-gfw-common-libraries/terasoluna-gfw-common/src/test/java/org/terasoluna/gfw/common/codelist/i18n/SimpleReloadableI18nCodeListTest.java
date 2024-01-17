@@ -68,12 +68,12 @@ public class SimpleReloadableI18nCodeListTest {
 
     JdbcCodeList codeListJapanese;
 
-    public SimpleReloadableI18nCodeListTest() {
-        Locale.setDefault(Locale.US);
-    }
+    private Locale originalLocale;
 
     @Before
-    public void setUp() throws Exception {
+    public void before() throws Exception {
+        originalLocale = Locale.getDefault();
+        Locale.setDefault(Locale.US);
 
         tableInput = HashBasedTable.create();
         for (Entry<Locale, String> locale : locales.entrySet()) {
@@ -127,9 +127,11 @@ public class SimpleReloadableI18nCodeListTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void after() throws Exception {
         jdbcTemplate.getJdbcOperations().execute("DROP TABLE codelist_en");
         jdbcTemplate.getJdbcOperations().execute("DROP TABLE codelist_ja");
+
+        Locale.setDefault(originalLocale);
     }
 
     @Test

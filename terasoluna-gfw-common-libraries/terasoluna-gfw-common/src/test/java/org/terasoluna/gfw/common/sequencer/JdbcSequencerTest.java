@@ -44,7 +44,7 @@ public class JdbcSequencerTest {
     DataSource dataSource;
 
     @Before
-    public void setUp() throws Exception {
+    public void before() throws Exception {
         jdbcTemplate.getJdbcOperations().execute(
                 "CREATE SEQUENCE TEST_SEQ START WITH 1 INCREMENT BY 1");
     }

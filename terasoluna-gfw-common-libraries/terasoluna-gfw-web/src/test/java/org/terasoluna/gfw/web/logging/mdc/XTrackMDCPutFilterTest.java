@@ -33,7 +33,7 @@ public class XTrackMDCPutFilterTest {
     private MockFilterConfig mockFilterConfig;
 
     @Before
-    public void setUp() throws Exception {
+    public void before() throws Exception {
         xTrackMDCPutFilter = new XTrackMDCPutFilter();
         mockFilterConfig = new MockFilterConfig();
     }

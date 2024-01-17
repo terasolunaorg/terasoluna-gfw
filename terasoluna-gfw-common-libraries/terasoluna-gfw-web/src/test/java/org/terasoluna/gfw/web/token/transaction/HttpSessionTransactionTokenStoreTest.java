@@ -73,7 +73,7 @@ public class HttpSessionTransactionTokenStoreTest {
     private Appender<ILoggingEvent> mockAppender = mock(Appender.class);
 
     @Before
-    public void setUp() throws Exception {
+    public void before() throws Exception {
         // prepare request object
         request = new MockHttpServletRequest();
 

@@ -32,7 +32,7 @@ public class TransactionTokenInfoStoreTest {
     TransactionTokenInfoStore store;
 
     @Before
-    public void setup() {
+    public void before() {
         store = new TransactionTokenInfoStore();
     }
 

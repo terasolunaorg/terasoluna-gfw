@@ -30,7 +30,7 @@ public class RequestUtilsTest {
     MockHttpServletRequest request;
 
     @Before
-    public void setUp() throws Exception {
+    public void before() throws Exception {
         request = new MockHttpServletRequest();
     }
 

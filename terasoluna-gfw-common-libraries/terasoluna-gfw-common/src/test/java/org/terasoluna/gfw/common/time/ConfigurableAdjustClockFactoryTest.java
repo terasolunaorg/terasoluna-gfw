@@ -24,14 +24,25 @@ import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Locale;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 public class ConfigurableAdjustClockFactoryTest {
 
     ClockFactory clockFactory = new ConfigurableAdjustClockFactory(30, ChronoUnit.DAYS);
 
-    public ConfigurableAdjustClockFactoryTest() {
+    private Locale originalLocale;
+
+    @Before
+    public void before() {
+        originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.JAPAN);
+    }
+
+    @After
+    public void after() {
+        Locale.setDefault(originalLocale);
     }
 
     @Test

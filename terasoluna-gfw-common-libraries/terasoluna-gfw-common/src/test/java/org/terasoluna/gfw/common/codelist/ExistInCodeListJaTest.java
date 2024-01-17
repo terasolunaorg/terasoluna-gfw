@@ -23,11 +23,13 @@ import static org.hamcrest.Matchers.hasProperty;
 import java.util.Locale;
 import java.util.Set;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolation;
@@ -40,12 +42,18 @@ public class ExistInCodeListJaTest {
     @Inject
     Validator validator;
 
-    public ExistInCodeListJaTest() {
+    private Locale originalLocale;
+
+    @Before
+    public void before() {
+        ((LocalValidatorFactoryBean) validator).afterPropertiesSet();
+        originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.JAPANESE);
     }
 
-    @Before
-    public void setUp() throws Exception {
+    @After
+    public void after() {
+        Locale.setDefault(originalLocale);
     }
 
     @Test

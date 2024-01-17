@@ -47,13 +47,13 @@ public class UserIdMDCPutFilterTest {
     MockHttpServletResponse response;
 
     @Before
-    public void setUp() throws Exception {
+    public void before() throws Exception {
         request = new MockHttpServletRequest();
         response = new MockHttpServletResponse();
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void after() throws Exception {
         SecurityContextHolder.clearContext();
     }
 

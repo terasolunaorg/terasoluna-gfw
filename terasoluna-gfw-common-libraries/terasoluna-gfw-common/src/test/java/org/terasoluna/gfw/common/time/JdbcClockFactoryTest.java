@@ -52,7 +52,7 @@ public class JdbcClockFactoryTest {
     ClockFactory clockFactory;
 
     @Before
-    public void setup() {
+    public void before() {
         // crate table
         jdbcTemplate.getJdbcOperations().execute(
                 "CREATE TABLE system_date(now timestamp NOT NULL)");
@@ -64,7 +64,7 @@ public class JdbcClockFactoryTest {
     }
 
     @After
-    public void tearDown() {
+    public void after() {
         // drop table
         jdbcTemplate.getJdbcOperations().execute("DROP TABLE system_date");
     }

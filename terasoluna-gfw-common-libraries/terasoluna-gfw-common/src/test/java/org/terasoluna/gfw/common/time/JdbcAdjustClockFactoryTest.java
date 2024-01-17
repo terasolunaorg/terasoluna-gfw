@@ -50,7 +50,7 @@ public class JdbcAdjustClockFactoryTest {
     ClockFactory clockFactory;
 
     @Before
-    public void setup() {
+    public void before() {
         // crate table
         jdbcTemplate.getJdbcOperations().execute(
                 "CREATE TABLE system_adjusted_date(diff long)");
@@ -62,7 +62,7 @@ public class JdbcAdjustClockFactoryTest {
     }
 
     @After
-    public void tearDown() {
+    public void after() {
         // drop table
         jdbcTemplate.getJdbcOperations().execute(
                 "DROP TABLE system_adjusted_date");

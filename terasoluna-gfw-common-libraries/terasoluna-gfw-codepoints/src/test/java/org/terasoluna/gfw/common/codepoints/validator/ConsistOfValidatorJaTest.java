@@ -25,6 +25,8 @@ import static org.hamcrest.Matchers.hasToString;
 import java.util.Locale;
 import java.util.Set;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 import jakarta.validation.ConstraintViolation;
@@ -35,9 +37,21 @@ public class ConsistOfValidatorJaTest {
 
     private Validator validator;
 
+    private Locale originalLocale;
+
     public ConsistOfValidatorJaTest() {
-        Locale.setDefault(Locale.JAPANESE);
         validator = Validation.buildDefaultValidatorFactory().getValidator();
+    }
+
+    @Before
+    public void before() {
+        originalLocale = Locale.getDefault();
+        Locale.setDefault(Locale.JAPANESE);
+    }
+
+    @After
+    public void after() {
+        Locale.setDefault(originalLocale);
     }
 
     @Test

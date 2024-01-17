@@ -76,12 +76,8 @@ public class TraceLoggingInterceptorTest {
     @SuppressWarnings("unchecked")
     private Appender<ILoggingEvent> mockAppender = mock(Appender.class);
 
-    @BeforeClass
-    public static void setUpBeforeClass() throws Exception {
-    }
-
     @Before
-    public void setUp() throws Exception {
+    public void before() throws Exception {
         // prepare request object
         request = new MockHttpServletRequest();
 
@@ -99,11 +95,6 @@ public class TraceLoggingInterceptorTest {
 
         when(mockAppender.getName()).thenReturn("MOCK");
         logger.addAppender(mockAppender);
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
     }
 
     /**

@@ -24,6 +24,7 @@ import static org.hamcrest.Matchers.is;
 import java.util.Locale;
 import java.util.Set;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 import jakarta.validation.ConstraintViolation;
@@ -46,10 +47,19 @@ abstract public class AbstractConstraintsTest<F> {
 
     protected Set<ConstraintViolation<F>> violations;
 
+    private static Locale originalLocale;
+
     @BeforeClass
     public static void beforeClass() {
-        Locale.setDefault(Locale.ENGLISH);
+        originalLocale = Locale.getDefault();
+        Locale.setDefault(Locale.US);
+
         validator = Validation.buildDefaultValidatorFactory().getValidator();
+    }
+
+    @AfterClass
+    public static void afterClass() {
+        Locale.setDefault(originalLocale);
     }
 
     /**
