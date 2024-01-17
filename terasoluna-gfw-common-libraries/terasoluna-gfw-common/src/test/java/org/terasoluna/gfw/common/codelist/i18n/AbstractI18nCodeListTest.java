@@ -37,7 +37,6 @@ public class AbstractI18nCodeListTest {
     @Before
     public void before() {
         originalLocale = Locale.getDefault();
-        Locale.setDefault(Locale.ENGLISH);
     }
 
     @After
@@ -61,6 +60,7 @@ public class AbstractI18nCodeListTest {
             }
         };
 
+        Locale.setDefault(Locale.ENGLISH);
         assertThat(impl.asMap(), hasEntry("language", Locale.ENGLISH
                 .getLanguage()));
 
@@ -71,6 +71,8 @@ public class AbstractI18nCodeListTest {
         LocaleContextHolder.setLocale(Locale.FRENCH);
         assertThat(impl.asMap(), hasEntry("language", Locale.FRENCH
                 .getLanguage()));
+
+        Locale.setDefault(Locale.JAPANESE);
         assertThat(impl.asMap(), hasEntry("language", Locale.FRENCH
                 .getLanguage()));
     }
