@@ -29,15 +29,29 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
 import javax.validation.Validator;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
 public class ConsistOfValidatorJaTest {
 
     private Validator validator;
 
+    private Locale originalLocale;
+
     public ConsistOfValidatorJaTest() {
-        Locale.setDefault(Locale.JAPANESE);
         validator = Validation.buildDefaultValidatorFactory().getValidator();
+    }
+
+    @Before
+    public void before() {
+        originalLocale = Locale.getDefault();
+        Locale.setDefault(Locale.JAPANESE);
+    }
+
+    @After
+    public void after() {
+        Locale.setDefault(originalLocale);
     }
 
     @Test

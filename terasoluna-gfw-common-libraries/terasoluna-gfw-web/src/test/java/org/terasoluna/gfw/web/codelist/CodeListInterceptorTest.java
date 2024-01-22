@@ -29,7 +29,6 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -67,17 +66,13 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
     private MockHttpServletResponse mockResponse;
 
     @Before
-    public void setUp() {
+    public void before() {
         this.testTarget = new CodeListInterceptor();
         testTarget.setApplicationContext(
                 new StaticApplicationContext(getApplicationContext()));
 
         this.mockRequest = new MockHttpServletRequest();
         this.mockResponse = new MockHttpServletResponse();
-    }
-
-    @After
-    public void tearDown() throws Exception {
     }
 
     /**

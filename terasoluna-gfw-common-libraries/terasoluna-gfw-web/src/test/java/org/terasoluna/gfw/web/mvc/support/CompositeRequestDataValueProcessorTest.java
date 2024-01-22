@@ -42,7 +42,7 @@ public class CompositeRequestDataValueProcessorTest {
             RequestDataValueProcessorAdaptor.class);
 
     @Before
-    public void setup() {
+    public void before() {
 
         compositeRequestDataValueProcessor = new CompositeRequestDataValueProcessor(requestDataValueProcessor);
 
