@@ -76,7 +76,7 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
      * @throws Exception
      */
     @Before
-    public void setup() throws Exception {
+    public void before() throws Exception {
 
         // create test target.
         this.testTarget = new HandlerExceptionResolverLoggingInterceptor();

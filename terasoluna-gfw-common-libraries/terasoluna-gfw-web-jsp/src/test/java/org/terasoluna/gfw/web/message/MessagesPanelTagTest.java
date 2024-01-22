@@ -90,7 +90,7 @@ public class MessagesPanelTagTest {
      */
     @SuppressWarnings("serial")
     @Before
-    public void setUp() throws Exception {
+    public void before() throws Exception {
         this.writer = new StringWriter();
         this.pageContext = createPageContext();
         this.tag = new MessagesPanelTag() {

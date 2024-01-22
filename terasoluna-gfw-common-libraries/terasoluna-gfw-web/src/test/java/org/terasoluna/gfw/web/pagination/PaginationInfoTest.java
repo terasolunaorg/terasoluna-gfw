@@ -48,7 +48,7 @@ public class PaginationInfoTest {
     private final String queryTmpl = "value=test&page={page}&size={size}";
 
     @Before
-    public void setup() {
+    public void before() {
 
         // Note:
         // The page property of PageRequest is 0 start.

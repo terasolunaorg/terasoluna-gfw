@@ -23,12 +23,26 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
 
 import com.google.common.collect.Sets;
 
 public class AbstractI18nCodeListTest {
+
+    private Locale originalLocale;
+
+    @Before
+    public void before() {
+        originalLocale = Locale.getDefault();
+    }
+
+    @After
+    public void after() {
+        Locale.setDefault(originalLocale);
+    }
 
     @Test
     public void testAsMap() {

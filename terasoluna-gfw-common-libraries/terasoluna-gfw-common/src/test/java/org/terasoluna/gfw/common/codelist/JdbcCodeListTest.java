@@ -55,7 +55,7 @@ public class JdbcCodeListTest {
     private Map<String, String> mapInput = new HashMap<String, String>();
 
     @Before
-    public void setUp() throws Exception {
+    public void before() throws Exception {
         jdbcTemplate.getJdbcOperations().execute(
                 "CREATE TABLE codelist(code_id character varying(3) NOT NULL, code_name character varying(50),CONSTRAINT pk_code_id PRIMARY KEY (code_id))");
         for (int i = 0; i < 10; i++) {
@@ -71,7 +71,7 @@ public class JdbcCodeListTest {
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void after() throws Exception {
         jdbcTemplate.getJdbcOperations().execute("DROP TABLE codelist");
     }
 

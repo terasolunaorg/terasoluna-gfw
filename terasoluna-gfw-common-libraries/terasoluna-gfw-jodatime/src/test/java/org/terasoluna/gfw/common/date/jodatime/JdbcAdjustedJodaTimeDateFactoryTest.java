@@ -48,14 +48,14 @@ public class JdbcAdjustedJodaTimeDateFactoryTest {
     DataSource dataSource;
 
     @Before
-    public void setUp() throws Exception {
+    public void before() throws Exception {
         // crate table
         jdbcTemplate.getJdbcOperations().execute(
                 "CREATE TABLE system_adjusted_date(diff long)");
     }
 
     @After
-    public void tearDown() throws Exception {
+    public void after() throws Exception {
         // drop table
         jdbcTemplate.getJdbcOperations().execute(
                 "DROP TABLE system_adjusted_date");

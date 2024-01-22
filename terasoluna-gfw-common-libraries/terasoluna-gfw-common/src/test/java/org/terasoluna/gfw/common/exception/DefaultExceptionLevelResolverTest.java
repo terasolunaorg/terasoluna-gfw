@@ -26,7 +26,7 @@ public class DefaultExceptionLevelResolverTest {
     private DefaultExceptionLevelResolver testTarget;
 
     @Before
-    public void setUp() throws Exception {
+    public void before() throws Exception {
         this.testTarget = new DefaultExceptionLevelResolver(new SimpleMappingExceptionCodeResolver());
     }
 

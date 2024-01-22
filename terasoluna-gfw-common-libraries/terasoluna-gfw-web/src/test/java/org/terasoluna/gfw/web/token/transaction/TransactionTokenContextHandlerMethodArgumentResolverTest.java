@@ -21,8 +21,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.core.MethodParameter;
@@ -35,14 +33,6 @@ import org.springframework.web.method.support.ModelAndViewContainer;
  * Test class for TransactionTokenContextHandlerMethodArgumentResolver
  */
 public class TransactionTokenContextHandlerMethodArgumentResolverTest {
-
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
 
     /**
      * case of supportsParameter returns true

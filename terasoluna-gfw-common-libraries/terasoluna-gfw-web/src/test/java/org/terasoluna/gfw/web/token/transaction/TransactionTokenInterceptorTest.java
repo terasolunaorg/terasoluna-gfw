@@ -23,7 +23,6 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Test.None;
@@ -54,7 +53,7 @@ public class TransactionTokenInterceptorTest {
     MockHttpServletResponse response;
 
     @Before
-    public void setUp() throws Exception {
+    public void before() throws Exception {
 
         // prepare request object
         request = new MockHttpServletRequest();
@@ -70,10 +69,6 @@ public class TransactionTokenInterceptorTest {
 
         // prepare intercepter instance
         interceptor = new TransactionTokenInterceptor();
-    }
-
-    @After
-    public void tearDown() throws Exception {
     }
 
     @Test

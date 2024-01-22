@@ -49,7 +49,7 @@ public class ExceptionLoggerTest {
     private Logger monitoringLogger;
 
     @Before
-    public void setUp() throws Exception {
+    public void before() throws Exception {
         this.testTarget = new ExceptionLogger();
         testTarget.afterPropertiesSet();
 

@@ -26,7 +26,6 @@ import java.util.regex.Pattern;
 
 import javax.servlet.jsp.tagext.TagSupport;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Test.None;
@@ -66,7 +65,7 @@ public class PaginationTagTest {
 
     @SuppressWarnings({ "serial", "unchecked" })
     @Before
-    public void setUp() throws Exception {
+    public void before() throws Exception {
         this.writer = new StringWriter();
         this.pageContext = createPageContext();
         this.tag = new PaginationTag() {
@@ -77,10 +76,6 @@ public class PaginationTagTest {
         };
         tag.setPageContext(pageContext);
         this.page = mock(Page.class);
-    }
-
-    @After
-    public void tearDown() throws Exception {
     }
 
     @Test

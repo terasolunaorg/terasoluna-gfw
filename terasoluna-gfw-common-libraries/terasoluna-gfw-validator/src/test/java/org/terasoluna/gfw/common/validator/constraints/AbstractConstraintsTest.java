@@ -29,6 +29,7 @@ import javax.validation.Validation;
 import javax.validation.ValidationException;
 import javax.validation.Validator;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 /**
@@ -46,10 +47,19 @@ abstract public class AbstractConstraintsTest<F> {
 
     protected Set<ConstraintViolation<F>> violations;
 
+    private static Locale originalLocale;
+
     @BeforeClass
     public static void beforeClass() {
+        originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.ENGLISH);
+
         validator = Validation.buildDefaultValidatorFactory().getValidator();
+    }
+
+    @AfterClass
+    public static void afterClass() {
+        Locale.setDefault(originalLocale);
     }
 
     /**

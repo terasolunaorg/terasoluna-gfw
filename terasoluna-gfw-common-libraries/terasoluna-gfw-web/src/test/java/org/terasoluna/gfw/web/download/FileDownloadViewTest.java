@@ -103,7 +103,7 @@ public class FileDownloadViewTest {
     }
 
     @Before
-    public void setup() throws FileNotFoundException {
+    public void before() throws FileNotFoundException {
 
         inputStream = this.getClass().getResourceAsStream("test.txt");
 

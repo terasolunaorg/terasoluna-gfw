@@ -81,7 +81,7 @@ public class ResultMessagesLoggingInterceptorTest extends
      * @throws Exception
      */
     @Before
-    public void setup() throws Exception {
+    public void before() throws Exception {
         mockMethodInvocation = mock(MethodInvocation.class);
         mockExceptionLogger = mock(ExceptionLogger.class);
         testTarget.setExceptionLogger(mockExceptionLogger);

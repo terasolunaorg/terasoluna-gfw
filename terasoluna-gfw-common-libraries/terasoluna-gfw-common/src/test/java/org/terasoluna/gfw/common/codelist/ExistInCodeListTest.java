@@ -34,6 +34,7 @@ import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -41,6 +42,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.terasoluna.gfw.common.codelist.BirthDay.FORMATTED;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -53,12 +55,18 @@ public class ExistInCodeListTest {
     @Inject
     CodeService codeService;
 
-    public ExistInCodeListTest() {
+    private Locale originalLocale;
+
+    @Before
+    public void before() {
+        ((LocalValidatorFactoryBean) validator).afterPropertiesSet();
+        originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.ENGLISH);
     }
 
-    @Before
-    public void setUp() throws Exception {
+    @After
+    public void after() {
+        Locale.setDefault(originalLocale);
     }
 
     @Test
