@@ -24,7 +24,6 @@ import static org.mockito.Mockito.when;
 import java.io.StringWriter;
 import java.util.regex.Pattern;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Test.None;

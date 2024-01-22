@@ -52,7 +52,7 @@ abstract public class AbstractConstraintsTest<F> {
     @BeforeClass
     public static void beforeClass() {
         originalLocale = Locale.getDefault();
-        Locale.setDefault(Locale.US);
+        Locale.setDefault(Locale.ENGLISH);
 
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
