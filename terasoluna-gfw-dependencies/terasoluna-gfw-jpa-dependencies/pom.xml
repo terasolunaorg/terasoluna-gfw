@@ -26,12 +26,23 @@
     <dependency>
       <groupId>org.hibernate.orm</groupId>
       <artifactId>hibernate-core</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.glassfish.jaxb</groupId>
+          <artifactId>jaxb-runtime</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>jakarta.activation</groupId>
       <artifactId>jakarta.activation-api</artifactId>
     </dependency>
     <!-- == End Hibernate == -->
+
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-impl</artifactId>
+    </dependency>
     <!-- == End JPA == -->
   </dependencies>
 </project>
