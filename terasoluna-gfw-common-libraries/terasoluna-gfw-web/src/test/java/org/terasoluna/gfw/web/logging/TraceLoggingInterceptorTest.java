@@ -32,7 +32,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.LoggerFactory;
@@ -195,7 +194,6 @@ public class TraceLoggingInterceptorTest {
     /**
      * Normal Log Output
      */
-    @Ignore
     @Test
     public void testPostHandle_NormalLogOutput_ViewNotNull() {
         // parameter create
@@ -223,7 +221,6 @@ public class TraceLoggingInterceptorTest {
     /**
      * Normal Log Output
      */
-    @Ignore
     @Test
     public void testPostHandle_NormalLogOutput_ModelNull() {
         // parameter create
@@ -298,11 +295,10 @@ public class TraceLoggingInterceptorTest {
     }
 
     /**
-     * not started
+     * not set startTime
      */
-    @Ignore
     @Test
-    public void testPostHandle_NotStarted() {
+    public void testPostHandle_NotSetStartTime() {
         // parameter create
         HandlerMethod paramHandler = new HandlerMethod(controller, methods.get(
                 "createForm"));
@@ -314,7 +310,7 @@ public class TraceLoggingInterceptorTest {
         String expectedLogStr = "TraceLoggingInterceptorController.createForm()->";
 
         // assert
-        verifyLogging(expectedLogStr, ImmutableList.of(Level.TRACE), 1);
+        verifyLogging(expectedLogStr, ImmutableList.of(Level.WARN), 1);
     }
 
     /**
@@ -333,51 +329,6 @@ public class TraceLoggingInterceptorTest {
 
         // assert
         verifyLogging(expectedLogStr, ImmutableList.of(Level.TRACE), 0);
-    }
-
-    /**
-     * not handler Normal log output
-     */
-    @Ignore
-    @Test
-    public void testPostHandle_NotHandler_Normal() {
-        // parameter create
-        long startTime = System.nanoTime();
-        request.setAttribute(TraceLoggingInterceptor.class.getName()
-                + ".startTime", startTime);
-        Object paramHandler = new Object();
-
-        // run
-        interceptor.postHandle(request, response, paramHandler, model);
-
-        // expected
-        String expectedLogStr = "[HANDLING TIME   ]->";
-
-        // assert
-        verifyLogging(expectedLogStr, ImmutableList.of(Level.TRACE), 1);
-    }
-
-    /**
-     * not handler warn log output
-     */
-    @Ignore
-    @Test
-    public void testPostHandle_NotHandler_Warn() {
-        // parameter create
-        long startTime = System.nanoTime();
-        request.setAttribute(TraceLoggingInterceptor.class.getName()
-                + ".startTime", startTime);
-        Object paramHandler = new Object();
-
-        // run
-        interceptor.setWarnHandlingNanos(1L);
-        interceptor.postHandle(request, response, paramHandler, model);
-
-        // expected
-        String expectedLogStr = "[HANDLING TIME   ]->";
-
-        // assert
-        verifyLogging(expectedLogStr, ImmutableList.of(Level.WARN), 1);
     }
 
     @Test
