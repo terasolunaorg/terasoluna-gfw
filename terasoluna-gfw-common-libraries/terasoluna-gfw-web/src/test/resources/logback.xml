@@ -7,59 +7,34 @@
   </appender>
 
   <!-- Library Loggers -->
-  <logger name="org.terasoluna">
-    <level value="${ut.log.level:-trace}" />
-  </logger>
+  <logger name="org.terasoluna" level="${ut.log.level:-trace}" />
 
   <!-- 3rdparty Loggers -->
-  <logger name="org.springframework.core">
-    <level value="warn" />
-  </logger>
+  <logger name="org.springframework.core" level="warn" />
 
-  <logger name="org.springframework.beans">
-    <level value="warn" />
-  </logger>
+  <logger name="org.springframework.beans" level="warn" />
 
-  <logger name="org.springframework.context">
-    <level value="warn" />
-  </logger>
+  <logger name="org.springframework.context" level="warn" />
 
-  <logger name="org.springframework.web">
-    <level value="warn" />
-  </logger>
+  <logger name="org.springframework.web" level="warn" />
 
-  <logger name="org.springframework.web.servlet">
-    <level value="info" />
-  </logger>
+  <logger name="org.springframework.web.servlet" level="info" />
 
-  <logger name="org.springframework.security.core.userdetails">
-    <level value="debug" />
-  </logger>
+  <logger name="org.springframework.security.core.userdetails" level="debug" />
 
   <!-- for hibernate3 -->
-  <logger name="org.hibernate.transaction">
-    <level value="debug" />
-  </logger>
+  <logger name="org.hibernate.transaction" level="debug" />
 
   <!-- for hibernate4 -->
-  <logger name="org.hibernate.engine.transaction">
-    <level value="debug" />
-  </logger>
+  <logger name="org.hibernate.engine.transaction" level="debug" />
 
-  <logger name="org.hibernate.cfg.annotations.QueryBinder">
-    <level value="debug" />
-  </logger>
+  <logger name="org.hibernate.cfg.annotations.QueryBinder" level="debug" />
 
-  <logger name="org.hibernate.tool">
-    <level value="debug" />
-  </logger>
+  <logger name="org.hibernate.tool" level="debug" />
 
-  <logger name="jdbc.sqltiming">
-    <level value="debug" />
-  </logger>
+  <logger name="jdbc.sqltiming" level="debug" />
 
-  <root>
-    <level value="warn" />
+  <root level="warn">
     <appender-ref ref="STDOUT" />
   </root>
 </configuration>
