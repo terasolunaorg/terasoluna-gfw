@@ -484,7 +484,7 @@
     <!-- == TERASOLUNA == -->
     <terasoluna.gfw.version>5.10.0-SNAPSHOT</terasoluna.gfw.version>
     <!-- == Spring Boot == -->
-    <org.springframework.boot.version>3.2.2</org.springframework.boot.version>
+    <org.springframework.boot.version>3.3.0-RC1</org.springframework.boot.version>
     <!-- == MyBatis3 == -->
     <org.mybatis.version>3.5.15</org.mybatis.version>
     <org.mybatis.spring.version>3.0.3</org.mybatis.spring.version>
