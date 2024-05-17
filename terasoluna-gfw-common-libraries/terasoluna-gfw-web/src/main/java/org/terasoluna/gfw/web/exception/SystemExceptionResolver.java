@@ -15,6 +15,7 @@
  */
 package org.terasoluna.gfw.web.exception;
 
+import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,6 +53,22 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
      * Exception code resolution object.
      */
     private ExceptionCodeResolver exceptionCodeResolver = new SimpleMappingExceptionCodeResolver();
+
+    /**
+     * Classes to be excluded
+     */
+    @Nullable
+    private Class<?>[] excludedClasses;
+
+    /**
+     * Whether to check for nested classes
+     */
+    private boolean checkNestedClasses = false;
+
+    /**
+     * Whether to check the instance type
+     */
+    private boolean checkInstanceType = false;
 
     /**
      * Sets the value for exception Code Attribute name.
@@ -107,6 +124,41 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     }
 
     /**
+     * Sets classes to be excluded.
+     * <p>
+     * Set one or more classes to be excluded from the exception mappings. Excluded classes are checked first and if one of them
+     * equals the actual class, the class will remain unresolved.
+     * </p>
+     * @param excludedErrors One or more excluded error types.
+     */
+    public void setExcludedErrors(Class<?>... excludedClasses) {
+        this.excludedClasses = excludedClasses;
+    }
+
+    /**
+     * Sets whether to check for nested classes.
+     * <p>
+     * If set to true, nested classes are also subject to exclusion settings.
+     * </p>
+     * @param checkNestedErrors Whether to check for nested classes.
+     */
+    public void setCheckNestedErrors(boolean checkNestedClasses) {
+        this.checkNestedClasses = checkNestedClasses;
+    }
+
+    /**
+     * Sets whether to check the instance type.
+     * <p>
+     * If set to true, the instance type is compared when checking for exclusion settings. Therefore, subclasses of errors that
+     * are set to be excluded are also excluded.
+     * </p>
+     * @param checkInstanceType Whether to check the instance type.
+     */
+    public void setCheckInstanceType(boolean checkInstanceType) {
+        this.checkInstanceType = checkInstanceType;
+    }
+
+    /**
      * Performs exception handling.
      * <p>
      * Decides the View and resolves the Model necessary for display of View.
@@ -122,10 +174,34 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     protected ModelAndView doResolveException(HttpServletRequest request,
             HttpServletResponse response, Object handler, Exception ex) {
 
+        if (excludedClasses != null) {
+            for (Class<?> excludedError : this.excludedClasses) {
+                if ((checkInstanceType && excludedError.isInstance(ex))
+                        || (!checkInstanceType && excludedError.equals(ex
+                                .getClass()))) {
+                    return null;
+                }
+            }
+        }
+
         ModelAndView modelAndView = super.doResolveException(request, response,
                 handler, ex);
         if (modelAndView == null) {
             return modelAndView;
+        }
+
+        if (checkNestedClasses && excludedClasses != null) {
+            Throwable nestedEx = ex.getCause();
+            while (nestedEx != null) {
+                for (Class<?> excludedError : this.excludedClasses) {
+                    if ((checkInstanceType && excludedError.isInstance(
+                            nestedEx)) || (!checkInstanceType && excludedError
+                                    .equals(nestedEx.getClass()))) {
+                        return null;
+                    }
+                }
+                nestedEx = nestedEx.getCause();
+            }
         }
 
         setExceptionInfo(ex, request, response);
