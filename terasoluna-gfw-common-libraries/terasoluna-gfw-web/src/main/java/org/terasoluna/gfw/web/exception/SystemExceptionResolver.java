@@ -54,11 +54,8 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
      */
     private ExceptionCodeResolver exceptionCodeResolver = new SimpleMappingExceptionCodeResolver();
 
-    /**
-     * Classes to be excluded
-     */
     @Nullable
-    private Class<?>[] excludedClasses;
+    private Class<?>[] excludedExceptions;
 
     /**
      * Whether to check for nested classes
@@ -129,10 +126,12 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
      * Set one or more classes to be excluded from the exception mappings. Excluded classes are checked first and if one of them
      * equals the actual class, the class will remain unresolved.
      * </p>
-     * @param excludedErrors One or more excluded error types.
+     * @param excludedExceptions One or more excluded class types.
      */
-    public void setExcludedErrors(Class<?>... excludedClasses) {
-        this.excludedClasses = excludedClasses;
+    @Override
+    public void setExcludedExceptions(Class<?>... excludedExceptions) {
+        this.excludedExceptions = excludedExceptions;
+        super.setExcludedExceptions(excludedExceptions);
     }
 
     /**
@@ -174,34 +173,36 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     protected ModelAndView doResolveException(HttpServletRequest request,
             HttpServletResponse response, Object handler, Exception ex) {
 
-        if (excludedClasses != null) {
-            for (Class<?> excludedError : this.excludedClasses) {
-                if ((checkInstanceType && excludedError.isInstance(ex))
-                        || (!checkInstanceType && excludedError.equals(ex
+        if (this.excludedExceptions != null) {
+            for (Class<?> excludedError : this.excludedExceptions) {
+                if ((this.checkInstanceType && excludedError.isInstance(ex))
+                        || (!this.checkInstanceType && excludedError.equals(ex
                                 .getClass()))) {
                     return null;
                 }
             }
+
+            if (this.checkNestedClasses) {
+                Throwable nestedEx = ex.getCause();
+                while (nestedEx != null) {
+                    for (Class<?> excludedError : this.excludedExceptions) {
+                        if ((this.checkInstanceType && excludedError.isInstance(
+                                nestedEx)) || (!this.checkInstanceType
+                                        && excludedError.equals(nestedEx
+                                                .getClass()))) {
+                            return null;
+                        }
+                    }
+                    nestedEx = nestedEx.getCause();
+                }
+            }
+
         }
 
         ModelAndView modelAndView = super.doResolveException(request, response,
                 handler, ex);
         if (modelAndView == null) {
             return modelAndView;
-        }
-
-        if (checkNestedClasses && excludedClasses != null) {
-            Throwable nestedEx = ex.getCause();
-            while (nestedEx != null) {
-                for (Class<?> excludedError : this.excludedClasses) {
-                    if ((checkInstanceType && excludedError.isInstance(
-                            nestedEx)) || (!checkInstanceType && excludedError
-                                    .equals(nestedEx.getClass()))) {
-                        return null;
-                    }
-                }
-                nestedEx = nestedEx.getCause();
-            }
         }
 
         setExceptionInfo(ex, request, response);
