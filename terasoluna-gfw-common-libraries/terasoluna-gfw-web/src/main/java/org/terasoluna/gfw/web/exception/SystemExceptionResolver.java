@@ -169,35 +169,10 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
      * @see org.springframework.web.servlet.handler.SimpleMappingExceptionResolver#doResolveException(javax.servlet.http.HttpServletRequest,
      *      javax.servlet.http.HttpServletResponse, java.lang.Object, java.lang.Exception)
      */
+    @Nullable
     @Override
     protected ModelAndView doResolveException(HttpServletRequest request,
             HttpServletResponse response, Object handler, Exception ex) {
-
-        if (this.excludedExceptions != null) {
-            for (Class<?> excludedError : this.excludedExceptions) {
-                if ((this.checkInstanceType && excludedError.isInstance(ex))
-                        || (!this.checkInstanceType && excludedError.equals(ex
-                                .getClass()))) {
-                    return null;
-                }
-            }
-
-            if (this.checkNestedClasses) {
-                Throwable nestedEx = ex.getCause();
-                while (nestedEx != null) {
-                    for (Class<?> excludedError : this.excludedExceptions) {
-                        if ((this.checkInstanceType && excludedError.isInstance(
-                                nestedEx)) || (!this.checkInstanceType
-                                        && excludedError.equals(nestedEx
-                                                .getClass()))) {
-                            return null;
-                        }
-                    }
-                    nestedEx = nestedEx.getCause();
-                }
-            }
-
-        }
 
         ModelAndView modelAndView = super.doResolveException(request, response,
                 handler, ex);
@@ -209,6 +184,42 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
 
         return modelAndView;
 
+    }
+
+    @Nullable
+    @Override
+    protected String determineViewName(Exception ex,
+            HttpServletRequest request) {
+        // String viewName = null;
+        if (this.excludedExceptions != null) {
+            if (checkExcludedExceptions(ex)) {
+                return null;
+            }
+
+            if (this.checkNestedClasses) {
+                Throwable nestedEx = ex.getCause();
+                while (nestedEx != null) {
+                    if (checkExcludedExceptions(nestedEx)) {
+                        return null;
+                    }
+                    nestedEx = nestedEx.getCause();
+                }
+            }
+        }
+
+        return super.determineViewName(ex, request);
+
+    }
+
+    protected boolean checkExcludedExceptions(Throwable ex) {
+        for (Class<?> excludedException : this.excludedExceptions) {
+            if ((this.checkInstanceType && excludedException.isInstance(ex))
+                    || (!this.checkInstanceType && excludedException.equals(ex
+                            .getClass()))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
