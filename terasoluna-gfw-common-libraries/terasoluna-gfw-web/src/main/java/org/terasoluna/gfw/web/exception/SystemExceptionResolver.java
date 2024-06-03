@@ -54,6 +54,9 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
      */
     private ExceptionCodeResolver exceptionCodeResolver = new SimpleMappingExceptionCodeResolver();
 
+    /**
+     * Classes to be excluded
+     */
     @Nullable
     private Class<?>[] excludedExceptions;
 
@@ -131,7 +134,8 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     @Override
     public void setExcludedExceptions(Class<?>... excludedExceptions) {
         this.excludedExceptions = excludedExceptions;
-        super.setExcludedExceptions(excludedExceptions);
+        // The process of using excludedExceptions in the super class is overridden, so there is no need to call the setter of the super.
+        //super.setExcludedExceptions(excludedExceptions);
     }
 
     /**
@@ -141,7 +145,7 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
      * </p>
      * @param checkNestedErrors Whether to check for nested classes.
      */
-    public void setCheckNestedErrors(boolean checkNestedClasses) {
+    public void setCheckNestedClasses(boolean checkNestedClasses) {
         this.checkNestedClasses = checkNestedClasses;
     }
 
@@ -186,11 +190,21 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
 
     }
 
+    /**
+     * Check {@link #setExcludedExceptions(Class[]) "excludedExecptions"} and call the parent class determineViewName.
+     * <p>
+     * When {@code checkNestedClasses} is true, check if nested classes are also eligible for exclusion.
+     * <p>
+     * @param ex Exception
+     * @param request {@link HttpServletRequest}
+     * @see org.springframework.web.servlet.handler.SimpleMappingExceptionResolver#determineViewName(Exception ex,
+     *      HttpServletRequest request)
+     */
     @Nullable
     @Override
     protected String determineViewName(Exception ex,
             HttpServletRequest request) {
-        // String viewName = null;
+
         if (this.excludedExceptions != null) {
             if (checkExcludedExceptions(ex)) {
                 return null;
@@ -211,7 +225,15 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
 
     }
 
-    protected boolean checkExcludedExceptions(Throwable ex) {
+    /**
+     * Checks if the specified class is an excluded class.
+     * <p>
+     * When {@code checkInstanceType} is true, the given class is also excluded if it is a subclass of
+     * {@code excludedExceptions}.
+     * <p>
+     * @param ex Exception
+     */
+    private boolean checkExcludedExceptions(Throwable ex) {
         for (Class<?> excludedException : this.excludedExceptions) {
             if ((this.checkInstanceType && excludedException.isInstance(ex))
                     || (!this.checkInstanceType && excludedException.equals(ex
