@@ -41,6 +41,8 @@ import org.terasoluna.gfw.common.exception.SimpleMappingExceptionCodeResolver;
 import org.terasoluna.gfw.common.exception.SystemException;
 import org.terasoluna.gfw.common.message.ResultMessages;
 
+import jakarta.servlet.ServletException;
+
 public class SystemExceptionResolverTest {
     private SystemExceptionResolver testTarget;
 
@@ -382,6 +384,62 @@ public class SystemExceptionResolverTest {
         assertThat(resultMessages, is(flashMap.get(
                 ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME)));
 
+    }
+
+    @Test
+    public void testDetermineViewName_setCheckInstanceType_true() throws Exception {
+
+        // do setup.
+        ResultMessages resultMessages = ResultMessages.error().add("code001");
+        BusinessException occurException = new BusinessException(resultMessages);
+
+        // setup exception resolver.
+        // setup default.
+        testTarget.setExcludedExceptions(Exception.class);
+        testTarget.setDefaultErrorView("defaultErrorView");
+
+        // do test.
+        String ViewName = testTarget.determineViewName(occurException,
+                mockRequest);
+
+        // do assert.
+        assertThat(ViewName, is("defaultErrorView"));
+
+        testTarget.setCheckInstanceType(true);
+
+        // do test.
+        ViewName = testTarget.determineViewName(occurException, mockRequest);
+
+        // do assert.
+        assertThat(ViewName, is(nullValue()));
+    }
+
+    @Test
+    public void testDetermineViewName_setCheckNestedClasses_true() throws Exception {
+
+        // do setup.
+        AssertionError occurError = new AssertionError();
+        ServletException wrappingException = new ServletException(occurError);
+
+        // setup exception resolver.
+        // setup default.
+        testTarget.setExcludedExceptions(AssertionError.class);
+        testTarget.setDefaultErrorView("defaultErrorView");
+
+        // do test.
+        String ViewName = testTarget.determineViewName(wrappingException,
+                mockRequest);
+
+        // do assert.
+        assertThat(ViewName, is("defaultErrorView"));
+
+        testTarget.setCheckNestedClasses(true);
+
+        // do test.
+        ViewName = testTarget.determineViewName(wrappingException, mockRequest);
+
+        // do assert.
+        assertThat(ViewName, is(nullValue()));
     }
 
     public class TestAjaxController {
