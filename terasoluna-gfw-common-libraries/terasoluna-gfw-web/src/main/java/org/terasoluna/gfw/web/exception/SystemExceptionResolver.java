@@ -61,14 +61,14 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     private Class<?>[] excludedExceptions;
 
     /**
-     * Whether to check for nested classes
+     * Whether to check for cause when checking for excludedExceptions.
      */
-    private boolean checkNestedClasses = false;
+    private boolean checkCause = false;
 
     /**
-     * Whether to check the instance type
+     * Whether to check subclasses when checking for excludedExceptions.
      */
-    private boolean checkInstanceType = false;
+    private boolean checkSubClass = false;
 
     /**
      * Sets the value for exception Code Attribute name.
@@ -134,31 +134,32 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     @Override
     public void setExcludedExceptions(Class<?>... excludedExceptions) {
         this.excludedExceptions = excludedExceptions;
-        // The process of using excludedExceptions in the super class is overridden, so there is no need to call the setter of the super.
-        //super.setExcludedExceptions(excludedExceptions);
+        // The process of using excludedExceptions in the super class is overridden, so there is no need to call the setter of
+        // the super.
+        // super.setExcludedExceptions(excludedExceptions);
     }
 
     /**
-     * Sets whether to check for nested classes.
+     * Sets whether to check for cause when checking for excludedExceptions.
      * <p>
-     * If set to true, nested classes are also subject to exclusion settings.
+     * If set to true, causes are also subject to exclusion settings.
      * </p>
-     * @param checkNestedErrors Whether to check for nested classes.
+     * @param checkCause Whether to check for cause.
      */
-    public void setCheckNestedClasses(boolean checkNestedClasses) {
-        this.checkNestedClasses = checkNestedClasses;
+    public void setCheckCause(boolean checkCause) {
+        this.checkCause = checkCause;
     }
 
     /**
-     * Sets whether to check the instance type.
+     * Sets whether to check subclasses when checking for excludedExceptions.
      * <p>
      * If set to true, the instance type is compared when checking for exclusion settings. Therefore, subclasses of errors that
      * are set to be excluded are also excluded.
      * </p>
-     * @param checkInstanceType Whether to check the instance type.
+     * @param checkSubClass Whether to check subclasses.
      */
-    public void setCheckInstanceType(boolean checkInstanceType) {
-        this.checkInstanceType = checkInstanceType;
+    public void setCheckSubClass(boolean checkSubClass) {
+        this.checkSubClass = checkSubClass;
     }
 
     /**
@@ -193,7 +194,7 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     /**
      * Check {@link #setExcludedExceptions(Class[]) "excludedExecptions"} and call the parent class determineViewName.
      * <p>
-     * When {@code checkNestedClasses} is true, check if nested classes are also eligible for exclusion.
+     * When {@code checkCause} is true, check if causes are also eligible for exclusion.
      * <p>
      * @param ex Exception
      * @param request {@link HttpServletRequest}
@@ -210,13 +211,13 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
                 return null;
             }
 
-            if (this.checkNestedClasses) {
-                Throwable nestedEx = ex.getCause();
-                while (nestedEx != null) {
-                    if (checkExcludedExceptions(nestedEx)) {
+            if (this.checkCause) {
+                Throwable cause = ex.getCause();
+                while (cause != null) {
+                    if (checkExcludedExceptions(cause)) {
                         return null;
                     }
-                    nestedEx = nestedEx.getCause();
+                    cause = cause.getCause();
                 }
             }
         }
@@ -235,8 +236,8 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
      */
     private boolean checkExcludedExceptions(Throwable ex) {
         for (Class<?> excludedException : this.excludedExceptions) {
-            if ((this.checkInstanceType && excludedException.isInstance(ex))
-                    || (!this.checkInstanceType && excludedException.equals(ex
+            if ((this.checkSubClass && excludedException.isInstance(ex))
+                    || (!this.checkSubClass && excludedException.equals(ex
                             .getClass()))) {
                 return true;
             }
