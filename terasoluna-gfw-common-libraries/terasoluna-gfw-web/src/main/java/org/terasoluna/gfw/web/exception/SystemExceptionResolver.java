@@ -15,6 +15,7 @@
  */
 package org.terasoluna.gfw.web.exception;
 
+import org.springframework.lang.Nullable;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.FlashMap;
 import org.springframework.web.servlet.ModelAndView;
@@ -52,6 +53,22 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
      * Exception code resolution object.
      */
     private ExceptionCodeResolver exceptionCodeResolver = new SimpleMappingExceptionCodeResolver();
+
+    /**
+     * Classes to be excluded
+     */
+    @Nullable
+    private Class<?>[] excludedExceptions;
+
+    /**
+     * Whether to check for cause when checking for excludedExceptions.
+     */
+    private boolean checkCause = false;
+
+    /**
+     * Whether to check subclasses when checking for excludedExceptions.
+     */
+    private boolean checkSubClass = false;
 
     /**
      * Sets the value for exception Code Attribute name.
@@ -107,6 +124,45 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     }
 
     /**
+     * Sets classes to be excluded.
+     * <p>
+     * Set one or more classes to be excluded from the exception mappings. Excluded classes are checked first and if one of them
+     * equals the actual class, the class will remain unresolved.
+     * </p>
+     * @param excludedExceptions One or more excluded class types.
+     */
+    @Override
+    public void setExcludedExceptions(Class<?>... excludedExceptions) {
+        this.excludedExceptions = excludedExceptions;
+        // The process of using excludedExceptions in the super class is overridden, so there is no need to call the setter of
+        // the super.
+        // super.setExcludedExceptions(excludedExceptions);
+    }
+
+    /**
+     * Sets whether to check for cause when checking for excludedExceptions.
+     * <p>
+     * If set to true, causes are also subject to exclusion settings.
+     * </p>
+     * @param checkCause Whether to check for cause.
+     */
+    public void setCheckCause(boolean checkCause) {
+        this.checkCause = checkCause;
+    }
+
+    /**
+     * Sets whether to check subclasses when checking for excludedExceptions.
+     * <p>
+     * If set to true, the instance type is compared when checking for exclusion settings. Therefore, subclasses of errors that
+     * are set to be excluded are also excluded.
+     * </p>
+     * @param checkSubClass Whether to check subclasses.
+     */
+    public void setCheckSubClass(boolean checkSubClass) {
+        this.checkSubClass = checkSubClass;
+    }
+
+    /**
      * Performs exception handling.
      * <p>
      * Decides the View and resolves the Model necessary for display of View.
@@ -118,6 +174,7 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
      * @see org.springframework.web.servlet.handler.SimpleMappingExceptionResolver#doResolveException(javax.servlet.http.HttpServletRequest,
      *      javax.servlet.http.HttpServletResponse, java.lang.Object, java.lang.Exception)
      */
+    @Nullable
     @Override
     protected ModelAndView doResolveException(HttpServletRequest request,
             HttpServletResponse response, Object handler, Exception ex) {
@@ -132,6 +189,60 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
 
         return modelAndView;
 
+    }
+
+    /**
+     * Check {@link #setExcludedExceptions(Class[]) "excludedExecptions"} and call the parent class determineViewName.
+     * <p>
+     * When {@code checkCause} is true, check if causes are also eligible for exclusion.
+     * <p>
+     * @param ex Exception
+     * @param request {@link HttpServletRequest}
+     * @see org.springframework.web.servlet.handler.SimpleMappingExceptionResolver#determineViewName(Exception ex,
+     *      HttpServletRequest request)
+     */
+    @Nullable
+    @Override
+    protected String determineViewName(Exception ex,
+            HttpServletRequest request) {
+
+        if (this.excludedExceptions != null) {
+            if (checkExcludedExceptions(ex)) {
+                return null;
+            }
+
+            if (this.checkCause) {
+                Throwable cause = ex.getCause();
+                while (cause != null) {
+                    if (checkExcludedExceptions(cause)) {
+                        return null;
+                    }
+                    cause = cause.getCause();
+                }
+            }
+        }
+
+        return super.determineViewName(ex, request);
+
+    }
+
+    /**
+     * Checks if the specified class is an excluded class.
+     * <p>
+     * When {@code checkInstanceType} is true, the given class is also excluded if it is a subclass of
+     * {@code excludedExceptions}.
+     * <p>
+     * @param ex Exception
+     */
+    private boolean checkExcludedExceptions(Throwable ex) {
+        for (Class<?> excludedException : this.excludedExceptions) {
+            if ((this.checkSubClass && excludedException.isInstance(ex))
+                    || (!this.checkSubClass && excludedException.equals(ex
+                            .getClass()))) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
