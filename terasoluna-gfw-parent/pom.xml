@@ -527,7 +527,7 @@
     <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
     <cargo.container.id>tomcat10x</cargo.container.id>
     <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-10/v${cargo.tomcat10.version}/bin/apache-tomcat-${cargo.tomcat10.version}.zip</cargo.container.url>
-    <cargo.tomcat10.version>10.1.18</cargo.tomcat10.version>
+    <cargo.tomcat10.version>10.1.25</cargo.tomcat10.version>
   </properties>
   <profiles>
     <profile>
