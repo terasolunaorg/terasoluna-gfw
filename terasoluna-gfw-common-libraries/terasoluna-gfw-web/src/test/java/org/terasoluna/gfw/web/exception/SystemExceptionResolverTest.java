@@ -442,6 +442,35 @@ public class SystemExceptionResolverTest {
         assertThat(ViewName, is(nullValue()));
     }
 
+    @Test
+    public void testDetermineViewName_setCheckCause_setCheckSubClass_true() throws Exception {
+
+        // do setup.
+        AssertionError occurError = new AssertionError();
+        ServletException wrappingException = new ServletException(occurError);
+
+        // setup exception resolver.
+        // setup default.
+        testTarget.setExcludedExceptions(Error.class);
+        testTarget.setDefaultErrorView("defaultErrorView");
+
+        // do test.
+        String ViewName = testTarget.determineViewName(wrappingException,
+                mockRequest);
+
+        // do assert.
+        assertThat(ViewName, is("defaultErrorView"));
+
+        testTarget.setCheckCause(true);
+        testTarget.setCheckSubClass(true);
+
+        // do test.
+        ViewName = testTarget.determineViewName(wrappingException, mockRequest);
+
+        // do assert.
+        assertThat(ViewName, is(nullValue()));
+    }
+
     public class TestAjaxController {
         public void method1(String arg) {
 
