@@ -26,6 +26,8 @@ import static org.hamcrest.Matchers.hasToString;
 import java.util.Enumeration;
 import java.util.Locale;
 
+import javax.servlet.ServletException;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -40,8 +42,6 @@ import org.terasoluna.gfw.common.exception.BusinessException;
 import org.terasoluna.gfw.common.exception.SimpleMappingExceptionCodeResolver;
 import org.terasoluna.gfw.common.exception.SystemException;
 import org.terasoluna.gfw.common.message.ResultMessages;
-
-import jakarta.servlet.ServletException;
 
 public class SystemExceptionResolverTest {
     private SystemExceptionResolver testTarget;
