@@ -26,6 +26,8 @@ import static org.hamcrest.Matchers.hasToString;
 import java.util.Enumeration;
 import java.util.Locale;
 
+import javax.servlet.ServletException;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -382,6 +384,91 @@ public class SystemExceptionResolverTest {
         assertThat(resultMessages, is(flashMap.get(
                 ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME)));
 
+    }
+
+    @Test
+    public void testDetermineViewName_setCheckCause_true() throws Exception {
+
+        // do setup.
+        AssertionError occurError = new AssertionError();
+        ServletException wrappingException = new ServletException(occurError);
+
+        // setup exception resolver.
+        // setup default.
+        testTarget.setExcludedExceptions(AssertionError.class);
+        testTarget.setDefaultErrorView("defaultErrorView");
+
+        // do test.
+        String ViewName = testTarget.determineViewName(wrappingException,
+                mockRequest);
+
+        // do assert.
+        assertThat(ViewName, is("defaultErrorView"));
+
+        testTarget.setCheckCause(true);
+
+        // do test.
+        ViewName = testTarget.determineViewName(wrappingException, mockRequest);
+
+        // do assert.
+        assertThat(ViewName, is(nullValue()));
+    }
+
+    @Test
+    public void testDetermineViewName_setSubClass_true() throws Exception {
+
+        // do setup.
+        ResultMessages resultMessages = ResultMessages.error().add("code001");
+        BusinessException occurException = new BusinessException(resultMessages);
+
+        // setup exception resolver.
+        // setup default.
+        testTarget.setExcludedExceptions(Exception.class);
+        testTarget.setDefaultErrorView("defaultErrorView");
+
+        // do test.
+        String ViewName = testTarget.determineViewName(occurException,
+                mockRequest);
+
+        // do assert.
+        assertThat(ViewName, is("defaultErrorView"));
+
+        testTarget.setCheckSubClass(true);
+
+        // do test.
+        ViewName = testTarget.determineViewName(occurException, mockRequest);
+
+        // do assert.
+        assertThat(ViewName, is(nullValue()));
+    }
+
+    @Test
+    public void testDetermineViewName_setCheckCause_setCheckSubClass_true() throws Exception {
+
+        // do setup.
+        AssertionError occurError = new AssertionError();
+        ServletException wrappingException = new ServletException(occurError);
+
+        // setup exception resolver.
+        // setup default.
+        testTarget.setExcludedExceptions(Error.class);
+        testTarget.setDefaultErrorView("defaultErrorView");
+
+        // do test.
+        String ViewName = testTarget.determineViewName(wrappingException,
+                mockRequest);
+
+        // do assert.
+        assertThat(ViewName, is("defaultErrorView"));
+
+        testTarget.setCheckCause(true);
+        testTarget.setCheckSubClass(true);
+
+        // do test.
+        ViewName = testTarget.determineViewName(wrappingException, mockRequest);
+
+        // do assert.
+        assertThat(ViewName, is(nullValue()));
     }
 
     public class TestAjaxController {
