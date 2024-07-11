@@ -27,7 +27,8 @@ import org.springframework.util.StringUtils;
 /**
  * Class that outputs the exception information to the log.
  * <p>
- * Creates a log message using specified exception and uses {@link org.slf4j.Logger} to output the log.<br>
+ * Creates a log message using specified exception and uses {@link org.slf4j.Logger} to output the
+ * log.<br>
  * Actual destination of log output varies depending on the log definition of log output library.
  * </p>
  * <p>
@@ -89,7 +90,8 @@ public class ExceptionLogger implements InitializingBean {
     /**
      * Logger for each log level.
      */
-    private final Map<ExceptionLevel, LogLevelWrappingLogger> exceptionLevelLoggers = new ConcurrentHashMap<ExceptionLevel, LogLevelWrappingLogger>();
+    private final Map<ExceptionLevel, LogLevelWrappingLogger> exceptionLevelLoggers =
+            new ConcurrentHashMap<ExceptionLevel, LogLevelWrappingLogger>();
 
     /**
      * Logger that outputs log at INFO log level.
@@ -129,8 +131,8 @@ public class ExceptionLogger implements InitializingBean {
     /**
      * Message formatter for log output.
      */
-    private String logMessageFormat = String.format("[%s] %s",
-            PLACEHOLDER_OF_EXCEPTION_CODE, PLACEHOLDER_OF_EXCEPTION_MESSAGE);
+    private String logMessageFormat = String.format("[%s] %s", PLACEHOLDER_OF_EXCEPTION_CODE,
+            PLACEHOLDER_OF_EXCEPTION_MESSAGE);
 
     /**
      * Default exception code in case it is not specified.
@@ -173,8 +175,7 @@ public class ExceptionLogger implements InitializingBean {
      */
     public ExceptionLogger(String name) {
         this.applicationLogger = LoggerFactory.getLogger(name);
-        this.monitoringLogger = LoggerFactory.getLogger(name
-                + MONITORING_LOG_LOGGER_SUFFIX);
+        this.monitoringLogger = LoggerFactory.getLogger(name + MONITORING_LOG_LOGGER_SUFFIX);
         this.infoLogger = new InfoLogger();
         this.warnLogger = new WarnLogger();
         this.errorLogger = new ErrorLogger();
@@ -187,30 +188,31 @@ public class ExceptionLogger implements InitializingBean {
      * </p>
      * @param exceptionCodeResolver exception code resolution object
      */
-    public void setExceptionCodeResolver(
-            ExceptionCodeResolver exceptionCodeResolver) {
+    public void setExceptionCodeResolver(ExceptionCodeResolver exceptionCodeResolver) {
         this.exceptionCodeResolver = exceptionCodeResolver;
     }
 
     /**
      * set the resolution object for exception level.
      * <p>
-     * If the exception level resolution object is not set, exception level is not output to the log.
+     * If the exception level resolution object is not set, exception level is not output to the
+     * log.
      * </p>
      * @param exceptionLevelResolver exception level resolution object.
      */
-    public void setExceptionLevelResolver(
-            ExceptionLevelResolver exceptionLevelResolver) {
+    public void setExceptionLevelResolver(ExceptionLevelResolver exceptionLevelResolver) {
         this.exceptionLevelResolver = exceptionLevelResolver;
     }
 
     /**
      * set the log format.
      * <p>
-     * It is possible to specify the output position of the exception message and exception code in log format. <br>
-     * The position can specified using "{0}" for exception code and "{1}" for exception message.<br>
-     * "{0}" and "{1}" is must be specified. if changed validation rule of logMessageFormat, please override
-     * {@link #validateLogMessageFormat(String)} method.
+     * It is possible to specify the output position of the exception message and exception code in
+     * log format. <br>
+     * The position can specified using "{0}" for exception code and "{1}" for exception
+     * message.<br>
+     * "{0}" and "{1}" is must be specified. if changed validation rule of logMessageFormat, please
+     * override {@link #validateLogMessageFormat(String)} method.
      * </p>
      * @param logMessageFormat log format.
      */
@@ -248,7 +250,8 @@ public class ExceptionLogger implements InitializingBean {
     /**
      * Initializes the exception logger.
      * <p>
-     * If exception resolution object is not set, use {@link org.terasoluna.gfw.common.exception.DefaultExceptionLevelResolver}.
+     * If exception resolution object is not set, use
+     * {@link org.terasoluna.gfw.common.exception.DefaultExceptionLevelResolver}.
      * </p>
      * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
      */
@@ -317,15 +320,14 @@ public class ExceptionLogger implements InitializingBean {
     /**
      * validate a logMessageFormat.
      * <p>
-     * logMessageFormat must have placeholder("{0}" and "{1}"). "{0}" is replaced with exception code. "{1}" is replaced with
-     * exception message.
+     * logMessageFormat must have placeholder("{0}" and "{1}"). "{0}" is replaced with exception
+     * code. "{1}" is replaced with exception message.
      * </p>
      * @param logMessageFormat Message formatter for log output.
      */
     protected void validateLogMessageFormat(String logMessageFormat) {
-        if (logMessageFormat == null || !logMessageFormat.contains(
-                PLACEHOLDER_OF_EXCEPTION_CODE) || !logMessageFormat.contains(
-                        PLACEHOLDER_OF_EXCEPTION_MESSAGE)) {
+        if (logMessageFormat == null || !logMessageFormat.contains(PLACEHOLDER_OF_EXCEPTION_CODE)
+                || !logMessageFormat.contains(PLACEHOLDER_OF_EXCEPTION_MESSAGE)) {
             String message = "logMessageFormat must have placeholder({0} and {1})."
                     + " {0} is replaced with exception code."
                     + " {1} is replaced with exception message. current logMessageFormat is \""
@@ -375,8 +377,7 @@ public class ExceptionLogger implements InitializingBean {
      * @param exceptionMessage exception message
      * @return message ready for log output
      */
-    protected String formatLogMessage(String exceptionCode,
-            String exceptionMessage) {
+    protected String formatLogMessage(String exceptionCode, String exceptionMessage) {
 
         String bindingExceptionCode = exceptionCode;
         String bindingExceptionMessage = exceptionMessage;
@@ -387,8 +388,8 @@ public class ExceptionLogger implements InitializingBean {
             bindingExceptionMessage = defaultMessage;
         }
 
-        String message = MessageFormat.format(logMessageFormat,
-                bindingExceptionCode, bindingExceptionMessage);
+        String message = MessageFormat.format(logMessageFormat, bindingExceptionCode,
+                bindingExceptionMessage);
         if (trimLogMessage) {
             message = message.trim();
         }
@@ -468,14 +469,14 @@ public class ExceptionLogger implements InitializingBean {
          */
         @Override
         public boolean isEnabled() {
-            return monitoringLogger.isInfoEnabled() || applicationLogger
-                    .isInfoEnabled();
+            return monitoringLogger.isInfoEnabled() || applicationLogger.isInfoEnabled();
         }
 
         /**
          * Logs messages of Info level.
          * <p>
-         * Logs messages of Info level in Monitoring log and Application log if Info logging in these loggers are enabled.
+         * Logs messages of Info level in Monitoring log and Application log if Info logging in
+         * these loggers are enabled.
          * </p>
          * @see org.terasoluna.gfw.common.exception.ExceptionLogger.LogLevelWrappingLogger#log(java.lang.String,
          *      java.lang.Exception)
@@ -502,14 +503,14 @@ public class ExceptionLogger implements InitializingBean {
          */
         @Override
         public boolean isEnabled() {
-            return monitoringLogger.isWarnEnabled() || applicationLogger
-                    .isWarnEnabled();
+            return monitoringLogger.isWarnEnabled() || applicationLogger.isWarnEnabled();
         }
 
         /**
          * Logs messages of Warn level.
          * <p>
-         * Logs messages of Warn level in Monitoring log and Application log if Warn logging in these loggers are enabled.
+         * Logs messages of Warn level in Monitoring log and Application log if Warn logging in
+         * these loggers are enabled.
          * </p>
          * @see org.terasoluna.gfw.common.exception.ExceptionLogger.LogLevelWrappingLogger#log(java.lang.String,
          *      java.lang.Exception)
@@ -536,14 +537,14 @@ public class ExceptionLogger implements InitializingBean {
          */
         @Override
         public boolean isEnabled() {
-            return monitoringLogger.isErrorEnabled() || applicationLogger
-                    .isErrorEnabled();
+            return monitoringLogger.isErrorEnabled() || applicationLogger.isErrorEnabled();
         }
 
         /**
          * Logs messages of Error level.
          * <p>
-         * Logs messages of Error level in Monitoring log and Application log if error logging in these loggers are enabled.
+         * Logs messages of Error level in Monitoring log and Application log if error logging in
+         * these loggers are enabled.
          * </p>
          * @see org.terasoluna.gfw.common.exception.ExceptionLogger.LogLevelWrappingLogger#log(java.lang.String,
          *      java.lang.Exception)

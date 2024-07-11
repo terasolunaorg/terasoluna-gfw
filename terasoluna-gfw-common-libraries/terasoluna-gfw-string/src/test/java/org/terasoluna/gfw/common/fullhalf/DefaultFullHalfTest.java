@@ -28,8 +28,7 @@ public class DefaultFullHalfTest {
     @Test
     public void testDefaultFullHalf() throws Exception {
         // set up
-        Constructor<DefaultFullHalf> constructor = DefaultFullHalf.class
-                .getDeclaredConstructor();
+        Constructor<DefaultFullHalf> constructor = DefaultFullHalf.class.getDeclaredConstructor();
         assertThat(constructor.canAccess(null), is(false));
         constructor.setAccessible(true);
 

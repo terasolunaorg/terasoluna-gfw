@@ -29,14 +29,13 @@ import jakarta.validation.ConstraintValidatorContext;
 /**
  * Abstract validation implementation class for {@link ExistInCodeList} custom annotation.
  * <p>
- * Validates whether the value of field for which the custom annotation is used, is a valid code existing in the
- * {@link CodeList} specified as a parameter to the {@link ExistInCodeList} annotation.
+ * Validates whether the value of field for which the custom annotation is used, is a valid code
+ * existing in the {@link CodeList} specified as a parameter to the {@link ExistInCodeList}
+ * annotation.
  * </p>
  */
-public abstract class AbstractExistInCodeListValidator<T> extends
-                                                      ApplicationObjectSupport
-                                                      implements
-                                                      ConstraintValidator<ExistInCodeList, T> {
+public abstract class AbstractExistInCodeListValidator<T> extends ApplicationObjectSupport
+        implements ConstraintValidator<ExistInCodeList, T> {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -59,11 +58,10 @@ public abstract class AbstractExistInCodeListValidator<T> extends
      */
     @Override
     public void initialize(ExistInCodeList codeConstraint) {
-        this.codeList = getApplicationContext().getBean(codeConstraint
-                .codeListId(), CodeList.class);
+        this.codeList =
+                getApplicationContext().getBean(codeConstraint.codeListId(), CodeList.class);
         if (this.codeList instanceof NumberRangeCodeList) {
-            this.valueFormat = ((NumberRangeCodeList) this.codeList)
-                    .getValueFormat();
+            this.valueFormat = ((NumberRangeCodeList) this.codeList).getValueFormat();
         }
     }
 
@@ -81,16 +79,14 @@ public abstract class AbstractExistInCodeListValidator<T> extends
      * @return if valid value, return true.
      */
     @Override
-    public boolean isValid(T value,
-            ConstraintValidatorContext constraintContext) {
+    public boolean isValid(T value, ConstraintValidatorContext constraintContext) {
         String code = getCode(value);
 
         if (!StringUtils.hasLength(code)) {
             return true;
         }
         if (logger.isTraceEnabled()) {
-            logger.trace("check if {} exists in {}", code, codeList
-                    .getCodeListId());
+            logger.trace("check if {} exists in {}", code, codeList.getCodeListId());
         }
         return codeList.asMap().containsKey(code);
     }

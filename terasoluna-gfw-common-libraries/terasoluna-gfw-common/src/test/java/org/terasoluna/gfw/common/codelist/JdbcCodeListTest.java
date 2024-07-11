@@ -41,7 +41,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ReflectionUtils;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:test-context.xml" })
+@ContextConfiguration(locations = {"classpath:test-context.xml"})
 @Transactional
 @Rollback
 // Changed by SPR-13277
@@ -63,10 +63,8 @@ public class JdbcCodeListTest {
             map.put("code_id", String.format("%03d", i));
             map.put("code_name", String.format("label%03d", i));
             jdbcTemplate.update(
-                    "INSERT INTO codelist (code_id, code_name) VALUES (:code_id, :code_name)",
-                    map);
-            mapInput.put(String.format("%03d", i), String.format("label%03d",
-                    i));
+                    "INSERT INTO codelist (code_id, code_name) VALUES (:code_id, :code_name)", map);
+            mapInput.put(String.format("%03d", i), String.format("label%03d", i));
         }
     }
 
@@ -109,8 +107,7 @@ public class JdbcCodeListTest {
         jdbcCodeList.setDataSource(dataSource);
         jdbcCodeList.setLabelColumn("code_name");
         jdbcCodeList.setValueColumn("code_id");
-        jdbcCodeList.setQuerySql(
-                "Select code_id, code_name_temp from codelist");
+        jdbcCodeList.setQuerySql("Select code_id, code_name_temp from codelist");
 
         jdbcCodeList.retrieveMap();
 
@@ -211,16 +208,14 @@ public class JdbcCodeListTest {
 
         Field f = ReflectionUtils.findField(JdbcCodeList.class, "exposedMap");
         ReflectionUtils.makeAccessible(f);
-        Map<String, String> exposedMapFirstFetch = (Map<String, String>) f.get(
-                jdbcCodeList);
+        Map<String, String> exposedMapFirstFetch = (Map<String, String>) f.get(jdbcCodeList);
 
         // assert
         assertThat(exposedMapFirstFetch, is(nullValue()));
 
         jdbcCodeList.afterPropertiesSet();
 
-        Map<String, String> exposedMapSecondFetch = (Map<String, String>) f.get(
-                jdbcCodeList);
+        Map<String, String> exposedMapSecondFetch = (Map<String, String>) f.get(jdbcCodeList);
         // assert
         assertThat(exposedMapSecondFetch, is(mapInput));
     }
@@ -246,8 +241,7 @@ public class JdbcCodeListTest {
 
         Field f = ReflectionUtils.findField(JdbcCodeList.class, "exposedMap");
         ReflectionUtils.makeAccessible(f);
-        Map<String, String> exposedMapFirstFetch = (Map<String, String>) f.get(
-                jdbcCodeList);
+        Map<String, String> exposedMapFirstFetch = (Map<String, String>) f.get(jdbcCodeList);
 
         // assert
         assertThat(exposedMapFirstFetch, is(nullValue()));

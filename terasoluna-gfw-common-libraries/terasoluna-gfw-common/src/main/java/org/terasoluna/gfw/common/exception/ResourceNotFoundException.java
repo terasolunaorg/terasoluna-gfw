@@ -21,8 +21,7 @@ import org.terasoluna.gfw.common.message.ResultMessages;
 /**
  * Exception to inform you that resource not found.<br>
  */
-public class ResourceNotFoundException extends
-                                       ResultMessagesNotificationException {
+public class ResourceNotFoundException extends ResultMessagesNotificationException {
 
     private static final long serialVersionUID = 1L;
 

@@ -38,24 +38,24 @@ public class CompositeRequestDataValueProcessorTest {
 
     private HttpServletRequest request = new MockHttpServletRequest();
 
-    RequestDataValueProcessorAdaptor requestDataValueProcessor = mock(
-            RequestDataValueProcessorAdaptor.class);
+    RequestDataValueProcessorAdaptor requestDataValueProcessor =
+            mock(RequestDataValueProcessorAdaptor.class);
 
     @Before
     public void before() {
 
-        compositeRequestDataValueProcessor = new CompositeRequestDataValueProcessor(requestDataValueProcessor);
+        compositeRequestDataValueProcessor =
+                new CompositeRequestDataValueProcessor(requestDataValueProcessor);
 
     }
 
     @Test
     public void testProcessActionSameActionAndResult() {
         // Set mock behavior
-        when(requestDataValueProcessor.processAction(any(
-                HttpServletRequest.class), anyString(), anyString()))
-                        .thenReturn("action");
-        String result = compositeRequestDataValueProcessor.processAction(
-                request, "action", "method");
+        when(requestDataValueProcessor.processAction(any(HttpServletRequest.class), anyString(),
+                anyString())).thenReturn("action");
+        String result =
+                compositeRequestDataValueProcessor.processAction(request, "action", "method");
 
         // assert
         assertThat(result, is("action"));
@@ -64,11 +64,10 @@ public class CompositeRequestDataValueProcessorTest {
     @Test
     public void testProcessActionDifferectActionAndResult() {
         // Set mock behavior
-        when(requestDataValueProcessor.processAction(any(
-                HttpServletRequest.class), anyString(), anyString()))
-                        .thenReturn("other_action");
-        String result = compositeRequestDataValueProcessor.processAction(
-                request, "action", "method");
+        when(requestDataValueProcessor.processAction(any(HttpServletRequest.class), anyString(),
+                anyString())).thenReturn("other_action");
+        String result =
+                compositeRequestDataValueProcessor.processAction(request, "action", "method");
 
         // assert
         assertThat(result, is("other_action"));
@@ -78,8 +77,8 @@ public class CompositeRequestDataValueProcessorTest {
     public void testProcessActionNoProcessors() {
         // No processors assigned
         compositeRequestDataValueProcessor = new CompositeRequestDataValueProcessor();
-        String result = compositeRequestDataValueProcessor.processAction(
-                request, "action", "method");
+        String result =
+                compositeRequestDataValueProcessor.processAction(request, "action", "method");
 
         // assert
         assertThat(result, is("action"));
@@ -88,24 +87,22 @@ public class CompositeRequestDataValueProcessorTest {
     @Test
     public void testProcessFormFieldValueSameValueAndResult() {
         // Set Mock behavior
-        when(requestDataValueProcessor.processFormFieldValue(any(
-                HttpServletRequest.class), anyString(), anyString(),
-                anyString())).thenReturn("value");
+        when(requestDataValueProcessor.processFormFieldValue(any(HttpServletRequest.class),
+                anyString(), anyString(), anyString())).thenReturn("value");
 
-        String result = compositeRequestDataValueProcessor
-                .processFormFieldValue(request, "", "value", "");
+        String result =
+                compositeRequestDataValueProcessor.processFormFieldValue(request, "", "value", "");
         assertThat(result, is("value"));
     }
 
     @Test
     public void testProcessFormFieldValueDifferentValueAndResult() {
         // Set Mock behavior
-        when(requestDataValueProcessor.processFormFieldValue(any(
-                HttpServletRequest.class), anyString(), anyString(),
-                anyString())).thenReturn("other_value");
+        when(requestDataValueProcessor.processFormFieldValue(any(HttpServletRequest.class),
+                anyString(), anyString(), anyString())).thenReturn("other_value");
 
-        String result = compositeRequestDataValueProcessor
-                .processFormFieldValue(request, "", "value", "");
+        String result =
+                compositeRequestDataValueProcessor.processFormFieldValue(request, "", "value", "");
         assertThat(result, is("other_value"));
     }
 
@@ -113,8 +110,8 @@ public class CompositeRequestDataValueProcessorTest {
     public void testProcessFormFieldValueNoProcessors() {
         // No processors assigned
         compositeRequestDataValueProcessor = new CompositeRequestDataValueProcessor();
-        String result = compositeRequestDataValueProcessor
-                .processFormFieldValue(request, "", "value", "");
+        String result =
+                compositeRequestDataValueProcessor.processFormFieldValue(request, "", "value", "");
         assertThat(result, is("value"));
     }
 
@@ -122,11 +119,10 @@ public class CompositeRequestDataValueProcessorTest {
     public void testGetExtraHiddenFieldsNullMapFromProcessorResult() {
 
         // Set Mock behavior
-        when(requestDataValueProcessor.getExtraHiddenFields(any(
-                HttpServletRequest.class))).thenReturn(null);
+        when(requestDataValueProcessor.getExtraHiddenFields(any(HttpServletRequest.class)))
+                .thenReturn(null);
 
-        Map<String, String> map = compositeRequestDataValueProcessor
-                .getExtraHiddenFields(request);
+        Map<String, String> map = compositeRequestDataValueProcessor.getExtraHiddenFields(request);
         assertThat(map, is(notNullValue()));
     }
 
@@ -134,12 +130,10 @@ public class CompositeRequestDataValueProcessorTest {
     public void testGetExtraHiddenFieldsNotNullMapFromProcessorResult() {
 
         // Set Mock behavior
-        when(requestDataValueProcessor.getExtraHiddenFields(any(
-                HttpServletRequest.class))).thenReturn(
-                        new HashMap<String, String>());
+        when(requestDataValueProcessor.getExtraHiddenFields(any(HttpServletRequest.class)))
+                .thenReturn(new HashMap<String, String>());
 
-        Map<String, String> map = compositeRequestDataValueProcessor
-                .getExtraHiddenFields(request);
+        Map<String, String> map = compositeRequestDataValueProcessor.getExtraHiddenFields(request);
         assertThat(map, is(notNullValue()));
     }
 
@@ -147,8 +141,7 @@ public class CompositeRequestDataValueProcessorTest {
     public void testGetExtraHiddenFieldsNoProcessors() {
         // No processors assigned
         compositeRequestDataValueProcessor = new CompositeRequestDataValueProcessor();
-        Map<String, String> map = compositeRequestDataValueProcessor
-                .getExtraHiddenFields(request);
+        Map<String, String> map = compositeRequestDataValueProcessor.getExtraHiddenFields(request);
         assertThat(map, is(notNullValue()));
     }
 
@@ -156,8 +149,8 @@ public class CompositeRequestDataValueProcessorTest {
     public void testProcessUrlSameUrlAndResult() {
 
         // Set Mock behavior
-        when(requestDataValueProcessor.processUrl(any(HttpServletRequest.class),
-                anyString())).thenReturn("http://localhost:8080/test");
+        when(requestDataValueProcessor.processUrl(any(HttpServletRequest.class), anyString()))
+                .thenReturn("http://localhost:8080/test");
         String result = compositeRequestDataValueProcessor.processUrl(request,
                 "http://localhost:8080/test");
         assertThat(result, is("http://localhost:8080/test"));
@@ -167,8 +160,8 @@ public class CompositeRequestDataValueProcessorTest {
     public void testProcessUrlDifferentUrlAndResult() {
 
         // Set Mock behavior
-        when(requestDataValueProcessor.processUrl(any(HttpServletRequest.class),
-                anyString())).thenReturn("http://localhost:9999/test");
+        when(requestDataValueProcessor.processUrl(any(HttpServletRequest.class), anyString()))
+                .thenReturn("http://localhost:9999/test");
 
         String result = compositeRequestDataValueProcessor.processUrl(request,
                 "http://localhost:8080/test");

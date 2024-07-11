@@ -38,8 +38,7 @@ public class DefaultExceptionLevelResolver implements ExceptionLevelResolver {
      * Constructor
      * @param exceptionCodeResolver Exception code resolution object
      */
-    public DefaultExceptionLevelResolver(
-            ExceptionCodeResolver exceptionCodeResolver) {
+    public DefaultExceptionLevelResolver(ExceptionCodeResolver exceptionCodeResolver) {
         setExceptionCodeResolver(exceptionCodeResolver);
     }
 
@@ -47,8 +46,7 @@ public class DefaultExceptionLevelResolver implements ExceptionLevelResolver {
      * Sets exception code resolution object.
      * @param exceptionCodeResolver Exception code resolution object
      */
-    public void setExceptionCodeResolver(
-            ExceptionCodeResolver exceptionCodeResolver) {
+    public void setExceptionCodeResolver(ExceptionCodeResolver exceptionCodeResolver) {
         this.exceptionCodeResolver = exceptionCodeResolver;
     }
 

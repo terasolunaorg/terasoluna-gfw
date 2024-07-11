@@ -21,8 +21,8 @@ import java.time.ZoneId;
 import java.time.temporal.TemporalUnit;
 
 /**
- * Implementation of {@link ClockFactory} that obtain a Clock adjusted specific duration using value and unit from system
- * default clock.
+ * Implementation of {@link ClockFactory} that obtain a Clock adjusted specific duration using value
+ * and unit from system default clock.
  * @since 5.8.0
  * @author Atsushi Yoshikawa
  */
@@ -37,8 +37,7 @@ public class ConfigurableAdjustClockFactory implements ClockFactory {
      * @param adjustedValue duration value to be adjusted
      * @param adjustedValueUnit estimable duration units of the value to be adjusted
      */
-    public ConfigurableAdjustClockFactory(long adjustedValue,
-            TemporalUnit adjustedValueUnit) {
+    public ConfigurableAdjustClockFactory(long adjustedValue, TemporalUnit adjustedValueUnit) {
         this.adjustedValue = adjustedValue;
         this.adjustedValueUnit = adjustedValueUnit;
     }
@@ -57,7 +56,6 @@ public class ConfigurableAdjustClockFactory implements ClockFactory {
     @Override
     public Clock tick(ZoneId zone) {
         Clock systemClock = Clock.system(zone);
-        return Clock.offset(systemClock, Duration.of(adjustedValue,
-                adjustedValueUnit));
+        return Clock.offset(systemClock, Duration.of(adjustedValue, adjustedValueUnit));
     }
 }

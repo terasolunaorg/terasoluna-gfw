@@ -30,8 +30,8 @@ public class ToFullwidthTest {
     public void testToFull() throws Exception {
         Map<String, String> fullHalfs = new DefaultFullHalfCodePointsMap();
         for (Entry<String, String> fullHalf : fullHalfs.entrySet()) {
-            assertThat(DefaultFullHalf.INSTANCE.toFullwidth(fullHalf
-                    .getValue()), is(fullHalf.getKey()));
+            assertThat(DefaultFullHalf.INSTANCE.toFullwidth(fullHalf.getValue()),
+                    is(fullHalf.getKey()));
         }
     }
 
@@ -44,18 +44,14 @@ public class ToFullwidthTest {
     @Test
     public void testToFull_String() throws Exception {
         assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ﾒﾛﾝ"), is("メロン"));
-        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("Hello World!"), is(
-                "Ｈｅｌｌｏ　Ｗｏｒｌｄ！"));
-        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ﾊﾛｰﾜｰﾙﾄﾞ!"), is(
-                "ハローワールド！"));
+        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("Hello World!"), is("Ｈｅｌｌｏ　Ｗｏｒｌｄ！"));
+        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ﾊﾛｰﾜｰﾙﾄﾞ!"), is("ハローワールド！"));
     }
 
     @Test
     public void testToFull_NotMappedAndMappedString() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("完熟ﾒﾛﾝﾊﾟﾝ"), is(
-                "完熟メロンパン"));
-        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ﾏﾁｭﾋﾟﾁｭ遺跡"), is(
-                "マチュピチュ遺跡"));
+        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("完熟ﾒﾛﾝﾊﾟﾝ"), is("完熟メロンパン"));
+        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ﾏﾁｭﾋﾟﾁｭ遺跡"), is("マチュピチュ遺跡"));
     }
 
     @Test
@@ -65,8 +61,7 @@ public class ToFullwidthTest {
 
     @Test
     public void testToFull_String_Mixed() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("あいうえおｶｷｸｹｺ"), is(
-                "あいうえおカキクケコ"));
+        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("あいうえおｶｷｸｹｺ"), is("あいうえおカキクケコ"));
     }
 
     @Test
@@ -96,8 +91,7 @@ public class ToFullwidthTest {
 
     @Test
     public void testToFull06_半角濁点が複数文字全角濁点に変換されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ｶﾞｻﾞﾀﾞﾊﾞｳﾞ"), is(
-                "ガザダバヴ"));
+        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ｶﾞｻﾞﾀﾞﾊﾞｳﾞ"), is("ガザダバヴ"));
     }
 
     @Test
@@ -107,8 +101,7 @@ public class ToFullwidthTest {
 
     @Test
     public void testToFull08_半角半濁点が複数文字全角半濁点に変換されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ﾊﾟﾋﾟﾌﾟﾍﾟﾎﾟ"), is(
-                "パピプペポ"));
+        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ﾊﾟﾋﾟﾌﾟﾍﾟﾎﾟ"), is("パピプペポ"));
     }
 
     @Test
@@ -143,14 +136,12 @@ public class ToFullwidthTest {
 
     @Test
     public void testToFull15_半角濁点ワが文字列の途中にある時全角濁点ワに変換されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("Bﾜﾞ8"), is(
-                "Ｂ\u30f7８"));
+        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("Bﾜﾞ8"), is("Ｂ\u30f7８"));
     }
 
     @Test
     public void testToFull16_半角濁点ワが文字列の途中にある時全角濁点ワに変換されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("Bｦﾞ8"), is(
-                "Ｂ\u30fa８"));
+        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("Bｦﾞ8"), is("Ｂ\u30fa８"));
     }
 
     @Test
@@ -165,14 +156,12 @@ public class ToFullwidthTest {
 
     @Test
     public void testToFull19_半角濁点ワが文字列の末尾にある時全角濁点ワに変換されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ｻBﾜﾞ"), is(
-                "サＢ\u30f7"));
+        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ｻBﾜﾞ"), is("サＢ\u30f7"));
     }
 
     @Test
     public void testToFull20_半角濁点ヲが文字列の末尾にある時全角濁点ヲに変換されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ｱBｦﾞ"), is(
-                "アＢ\u30fa"));
+        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("ｱBｦﾞ"), is("アＢ\u30fa"));
     }
 
     @Test

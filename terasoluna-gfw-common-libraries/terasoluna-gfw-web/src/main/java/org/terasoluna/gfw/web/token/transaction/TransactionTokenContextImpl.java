@@ -16,11 +16,14 @@
 package org.terasoluna.gfw.web.token.transaction;
 
 /**
- * Stores the context information regarding a particular instance of <code>TransactionToken</code>. <br>
+ * Stores the context information regarding a particular instance of <code>TransactionToken</code>.
+ * <br>
  * <p>
  * Maintains the following information: <br>
- * 1) information defined by {@code @TransactionTokenCheck} attached to a request handler method. <br>
- * 2) what action is to be taken for a <code>TransactionToken</code> at any point of time during the lifetime of this token.<br>
+ * 1) information defined by {@code @TransactionTokenCheck} attached to a request handler method.
+ * <br>
+ * 2) what action is to be taken for a <code>TransactionToken</code> at any point of time during the
+ * lifetime of this token.<br>
  * 3) token received from the browser <br>
  */
 public class TransactionTokenContextImpl implements TransactionTokenContext {
@@ -41,7 +44,8 @@ public class TransactionTokenContextImpl implements TransactionTokenContext {
     private ReserveCommand reserveCommand;
 
     /**
-     * Constructor. Initializes <code>reserveCommand</code> on the basis of the argument <code>receivedToken</code> <br>
+     * Constructor. Initializes <code>reserveCommand</code> on the basis of the argument
+     * <code>receivedToken</code> <br>
      * @param tokenInfo transaction token information
      * @param receivedToken received token
      */

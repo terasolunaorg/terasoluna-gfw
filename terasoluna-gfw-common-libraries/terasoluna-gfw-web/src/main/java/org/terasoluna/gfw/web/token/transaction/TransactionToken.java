@@ -52,7 +52,8 @@ public class TransactionToken implements Serializable {
     /**
      * Single argument constructor <br>
      * <p>
-     * A valid <code>tokenString</code> should be in the following form: <code>tokenName~tokenKey~tokenValue</code>. <br>
+     * A valid <code>tokenString</code> should be in the following form:
+     * <code>tokenName~tokenKey~tokenValue</code>. <br>
      * By default an <code>~ (tilde)</code> is used as a separator for the tokenString
      * @param tokenString token string
      */
@@ -76,8 +77,8 @@ public class TransactionToken implements Serializable {
     /**
      * Multiple argument constructor.
      * <p>
-     * Receives token name, key and value separately. All the three form to make the token string in the following format:
-     * {@code tokenName~tokenKey~tokenValue}
+     * Receives token name, key and value separately. All the three form to make the token string in
+     * the following format: {@code tokenName~tokenKey~tokenValue}
      * @param tokenName toke name
      * @param tokenKey token key
      * @param tokenValue toke value
@@ -114,8 +115,8 @@ public class TransactionToken implements Serializable {
     }
 
     /**
-     * Checks whether the an instance of <code>TransactionToken</code> is valid. Which means all values are present for all the
-     * three parts of <code>TransactionToken</code>
+     * Checks whether the an instance of <code>TransactionToken</code> is valid. Which means all
+     * values are present for all the three parts of <code>TransactionToken</code>
      * @return if all values are present, return <code>true</code>
      */
     public boolean valid() {
@@ -136,8 +137,7 @@ public class TransactionToken implements Serializable {
      * @return token string
      */
     public String getTokenString() {
-        return tokenName + TOKEN_STRING_SEPARATOR + tokenKey
-                + TOKEN_STRING_SEPARATOR + tokenValue;
+        return tokenName + TOKEN_STRING_SEPARATOR + tokenKey + TOKEN_STRING_SEPARATOR + tokenValue;
     }
 
 }

@@ -75,8 +75,8 @@ public class FileDownloadViewTest {
         }
 
         @Override
-        protected InputStream getInputStream(Map<String, Object> model,
-                HttpServletRequest request) throws IOException {
+        protected InputStream getInputStream(Map<String, Object> model, HttpServletRequest request)
+                throws IOException {
 
             // This is just for simulating exception throwing
             if (throwIOException) {
@@ -87,16 +87,16 @@ public class FileDownloadViewTest {
         }
 
         @Override
-        protected void addResponseHeader(Map<String, Object> model,
-                HttpServletRequest request, HttpServletResponse response) {
+        protected void addResponseHeader(Map<String, Object> model, HttpServletRequest request,
+                HttpServletResponse response) {
             response.setHeader("MethodCalled", "true");
         }
     }
 
     private class FileDownloadViewWriteFailed extends FileDownloadView {
         @Override
-        protected void writeResponseStream(InputStream inputStream,
-                OutputStream outputStream) throws IOException {
+        protected void writeResponseStream(InputStream inputStream, OutputStream outputStream)
+                throws IOException {
             throw new IOException("test intentionally failed");
         }
     }
@@ -114,8 +114,7 @@ public class FileDownloadViewTest {
         model = new HashMap<String, Object>();
 
         // mock logger
-        Logger logger = (Logger) LoggerFactory.getLogger(
-                FileDownloadView.class);
+        Logger logger = (Logger) LoggerFactory.getLogger(FileDownloadView.class);
         logger.addAppender(mockAppender);
     }
 
@@ -146,8 +145,7 @@ public class FileDownloadViewTest {
         fdlv.setThrowIOException(false);
 
         fdlv.renderMergedOutputModel(model, request, response);
-        verify(mockAppender).doAppend(argThat(argument -> argument.getLevel()
-                .equals(Level.ERROR)));
+        verify(mockAppender).doAppend(argThat(argument -> argument.getLevel().equals(Level.ERROR)));
     }
 
     @Test(expected = IOException.class)
@@ -158,8 +156,7 @@ public class FileDownloadViewTest {
         when(response.getOutputStream()).thenReturn(sos);
 
         fileDownloadView.renderMergedOutputModel(model, request, response);
-        verify(mockAppender).doAppend(argThat(argument -> argument.getLevel()
-                .equals(Level.ERROR)));
+        verify(mockAppender).doAppend(argThat(argument -> argument.getLevel().equals(Level.ERROR)));
     }
 
     @Test(expected = None.class)
@@ -169,8 +166,7 @@ public class FileDownloadViewTest {
         fileDownloadView.setInputStream(is);
 
         fileDownloadView.renderMergedOutputModel(model, request, response);
-        verify(mockAppender).doAppend(argThat(argument -> argument.getLevel()
-                .equals(Level.WARN)));
+        verify(mockAppender).doAppend(argThat(argument -> argument.getLevel().equals(Level.WARN)));
     }
 
     @Test(expected = None.class)
@@ -205,12 +201,10 @@ public class FileDownloadViewTest {
         // Set Mock Behavior
         fileDownloadView.setChunkSize(0);
 
-        IllegalArgumentException e = assertThrows(
-                IllegalArgumentException.class, () -> {
-                    fileDownloadView.afterPropertiesSet();
-                });
-        assertThat(e.getMessage(), is(
-                "chunkSize must be over 1. specified chunkSize is \"0\"."));
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+            fileDownloadView.afterPropertiesSet();
+        });
+        assertThat(e.getMessage(), is("chunkSize must be over 1. specified chunkSize is \"0\"."));
     }
 
     @Test
@@ -218,12 +212,10 @@ public class FileDownloadViewTest {
         // Set Mock Behavior
         fileDownloadView.setChunkSize(-1);
 
-        IllegalArgumentException e = assertThrows(
-                IllegalArgumentException.class, () -> {
-                    fileDownloadView.afterPropertiesSet();
-                });
-        assertThat(e.getMessage(), is(
-                "chunkSize must be over 1. specified chunkSize is \"-1\"."));
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+            fileDownloadView.afterPropertiesSet();
+        });
+        assertThat(e.getMessage(), is("chunkSize must be over 1. specified chunkSize is \"-1\"."));
     }
 
     @Test(expected = None.class)

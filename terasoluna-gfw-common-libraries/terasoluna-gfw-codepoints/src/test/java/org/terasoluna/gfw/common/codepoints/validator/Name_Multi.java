@@ -18,10 +18,10 @@ package org.terasoluna.gfw.common.codepoints.validator;
 import org.terasoluna.gfw.common.codepoints.ConsistOf;
 
 public class Name_Multi {
-    @ConsistOf({ AtoF.class, GtoL.class })
+    @ConsistOf({AtoF.class, GtoL.class})
     private String firstName;
 
-    @ConsistOf({ AtoF.class, GtoL.class })
+    @ConsistOf({AtoF.class, GtoL.class})
     private String lastName;
 
     public Name_Multi(String firstName, String lastName) {
@@ -29,8 +29,7 @@ public class Name_Multi {
         this.lastName = lastName;
     }
 
-    public Name_Multi() {
-    }
+    public Name_Multi() {}
 
     public String getFirstName() {
         return firstName;

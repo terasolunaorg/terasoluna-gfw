@@ -26,7 +26,8 @@ import org.joda.time.DateTime;
  * <li>{@link org.joda.time.DateTime}</li>
  * </ul>
  * @since 5.0.0
- * @deprecated It is recommended to migrate to java.time (JSR-310). {@link org.terasoluna.gfw.common.time.ClockFactory}
+ * @deprecated It is recommended to migrate to java.time (JSR-310).
+ *             {@link org.terasoluna.gfw.common.time.ClockFactory}
  */
 @Deprecated
 public interface JodaTimeDateTimeFactory {

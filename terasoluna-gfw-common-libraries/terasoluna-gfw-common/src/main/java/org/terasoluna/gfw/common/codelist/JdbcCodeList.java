@@ -27,8 +27,8 @@ import org.springframework.util.Assert;
 /**
  * Initializes codelist information from a database using JDBC.
  * <p>
- * The results of {@link #querySql} are stored in the codelist. The column name of 'value' of codelist is set by
- * {@link #valueColumn} and 'label' by {@link #labelColumn}.<br>
+ * The results of {@link #querySql} are stored in the codelist. The column name of 'value' of
+ * codelist is set by {@link #valueColumn} and 'label' by {@link #labelColumn}.<br>
  * Each row is put to the codelist unless value or label of it is <code>null</code>.
  * </p>
  */
@@ -45,12 +45,14 @@ public class JdbcCodeList extends AbstractReloadableCodeList {
     private String querySql;
 
     /**
-     * property that holds the name of the column of the database holding the value part of the codelist
+     * property that holds the name of the column of the database holding the value part of the
+     * codelist
      */
     private String valueColumn;
 
     /**
-     * property that holds the name of the column of the database holding the label part of the codelist
+     * property that holds the name of the column of the database holding the label part of the
+     * codelist
      */
     private String labelColumn;
 
@@ -76,9 +78,9 @@ public class JdbcCodeList extends AbstractReloadableCodeList {
 
     /**
      * Sets DataSource. <br>
-     * <strong>Note that 'fetch size' is set by default (depends on JDBC implementation). Default 'fetch size' cause slow
-     * response possibly when the size of codelist is large. If you want to set fetch size, use
-     * {@link #setJdbcTemplate(JdbcTemplate)} instead. </strong>
+     * <strong>Note that 'fetch size' is set by default (depends on JDBC implementation). Default
+     * 'fetch size' cause slow response possibly when the size of codelist is large. If you want to
+     * set fetch size, use {@link #setJdbcTemplate(JdbcTemplate)} instead. </strong>
      * @param dataSource DataSource instance for fetching code list records
      */
     public void setDataSource(DataSource dataSource) {
@@ -94,8 +96,8 @@ public class JdbcCodeList extends AbstractReloadableCodeList {
     }
 
     /**
-     * This method is called after the codelist is initialized Checks whether the values of querySql, valueColumn, labelColumn
-     * and jdbcTemplate properties are set
+     * This method is called after the codelist is initialized Checks whether the values of
+     * querySql, valueColumn, labelColumn and jdbcTemplate properties are set
      * @see org.terasoluna.gfw.common.codelist.AbstractReloadableCodeList#afterPropertiesSet()
      */
     @Override

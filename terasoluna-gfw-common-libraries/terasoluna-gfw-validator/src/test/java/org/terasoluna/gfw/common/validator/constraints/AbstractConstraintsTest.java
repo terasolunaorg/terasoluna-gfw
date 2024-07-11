@@ -37,9 +37,11 @@ import jakarta.validation.Validator;
  */
 abstract public class AbstractConstraintsTest<F> {
 
-    protected static final String MESSAGE_NOTSUPPORT_ERROR = "validator does not support this type: %s";
+    protected static final String MESSAGE_NOTSUPPORT_ERROR =
+            "validator does not support this type: %s";
 
-    protected static final String MESSAGE_INITIALIZE_ERROR = "failed to initialize validator by invalid argument";
+    protected static final String MESSAGE_INITIALIZE_ERROR =
+            "failed to initialize validator by invalid argument";
 
     protected static Validator validator;
 
@@ -102,8 +104,7 @@ abstract public class AbstractConstraintsTest<F> {
     protected void assertTypeNotSupport(ValidationException ex, Class<?> type) {
         assertThat(ex.getCause(), allOf( //
                 instanceOf(IllegalArgumentException.class), //
-                hasProperty("message", is(String.format(
-                        MESSAGE_NOTSUPPORT_ERROR, type.getName()))) //
+                hasProperty("message", is(String.format(MESSAGE_NOTSUPPORT_ERROR, type.getName()))) //
         ));
     }
 

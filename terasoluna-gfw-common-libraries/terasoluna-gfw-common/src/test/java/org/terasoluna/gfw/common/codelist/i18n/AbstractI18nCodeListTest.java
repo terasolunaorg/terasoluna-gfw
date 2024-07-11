@@ -55,26 +55,21 @@ public class AbstractI18nCodeListTest {
 
             @Override
             protected Map<String, String> obtainMap(Locale locale) {
-                return Collections.singletonMap("language", locale
-                        .getLanguage());
+                return Collections.singletonMap("language", locale.getLanguage());
             }
         };
 
         Locale.setDefault(Locale.ENGLISH);
-        assertThat(impl.asMap(), hasEntry("language", Locale.ENGLISH
-                .getLanguage()));
+        assertThat(impl.asMap(), hasEntry("language", Locale.ENGLISH.getLanguage()));
 
         LocaleContextHolder.setLocale(Locale.GERMAN);
-        assertThat(impl.asMap(), hasEntry("language", Locale.GERMAN
-                .getLanguage()));
+        assertThat(impl.asMap(), hasEntry("language", Locale.GERMAN.getLanguage()));
 
         LocaleContextHolder.setLocale(Locale.FRENCH);
-        assertThat(impl.asMap(), hasEntry("language", Locale.FRENCH
-                .getLanguage()));
+        assertThat(impl.asMap(), hasEntry("language", Locale.FRENCH.getLanguage()));
 
         Locale.setDefault(Locale.JAPANESE);
-        assertThat(impl.asMap(), hasEntry("language", Locale.FRENCH
-                .getLanguage()));
+        assertThat(impl.asMap(), hasEntry("language", Locale.FRENCH.getLanguage()));
     }
 
     @Test(expected = IllegalArgumentException.class)

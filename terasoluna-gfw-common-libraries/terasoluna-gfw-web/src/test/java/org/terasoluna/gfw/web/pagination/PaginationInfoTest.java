@@ -90,8 +90,7 @@ public class PaginationInfoTest {
         int size = 1;
 
         // run
-        Map<String, Object> attributesMap = PaginationInfo.createAttributeMap(
-                page, size, null);
+        Map<String, Object> attributesMap = PaginationInfo.createAttributeMap(page, size, null);
 
         // assert
         assertThat(attributesMap, hasEntry("page", page));
@@ -111,8 +110,8 @@ public class PaginationInfoTest {
         Sort mockedSort = Sort.by(Direction.DESC, "id");
 
         // run
-        Map<String, Object> attributesMap = PaginationInfo.createAttributeMap(
-                page, size, mockedSort);
+        Map<String, Object> attributesMap =
+                PaginationInfo.createAttributeMap(page, size, mockedSort);
 
         // assert
         assertThat(attributesMap, hasEntry("page", page));
@@ -134,8 +133,7 @@ public class PaginationInfoTest {
         when(orders.hasNext()).thenReturn(false);
 
         // run
-        Map<String, Object> attributesMap = PaginationInfo.createAttributeMap(
-                page, size, sort);
+        Map<String, Object> attributesMap = PaginationInfo.createAttributeMap(page, size, sort);
 
         // assert
         assertThat(attributesMap, hasEntry("page", page));
@@ -463,7 +461,8 @@ public class PaginationInfoTest {
 
     @Test
     public void issue12_testGetPageUrl_criteriaQueryIsSpecified_queryTmplNotSpecified() {
-        PaginationInfo info = new PaginationInfo(page, "/{page}/{size}", null, "a=<>&\"'a1", false, 10);
+        PaginationInfo info =
+                new PaginationInfo(page, "/{page}/{size}", null, "a=<>&\"'a1", false, 10);
 
         // expected
         String expectedURL = "/3/5?a=&lt;&gt;&amp;&quot;&#39;a1";
@@ -475,7 +474,8 @@ public class PaginationInfoTest {
 
     @Test
     public void issue12_testGetPageUrl_disableHtmlEscapeOfCriteriaQueryIsTrue_queryTmplNotSpecified() {
-        PaginationInfo info = new PaginationInfo(page, "/{page}/{size}", null, "a=<>&\"'a1", true, 10);
+        PaginationInfo info =
+                new PaginationInfo(page, "/{page}/{size}", null, "a=<>&\"'a1", true, 10);
 
         // expected
         String expectedURL = "/3/5?a=<>&\"'a1";

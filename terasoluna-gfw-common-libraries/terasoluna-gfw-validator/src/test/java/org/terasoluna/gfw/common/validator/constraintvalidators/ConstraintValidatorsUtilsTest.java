@@ -29,8 +29,8 @@ public class ConstraintValidatorsUtilsTest {
     @Test
     public void testConstraintValidatorsUtils() throws Exception {
         // set up
-        Constructor<ConstraintValidatorsUtils> constructor = ConstraintValidatorsUtils.class
-                .getDeclaredConstructor();
+        Constructor<ConstraintValidatorsUtils> constructor =
+                ConstraintValidatorsUtils.class.getDeclaredConstructor();
         assertThat(constructor.canAccess(null), is(false));
         constructor.setAccessible(true);
 
@@ -63,8 +63,7 @@ public class ConstraintValidatorsUtilsTest {
     @Test
     public void testGetPropertyValuePropertyNameNull() throws Exception {
         // test
-        Object o = ConstraintValidatorsUtils.getPropertyValue(new FooBean(),
-                null);
+        Object o = ConstraintValidatorsUtils.getPropertyValue(new FooBean(), null);
 
         // assert
         assertThat(o, nullValue());

@@ -35,11 +35,13 @@ import com.google.common.collect.Tables;
  * Reloadable implementation of {@link I18nCodeList}<br>
  * <p>
  * {@link I18nCodeList} has a table of codelist.<br>
- * Each row is a codelist for each language and represented as <strong>unmodifiable linked hash maps</strong>.<br>
+ * Each row is a codelist for each language and represented as <strong>unmodifiable linked hash
+ * maps</strong>.<br>
  * The key of rows is {@link Locale}. <br>
  * </p>
  * <p>
- * To build a table of codelist, set a map of the {@link Locale} and the corresponding {@link ReloadableCodeList}.<br>
+ * To build a table of codelist, set a map of the {@link Locale} and the corresponding
+ * {@link ReloadableCodeList}.<br>
  * </p>
  * <h3>set by rows with {@link ReloadableCodeList}</h3>
  *
@@ -78,13 +80,12 @@ import com.google.common.collect.Tables;
  * @since 5.4.2
  */
 public class SimpleReloadableI18nCodeList extends AbstractI18nCodeList
-                                          implements ReloadableI18nCodeList,
-                                          InitializingBean {
+        implements ReloadableI18nCodeList, InitializingBean {
     /**
      * Logger.
      */
-    private static final Logger logger = LoggerFactory.getLogger(
-            SimpleReloadableI18nCodeList.class);
+    private static final Logger logger =
+            LoggerFactory.getLogger(SimpleReloadableI18nCodeList.class);
 
     /**
      * Codelist table.
@@ -104,12 +105,13 @@ public class SimpleReloadableI18nCodeList extends AbstractI18nCodeList
     /**
      * Supplier to return a {@link LinkedHashMap} object.
      */
-    private static final Supplier<LinkedHashMap<String, String>> LINKED_HASH_MAP_SUPPLIER = new Supplier<LinkedHashMap<String, String>>() {
-        @Override
-        public LinkedHashMap<String, String> get() {
-            return Maps.newLinkedHashMap();
-        }
-    };
+    private static final Supplier<LinkedHashMap<String, String>> LINKED_HASH_MAP_SUPPLIER =
+            new Supplier<LinkedHashMap<String, String>>() {
+                @Override
+                public LinkedHashMap<String, String> get() {
+                    return Maps.newLinkedHashMap();
+                }
+            };
 
     /**
      * Set ({@link ReloadableCodeList}) for each locale.
@@ -187,9 +189,11 @@ public class SimpleReloadableI18nCodeList extends AbstractI18nCodeList
      * This method is called after the properties of the codelist are set.
      * <p>
      * check whether codeLists is initialized. <br>
-     * Checks the lazyInit flag to determine whether the codelist should be refreshed after the properties are set.<br>
+     * Checks the lazyInit flag to determine whether the codelist should be refreshed after the
+     * properties are set.<br>
      * If lazyInit flag is set to true, the codelist is not refreshed immediately. <br>
-     * If it is set to false, it is refreshed (values re-loaded) immediately after the properties are loaded
+     * If it is set to false, it is refreshed (values re-loaded) immediately after the properties
+     * are loaded
      * </p>
      * @see org.terasoluna.gfw.common.codelist.i18n.AbstractI18nCodeList#afterPropertiesSet()
      */
@@ -218,8 +222,8 @@ public class SimpleReloadableI18nCodeList extends AbstractI18nCodeList
      */
     private Table<Locale, String, String> createTable() {
         Map<Locale, Map<String, String>> backingMap = Maps.newLinkedHashMap();
-        Table<Locale, String, String> table = Tables.newCustomTable(backingMap,
-                LINKED_HASH_MAP_SUPPLIER);
+        Table<Locale, String, String> table =
+                Tables.newCustomTable(backingMap, LINKED_HASH_MAP_SUPPLIER);
         return table;
     }
 }

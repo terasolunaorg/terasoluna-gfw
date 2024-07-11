@@ -28,7 +28,8 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet filter class that clears all the values stored in {@link MDC}.
  * <p>
- * If {@code MDC} is being used, it is has to be put to put this filter before all other servlet filters (Mandatory condition).
+ * If {@code MDC} is being used, it is has to be put to put this filter before all other servlet
+ * filters (Mandatory condition).
  * </p>
  */
 public class MDCClearFilter extends OncePerRequestFilter {
@@ -44,8 +45,7 @@ public class MDCClearFilter extends OncePerRequestFilter {
      *      javax.servlet.http.HttpServletResponse, javax.servlet.FilterChain)
      */
     @Override
-    protected final void doFilterInternal(HttpServletRequest request,
-            HttpServletResponse response,
+    protected final void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
         try {
             filterChain.doFilter(request, response);

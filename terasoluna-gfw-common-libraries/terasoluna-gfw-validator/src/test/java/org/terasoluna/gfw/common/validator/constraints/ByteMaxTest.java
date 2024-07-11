@@ -58,7 +58,8 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
     }
 
     /**
-     * specify max value. expected valid if input value encoded in UTF-8 is grater than or equal max value.
+     * specify max value. expected valid if input value encoded in UTF-8 is grater than or equal max
+     * value.
      */
     @Test
     public void testSpecifyMaxValue() {
@@ -67,8 +68,8 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
             form.setStringProperty("ああa");
 
             violations = validator.validate(form);
-            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
-                    String.format(MESSAGE_VALIDATION_ERROR, 6)))));
+            assertThat(violations, containsInAnyOrder(
+                    hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6)))));
         }
 
         {
@@ -89,8 +90,8 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
             form.setStringBuilderProperty(new StringBuilder("ああa"));
 
             violations = validator.validate(form);
-            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
-                    String.format(MESSAGE_VALIDATION_ERROR, 6)))));
+            assertThat(violations, containsInAnyOrder(
+                    hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6)))));
         }
 
         {
@@ -102,7 +103,8 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
     }
 
     /**
-     * specify charset. expected valid if input value encoded in specified charset is grater than or equal max value.
+     * specify charset. expected valid if input value encoded in specified charset is grater than or
+     * equal max value.
      */
     @Test
     public void testSpecifyCharset() {
@@ -111,8 +113,8 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
             form.setStringProperty("あああa");
 
             violations = validator.validate(form, SpecifyCharset.class);
-            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
-                    String.format(MESSAGE_VALIDATION_ERROR, 6)))));
+            assertThat(violations, containsInAnyOrder(
+                    hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6)))));
         }
 
         {
@@ -124,7 +126,8 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
     }
 
     /**
-     * specify illegal charset. expected {@code ValidationException} caused by {@code IllegalArgumentException} that message is
+     * specify illegal charset. expected {@code ValidationException} caused by
+     * {@code IllegalArgumentException} that message is
      * {@code failed to initialize validator by invalid argument}.
      */
     @Test
@@ -135,8 +138,10 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
     }
 
     /**
-     * specify negative value. expected {@code ValidationException} caused by {@code IllegalArgumentException} that message is
-     * {@code failed to initialize validator by invalid argument} and nested by {@code IllegalArgumentException} that message is
+     * specify negative value. expected {@code ValidationException} caused by
+     * {@code IllegalArgumentException} that message is
+     * {@code failed to initialize validator by invalid argument} and nested by
+     * {@code IllegalArgumentException} that message is
      * {@code value[-1] must not be negative value.}.
      */
     @Test
@@ -152,8 +157,8 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
      */
     @Test
     public void testAnnotateUnexpectedType() {
-        assertThrows(UnexpectedTypeException.class, () -> validator.validate(
-                form, UnexpectedType.class));
+        assertThrows(UnexpectedTypeException.class,
+                () -> validator.validate(form, UnexpectedType.class));
     }
 
     /**
@@ -175,10 +180,10 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
             violations = validator.validate(form);
             assertThat(violations, containsInAnyOrder( //
                     allOf( //
-                            hasProperty("propertyPath", hasToString(
-                                    "listProperty[0].<list element>")), //
-                            hasProperty("message", is(String.format(
-                                    MESSAGE_VALIDATION_ERROR, 6))))));
+                            hasProperty("propertyPath",
+                                    hasToString("listProperty[0].<list element>")), //
+                            hasProperty("message",
+                                    is(String.format(MESSAGE_VALIDATION_ERROR, 6))))));
         }
 
         {
@@ -187,10 +192,10 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
             violations = validator.validate(form);
             assertThat(violations, containsInAnyOrder( //
                     allOf( //
-                            hasProperty("propertyPath", hasToString(
-                                    "listProperty[1].<list element>")), //
-                            hasProperty("message", is(String.format(
-                                    MESSAGE_VALIDATION_ERROR, 6))))));
+                            hasProperty("propertyPath",
+                                    hasToString("listProperty[1].<list element>")), //
+                            hasProperty("message",
+                                    is(String.format(MESSAGE_VALIDATION_ERROR, 6))))));
         }
 
         {
@@ -199,15 +204,14 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
             violations = validator.validate(form);
             assertThat(violations, containsInAnyOrder( //
                     allOf( //
-                            hasProperty("propertyPath", hasToString(
-                                    "listProperty[0].<list element>")), //
-                            hasProperty("message", is(String.format(
-                                    MESSAGE_VALIDATION_ERROR, 6)))), //
+                            hasProperty("propertyPath",
+                                    hasToString("listProperty[0].<list element>")), //
+                            hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6)))), //
                     allOf( //
-                            hasProperty("propertyPath", hasToString(
-                                    "listProperty[1].<list element>")), //
-                            hasProperty("message", is(String.format(
-                                    MESSAGE_VALIDATION_ERROR, 6))))));
+                            hasProperty("propertyPath",
+                                    hasToString("listProperty[1].<list element>")), //
+                            hasProperty("message",
+                                    is(String.format(MESSAGE_VALIDATION_ERROR, 6))))));
         }
     }
 
@@ -237,17 +241,15 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
 
     public static class ByteMaxTestForm {
         @ByteMax(6)
-        @ByteMax(value = 6, charset = "shift-jis", groups = {
-                SpecifyCharset.class })
-        @ByteMax(value = 6, charset = "illegal-charset", groups = {
-                IllegalCharset.class })
-        @ByteMax(value = -1, groups = { NegativeValue.class })
+        @ByteMax(value = 6, charset = "shift-jis", groups = {SpecifyCharset.class})
+        @ByteMax(value = 6, charset = "illegal-charset", groups = {IllegalCharset.class})
+        @ByteMax(value = -1, groups = {NegativeValue.class})
         private String stringProperty;
 
         @ByteMax(6)
         private StringBuilder stringBuilderProperty;
 
-        @ByteMax(value = 6, groups = { UnexpectedType.class })
+        @ByteMax(value = 6, groups = {UnexpectedType.class})
         private Integer intProperty;
 
         private List<@ByteMax(6) String> listProperty;
@@ -264,8 +266,7 @@ public class ByteMaxTest extends AbstractConstraintsTest<ByteMaxTestForm> {
             return stringBuilderProperty;
         }
 
-        public void setStringBuilderProperty(
-                StringBuilder stringBuilderProperty) {
+        public void setStringBuilderProperty(StringBuilder stringBuilderProperty) {
             this.stringBuilderProperty = stringBuilderProperty;
         }
 

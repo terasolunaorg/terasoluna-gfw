@@ -39,11 +39,11 @@ public class TransactionTokenInfoStoreTest {
     @Test
     public void testCreateTransactionTokenInfo01() throws Exception {
 
-        HandlerMethod handlerMethod = new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                .getDeclaredMethod("fourth", SampleForm.class, Model.class));
+        HandlerMethod handlerMethod = new HandlerMethod(new TransactionTokenSampleController(),
+                TransactionTokenSampleController.class.getDeclaredMethod("fourth", SampleForm.class,
+                        Model.class));
 
-        TransactionTokenInfo tokenInfo = store.createTransactionTokenInfo(
-                handlerMethod);
+        TransactionTokenInfo tokenInfo = store.createTransactionTokenInfo(handlerMethod);
         assertThat(tokenInfo, is(notNullValue()));
 
     }
@@ -51,11 +51,11 @@ public class TransactionTokenInfoStoreTest {
     @Test
     public void testCreateTransactionTokenInfo02() throws Exception {
 
-        HandlerMethod handlerMethod = new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                .getDeclaredMethod("first", SampleForm.class, Model.class));
+        HandlerMethod handlerMethod = new HandlerMethod(new TransactionTokenSampleController(),
+                TransactionTokenSampleController.class.getDeclaredMethod("first", SampleForm.class,
+                        Model.class));
 
-        TransactionTokenInfo tokenInfo = store.createTransactionTokenInfo(
-                handlerMethod);
+        TransactionTokenInfo tokenInfo = store.createTransactionTokenInfo(handlerMethod);
         assertThat(tokenInfo, is(notNullValue()));
 
     }
@@ -63,112 +63,96 @@ public class TransactionTokenInfoStoreTest {
     @Test
     public void testCreateTokenInfoName01() throws Exception {
 
-        TransactionTokenCheck methodAnnotation = mock(
-                TransactionTokenCheck.class);
-        TransactionTokenCheck classAnnotation = mock(
-                TransactionTokenCheck.class);
+        TransactionTokenCheck methodAnnotation = mock(TransactionTokenCheck.class);
+        TransactionTokenCheck classAnnotation = mock(TransactionTokenCheck.class);
 
         when(methodAnnotation.value()).thenReturn("test");
         when(classAnnotation.value()).thenReturn("test");
 
-        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(
-                notNullValue()));
+        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(notNullValue()));
 
     }
 
     @Test
     public void testCreateTokenInfoName02() throws Exception {
 
-        TransactionTokenCheck methodAnnotation = mock(
-                TransactionTokenCheck.class);
+        TransactionTokenCheck methodAnnotation = mock(TransactionTokenCheck.class);
         TransactionTokenCheck classAnnotation = null;
 
         when(methodAnnotation.value()).thenReturn("test");
 
-        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(
-                notNullValue()));
+        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(notNullValue()));
 
     }
 
     @Test
     public void testCreateTokenInfoName03() throws Exception {
 
-        TransactionTokenCheck methodAnnotation = mock(
-                TransactionTokenCheck.class);
+        TransactionTokenCheck methodAnnotation = mock(TransactionTokenCheck.class);
         TransactionTokenCheck classAnnotation = null;
 
         when(methodAnnotation.value()).thenReturn("");
 
-        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(
-                notNullValue()));
+        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(notNullValue()));
 
     }
 
     @Test
     public void testCreateTokenInfoName04() throws Exception {
 
-        TransactionTokenCheck methodAnnotation = mock(
-                TransactionTokenCheck.class);
+        TransactionTokenCheck methodAnnotation = mock(TransactionTokenCheck.class);
         TransactionTokenCheck classAnnotation = null;
 
         when(methodAnnotation.value()).thenReturn(null);
 
-        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(
-                notNullValue()));
+        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(notNullValue()));
 
     }
 
     @Test
     public void testCreateTokenInfoName05() throws Exception {
 
-        TransactionTokenCheck methodAnnotation = mock(
-                TransactionTokenCheck.class);
-        TransactionTokenCheck classAnnotation = mock(
-                TransactionTokenCheck.class);
+        TransactionTokenCheck methodAnnotation = mock(TransactionTokenCheck.class);
+        TransactionTokenCheck classAnnotation = mock(TransactionTokenCheck.class);
 
         when(methodAnnotation.value()).thenReturn("test");
         when(classAnnotation.value()).thenReturn("");
 
-        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(
-                notNullValue()));
+        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(notNullValue()));
     }
 
     @Test
     public void testCreateTokenInfoName06() throws Exception {
 
-        TransactionTokenCheck methodAnnotation = mock(
-                TransactionTokenCheck.class);
-        TransactionTokenCheck classAnnotation = mock(
-                TransactionTokenCheck.class);
+        TransactionTokenCheck methodAnnotation = mock(TransactionTokenCheck.class);
+        TransactionTokenCheck classAnnotation = mock(TransactionTokenCheck.class);
 
         when(methodAnnotation.value()).thenReturn("test");
         when(classAnnotation.value()).thenReturn(null);
 
-        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(
-                notNullValue()));
+        assertThat(store.createTokenName(classAnnotation, methodAnnotation), is(notNullValue()));
     }
 
     @Test
     public void testGetTransactionTokenInfo() throws NoSuchMethodException, SecurityException {
 
-        HandlerMethod handlerMethod = new HandlerMethod(new TransactionTokenSampleController(), TransactionTokenSampleController.class
-                .getDeclaredMethod("first", SampleForm.class, Model.class));
+        HandlerMethod handlerMethod = new HandlerMethod(new TransactionTokenSampleController(),
+                TransactionTokenSampleController.class.getDeclaredMethod("first", SampleForm.class,
+                        Model.class));
 
-        assertThat(store.getTransactionTokenInfo(handlerMethod), is(
-                notNullValue()));
+        assertThat(store.getTransactionTokenInfo(handlerMethod), is(notNullValue()));
 
     }
 
     @Test
     public void testNamespaceCreateTransactionTokenInfo() throws Exception {
 
-        HandlerMethod handlerMethod = new HandlerMethod(new TransactionTokenSampleNamespaceController(), TransactionTokenSampleNamespaceController.class
-                .getDeclaredMethod("first"));
+        HandlerMethod handlerMethod =
+                new HandlerMethod(new TransactionTokenSampleNamespaceController(),
+                        TransactionTokenSampleNamespaceController.class.getDeclaredMethod("first"));
 
-        TransactionTokenInfo tokenInfo = store.createTransactionTokenInfo(
-                handlerMethod);
-        assertThat(tokenInfo.getTokenName(), containsString(
-                "testTokenAttrByNameSpace"));
+        TransactionTokenInfo tokenInfo = store.createTransactionTokenInfo(handlerMethod);
+        assertThat(tokenInfo.getTokenName(), containsString("testTokenAttrByNameSpace"));
 
     }
 }

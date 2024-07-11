@@ -39,12 +39,12 @@ import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.web.bind.WebDataBinder;
 
 public class ObjectToMapConverterTest {
-    ObjectToMapConverter converter = new ObjectToMapConverter(new DefaultFormattingConversionService());
+    ObjectToMapConverter converter =
+            new ObjectToMapConverter(new DefaultFormattingConversionService());
 
     @Test
     public void testConvert0_SimpleJavaBean() throws Exception {
-        Map<String, String> map = converter.convert(
-                new SearchUserForm0("yamada", 20));
+        Map<String, String> map = converter.convert(new SearchUserForm0("yamada", 20));
         assertThat(map, aMapWithSize(2));
         assertThat(map, hasEntry("name", "yamada"));
         assertThat(map, hasEntry("age", "20"));
@@ -59,8 +59,7 @@ public class ObjectToMapConverterTest {
 
     @Test
     public void testConvert0_With_Prefix() throws Exception {
-        Map<String, String> map = converter.convert("pre",
-                new SearchUserForm0("yamada", 20));
+        Map<String, String> map = converter.convert("pre", new SearchUserForm0("yamada", 20));
         assertThat(map, aMapWithSize(2));
         assertThat(map, hasEntry("pre.name", "yamada"));
         assertThat(map, hasEntry("pre.age", "20"));
@@ -68,8 +67,8 @@ public class ObjectToMapConverterTest {
 
     @Test
     public void testConvert1_NestedJavaBean() throws Exception {
-        Map<String, String> map = converter.convert(
-                new SearchUserForm1(new SearchUserCriteriaForm1("yamada", 20), true));
+        Map<String, String> map = converter
+                .convert(new SearchUserForm1(new SearchUserCriteriaForm1("yamada", 20), true));
         assertThat(map, aMapWithSize(3));
         assertThat(map, hasEntry("criteria.name", "yamada"));
         assertThat(map, hasEntry("criteria.age", "20"));
@@ -87,10 +86,12 @@ public class ObjectToMapConverterTest {
 
     @Test
     public void testConvert2_ListOfJavaBean() throws Exception {
-        Map<String, String> map = converter.convert(
-                new BatchUpdateUserForm2(Arrays.asList(
-                        new UpdateUserCriteriaForm2("yamada", 20),
-                        new UpdateUserCriteriaForm2("tanaka", 50)), LogicalOperator2.AND));
+        Map<String, String> map =
+                converter
+                        .convert(new BatchUpdateUserForm2(
+                                Arrays.asList(new UpdateUserCriteriaForm2("yamada", 20),
+                                        new UpdateUserCriteriaForm2("tanaka", 50)),
+                                LogicalOperator2.AND));
         assertThat(map, aMapWithSize(5));
         assertThat(map, hasEntry("criteria[0].name", "yamada"));
         assertThat(map, hasEntry("criteria[0].age", "20"));
@@ -114,9 +115,8 @@ public class ObjectToMapConverterTest {
     @Test
     public void testConvert3_SimpleJavaBeanAndListOfJavaBean() throws Exception {
         Map<String, String> map = converter.convert(
-                new SearchAndBatchUpdateUserForm3(new SearchUserCriteriaForm3("suzuki", 30), Arrays
-                        .asList(new User3("yamada", 20),
-                                new User3("tanaka", 50))));
+                new SearchAndBatchUpdateUserForm3(new SearchUserCriteriaForm3("suzuki", 30),
+                        Arrays.asList(new User3("yamada", 20), new User3("tanaka", 50))));
         assertThat(map, aMapWithSize(6));
         assertThat(map, hasEntry("criteria.name", "suzuki"));
         assertThat(map, hasEntry("criteria.age", "30"));
@@ -166,15 +166,13 @@ public class ObjectToMapConverterTest {
 
     @Test
     public void testConvert5_at_DateTimeFormat() throws Exception {
-        Date date1 = Date.from(LocalDateTime.of(2015, 4, 1, 0, 0).toInstant(
-                ZoneOffset.UTC));
+        Date date1 = Date.from(LocalDateTime.of(2015, 4, 1, 0, 0).toInstant(ZoneOffset.UTC));
         LocalDate localDate1 = LocalDate.of(2015, 6, 10);
-        Date date2 = Date.from(LocalDateTime.of(2015, 5, 1, 0, 0).toInstant(
-                ZoneOffset.UTC));
+        Date date2 = Date.from(LocalDateTime.of(2015, 5, 1, 0, 0).toInstant(ZoneOffset.UTC));
         LocalDate localDate2 = LocalDate.of(2015, 7, 10);
 
-        Map<String, String> map = converter.convert(
-                new DateForm5(date1, localDate1, new DateFormItem5(date2, localDate2)));
+        Map<String, String> map = converter
+                .convert(new DateForm5(date1, localDate1, new DateFormItem5(date2, localDate2)));
         assertThat(map, aMapWithSize(4));
         assertThat(map, hasEntry("date", "2015-04-01"));
         assertThat(map, hasEntry("localDate", "2015-06-10"));
@@ -193,15 +191,10 @@ public class ObjectToMapConverterTest {
 
     @Test
     public void testConvert6_Array() throws Exception {
-        Map<String, String> map = converter.convert(new ArrayForm6(new int[] {
-                1, 2, 3 }, new double[] { 1.1, 1.2 }, new byte[] { 4, 5,
-                        6 }, new String[] { "a", "b",
-                                "c" }, new ArrayFormItem6(new int[] { 11, 12,
-                                        13 }, new double[] { 11.1,
-                                                11.2 }, new byte[] { 14, 15,
-                                                        16 }, new String[] {
-                                                                "d", "e",
-                                                                "f" })));
+        Map<String, String> map = converter.convert(new ArrayForm6(new int[] {1, 2, 3},
+                new double[] {1.1, 1.2}, new byte[] {4, 5, 6}, new String[] {"a", "b", "c"},
+                new ArrayFormItem6(new int[] {11, 12, 13}, new double[] {11.1, 11.2},
+                        new byte[] {14, 15, 16}, new String[] {"d", "e", "f"})));
         assertThat(map, aMapWithSize(22));
         assertThat(map, hasEntry("array1[0]", "1"));
         assertThat(map, hasEntry("array1[1]", "2"));
@@ -266,14 +259,13 @@ public class ObjectToMapConverterTest {
     @SuppressWarnings("unchecked")
     @Test
     public void test7_Null() {
-        assertThat(converter.convert(null), is(
-                (Map<String, String>) Collections.EMPTY_MAP));
+        assertThat(converter.convert(null), is((Map<String, String>) Collections.EMPTY_MAP));
     }
 
     @Test
     public void test8_LackingGetter() {
-        assertThat(converter.convert(new LackingGetterForm8("aaa", "bbb")), is(
-                Collections.singletonMap("value1", "aaa")));
+        assertThat(converter.convert(new LackingGetterForm8("aaa", "bbb")),
+                is(Collections.singletonMap("value1", "aaa")));
     }
 
     @Test
@@ -339,8 +331,7 @@ public class ObjectToMapConverterTest {
             this.age = age;
         }
 
-        public SearchUserForm0() {
-        }
+        public SearchUserForm0() {}
 
         public String getName() {
             return name;
@@ -364,14 +355,12 @@ public class ObjectToMapConverterTest {
 
         private boolean rememberCriteria;
 
-        public SearchUserForm1(SearchUserCriteriaForm1 criteria,
-                boolean rememberCriteria) {
+        public SearchUserForm1(SearchUserCriteriaForm1 criteria, boolean rememberCriteria) {
             this.criteria = criteria;
             this.rememberCriteria = rememberCriteria;
         }
 
-        public SearchUserForm1() {
-        }
+        public SearchUserForm1() {}
 
         public SearchUserCriteriaForm1 getCriteria() {
             return criteria;
@@ -400,8 +389,7 @@ public class ObjectToMapConverterTest {
             this.age = age;
         }
 
-        public SearchUserCriteriaForm1() {
-        }
+        public SearchUserCriteriaForm1() {}
 
         public String getName() {
             return name;
@@ -431,8 +419,7 @@ public class ObjectToMapConverterTest {
             this.operator = operator;
         }
 
-        public BatchUpdateUserForm2() {
-        }
+        public BatchUpdateUserForm2() {}
 
         public List<UpdateUserCriteriaForm2> getCriteria() {
             return criteria;
@@ -465,8 +452,7 @@ public class ObjectToMapConverterTest {
             this.age = age;
         }
 
-        public UpdateUserCriteriaForm2() {
-        }
+        public UpdateUserCriteriaForm2() {}
 
         public String getName() {
             return name;
@@ -490,14 +476,12 @@ public class ObjectToMapConverterTest {
 
         private List<User3> users;
 
-        public SearchAndBatchUpdateUserForm3(SearchUserCriteriaForm3 criteria,
-                List<User3> users) {
+        public SearchAndBatchUpdateUserForm3(SearchUserCriteriaForm3 criteria, List<User3> users) {
             this.criteria = criteria;
             this.users = users;
         }
 
-        public SearchAndBatchUpdateUserForm3() {
-        }
+        public SearchAndBatchUpdateUserForm3() {}
 
         public SearchUserCriteriaForm3 getCriteria() {
             return criteria;
@@ -526,8 +510,7 @@ public class ObjectToMapConverterTest {
             this.age = age;
         }
 
-        public SearchUserCriteriaForm3() {
-        }
+        public SearchUserCriteriaForm3() {}
 
         public String getName() {
             return name;
@@ -556,8 +539,7 @@ public class ObjectToMapConverterTest {
             this.age = age;
         }
 
-        public User3() {
-        }
+        public User3() {}
 
         public String getName() {
             return name;
@@ -583,8 +565,7 @@ public class ObjectToMapConverterTest {
             this.etc = etc;
         }
 
-        public SearchForm4() {
-        }
+        public SearchForm4() {}
 
         public Map<String, String> getEtc() {
             return etc;
@@ -604,8 +585,7 @@ public class ObjectToMapConverterTest {
 
         private DateFormItem5 item;
 
-        public DateForm5() {
-        }
+        public DateForm5() {}
 
         public DateForm5(Date date, LocalDate localDate, DateFormItem5 item) {
             this.date = date;
@@ -645,8 +625,7 @@ public class ObjectToMapConverterTest {
         @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
         private LocalDate localDate;
 
-        public DateFormItem5() {
-        }
+        public DateFormItem5() {}
 
         public DateFormItem5(Date date, LocalDate localDate) {
             this.date = date;
@@ -681,11 +660,10 @@ public class ObjectToMapConverterTest {
 
         private ArrayFormItem6 item;
 
-        public ArrayForm6() {
-        }
+        public ArrayForm6() {}
 
-        public ArrayForm6(int[] array1, double[] array2, byte[] array3,
-                String[] array4, ArrayFormItem6 item) {
+        public ArrayForm6(int[] array1, double[] array2, byte[] array3, String[] array4,
+                ArrayFormItem6 item) {
             this.array1 = array1;
             this.array2 = array2;
             this.array3 = array3;
@@ -743,11 +721,9 @@ public class ObjectToMapConverterTest {
 
         private String[] array4;
 
-        public ArrayFormItem6() {
-        }
+        public ArrayFormItem6() {}
 
-        public ArrayFormItem6(int[] array1, double[] array2, byte[] array3,
-                String[] array4) {
+        public ArrayFormItem6(int[] array1, double[] array2, byte[] array3, String[] array4) {
             this.array1 = array1;
             this.array2 = array2;
             this.array3 = array3;
@@ -793,8 +769,7 @@ public class ObjectToMapConverterTest {
         @SuppressWarnings("unused")
         private String value2;
 
-        public LackingGetterForm8() {
-        }
+        public LackingGetterForm8() {}
 
         public LackingGetterForm8(String value1, String value2) {
             this.value1 = value1;
@@ -831,12 +806,11 @@ public class ObjectToMapConverterTest {
 
         private Map<String, String> map;
 
-        private Map<String, String> map2 = Collections.singletonMap("key",
-                null);
+        private Map<String, String> map2 = Collections.singletonMap("key", null);
 
         private int[] array;
 
-        private String[] array2 = new String[] { null };
+        private String[] array2 = new String[] {null};
 
         private NestedForm9 nestedForm1;
 
@@ -962,12 +936,11 @@ public class ObjectToMapConverterTest {
 
         private Map<String, String> map;
 
-        private Map<String, String> map2 = Collections.singletonMap("key",
-                null);
+        private Map<String, String> map2 = Collections.singletonMap("key", null);
 
         private int[] array;
 
-        private String[] array2 = new String[] { null };
+        private String[] array2 = new String[] {null};
 
         public String getString() {
             return string;

@@ -60,10 +60,8 @@ public class StandardResultMessageTypeTest {
 
     @Test
     public void testSecondary() {
-        assertThat(StandardResultMessageType.SECONDARY.getType(), is(
-                "secondary"));
-        assertThat(StandardResultMessageType.SECONDARY.toString(), is(
-                "secondary"));
+        assertThat(StandardResultMessageType.SECONDARY.getType(), is("secondary"));
+        assertThat(StandardResultMessageType.SECONDARY.toString(), is("secondary"));
     }
 
     @Test

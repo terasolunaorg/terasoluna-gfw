@@ -18,7 +18,8 @@ package org.terasoluna.gfw.common.fullhalf;
 import java.util.Set;
 
 /**
- * The set of {@link FullHalfPair}s which stands for the mapping table used in {@link FullHalfConverter}.
+ * The set of {@link FullHalfPair}s which stands for the mapping table used in
+ * {@link FullHalfConverter}.
  * @since 5.1.0
  */
 public class FullHalfPairs {
@@ -34,14 +35,15 @@ public class FullHalfPairs {
 
     /**
      * Constructor.<br>
-     * The set of {@link FullHalfPair}s and the predicate to check whether the given character is appendable can be given.<br>
+     * The set of {@link FullHalfPair}s and the predicate to check whether the given character is
+     * appendable can be given.<br>
      * If predicate is not given (means <code>null</code>),<br>
-     * the default predicate is used. The default predicate regards <code>ﾞ</code> and <code>ﾟ</code> as appendable characters.
+     * the default predicate is used. The default predicate regards <code>ﾞ</code> and
+     * <code>ﾟ</code> as appendable characters.
      * @param pairs The set of {@link FullHalfPair}s
      * @param predicate Predicate to check whether the given character is appendable.
      */
-    public FullHalfPairs(Set<FullHalfPair> pairs,
-            AppendablePredicate predicate) {
+    public FullHalfPairs(Set<FullHalfPair> pairs, AppendablePredicate predicate) {
         if (pairs == null) {
             throw new IllegalArgumentException("pairs must not be null");
         }
@@ -49,13 +51,12 @@ public class FullHalfPairs {
             throw new IllegalArgumentException("pairs must not be empty");
         }
         this.pairs = pairs;
-        this.predicate = predicate != null ? predicate
-                : new AppendablePredicate() {
-                    @Override
-                    public boolean isAppendable(char c) {
-                        return c == 'ﾞ' || c == 'ﾟ';
-                    }
-                };
+        this.predicate = predicate != null ? predicate : new AppendablePredicate() {
+            @Override
+            public boolean isAppendable(char c) {
+                return c == 'ﾞ' || c == 'ﾟ';
+            }
+        };
     }
 
     /**

@@ -18,10 +18,12 @@ package org.terasoluna.gfw.common.date.jodatime;
 import org.joda.time.DateTime;
 
 /**
- * Default implementation of {@link org.terasoluna.gfw.common.date.jodatime.AbstractJodaTimeDateFactory}<br>
+ * Default implementation of
+ * {@link org.terasoluna.gfw.common.date.jodatime.AbstractJodaTimeDateFactory}<br>
  * this class returns current system date as it is.
  * @since 5.0.0
- * @deprecated It is recommended to migrate to java.time (JSR-310). {@link org.terasoluna.gfw.common.time.DefaultClockFactory}
+ * @deprecated It is recommended to migrate to java.time (JSR-310).
+ *             {@link org.terasoluna.gfw.common.time.DefaultClockFactory}
  */
 @Deprecated
 public class DefaultJodaTimeDateFactory extends AbstractJodaTimeDateFactory {

@@ -76,14 +76,12 @@ public class AbstractMDCPutFilterTest {
         this.testTarget = new AbstractMDCPutFilter() {
 
             @Override
-            protected String getMDCKey(HttpServletRequest request,
-                    HttpServletResponse response) {
+            protected String getMDCKey(HttpServletRequest request, HttpServletResponse response) {
                 return "key";
             }
 
             @Override
-            protected String getMDCValue(HttpServletRequest request,
-                    HttpServletResponse response) {
+            protected String getMDCValue(HttpServletRequest request, HttpServletResponse response) {
                 return "value";
             }
         };
@@ -91,8 +89,7 @@ public class AbstractMDCPutFilterTest {
         // setup mock.
         this.mockRequest = new MockHttpServletRequest();
         this.mockResponse = new MockHttpServletResponse();
-        this.mockFilterChain = spy(
-                new MockFilterChainForAbstractMDCPutFilterTest());
+        this.mockFilterChain = spy(new MockFilterChainForAbstractMDCPutFilterTest());
 
         // setup MDC.
         MDC.clear();
@@ -125,8 +122,7 @@ public class AbstractMDCPutFilterTest {
 
         // do assert.
         // put value to MDC.
-        assertThat((Map<?, ?>) mockFilterChain.actualMdcContextMap,
-                aMapWithSize(2));
+        assertThat((Map<?, ?>) mockFilterChain.actualMdcContextMap, aMapWithSize(2));
         assertThat(mockFilterChain.actualMdcPutValue, is("value"));
 
         // call filter chain.
@@ -152,19 +148,18 @@ public class AbstractMDCPutFilterTest {
      * @throws IOException
      */
     @Test
-    public void testDoFilterInternal_remove_value_and_occur_ServletException() throws ServletException, IOException {
+    public void testDoFilterInternal_remove_value_and_occur_ServletException()
+            throws ServletException, IOException {
 
         // do setup for test case.
         testTarget.setRemoveValue(true);
         MDC.put("dummyKey", "dummyValue");
         ServletException occurException = new ServletException("test");
-        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
-                mockResponse);
+        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest, mockResponse);
 
         // do test.
         ServletException e = assertThrows(ServletException.class, () -> {
-            testTarget.doFilterInternal(mockRequest, mockResponse,
-                    mockFilterChain);
+            testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
         });
         // do assert.
         // throws original exception.
@@ -219,19 +214,18 @@ public class AbstractMDCPutFilterTest {
      * @throws IOException
      */
     @Test
-    public void testDoFilterInternal_keep_value_and_occur_IOException() throws ServletException, IOException {
+    public void testDoFilterInternal_keep_value_and_occur_IOException()
+            throws ServletException, IOException {
 
         // do setup for test case.
         testTarget.setRemoveValue(false);
         MDC.put("dummyKey", "dummyValue");
         IOException occurException = new IOException("test");
-        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
-                mockResponse);
+        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest, mockResponse);
 
         // do test.
         IOException e = assertThrows(IOException.class, () -> {
-            testTarget.doFilterInternal(mockRequest, mockResponse,
-                    mockFilterChain);
+            testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
         });
         // do assert.
         // throws original io exception.
@@ -251,22 +245,19 @@ public class AbstractMDCPutFilterTest {
         this.testTarget = new AbstractMDCPutFilter() {
 
             @Override
-            protected String getMDCKey(HttpServletRequest request,
-                    HttpServletResponse response) {
+            protected String getMDCKey(HttpServletRequest request, HttpServletResponse response) {
                 return "key";
             }
 
             @Override
-            protected String getMDCValue(HttpServletRequest request,
-                    HttpServletResponse response) {
+            protected String getMDCValue(HttpServletRequest request, HttpServletResponse response) {
                 return "12345678901234567890123456789012a";
             }
         };
 
         testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
 
-        assertThat(mockFilterChain.actualMdcPutValue, is(
-                "12345678901234567890123456789012"));
+        assertThat(mockFilterChain.actualMdcPutValue, is("12345678901234567890123456789012"));
 
     }
 
@@ -276,14 +267,12 @@ public class AbstractMDCPutFilterTest {
         this.testTarget = new AbstractMDCPutFilter() {
 
             @Override
-            protected String getMDCKey(HttpServletRequest request,
-                    HttpServletResponse response) {
+            protected String getMDCKey(HttpServletRequest request, HttpServletResponse response) {
                 return "key";
             }
 
             @Override
-            protected String getMDCValue(HttpServletRequest request,
-                    HttpServletResponse response) {
+            protected String getMDCValue(HttpServletRequest request, HttpServletResponse response) {
                 return "123456789012345678901234567890123a";
             }
         };
@@ -292,8 +281,7 @@ public class AbstractMDCPutFilterTest {
 
         testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
 
-        assertThat(mockFilterChain.actualMdcPutValue, is(
-                "123456789012345678901234567890123"));
+        assertThat(mockFilterChain.actualMdcPutValue, is("123456789012345678901234567890123"));
 
     }
 
@@ -303,14 +291,12 @@ public class AbstractMDCPutFilterTest {
         this.testTarget = new AbstractMDCPutFilter() {
 
             @Override
-            protected String getMDCKey(HttpServletRequest request,
-                    HttpServletResponse response) {
+            protected String getMDCKey(HttpServletRequest request, HttpServletResponse response) {
                 return "key";
             }
 
             @Override
-            protected String getMDCValue(HttpServletRequest request,
-                    HttpServletResponse response) {
+            protected String getMDCValue(HttpServletRequest request, HttpServletResponse response) {
                 return "123456789012345678901234567890123a";
             }
         };
@@ -329,14 +315,12 @@ public class AbstractMDCPutFilterTest {
         this.testTarget = new AbstractMDCPutFilter() {
 
             @Override
-            protected String getMDCKey(HttpServletRequest request,
-                    HttpServletResponse response) {
+            protected String getMDCKey(HttpServletRequest request, HttpServletResponse response) {
                 return "key";
             }
 
             @Override
-            protected String getMDCValue(HttpServletRequest request,
-                    HttpServletResponse response) {
+            protected String getMDCValue(HttpServletRequest request, HttpServletResponse response) {
                 return "123456789012345678901234567890123a";
             }
         };
@@ -345,8 +329,7 @@ public class AbstractMDCPutFilterTest {
 
         testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
 
-        assertThat(mockFilterChain.actualMdcPutValue, is(
-                "123456789012345678901234567890123a"));
+        assertThat(mockFilterChain.actualMdcPutValue, is("123456789012345678901234567890123a"));
 
     }
 
@@ -356,14 +339,12 @@ public class AbstractMDCPutFilterTest {
         this.testTarget = new AbstractMDCPutFilter() {
 
             @Override
-            protected String getMDCKey(HttpServletRequest request,
-                    HttpServletResponse response) {
+            protected String getMDCKey(HttpServletRequest request, HttpServletResponse response) {
                 return "MDCKey";
             }
 
             @Override
-            protected String getMDCValue(HttpServletRequest request,
-                    HttpServletResponse response) {
+            protected String getMDCValue(HttpServletRequest request, HttpServletResponse response) {
                 return "MDCValue";
             }
         };
@@ -375,16 +356,15 @@ public class AbstractMDCPutFilterTest {
     /**
      * Mock class of FilterChain.
      */
-    private class MockFilterChainForAbstractMDCPutFilterTest implements
-                                                             FilterChain {
+    private class MockFilterChainForAbstractMDCPutFilterTest implements FilterChain {
         private String actualMdcPutValue;
 
         @SuppressWarnings("rawtypes")
         private Map actualMdcContextMap;
 
         @Override
-        public void doFilter(ServletRequest request,
-                ServletResponse response) throws ServletException, IOException {
+        public void doFilter(ServletRequest request, ServletResponse response)
+                throws ServletException, IOException {
             this.actualMdcPutValue = MDC.get("key");
             this.actualMdcContextMap = MDC.getCopyOfContextMap();
         }

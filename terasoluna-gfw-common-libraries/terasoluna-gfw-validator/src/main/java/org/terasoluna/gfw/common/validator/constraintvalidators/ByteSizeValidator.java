@@ -27,15 +27,15 @@ import jakarta.validation.ConstraintValidatorContext;
 /**
  * Constraint validator class of {@link ByteSize} annotation.
  * <p>
- * Validate the {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte length must be between the
- * specified minimum and maximum. Determine the byte length By encoding the string in the specified charset.
+ * Validate the {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte
+ * length must be between the specified minimum and maximum. Determine the byte length By encoding
+ * the string in the specified charset.
  * </p>
  * @since 5.4.2
  * @see ConstraintValidator
  * @see ByteSize
  */
-public class ByteSizeValidator implements
-                               ConstraintValidator<ByteSize, CharSequence> {
+public class ByteSizeValidator implements ConstraintValidator<ByteSize, CharSequence> {
 
     /**
      * The charset used in parse to a string.
@@ -68,16 +68,16 @@ public class ByteSizeValidator implements
         min = constraintAnnotation.min();
         max = constraintAnnotation.max();
         if (min < 0) {
-            throw reportFailedToInitialize(new IllegalArgumentException("min["
-                    + min + "] must not be negative value."));
+            throw reportFailedToInitialize(
+                    new IllegalArgumentException("min[" + min + "] must not be negative value."));
         }
         if (max < 0) {
-            throw reportFailedToInitialize(new IllegalArgumentException("max["
-                    + max + "] must not be negative value."));
+            throw reportFailedToInitialize(
+                    new IllegalArgumentException("max[" + max + "] must not be negative value."));
         }
         if (max < min) {
-            throw reportFailedToInitialize(new IllegalArgumentException("max["
-                    + max + "] must be higher or equal to min[" + min + "]."));
+            throw reportFailedToInitialize(new IllegalArgumentException(
+                    "max[" + max + "] must be higher or equal to min[" + min + "]."));
         }
     }
 
@@ -85,13 +85,13 @@ public class ByteSizeValidator implements
      * Validate execute.
      * @param value object to validate
      * @param context context in which the constraint is evaluated
-     * @return {@code true} if {@code value} length is between the specified minimum and maximum, or null. otherwise
-     *         {@code false}.
-     * @see javax.validation.ConstraintValidator#isValid(java.lang.Object, javax.validation.ConstraintValidatorContext)
+     * @return {@code true} if {@code value} length is between the specified minimum and maximum, or
+     *         null. otherwise {@code false}.
+     * @see javax.validation.ConstraintValidator#isValid(java.lang.Object,
+     *      javax.validation.ConstraintValidatorContext)
      */
     @Override
-    public boolean isValid(CharSequence value,
-            ConstraintValidatorContext context) {
+    public boolean isValid(CharSequence value, ConstraintValidatorContext context) {
         if (value == null) {
             return true;
         }

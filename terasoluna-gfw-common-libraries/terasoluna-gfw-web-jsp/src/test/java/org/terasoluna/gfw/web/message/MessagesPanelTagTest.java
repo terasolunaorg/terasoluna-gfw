@@ -71,17 +71,15 @@ public class MessagesPanelTagTest {
     protected MockPageContext createPageContext() {
         MockServletContext sc = new MockServletContext();
         wac = mock(WebApplicationContext.class);
-        when(wac.getMessage(eq("hello.world"), eq(new Object[] {}), any(
-                Locale.class))).thenReturn("hello world!");
-        when(wac.getMessage(eq("foo.bar"), eq(new Object[] { 1, 2 }), any(
-                Locale.class))).thenReturn("foo1 and bar2");
+        when(wac.getMessage(eq("hello.world"), eq(new Object[] {}), any(Locale.class)))
+                .thenReturn("hello world!");
+        when(wac.getMessage(eq("foo.bar"), eq(new Object[] {1, 2}), any(Locale.class)))
+                .thenReturn("foo1 and bar2");
 
         when(wac.getServletContext()).thenReturn(sc);
         request = new MockHttpServletRequest(sc);
         MockHttpServletResponse response = new MockHttpServletResponse();
-        sc.setAttribute(
-                WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE,
-                wac);
+        sc.setAttribute(WebApplicationContext.ROOT_WEB_APPLICATION_CONTEXT_ATTRIBUTE, wac);
         return new MockPageContext(sc, request, response);
     }
 
@@ -116,8 +114,7 @@ public class MessagesPanelTagTest {
     @Test
     public void test01() throws Exception {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                ResultMessages.error().add(ResultMessage.fromText(
-                        "hello world!")));
+                ResultMessages.error().add(ResultMessage.fromText("hello world!")));
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-error\"><ul><li>hello world!</li></ul></div>";
         assertThat(getOutput(), is(expected));
@@ -146,8 +143,7 @@ public class MessagesPanelTagTest {
      */
     @Test
     public void test03() throws Exception {
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                "hello world!");
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, "hello world!");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li>hello world!</li></ul></div>";
         assertThat(getOutput(), is(expected));
@@ -188,8 +184,7 @@ public class MessagesPanelTagTest {
      */
     @Test
     public void test06() throws Exception {
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                null);
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, null);
         int ret = tag.doStartTag();
         String expected = "";
         assertThat(getOutput(), is(expected));
@@ -203,7 +198,7 @@ public class MessagesPanelTagTest {
     @Test
     public void test07() throws Exception {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                new String[] { "hello", "world" });
+                new String[] {"hello", "world"});
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li>hello</li><li>world</li></ul></div>";
         assertThat(getOutput(), is(expected));
@@ -234,7 +229,8 @@ public class MessagesPanelTagTest {
                 ResultMessages.warning().add(ResultMessage.fromText("hello"))
                         .add(ResultMessage.fromText("world")));
         int ret = tag.doStartTag();
-        String expected = "<div class=\"alert alert-warning\"><ul><li>hello</li><li>world</li></ul></div>";
+        String expected =
+                "<div class=\"alert alert-warning\"><ul><li>hello</li><li>world</li></ul></div>";
         assertThat(getOutput(), is(expected));
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
     }
@@ -246,10 +242,10 @@ public class MessagesPanelTagTest {
     @Test
     public void test10() throws Exception {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                ResultMessages.success().add("hello.world").add("foo.bar", 1,
-                        2));
+                ResultMessages.success().add("hello.world").add("foo.bar", 1, 2));
         int ret = tag.doStartTag();
-        String expected = "<div class=\"alert alert-success\"><ul><li>hello world!</li><li>foo1 and bar2</li></ul></div>";
+        String expected =
+                "<div class=\"alert alert-success\"><ul><li>hello world!</li><li>foo1 and bar2</li></ul></div>";
         assertThat(getOutput(), is(expected));
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
     }
@@ -261,24 +257,22 @@ public class MessagesPanelTagTest {
     @Test
     public void test11() throws Exception {
         Date now = new Date();
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                now);
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, now);
         int ret = tag.doStartTag();
-        String expected = "<div class=\"alert\"><ul><li>" + now
-                + "</li></ul></div>";
+        String expected = "<div class=\"alert\"><ul><li>" + now + "</li></ul></div>";
         assertThat(getOutput(), is(expected));
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
     }
 
     /**
-     * Set default messages attribute name & Use ResultMessages & change PanelElement,OuterElement and InnerElement.<br>
+     * Set default messages attribute name & Use ResultMessages & change PanelElement,OuterElement
+     * and InnerElement.<br>
      * check change PanelElement,OuterElement and PanelElement in messagesPanelTag.
      */
     @Test
     public void test12() throws Exception {
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                ResultMessages.info().add(ResultMessage.fromText("hello!")).add(
-                        ResultMessage.fromText("foo")));
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, ResultMessages.info()
+                .add(ResultMessage.fromText("hello!")).add(ResultMessage.fromText("foo")));
         tag.setPanelElement("p");
         tag.setOuterElement("");
         tag.setInnerElement("span");
@@ -304,14 +298,14 @@ public class MessagesPanelTagTest {
     }
 
     /**
-     * Set default messages attribute name & Use ResultMessages & change PanelClassName is empty.<br>
+     * Set default messages attribute name & Use ResultMessages & change PanelClassName is
+     * empty.<br>
      * check CSS class is PanelTypeClassPrefix and ResultMessages.type in messagesPanelTag.
      */
     @Test
     public void test14() throws Exception {
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                ResultMessages.info().add(ResultMessage.fromText("foo")).add(
-                        ResultMessage.fromText("bar")));
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, ResultMessages.info()
+                .add(ResultMessage.fromText("foo")).add(ResultMessage.fromText("bar")));
         tag.setPanelClassName("");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert-info\"><ul><li>foo</li><li>bar</li></ul></div>";
@@ -320,14 +314,14 @@ public class MessagesPanelTagTest {
     }
 
     /**
-     * Set default messages attribute name & Use ResultMessages & Change PanelClassName and PanelTypeClassPrefix is empty.<br>
+     * Set default messages attribute name & Use ResultMessages & Change PanelClassName and
+     * PanelTypeClassPrefix is empty.<br>
      * check CSS class is ResultMessages.type in messagesPanelTag.
      */
     @Test
     public void test15() throws Exception {
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                ResultMessages.info().add(ResultMessage.fromText("foo")).add(
-                        ResultMessage.fromText("bar")));
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, ResultMessages.info()
+                .add(ResultMessage.fromText("foo")).add(ResultMessage.fromText("bar")));
         tag.setPanelClassName("");
         tag.setPanelTypeClassPrefix("");
         int ret = tag.doStartTag();
@@ -337,14 +331,14 @@ public class MessagesPanelTagTest {
     }
 
     /**
-     * Set default messages attribute name & Use ResultMessages & Change PanelClassName and PanelTypeClassPrefix is empty.<br>
+     * Set default messages attribute name & Use ResultMessages & Change PanelClassName and
+     * PanelTypeClassPrefix is empty.<br>
      * check CSS class is ResultMessages.type in messagesPanelTag.
      */
     @Test
     public void test16() throws Exception {
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                ResultMessages.info().add(ResultMessage.fromText("foo")).add(
-                        ResultMessage.fromText("bar")));
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, ResultMessages.info()
+                .add(ResultMessage.fromText("foo")).add(ResultMessage.fromText("bar")));
         tag.setPanelClassName("");
         tag.setPanelTypeClassPrefix("");
         int ret = tag.doStartTag();
@@ -354,15 +348,14 @@ public class MessagesPanelTagTest {
     }
 
     /**
-     * Set default messages attribute name & Use ResultMessages & Change PanelClassName, PanelTypeClassPrefix and MessagesType
-     * is empty.<br>
+     * Set default messages attribute name & Use ResultMessages & Change PanelClassName,
+     * PanelTypeClassPrefix and MessagesType is empty.<br>
      * check no CSS class in messagesPanelTag.
      */
     @Test
     public void test21() throws Exception {
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                ResultMessages.info().add(ResultMessage.fromText("foo")).add(
-                        ResultMessage.fromText("bar")));
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, ResultMessages.info()
+                .add(ResultMessage.fromText("foo")).add(ResultMessage.fromText("bar")));
         tag.setPanelClassName("");
         tag.setPanelTypeClassPrefix("");
         tag.setMessagesType("");
@@ -373,7 +366,8 @@ public class MessagesPanelTagTest {
     }
 
     /**
-     * Set default messages attribute name & Use ResultMessages & change OuterElement and InnerElement is empty.<br>
+     * Set default messages attribute name & Use ResultMessages & change OuterElement and
+     * InnerElement is empty.<br>
      * check no OuterElement and PanelElement in messagesPanelTag.
      */
     @Test
@@ -418,8 +412,8 @@ public class MessagesPanelTagTest {
     }
 
     /**
-     * Set default messages attribute name & Use ResultMessages & change PanelElement,OuterElement and InnerElement is
-     * empty.<br>
+     * Set default messages attribute name & Use ResultMessages & change PanelElement,OuterElement
+     * and InnerElement is empty.<br>
      * check JspTagException.
      */
     @Test(expected = JspTagException.class)
@@ -466,8 +460,8 @@ public class MessagesPanelTagTest {
      */
     @Test
     public void test19() throws Exception {
-        request.setAttribute("result", ResultMessages.error().add(ResultMessage
-                .fromText("hello world!")));
+        request.setAttribute("result",
+                ResultMessages.error().add(ResultMessage.fromText("hello world!")));
         tag.setMessagesAttributeName("result");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-error\"><ul><li>hello world!</li></ul></div>";
@@ -481,8 +475,7 @@ public class MessagesPanelTagTest {
      */
     @Test
     public void test20() throws Exception {
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                new int[] { 1, 2 });
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, new int[] {1, 2});
         tag.setPanelClassName("");
         int ret = tag.doStartTag();
         String expected = "<div><ul><li>1</li><li>2</li></ul></div>";
@@ -496,8 +489,7 @@ public class MessagesPanelTagTest {
      */
     @Test
     public void test22() throws Exception {
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                "hello world!");
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, "hello world!");
         tag.setMessagesType("");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li>hello world!</li></ul></div>";
@@ -511,8 +503,7 @@ public class MessagesPanelTagTest {
      */
     @Test
     public void test23() throws Exception {
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                "hello world!");
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, "hello world!");
         tag.setMessagesType("error");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-error\"><ul><li>hello world!</li></ul></div>";
@@ -521,14 +512,13 @@ public class MessagesPanelTagTest {
     }
 
     /**
-     * Set default messages attribute name & Use textMessage & set PanelClassName and PanelTypeClassPrefix is empty &
-     * MessagesType is "error".<br>
+     * Set default messages attribute name & Use textMessage & set PanelClassName and
+     * PanelTypeClassPrefix is empty & MessagesType is "error".<br>
      * check CSS class is error in messagesPanelTag.
      */
     @Test
     public void test24() throws Exception {
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                "hello world!");
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, "hello world!");
         tag.setPanelClassName("");
         tag.setPanelTypeClassPrefix("");
         tag.setMessagesType("error");
@@ -563,14 +553,15 @@ public class MessagesPanelTagTest {
                 Arrays.asList("foo", "bar"));
         tag.setMessagesType("error");
         int ret = tag.doStartTag();
-        String expected = "<div class=\"alert alert-error\"><ul><li>foo</li><li>bar</li></ul></div>";
+        String expected =
+                "<div class=\"alert alert-error\"><ul><li>foo</li><li>bar</li></ul></div>";
         assertThat(getOutput(), is(expected));
         assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
     }
 
     /**
-     * Set default messages attribute name & Use Array & set PanelClassName and PanelTypeClassPrefix is empty & MessagesType is
-     * "error".<br>
+     * Set default messages attribute name & Use Array & set PanelClassName and PanelTypeClassPrefix
+     * is empty & MessagesType is "error".<br>
      * check CSS class is error in messagesPanelTag.
      */
     @Test
@@ -664,8 +655,7 @@ public class MessagesPanelTagTest {
      */
     @Test
     public void test34() throws Exception {
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                new String[] {});
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, new String[] {});
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul></ul></div>";
         assertThat(getOutput(), is(expected));
@@ -678,8 +668,7 @@ public class MessagesPanelTagTest {
      */
     @Test
     public void test35() throws Exception {
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                "");
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, "");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li></li></ul></div>";
         assertThat(getOutput(), is(expected));
@@ -707,8 +696,7 @@ public class MessagesPanelTagTest {
     @Test
     public void testGetTextMessageInstanceofThrowable() throws Exception {
         // set up
-        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
-                new Throwable());
+        request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, new Throwable());
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li></li></ul></div>";
 

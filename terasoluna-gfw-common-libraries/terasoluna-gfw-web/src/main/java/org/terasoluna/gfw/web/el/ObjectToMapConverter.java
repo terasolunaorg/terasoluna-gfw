@@ -35,7 +35,8 @@ import org.springframework.util.StringUtils;
 /**
  * Convert {@code Object} to {@code Map<String, String>} using {@link FormattingConversionService}.
  * <p>
- * The converted Map can be populated to the original Object using {@link org.springframework.validation.DataBinder}.
+ * The converted Map can be populated to the original Object using
+ * {@link org.springframework.validation.DataBinder}.
  * </p>
  * <h3>Example1</h3>
  *
@@ -57,7 +58,8 @@ import org.springframework.util.StringUtils;
  * </code>
  * </pre>
  * <p>
- * {@code SearchUserForm} instance will be converted as follows {@code "rememberCriteria":"true", "criteria.name":"yamada",
+ * {@code SearchUserForm} instance will be converted as follows
+ * {@code "rememberCriteria":"true", "criteria.name":"yamada",
  * "criteria.age":"20"}
  * </p>
  * <h3>Example2</h3>
@@ -88,7 +90,8 @@ import org.springframework.util.StringUtils;
  * </code>
  * </pre>
  * <p>
- * {@code BatchUpdateUserForm} instance will be converted as follows {@code "criteria[0].name":"yamada",
+ * {@code BatchUpdateUserForm} instance will be converted as follows
+ * {@code "criteria[0].name":"yamada",
  * "criteria[0].age":"20", "criteria[1].name":"tanaka", "criteria[1].name":"50", "operator":"AND"}
  * </p>
  * <h3>Example3</h3>
@@ -123,19 +126,22 @@ import org.springframework.util.StringUtils;
  * {@code criteria.name=suzuki&criteria.age=30&users[0].name=yamada&users[0].age=20&users[1].name=tanaka&users[1].age=50}
  * </p>
  * <p>
- * If the value of a property is {@code null}, the value is converted to an empty string and the key is prefixed with
- * {@code "_"}. Request parameter that start with {@code "_"} is reset parameter provided by Spring Web MVC. If a reset
- * parameter is specified, Spring Web MVC bind {@code null} to a property value.<br>
+ * If the value of a property is {@code null}, the value is converted to an empty string and the key
+ * is prefixed with {@code "_"}. Request parameter that start with {@code "_"} is reset parameter
+ * provided by Spring Web MVC. If a reset parameter is specified, Spring Web MVC bind {@code null}
+ * to a property value.<br>
  * e.g.) {@code "_rememberCriteria":"", "_criteria.name":"", "_criteria.age":""}
  * </p>
  * <p>
- * If the value of a {@link Iterable} or Array property is empty element, the value is converted to an empty string. If a empty
- * string is specified, Spring Web MVC bind empty element to a property value.<br>
+ * If the value of a {@link Iterable} or Array property is empty element, the value is converted to
+ * an empty string. If a empty string is specified, Spring Web MVC bind empty element to a property
+ * value.<br>
  * e.g.) {@code "users":"", "criteria.name":"suzuki", "criteria.age":"30"}
  * </p>
  * <p>
- * If the value of a {@link Map} property is empty element, it is not converted. As a result, the property value will be a
- * default value of server side implementation because Spring Web MVC does not bind request parameter to the property value.
+ * If the value of a {@link Map} property is empty element, it is not converted. As a result, the
+ * property value will be a default value of server side implementation because Spring Web MVC does
+ * not bind request parameter to the property value.
  * </p>
  * @since 5.0.1
  */
@@ -143,8 +149,7 @@ class ObjectToMapConverter {
     /**
      * type descriptor of string for format a value.
      */
-    private static final TypeDescriptor STRING_DESC = TypeDescriptor.valueOf(
-            String.class);
+    private static final TypeDescriptor STRING_DESC = TypeDescriptor.valueOf(String.class);
 
     /**
      * conversion service for formatting a value.
@@ -156,8 +161,7 @@ class ObjectToMapConverter {
      * @param conversionService {@link FormattingConversionService} to use. must not be null
      */
     public ObjectToMapConverter(FormattingConversionService conversionService) {
-        Assert.notNull(conversionService,
-                "'conversionService' must not be null");
+        Assert.notNull(conversionService, "'conversionService' must not be null");
         this.conversionService = conversionService;
     }
 
@@ -171,8 +175,7 @@ class ObjectToMapConverter {
         Map<String, String> map = new LinkedHashMap<String, String>();
         for (Map.Entry<?, ?> e : value.entrySet()) {
             if (StringUtils.hasText(prefix)) {
-                map.putAll(this.convert(prefix + "[" + e.getKey() + "]", e
-                        .getValue()));
+                map.putAll(this.convert(prefix + "[" + e.getKey() + "]", e.getValue()));
             } else {
                 map.putAll(this.convert(e.getKey().toString(), e.getValue()));
             }
@@ -184,8 +187,9 @@ class ObjectToMapConverter {
      * Convert the given Iterable to the flatten map
      * @param prefix prefix of the key
      * @param value iterable instance to convert
-     * @return converted map. all keys are prefixed with the given key. If given Iterable is empty, the pair of the given
-     *         name(prefix) and an empty string is added into map of return value.
+     * @return converted map. all keys are prefixed with the given key. If given Iterable is empty,
+     *         the pair of the given name(prefix) and an empty string is added into map of return
+     *         value.
      */
     private Map<String, String> convert(String prefix, Iterable<?> value) {
         Map<String, String> map = new LinkedHashMap<String, String>();
@@ -237,8 +241,7 @@ class ObjectToMapConverter {
         }
 
         // the given object is a Java Bean
-        BeanWrapper beanWrapper = PropertyAccessorFactory.forBeanPropertyAccess(
-                object);
+        BeanWrapper beanWrapper = PropertyAccessorFactory.forBeanPropertyAccess(object);
         PropertyDescriptor[] pds = beanWrapper.getPropertyDescriptors();
 
         // flatten properties in the given object
@@ -248,8 +251,7 @@ class ObjectToMapConverter {
                 continue;
             }
             Object value = beanWrapper.getPropertyValue(name);
-            TypeDescriptor sourceType = beanWrapper.getPropertyTypeDescriptor(
-                    name);
+            TypeDescriptor sourceType = beanWrapper.getPropertyTypeDescriptor(name);
 
             if (!flatten(map, prefix, name, value, sourceType)) {
                 // the property can be a Java Bean
@@ -263,9 +265,10 @@ class ObjectToMapConverter {
     }
 
     /**
-     * Add the pair of the given name and value to the given map. The value is flattened if required to be available in query
-     * params. <br>
-     * Return whether the value is flattened. The value is flattened in the case of the following types:
+     * Add the pair of the given name and value to the given map. The value is flattened if required
+     * to be available in query params. <br>
+     * Return whether the value is flattened. The value is flattened in the case of the following
+     * types:
      * <ul>
      * <li>Array (unless the name is empty)</li>
      * <li>Iterable (unless the name is empty)</li>
@@ -274,10 +277,11 @@ class ObjectToMapConverter {
      * <li>if {@link #conversionService} can convert</li>
      * </ul>
      * <p>
-     * The value is formatted using {@link FormattingConversionService} is possible. If the value of a property is {@code null},
-     * the value is converted to an empty string and the key is prefixed with {@code "_"}. Request parameter that start with
-     * {@code "_"} is reset parameter provided by Spring Web MVC. If a reset parameter is specified, Spring Web MVC bind
-     * {@code null} to a property value.
+     * The value is formatted using {@link FormattingConversionService} is possible. If the value of
+     * a property is {@code null}, the value is converted to an empty string and the key is prefixed
+     * with {@code "_"}. Request parameter that start with {@code "_"} is reset parameter provided
+     * by Spring Web MVC. If a reset parameter is specified, Spring Web MVC bind {@code null} to a
+     * property value.
      * </p>
      * @param map map to add
      * @param prefix prefix of the key
@@ -286,8 +290,8 @@ class ObjectToMapConverter {
      * @param sourceType {@link TypeDescriptor} to use
      * @return flatten map
      */
-    private boolean flatten(Map<String, String> map, String prefix, String name,
-            Object value, TypeDescriptor sourceType) {
+    private boolean flatten(Map<String, String> map, String prefix, String name, Object value,
+            TypeDescriptor sourceType) {
         String key = StringUtils.hasText(prefix) ? prefix + "." + name : name;
         if (value == null) {
             String resetKey = determineResetKey(key, sourceType);
@@ -313,12 +317,11 @@ class ObjectToMapConverter {
             Map<?, ?> m = (Map<?, ?>) value;
             map.putAll(this.convert(key, m));
         } else {
-            TypeDescriptor descriptor = (sourceType != null) ? sourceType
-                    : TypeDescriptor.forObject(value);
-            if (BeanUtils.isSimpleProperty(clazz) || conversionService
-                    .canConvert(descriptor, STRING_DESC)) {
-                map.put(key, conversionService.convert(value, descriptor,
-                        STRING_DESC).toString());
+            TypeDescriptor descriptor =
+                    (sourceType != null) ? sourceType : TypeDescriptor.forObject(value);
+            if (BeanUtils.isSimpleProperty(clazz)
+                    || conversionService.canConvert(descriptor, STRING_DESC)) {
+                map.put(key, conversionService.convert(value, descriptor, STRING_DESC).toString());
             } else {
                 // the value is Java Bean?
                 return false;
@@ -332,7 +335,8 @@ class ObjectToMapConverter {
      * Determine whether to convert null value to field marker.
      * <p>
      * Should not convert Boolean null value to field marker.<br>
-     * {@link org.springframework.web.bind.WebDataBinder} bind boolean & Boolean field marker as same false value.
+     * {@link org.springframework.web.bind.WebDataBinder} bind boolean & Boolean field marker as
+     * same false value.
      * @param key Property name with prefix
      * @param sourceType {@link TypeDescriptor} to use
      * @return ResetKey

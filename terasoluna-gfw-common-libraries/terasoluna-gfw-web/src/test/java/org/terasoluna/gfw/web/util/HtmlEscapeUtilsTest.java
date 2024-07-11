@@ -28,8 +28,7 @@ public class HtmlEscapeUtilsTest {
     @Test
     public void testHtmlEscapeUtils() throws Exception {
         // set up
-        Constructor<HtmlEscapeUtils> constructor = HtmlEscapeUtils.class
-                .getDeclaredConstructor();
+        Constructor<HtmlEscapeUtils> constructor = HtmlEscapeUtils.class.getDeclaredConstructor();
         assertThat(constructor.canAccess(null), is(false));
         constructor.setAccessible(true);
 

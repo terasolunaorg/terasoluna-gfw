@@ -45,14 +45,14 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Table;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:test-context.xml" })
+@ContextConfiguration(locations = {"classpath:test-context.xml"})
 @Transactional
 @Rollback
 // Changed by SPR-13277
 public class SimpleReloadableI18nCodeListTest {
 
-    static final Map<Locale, String> locales = ImmutableMap.of(Locale.ENGLISH,
-            "label%03d", Locale.JAPANESE, "ラベル%03d");
+    static final Map<Locale, String> locales =
+            ImmutableMap.of(Locale.ENGLISH, "label%03d", Locale.JAPANESE, "ラベル%03d");
 
     @Autowired
     NamedParameterJdbcTemplate jdbcTemplate;
@@ -78,29 +78,25 @@ public class SimpleReloadableI18nCodeListTest {
         tableInput = HashBasedTable.create();
         for (Entry<Locale, String> locale : locales.entrySet()) {
             for (int i = 0; i < 10; i++) {
-                tableInput.put(locale.getKey(), String.format("%03d", i), String
-                        .format(locale.getValue(), i));
+                tableInput.put(locale.getKey(), String.format("%03d", i),
+                        String.format(locale.getValue(), i));
             }
         }
 
         jdbcTemplate.getJdbcOperations().execute(
                 "CREATE TABLE codelist_en(code_id character varying(3) PRIMARY KEY, code_name character varying(50))");
-        for (Entry<String, String> column : tableInput.row(Locale.ENGLISH)
-                .entrySet()) {
+        for (Entry<String, String> column : tableInput.row(Locale.ENGLISH).entrySet()) {
             jdbcTemplate.update(
                     "INSERT INTO codelist_en (code_id, code_name) VALUES (:code_id, :code_name)",
-                    ImmutableMap.of("code_id", column.getKey(), "code_name",
-                            column.getValue()));
+                    ImmutableMap.of("code_id", column.getKey(), "code_name", column.getValue()));
         }
 
         jdbcTemplate.getJdbcOperations().execute(
                 "CREATE TABLE codelist_ja(code_id character varying(3) PRIMARY KEY, code_name character varying(50))");
-        for (Entry<String, String> column : tableInput.row(Locale.JAPANESE)
-                .entrySet()) {
+        for (Entry<String, String> column : tableInput.row(Locale.JAPANESE).entrySet()) {
             jdbcTemplate.update(
                     "INSERT INTO codelist_ja (code_id, code_name) VALUES (:code_id, :code_name)",
-                    ImmutableMap.of("code_id", column.getKey(), "code_name",
-                            column.getValue()));
+                    ImmutableMap.of("code_id", column.getKey(), "code_name", column.getValue()));
         }
 
         codeListEnglish = new JdbcCodeList();
@@ -108,22 +104,19 @@ public class SimpleReloadableI18nCodeListTest {
         codeListEnglish.setDataSource(dataSource);
         codeListEnglish.setLabelColumn("code_name");
         codeListEnglish.setValueColumn("code_id");
-        codeListEnglish.setQuerySql(
-                "Select code_id, code_name from codelist_en");
+        codeListEnglish.setQuerySql("Select code_id, code_name from codelist_en");
 
         codeListJapanese = new JdbcCodeList();
         codeListJapanese.setBeanName("CL_TEST_JA");
         codeListJapanese.setDataSource(dataSource);
         codeListJapanese.setLabelColumn("code_name");
         codeListJapanese.setValueColumn("code_id");
-        codeListJapanese.setQuerySql(
-                "Select code_id, code_name from codelist_ja");
+        codeListJapanese.setQuerySql("Select code_id, code_name from codelist_ja");
 
         reloadableI18nCodeList = new SimpleReloadableI18nCodeList();
         reloadableI18nCodeList.setBeanName("CL_TEST");
-        reloadableI18nCodeList.setRowsByCodeList(ImmutableMap
-                .<Locale, ReloadableCodeList> of(Locale.ENGLISH,
-                        codeListEnglish, Locale.JAPANESE, codeListJapanese));
+        reloadableI18nCodeList.setRowsByCodeList(ImmutableMap.<Locale, ReloadableCodeList>of(
+                Locale.ENGLISH, codeListEnglish, Locale.JAPANESE, codeListJapanese));
     }
 
     @After
@@ -201,8 +194,8 @@ public class SimpleReloadableI18nCodeListTest {
         reloadableI18nCodeList.setLazyInit(true);
         afterPropertiesSet();
 
-        assertThat(ReflectionTestUtils.getField(reloadableI18nCodeList,
-                "codeListTable"), nullValue());
+        assertThat(ReflectionTestUtils.getField(reloadableI18nCodeList, "codeListTable"),
+                nullValue());
         assertCodeListMap(10);
     }
 
@@ -225,12 +218,11 @@ public class SimpleReloadableI18nCodeListTest {
         for (Locale locale : tableInput.rowKeySet()) {
 
             Map<String, String> mapInput = tableInput.row(locale);
-            Map<String, String> mapOutput = reloadableI18nCodeList.asMap(
-                    locale);
+            Map<String, String> mapOutput = reloadableI18nCodeList.asMap(locale);
             assertThat(mapOutput, aMapWithSize(mapSize));
             for (int i = 0; i < mapSize; i++) {
-                assertThat(mapOutput.get(String.format("%03d", i)), is(mapInput
-                        .get(String.format("%03d", i))));
+                assertThat(mapOutput.get(String.format("%03d", i)),
+                        is(mapInput.get(String.format("%03d", i))));
             }
         }
     }

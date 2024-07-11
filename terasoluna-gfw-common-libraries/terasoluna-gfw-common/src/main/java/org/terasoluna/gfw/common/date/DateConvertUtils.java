@@ -32,8 +32,7 @@ public final class DateConvertUtils {
     /**
      * Default Constructor.
      */
-    private DateConvertUtils() {
-    };
+    private DateConvertUtils() {};
 
     /**
      * Converts java.util.Date to java.sql.Timestamp<br>

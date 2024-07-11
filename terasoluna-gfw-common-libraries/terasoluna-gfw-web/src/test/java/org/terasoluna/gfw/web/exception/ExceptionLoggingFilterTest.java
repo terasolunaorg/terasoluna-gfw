@@ -98,8 +98,7 @@ public class ExceptionLoggingFilterTest {
 
         IOException occurException = new IOException("io exception.");
 
-        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
-                mockResponse);
+        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest, mockResponse);
 
         IOException e = assertThrows(IOException.class, () -> {
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
@@ -115,8 +114,7 @@ public class ExceptionLoggingFilterTest {
 
         ServletException occurException = new ServletException("servlet exception.");
 
-        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
-                mockResponse);
+        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest, mockResponse);
 
         ServletException e = assertThrows(ServletException.class, () -> {
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
@@ -132,13 +130,10 @@ public class ExceptionLoggingFilterTest {
 
         NullPointerException occurException = new NullPointerException("null pointer exception.");
 
-        NullPointerException e = assertThrows(NullPointerException.class,
-                () -> {
-                    doThrow(occurException).when(mockFilterChain).doFilter(
-                            mockRequest, mockResponse);
-                    testTarget.doFilter(mockRequest, mockResponse,
-                            mockFilterChain);
-                });
+        NullPointerException e = assertThrows(NullPointerException.class, () -> {
+            doThrow(occurException).when(mockFilterChain).doFilter(mockRequest, mockResponse);
+            testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
+        });
         assertThat(e, is(occurException));
 
         verify(mockExceptionLogger, times(1)).error(occurException);
@@ -150,12 +145,10 @@ public class ExceptionLoggingFilterTest {
 
         OutOfMemoryError occurError = new OutOfMemoryError("out of memory error.");
 
-        doThrow(occurError).when(mockFilterChain).doFilter(mockRequest,
-                mockResponse);
+        doThrow(occurError).when(mockFilterChain).doFilter(mockRequest, mockResponse);
 
         OutOfMemoryError e = assertThrows(OutOfMemoryError.class, () -> {
-            doThrow(occurError).when(mockFilterChain).doFilter(mockRequest,
-                    mockResponse);
+            doThrow(occurError).when(mockFilterChain).doFilter(mockRequest, mockResponse);
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
         });
         assertThat(e, is(occurError));
@@ -165,7 +158,8 @@ public class ExceptionLoggingFilterTest {
     }
 
     @Test
-    public void testDoFilter_occur_ioexception_exceptionLogger_is_default() throws IOException, ServletException {
+    public void testDoFilter_occur_ioexception_exceptionLogger_is_default()
+            throws IOException, ServletException {
 
         testTarget = new ExceptionLoggingFilter();
         testTarget.afterPropertiesSet();
@@ -174,8 +168,7 @@ public class ExceptionLoggingFilterTest {
 
         IOException occurException = new IOException("io exception.");
 
-        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
-                mockResponse);
+        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest, mockResponse);
 
         IOException e = assertThrows(IOException.class, () -> {
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);

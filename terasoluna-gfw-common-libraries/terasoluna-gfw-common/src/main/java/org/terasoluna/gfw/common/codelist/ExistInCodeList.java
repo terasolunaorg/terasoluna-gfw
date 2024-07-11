@@ -37,11 +37,12 @@ import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
 /**
- * Custom annotation that provides the functionality to check the existence of a code in the specified codelist.
+ * Custom annotation that provides the functionality to check the existence of a code in the
+ * specified codelist.
  * <p>
  * The annotation has the functionality to check whether a Code, which can be the <br>
- * value of field or return value of method to which the annotation is applied, exists in the {@link CodeList} bean specified as
- * argument to the annotation. <br>
+ * value of field or return value of method to which the annotation is applied, exists in the
+ * {@link CodeList} bean specified as argument to the annotation. <br>
  *
  * <pre>
  * &#064;ExistInCodeList(codeListId = &quot;CD_GENDER&quot;)
@@ -53,16 +54,16 @@ import jakarta.validation.Payload;
  * In the above code, ExistInCodeList annotation checks whether the code in gender field <br>
  * exists in {@code CD_GENDER} {@link CodeList}. <br>
  * <br>
- * If the the code does not exist in the {@link CodeList}, an instance of {@link javax.validation.ConstraintViolation} is
- * returned with the default error message represented by {@code message()} in it.
+ * If the the code does not exist in the {@link CodeList}, an instance of
+ * {@link javax.validation.ConstraintViolation} is returned with the default error message
+ * represented by {@code message()} in it.
  */
 @Documented
-@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
+@Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
 @Repeatable(List.class)
-@Constraint(validatedBy = { ExistInCodeListValidatorForCharSequence.class,
-        ExistInCodeListValidatorForCharacter.class,
-        ExistInCodeListValidatorForNumber.class })
+@Constraint(validatedBy = {ExistInCodeListValidatorForCharSequence.class,
+        ExistInCodeListValidatorForCharacter.class, ExistInCodeListValidatorForNumber.class})
 public @interface ExistInCodeList {
 
     /**
@@ -93,8 +94,7 @@ public @interface ExistInCodeList {
      * Defines several <code>@ExistInCodeList</code> annotations on the same element
      * @see ExistInCodeList
      */
-    @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER,
-            TYPE_USE })
+    @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
     @Retention(RUNTIME)
     @Documented
     @interface List {

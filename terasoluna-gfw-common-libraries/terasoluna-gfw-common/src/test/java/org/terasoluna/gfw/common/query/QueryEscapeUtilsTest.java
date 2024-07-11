@@ -38,10 +38,11 @@ public class QueryEscapeUtilsTest {
             new TestData("a%", "a~%", "a~%") /* % wildcard */,
             new TestData("a_", "a~_", "a~_") /* _ wildcard */,
             new TestData("_a%", "~_a~%", "~_a~%") /* _ and % */,
-            new TestData("a％", "a％" /* not escaped */, "a~％" /* escaped */) /* full-width ~ wildcard */,
-            new TestData("a＿", "a＿" /* not escaped */, "a~＿" /* escaped */) /* full-width _ wildcard */,
-            new TestData(" ", " ", " ") /* blank */,
-            new TestData("", "", "") /* empty */,
+            new TestData("a％", "a％" /* not escaped */,
+                    "a~％" /* escaped */) /* full-width ~ wildcard */,
+            new TestData("a＿", "a＿" /* not escaped */,
+                    "a~＿" /* escaped */) /* full-width _ wildcard */,
+            new TestData(" ", " ", " ") /* blank */, new TestData("", "", "") /* empty */,
             new TestData(null, null, null) /* null */,
             new TestData("a~%_％＿b", "a~~~%~_％＿b", "a~~~%~_~％~＿b") /* complex */
     };
@@ -53,21 +54,21 @@ public class QueryEscapeUtilsTest {
     public void testToLikeCondition(TestData param) {
         String actual = QueryEscapeUtils.toLikeCondition(param.input);
         String expected = param.expectedToLikeCondition;
-        String errorMessage = "Input:" + param.input + ", Expected: " + expected
-                + ", Actual: " + actual;
+        String errorMessage =
+                "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
         assertThat(errorMessage, actual, is(expected));
     }
 
     /**
-     * test {@link QueryEscapeUtils#withFullWidth()} {@link LikeConditionEscape#toLikeCondition(String)}
+     * test {@link QueryEscapeUtils#withFullWidth()}
+     * {@link LikeConditionEscape#toLikeCondition(String)}
      */
     @Theory
     public void testToLikeConditionWithFullWidth(TestData param) {
-        String actual = QueryEscapeUtils.withFullWidth().toLikeCondition(
-                param.input);
+        String actual = QueryEscapeUtils.withFullWidth().toLikeCondition(param.input);
         String expected = param.expectedToLikeConditionWithFullWidth;
-        String errorMessage = "Input:" + param.input + ", Expected: " + expected
-                + ", Actual: " + actual;
+        String errorMessage =
+                "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
         assertThat(errorMessage, actual, is(expected));
     }
 
@@ -76,24 +77,24 @@ public class QueryEscapeUtilsTest {
      */
     @Theory
     public void testToLikeConditionStringBuilder(TestData param) {
-        StringBuilder actual = QueryEscapeUtils.toLikeCondition(param.input,
-                new StringBuilder());
+        StringBuilder actual = QueryEscapeUtils.toLikeCondition(param.input, new StringBuilder());
         StringBuilder expected = param.expectedToLikeConditionStringBuilder;
-        String errorMessage = "Input:" + param.input + ", Expected: " + expected
-                + ", Actual: " + actual;
+        String errorMessage =
+                "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
         assertThat(errorMessage, actual.toString(), is(expected.toString()));
     }
 
     /**
-     * test {@link QueryEscapeUtils#withFullWidth()} {@link LikeConditionEscape#toLikeCondition(String, StringBuilder)}
+     * test {@link QueryEscapeUtils#withFullWidth()}
+     * {@link LikeConditionEscape#toLikeCondition(String, StringBuilder)}
      */
     @Theory
     public void testToLikeConditionWithFullWidthStringBuilder(TestData param) {
-        StringBuilder actual = QueryEscapeUtils.withFullWidth().toLikeCondition(
-                param.input, new StringBuilder());
+        StringBuilder actual =
+                QueryEscapeUtils.withFullWidth().toLikeCondition(param.input, new StringBuilder());
         StringBuilder expected = param.expectedToLikeConditionWithFullWidthStringBuilder;
-        String errorMessage = "Input:" + param.input + ", Expected: " + expected
-                + ", Actual: " + actual;
+        String errorMessage =
+                "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
         assertThat(errorMessage, actual.toString(), is(expected.toString()));
     }
 
@@ -104,21 +105,21 @@ public class QueryEscapeUtilsTest {
     public void testToStartingWithCondition(TestData param) {
         String actual = QueryEscapeUtils.toStartingWithCondition(param.input);
         String expected = param.expectedStartingWithCondition;
-        String errorMessage = "Input:" + param.input + ", Expected: " + expected
-                + ", Actual: " + actual;
+        String errorMessage =
+                "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
         assertThat(errorMessage, actual, is(expected));
     }
 
     /**
-     * test {@link QueryEscapeUtils#withFullWidth()} {@link LikeConditionEscape#toStartingWithCondition(String)}
+     * test {@link QueryEscapeUtils#withFullWidth()}
+     * {@link LikeConditionEscape#toStartingWithCondition(String)}
      */
     @Theory
     public void testToStartingWithConditionWithFullWidth(TestData param) {
-        String actual = QueryEscapeUtils.withFullWidth()
-                .toStartingWithCondition(param.input);
+        String actual = QueryEscapeUtils.withFullWidth().toStartingWithCondition(param.input);
         String expected = param.expectedStartingWithConditionWithFullWidth;
-        String errorMessage = "Input:" + param.input + ", Expected: " + expected
-                + ", Actual: " + actual;
+        String errorMessage =
+                "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
         assertThat(errorMessage, actual, is(expected));
     }
 
@@ -129,21 +130,21 @@ public class QueryEscapeUtilsTest {
     public void testToEndingWithCondition(TestData param) {
         String actual = QueryEscapeUtils.toEndingWithCondition(param.input);
         String expected = param.expectedEndingWithCondition;
-        String errorMessage = "Input:" + param.input + ", Expected: " + expected
-                + ", Actual: " + actual;
+        String errorMessage =
+                "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
         assertThat(errorMessage, actual, is(expected));
     }
 
     /**
-     * test {@link QueryEscapeUtils#withFullWidth()} {@link LikeConditionEscape#toEndingWithCondition(String)}
+     * test {@link QueryEscapeUtils#withFullWidth()}
+     * {@link LikeConditionEscape#toEndingWithCondition(String)}
      */
     @Theory
     public void testToEndingWithConditionWithFullWidth(TestData param) {
-        String actual = QueryEscapeUtils.withFullWidth().toEndingWithCondition(
-                param.input);
+        String actual = QueryEscapeUtils.withFullWidth().toEndingWithCondition(param.input);
         String expected = param.expectedEndingWithConditionWithFullWidth;
-        String errorMessage = "Input:" + param.input + ", Expected: " + expected
-                + ", Actual: " + actual;
+        String errorMessage =
+                "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
         assertThat(errorMessage, actual, is(expected));
     }
 
@@ -154,32 +155,31 @@ public class QueryEscapeUtilsTest {
     public void testToContainingCondition(TestData param) {
         String actual = QueryEscapeUtils.toContainingCondition(param.input);
         String expected = param.expectedContainingCondition;
-        String errorMessage = "Input:" + param.input + ", Expected: " + expected
-                + ", Actual: " + actual;
+        String errorMessage =
+                "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
         assertThat(errorMessage, actual, is(expected));
     }
 
     /**
-     * test {@link QueryEscapeUtils#withFullWidth()} {@link LikeConditionEscape#toContainingCondition(String)}
+     * test {@link QueryEscapeUtils#withFullWidth()}
+     * {@link LikeConditionEscape#toContainingCondition(String)}
      */
     @Theory
     public void testToContainingWithFullWidth(TestData param) {
-        String actual = QueryEscapeUtils.withFullWidth().toContainingCondition(
-                param.input);
+        String actual = QueryEscapeUtils.withFullWidth().toContainingCondition(param.input);
         String expected = param.expectedContainingConditionWithFullWidth;
-        String errorMessage = "Input:" + param.input + ", Expected: " + expected
-                + ", Actual: " + actual;
+        String errorMessage =
+                "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
         assertThat(errorMessage, actual, is(expected));
     }
 
     @Theory
     public void testToLikeConditionIsNull(TestData param) {
         // set up
-        StringBuilder actual = QueryEscapeUtils.toLikeCondition(param.input,
-                null);
+        StringBuilder actual = QueryEscapeUtils.toLikeCondition(param.input, null);
         StringBuilder expected = param.expectedToLikeConditionIsNull;
-        String errorMessage = "Input:" + param.input + ", Expected: " + expected
-                + ", Actual: " + actual;
+        String errorMessage =
+                "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
 
         // assert
         assertThat(errorMessage, actual.toString(), is(expected.toString()));
@@ -188,8 +188,7 @@ public class QueryEscapeUtilsTest {
     @Test
     public void testQueryEscapeUtils() throws Exception {
         // set up
-        Constructor<QueryEscapeUtils> constructor = QueryEscapeUtils.class
-                .getDeclaredConstructor();
+        Constructor<QueryEscapeUtils> constructor = QueryEscapeUtils.class.getDeclaredConstructor();
         assertThat(constructor.canAccess(null), is(false));
         constructor.setAccessible(true);
 
@@ -229,33 +228,30 @@ public class QueryEscapeUtilsTest {
             this.input = input;
             this.expectedToLikeCondition = expectedToLikeCondition;
             this.expectedToLikeConditionWithFullWidth = expectedToLikeConditionWithFullWidth;
-            this.expectedToLikeConditionStringBuilder = (expectedToLikeCondition == null)
-                    ? new StringBuilder()
-                    : new StringBuilder(expectedToLikeCondition);
-            this.expectedToLikeConditionWithFullWidthStringBuilder = (expectedToLikeConditionWithFullWidth == null)
-                    ? new StringBuilder()
-                    : new StringBuilder(expectedToLikeConditionWithFullWidth);
-            this.expectedStartingWithCondition = (expectedToLikeCondition == null)
-                    ? null
-                    : expectedToLikeCondition + "%";
-            this.expectedStartingWithConditionWithFullWidth = (expectedToLikeConditionWithFullWidth == null)
-                    ? null
-                    : expectedToLikeConditionWithFullWidth + "%";
-            this.expectedEndingWithCondition = (expectedToLikeCondition == null)
-                    ? null
-                    : "%" + expectedToLikeCondition;
-            this.expectedEndingWithConditionWithFullWidth = (expectedToLikeConditionWithFullWidth == null)
-                    ? null
-                    : "%" + expectedToLikeConditionWithFullWidth;
-            this.expectedContainingCondition = (expectedToLikeCondition == null)
-                    ? null
-                    : "%" + expectedToLikeCondition + "%";
-            this.expectedContainingConditionWithFullWidth = (expectedToLikeConditionWithFullWidth == null)
-                    ? null
-                    : "%" + expectedToLikeConditionWithFullWidth + "%";
-            this.expectedToLikeConditionIsNull = (expectedToLikeCondition == null)
-                    ? new StringBuilder()
-                    : new StringBuilder(expectedToLikeCondition);
+            this.expectedToLikeConditionStringBuilder =
+                    (expectedToLikeCondition == null) ? new StringBuilder()
+                            : new StringBuilder(expectedToLikeCondition);
+            this.expectedToLikeConditionWithFullWidthStringBuilder =
+                    (expectedToLikeConditionWithFullWidth == null) ? new StringBuilder()
+                            : new StringBuilder(expectedToLikeConditionWithFullWidth);
+            this.expectedStartingWithCondition =
+                    (expectedToLikeCondition == null) ? null : expectedToLikeCondition + "%";
+            this.expectedStartingWithConditionWithFullWidth =
+                    (expectedToLikeConditionWithFullWidth == null) ? null
+                            : expectedToLikeConditionWithFullWidth + "%";
+            this.expectedEndingWithCondition =
+                    (expectedToLikeCondition == null) ? null : "%" + expectedToLikeCondition;
+            this.expectedEndingWithConditionWithFullWidth =
+                    (expectedToLikeConditionWithFullWidth == null) ? null
+                            : "%" + expectedToLikeConditionWithFullWidth;
+            this.expectedContainingCondition =
+                    (expectedToLikeCondition == null) ? null : "%" + expectedToLikeCondition + "%";
+            this.expectedContainingConditionWithFullWidth =
+                    (expectedToLikeConditionWithFullWidth == null) ? null
+                            : "%" + expectedToLikeConditionWithFullWidth + "%";
+            this.expectedToLikeConditionIsNull =
+                    (expectedToLikeCondition == null) ? new StringBuilder()
+                            : new StringBuilder(expectedToLikeCondition);
         }
     }
 }

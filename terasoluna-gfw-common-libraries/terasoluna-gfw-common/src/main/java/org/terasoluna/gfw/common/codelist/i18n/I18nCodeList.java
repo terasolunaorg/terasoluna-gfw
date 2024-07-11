@@ -30,7 +30,8 @@ public interface I18nCodeList extends CodeList {
      * Returns the localized codelist as a Map.<br>
      * <p>
      * <code>locale</code> is locale of the target codelist.<br>
-     * Key of the map means "value" of the codelist.Value of the map means "label" of the codelist<br>
+     * Key of the map means "value" of the codelist.Value of the map means "label" of the
+     * codelist<br>
      * The type of Key and Value both, is String<br>
      * Map must be unmodifiable. <br>
      * If no mappings have the provided locale, an empty map is returned.

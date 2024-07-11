@@ -149,7 +149,7 @@ public class TransactionTokenTest {
         String result = token.getTokenString();
 
         // assert
-        assertThat(result, is(token.getTokenName() + "~" + token.getTokenKey()
-                + "~" + token.getTokenValue()));
+        assertThat(result,
+                is(token.getTokenName() + "~" + token.getTokenKey() + "~" + token.getTokenValue()));
     }
 }

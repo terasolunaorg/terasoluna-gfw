@@ -45,7 +45,8 @@ public final class HtmlEscapeUtils {
      * ' ====&gt; &amp;#39;<br>
      * </p>
      * @param input string to escape
-     * @return escaped string. returns empty string if <code>value</code> is <code>null</code> or empty string.
+     * @return escaped string. returns empty string if <code>value</code> is <code>null</code> or
+     *         empty string.
      * @see HtmlUtils#htmlEscape(String)
      */
     public static String htmlEscape(Object input) {
