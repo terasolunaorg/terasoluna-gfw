@@ -38,17 +38,18 @@ public class AbstractExistInCodeListValidatorTest {
     @Test
     public <T> void testIsValidIsTraceEnabledFalse() throws Exception {
 
-        Logger logger = (Logger) LoggerFactory.getLogger(
-                AbstractExistInCodeListValidator.class);
+        Logger logger = (Logger) LoggerFactory.getLogger(AbstractExistInCodeListValidator.class);
 
         // set up
         LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
 
-        ConstraintValidatorContext constraintValidatorContext = mock(
-                ConstraintValidatorContext.class);
+        ConstraintValidatorContext constraintValidatorContext =
+                mock(ConstraintValidatorContext.class);
 
-        ExistInCodeListValidator<String> existInCodeListValidator = new ExistInCodeListValidator<String>();
-        ApplicationContext context = new FileSystemXmlApplicationContext("src/test/resources/org/terasoluna/gfw/common/codelist/ExistInCodeListTest-context.xml");
+        ExistInCodeListValidator<String> existInCodeListValidator =
+                new ExistInCodeListValidator<String>();
+        ApplicationContext context = new FileSystemXmlApplicationContext(
+                "src/test/resources/org/terasoluna/gfw/common/codelist/ExistInCodeListTest-context.xml");
         existInCodeListValidator.setApplicationContext(context);
         existInCodeListValidator.initialize(new ExistInCodeList() {
             @Override
@@ -78,8 +79,7 @@ public class AbstractExistInCodeListValidatorTest {
         });
 
         // test
-        boolean isValid = existInCodeListValidator.isValid("Male",
-                constraintValidatorContext);
+        boolean isValid = existInCodeListValidator.isValid("Male", constraintValidatorContext);
 
         // assert
         assertThat(isValid, is(true));
@@ -89,8 +89,7 @@ public class AbstractExistInCodeListValidatorTest {
         LogLevelChangeUtil.resetLogLevel();
     }
 
-    private class ExistInCodeListValidator<T> extends
-                                          AbstractExistInCodeListValidator<T> {
+    private class ExistInCodeListValidator<T> extends AbstractExistInCodeListValidator<T> {
 
         @Override
         protected String getCode(T value) {

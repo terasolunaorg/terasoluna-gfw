@@ -29,8 +29,8 @@ package org.terasoluna.gfw.common.message;
  * <li><code>light(Added from 5.7.0)</code></li>
  * <li><code>dark(Added from 5.7.0)</code></li>
  * </ul>
- * The level of <code>danger</code> is as same as <code>error</code> and <code>danger</code> is usually used as alias for
- * <code>error</code>.
+ * The level of <code>danger</code> is as same as <code>error</code> and <code>danger</code> is
+ * usually used as alias for <code>error</code>.
  */
 public enum StandardResultMessageType implements ResultMessageType {
     /**

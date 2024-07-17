@@ -27,8 +27,7 @@ public class Name_Annotation {
         this.lastName = lastName;
     }
 
-    public Name_Annotation() {
-    }
+    public Name_Annotation() {}
 
     public String getFirstName() {
         return firstName;

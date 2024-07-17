@@ -21,8 +21,7 @@ import org.terasoluna.gfw.common.codelist.ReloadableCodeList;
  * Adds Reloadable support to {@link I18nCodeList}
  * @since 5.4.2
  */
-public interface ReloadableI18nCodeList extends I18nCodeList,
-                                        ReloadableCodeList {
+public interface ReloadableI18nCodeList extends I18nCodeList, ReloadableCodeList {
 
     /**
      * reloads the codelist recursively

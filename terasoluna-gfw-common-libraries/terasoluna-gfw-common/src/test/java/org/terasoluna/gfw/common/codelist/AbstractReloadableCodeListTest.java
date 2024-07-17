@@ -34,8 +34,7 @@ import ch.qos.logback.classic.Logger;
  */
 public class AbstractReloadableCodeListTest {
 
-    private Logger logger = (Logger) LoggerFactory.getLogger(
-            AbstractReloadableCodeList.class);
+    private Logger logger = (Logger) LoggerFactory.getLogger(AbstractReloadableCodeList.class);
 
     /**
      * In case LazyInit is set to false
@@ -63,8 +62,7 @@ public class AbstractReloadableCodeListTest {
         // assert
         assertThat(mapResult1, aMapWithSize(mapExpectedFirstFetch.size()));
         for (String key : mapResult1.keySet()) {
-            assertThat(mapResult1, hasEntry(key, mapExpectedFirstFetch.get(
-                    key)));
+            assertThat(mapResult1, hasEntry(key, mapExpectedFirstFetch.get(key)));
         }
 
         // fetch codelist map for the first time
@@ -74,8 +72,7 @@ public class AbstractReloadableCodeListTest {
         Map<String, String> mapResult2 = reloadableCodeList.asMap();
         assertThat(mapResult2, aMapWithSize(mapExpectedSecondFetch.size()));
         for (String key : mapResult2.keySet()) {
-            assertThat(mapResult2, hasEntry(key, mapExpectedSecondFetch.get(
-                    key)));
+            assertThat(mapResult2, hasEntry(key, mapExpectedSecondFetch.get(key)));
         }
     }
 
@@ -153,6 +150,7 @@ public class AbstractReloadableCodeListTest {
     }
 
 }
+
 
 class ExtendedReloadableCodelist extends AbstractReloadableCodeList {
     private int i = 0;

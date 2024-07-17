@@ -25,8 +25,7 @@ import org.terasoluna.gfw.common.message.ResultMessages;
  * {@link ResultMessages} have to be logged. <br>
  * </p>
  */
-public abstract class ResultMessagesNotificationException extends
-                                                          RuntimeException {
+public abstract class ResultMessagesNotificationException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
@@ -48,8 +47,7 @@ public abstract class ResultMessagesNotificationException extends
      * @param messages instance of {@link ResultMessages}
      * @param cause {@link Throwable} instance
      */
-    public ResultMessagesNotificationException(ResultMessages messages,
-            Throwable cause) {
+    public ResultMessagesNotificationException(ResultMessages messages, Throwable cause) {
         super(cause);
         if (messages == null) {
             throw new IllegalArgumentException("messages must not be null");

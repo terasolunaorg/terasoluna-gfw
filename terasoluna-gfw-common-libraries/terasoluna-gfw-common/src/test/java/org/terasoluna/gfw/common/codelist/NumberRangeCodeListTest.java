@@ -32,8 +32,8 @@ import org.junit.Test;
 public class NumberRangeCodeListTest {
 
     /**
-     * Tests the following : 1) the codelist is initialized with the range of numbers (contents & size) 2) the order of the
-     * numbers in the codelist in ascending
+     * Tests the following : 1) the codelist is initialized with the range of numbers (contents &
+     * size) 2) the order of the numbers in the codelist in ascending
      * @throws Exception
      */
     @Test
@@ -81,8 +81,8 @@ public class NumberRangeCodeListTest {
     }
 
     /**
-     * Tests the following : 1) the codelist is initialized with the range of numbers (contents & size) 2) the order of the
-     * numbers in the codelist in descending
+     * Tests the following : 1) the codelist is initialized with the range of numbers (contents &
+     * size) 2) the order of the numbers in the codelist in descending
      * @throws Exception
      */
     @Test
@@ -138,7 +138,8 @@ public class NumberRangeCodeListTest {
     }
 
     /**
-     * Tests the following : 1) the interval of separation between two consecutive numbers in ascending order
+     * Tests the following : 1) the interval of separation between two consecutive numbers in
+     * ascending order
      * @throws Exception
      */
     @Test
@@ -170,7 +171,8 @@ public class NumberRangeCodeListTest {
     }
 
     /**
-     * Tests the following : 1) the interval of separation between two consecutive numbers in descending order
+     * Tests the following : 1) the interval of separation between two consecutive numbers in
+     * descending order
      * @throws Exception
      */
     @Test
@@ -202,7 +204,8 @@ public class NumberRangeCodeListTest {
     }
 
     /**
-     * Tests the following : 1) if negative value is set to interval issues/6 added message assertion
+     * Tests the following : 1) if negative value is set to interval issues/6 added message
+     * assertion
      */
     @Test
     public void TestAfterPropertiesSet07() {

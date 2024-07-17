@@ -28,17 +28,16 @@ import org.springframework.util.StringUtils;
 import org.terasoluna.gfw.common.codelist.AbstractCodeList;
 
 /**
- * Abstract extended implementation of {@link AbstractCodeList}. Adds Internationalization support to {@link AbstractCodeList}
- * by implementing {I18nCodeList} interface.
+ * Abstract extended implementation of {@link AbstractCodeList}. Adds Internationalization support
+ * to {@link AbstractCodeList} by implementing {I18nCodeList} interface.
  */
-public abstract class AbstractI18nCodeList extends AbstractCodeList implements
-                                           I18nCodeList, InitializingBean {
+public abstract class AbstractI18nCodeList extends AbstractCodeList
+        implements I18nCodeList, InitializingBean {
 
     /**
      * Logger.
      */
-    private static final Logger logger = LoggerFactory.getLogger(
-            AbstractI18nCodeList.class);
+    private static final Logger logger = LoggerFactory.getLogger(AbstractI18nCodeList.class);
 
     /**
      * The locales codelist available.
@@ -47,7 +46,8 @@ public abstract class AbstractI18nCodeList extends AbstractCodeList implements
 
     /**
      * The default locale as fallback.<br>
-     * if extend this and override default value of fallbackTo, affects {@link #afterPropertiesSet afterPropertiesSet}.
+     * if extend this and override default value of fallbackTo, affects {@link #afterPropertiesSet
+     * afterPropertiesSet}.
      * @since 5.5.1
      */
     protected Locale fallbackTo;
@@ -92,8 +92,8 @@ public abstract class AbstractI18nCodeList extends AbstractCodeList implements
      * This method is called after the properties of the codelist are set.
      * <p>
      * check whether codelist of fallbackTo locale is defined.<br>
-     * fallbackTo locale provided by {@link #fallbackTo fallbackTo} or default locale using {@link Locale#getDefault
-     * Locale#getDefault}.<br>
+     * fallbackTo locale provided by {@link #fallbackTo fallbackTo} or default locale using
+     * {@link Locale#getDefault Locale#getDefault}.<br>
      * default locale is fallbackTo to it's language locale.
      * </p>
      * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
@@ -106,8 +106,8 @@ public abstract class AbstractI18nCodeList extends AbstractCodeList implements
         if (fallbackTo == null) {
             Locale defaultLocale = Locale.getDefault();
             fallbackTo = resolveLocale(defaultLocale);
-            Assert.notNull(fallbackTo, "No codelist for default locale ('"
-                    + defaultLocale + "' and '" + defaultLocale.getLanguage()
+            Assert.notNull(fallbackTo, "No codelist for default locale ('" + defaultLocale
+                    + "' and '" + defaultLocale.getLanguage()
                     + "'). Please define codelist for default locale or set locale already defined in codelist to fallbackTo.");
         } else {
             Assert.isTrue(codeListLocales.contains(fallbackTo),
@@ -136,15 +136,12 @@ public abstract class AbstractI18nCodeList extends AbstractCodeList implements
         if (StringUtils.hasLength(lang) && !lang.equals(locale.toString())) {
             Locale langOnlyLocale = new Locale(lang);
             if (codeListLocales.contains(langOnlyLocale)) {
-                logger.debug(
-                        "Found codelist for specified locale '{}' (language only).",
-                        locale);
+                logger.debug("Found codelist for specified locale '{}' (language only).", locale);
                 return langOnlyLocale;
             }
         }
 
-        logger.debug(
-                "There is no codelist for specified locale '{}'. Use '{}' as fallback.",
+        logger.debug("There is no codelist for specified locale '{}'. Use '{}' as fallback.",
                 locale, fallbackTo);
         return fallbackTo;
     }

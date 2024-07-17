@@ -37,7 +37,8 @@ class ConstraintValidatorsUtils {
      * @return wrapped exception
      */
     static IllegalArgumentException reportFailedToInitialize(Throwable cause) {
-        return new IllegalArgumentException("failed to initialize validator by invalid argument", cause);
+        return new IllegalArgumentException("failed to initialize validator by invalid argument",
+                cause);
     }
 
     /**
@@ -46,9 +47,8 @@ class ConstraintValidatorsUtils {
      * @return wrapped exception
      */
     static IllegalArgumentException reportUnexpectedType(Object value) {
-        return new IllegalArgumentException(String.format(
-                "validator does not support this type: %s", value.getClass()
-                        .getName()));
+        return new IllegalArgumentException(String
+                .format("validator does not support this type: %s", value.getClass().getName()));
     }
 
     /**
@@ -72,8 +72,7 @@ class ConstraintValidatorsUtils {
         }
 
         try {
-            PropertyDescriptor property = new PropertyDescriptor(propertyName, bean
-                    .getClass());
+            PropertyDescriptor property = new PropertyDescriptor(propertyName, bean.getClass());
             Method getter = property.getReadMethod();
             return getter.invoke(bean);
         } catch (Exception e) {

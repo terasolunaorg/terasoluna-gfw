@@ -44,8 +44,7 @@ import org.springframework.beans.factory.InitializingBean;
  * &lt;/bean&gt;
  * </pre>
  */
-public class ResultMessagesLoggingInterceptor implements MethodInterceptor,
-                                              InitializingBean {
+public class ResultMessagesLoggingInterceptor implements MethodInterceptor, InitializingBean {
 
     /**
      * Starting point of interception in thread.
@@ -69,12 +68,14 @@ public class ResultMessagesLoggingInterceptor implements MethodInterceptor,
     }
 
     /**
-     * If ResultMessagesNotificationException occurred, logging {@link org.terasoluna.gfw.common.message.ResultMessages}.
+     * If ResultMessagesNotificationException occurred, logging
+     * {@link org.terasoluna.gfw.common.message.ResultMessages}.
      * <p>
      * Detail Specification:
      * <ol>
      * <li>if other exception occurred , not logging exception.</li>
-     * <li>if intercepted on multi point, logging do in starting point of interception.(for prevent duplicate log output)</li>
+     * <li>if intercepted on multi point, logging do in starting point of interception.(for prevent
+     * duplicate log output)</li>
      * </ol>
      * @param invocation invocation object of intercepted target's method.
      * @return returned object from intercepted target's method.
@@ -82,8 +83,8 @@ public class ResultMessagesLoggingInterceptor implements MethodInterceptor,
      * @see org.aopalliance.intercept.MethodInterceptor#invoke(org.aopalliance.intercept.MethodInvocation)
      */
     @Override
-    public Object invoke(
-            MethodInvocation invocation) throws Throwable, ResultMessagesNotificationException {
+    public Object invoke(MethodInvocation invocation)
+            throws Throwable, ResultMessagesNotificationException {
 
         // set starting point.
         if (startingPoint.get() == null) {
@@ -116,10 +117,12 @@ public class ResultMessagesLoggingInterceptor implements MethodInterceptor,
     /**
      * Initializes the ResultMessagesLoggingInterceptor.
      * <p>
-     * If exception logger object is not set, use {@link org.terasoluna.gfw.common.exception.ExceptionLogger}.
+     * If exception logger object is not set, use
+     * {@link org.terasoluna.gfw.common.exception.ExceptionLogger}.
      * </p>
      * <p>
-     * default exception logger's name is 'org.terasoluna.gfw.common.exception.ResultMessagesLoggingInterceptor'<br>
+     * default exception logger's name is
+     * 'org.terasoluna.gfw.common.exception.ResultMessagesLoggingInterceptor'<br>
      * (this interceptor's class name).
      * </p>
      * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
@@ -148,8 +151,7 @@ public class ResultMessagesLoggingInterceptor implements MethodInterceptor,
      * </p>
      * @param e ResultMessagesNotificationException
      */
-    protected void logResultMessagesNotificationException(
-            ResultMessagesNotificationException e) {
+    protected void logResultMessagesNotificationException(ResultMessagesNotificationException e) {
         exceptionLogger.warn(e);
     }
 

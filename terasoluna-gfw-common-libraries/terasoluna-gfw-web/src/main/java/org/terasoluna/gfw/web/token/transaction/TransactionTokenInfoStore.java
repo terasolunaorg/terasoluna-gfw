@@ -31,7 +31,8 @@ public class TransactionTokenInfoStore {
     /**
      * Cache to stores the TransactionTokenInfo object
      */
-    private ConcurrentMap<Method, TransactionTokenInfo> tokenInfoCache = new ConcurrentHashMap<Method, TransactionTokenInfo>();
+    private ConcurrentMap<Method, TransactionTokenInfo> tokenInfoCache =
+            new ConcurrentHashMap<Method, TransactionTokenInfo>();
 
     /**
      * Global token name. Assigned when no name is defined in method annotation or class annotation
@@ -46,16 +47,15 @@ public class TransactionTokenInfoStore {
     }
 
     /**
-     * Returns <code>TransactionTokenInfo</code> instance fetched from <code>TransactionTokenCache</code> based to the
-     * handlerMethod.<br>
+     * Returns <code>TransactionTokenInfo</code> instance fetched from
+     * <code>TransactionTokenCache</code> based to the handlerMethod.<br>
      * <p>
-     * If there is no <code>TransactionTokenInfo</code> corresponding to the handlerMethod passed as argument, a new
-     * TransactionTokenInfo is returned as well as put in the cache. <br>
+     * If there is no <code>TransactionTokenInfo</code> corresponding to the handlerMethod passed as
+     * argument, a new TransactionTokenInfo is returned as well as put in the cache. <br>
      * @param handlerMethod handler method
      * @return TransactionTokenInfo
      */
-    public TransactionTokenInfo getTransactionTokenInfo(
-            final HandlerMethod handlerMethod) {
+    public TransactionTokenInfo getTransactionTokenInfo(final HandlerMethod handlerMethod) {
         Method method = handlerMethod.getMethod();
         TransactionTokenInfo info = tokenInfoCache.get(method);
         if (info == null) {
@@ -71,20 +71,20 @@ public class TransactionTokenInfoStore {
     }
 
     /**
-     * Returns a new <code>TransactionTokenInfo<code> based on the annotation information received from handlerMethod <br>
+     * Returns a new <code>TransactionTokenInfo<code> based on the annotation information received
+     * from handlerMethod <br>
      * <p>
      * Method Annotation given priority over Class Annotation
      * @param handlerMethod
      * @return TransactionTokenInfo
      */
-    TransactionTokenInfo createTransactionTokenInfo(
-            final HandlerMethod handlerMethod) {
+    TransactionTokenInfo createTransactionTokenInfo(final HandlerMethod handlerMethod) {
 
-        TransactionTokenCheck methodAnnotation = handlerMethod
-                .getMethodAnnotation(TransactionTokenCheck.class);
+        TransactionTokenCheck methodAnnotation =
+                handlerMethod.getMethodAnnotation(TransactionTokenCheck.class);
 
-        TransactionTokenCheck classAnnotation = AnnotationUtils.findAnnotation(
-                handlerMethod.getBeanType(), TransactionTokenCheck.class);
+        TransactionTokenCheck classAnnotation = AnnotationUtils
+                .findAnnotation(handlerMethod.getBeanType(), TransactionTokenCheck.class);
 
         if (methodAnnotation == null) {
             return new TransactionTokenInfo(null, TransactionTokenType.NONE);
@@ -96,9 +96,10 @@ public class TransactionTokenInfoStore {
     }
 
     /**
-     * create token name (= namespace) from class level {@link TransactionTokenCheck} annotation and method level
-     * {@link TransactionTokenCheck} annotation.<br>
-     * If class level and method level annotation are not set, returns 'globalToken' as global token name.
+     * create token name (= namespace) from class level {@link TransactionTokenCheck} annotation and
+     * method level {@link TransactionTokenCheck} annotation.<br>
+     * If class level and method level annotation are not set, returns 'globalToken' as global token
+     * name.
      * @param classAnnotation class level annotation
      * @param methodAnnotation method level annotation
      * @return token name
@@ -106,8 +107,7 @@ public class TransactionTokenInfoStore {
     String createTokenName(final TransactionTokenCheck classAnnotation,
             final TransactionTokenCheck methodAnnotation) {
         String methodTokenName = methodAnnotation.value();
-        String classTokenName = (classAnnotation == null) ? ""
-                : classAnnotation.value();
+        String classTokenName = (classAnnotation == null) ? "" : classAnnotation.value();
 
         StringBuilder tokenNameStringBuilder = new StringBuilder();
         if (StringUtils.hasText(classTokenName)) {

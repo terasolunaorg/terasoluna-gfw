@@ -74,12 +74,15 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     /**
      * Sets the value for exception Code Attribute name.
      * <p>
-     * This value is used as the attribute name to set exception code in request scope and {@code FlashMap}. Calling this method
-     * overwrites the default value {@code "exceptionCode"}. <br>
-     * If {@code null} or blank or space is set, then exception code will not be set in request scope and {@code FlashMap} when
+     * This value is used as the attribute name to set exception code in request scope and
+     * {@code FlashMap}. Calling this method overwrites the default value {@code "exceptionCode"}.
+     * <br>
+     * If {@code null} or blank or space is set, then exception code will not be set in request
+     * scope and {@code FlashMap} when
      * {@link #setExceptionCode(Exception, HttpServletRequest, HttpServletResponse)} is called.
      * </p>
-     * @param exceptionCodeAttribute Attribute name of the exception code to be set in request scope and {@code FlashMap}.
+     * @param exceptionCodeAttribute Attribute name of the exception code to be set in request scope
+     *        and {@code FlashMap}.
      */
     public void setExceptionCodeAttribute(String exceptionCodeAttribute) {
         this.exceptionCodeAttribute = exceptionCodeAttribute;
@@ -89,23 +92,28 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
      * Sets the header name to set exception code in the response header.
      * <p>
      * Calling this method overwrites the default value {@code "X-Exception-Code"}. <br>
-     * If {@code null} or blank or space is set, then exception code will not be set in the response header when
-     * {@link #setExceptionCode(Exception, HttpServletRequest, HttpServletResponse)} is called..
+     * If {@code null} or blank or space is set, then exception code will not be set in the response
+     * header when {@link #setExceptionCode(Exception, HttpServletRequest, HttpServletResponse)} is
+     * called..
      * </p>
-     * @param exceptionCodeHeader Attribute name of the exception code to be set in the response header.
+     * @param exceptionCodeHeader Attribute name of the exception code to be set in the response
+     *        header.
      */
     public void setExceptionCodeHeader(String exceptionCodeHeader) {
         this.exceptionCodeHeader = exceptionCodeHeader;
     }
 
     /**
-     * Sets the attribute name used for storing result message in request scope and {@code FlashMap}.
+     * Sets the attribute name used for storing result message in request scope and
+     * {@code FlashMap}.
      * <p>
      * Calling this method overwrites the default value {@code "resultMessages"}. <br>
-     * If {@code null} or blank or space is set, then {@code ResultMessages} will not be set in request scope and
-     * {@code FlashMap} when {@link #setResultMessages(Exception, HttpServletRequest)} is called.
+     * If {@code null} or blank or space is set, then {@code ResultMessages} will not be set in
+     * request scope and {@code FlashMap} when
+     * {@link #setResultMessages(Exception, HttpServletRequest)} is called.
      * </p>
-     * @param resultMessagesAttribute Attribute name used for storing result message in request scope and {@code FlashMap}.
+     * @param resultMessagesAttribute Attribute name used for storing result message in request
+     *        scope and {@code FlashMap}.
      */
     public void setResultMessagesAttribute(String resultMessagesAttribute) {
         this.resultMessagesAttribute = resultMessagesAttribute;
@@ -119,23 +127,23 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
      * </p>
      * @param exceptionCodeResolver Exception code resolution object.
      */
-    public void setExceptionCodeResolver(
-            ExceptionCodeResolver exceptionCodeResolver) {
+    public void setExceptionCodeResolver(ExceptionCodeResolver exceptionCodeResolver) {
         this.exceptionCodeResolver = exceptionCodeResolver;
     }
 
     /**
      * Sets classes to be excluded.
      * <p>
-     * Set one or more classes to be excluded from the exception mappings. Excluded classes are checked first and if one of them
-     * equals the actual class, the class will remain unresolved.
+     * Set one or more classes to be excluded from the exception mappings. Excluded classes are
+     * checked first and if one of them equals the actual class, the class will remain unresolved.
      * </p>
      * @param excludedExceptions One or more excluded class types.
      */
     @Override
     public void setExcludedExceptions(Class<?>... excludedExceptions) {
         this.excludedExceptions = excludedExceptions;
-        // The process of using excludedExceptions in the super class is overridden, so there is no need to call the setter of
+        // The process of using excludedExceptions in the super class is overridden, so there is no
+        // need to call the setter of
         // the super.
         // super.setExcludedExceptions(excludedExceptions);
     }
@@ -154,8 +162,8 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     /**
      * Sets whether to check subclasses when checking for excludedExceptions.
      * <p>
-     * If set to true, the instance type is compared when checking for exclusion settings. Therefore, subclasses of errors that
-     * are set to be excluded are also excluded.
+     * If set to true, the instance type is compared when checking for exclusion settings.
+     * Therefore, subclasses of errors that are set to be excluded are also excluded.
      * </p>
      * @param checkSubClass Whether to check subclasses.
      */
@@ -180,8 +188,7 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     protected ModelAndView doResolveException(HttpServletRequest request,
             HttpServletResponse response, Object handler, Exception ex) {
 
-        ModelAndView modelAndView = super.doResolveException(request, response,
-                handler, ex);
+        ModelAndView modelAndView = super.doResolveException(request, response, handler, ex);
         if (modelAndView == null) {
             return modelAndView;
         }
@@ -193,19 +200,19 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     }
 
     /**
-     * Check {@link #setExcludedExceptions(Class[]) "excludedExecptions"} and call the parent class determineViewName.
+     * Check {@link #setExcludedExceptions(Class[]) "excludedExecptions"} and call the parent class
+     * determineViewName.
      * <p>
      * When {@code checkCause} is true, check if causes are also eligible for exclusion.
      * <p>
      * @param ex Exception
      * @param request {@link HttpServletRequest}
-     * @see org.springframework.web.servlet.handler.SimpleMappingExceptionResolver#determineViewName(Exception ex,
-     *      HttpServletRequest request)
+     * @see org.springframework.web.servlet.handler.SimpleMappingExceptionResolver#determineViewName(Exception
+     *      ex, HttpServletRequest request)
      */
     @Nullable
     @Override
-    protected String determineViewName(Exception ex,
-            HttpServletRequest request) {
+    protected String determineViewName(Exception ex, HttpServletRequest request) {
 
         if (this.excludedExceptions != null) {
             if (checkExcludedExceptions(ex)) {
@@ -230,16 +237,15 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     /**
      * Checks if the specified class is an excluded class.
      * <p>
-     * When {@code checkInstanceType} is true, the given class is also excluded if it is a subclass of
-     * {@code excludedExceptions}.
+     * When {@code checkInstanceType} is true, the given class is also excluded if it is a subclass
+     * of {@code excludedExceptions}.
      * <p>
      * @param ex Exception
      */
     private boolean checkExcludedExceptions(Throwable ex) {
         for (Class<?> excludedException : this.excludedExceptions) {
             if ((this.checkSubClass && excludedException.isInstance(ex))
-                    || (!this.checkSubClass && excludedException.equals(ex
-                            .getClass()))) {
+                    || (!this.checkSubClass && excludedException.equals(ex.getClass()))) {
                 return true;
             }
         }
@@ -267,8 +273,9 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     /**
      * Sets exception code in {@code HttpServletRequest} and {@code HttpServletResponse} header.
      * <p>
-     * Sets exception code in {@code HttpServletRequest} and {@code HttpServletResponse} header. If exceptionCodeAttribute is
-     * {@code null} or blank or space is set, then exception code is not set.
+     * Sets exception code in {@code HttpServletRequest} and {@code HttpServletResponse} header. If
+     * exceptionCodeAttribute is {@code null} or blank or space is set, then exception code is not
+     * set.
      * </p>
      * @param ex Exception
      * @param request {@link HttpServletRequest}
@@ -278,9 +285,8 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
             HttpServletResponse response) {
 
         String exceptionCode = null;
-        if (exceptionCodeResolver != null && (StringUtils.hasText(
-                exceptionCodeAttribute) || StringUtils.hasText(
-                        exceptionCodeHeader))) {
+        if (exceptionCodeResolver != null && (StringUtils.hasText(exceptionCodeAttribute)
+                || StringUtils.hasText(exceptionCodeHeader))) {
             exceptionCode = exceptionCodeResolver.resolveExceptionCode(ex);
         }
 
@@ -320,8 +326,8 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
             return;
         }
 
-        ResultMessages resultMessages = ((ResultMessagesNotificationException) ex)
-                .getResultMessages();
+        ResultMessages resultMessages =
+                ((ResultMessagesNotificationException) ex).getResultMessages();
 
         request.setAttribute(resultMessagesAttribute, resultMessages);
 

@@ -26,8 +26,7 @@ import org.springframework.beans.factory.InitializingBean;
  * Abstract implementation of reloadable {@link CodeList}
  */
 public abstract class AbstractReloadableCodeList extends AbstractCodeList
-                                                 implements ReloadableCodeList,
-                                                 InitializingBean {
+        implements ReloadableCodeList, InitializingBean {
 
     /**
      * Codelist information visible externally. It is unmodifiable and thread safe.

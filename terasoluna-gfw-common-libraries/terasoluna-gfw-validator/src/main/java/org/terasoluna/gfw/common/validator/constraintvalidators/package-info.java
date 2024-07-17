@@ -14,7 +14,8 @@
  * governing permissions and limitations under the License.
  */
 /**
- * Validator implementations for validating a object or simple value using Bean Validation functionality.
+ * Validator implementations for validating a object or simple value using Bean Validation
+ * functionality.
  * @since 5.1.0
  */
 package org.terasoluna.gfw.common.validator.constraintvalidators;

@@ -58,8 +58,8 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
     /**
      * default attribute name for ResultMessages
      */
-    public static final String DEFAULT_MESSAGES_ATTRIBUTE_NAME = StringUtils
-            .uncapitalize(ResultMessages.class.getSimpleName());
+    public static final String DEFAULT_MESSAGES_ATTRIBUTE_NAME =
+            StringUtils.uncapitalize(ResultMessages.class.getSimpleName());
 
     /**
      * Constructor.
@@ -301,8 +301,7 @@ public class ResultMessages implements Serializable, Iterable<ResultMessage> {
      * @throws ClassNotFoundException {@link java.io.ObjectInputStream#defaultReadObject()}
      * @see java.io.Serializable
      */
-    private void readObject(
-            ObjectInputStream in) throws IOException, ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
     }
 }

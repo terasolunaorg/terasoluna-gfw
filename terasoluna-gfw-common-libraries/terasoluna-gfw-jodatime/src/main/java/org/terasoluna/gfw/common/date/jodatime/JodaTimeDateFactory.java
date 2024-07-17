@@ -31,6 +31,5 @@ import org.terasoluna.gfw.common.date.ClassicDateFactory;
  * </ul>
  * @since 5.0.0
  */
-public interface JodaTimeDateFactory extends ClassicDateFactory,
-                                     JodaTimeDateTimeFactory {
+public interface JodaTimeDateFactory extends ClassicDateFactory, JodaTimeDateTimeFactory {
 }

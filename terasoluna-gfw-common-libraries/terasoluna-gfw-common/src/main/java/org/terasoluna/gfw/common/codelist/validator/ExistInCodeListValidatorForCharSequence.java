@@ -16,22 +16,24 @@
 package org.terasoluna.gfw.common.codelist.validator;
 
 /**
- * Concrete validation implementation class for {@link org.terasoluna.gfw.common.codelist.ExistInCodeList} custom annotation.
+ * Concrete validation implementation class for
+ * {@link org.terasoluna.gfw.common.codelist.ExistInCodeList} custom annotation.
  * <p>
- * Used if the value of the field for which the custom annotation is used, is of type {@link CharSequence} ({@link String},
- * {@link StringBuilder}, etc ...) <br>
+ * Used if the value of the field for which the custom annotation is used, is of type
+ * {@link CharSequence} ({@link String}, {@link StringBuilder}, etc ...) <br>
  * <br>
- * Validates whether the value of field is a valid code existing in the {@link org.terasoluna.gfw.common.codelist.CodeList}
- * specified <br>
+ * Validates whether the value of field is a valid code existing in the
+ * {@link org.terasoluna.gfw.common.codelist.CodeList} specified <br>
  * as a parameter to the {@link org.terasoluna.gfw.common.codelist.ExistInCodeList} annotation.<br>
  * </p>
  * <p>
- * Note: This class has been renamed from {@code ExistInCodeListValidatorForString} at 5.1.0 to support the {@link CharSequence}
+ * Note: This class has been renamed from {@code ExistInCodeListValidatorForString} at 5.1.0 to
+ * support the {@link CharSequence}
  * </p>
  */
 
-public class ExistInCodeListValidatorForCharSequence extends
-                                                     AbstractExistInCodeListValidator<CharSequence> {
+public class ExistInCodeListValidatorForCharSequence
+        extends AbstractExistInCodeListValidator<CharSequence> {
 
     /**
      * Fetches the code value which is the target of validation

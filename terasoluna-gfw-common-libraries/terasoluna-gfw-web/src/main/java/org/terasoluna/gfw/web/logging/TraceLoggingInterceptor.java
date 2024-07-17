@@ -32,17 +32,20 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+// @formatter:off
 /**
  * Interceptor for log output of performance measurement<br>
  * <p>
- * Interceptor which performs log output for the purpose of measurement of logic execution performance. <br>
+ * Interceptor which performs log output for the purpose of measurement of logic execution
+ * performance. <br>
  * Displays logic execution time from start to end in nano seconds.<br>
  * <p>
- * If end time is more than nano-seconds defined in {@code warnHandlingNanos} (default is 3000000000), then warning log is
- * output.<br>
+ * If end time is more than nano-seconds defined in {@code warnHandlingNanos} (default is
+ * 3000000000), then warning log is output.<br>
  * <p>
  * Below is usage example
- * <h3>Example of bean definition which should be loaded by {@code org.springframework.web.servlet.DispatcherServlet}</h3>
+ * <h3>Example of bean definition which should be loaded by
+ * {@code org.springframework.web.servlet.DispatcherServlet}</h3>
  * 
  * <pre>
  *  &lt;mvc:interceptors&gt;
@@ -58,27 +61,27 @@ import org.springframework.web.servlet.ModelAndView;
  * </pre>
  * 
  * Set {@link TraceLoggingInterceptor} as definition of interceptor class.<br>
- * By specifying nano-seconds in value of {@code warnHandlingNanos}, timing of warning log output can be changed.<br>
+ * By specifying nano-seconds in value of {@code warnHandlingNanos}, timing of warning log output
+ * can be changed.<br>
  */
+// @formatter:on
 public class TraceLoggingInterceptor implements HandlerInterceptor {
 
     /**
      * logger
      */
-    private static final Logger logger = LoggerFactory.getLogger(
-            TraceLoggingInterceptor.class);
+    private static final Logger logger = LoggerFactory.getLogger(TraceLoggingInterceptor.class);
 
     /**
      * Attribute name of start time
      */
-    private static final String START_ATTR = TraceLoggingInterceptor.class
-            .getName() + ".startTime";
+    private static final String START_ATTR = TraceLoggingInterceptor.class.getName() + ".startTime";
 
     /**
      * Attribute name of time elapsed.
      */
-    private static final String HANDLING_ATTR = TraceLoggingInterceptor.class
-            .getName() + ".handlingTime";
+    private static final String HANDLING_ATTR =
+            TraceLoggingInterceptor.class.getName() + ".handlingTime";
 
     /**
      * Default nano-seconds as after which warning log is to be output
@@ -99,15 +102,15 @@ public class TraceLoggingInterceptor implements HandlerInterceptor {
      *      javax.servlet.http.HttpServletResponse, java.lang.Object)
      */
     @Override
-    public boolean preHandle(HttpServletRequest request,
-            HttpServletResponse response, Object handler) {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
+            Object handler) {
         if (handler instanceof HandlerMethod) {
             if (logger.isTraceEnabled()) {
                 HandlerMethod handlerMethod = (HandlerMethod) handler;
                 Method m = handlerMethod.getMethod();
-                logger.trace("[START CONTROLLER] {}.{}({})", new Object[] { m
-                        .getDeclaringClass().getSimpleName(), m.getName(),
-                        buildMethodParams(handlerMethod) });
+                logger.trace("[START CONTROLLER] {}.{}({})",
+                        new Object[] {m.getDeclaringClass().getSimpleName(), m.getName(),
+                                buildMethodParams(handlerMethod)});
             }
             long startTime = System.nanoTime();
             request.setAttribute(START_ATTR, startTime);
@@ -120,15 +123,16 @@ public class TraceLoggingInterceptor implements HandlerInterceptor {
      * Logic to output end log
      * <p>
      * Outputs the end log.<br>
-     * Outputs warning log if difference of time between start time and end time is more than the nano-seconds value<br>
+     * Outputs warning log if difference of time between start time and end time is more than the
+     * nano-seconds value<br>
      * set as warning log output timing.
      * </p>
      * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#postHandle(javax.servlet.http.HttpServletRequest,
-     *      javax.servlet.http.HttpServletResponse, java.lang.Object, org.springframework.web.servlet.ModelAndView)
+     *      javax.servlet.http.HttpServletResponse, java.lang.Object,
+     *      org.springframework.web.servlet.ModelAndView)
      */
     @Override
-    public void postHandle(HttpServletRequest request,
-            HttpServletResponse response, Object handler,
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
             ModelAndView modelAndView) {
 
         if (!(handler instanceof HandlerMethod)) {
@@ -163,19 +167,17 @@ public class TraceLoggingInterceptor implements HandlerInterceptor {
         }
 
         logger.trace("[END CONTROLLER  ] {}.{}({})-> view={}, model={}",
-                new Object[] { m.getDeclaringClass().getSimpleName(), m
-                        .getName(), buildMethodParams(handlerMethod), view,
-                        model });
+                new Object[] {m.getDeclaringClass().getSimpleName(), m.getName(),
+                        buildMethodParams(handlerMethod), view, model});
         String handlingTimeMessage = "[HANDLING TIME   ] {}.{}({})-> {} ns";
         if (isWarnHandling) {
-            logger.warn(handlingTimeMessage + " > {}", new Object[] { m
-                    .getDeclaringClass().getSimpleName(), m.getName(),
-                    buildMethodParams(handlerMethod), formattedHandlingTime,
-                    warnHandlingNanos });
+            logger.warn(handlingTimeMessage + " > {}",
+                    new Object[] {m.getDeclaringClass().getSimpleName(), m.getName(),
+                            buildMethodParams(handlerMethod), formattedHandlingTime,
+                            warnHandlingNanos});
         } else {
-            logger.trace(handlingTimeMessage, new Object[] { m
-                    .getDeclaringClass().getSimpleName(), m.getName(),
-                    buildMethodParams(handlerMethod), formattedHandlingTime });
+            logger.trace(handlingTimeMessage, new Object[] {m.getDeclaringClass().getSimpleName(),
+                    m.getName(), buildMethodParams(handlerMethod), formattedHandlingTime});
         }
     }
 

@@ -22,12 +22,12 @@ import org.terasoluna.gfw.common.codepoints.CodePoints;
 import org.terasoluna.gfw.common.codepoints.ConsistOf;
 
 /**
- * Validator implementation corresponding to {@link ConsistOf} annotation. This validator checks whether all code points in the
- * given string are included in any {@link CodePoints} class specified by {@link ConsistOf#value()}.
+ * Validator implementation corresponding to {@link ConsistOf} annotation. This validator checks
+ * whether all code points in the given string are included in any {@link CodePoints} class
+ * specified by {@link ConsistOf#value()}.
  * @since 5.1.0
  */
-public class ConsistOfValidator implements
-                                ConstraintValidator<ConsistOf, CharSequence> {
+public class ConsistOfValidator implements ConstraintValidator<ConsistOf, CharSequence> {
     /**
      * Array of CodePoints to check
      */
@@ -47,16 +47,16 @@ public class ConsistOfValidator implements
     }
 
     /**
-     * Validate whether all code points in the given string are included in any {@link CodePoints} class specified by
-     * {@link ConsistOf#value()}
+     * Validate whether all code points in the given string are included in any {@link CodePoints}
+     * class specified by {@link ConsistOf#value()}
      * @param value the string to check
      * @param context validation context
-     * @return {@code true} if all code points in the given string are included in any {@link CodePoints} class specified by
-     *         {@link ConsistOf#value()} or the given string is {@code null}. {@code false} otherwise.
+     * @return {@code true} if all code points in the given string are included in any
+     *         {@link CodePoints} class specified by {@link ConsistOf#value()} or the given string
+     *         is {@code null}. {@code false} otherwise.
      */
     @Override
-    public boolean isValid(CharSequence value,
-            ConstraintValidatorContext context) {
+    public boolean isValid(CharSequence value, ConstraintValidatorContext context) {
         if (value == null) {
             return true;
         }

@@ -81,13 +81,11 @@ public final class ResponseUtils {
      * </p>
      * @param response HttpServletResponse to prevent caching
      */
-    public static void setPreventionCachingHeaders(
-            HttpServletResponse response) {
+    public static void setPreventionCachingHeaders(HttpServletResponse response) {
         if (response != null) {
             response.setHeader(HEADER_PRAGMA, "no-cache");
             response.setDateHeader(HEADER_EXPIRES, 1L);
-            response.setHeader(HEADER_CACHE_CONTROL,
-                    "private,no-store,no-cache,must-revalidate");
+            response.setHeader(HEADER_CACHE_CONTROL, "private,no-store,no-cache,must-revalidate");
         }
     }
 }

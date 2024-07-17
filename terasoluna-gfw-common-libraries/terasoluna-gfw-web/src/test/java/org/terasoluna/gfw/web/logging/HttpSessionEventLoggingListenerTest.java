@@ -61,8 +61,7 @@ public class HttpSessionEventLoggingListenerTest {
         @SuppressWarnings("unchecked")
         Appender<ILoggingEvent> mockAppender = mock(Appender.class);
         this.mockAppender = mockAppender;
-        logger = (Logger) LoggerFactory.getLogger(
-                HttpSessionEventLoggingListener.class);
+        logger = (Logger) LoggerFactory.getLogger(HttpSessionEventLoggingListener.class);
         logger.addAppender(mockAppender);
     }
 
@@ -78,8 +77,8 @@ public class HttpSessionEventLoggingListenerTest {
     @Test
     public void testSessionWillPassivate() {
         // expected
-        String passivateStr = "SESSIONID#" + mockHttpSession.getId()
-                + " sessionWillPassivate : " + mockHttpSession.toString();
+        String passivateStr = "SESSIONID#" + mockHttpSession.getId() + " sessionWillPassivate : "
+                + mockHttpSession.toString();
 
         // run
         listener.sessionWillPassivate(httpSessionEvent);
@@ -106,8 +105,8 @@ public class HttpSessionEventLoggingListenerTest {
     @Test
     public void testSessionDidActivate() {
         // expected
-        String didActivateStr = "SESSIONID#" + mockHttpSession.getId()
-                + " sessionDidActivate : " + mockHttpSession.toString();
+        String didActivateStr = "SESSIONID#" + mockHttpSession.getId() + " sessionDidActivate : "
+                + mockHttpSession.toString();
         // run
         listener.sessionDidActivate(httpSessionEvent);
 
@@ -133,8 +132,8 @@ public class HttpSessionEventLoggingListenerTest {
     @Test
     public void testAttributeAdded() {
         // expected
-        String attributeAddedStr = "SESSIONID#" + mockHttpSession.getId()
-                + " attributeAdded : terasoluna=AA";
+        String attributeAddedStr =
+                "SESSIONID#" + mockHttpSession.getId() + " attributeAdded : terasoluna=AA";
 
         // run
         listener.attributeAdded(sessionBindingEvent);
@@ -161,8 +160,8 @@ public class HttpSessionEventLoggingListenerTest {
     @Test
     public void testAttributeRemoved() {
         // expected
-        String attributeRemovedStr = "SESSIONID#" + mockHttpSession.getId()
-                + " attributeRemoved : terasoluna=AA";
+        String attributeRemovedStr =
+                "SESSIONID#" + mockHttpSession.getId() + " attributeRemoved : terasoluna=AA";
 
         // run
         listener.attributeRemoved(sessionBindingEvent);
@@ -189,8 +188,8 @@ public class HttpSessionEventLoggingListenerTest {
     @Test
     public void testAttributeReplaced() {
         // expected
-        String attributeRemovedStr = "SESSIONID#" + mockHttpSession.getId()
-                + " attributeReplaced : terasoluna=AA";
+        String attributeRemovedStr =
+                "SESSIONID#" + mockHttpSession.getId() + " attributeReplaced : terasoluna=AA";
 
         // run
         listener.attributeReplaced(sessionBindingEvent);
@@ -217,8 +216,8 @@ public class HttpSessionEventLoggingListenerTest {
     @Test
     public void testSessionCreated() {
         // expected
-        String sessionCreatedStr = "SESSIONID#" + mockHttpSession.getId()
-                + " sessionCreated : " + mockHttpSession.toString();
+        String sessionCreatedStr = "SESSIONID#" + mockHttpSession.getId() + " sessionCreated : "
+                + mockHttpSession.toString();
 
         // run
         listener.sessionCreated(httpSessionEvent);
@@ -245,8 +244,8 @@ public class HttpSessionEventLoggingListenerTest {
     @Test
     public void testSessionDestroyed() {
         // expected
-        String sessionDestroyedStr = "SESSIONID#" + mockHttpSession.getId()
-                + " sessionDestroyed : " + mockHttpSession.toString();
+        String sessionDestroyedStr = "SESSIONID#" + mockHttpSession.getId() + " sessionDestroyed : "
+                + mockHttpSession.toString();
 
         // run
         listener.sessionDestroyed(httpSessionEvent);
@@ -272,12 +271,11 @@ public class HttpSessionEventLoggingListenerTest {
      * @param expectedLogMessage expected log message.
      * @param expectedLogLevel expected log level.
      */
-    private void verifyLogging(final String expectedLogMessage,
-            final Level expectedLogLevel) {
-        verify(mockAppender).doAppend(argThat(argument -> argument
-                .getFormattedMessage().equals(expectedLogMessage)));
-        verify(mockAppender).doAppend(argThat(argument -> expectedLogLevel
-                .equals(argument.getLevel())));
+    private void verifyLogging(final String expectedLogMessage, final Level expectedLogLevel) {
+        verify(mockAppender).doAppend(
+                argThat(argument -> argument.getFormattedMessage().equals(expectedLogMessage)));
+        verify(mockAppender)
+                .doAppend(argThat(argument -> expectedLogLevel.equals(argument.getLevel())));
     }
 
 }

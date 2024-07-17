@@ -28,11 +28,11 @@ public class TestService {
     @Autowired
     protected TestRepository repository;
 
-    private final ThreadLocal<ResultMessagesNotificationException> currentThreadException = new ThreadLocal<ResultMessagesNotificationException>();
+    private final ThreadLocal<ResultMessagesNotificationException> currentThreadException =
+            new ThreadLocal<ResultMessagesNotificationException>();
 
     public String getMessage() {
-        ResultMessagesNotificationException exception = currentThreadException
-                .get();
+        ResultMessagesNotificationException exception = currentThreadException.get();
         if (exception != null) {
             throw exception;
         }

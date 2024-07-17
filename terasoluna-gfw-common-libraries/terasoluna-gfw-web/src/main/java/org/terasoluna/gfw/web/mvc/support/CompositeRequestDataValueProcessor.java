@@ -32,8 +32,7 @@ import org.springframework.web.servlet.support.RequestDataValueProcessor;
  * This class is like a list of other {@link RequestDataValueProcessor} implementations.
  * </p>
  */
-public class CompositeRequestDataValueProcessor implements
-                                                RequestDataValueProcessor {
+public class CompositeRequestDataValueProcessor implements RequestDataValueProcessor {
 
     /**
      * List of {@link RequestDataValueProcessor}
@@ -52,18 +51,17 @@ public class CompositeRequestDataValueProcessor implements
      * </p>
      * @param processors List of {@link RequestDataValueProcessor}
      */
-    public CompositeRequestDataValueProcessor(
-            RequestDataValueProcessor... processors) {
+    public CompositeRequestDataValueProcessor(RequestDataValueProcessor... processors) {
 
-        this.processors = Collections.unmodifiableList(Arrays.asList(
-                processors));
+        this.processors = Collections.unmodifiableList(Arrays.asList(processors));
         List<RequestDataValueProcessor> reverse = Arrays.asList(processors);
         Collections.reverse(reverse);
         this.reversedProcessors = Collections.unmodifiableList(reverse);
     }
 
     /**
-     * Calls the {@code processAction()} method of all the {@link RequestDataValueProcessor} implementations <br>
+     * Calls the {@code processAction()} method of all the {@link RequestDataValueProcessor}
+     * implementations <br>
      * this class holds.
      * @param request the current request
      * @param action action of form tag. must not be null.
@@ -73,8 +71,7 @@ public class CompositeRequestDataValueProcessor implements
      * @since 1.0.2 for Spring 4 or higher
      */
     @Override
-    public String processAction(HttpServletRequest request, String action,
-            String method) {
+    public String processAction(HttpServletRequest request, String action, String method) {
 
         String result = action;
         for (RequestDataValueProcessor processor : processors) {
@@ -88,7 +85,8 @@ public class CompositeRequestDataValueProcessor implements
     }
 
     /**
-     * Calls the {@code processFormFieldValue()} method of all the {@link RequestDataValueProcessor} implementations <br>
+     * Calls the {@code processFormFieldValue()} method of all the {@link RequestDataValueProcessor}
+     * implementations <br>
      * this class holds.
      * @param request the current request
      * @param name the form field name
@@ -98,13 +96,12 @@ public class CompositeRequestDataValueProcessor implements
      *      java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
-    public String processFormFieldValue(HttpServletRequest request, String name,
-            String value, String type) {
+    public String processFormFieldValue(HttpServletRequest request, String name, String value,
+            String type) {
 
         String result = value;
         for (RequestDataValueProcessor processor : processors) {
-            result = processor.processFormFieldValue(request, name, value,
-                    type);
+            result = processor.processFormFieldValue(request, name, value, type);
             if (!value.equals(result)) {
                 break;
             }
@@ -114,14 +111,14 @@ public class CompositeRequestDataValueProcessor implements
     }
 
     /**
-     * Calls the {@code getExtraHiddenFields()} method of all the {@link RequestDataValueProcessor} implementations <br>
+     * Calls the {@code getExtraHiddenFields()} method of all the {@link RequestDataValueProcessor}
+     * implementations <br>
      * this class holds.
      * @param request the current request
      * @see org.springframework.web.servlet.support.RequestDataValueProcessor#getExtraHiddenFields(javax.servlet.http.HttpServletRequest)
      */
     @Override
-    public Map<String, String> getExtraHiddenFields(
-            HttpServletRequest request) {
+    public Map<String, String> getExtraHiddenFields(HttpServletRequest request) {
         Map<String, String> result = new LinkedHashMap<String, String>();
         for (RequestDataValueProcessor processor : reversedProcessors) {
             Map<String, String> map = processor.getExtraHiddenFields(request);
@@ -133,7 +130,8 @@ public class CompositeRequestDataValueProcessor implements
     }
 
     /**
-     * Calls the {@code processUrl()} method of all the {@link RequestDataValueProcessor} implementations <br>
+     * Calls the {@code processUrl()} method of all the {@link RequestDataValueProcessor}
+     * implementations <br>
      * this class holds.
      * @param request the current request
      * @param url the URL value.must not be null.

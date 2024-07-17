@@ -1,651 +1,651 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.terasoluna.gfw</groupId>
-  <artifactId>terasoluna-gfw-parent</artifactId>
-  <version>5.7.4-SNAPSHOT</version>
-  <packaging>pom</packaging>
-  <name>TERASOLUNA Server Framework for Java (5.x) Parent</name>
-  <description>The parent of TERASOLUNA Server Framework for Java (5.x)</description>
-  <url>http://terasoluna.org</url>
-  <inceptionYear>2013</inceptionYear>
-  <licenses>
-    <license>
-      <name>Apache License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>manual</distribution>
-    </license>
-  </licenses>
-  <organization>
-    <name>terasoluna.org</name>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.terasoluna.gfw</groupId>
+    <artifactId>terasoluna-gfw-parent</artifactId>
+    <version>5.7.4-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>TERASOLUNA Server Framework for Java (5.x) Parent</name>
+    <description>The parent of TERASOLUNA Server Framework for Java (5.x)</description>
     <url>http://terasoluna.org</url>
-  </organization>
-  <repositories>
-    <repository>
-      <id>repository.spring.milestone</id>
-      <name>Spring Milestone Repository</name>
-      <url>https://repo.spring.io/milestone</url>
-    </repository>
-  </repositories>
-  <developers>
-    <developer>
-      <name>NTT DATA</name>
-      <organization>NTT DATA Corporation</organization>
-      <organizationUrl>http://terasolunaorg.github.io/</organizationUrl>
-    </developer>
-  </developers>
-  <scm>
-    <connection>scm:git:git@github.com:terasolunaorg/terasoluna-gfw.git</connection>
-    <developerConnection>scm:git:git@github.com:terasolunaorg/terasoluna-gfw.git</developerConnection>
-    <url>git@github.com:terasolunaorg/terasoluna-gfw.git</url>
-  </scm>
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>${org.apache.maven.plugins.maven-project-info-reports-plugin.version}</version>
-      </plugin>
-    </plugins>
-  </reporting>
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
-          <configuration>
-            <source>${java-version}</source>
-            <target>${java-version}</target>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-dependency-plugin</artifactId>
-          <version>${org.apache.maven.plugins.maven-dependency-plugin.version}</version>
-          <executions>
-            <execution>
-              <id>install</id>
-              <phase>install</phase>
-              <goals>
-                <goal>sources</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>${org.apache.maven.plugins.maven-resources-plugin.version}</version>
-          <configuration>
-            <encoding>${encoding}</encoding>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-source-plugin</artifactId>
-          <version>${org.apache.maven.plugins.maven-source-plugin.version}</version>
-          <executions>
-            <execution>
-              <id>source-jar</id>
-              <phase>package</phase>
-              <goals>
-                <goal>jar</goal>
-              </goals>
-            </execution>
-          </executions>
-          <configuration>
-            <archive>
-              <addMavenDescriptor>false</addMavenDescriptor>
-            </archive>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
-          <version>${org.apache.maven.plugins.maven-javadoc-plugin.version}</version>
-          <configuration>
-            <encoding>${encoding}</encoding>
-            <docencoding>${encoding}</docencoding>
-            <locale>en</locale>
-            <archive>
-              <addMavenDescriptor>false</addMavenDescriptor>
-            </archive>
-            <doclint>none</doclint>
-          </configuration>
-          <executions>
-            <execution>
-              <id>javadoc-jar</id>
-              <phase>package</phase>
-              <goals>
-                <goal>jar</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>${org.apache.maven.plugins.maven-jar-plugin.version}</version>
-          <configuration>
-            <archive>
-              <addMavenDescriptor>false</addMavenDescriptor>
-              <manifest>
-                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-              </manifest>
-            </archive>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-assembly-plugin</artifactId>
-          <version>${org.apache.maven.plugins.maven-assembly-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-clean-plugin</artifactId>
-          <version>${org.apache.maven.plugins.maven-clean-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-install-plugin</artifactId>
-          <version>${org.apache.maven.plugins.maven-install-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-deploy-plugin</artifactId>
-          <version>${org.apache.maven.plugins.maven-deploy-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>${org.apache.maven.plugins.maven-site-plugin.version}</version>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.cargo</groupId>
-          <artifactId>cargo-maven3-plugin</artifactId>
-          <version>${org.codehaus.cargo.cargo-maven3-plugin.version}</version>
-          <configuration>
-            <configuration>
-              <properties>
-                <cargo.tomcat.uriencoding>UTF-8</cargo.tomcat.uriencoding>
-                <cargo.jvmargs>${cargo.jvmargs}</cargo.jvmargs>
-              </properties>
-            </configuration>
-            <container>
-              <containerId>${cargo.container.id}</containerId>
-              <zipUrlInstaller>
-                <url>${cargo.container.url}</url>
-              </zipUrlInstaller>
-            </container>
-            <daemon>
-              <properties>
-                <cargo.daemon.url>${cargo.daemon.url}</cargo.daemon.url>
-                <cargo.daemon.handleid>${project.artifactId}</cargo.daemon.handleid>
-              </properties>
-            </daemon>
-            <deployables>
-              <deployable>
-                <location>${project.basedir}/target/${project.artifactId}.war</location>
-                <type>war</type>
-              </deployable>
-            </deployables>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-  </build>
-  <dependencyManagement>
-    <dependencies>
-
-      <!-- == Begin TERASOLUNA == -->
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-common</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-web</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-web-jsp</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-jodatime</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-security-core-dependencies</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-        <type>pom</type>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-security-web</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-validator</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-string</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-codepoints</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw.codepoints</groupId>
-        <artifactId>terasoluna-gfw-codepoints-jisx0201</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw.codepoints</groupId>
-        <artifactId>terasoluna-gfw-codepoints-jisx0208</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw.codepoints</groupId>
-        <artifactId>terasoluna-gfw-codepoints-jisx0208kanji</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw.codepoints</groupId>
-        <artifactId>terasoluna-gfw-codepoints-jisx0213kanji</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-        <type>pom</type>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-        <type>pom</type>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-common-dependencies</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-        <type>pom</type>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-web-dependencies</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-        <type>pom</type>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-web-jsp-dependencies</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-        <type>pom</type>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-        <type>pom</type>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-security-web-dependencies</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-        <type>pom</type>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-jpa-dependencies</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-        <type>pom</type>
-      </dependency>
-      <dependency>
-        <groupId>org.terasoluna.gfw</groupId>
-        <artifactId>terasoluna-gfw-mybatis3-dependencies</artifactId>
-        <version>${terasoluna.gfw.version}</version>
-        <type>pom</type>
-      </dependency>
-      <!-- == End TERASOLUNA == -->
-
-      <!-- == Begin Spring Boot == -->
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${org.springframework.boot.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <!-- == End Spring Boot == -->
-
-      <!-- == Begin MyBatis == -->
-      <dependency>
-        <groupId>org.mybatis</groupId>
-        <artifactId>mybatis</artifactId>
-        <version>${org.mybatis.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mybatis</groupId>
-        <artifactId>mybatis-spring</artifactId>
-        <version>${org.mybatis.spring.version}</version>
-      </dependency>
-      <!-- == End MyBatis == -->
-
-      <!-- == Begin Dozer== -->
-      <dependency>
-        <groupId>com.github.dozermapper</groupId>
-        <artifactId>dozer-core</artifactId>
-        <version>${dozer.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.github.dozermapper</groupId>
-        <artifactId>dozer-spring4</artifactId>
-        <version>${dozer.version}</version>
-      </dependency>
-      <!-- == End Dozer== -->
-
-      <!-- == Begin Joda-Time == -->
-      <dependency>
-        <groupId>joda-time</groupId>
-        <artifactId>joda-time</artifactId>
-        <version>${joda-time.joda-time.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>joda-time</groupId>
-        <artifactId>joda-time-jsptags</artifactId>
-        <version>${joda-time.joda-time-jsptags.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.jadira.usertype</groupId>
-        <artifactId>usertype.core</artifactId>
-        <version>${jadira-usertype-core.version}</version>
-      </dependency>
-      <!-- == End Joda-Time == -->
-
-      <!-- == Begin Google == -->
-      <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>${guava.version}</version>
-      </dependency>
-      <!-- == End Google == -->
-
-      <!-- == Begin Apache Commons == -->
-      <dependency>
-        <groupId>commons-beanutils</groupId>
-        <artifactId>commons-beanutils</artifactId>
-        <version>${commons-beanutils.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-collections4</artifactId>
-        <version>${commons-collections.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>commons-io</groupId>
-        <artifactId>commons-io</artifactId>
-        <version>${commons-io.version}</version>
-      </dependency>
-      <!-- == Begin Apache Commons == -->
-
-      <!-- == Begin OpenPDF == -->
-      <dependency>
-        <groupId>com.github.librepdf</groupId>
-        <artifactId>openpdf</artifactId>
-        <version>${openpdf.version}</version>
-      </dependency>
-      <!-- == End OpenPDF == -->
-
-      <!-- == Begin Apache POI == -->
-      <dependency>
-        <groupId>org.apache.poi</groupId>
-        <artifactId>poi</artifactId>
-        <version>${poi.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.poi</groupId>
-        <artifactId>poi-ooxml</artifactId>
-        <version>${poi.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.poi</groupId>
-        <artifactId>poi-scratchpad</artifactId>
-        <version>${poi.version}</version>
-      </dependency>
-      <!-- == End Apache POI == -->
-
-      <!-- == Begin Apache Tiles == -->
-      <dependency>
-        <groupId>org.apache.tiles</groupId>
-        <artifactId>tiles-api</artifactId>
-        <version>${tiles.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.tiles</groupId>
-        <artifactId>tiles-core</artifactId>
-        <version>${tiles.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.tiles</groupId>
-        <artifactId>tiles-el</artifactId>
-        <version>${tiles.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.tiles</groupId>
-        <artifactId>tiles-extras</artifactId>
-        <version>${tiles.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.tiles</groupId>
-        <artifactId>tiles-jsp</artifactId>
-        <version>${tiles.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.tiles</groupId>
-        <artifactId>tiles-servlet</artifactId>
-        <version>${tiles.version}</version>
-      </dependency>
-      <!-- == End Apache Tiles == -->
-
-      <!-- == Begin Bouncy Castle == -->
-      <dependency>
-        <groupId>org.bouncycastle</groupId>
-        <artifactId>bcprov-jdk18on</artifactId>
-        <version>${bouncycastle.version}</version>
-      </dependency>
-      <!-- == Begin Bouncy Castle == -->
-
-      <!-- == Begin Logback == -->
-      <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-core</artifactId>
-        <version>${logback.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>ch.qos.logback</groupId>
-        <artifactId>logback-classic</artifactId>
-        <version>${logback.version}</version>
-      </dependency>
-      <!-- == End Logback == -->
-
-      <!-- == Begin SLF4J == -->
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-api</artifactId>
-        <version>${slf4j.version}</version>
-      </dependency>
-      <!-- == End SLF4J == -->
-
-      <!-- == Begin Other == -->
-      <dependency>
-        <groupId>jakarta.el</groupId>
-        <artifactId>jakarta.el-api</artifactId>
-        <version>${jakarta-el.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>jakarta.inject</groupId>
-        <artifactId>jakarta.inject-api</artifactId>
-        <version>${jakarta-inject.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>jakarta.servlet.jsp</groupId>
-        <artifactId>jakarta.servlet.jsp-api</artifactId>
-        <version>${jakarta-jsp.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.taglibs</groupId>
-        <artifactId>taglibs-standard-impl</artifactId>
-        <version>${taglibs-standard.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.taglibs</groupId>
-        <artifactId>taglibs-standard-jstlel</artifactId>
-        <version>${taglibs-standard.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.taglibs</groupId>
-        <artifactId>taglibs-standard-spec</artifactId>
-        <version>${taglibs-standard.version}</version>
-      </dependency>
-      <!-- == End Other == -->
-
-    </dependencies>
-  </dependencyManagement>
-  <properties>
-    <!-- == Maven Plugin Versions == -->
-    <org.apache.maven.plugins.maven-project-info-reports-plugin.version>3.1.2</org.apache.maven.plugins.maven-project-info-reports-plugin.version>
-    <org.apache.maven.plugins.maven-compiler-plugin.version>3.8.1</org.apache.maven.plugins.maven-compiler-plugin.version>
-    <org.apache.maven.plugins.maven-dependency-plugin.version>3.2.0</org.apache.maven.plugins.maven-dependency-plugin.version>
-    <org.apache.maven.plugins.maven-resources-plugin.version>3.2.0</org.apache.maven.plugins.maven-resources-plugin.version>
-    <org.apache.maven.plugins.maven-source-plugin.version>3.2.1</org.apache.maven.plugins.maven-source-plugin.version>
-    <org.apache.maven.plugins.maven-javadoc-plugin.version>3.3.0</org.apache.maven.plugins.maven-javadoc-plugin.version>
-    <org.apache.maven.plugins.maven-jar-plugin.version>3.2.0</org.apache.maven.plugins.maven-jar-plugin.version>
-    <org.apache.maven.plugins.maven-assembly-plugin.version>3.3.0</org.apache.maven.plugins.maven-assembly-plugin.version>
-    <org.apache.maven.plugins.maven-clean-plugin.version>3.1.0</org.apache.maven.plugins.maven-clean-plugin.version>
-    <org.apache.maven.plugins.maven-install-plugin.version>3.0.1</org.apache.maven.plugins.maven-install-plugin.version>
-    <org.apache.maven.plugins.maven-deploy-plugin.version>3.0.0</org.apache.maven.plugins.maven-deploy-plugin.version>
-    <org.apache.maven.plugins.maven-site-plugin.version>3.9.1</org.apache.maven.plugins.maven-site-plugin.version>
-    <org.codehaus.cargo.cargo-maven3-plugin.version>1.9.5</org.codehaus.cargo.cargo-maven3-plugin.version>
-    <org.apache.maven.plugins.maven-gpg-plugin.version>3.0.1</org.apache.maven.plugins.maven-gpg-plugin.version>
-    <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.6.8</org.sonatype.plugins.nexus-staging-maven-plugin.version>
-    <!-- == Dependency Versions == -->
-    <!-- == TERASOLUNA == -->
-    <terasoluna.gfw.version>5.7.4-SNAPSHOT</terasoluna.gfw.version>
-    <!-- == Spring Boot == -->
-    <org.springframework.boot.version>2.7.18</org.springframework.boot.version>
-    <!-- == MyBatis3 == -->
-    <org.mybatis.version>3.5.15</org.mybatis.version>
-    <org.mybatis.spring.version>2.1.2</org.mybatis.spring.version>
-    <!-- == Dozer== -->
-    <dozer.version>6.5.2</dozer.version>
-    <!-- == Joda-Time == -->
-    <joda-time.joda-time.version>2.12.5</joda-time.joda-time.version>
-    <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
-    <jadira-usertype-core.version>6.0.1.GA</jadira-usertype-core.version>
-    <!-- == Google == -->
-    <guava.version>33.0.0-jre</guava.version>
-    <!-- == Apache Commons == -->
-    <commons-beanutils.version>1.9.4</commons-beanutils.version>
-    <commons-collections.version>4.4</commons-collections.version>
-    <commons-io.version>2.15.1</commons-io.version>
-    <!-- == OpenPDF == -->
-    <openpdf.version>1.3.35</openpdf.version>
-    <!-- == Apache POI == -->
-    <poi.version>5.2.5</poi.version>
-    <!-- == Apache Tiles == -->
-    <tiles.version>3.0.8</tiles.version>
-    <!-- == Bouncy Castle == -->
-    <bouncycastle.version>1.77</bouncycastle.version>
-    <!-- == Logback == -->
-    <logback.version>1.3.14</logback.version>
-    <!-- == SLF4J == -->
-    <slf4j.version>2.0.12</slf4j.version>
-    <!-- == Other == -->
-    <jakarta-el.version>3.0.3</jakarta-el.version>
-    <jakarta-inject.version>1.0.5</jakarta-inject.version>
-    <jakarta-jsp.version>2.3.6</jakarta-jsp.version>
-    <taglibs-standard.version>1.2.5</taglibs-standard.version>
-    <!-- == Project Properties == -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <archetype.test.skip>true</archetype.test.skip>
-    <encoding>UTF-8</encoding>
-    <java-version>1.8</java-version>
-    <!-- == Cargo Plugin == -->
-    <cargo.jvmargs>-Xms512m -Xmx1024m</cargo.jvmargs>
-    <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
-    <cargo.container.id>tomcat9x</cargo.container.id>
-    <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-9/v${cargo.tomcat9.version}/bin/apache-tomcat-${cargo.tomcat9.version}.zip</cargo.container.url>
-    <cargo.tomcat9.version>9.0.83</cargo.tomcat9.version>
-  </properties>
-  <profiles>
-    <profile>
-      <id>default</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-    </profile>
-    <profile>
-      <id>central</id>
-      <distributionManagement>
+    <inceptionYear>2013</inceptionYear>
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>manual</distribution>
+        </license>
+    </licenses>
+    <organization>
+        <name>terasoluna.org</name>
+        <url>http://terasoluna.org</url>
+    </organization>
+    <repositories>
         <repository>
-          <id>ossrh</id>
-          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <id>repository.spring.milestone</id>
+            <name>Spring Milestone Repository</name>
+            <url>https://repo.spring.io/milestone</url>
         </repository>
-        <snapshotRepository>
-          <id>ossrh</id>
-          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-      </distributionManagement>
-      <build>
+    </repositories>
+    <developers>
+        <developer>
+            <name>NTT DATA</name>
+            <organization>NTT DATA Corporation</organization>
+            <organizationUrl>http://terasolunaorg.github.io/</organizationUrl>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:git@github.com:terasolunaorg/terasoluna-gfw.git</connection>
+        <developerConnection>scm:git:git@github.com:terasolunaorg/terasoluna-gfw.git</developerConnection>
+        <url>git@github.com:terasolunaorg/terasoluna-gfw.git</url>
+    </scm>
+    <reporting>
         <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-gpg-plugin</artifactId>
-            <version>${org.apache.maven.plugins.maven-gpg-plugin.version}</version>
-            <executions>
-              <execution>
-                <id>sign-artifacts</id>
-                <phase>verify</phase>
-                <goals>
-                  <goal>sign</goal>
-                </goals>
-                <configuration>
-                  <gpgArguments>
-                    <arg>--pinentry-mode</arg>
-                    <arg>loopback</arg>
-                  </gpgArguments>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.sonatype.plugins</groupId>
-            <artifactId>nexus-staging-maven-plugin</artifactId>
-            <version>${org.sonatype.plugins.nexus-staging-maven-plugin.version}</version>
-            <extensions>true</extensions>
-            <configuration>
-              <serverId>ossrh</serverId>
-              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-              <autoReleaseAfterClose>true</autoReleaseAfterClose>
-            </configuration>
-          </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${org.apache.maven.plugins.maven-project-info-reports-plugin.version}</version>
+            </plugin>
         </plugins>
-      </build>
-    </profile>
-  </profiles>
+    </reporting>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-compiler-plugin.version}</version>
+                    <configuration>
+                        <source>${java-version}</source>
+                        <target>${java-version}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-dependency-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>install</id>
+                            <phase>install</phase>
+                            <goals>
+                                <goal>sources</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-resources-plugin.version}</version>
+                    <configuration>
+                        <encoding>${encoding}</encoding>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-source-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>source-jar</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <archive>
+                            <addMavenDescriptor>false</addMavenDescriptor>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-javadoc-plugin.version}</version>
+                    <configuration>
+                        <encoding>${encoding}</encoding>
+                        <docencoding>${encoding}</docencoding>
+                        <locale>en</locale>
+                        <archive>
+                            <addMavenDescriptor>false</addMavenDescriptor>
+                        </archive>
+                        <doclint>none</doclint>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>javadoc-jar</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>jar</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-jar-plugin.version}</version>
+                    <configuration>
+                        <archive>
+                            <addMavenDescriptor>false</addMavenDescriptor>
+                            <manifest>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-assembly-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-clean-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-install-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-deploy-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-site-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.cargo</groupId>
+                    <artifactId>cargo-maven3-plugin</artifactId>
+                    <version>${org.codehaus.cargo.cargo-maven3-plugin.version}</version>
+                    <configuration>
+                        <configuration>
+                            <properties>
+                                <cargo.tomcat.uriencoding>UTF-8</cargo.tomcat.uriencoding>
+                                <cargo.jvmargs>${cargo.jvmargs}</cargo.jvmargs>
+                            </properties>
+                        </configuration>
+                        <container>
+                            <containerId>${cargo.container.id}</containerId>
+                            <zipUrlInstaller>
+                                <url>${cargo.container.url}</url>
+                            </zipUrlInstaller>
+                        </container>
+                        <daemon>
+                            <properties>
+                                <cargo.daemon.url>${cargo.daemon.url}</cargo.daemon.url>
+                                <cargo.daemon.handleid>${project.artifactId}</cargo.daemon.handleid>
+                            </properties>
+                        </daemon>
+                        <deployables>
+                            <deployable>
+                                <location>${project.basedir}/target/${project.artifactId}.war</location>
+                                <type>war</type>
+                            </deployable>
+                        </deployables>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- == Begin TERASOLUNA == -->
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-common</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-web</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-web-jsp</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-jodatime</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-security-core-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-security-web</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-validator</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-string</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-codepoints</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw.codepoints</groupId>
+                <artifactId>terasoluna-gfw-codepoints-jisx0201</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw.codepoints</groupId>
+                <artifactId>terasoluna-gfw-codepoints-jisx0208</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw.codepoints</groupId>
+                <artifactId>terasoluna-gfw-codepoints-jisx0208kanji</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw.codepoints</groupId>
+                <artifactId>terasoluna-gfw-codepoints-jisx0213kanji</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-common-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-web-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-web-jsp-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-security-web-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-jpa-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <dependency>
+                <groupId>org.terasoluna.gfw</groupId>
+                <artifactId>terasoluna-gfw-mybatis3-dependencies</artifactId>
+                <version>${terasoluna.gfw.version}</version>
+                <type>pom</type>
+            </dependency>
+            <!-- == End TERASOLUNA == -->
+
+            <!-- == Begin Spring Boot == -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${org.springframework.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- == End Spring Boot == -->
+
+            <!-- == Begin MyBatis == -->
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${org.mybatis.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${org.mybatis.spring.version}</version>
+            </dependency>
+            <!-- == End MyBatis == -->
+
+            <!-- == Begin Dozer== -->
+            <dependency>
+                <groupId>com.github.dozermapper</groupId>
+                <artifactId>dozer-core</artifactId>
+                <version>${dozer.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.dozermapper</groupId>
+                <artifactId>dozer-spring4</artifactId>
+                <version>${dozer.version}</version>
+            </dependency>
+            <!-- == End Dozer== -->
+
+            <!-- == Begin Joda-Time == -->
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda-time.joda-time.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time-jsptags</artifactId>
+                <version>${joda-time.joda-time-jsptags.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jadira.usertype</groupId>
+                <artifactId>usertype.core</artifactId>
+                <version>${jadira-usertype-core.version}</version>
+            </dependency>
+            <!-- == End Joda-Time == -->
+
+            <!-- == Begin Google == -->
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
+            </dependency>
+            <!-- == End Google == -->
+
+            <!-- == Begin Apache Commons == -->
+            <dependency>
+                <groupId>commons-beanutils</groupId>
+                <artifactId>commons-beanutils</artifactId>
+                <version>${commons-beanutils.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${commons-collections.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+            <!-- == Begin Apache Commons == -->
+
+            <!-- == Begin OpenPDF == -->
+            <dependency>
+                <groupId>com.github.librepdf</groupId>
+                <artifactId>openpdf</artifactId>
+                <version>${openpdf.version}</version>
+            </dependency>
+            <!-- == End OpenPDF == -->
+
+            <!-- == Begin Apache POI == -->
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-scratchpad</artifactId>
+                <version>${poi.version}</version>
+            </dependency>
+            <!-- == End Apache POI == -->
+
+            <!-- == Begin Apache Tiles == -->
+            <dependency>
+                <groupId>org.apache.tiles</groupId>
+                <artifactId>tiles-api</artifactId>
+                <version>${tiles.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tiles</groupId>
+                <artifactId>tiles-core</artifactId>
+                <version>${tiles.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tiles</groupId>
+                <artifactId>tiles-el</artifactId>
+                <version>${tiles.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tiles</groupId>
+                <artifactId>tiles-extras</artifactId>
+                <version>${tiles.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tiles</groupId>
+                <artifactId>tiles-jsp</artifactId>
+                <version>${tiles.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.tiles</groupId>
+                <artifactId>tiles-servlet</artifactId>
+                <version>${tiles.version}</version>
+            </dependency>
+            <!-- == End Apache Tiles == -->
+
+            <!-- == Begin Bouncy Castle == -->
+            <dependency>
+                <groupId>org.bouncycastle</groupId>
+                <artifactId>bcprov-jdk18on</artifactId>
+                <version>${bouncycastle.version}</version>
+            </dependency>
+            <!-- == Begin Bouncy Castle == -->
+
+            <!-- == Begin Logback == -->
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-core</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>ch.qos.logback</groupId>
+                <artifactId>logback-classic</artifactId>
+                <version>${logback.version}</version>
+            </dependency>
+            <!-- == End Logback == -->
+
+            <!-- == Begin SLF4J == -->
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j.version}</version>
+            </dependency>
+            <!-- == End SLF4J == -->
+
+            <!-- == Begin Other == -->
+            <dependency>
+                <groupId>jakarta.el</groupId>
+                <artifactId>jakarta.el-api</artifactId>
+                <version>${jakarta-el.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.inject</groupId>
+                <artifactId>jakarta.inject-api</artifactId>
+                <version>${jakarta-inject.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.servlet.jsp</groupId>
+                <artifactId>jakarta.servlet.jsp-api</artifactId>
+                <version>${jakarta-jsp.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.taglibs</groupId>
+                <artifactId>taglibs-standard-impl</artifactId>
+                <version>${taglibs-standard.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.taglibs</groupId>
+                <artifactId>taglibs-standard-jstlel</artifactId>
+                <version>${taglibs-standard.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.taglibs</groupId>
+                <artifactId>taglibs-standard-spec</artifactId>
+                <version>${taglibs-standard.version}</version>
+            </dependency>
+            <!-- == End Other == -->
+
+        </dependencies>
+    </dependencyManagement>
+    <properties>
+        <!-- == Maven Plugin Versions == -->
+        <org.apache.maven.plugins.maven-project-info-reports-plugin.version>3.1.2</org.apache.maven.plugins.maven-project-info-reports-plugin.version>
+        <org.apache.maven.plugins.maven-compiler-plugin.version>3.8.1</org.apache.maven.plugins.maven-compiler-plugin.version>
+        <org.apache.maven.plugins.maven-dependency-plugin.version>3.2.0</org.apache.maven.plugins.maven-dependency-plugin.version>
+        <org.apache.maven.plugins.maven-resources-plugin.version>3.2.0</org.apache.maven.plugins.maven-resources-plugin.version>
+        <org.apache.maven.plugins.maven-source-plugin.version>3.2.1</org.apache.maven.plugins.maven-source-plugin.version>
+        <org.apache.maven.plugins.maven-javadoc-plugin.version>3.3.0</org.apache.maven.plugins.maven-javadoc-plugin.version>
+        <org.apache.maven.plugins.maven-jar-plugin.version>3.2.0</org.apache.maven.plugins.maven-jar-plugin.version>
+        <org.apache.maven.plugins.maven-assembly-plugin.version>3.3.0</org.apache.maven.plugins.maven-assembly-plugin.version>
+        <org.apache.maven.plugins.maven-clean-plugin.version>3.1.0</org.apache.maven.plugins.maven-clean-plugin.version>
+        <org.apache.maven.plugins.maven-install-plugin.version>3.0.1</org.apache.maven.plugins.maven-install-plugin.version>
+        <org.apache.maven.plugins.maven-deploy-plugin.version>3.0.0</org.apache.maven.plugins.maven-deploy-plugin.version>
+        <org.apache.maven.plugins.maven-site-plugin.version>3.9.1</org.apache.maven.plugins.maven-site-plugin.version>
+        <org.codehaus.cargo.cargo-maven3-plugin.version>1.9.5</org.codehaus.cargo.cargo-maven3-plugin.version>
+        <org.apache.maven.plugins.maven-gpg-plugin.version>3.0.1</org.apache.maven.plugins.maven-gpg-plugin.version>
+        <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.6.8</org.sonatype.plugins.nexus-staging-maven-plugin.version>
+        <!-- == Dependency Versions == -->
+        <!-- == TERASOLUNA == -->
+        <terasoluna.gfw.version>5.7.4-SNAPSHOT</terasoluna.gfw.version>
+        <!-- == Spring Boot == -->
+        <org.springframework.boot.version>2.7.18</org.springframework.boot.version>
+        <!-- == MyBatis3 == -->
+        <org.mybatis.version>3.5.15</org.mybatis.version>
+        <org.mybatis.spring.version>2.1.2</org.mybatis.spring.version>
+        <!-- == Dozer== -->
+        <dozer.version>6.5.2</dozer.version>
+        <!-- == Joda-Time == -->
+        <joda-time.joda-time.version>2.12.5</joda-time.joda-time.version>
+        <joda-time.joda-time-jsptags.version>1.1.1</joda-time.joda-time-jsptags.version>
+        <jadira-usertype-core.version>6.0.1.GA</jadira-usertype-core.version>
+        <!-- == Google == -->
+        <guava.version>33.0.0-jre</guava.version>
+        <!-- == Apache Commons == -->
+        <commons-beanutils.version>1.9.4</commons-beanutils.version>
+        <commons-collections.version>4.4</commons-collections.version>
+        <commons-io.version>2.15.1</commons-io.version>
+        <!-- == OpenPDF == -->
+        <openpdf.version>1.3.35</openpdf.version>
+        <!-- == Apache POI == -->
+        <poi.version>5.2.5</poi.version>
+        <!-- == Apache Tiles == -->
+        <tiles.version>3.0.8</tiles.version>
+        <!-- == Bouncy Castle == -->
+        <bouncycastle.version>1.77</bouncycastle.version>
+        <!-- == Logback == -->
+        <logback.version>1.3.14</logback.version>
+        <!-- == SLF4J == -->
+        <slf4j.version>2.0.12</slf4j.version>
+        <!-- == Other == -->
+        <jakarta-el.version>3.0.3</jakarta-el.version>
+        <jakarta-inject.version>1.0.5</jakarta-inject.version>
+        <jakarta-jsp.version>2.3.6</jakarta-jsp.version>
+        <taglibs-standard.version>1.2.5</taglibs-standard.version>
+        <!-- == Project Properties == -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <archetype.test.skip>true</archetype.test.skip>
+        <encoding>UTF-8</encoding>
+        <java-version>1.8</java-version>
+        <!-- == Cargo Plugin == -->
+        <cargo.jvmargs>-Xms512m -Xmx1024m</cargo.jvmargs>
+        <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
+        <cargo.container.id>tomcat9x</cargo.container.id>
+        <cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-9/v${cargo.tomcat9.version}/bin/apache-tomcat-${cargo.tomcat9.version}.zip</cargo.container.url>
+        <cargo.tomcat9.version>9.0.83</cargo.tomcat9.version>
+    </properties>
+    <profiles>
+        <profile>
+            <id>default</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>central</id>
+            <distributionManagement>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>${org.apache.maven.plugins.maven-gpg-plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <configuration>
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>${org.sonatype.plugins.nexus-staging-maven-plugin.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>ossrh</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

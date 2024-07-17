@@ -49,8 +49,7 @@ public class RequestUtilsTest {
 
     @Test
     public void testPrivateConstructor() throws Exception {
-        Constructor<RequestUtils> c = RequestUtils.class
-                .getDeclaredConstructor();
+        Constructor<RequestUtils> c = RequestUtils.class.getDeclaredConstructor();
         c.setAccessible(true);
         assertThat(c.newInstance(), is(notNullValue()));
     }

@@ -26,19 +26,18 @@ public class InvalidTransactionTokenExceptionTest {
     @Test
     public void testExceptionConstructor() {
 
-        InvalidTransactionTokenException e = assertThrows(
-                InvalidTransactionTokenException.class, () -> {
+        InvalidTransactionTokenException e =
+                assertThrows(InvalidTransactionTokenException.class, () -> {
                     throw new InvalidTransactionTokenException();
                 });
-        assertThat(e.getMessage(), is(
-                "Invalid Transaction Token Exception !!!"));
+        assertThat(e.getMessage(), is("Invalid Transaction Token Exception !!!"));
     }
 
     @Test
     public void testExceptionConstructorWithCustomMessage() {
 
-        InvalidTransactionTokenException e = assertThrows(
-                InvalidTransactionTokenException.class, () -> {
+        InvalidTransactionTokenException e =
+                assertThrows(InvalidTransactionTokenException.class, () -> {
                     throw new InvalidTransactionTokenException("Custom Message");
                 });
         assertThat(e.getMessage(), is("Custom Message"));

@@ -43,8 +43,7 @@ public class BusinessExceptionTest {
         String message = "resultMessages";
 
         // set up
-        ResultMessages resultMessages = ResultMessages.error().add(ResultMessage
-                .fromText(message));
+        ResultMessages resultMessages = ResultMessages.error().add(ResultMessage.fromText(message));
         exception = new BusinessException(resultMessages);
 
         // throw & assert
@@ -63,8 +62,7 @@ public class BusinessExceptionTest {
         Exception cause = new IllegalArgumentException("cause");
 
         // set up
-        ResultMessages resultMessages = ResultMessages.error().add(ResultMessage
-                .fromText(message));
+        ResultMessages resultMessages = ResultMessages.error().add(ResultMessage.fromText(message));
         exception = new BusinessException(resultMessages, cause);
 
         // throw & assert
@@ -73,8 +71,7 @@ public class BusinessExceptionTest {
         });
         assertThat(ex.getResultMessages(), is(resultMessages));
         assertThat(ex.getMessage(), is(resultMessages.toString()));
-        assertThat(ex.getCause(), is(instanceOf(
-                IllegalArgumentException.class)));
+        assertThat(ex.getCause(), is(instanceOf(IllegalArgumentException.class)));
     }
 
 }

@@ -33,7 +33,8 @@ import org.terasoluna.gfw.common.exception.ResultMessagesNotificationException;
 /**
  * Interceptor class for logging exceptions which are handled by {@link HandlerExceptionResolver}.
  * <p>
- * In this class, log level is changed as per the HTTP response code determined by {@code HandlerExceptionResolver}.
+ * In this class, log level is changed as per the HTTP response code determined by
+ * {@code HandlerExceptionResolver}.
  * </p>
  * <h2>Example of the Settings for inject a custom ExceptionLogger</h2><br>
  * <strong>[applicationContext.xml]</strong><br>
@@ -55,15 +56,14 @@ import org.terasoluna.gfw.common.exception.ResultMessagesNotificationException;
  * &lt;/bean&gt;
  * </pre>
  */
-public class HandlerExceptionResolverLoggingInterceptor implements
-                                                        MethodInterceptor,
-                                                        InitializingBean {
+public class HandlerExceptionResolverLoggingInterceptor
+        implements MethodInterceptor, InitializingBean {
 
     /**
      * Logger for output of application log.
      */
-    private static final Logger logger = LoggerFactory.getLogger(
-            HandlerExceptionResolverLoggingInterceptor.class);
+    private static final Logger logger =
+            LoggerFactory.getLogger(HandlerExceptionResolverLoggingInterceptor.class);
 
     /**
      * Logger object for exception output.
@@ -98,8 +98,7 @@ public class HandlerExceptionResolverLoggingInterceptor implements
      * Sets 'Set' instance of exception classes for which log output is not to be used.
      * @param ignoreExceptions Set of exception classes for which log output is not to be done.
      */
-    public void setIgnoreExceptions(
-            Set<Class<? extends Exception>> ignoreExceptions) {
+    public void setIgnoreExceptions(Set<Class<? extends Exception>> ignoreExceptions) {
         this.ignoreExceptions = ignoreExceptions;
     }
 
@@ -108,15 +107,17 @@ public class HandlerExceptionResolverLoggingInterceptor implements
      * <p>
      * [Output Specifications]
      * <ul>
-     * <li>If {@code HandlerExceptionResolver} returns null, exception has not be handled and hence log will not be output</li>
-     * <li>If {@code HandlerExceptionResolver} interface is not implemented, exception has not be handled and hence log will not
-     * be output</li>
-     * <li>If exception class matches with the list of classes for which log output is not to be done, then log output is not
-     * done.</li>
-     * <li>If HTTP response code by {@code HandlerExceptionResolver} is between 100-399 then INFO log, between 400-499 then WARN
-     * log and above 500 ERROR log is output</li>
-     * <li>If exception is handled by a class which is not in the list of {@link HandlerExceptionResolver} classes for WARN log
-     * output, then output the log with ERROR level.</li>
+     * <li>If {@code HandlerExceptionResolver} returns null, exception has not be handled and hence
+     * log will not be output</li>
+     * <li>If {@code HandlerExceptionResolver} interface is not implemented, exception has not be
+     * handled and hence log will not be output</li>
+     * <li>If exception class matches with the list of classes for which log output is not to be
+     * done, then log output is not done.</li>
+     * <li>If HTTP response code by {@code HandlerExceptionResolver} is between 100-399 then INFO
+     * log, between 400-499 then WARN log and above 500 ERROR log is output</li>
+     * <li>If exception is handled by a class which is not in the list of
+     * {@link HandlerExceptionResolver} classes for WARN log output, then output the log with ERROR
+     * level.</li>
      * <li></li>
      * </ul>
      * @param invocation {@link MethodInvocation}
@@ -144,10 +145,8 @@ public class HandlerExceptionResolverLoggingInterceptor implements
 
         Exception exception = (Exception) invocation.getArguments()[3];
         if (isTargetException(exception)) {
-            HttpServletRequest request = (HttpServletRequest) invocation
-                    .getArguments()[0];
-            HttpServletResponse response = (HttpServletResponse) invocation
-                    .getArguments()[1];
+            HttpServletRequest request = (HttpServletRequest) invocation.getArguments()[0];
+            HttpServletResponse response = (HttpServletResponse) invocation.getArguments()[1];
             Object handler = invocation.getArguments()[2];
             log(exception, request, response, handler);
         }
@@ -158,10 +157,12 @@ public class HandlerExceptionResolverLoggingInterceptor implements
     /**
      * Initializes the HandlerExceptionResolverLoggingInterceptor.
      * <p>
-     * If exception logger object is not set, use {@link org.terasoluna.gfw.common.exception.ExceptionLogger}.
+     * If exception logger object is not set, use
+     * {@link org.terasoluna.gfw.common.exception.ExceptionLogger}.
      * </p>
      * <p>
-     * default exception logger's name is 'org.terasoluna.gfw.web.exception.HandlerExceptionResolverLoggingInterceptor'<br>
+     * default exception logger's name is
+     * 'org.terasoluna.gfw.web.exception.HandlerExceptionResolverLoggingInterceptor'<br>
      * (this interceptor's class name).
      * </p>
      * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
@@ -198,8 +199,8 @@ public class HandlerExceptionResolverLoggingInterceptor implements
      * @param response HTTP Servlet Response
      * @param handler handler
      */
-    protected void log(Exception ex, HttpServletRequest request,
-            HttpServletResponse response, Object handler) {
+    protected void log(Exception ex, HttpServletRequest request, HttpServletResponse response,
+            Object handler) {
         int statusCode = response.getStatus();
         if (HttpServletResponse.SC_INTERNAL_SERVER_ERROR <= statusCode) {
             // responseCode is 500 ~

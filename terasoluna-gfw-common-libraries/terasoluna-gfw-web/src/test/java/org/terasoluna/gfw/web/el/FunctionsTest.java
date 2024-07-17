@@ -41,8 +41,7 @@ public class FunctionsTest {
     @Test
     public void testFunctions() throws Exception {
         // set up
-        Constructor<Functions> constructor = Functions.class
-                .getDeclaredConstructor();
+        Constructor<Functions> constructor = Functions.class.getDeclaredConstructor();
         assertThat(constructor.isAccessible(), is(false));
         constructor.setAccessible(true);
 
@@ -56,22 +55,18 @@ public class FunctionsTest {
     public void testH() {
         assertThat(Functions.h(null), is(""));
         assertThat(Functions.h(""), is(""));
-        assertThat(Functions.h("<a href=\"\">"), is(
-                "&lt;a href=&quot;&quot;&gt;"));
+        assertThat(Functions.h("<a href=\"\">"), is("&lt;a href=&quot;&quot;&gt;"));
         assertThat(Functions.h("<a href=''>"), is("&lt;a href=&#39;&#39;&gt;"));
         assertThat(Functions.h("&lt;"), is("&amp;lt;"));
-        assertThat(Functions.h(new boolean[] { true, false }), is(
-                "[true, false]"));
-        assertThat(Functions.h(new int[] { 1, 2, 3 }), is("[1, 2, 3]"));
-        assertThat(Functions.h(new short[] { 1, 2, 3 }), is("[1, 2, 3]"));
-        assertThat(Functions.h(new long[] { 1, 2, 3 }), is("[1, 2, 3]"));
-        assertThat(Functions.h(new byte[] { 1, 2, 3 }), is("[1, 2, 3]"));
-        assertThat(Functions.h(new double[] { 1, 2, 3 }), is(
-                "[1.0, 2.0, 3.0]"));
-        assertThat(Functions.h(new float[] { 1, 2, 3 }), is("[1.0, 2.0, 3.0]"));
-        assertThat(Functions.h(new char[] { 'a', 'b', 'c' }), is("[a, b, c]"));
-        assertThat(Functions.h(new String[] { "a", "b", "c" }), is(
-                "[a, b, c]"));
+        assertThat(Functions.h(new boolean[] {true, false}), is("[true, false]"));
+        assertThat(Functions.h(new int[] {1, 2, 3}), is("[1, 2, 3]"));
+        assertThat(Functions.h(new short[] {1, 2, 3}), is("[1, 2, 3]"));
+        assertThat(Functions.h(new long[] {1, 2, 3}), is("[1, 2, 3]"));
+        assertThat(Functions.h(new byte[] {1, 2, 3}), is("[1, 2, 3]"));
+        assertThat(Functions.h(new double[] {1, 2, 3}), is("[1.0, 2.0, 3.0]"));
+        assertThat(Functions.h(new float[] {1, 2, 3}), is("[1.0, 2.0, 3.0]"));
+        assertThat(Functions.h(new char[] {'a', 'b', 'c'}), is("[a, b, c]"));
+        assertThat(Functions.h(new String[] {"a", "b", "c"}), is("[a, b, c]"));
     }
 
     /**
@@ -95,7 +90,7 @@ public class FunctionsTest {
     @Test
     public void testH02() {
         // setup input parameters
-        String[] input = { "1", "a", "A" };
+        String[] input = {"1", "a", "A"};
 
         // run
         String result = Functions.h(input);
@@ -110,7 +105,7 @@ public class FunctionsTest {
     @Test
     public void testH03() {
         // setup input parameters
-        boolean[] input = { true, false, true };
+        boolean[] input = {true, false, true};
 
         // run
         String result = Functions.h(input);
@@ -125,7 +120,7 @@ public class FunctionsTest {
     @Test
     public void testH04() {
         // setup input parameters
-        char[] input = { '1', 'a', 'A' };
+        char[] input = {'1', 'a', 'A'};
 
         // run
         String result = Functions.h(input);
@@ -140,7 +135,7 @@ public class FunctionsTest {
     @Test
     public void testH05() {
         // setup input parameters
-        int[] input = { 1, 5, 9 };
+        int[] input = {1, 5, 9};
 
         // run
         String result = Functions.h(input);
@@ -155,7 +150,7 @@ public class FunctionsTest {
     @Test
     public void testH06() {
         // setup input parameters
-        long[] input = { 1L, 3L, 5L };
+        long[] input = {1L, 3L, 5L};
 
         // run
         String result = Functions.h(input);
@@ -170,7 +165,7 @@ public class FunctionsTest {
     @Test
     public void testH07() {
         // setup input parameters
-        byte[] input = new byte[] { 0, 2, 4 };
+        byte[] input = new byte[] {0, 2, 4};
 
         // run
         String result = Functions.h(input);
@@ -185,7 +180,7 @@ public class FunctionsTest {
     @Test
     public void testH08() {
         // setup input parameters
-        short[] input = new short[] { 3, 6, 9 };
+        short[] input = new short[] {3, 6, 9};
 
         // run
         String result = Functions.h(input);
@@ -200,7 +195,7 @@ public class FunctionsTest {
     @Test
     public void testH09() {
         // setup input parameters
-        float[] input = { 3F, 6F, 9.5F };
+        float[] input = {3F, 6F, 9.5F};
 
         // run
         String result = Functions.h(input);
@@ -215,7 +210,7 @@ public class FunctionsTest {
     @Test
     public void testH10() {
         // setup input parameters
-        double[] input = { 1.1, 2.2, 3.3 };
+        double[] input = {1.1, 2.2, 3.3};
 
         // run
         String result = Functions.h(input);
@@ -230,7 +225,7 @@ public class FunctionsTest {
     @Test
     public void testH11() {
         // setup input parameters
-        Object[] input = { 1.1, true, "ABC" };
+        Object[] input = {1.1, true, "ABC"};
 
         // run
         String result = Functions.h(input);
@@ -291,12 +286,10 @@ public class FunctionsTest {
     public void testU() {
         assertThat(Functions.u(null), is(""));
         assertThat(Functions.u(""), is(""));
-        assertThat(Functions.u("あいうえお"), is(
-                "%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
-        assertThat(Functions.u("http://localhost:8080/spring"), is(
-                "http://localhost:8080/spring"));
-        assertThat(Functions.u("http://localhost:8080/あいうえお"), is(
-                "http://localhost:8080/%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
+        assertThat(Functions.u("あいうえお"), is("%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
+        assertThat(Functions.u("http://localhost:8080/spring"), is("http://localhost:8080/spring"));
+        assertThat(Functions.u("http://localhost:8080/あいうえお"),
+                is("http://localhost:8080/%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
     }
 
     @Test
@@ -365,7 +358,7 @@ public class FunctionsTest {
 
     @Test
     public void testUAndQuery_EncodingDelimiter() {
-        String[] inputStr = { "+", "&", "=" };
+        String[] inputStr = {"+", "&", "="};
         for (String str : inputStr) {
             String matcher = "name=" + Functions.u(str);
             Map<String, Object> map = new LinkedHashMap<String, Object>();
@@ -377,7 +370,7 @@ public class FunctionsTest {
 
     @Test
     public void testUAndQuery_EncodingChar() {
-        String[] inputStr = { "%", "あ", "\n" };
+        String[] inputStr = {"%", "あ", "\n"};
         for (String str : inputStr) {
             String matcher = "name=" + Functions.u(str);
             Map<String, Object> map = new LinkedHashMap<String, Object>();
@@ -410,8 +403,7 @@ public class FunctionsTest {
         assertThat(Functions.br("a\r"), is("a<br />"));
         assertThat(Functions.br("\ra"), is("<br />a"));
         assertThat(Functions.br("\r\r"), is("<br /><br />"));
-        assertThat(Functions.br("<br />\r\r<br />"), is(
-                "<br /><br /><br /><br />"));
+        assertThat(Functions.br("<br />\r\r<br />"), is("<br /><br /><br /><br />"));
     }
 
     @Test
@@ -420,8 +412,7 @@ public class FunctionsTest {
         assertThat(Functions.br("a\n"), is("a<br />"));
         assertThat(Functions.br("\na"), is("<br />a"));
         assertThat(Functions.br("\n\n"), is("<br /><br />"));
-        assertThat(Functions.br("<br />\n\n<br />"), is(
-                "<br /><br /><br /><br />"));
+        assertThat(Functions.br("<br />\n\n<br />"), is("<br /><br /><br /><br />"));
     }
 
     @Test
@@ -430,8 +421,7 @@ public class FunctionsTest {
         assertThat(Functions.br("a\r\n"), is("a<br />"));
         assertThat(Functions.br("\r\na"), is("<br />a"));
         assertThat(Functions.br("\r\n\r\n"), is("<br /><br />"));
-        assertThat(Functions.br("<br />\r\n\r\n<br />"), is(
-                "<br /><br /><br /><br />"));
+        assertThat(Functions.br("<br />\r\n\r\n<br />"), is("<br /><br /><br /><br />"));
     }
 
     @Test
@@ -458,10 +448,10 @@ public class FunctionsTest {
     public void testLink() {
         assertThat(Functions.link(null), is(""));
         assertThat(Functions.link(""), is(""));
-        assertThat(Functions.link("go to http://www.google.com"), is(
-                "go to <a href=\"http://www.google.com\">http://www.google.com</a>"));
-        assertThat(Functions.link("go to https://www.google.com"), is(
-                "go to <a href=\"https://www.google.com\">https://www.google.com</a>"));
+        assertThat(Functions.link("go to http://www.google.com"),
+                is("go to <a href=\"http://www.google.com\">http://www.google.com</a>"));
+        assertThat(Functions.link("go to https://www.google.com"),
+                is("go to <a href=\"https://www.google.com\">https://www.google.com</a>"));
     }
 
     @Test
@@ -475,8 +465,8 @@ public class FunctionsTest {
         assertThat(Functions.query(new Date()), is(""));
         assertThat(Functions.query(Locale.getDefault()), is(""));
         assertThat(Functions.query(new URL("http://google.com")), is(""));
-        assertThat(Functions.query(new Object[] { "1", "2", "3" }), is(""));
-        assertThat(Functions.query(new int[] { 1, 2, 3 }), is(""));
+        assertThat(Functions.query(new Object[] {"1", "2", "3"}), is(""));
+        assertThat(Functions.query(new int[] {1, 2, 3}), is(""));
         assertThat(Functions.query(Arrays.asList("a", "b", "c")), is(""));
     }
 
@@ -485,7 +475,7 @@ public class FunctionsTest {
         Map<String, Object> map = new LinkedHashMap<String, Object>();
         map.put("name", "Ichiro Suzuki");
         map.put("ja", "すずき いちろう");
-        map.put("arr", new Object[] { "xxx", "yyy" });
+        map.put("arr", new Object[] {"xxx", "yyy"});
         String query = Functions.query(map);
         // Spec has been changed between 5.0.0 and 5.0.1
         // 5.0.0 ... arr=xxx,yyy
@@ -493,8 +483,7 @@ public class FunctionsTest {
         // Either can be populated as { "xxx", "yyy" }
         assertThat(query, is(
                 "name=Ichiro%20Suzuki&ja=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86&arr%5B0%5D=xxx&arr%5B1%5D=yyy"));
-        assertThat(Functions.query(new LinkedHashMap<String, Object>()), is(
-                ""));
+        assertThat(Functions.query(new LinkedHashMap<String, Object>()), is(""));
     }
 
     @Test
@@ -514,8 +503,13 @@ public class FunctionsTest {
         // Spec has been changed betwee 5.0.0 and 5.0.1
         // 5.0.0 ... age=&date=&list=&name=
         // 5.0.1 ... _age=&_date=&_list=&_name=
-        assertThat(Functions.query(new Person()), is(
-                "_age=&_date=&_list=&_name=")); // null property should show reset parameter that start with "_"
+        assertThat(Functions.query(new Person()), is("_age=&_date=&_list=&_name=")); // null
+                                                                                     // property
+                                                                                     // should show
+                                                                                     // reset
+                                                                                     // parameter
+                                                                                     // that start
+                                                                                     // with "_"
     }
 
     @Test
@@ -559,12 +553,9 @@ public class FunctionsTest {
         form.setParticipants(Arrays.asList(p1, p2));
         String q = Functions.query(form);
         assertThat(q, is("meetingId=10" + "&participants%5B0%5D.age=20"
-                + "&participants%5B0%5D.date=2001-01-01"
-                + "&_participants%5B0%5D.list="
-                + "&participants%5B0%5D.name=%E5%B1%B1%E7%94%B0"
-                + "&participants%5B1%5D.age=30"
-                + "&participants%5B1%5D.date=1991-01-01"
-                + "&_participants%5B1%5D.list="
+                + "&participants%5B0%5D.date=2001-01-01" + "&_participants%5B0%5D.list="
+                + "&participants%5B0%5D.name=%E5%B1%B1%E7%94%B0" + "&participants%5B1%5D.age=30"
+                + "&participants%5B1%5D.date=1991-01-01" + "&_participants%5B1%5D.list="
                 + "&participants%5B1%5D.name=%E9%88%B4%E6%9C%A8"));
     }
 
@@ -601,6 +592,7 @@ public class FunctionsTest {
     }
 
 }
+
 
 class Person {
     private String name;
@@ -644,6 +636,7 @@ class Person {
         this.list = list;
     }
 }
+
 
 class MeetingRegisterForm {
     private Integer meetingId;

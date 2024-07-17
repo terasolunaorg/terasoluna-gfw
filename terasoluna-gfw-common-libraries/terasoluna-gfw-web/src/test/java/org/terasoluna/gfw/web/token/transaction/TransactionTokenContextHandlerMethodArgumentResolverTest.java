@@ -39,11 +39,12 @@ public class TransactionTokenContextHandlerMethodArgumentResolverTest {
      */
     @Test
     public void testSupportsParameter01() {
-        TransactionTokenContextHandlerMethodArgumentResolver resolver = new TransactionTokenContextHandlerMethodArgumentResolver();
+        TransactionTokenContextHandlerMethodArgumentResolver resolver =
+                new TransactionTokenContextHandlerMethodArgumentResolver();
         MethodParameter parameter = mock(MethodParameter.class);
 
-        Mockito.<Class<?>> when(parameter.getParameterType()).thenReturn(
-                TransactionTokenContext.class);
+        Mockito.<Class<?>>when(parameter.getParameterType())
+                .thenReturn(TransactionTokenContext.class);
 
         boolean result = resolver.supportsParameter(parameter);
 
@@ -55,11 +56,11 @@ public class TransactionTokenContextHandlerMethodArgumentResolverTest {
      */
     @Test
     public void testSupportsParameter02() {
-        TransactionTokenContextHandlerMethodArgumentResolver resolver = new TransactionTokenContextHandlerMethodArgumentResolver();
+        TransactionTokenContextHandlerMethodArgumentResolver resolver =
+                new TransactionTokenContextHandlerMethodArgumentResolver();
         MethodParameter parameter = mock(MethodParameter.class);
 
-        Mockito.<Class<?>> when(parameter.getParameterType()).thenReturn(
-                Object.class);
+        Mockito.<Class<?>>when(parameter.getParameterType()).thenReturn(Object.class);
 
         boolean result = resolver.supportsParameter(parameter);
 
@@ -71,7 +72,8 @@ public class TransactionTokenContextHandlerMethodArgumentResolverTest {
      */
     @Test
     public void testResolveArgument01() {
-        TransactionTokenContextHandlerMethodArgumentResolver resolver = new TransactionTokenContextHandlerMethodArgumentResolver();
+        TransactionTokenContextHandlerMethodArgumentResolver resolver =
+                new TransactionTokenContextHandlerMethodArgumentResolver();
         MethodParameter parameter = mock(MethodParameter.class);
         ModelAndViewContainer mavContainer = mock(ModelAndViewContainer.class);
         NativeWebRequest webRequest = mock(NativeWebRequest.class);
@@ -83,8 +85,7 @@ public class TransactionTokenContextHandlerMethodArgumentResolverTest {
                 RequestAttributes.SCOPE_REQUEST)).thenReturn(str);
 
         Object result = null;
-        result = resolver.resolveArgument(parameter, mavContainer, webRequest,
-                binderFactory);
+        result = resolver.resolveArgument(parameter, mavContainer, webRequest, binderFactory);
 
         assertThat(result, is(instanceOf(String.class)));
     }

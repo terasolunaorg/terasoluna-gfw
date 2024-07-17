@@ -84,6 +84,7 @@ public class AbstractJodaTimeDateFactoryTest {
     }
 }
 
+
 class StubDateFactory extends AbstractJodaTimeDateFactory {
     @Override
     public DateTime newDateTime() {

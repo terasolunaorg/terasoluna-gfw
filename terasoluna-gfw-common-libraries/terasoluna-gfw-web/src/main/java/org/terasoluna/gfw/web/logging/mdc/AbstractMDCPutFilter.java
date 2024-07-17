@@ -26,15 +26,18 @@ import org.slf4j.MDC;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 /**
- * Abstract class of Servlet Filter that encloses the values required for log output, in {@link MDC}.
+ * Abstract class of Servlet Filter that encloses the values required for log output, in
+ * {@link MDC}.
  * <p>
- * Key and value are fetched using {@link #getMDCKey} and {@link #getMDCValue} respectively and stored in {@link MDC}.
+ * Key and value are fetched using {@link #getMDCKey} and {@link #getMDCValue} respectively and
+ * stored in {@link MDC}.
  * </p>
  */
 public abstract class AbstractMDCPutFilter extends OncePerRequestFilter {
 
     /**
-     * Flag that controls whether the value created by this filter should also be remove from {@link MDC}.
+     * Flag that controls whether the value created by this filter should also be remove from
+     * {@link MDC}.
      * <p>
      * <ul>
      * <li>{@code true} : Value should be remove from {@link MDC}</li>
@@ -50,19 +53,21 @@ public abstract class AbstractMDCPutFilter extends OncePerRequestFilter {
     private int maxMDCValueLength = 32;
 
     /**
-     * Sets the flag that controls whether the value created by this filter should also be remove from {@link MDC}.
+     * Sets the flag that controls whether the value created by this filter should also be remove
+     * from {@link MDC}.
      * <p>
      * {@code true} should be set if value set in this filter should be remove from {@link MDC}<br>
-     * If this method is not called or {@code false} is set in this method, the value set in this filter will be keep in
-     * {@link MDC}
+     * If this method is not called or {@code false} is set in this method, the value set in this
+     * filter will be keep in {@link MDC}
      * </p>
      * <p>
      * Points to Note:<br>
-     * If {@code false} is specified here, always use this filter along with {@link MDCClearFilter} which clears the values
-     * stored in {@link MDC}.<br>
+     * If {@code false} is specified here, always use this filter along with {@link MDCClearFilter}
+     * which clears the values stored in {@link MDC}.<br>
      * If {@link MDCClearFilter} is not used, should be specified {@code true}.
      * </p>
-     * @param removeValue Flag that controls whether the value created by this filter should also be remove from {@link MDC}.
+     * @param removeValue Flag that controls whether the value created by this filter should also be
+     *        remove from {@link MDC}.
      */
     public void setRemoveValue(boolean removeValue) {
         this.removeValue = removeValue;
@@ -85,8 +90,7 @@ public abstract class AbstractMDCPutFilter extends OncePerRequestFilter {
      * @return cut value
      */
     protected String cutValue(String value) {
-        if (value != null && maxMDCValueLength >= 0 && value
-                .length() > maxMDCValueLength) {
+        if (value != null && maxMDCValueLength >= 0 && value.length() > maxMDCValueLength) {
             return value.substring(0, maxMDCValueLength);
         } else {
             return value;
@@ -95,8 +99,8 @@ public abstract class AbstractMDCPutFilter extends OncePerRequestFilter {
     }
 
     /**
-     * Stores the information in {@link MDC} and calls the next filter in chain. Information fetching is to be implemented in
-     * subclass of this class.
+     * Stores the information in {@link MDC} and calls the next filter in chain. Information
+     * fetching is to be implemented in subclass of this class.
      * @param request {@link HttpServletRequest}
      * @param response {@link HttpServletResponse}
      * @param filterChain {@link FilterChain}
@@ -106,8 +110,7 @@ public abstract class AbstractMDCPutFilter extends OncePerRequestFilter {
      *      javax.servlet.http.HttpServletResponse, javax.servlet.FilterChain)
      */
     @Override
-    protected final void doFilterInternal(HttpServletRequest request,
-            HttpServletResponse response,
+    protected final void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
             FilterChain filterChain) throws ServletException, IOException {
         String key = getMDCKey(request, response);
         String value = getMDCValue(request, response);
@@ -127,8 +130,7 @@ public abstract class AbstractMDCPutFilter extends OncePerRequestFilter {
      * @param response {@link HttpServletResponse}
      * @return Key to store the value in {@link MDC}
      */
-    protected abstract String getMDCKey(HttpServletRequest request,
-            HttpServletResponse response);
+    protected abstract String getMDCKey(HttpServletRequest request, HttpServletResponse response);
 
     /**
      * Returns the value to be stored in in {@link MDC}
@@ -136,7 +138,6 @@ public abstract class AbstractMDCPutFilter extends OncePerRequestFilter {
      * @param response {@link HttpServletResponse}
      * @return Value to be stored in {@link MDC}
      */
-    protected abstract String getMDCValue(HttpServletRequest request,
-            HttpServletResponse response);
+    protected abstract String getMDCValue(HttpServletRequest request, HttpServletResponse response);
 
 }

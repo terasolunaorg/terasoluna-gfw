@@ -35,13 +35,14 @@ import org.terasoluna.gfw.common.codepoints.ConsistOf.List;
 import org.terasoluna.gfw.common.codepoints.validator.ConsistOfValidator;
 
 /**
- * All code points in the string must be included in any {@link CodePoints} class specified by {@link #value()}.
+ * All code points in the string must be included in any {@link CodePoints} class specified by
+ * {@link #value()}.
  * @since 5.1.0
  */
-@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
+@Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
 @Repeatable(List.class)
-@Constraint(validatedBy = { ConsistOfValidator.class })
+@Constraint(validatedBy = {ConsistOfValidator.class})
 @Documented
 public @interface ConsistOf {
     /**
@@ -72,8 +73,7 @@ public @interface ConsistOf {
      * Defines several <code>@ConsistOf</code> annotations on the same element
      * @see ConsistOf
      */
-    @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER,
-            TYPE_USE })
+    @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
     @Retention(RUNTIME)
     @Documented
     @interface List {
