@@ -28,22 +28,21 @@ import org.springframework.mock.web.MockHttpServletRequest;
 
 public class RequestDataValueProcessorAdaptorTest {
 
-    RequestDataValueProcessorAdaptor requestDataValueProcessorAdaptor = new RequestDataValueProcessorAdaptor();
+    RequestDataValueProcessorAdaptor requestDataValueProcessorAdaptor =
+            new RequestDataValueProcessorAdaptor();
 
     HttpServletRequest request = new MockHttpServletRequest();
 
     @Test
     public void testProcessAction01() {
-        String action = requestDataValueProcessorAdaptor.processAction(request,
-                "action");
+        String action = requestDataValueProcessorAdaptor.processAction(request, "action");
         assertThat(action, is("action"));
     }
 
     @Test
     public void testProcessAction02() {
         // set up
-        String action = requestDataValueProcessorAdaptor.processAction(request,
-                "action", "method");
+        String action = requestDataValueProcessorAdaptor.processAction(request, "action", "method");
 
         // assert
         assertThat(action, is("action"));
@@ -51,22 +50,21 @@ public class RequestDataValueProcessorAdaptorTest {
 
     @Test
     public void testProcessFormFieldValue() {
-        String value = requestDataValueProcessorAdaptor.processFormFieldValue(
-                request, "", "value", "");
+        String value =
+                requestDataValueProcessorAdaptor.processFormFieldValue(request, "", "value", "");
         assertThat(value, is("value"));
     }
 
     @Test
     public void testGetExtraHiddenFields() {
-        Map<String, String> map = requestDataValueProcessorAdaptor
-                .getExtraHiddenFields(request);
+        Map<String, String> map = requestDataValueProcessorAdaptor.getExtraHiddenFields(request);
         assertThat(map, is(nullValue()));
     }
 
     @Test
     public void testProcessUrl() {
-        String url = requestDataValueProcessorAdaptor.processUrl(request,
-                "http://localhost:8080/test");
+        String url =
+                requestDataValueProcessorAdaptor.processUrl(request, "http://localhost:8080/test");
         assertThat(url, is("http://localhost:8080/test"));
     }
 

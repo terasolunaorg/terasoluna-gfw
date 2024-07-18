@@ -14,6 +14,7 @@
  * governing permissions and limitations under the License.
  */
 /**
- * Package that contains classes that provide functionality to generate sequences. For Ex: primary key of database table.
+ * Package that contains classes that provide functionality to generate sequences. For Ex: primary
+ * key of database table.
  */
 package org.terasoluna.gfw.common.sequencer;

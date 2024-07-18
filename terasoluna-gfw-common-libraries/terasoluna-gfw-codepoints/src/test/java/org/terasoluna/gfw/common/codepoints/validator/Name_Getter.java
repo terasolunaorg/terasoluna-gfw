@@ -27,8 +27,7 @@ public class Name_Getter {
         this.lastName = lastName;
     }
 
-    public Name_Getter() {
-    }
+    public Name_Getter() {}
 
     @ConsistOf(AtoF.class)
     public String getFirstName() {

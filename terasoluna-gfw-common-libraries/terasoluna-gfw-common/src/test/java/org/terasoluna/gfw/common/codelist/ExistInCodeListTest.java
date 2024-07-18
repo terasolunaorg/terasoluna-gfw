@@ -183,8 +183,8 @@ public class ExistInCodeListTest {
         c.gender = 'G';
         c.lang = "JP";
         Set<ConstraintViolation<Customer>> result = validator.validate(c);
-        assertThat(result, containsInAnyOrder(hasProperty("message", is(
-                "Does not exist in CD_GENDER"))));
+        assertThat(result,
+                containsInAnyOrder(hasProperty("message", is("Does not exist in CD_GENDER"))));
     }
 
     @Test
@@ -210,8 +210,7 @@ public class ExistInCodeListTest {
         BirthDay b = new BirthDay();
         b.month = 1;
         b.day = 1L;
-        Set<ConstraintViolation<BirthDay>> result = validator.validate(b,
-                FORMATTED.class);
+        Set<ConstraintViolation<BirthDay>> result = validator.validate(b, FORMATTED.class);
         assertThat(result, is(empty()));
     }
 
@@ -251,62 +250,58 @@ public class ExistInCodeListTest {
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result, containsInAnyOrder( //
                     hasProperty("message", is("number must be even")), //
-                    hasProperty("message", is(
-                            "number must be multiples of 3"))));
+                    hasProperty("message", is("number must be multiples of 3"))));
         }
         {
             Order order = new Order(2);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result, containsInAnyOrder(hasProperty("message", is(
-                    "number must be multiples of 3"))));
+            assertThat(result, containsInAnyOrder(
+                    hasProperty("message", is("number must be multiples of 3"))));
         }
         {
             Order order = new Order(4);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result, containsInAnyOrder(hasProperty("message", is(
-                    "number must be multiples of 3"))));
+            assertThat(result, containsInAnyOrder(
+                    hasProperty("message", is("number must be multiples of 3"))));
         }
         {
             Order order = new Order(5);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result, containsInAnyOrder( //
                     hasProperty("message", is("number must be even")), //
-                    hasProperty("message", is(
-                            "number must be multiples of 3"))));
+                    hasProperty("message", is("number must be multiples of 3"))));
         }
         {
             Order order = new Order(7);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result, containsInAnyOrder( //
                     hasProperty("message", is("number must be even")), //
-                    hasProperty("message", is(
-                            "number must be multiples of 3"))));
+                    hasProperty("message", is("number must be multiples of 3"))));
         }
         {
             Order order = new Order(8);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result, containsInAnyOrder(hasProperty("message", is(
-                    "number must be multiples of 3"))));
+            assertThat(result, containsInAnyOrder(
+                    hasProperty("message", is("number must be multiples of 3"))));
         }
         {
             Order order = new Order(9);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result, containsInAnyOrder(hasProperty("message", is(
-                    "number must be even"))));
+            assertThat(result,
+                    containsInAnyOrder(hasProperty("message", is("number must be even"))));
         }
         {
             Order order = new Order(10);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result, containsInAnyOrder(hasProperty("message", is(
-                    "number must be multiples of 3"))));
+            assertThat(result, containsInAnyOrder(
+                    hasProperty("message", is("number must be multiples of 3"))));
         }
         {
             Order order = new Order(11);
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result, containsInAnyOrder( //
                     hasProperty("message", is("number must be even")), //
-                    hasProperty("message", is(
-                            "number must be multiples of 3"))));
+                    hasProperty("message", is("number must be multiples of 3"))));
         }
         {
             // out of range!
@@ -314,8 +309,7 @@ public class ExistInCodeListTest {
             Set<ConstraintViolation<Order>> result = validator.validate(order);
             assertThat(result, containsInAnyOrder( //
                     hasProperty("message", is("number must be even")), //
-                    hasProperty("message", is(
-                            "number must be multiples of 3"))));
+                    hasProperty("message", is("number must be multiples of 3"))));
         }
     }
 
@@ -327,25 +321,25 @@ public class ExistInCodeListTest {
         Set<ConstraintViolation<Person>> result = validator.validate(p);
         assertThat(result, hasSize(1));
         ConstraintViolation<Person> error = result.iterator().next();
-        assertThat(error.getMessageTemplate(), is(
-                "{org.terasoluna.gfw.common.codelist.ExistInCodeList.message}"));
+        assertThat(error.getMessageTemplate(),
+                is("{org.terasoluna.gfw.common.codelist.ExistInCodeList.message}"));
         assertThat(error.getMessage(), is("Does not exist in CD_GENDER"));
     }
 
     @Test
     public void issue401_testMethodValidationByValidValue() {
-        String actualLabel = codeService.getGenderLabel("M"); // call a method using valid code value
+        String actualLabel = codeService.getGenderLabel("M"); // call a method using valid code
+                                                              // value
         assertThat(actualLabel, is("Male"));
     }
 
     @Test
     public void issue401_testMethodValidationByInvalidValue() {
-        ConstraintViolationException e = assertThrows(
-                ConstraintViolationException.class, () -> {
-                    codeService.getGenderLabel("U"); // call a method using invalid code value
-                });
-        assertThat(e.getConstraintViolations(), containsInAnyOrder(hasProperty(
-                "message", is("Does not exist in CD_GENDER"))));
+        ConstraintViolationException e = assertThrows(ConstraintViolationException.class, () -> {
+            codeService.getGenderLabel("U"); // call a method using invalid code value
+        });
+        assertThat(e.getConstraintViolations(),
+                containsInAnyOrder(hasProperty("message", is("Does not exist in CD_GENDER"))));
     }
 
     @Test
@@ -377,8 +371,7 @@ public class ExistInCodeListTest {
 
     @Validated
     public interface CodeService {
-        String getGenderLabel(
-                @ExistInCodeList(codeListId = "CD_GENDER") String genderCode);
+        String getGenderLabel(@ExistInCodeList(codeListId = "CD_GENDER") String genderCode);
     }
 
     @Service
@@ -395,6 +388,7 @@ public class ExistInCodeListTest {
 
 }
 
+
 class Person {
     @ExistInCodeList(codeListId = "CD_GENDER")
     public String gender;
@@ -402,6 +396,7 @@ class Person {
     @ExistInCodeList(codeListId = "CD_LANG")
     public String lang;
 }
+
 
 class Customer {
     @ExistInCodeList(codeListId = "CD_GENDER")
@@ -411,6 +406,7 @@ class Customer {
     public String lang;
 }
 
+
 class Employee {
     @ExistInCodeList(codeListId = "CD_GENDER")
     public StringBuilder gender;
@@ -418,6 +414,7 @@ class Employee {
     @ExistInCodeList(codeListId = "CD_LANG")
     public StringBuilder lang;
 }
+
 
 class BirthDay {
     @ExistInCodeList(codeListId = "CD_MONTH")
@@ -431,6 +428,7 @@ class BirthDay {
     public interface FORMATTED {
     }
 }
+
 
 class Order {
     @ExistInCodeList(codeListId = "CD_MULTIPLES_OF_3", message = "number must be multiples of 3")
@@ -449,6 +447,7 @@ class Order {
         return orderNumber;
     }
 }
+
 
 class Role {
     private List<@ExistInCodeList(codeListId = "CD_ROLE") String> roles;

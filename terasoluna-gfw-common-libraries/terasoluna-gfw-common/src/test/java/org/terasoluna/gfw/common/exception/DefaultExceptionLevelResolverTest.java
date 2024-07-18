@@ -27,7 +27,8 @@ public class DefaultExceptionLevelResolverTest {
 
     @Before
     public void before() throws Exception {
-        this.testTarget = new DefaultExceptionLevelResolver(new SimpleMappingExceptionCodeResolver());
+        this.testTarget =
+                new DefaultExceptionLevelResolver(new SimpleMappingExceptionCodeResolver());
     }
 
     @Test
@@ -36,8 +37,7 @@ public class DefaultExceptionLevelResolverTest {
         Exception exception = new SystemException("i", "info.");
 
         // do test.
-        ExceptionLevel actualExceptionLevel = testTarget.resolveExceptionLevel(
-                exception);
+        ExceptionLevel actualExceptionLevel = testTarget.resolveExceptionLevel(exception);
 
         // do assert.
         ExceptionLevel expectedExceptionLevel = ExceptionLevel.INFO;
@@ -50,8 +50,7 @@ public class DefaultExceptionLevelResolverTest {
         Exception exception = new SystemException("W.i", "warn.");
 
         // do test.
-        ExceptionLevel actualExceptionLevel = testTarget.resolveExceptionLevel(
-                exception);
+        ExceptionLevel actualExceptionLevel = testTarget.resolveExceptionLevel(exception);
 
         // do assert.
         ExceptionLevel expectedExceptionLevel = ExceptionLevel.WARN;
@@ -64,8 +63,7 @@ public class DefaultExceptionLevelResolverTest {
         Exception exception = new SystemException("Error.i.e", "error");
 
         // do test.
-        ExceptionLevel actualExceptionLevel = testTarget.resolveExceptionLevel(
-                exception);
+        ExceptionLevel actualExceptionLevel = testTarget.resolveExceptionLevel(exception);
 
         // do assert.
         ExceptionLevel expectedExceptionLevel = ExceptionLevel.ERROR;
@@ -78,8 +76,7 @@ public class DefaultExceptionLevelResolverTest {
         Exception exception = new SystemException("F.i.e", "undefine");
 
         // do test.
-        ExceptionLevel actualExceptionLevel = testTarget.resolveExceptionLevel(
-                exception);
+        ExceptionLevel actualExceptionLevel = testTarget.resolveExceptionLevel(exception);
 
         // do assert.
         ExceptionLevel expectedExceptionLevel = ExceptionLevel.ERROR;
@@ -92,8 +89,7 @@ public class DefaultExceptionLevelResolverTest {
         Exception exception = new Exception("error.");
 
         // do test.
-        ExceptionLevel actualExceptionLevel = testTarget.resolveExceptionLevel(
-                exception);
+        ExceptionLevel actualExceptionLevel = testTarget.resolveExceptionLevel(exception);
 
         // do assert.
         ExceptionLevel expectedExceptionLevel = ExceptionLevel.ERROR;
@@ -106,8 +102,7 @@ public class DefaultExceptionLevelResolverTest {
         Exception exception = new SystemException("", "error.");
 
         // do test.
-        ExceptionLevel actualExceptionLevel = testTarget.resolveExceptionLevel(
-                exception);
+        ExceptionLevel actualExceptionLevel = testTarget.resolveExceptionLevel(exception);
 
         // do assert.
         ExceptionLevel expectedExceptionLevel = ExceptionLevel.ERROR;
@@ -121,8 +116,7 @@ public class DefaultExceptionLevelResolverTest {
         Exception exception = new SystemException("i.w.e", "error.");
 
         // do test.
-        ExceptionLevel actualExceptionLevel = testTarget.resolveExceptionLevel(
-                exception);
+        ExceptionLevel actualExceptionLevel = testTarget.resolveExceptionLevel(exception);
 
         // do assert.
         ExceptionLevel expectedExceptionLevel = ExceptionLevel.ERROR;

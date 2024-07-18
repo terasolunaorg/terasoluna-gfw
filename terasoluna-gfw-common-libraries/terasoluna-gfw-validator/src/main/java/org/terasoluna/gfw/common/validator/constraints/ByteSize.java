@@ -36,11 +36,12 @@ import org.terasoluna.gfw.common.validator.constraints.ByteSize.List;
 import org.terasoluna.gfw.common.validator.constraintvalidators.ByteSizeValidator;
 
 /**
- * The annotated element must be a {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte length must
- * be between the specified minimum and maximum.
+ * The annotated element must be a {@link CharSequence}({@link String}, {@link StringBuilder}, etc
+ * ...) whose byte length must be between the specified minimum and maximum.
  * <p>
- * This is an annotation combining the functions {@link ByteMin} and {@link ByteMax}. Compared to using two annotations, the
- * advantage is that overhead can be reduced by getting byte length at a time.
+ * This is an annotation combining the functions {@link ByteMin} and {@link ByteMax}. Compared to
+ * using two annotations, the advantage is that overhead can be reduced by getting byte length at a
+ * time.
  * </p>
  * <p>
  * Supported types are:
@@ -49,10 +50,11 @@ import org.terasoluna.gfw.common.validator.constraintvalidators.ByteSizeValidato
  * <li>{@code CharSequence}</li>
  * </ul>
  * <p>
- * {@code null} elements are considered valid. Determine the byte length By encoding the string in the specified
- * {@link ByteSize#charset()}. If not specify, encode with charset {@code "UTF-8"}. An {@link IllegalArgumentException}(wrapped
- * in {@link ValidationException}) is thrown if specify {@link ByteSize#charset()} that can not be used or specify
- * {@link ByteSize#min()} or {@link ByteSize#max()} that is negative or specify {@link ByteSize#max()} that lower than
+ * {@code null} elements are considered valid. Determine the byte length By encoding the string in
+ * the specified {@link ByteSize#charset()}. If not specify, encode with charset {@code "UTF-8"}. An
+ * {@link IllegalArgumentException}(wrapped in {@link ValidationException}) is thrown if specify
+ * {@link ByteSize#charset()} that can not be used or specify {@link ByteSize#min()} or
+ * {@link ByteSize#max()} that is negative or specify {@link ByteSize#max()} that lower than
  * {@link ByteSize#min()} value.
  * </p>
  * @since 5.4.2
@@ -61,8 +63,8 @@ import org.terasoluna.gfw.common.validator.constraintvalidators.ByteSizeValidato
  * @see ByteMax
  */
 @Documented
-@Constraint(validatedBy = { ByteSizeValidator.class })
-@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
+@Constraint(validatedBy = {ByteSizeValidator.class})
+@Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
 @Repeatable(List.class)
 public @interface ByteSize {
@@ -106,8 +108,7 @@ public @interface ByteSize {
      * @since 5.4.2
      */
     @Documented
-    @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER,
-            TYPE_USE })
+    @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
     @Retention(RUNTIME)
     @interface List {
         /**

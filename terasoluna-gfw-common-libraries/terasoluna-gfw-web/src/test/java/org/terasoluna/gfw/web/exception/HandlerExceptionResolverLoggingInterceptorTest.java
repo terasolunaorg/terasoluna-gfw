@@ -89,8 +89,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         @SuppressWarnings("unchecked")
         Appender<ILoggingEvent> mockAppender = mock(Appender.class);
         this.mockAppender = mockAppender;
-        this.applicationLogger = (Logger) LoggerFactory.getLogger(
-                HandlerExceptionResolverLoggingInterceptor.class);
+        this.applicationLogger =
+                (Logger) LoggerFactory.getLogger(HandlerExceptionResolverLoggingInterceptor.class);
         applicationLogger.addAppender(mockAppender);
     }
 
@@ -120,8 +120,7 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         // nothing.
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
 
-        when(mockMethodInvocation.getThis()).thenReturn(
-                "none HandlerExceptionResolver.");
+        when(mockMethodInvocation.getThis()).thenReturn("none HandlerExceptionResolver.");
 
         // do test.
         testTarget.invoke(mockMethodInvocation);
@@ -146,8 +145,7 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         applicationLogger.setLevel(Level.ERROR);
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
 
-        when(mockMethodInvocation.getThis()).thenReturn(
-                "none HandlerExceptionResolver.");
+        when(mockMethodInvocation.getThis()).thenReturn("none HandlerExceptionResolver.");
 
         // do test.
         testTarget.invoke(mockMethodInvocation);
@@ -176,8 +174,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
         when(mockMethodInvocation.getThis()).thenReturn(resolver);
         when(mockResponse.getStatus()).thenReturn(100);
-        when(mockMethodInvocation.getArguments()).thenReturn(new Object[] {
-                null, mockResponse, null, occurException });
+        when(mockMethodInvocation.getArguments())
+                .thenReturn(new Object[] {null, mockResponse, null, occurException});
 
         // do test.
         testTarget.invoke(mockMethodInvocation);
@@ -199,8 +197,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
         when(mockMethodInvocation.getThis()).thenReturn(resolver);
         when(mockResponse.getStatus()).thenReturn(200);
-        when(mockMethodInvocation.getArguments()).thenReturn(new Object[] {
-                null, mockResponse, null, occurException });
+        when(mockMethodInvocation.getArguments())
+                .thenReturn(new Object[] {null, mockResponse, null, occurException});
 
         // do test.
         testTarget.invoke(mockMethodInvocation);
@@ -222,8 +220,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
         when(mockMethodInvocation.getThis()).thenReturn(resolver);
         when(mockResponse.getStatus()).thenReturn(300);
-        when(mockMethodInvocation.getArguments()).thenReturn(new Object[] {
-                null, mockResponse, null, occurException });
+        when(mockMethodInvocation.getArguments())
+                .thenReturn(new Object[] {null, mockResponse, null, occurException});
 
         // do test.
         testTarget.invoke(mockMethodInvocation);
@@ -245,8 +243,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
         when(mockMethodInvocation.getThis()).thenReturn(resolver);
         when(mockResponse.getStatus()).thenReturn(400);
-        when(mockMethodInvocation.getArguments()).thenReturn(new Object[] {
-                null, mockResponse, null, occurException });
+        when(mockMethodInvocation.getArguments())
+                .thenReturn(new Object[] {null, mockResponse, null, occurException});
 
         // do test.
         testTarget.invoke(mockMethodInvocation);
@@ -266,8 +264,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
 
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
         when(mockMethodInvocation.getThis()).thenReturn(resolver);
-        when(mockMethodInvocation.getArguments()).thenReturn(new Object[] {
-                null, null, null, occurException });
+        when(mockMethodInvocation.getArguments())
+                .thenReturn(new Object[] {null, null, null, occurException});
 
         // do test.
         testTarget.invoke(mockMethodInvocation);
@@ -290,8 +288,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
 
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
         when(mockMethodInvocation.getThis()).thenReturn(resolver);
-        when(mockMethodInvocation.getArguments()).thenReturn(new Object[] {
-                null, null, null, occurException });
+        when(mockMethodInvocation.getArguments())
+                .thenReturn(new Object[] {null, null, null, occurException});
 
         // do test.
         testTarget.invoke(mockMethodInvocation);
@@ -305,7 +303,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
     }
 
     @Test
-    public void testInvoke_SystemExceptionResolver_ResourceNotFoundException_not_ignore_responseCode_5xx() throws Throwable {
+    public void testInvoke_SystemExceptionResolver_ResourceNotFoundException_not_ignore_responseCode_5xx()
+            throws Throwable {
 
         // do setup for test case.
         ResourceNotFoundException occurException = new ResourceNotFoundException("error.");
@@ -316,8 +315,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
         when(mockMethodInvocation.getThis()).thenReturn(resolver);
         when(mockResponse.getStatus()).thenReturn(500);
-        when(mockMethodInvocation.getArguments()).thenReturn(new Object[] {
-                null, mockResponse, null, occurException });
+        when(mockMethodInvocation.getArguments())
+                .thenReturn(new Object[] {null, mockResponse, null, occurException});
 
         testTarget.setIgnoreExceptions(null);
 
@@ -340,11 +339,12 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
 
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
         when(mockMethodInvocation.getThis()).thenReturn(resolver);
-        when(mockMethodInvocation.getArguments()).thenReturn(new Object[] {
-                null, null, null, occurException1 }, new Object[] { null, null,
-                        null, occurException2 });
+        when(mockMethodInvocation.getArguments()).thenReturn(
+                new Object[] {null, null, null, occurException1},
+                new Object[] {null, null, null, occurException2});
 
-        Set<Class<? extends Exception>> ignoreExceptions = new HashSet<Class<? extends Exception>>();
+        Set<Class<? extends Exception>> ignoreExceptions =
+                new HashSet<Class<? extends Exception>>();
         ignoreExceptions.add(DataAccessException.class);
         ignoreExceptions.add(IOException.class);
         testTarget.setIgnoreExceptions(ignoreExceptions);
@@ -373,8 +373,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
         when(mockMethodInvocation.getThis()).thenReturn(resolver);
         when(mockResponse.getStatus()).thenReturn(199);
-        when(mockMethodInvocation.getArguments()).thenReturn(new Object[] {
-                null, mockResponse, null, occurException });
+        when(mockMethodInvocation.getArguments())
+                .thenReturn(new Object[] {null, mockResponse, null, occurException});
 
         // do test.
         testTarget.invoke(mockMethodInvocation);
@@ -396,8 +396,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
         when(mockMethodInvocation.getThis()).thenReturn(resolver);
         when(mockResponse.getStatus()).thenReturn(299);
-        when(mockMethodInvocation.getArguments()).thenReturn(new Object[] {
-                null, mockResponse, null, occurException });
+        when(mockMethodInvocation.getArguments())
+                .thenReturn(new Object[] {null, mockResponse, null, occurException});
 
         // do test.
         testTarget.invoke(mockMethodInvocation);
@@ -419,8 +419,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
         when(mockMethodInvocation.getThis()).thenReturn(resolver);
         when(mockResponse.getStatus()).thenReturn(399);
-        when(mockMethodInvocation.getArguments()).thenReturn(new Object[] {
-                null, mockResponse, null, occurException });
+        when(mockMethodInvocation.getArguments())
+                .thenReturn(new Object[] {null, mockResponse, null, occurException});
 
         // do test.
         testTarget.invoke(mockMethodInvocation);
@@ -442,8 +442,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
         when(mockMethodInvocation.getThis()).thenReturn(resolver);
         when(mockResponse.getStatus()).thenReturn(499);
-        when(mockMethodInvocation.getArguments()).thenReturn(new Object[] {
-                null, mockResponse, null, occurException });
+        when(mockMethodInvocation.getArguments())
+                .thenReturn(new Object[] {null, mockResponse, null, occurException});
 
         // do test.
         testTarget.invoke(mockMethodInvocation);
@@ -465,8 +465,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
         when(mockMethodInvocation.getThis()).thenReturn(resolver);
         when(mockResponse.getStatus()).thenReturn(599);
-        when(mockMethodInvocation.getArguments()).thenReturn(new Object[] {
-                null, mockResponse, null, occurException });
+        when(mockMethodInvocation.getArguments())
+                .thenReturn(new Object[] {null, mockResponse, null, occurException});
 
         // do test.
         testTarget.invoke(mockMethodInvocation);
@@ -488,8 +488,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
         when(mockMethodInvocation.getThis()).thenReturn(resolver);
         when(mockResponse.getStatus()).thenReturn(99);
-        when(mockMethodInvocation.getArguments()).thenReturn(new Object[] {
-                null, mockResponse, null, occurException });
+        when(mockMethodInvocation.getArguments())
+                .thenReturn(new Object[] {null, mockResponse, null, occurException});
 
         // do test.
         testTarget.invoke(mockMethodInvocation);
@@ -519,8 +519,8 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
         when(mockMethodInvocation.proceed()).thenReturn("viewname");
         when(mockMethodInvocation.getThis()).thenReturn(resolver);
         when(mockResponse.getStatus()).thenReturn(100);
-        when(mockMethodInvocation.getArguments()).thenReturn(new Object[] {
-                null, mockResponse, null, occurException });
+        when(mockMethodInvocation.getArguments())
+                .thenReturn(new Object[] {null, mockResponse, null, occurException});
 
         // do test.
         testTarget.invoke(mockMethodInvocation);
@@ -535,12 +535,11 @@ public class HandlerExceptionResolverLoggingInterceptorTest {
      * @param expectedLogMessage expected log message.
      * @param expectedLogLevel expected log level.
      */
-    private void verifyLogging(final String expectedLogMessage,
-            final Level expectedLogLevel) {
-        verify(mockAppender).doAppend(argThat(argument -> argument
-                .getFormattedMessage().equals(expectedLogMessage)));
-        verify(mockAppender).doAppend(argThat(argument -> expectedLogLevel
-                .equals(argument.getLevel())));
+    private void verifyLogging(final String expectedLogMessage, final Level expectedLogLevel) {
+        verify(mockAppender).doAppend(
+                argThat(argument -> argument.getFormattedMessage().equals(expectedLogMessage)));
+        verify(mockAppender)
+                .doAppend(argThat(argument -> expectedLogLevel.equals(argument.getLevel())));
 
     }
 }

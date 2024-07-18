@@ -21,8 +21,8 @@ package org.terasoluna.gfw.web.token.transaction;
 public interface TransactionTokenStore {
 
     /**
-     * Fetches the token string of the {@link TransactionToken} instance passed as argument, from the token store and clears its
-     * value part from the store
+     * Fetches the token string of the {@link TransactionToken} instance passed as argument, from
+     * the token store and clears its value part from the store
      * @param token {@link TransactionToken} instance (must not be null)
      * @return token string corresponding
      * @throws IllegalArgumentException token is null

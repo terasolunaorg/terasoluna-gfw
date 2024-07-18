@@ -28,19 +28,19 @@ import org.slf4j.LoggerFactory;
 /**
  * Listener for session logging.
  * <p>
- * Listener for logging creation and destruction of session, activation and deactivation, session object bind <br>
+ * Listener for logging creation and destruction of session, activation and deactivation, session
+ * object bind <br>
  * and unbind, session attribute operation.
  * </p>
  */
 public class HttpSessionEventLoggingListener implements HttpSessionListener,
-                                             HttpSessionAttributeListener,
-                                             HttpSessionActivationListener {
+        HttpSessionAttributeListener, HttpSessionActivationListener {
 
     /**
      * logger
      */
-    private static final Logger logger = LoggerFactory.getLogger(
-            HttpSessionEventLoggingListener.class);
+    private static final Logger logger =
+            LoggerFactory.getLogger(HttpSessionEventLoggingListener.class);
 
     /**
      * Logging when object bind to the session is activated.
@@ -53,8 +53,7 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
     public void sessionWillPassivate(HttpSessionEvent se) {
         if (logger.isDebugEnabled()) {
             HttpSession session = se.getSession();
-            logger.debug("SESSIONID#{} sessionWillPassivate : {}", session
-                    .getId(), se.getSource());
+            logger.debug("SESSIONID#{} sessionWillPassivate : {}", session.getId(), se.getSource());
         }
     }
 
@@ -69,15 +68,15 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
     public void sessionDidActivate(HttpSessionEvent se) {
         if (logger.isDebugEnabled()) {
             HttpSession session = se.getSession();
-            logger.debug("SESSIONID#{} sessionDidActivate : {}", session
-                    .getId(), se.getSource());
+            logger.debug("SESSIONID#{} sessionDidActivate : {}", session.getId(), se.getSource());
         }
     }
 
     /**
      * Logging when some attribute gets added to the session.
      * <p>
-     * Session ID, name of the object in which attribute is added and value of the object gets logged.
+     * Session ID, name of the object in which attribute is added and value of the object gets
+     * logged.
      * </p>
      * @see javax.servlet.http.HttpSessionAttributeListener#attributeAdded(javax.servlet.http.HttpSessionBindingEvent)
      */
@@ -85,15 +84,16 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
     public void attributeAdded(HttpSessionBindingEvent se) {
         if (logger.isDebugEnabled()) {
             HttpSession session = se.getSession();
-            logger.debug("SESSIONID#{} attributeAdded : {}={}", session.getId(),
-                    se.getName(), se.getValue());
+            logger.debug("SESSIONID#{} attributeAdded : {}={}", session.getId(), se.getName(),
+                    se.getValue());
         }
     }
 
     /**
      * Logging when some attribute gets deleted from the session.
      * <p>
-     * Session ID, name of the object in which attribute is deleted from and value of the object gets logged.
+     * Session ID, name of the object in which attribute is deleted from and value of the object
+     * gets logged.
      * </p>
      * @see javax.servlet.http.HttpSessionAttributeListener#attributeRemoved(javax.servlet.http.HttpSessionBindingEvent)
      */
@@ -101,15 +101,16 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
     public void attributeRemoved(HttpSessionBindingEvent se) {
         if (logger.isDebugEnabled()) {
             HttpSession session = se.getSession();
-            logger.debug("SESSIONID#{} attributeRemoved : {}={}", session
-                    .getId(), se.getName(), se.getValue());
+            logger.debug("SESSIONID#{} attributeRemoved : {}={}", session.getId(), se.getName(),
+                    se.getValue());
         }
     }
 
     /**
      * Logging when some attribute added to session gets changed.
      * <p>
-     * Session ID, name of the object in which attribute is replaced and value of the object gets logged.
+     * Session ID, name of the object in which attribute is replaced and value of the object gets
+     * logged.
      * </p>
      * @see javax.servlet.http.HttpSessionAttributeListener#attributeReplaced(javax.servlet.http.HttpSessionBindingEvent)
      */
@@ -117,8 +118,8 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
     public void attributeReplaced(HttpSessionBindingEvent se) {
         if (logger.isTraceEnabled()) {
             HttpSession session = se.getSession();
-            logger.trace("SESSIONID#{} attributeReplaced : {}={}", session
-                    .getId(), se.getName(), se.getValue());
+            logger.trace("SESSIONID#{} attributeReplaced : {}={}", session.getId(), se.getName(),
+                    se.getValue());
         }
     }
 
@@ -133,8 +134,7 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
     public void sessionCreated(HttpSessionEvent se) {
         if (logger.isDebugEnabled()) {
             HttpSession session = se.getSession();
-            logger.debug("SESSIONID#{} sessionCreated : {}", session.getId(), se
-                    .getSource());
+            logger.debug("SESSIONID#{} sessionCreated : {}", session.getId(), se.getSource());
         }
     }
 
@@ -149,8 +149,7 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
     public void sessionDestroyed(HttpSessionEvent se) {
         if (logger.isDebugEnabled()) {
             HttpSession session = se.getSession();
-            logger.debug("SESSIONID#{} sessionDestroyed : {}", session.getId(),
-                    se.getSource());
+            logger.debug("SESSIONID#{} sessionDestroyed : {}", session.getId(), se.getSource());
         }
     }
 

@@ -29,8 +29,7 @@ public class Name_Composite {
         this.lastName = lastName;
     }
 
-    public Name_Composite() {
-    }
+    public Name_Composite() {}
 
     public String getFirstName() {
         return firstName;

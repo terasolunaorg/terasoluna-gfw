@@ -35,7 +35,8 @@ import com.google.common.collect.Tables;
  * Simple implementation of {@link I18nCodeList}<br>
  * <p>
  * {@link I18nCodeList} has a table of codelist.<br>
- * Each row is a codelist for each language and represented as <strong>unmodifiable linked hash maps</strong>.<br>
+ * Each row is a codelist for each language and represented as <strong>unmodifiable linked hash
+ * maps</strong>.<br>
  * The key of rows is {@link Locale}.The key of columns is {@link String}(code). <br>
  * There are 3 ways to express the following table.
  * </p>
@@ -209,18 +210,16 @@ import com.google.common.collect.Tables;
  * <ol>
  * <li>Returns the specified locale if defined corresponding codelist.</li>
  * <li>Returns the language part of the specified locale if defined corresponding codelist.</li>
- * <li>Returns the {@code fallbackTo} locale. fallbackTo locale is provided by {@link #fallbackTo fallbackTo}, default locale
- * {@link Locale#getDefault Locale#getDefault}, or {@link Locale#getDefault Locale#getDefault} fallback to the language
- * locale.</li>
+ * <li>Returns the {@code fallbackTo} locale. fallbackTo locale is provided by {@link #fallbackTo
+ * fallbackTo}, default locale {@link Locale#getDefault Locale#getDefault}, or
+ * {@link Locale#getDefault Locale#getDefault} fallback to the language locale.</li>
  * </ol>
  */
-public class SimpleI18nCodeList extends AbstractI18nCodeList implements
-                                InitializingBean {
+public class SimpleI18nCodeList extends AbstractI18nCodeList implements InitializingBean {
     /**
      * Logger.
      */
-    private static final Logger logger = LoggerFactory.getLogger(
-            SimpleI18nCodeList.class);
+    private static final Logger logger = LoggerFactory.getLogger(SimpleI18nCodeList.class);
 
     /**
      * codelist table.
@@ -230,12 +229,13 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
     /**
      * supplier to return a {@link LinkedHashMap} object.
      */
-    private static final Supplier<LinkedHashMap<String, String>> LINKED_HASH_MAP_SUPPLIER = new Supplier<LinkedHashMap<String, String>>() {
-        @Override
-        public LinkedHashMap<String, String> get() {
-            return Maps.newLinkedHashMap();
-        }
-    };
+    private static final Supplier<LinkedHashMap<String, String>> LINKED_HASH_MAP_SUPPLIER =
+            new Supplier<LinkedHashMap<String, String>>() {
+                @Override
+                public LinkedHashMap<String, String> get() {
+                    return Maps.newLinkedHashMap();
+                }
+            };
 
     /**
      * set table by rows ({@link Map}).<br>
@@ -352,8 +352,8 @@ public class SimpleI18nCodeList extends AbstractI18nCodeList implements
      */
     private Table<Locale, String, String> createTable() {
         Map<Locale, Map<String, String>> backingMap = Maps.newLinkedHashMap();
-        Table<Locale, String, String> table = Tables.newCustomTable(backingMap,
-                LINKED_HASH_MAP_SUPPLIER);
+        Table<Locale, String, String> table =
+                Tables.newCustomTable(backingMap, LINKED_HASH_MAP_SUPPLIER);
         return table;
     }
 }

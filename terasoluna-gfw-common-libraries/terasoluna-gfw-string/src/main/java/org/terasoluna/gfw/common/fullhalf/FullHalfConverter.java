@@ -23,8 +23,9 @@ import java.util.Queue;
 import java.util.Set;
 
 /**
- * Convert which converts from fullwidth to halfwidth and from halfwidth to fullwidth. This implementation does not have the
- * mapping table and intended to be given by the constructor like following:
+ * Convert which converts from fullwidth to halfwidth and from halfwidth to fullwidth. This
+ * implementation does not have the mapping table and intended to be given by the constructor like
+ * following:
  *
  * <pre>
  * <code>FullHalfConverter converter = new FullHalfConverter(new FullHalfPairsBuilder()
@@ -33,8 +34,8 @@ import java.util.Set;
  *   .build());</code>
  * </pre>
  * <p>
- * If the halfwidth or fullwidth in the given pair is already registered, the former is preferred. Note that it cannot be
- * overridden.
+ * If the halfwidth or fullwidth in the given pair is already registered, the former is preferred.
+ * Note that it cannot be overridden.
  * </p>
  * @since 5.1.0
  */
@@ -56,8 +57,8 @@ public final class FullHalfConverter {
 
     /**
      * Constructor.
-     * @param pairs pair of fullwidth-halfwidth. must not be null. If the halfwidth or fullwidth in the given pair is already
-     *            registered, the former is preferred.
+     * @param pairs pair of fullwidth-halfwidth. must not be null. If the halfwidth or fullwidth in
+     *        the given pair is already registered, the former is preferred.
      * @see FullHalfConverter
      * @throws IllegalArgumentException if the given pairs is null
      */

@@ -52,9 +52,9 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
     private Operator operator;
 
     /**
-     * Configure how to treat {@code null} value in given parameters. If true, it is regarded as valid only when both left and
-     * right are {@code null}. It is regarded as invalid when either is {@code null}. If false, both cases are regarded as
-     * valid.
+     * Configure how to treat {@code null} value in given parameters. If true, it is regarded as
+     * valid only when both left and right are {@code null}. It is regarded as invalid when either
+     * is {@code null}. If false, both cases are regarded as valid.
      */
     private boolean requireBoth;
 
@@ -87,9 +87,11 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
      * Validate execute.
      * @param bean bean to validate
      * @param context context in which the constraint is evaluated
-     * @return {@code true} if result to comparing {@code left} and {@code right} is expected {@code operator}, or is match
-     *         conditions that are described in the {@link CompareValidator#requireBoth} . otherwise {@code false}.
-     * @see javax.validation.ConstraintValidator#isValid(java.lang.Object, javax.validation.ConstraintValidatorContext)
+     * @return {@code true} if result to comparing {@code left} and {@code right} is expected
+     *         {@code operator}, or is match conditions that are described in the
+     *         {@link CompareValidator#requireBoth} . otherwise {@code false}.
+     * @see javax.validation.ConstraintValidator#isValid(java.lang.Object,
+     *      javax.validation.ConstraintValidatorContext)
      */
     @Override
     public boolean isValid(Object bean, ConstraintValidatorContext context) {
@@ -121,8 +123,8 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
      * Assert left value and right value are able to {@code Comparable#compareTo()}.
      * @param leftValue value to become left side of comparison
      * @param rightValue value to become right side of comparison
-     * @return {@code true} if left value is {@code Comparable}, and right value is able to cast to left value. otherwise
-     *         {@code false}.
+     * @return {@code true} if left value is {@code Comparable}, and right value is able to cast to
+     *         left value. otherwise {@code false}.
      * @throws IllegalArgumentException type of {@code leftValue} is not {@code Comparable}.
      */
     private boolean assertComparable(Object leftValue, Object rightValue) {
@@ -137,10 +139,11 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
      * Compare objects by {@code Comparable#compareTo()}.
      * @param leftValue value to become left side of comparison
      * @param rightValue value to become right side of comparison
-     * @return {@code true} if comparison result as the expected to specified {@code operator}, otherwise {@code false}.
+     * @return {@code true} if comparison result as the expected to specified {@code operator},
+     *         otherwise {@code false}.
      */
     private boolean isCompareValid(Object leftValue, Object rightValue) {
-        @SuppressWarnings({ "rawtypes", "unchecked" })
+        @SuppressWarnings({"rawtypes", "unchecked"})
         int result = ((Comparable) leftValue).compareTo(rightValue);
         return operator.isExpected(result);
     }
@@ -149,14 +152,12 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
      * Construct validation message when selected {@link Node#PROPERTY}.
      * @param context constraint validation context
      */
-    private void constructValidationMessage(
-            ConstraintValidatorContext context) {
+    private void constructValidationMessage(ConstraintValidatorContext context) {
         if (node == Node.ROOT_BEAN) {
             return;
         }
 
-        context.buildConstraintViolationWithTemplate(message).addPropertyNode(
-                left).addConstraintViolation()
-                .disableDefaultConstraintViolation();
+        context.buildConstraintViolationWithTemplate(message).addPropertyNode(left)
+                .addConstraintViolation().disableDefaultConstraintViolation();
     }
 }

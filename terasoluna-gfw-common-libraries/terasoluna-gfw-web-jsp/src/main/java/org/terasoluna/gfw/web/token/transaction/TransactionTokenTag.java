@@ -22,32 +22,31 @@ import org.springframework.web.servlet.tags.form.AbstractHtmlElementTag;
 import org.springframework.web.servlet.tags.form.TagWriter;
 
 /**
- * An {@link javax.servlet.jsp.tagext.Tag} implementation that renders transaction token in a hidden tag
+ * An {@link javax.servlet.jsp.tagext.Tag} implementation that renders transaction token in a hidden
+ * tag
  */
 public class TransactionTokenTag extends AbstractHtmlElementTag {
 
     private static final long serialVersionUID = 1L;
 
     /**
-     * Renders the transaction token string in a hidden tag with {@code name} and {@code value} attributes <br>
-     * The value of {@code name} attribute is {@code _TRANSACTION_TOKEN}. {@code value} attribute is the transaction token
-     * string <br>
+     * Renders the transaction token string in a hidden tag with {@code name} and {@code value}
+     * attributes <br>
+     * The value of {@code name} attribute is {@code _TRANSACTION_TOKEN}. {@code value} attribute is
+     * the transaction token string <br>
      * @see org.springframework.web.servlet.tags.form.AbstractFormTag#writeTagContent(org.springframework.web.servlet.tags.form.TagWriter)
      */
     @Override
-    protected int writeTagContent(
-            final TagWriter tagWriter) throws JspException {
-        HttpServletRequest request = (HttpServletRequest) pageContext
-                .getRequest();
+    protected int writeTagContent(final TagWriter tagWriter) throws JspException {
+        HttpServletRequest request = (HttpServletRequest) pageContext.getRequest();
 
-        TransactionToken nextToken = (TransactionToken) request.getAttribute(
-                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
+        TransactionToken nextToken = (TransactionToken) request
+                .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
 
         if (nextToken != null) {
             tagWriter.startTag("input");
             tagWriter.writeAttribute("type", "hidden");
-            tagWriter.writeAttribute("name",
-                    TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER);
+            tagWriter.writeAttribute("name", TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER);
             tagWriter.writeAttribute("value", nextToken.getTokenString());
             tagWriter.endTag();
         }

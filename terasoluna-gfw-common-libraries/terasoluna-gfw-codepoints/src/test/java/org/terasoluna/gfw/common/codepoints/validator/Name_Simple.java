@@ -29,8 +29,7 @@ public class Name_Simple {
         this.lastName = lastName;
     }
 
-    public Name_Simple() {
-    }
+    public Name_Simple() {}
 
     public String getFirstName() {
         return firstName;

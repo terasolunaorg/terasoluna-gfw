@@ -31,22 +31,19 @@ public class TokenStringGeneratorTest {
 
     @Test
     public void testInvalidTokenGeneratorAlgorithm() {
-        IllegalArgumentException e = assertThrows(
-                IllegalArgumentException.class, () -> {
-                    new TokenStringGenerator("InvalidAlgorithm");
-                });
-        assertThat(e.getCause(), is(instanceOf(
-                NoSuchAlgorithmException.class)));
-        assertThat(e.getMessage(), is(
-                "The given algorithm is invalid. algorithm=InvalidAlgorithm"));
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+            new TokenStringGenerator("InvalidAlgorithm");
+        });
+        assertThat(e.getCause(), is(instanceOf(NoSuchAlgorithmException.class)));
+        assertThat(e.getMessage(),
+                is("The given algorithm is invalid. algorithm=InvalidAlgorithm"));
     }
 
     @Test
     public void testNullTokenGeneratorAlgorithm() {
-        IllegalArgumentException e = assertThrows(
-                IllegalArgumentException.class, () -> {
-                    new TokenStringGenerator(null);
-                });
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+            new TokenStringGenerator(null);
+        });
         assertThat(e.getMessage(), is("algorithm must not be null"));
     }
 
@@ -78,10 +75,9 @@ public class TokenStringGeneratorTest {
     public void testGenerate_nullValue() throws Exception {
         TokenStringGenerator generator = new TokenStringGenerator();
 
-        IllegalArgumentException e = assertThrows(
-                IllegalArgumentException.class, () -> {
-                    generator.generate(null);
-                });
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+            generator.generate(null);
+        });
         assertThat(e.getMessage(), is("seed must not be null"));
     }
 
@@ -90,8 +86,7 @@ public class TokenStringGeneratorTest {
         TokenStringGenerator generator = new TokenStringGenerator();
         ReflectionTestUtils.setField(generator, "algorithm", "");
 
-        assertThrows(IllegalStateException.class, () -> generator.generate(
-                "hoge"));
+        assertThrows(IllegalStateException.class, () -> generator.generate("hoge"));
     }
 
 }

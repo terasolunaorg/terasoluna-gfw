@@ -92,8 +92,7 @@ public class UserIdMDCPutFilterTest {
         // SecurityContextHolder setting start
         securityContext = mock(SecurityContext.class);
         authentication = mock(Authentication.class);
-        user = new User(userName, "yyyy", Arrays.asList(
-                new SimpleGrantedAuthority("user")));
+        user = new User(userName, "yyyy", Arrays.asList(new SimpleGrantedAuthority("user")));
         when(authentication.getPrincipal()).thenReturn(user);
         when(securityContext.getAuthentication()).thenReturn(authentication);
         SecurityContextHolder.setContext(securityContext);

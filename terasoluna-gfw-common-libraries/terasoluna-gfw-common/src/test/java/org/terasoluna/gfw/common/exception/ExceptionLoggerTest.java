@@ -54,8 +54,7 @@ public class ExceptionLoggerTest {
         testTarget.afterPropertiesSet();
 
         @SuppressWarnings("unchecked")
-        Appender<ILoggingEvent> mockApplicationLoggerAppender = mock(
-                Appender.class);
+        Appender<ILoggingEvent> mockApplicationLoggerAppender = mock(Appender.class);
         this.mockApplicationLoggerAppender = mockApplicationLoggerAppender;
         this.applicationLogger = (Logger) testTarget.getApplicationLogger();
         applicationLogger.addAppender(mockApplicationLoggerAppender);
@@ -230,10 +229,8 @@ public class ExceptionLoggerTest {
 
         // do setup.
         Exception ex = new FileNotFoundException("occur file not found exception.");
-        ExceptionCodeResolver mockExceptionCodeResolver = mock(
-                ExceptionCodeResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn(
-                "code2");
+        ExceptionCodeResolver mockExceptionCodeResolver = mock(ExceptionCodeResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn("code2");
         testTarget.setExceptionCodeResolver(mockExceptionCodeResolver);
 
         // do test.
@@ -268,10 +265,8 @@ public class ExceptionLoggerTest {
 
         Exception ex = new SystemException("code01", "system error.");
 
-        ExceptionCodeResolver mockExceptionCodeResolver = mock(
-                ExceptionCodeResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn(
-                "code01");
+        ExceptionCodeResolver mockExceptionCodeResolver = mock(ExceptionCodeResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn("code01");
         testTarget.setExceptionCodeResolver(mockExceptionCodeResolver);
 
         // do test.
@@ -279,10 +274,8 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[code01] system error.";
-        verifyLogging(expectedLogMessage, Level.WARN, ex,
-                mockApplicationLoggerAppender);
-        verifyLogging(expectedLogMessage, Level.WARN,
-                mockMonitoringLoggerAppender);
+        verifyLogging(expectedLogMessage, Level.WARN, ex, mockApplicationLoggerAppender);
+        verifyLogging(expectedLogMessage, Level.WARN, mockMonitoringLoggerAppender);
 
     }
 
@@ -294,10 +287,8 @@ public class ExceptionLoggerTest {
 
         Exception ex = new SystemException("code01", "system error.");
 
-        ExceptionCodeResolver mockExceptionCodeResolver = mock(
-                ExceptionCodeResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn(
-                "code01");
+        ExceptionCodeResolver mockExceptionCodeResolver = mock(ExceptionCodeResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn("code01");
         testTarget.setExceptionCodeResolver(mockExceptionCodeResolver);
 
         // do test.
@@ -305,10 +296,8 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[code01] system error.";
-        verifyLogging(expectedLogMessage, Level.WARN, ex,
-                mockApplicationLoggerAppender);
-        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(
-                ILoggingEvent.class));
+        verifyLogging(expectedLogMessage, Level.WARN, ex, mockApplicationLoggerAppender);
+        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(ILoggingEvent.class));
     }
 
     @Test
@@ -319,10 +308,8 @@ public class ExceptionLoggerTest {
 
         Exception ex = new SystemException("code01", "system error.");
 
-        ExceptionCodeResolver mockExceptionCodeResolver = mock(
-                ExceptionCodeResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn(
-                "code01");
+        ExceptionCodeResolver mockExceptionCodeResolver = mock(ExceptionCodeResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn("code01");
         testTarget.setExceptionCodeResolver(mockExceptionCodeResolver);
 
         // do test.
@@ -330,10 +317,8 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[code01] system error.";
-        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(
-                ILoggingEvent.class));
-        verifyLogging(expectedLogMessage, Level.WARN,
-                mockMonitoringLoggerAppender);
+        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(ILoggingEvent.class));
+        verifyLogging(expectedLogMessage, Level.WARN, mockMonitoringLoggerAppender);
 
     }
 
@@ -345,20 +330,16 @@ public class ExceptionLoggerTest {
 
         Exception ex = new SystemException("code01", "system error.");
 
-        ExceptionCodeResolver mockExceptionCodeResolver = mock(
-                ExceptionCodeResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn(
-                "code01");
+        ExceptionCodeResolver mockExceptionCodeResolver = mock(ExceptionCodeResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn("code01");
         testTarget.setExceptionCodeResolver(mockExceptionCodeResolver);
 
         // do test.
         testTarget.warn(ex);
 
         // do assert.
-        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(
-                ILoggingEvent.class));
-        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(
-                ILoggingEvent.class));
+        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(ILoggingEvent.class));
+        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(ILoggingEvent.class));
 
     }
 
@@ -370,10 +351,8 @@ public class ExceptionLoggerTest {
 
         Exception ex = new SystemException("code01", "system error.");
 
-        ExceptionCodeResolver mockExceptionCodeResolver = mock(
-                ExceptionCodeResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn(
-                "code01");
+        ExceptionCodeResolver mockExceptionCodeResolver = mock(ExceptionCodeResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn("code01");
         testTarget.setExceptionCodeResolver(mockExceptionCodeResolver);
 
         // do test.
@@ -381,10 +360,8 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[code01] system error.";
-        verifyLogging(expectedLogMessage, Level.ERROR, ex,
-                mockApplicationLoggerAppender);
-        verifyLogging(expectedLogMessage, Level.ERROR,
-                mockMonitoringLoggerAppender);
+        verifyLogging(expectedLogMessage, Level.ERROR, ex, mockApplicationLoggerAppender);
+        verifyLogging(expectedLogMessage, Level.ERROR, mockMonitoringLoggerAppender);
 
     }
 
@@ -396,10 +373,8 @@ public class ExceptionLoggerTest {
 
         Exception ex = new SystemException("code01", "system error.");
 
-        ExceptionCodeResolver mockExceptionCodeResolver = mock(
-                ExceptionCodeResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn(
-                "code01");
+        ExceptionCodeResolver mockExceptionCodeResolver = mock(ExceptionCodeResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn("code01");
         testTarget.setExceptionCodeResolver(mockExceptionCodeResolver);
 
         // do test.
@@ -407,10 +382,8 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[code01] system error.";
-        verifyLogging(expectedLogMessage, Level.ERROR, ex,
-                mockApplicationLoggerAppender);
-        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(
-                ILoggingEvent.class));
+        verifyLogging(expectedLogMessage, Level.ERROR, ex, mockApplicationLoggerAppender);
+        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(ILoggingEvent.class));
     }
 
     @Test
@@ -421,10 +394,8 @@ public class ExceptionLoggerTest {
 
         Exception ex = new SystemException("code01", "system error.");
 
-        ExceptionCodeResolver mockExceptionCodeResolver = mock(
-                ExceptionCodeResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn(
-                "code01");
+        ExceptionCodeResolver mockExceptionCodeResolver = mock(ExceptionCodeResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn("code01");
         testTarget.setExceptionCodeResolver(mockExceptionCodeResolver);
 
         // do test.
@@ -432,10 +403,8 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[code01] system error.";
-        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(
-                ILoggingEvent.class));
-        verifyLogging(expectedLogMessage, Level.ERROR,
-                mockMonitoringLoggerAppender);
+        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(ILoggingEvent.class));
+        verifyLogging(expectedLogMessage, Level.ERROR, mockMonitoringLoggerAppender);
 
     }
 
@@ -447,20 +416,16 @@ public class ExceptionLoggerTest {
 
         Exception ex = new SystemException("code01", "system error.");
 
-        ExceptionCodeResolver mockExceptionCodeResolver = mock(
-                ExceptionCodeResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn(
-                "code01");
+        ExceptionCodeResolver mockExceptionCodeResolver = mock(ExceptionCodeResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn("code01");
         testTarget.setExceptionCodeResolver(mockExceptionCodeResolver);
 
         // do test.
         testTarget.error(ex);
 
         // do assert.
-        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(
-                ILoggingEvent.class));
-        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(
-                ILoggingEvent.class));
+        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(ILoggingEvent.class));
+        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(ILoggingEvent.class));
 
     }
 
@@ -472,10 +437,8 @@ public class ExceptionLoggerTest {
 
         Exception ex = new SystemException("i.xx", "system error.");
 
-        ExceptionLevelResolver mockExceptionCodeResolver = mock(
-                ExceptionLevelResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionLevel(ex)).thenReturn(
-                ExceptionLevel.INFO);
+        ExceptionLevelResolver mockExceptionCodeResolver = mock(ExceptionLevelResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionLevel(ex)).thenReturn(ExceptionLevel.INFO);
         testTarget.setExceptionLevelResolver(mockExceptionCodeResolver);
 
         // do test.
@@ -483,10 +446,8 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[i.xx] system error.";
-        verifyLogging(expectedLogMessage, Level.INFO, ex,
-                mockApplicationLoggerAppender);
-        verifyLogging(expectedLogMessage, Level.INFO,
-                mockMonitoringLoggerAppender);
+        verifyLogging(expectedLogMessage, Level.INFO, ex, mockApplicationLoggerAppender);
+        verifyLogging(expectedLogMessage, Level.INFO, mockMonitoringLoggerAppender);
 
     }
 
@@ -498,10 +459,8 @@ public class ExceptionLoggerTest {
 
         Exception ex = new SystemException("code01", "system error.");
 
-        ExceptionLevelResolver mockExceptionCodeResolver = mock(
-                ExceptionLevelResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionLevel(ex)).thenReturn(
-                null);
+        ExceptionLevelResolver mockExceptionCodeResolver = mock(ExceptionLevelResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionLevel(ex)).thenReturn(null);
         testTarget.setExceptionLevelResolver(mockExceptionCodeResolver);
         testTarget.afterPropertiesSet();
 
@@ -510,10 +469,8 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[code01] system error.";
-        verifyLogging(expectedLogMessage, Level.ERROR, ex,
-                mockApplicationLoggerAppender);
-        verifyLogging(expectedLogMessage, Level.ERROR,
-                mockMonitoringLoggerAppender);
+        verifyLogging(expectedLogMessage, Level.ERROR, ex, mockApplicationLoggerAppender);
+        verifyLogging(expectedLogMessage, Level.ERROR, mockMonitoringLoggerAppender);
 
     }
 
@@ -525,10 +482,8 @@ public class ExceptionLoggerTest {
 
         Exception ex = new SystemException("code01", "system error.");
 
-        ExceptionCodeResolver mockExceptionCodeResolver = mock(
-                ExceptionCodeResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn(
-                "code01");
+        ExceptionCodeResolver mockExceptionCodeResolver = mock(ExceptionCodeResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn("code01");
         testTarget.setExceptionCodeResolver(mockExceptionCodeResolver);
 
         // do test.
@@ -536,10 +491,8 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[code01] system error.";
-        verifyLogging(expectedLogMessage, Level.INFO, ex,
-                mockApplicationLoggerAppender);
-        verifyLogging(expectedLogMessage, Level.INFO,
-                mockMonitoringLoggerAppender);
+        verifyLogging(expectedLogMessage, Level.INFO, ex, mockApplicationLoggerAppender);
+        verifyLogging(expectedLogMessage, Level.INFO, mockMonitoringLoggerAppender);
 
     }
 
@@ -551,10 +504,8 @@ public class ExceptionLoggerTest {
 
         Exception ex = new SystemException("code01", "system error.");
 
-        ExceptionCodeResolver mockExceptionCodeResolver = mock(
-                ExceptionCodeResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn(
-                "code01");
+        ExceptionCodeResolver mockExceptionCodeResolver = mock(ExceptionCodeResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn("code01");
         testTarget.setExceptionCodeResolver(mockExceptionCodeResolver);
 
         // do test.
@@ -562,10 +513,8 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[code01] system error.";
-        verifyLogging(expectedLogMessage, Level.INFO, ex,
-                mockApplicationLoggerAppender);
-        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(
-                ILoggingEvent.class));
+        verifyLogging(expectedLogMessage, Level.INFO, ex, mockApplicationLoggerAppender);
+        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(ILoggingEvent.class));
     }
 
     @Test
@@ -576,10 +525,8 @@ public class ExceptionLoggerTest {
 
         Exception ex = new SystemException("code01", "system error.");
 
-        ExceptionCodeResolver mockExceptionCodeResolver = mock(
-                ExceptionCodeResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn(
-                "code01");
+        ExceptionCodeResolver mockExceptionCodeResolver = mock(ExceptionCodeResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn("code01");
         testTarget.setExceptionCodeResolver(mockExceptionCodeResolver);
 
         // do test.
@@ -587,10 +534,8 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[code01] system error.";
-        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(
-                ILoggingEvent.class));
-        verifyLogging(expectedLogMessage, Level.INFO,
-                mockMonitoringLoggerAppender);
+        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(ILoggingEvent.class));
+        verifyLogging(expectedLogMessage, Level.INFO, mockMonitoringLoggerAppender);
 
     }
 
@@ -602,20 +547,16 @@ public class ExceptionLoggerTest {
 
         Exception ex = new SystemException("code01", "system error.");
 
-        ExceptionCodeResolver mockExceptionCodeResolver = mock(
-                ExceptionCodeResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn(
-                "code01");
+        ExceptionCodeResolver mockExceptionCodeResolver = mock(ExceptionCodeResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn("code01");
         testTarget.setExceptionCodeResolver(mockExceptionCodeResolver);
 
         // do test.
         testTarget.info(ex);
 
         // do assert.
-        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(
-                ILoggingEvent.class));
-        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(
-                ILoggingEvent.class));
+        verify(mockApplicationLoggerAppender, times(0)).doAppend(any(ILoggingEvent.class));
+        verify(mockMonitoringLoggerAppender, times(0)).doAppend(any(ILoggingEvent.class));
 
     }
 
@@ -628,10 +569,8 @@ public class ExceptionLoggerTest {
 
         Exception ex = new SystemException("i.code01", "system error.");
 
-        ExceptionCodeResolver mockExceptionCodeResolver = mock(
-                ExceptionCodeResolver.class);
-        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn(
-                "i.code01");
+        ExceptionCodeResolver mockExceptionCodeResolver = mock(ExceptionCodeResolver.class);
+        when(mockExceptionCodeResolver.resolveExceptionCode(ex)).thenReturn("i.code01");
         testTarget.setExceptionCodeResolver(mockExceptionCodeResolver);
         testTarget.setExceptionLevelResolver(null);
         testTarget.afterPropertiesSet();
@@ -641,20 +580,16 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[i.code01] system error.";
-        verifyLogging(expectedLogMessage, Level.INFO, ex,
-                mockApplicationLoggerAppender);
-        verifyLogging(expectedLogMessage, Level.INFO,
-                mockMonitoringLoggerAppender);
+        verifyLogging(expectedLogMessage, Level.INFO, ex, mockApplicationLoggerAppender);
+        verifyLogging(expectedLogMessage, Level.INFO, mockMonitoringLoggerAppender);
 
     }
 
     @Test
     public void testExceptionLogger_default() {
         // do assert.
-        assertThat(applicationLogger.getName(), is(testTarget.getClass()
-                .getName()));
-        assertThat(monitoringLogger.getName(), is(testTarget.getClass()
-                .getName() + ".Monitoring"));
+        assertThat(applicationLogger.getName(), is(testTarget.getClass().getName()));
+        assertThat(monitoringLogger.getName(), is(testTarget.getClass().getName() + ".Monitoring"));
     }
 
     @Test
@@ -673,10 +608,8 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[UNDEFINED-CODE] system error.";
-        verifyLogging(expectedLogMessage, Level.INFO, ex,
-                mockApplicationLoggerAppender);
-        verifyLogging(expectedLogMessage, Level.INFO,
-                mockMonitoringLoggerAppender);
+        verifyLogging(expectedLogMessage, Level.INFO, ex, mockApplicationLoggerAppender);
+        verifyLogging(expectedLogMessage, Level.INFO, mockMonitoringLoggerAppender);
     }
 
     @Test
@@ -684,10 +617,9 @@ public class ExceptionLoggerTest {
 
         testTarget.setLogMessageFormat(null);
 
-        IllegalArgumentException e = assertThrows(
-                IllegalArgumentException.class, () -> {
-                    testTarget.afterPropertiesSet();
-                });
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+            testTarget.afterPropertiesSet();
+        });
         assertThat(e.getMessage(), is(
                 "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"null\"."));
 
@@ -698,10 +630,9 @@ public class ExceptionLoggerTest {
 
         testTarget.setLogMessageFormat("");
 
-        IllegalArgumentException e = assertThrows(
-                IllegalArgumentException.class, () -> {
-                    testTarget.afterPropertiesSet();
-                });
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+            testTarget.afterPropertiesSet();
+        });
         assertThat(e.getMessage(), is(
                 "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"\"."));
 
@@ -712,10 +643,9 @@ public class ExceptionLoggerTest {
 
         testTarget.setLogMessageFormat("{1}");
 
-        IllegalArgumentException e = assertThrows(
-                IllegalArgumentException.class, () -> {
-                    testTarget.afterPropertiesSet();
-                });
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+            testTarget.afterPropertiesSet();
+        });
         assertThat(e.getMessage(), is(
                 "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"{1}\"."));
 
@@ -726,10 +656,9 @@ public class ExceptionLoggerTest {
 
         testTarget.setLogMessageFormat("{0}");
 
-        IllegalArgumentException e = assertThrows(
-                IllegalArgumentException.class, () -> {
-                    testTarget.afterPropertiesSet();
-                });
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+            testTarget.afterPropertiesSet();
+        });
         assertThat(e.getMessage(), is(
                 "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"{0}\"."));
 
@@ -742,8 +671,7 @@ public class ExceptionLoggerTest {
         testTarget = new ExceptionLogger("test");
         // do assert.
         assertThat(testTarget.getApplicationLogger().getName(), is("test"));
-        assertThat(testTarget.getMonitoringLogger().getName(), is(
-                "test.Monitoring"));
+        assertThat(testTarget.getMonitoringLogger().getName(), is("test.Monitoring"));
     }
 
     /**
@@ -752,8 +680,7 @@ public class ExceptionLoggerTest {
      * @param expectedLogLevel expected log level.
      * @param mockAppender mock appender.
      */
-    private void verifyLogging(final String expectedLogMessage,
-            final Level expectedLogLevel,
+    private void verifyLogging(final String expectedLogMessage, final Level expectedLogLevel,
             final Appender<ILoggingEvent> mockAppender) {
         verifyLogging(expectedLogMessage, expectedLogLevel, null, mockAppender);
     }
@@ -764,20 +691,18 @@ public class ExceptionLoggerTest {
      * @param expectedLogLevel expected log level.
      * @param mockAppender mock appender.
      */
-    private void verifyLogging(final String expectedLogMessage,
-            final Level expectedLogLevel, final Exception expectedException,
-            final Appender<ILoggingEvent> mockAppender) {
-        verify(mockAppender).doAppend(argThat(argument -> argument
-                .getFormattedMessage().equals(expectedLogMessage)));
-        verify(mockAppender).doAppend(argThat(argument -> expectedLogLevel
-                .equals(argument.getLevel())));
+    private void verifyLogging(final String expectedLogMessage, final Level expectedLogLevel,
+            final Exception expectedException, final Appender<ILoggingEvent> mockAppender) {
+        verify(mockAppender).doAppend(
+                argThat(argument -> argument.getFormattedMessage().equals(expectedLogMessage)));
+        verify(mockAppender)
+                .doAppend(argThat(argument -> expectedLogLevel.equals(argument.getLevel())));
         verify(mockAppender).doAppend(argThat(argument -> {
             IThrowableProxy proxy = argument.getThrowableProxy();
             if (expectedException == null) {
                 return proxy == null;
             }
-            if (!expectedException.getClass().getName().equals(proxy
-                    .getClassName())) {
+            if (!expectedException.getClass().getName().equals(proxy.getClassName())) {
                 return false;
             }
             if (!expectedException.getMessage().equals(proxy.getMessage())) {

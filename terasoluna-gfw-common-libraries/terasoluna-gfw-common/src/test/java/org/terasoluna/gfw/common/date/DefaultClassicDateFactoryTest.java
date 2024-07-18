@@ -58,10 +58,9 @@ public class DefaultClassicDateFactoryTest {
         // use actual #newDate().
         DefaultClassicDateFactory actualFactory = new DefaultClassicDateFactory();
         Date actualNow = actualFactory.newDate();
-        LocalDateTime actualResult = actualNow.toInstant().atZone(ZoneId
-                .systemDefault()).toLocalDateTime();
-        assertThat(actualResult.isAfter(LocalDateTime.now().minusDays(1)), is(
-                true));
+        LocalDateTime actualResult =
+                actualNow.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+        assertThat(actualResult.isAfter(LocalDateTime.now().minusDays(1)), is(true));
     }
 
     @Test

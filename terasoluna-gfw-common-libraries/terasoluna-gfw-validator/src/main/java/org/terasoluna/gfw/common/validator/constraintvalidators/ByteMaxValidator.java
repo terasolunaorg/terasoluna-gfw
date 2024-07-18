@@ -27,15 +27,15 @@ import org.terasoluna.gfw.common.validator.constraints.ByteMax;
 /**
  * Constraint validator class of {@link ByteMax} annotation.
  * <p>
- * Validate the {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte length must be lower or equal to
- * the specified maximum. Determine the byte length By encoding the string in the specified charset.
+ * Validate the {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte
+ * length must be lower or equal to the specified maximum. Determine the byte length By encoding the
+ * string in the specified charset.
  * </p>
  * @since 5.1.0
  * @see ConstraintValidator
  * @see ByteMax
  */
-public class ByteMaxValidator implements
-                              ConstraintValidator<ByteMax, CharSequence> {
+public class ByteMaxValidator implements ConstraintValidator<ByteMax, CharSequence> {
 
     /**
      * The charset used in parse to a string.
@@ -62,8 +62,8 @@ public class ByteMaxValidator implements
         }
         max = constraintAnnotation.value();
         if (max < 0) {
-            throw reportFailedToInitialize(new IllegalArgumentException("value["
-                    + max + "] must not be negative value."));
+            throw reportFailedToInitialize(
+                    new IllegalArgumentException("value[" + max + "] must not be negative value."));
         }
     }
 
@@ -72,11 +72,11 @@ public class ByteMaxValidator implements
      * @param value object to validate
      * @param context context in which the constraint is evaluated
      * @return {@code true} if {@code value} is lower or equal to, or null. otherwise {@code false}.
-     * @see javax.validation.ConstraintValidator#isValid(java.lang.Object, javax.validation.ConstraintValidatorContext)
+     * @see javax.validation.ConstraintValidator#isValid(java.lang.Object,
+     *      javax.validation.ConstraintValidatorContext)
      */
     @Override
-    public boolean isValid(CharSequence value,
-            ConstraintValidatorContext context) {
+    public boolean isValid(CharSequence value, ConstraintValidatorContext context) {
         if (value == null) {
             return true;
         }

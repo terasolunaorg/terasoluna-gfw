@@ -49,8 +49,7 @@ public final class FullHalfPairsBuilder {
      * @param predicate the predicate to check whether the given character is appendable.
      * @return this instance
      */
-    public FullHalfPairsBuilder appendablePredicate(
-            FullHalfPairs.AppendablePredicate predicate) {
+    public FullHalfPairsBuilder appendablePredicate(FullHalfPairs.AppendablePredicate predicate) {
         this.predicate = predicate;
         return this;
     }

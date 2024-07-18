@@ -32,11 +32,12 @@ public class TransactionTokenInfo {
 
     /**
      * Constructor <br>
-     * @param tokenName name part of the {@link TransactionToken} represented by this {@link TransactionTokenInfo} instance
-     * @param tokenType type of the {@link TransactionToken} represented by this {@link TransactionTokenInfo} instance
+     * @param tokenName name part of the {@link TransactionToken} represented by this
+     *        {@link TransactionTokenInfo} instance
+     * @param tokenType type of the {@link TransactionToken} represented by this
+     *        {@link TransactionTokenInfo} instance
      */
-    public TransactionTokenInfo(final String tokenName,
-            final TransactionTokenType tokenType) {
+    public TransactionTokenInfo(final String tokenName, final TransactionTokenType tokenType) {
         this.tokenName = tokenName;
         this.tokenType = tokenType;
     }
@@ -50,7 +51,8 @@ public class TransactionTokenInfo {
     }
 
     /**
-     * Returns type of the {@link TransactionToken} represented by this {@link TransactionTokenInfo} instance
+     * Returns type of the {@link TransactionToken} represented by this {@link TransactionTokenInfo}
+     * instance
      * @return TransactionType
      */
     public TransactionTokenType getTransactionTokenType() {
@@ -58,8 +60,8 @@ public class TransactionTokenInfo {
     }
 
     /**
-     * Checks whether the {@link TransactionToken} represented by this {@link TransactionTokenInfo} object needs to be checked
-     * whether it is a valid token
+     * Checks whether the {@link TransactionToken} represented by this {@link TransactionTokenInfo}
+     * object needs to be checked whether it is a valid token
      * @return true if needs to be checked if its a valid token. false otherwise
      */
     public boolean needValidate() {
@@ -67,7 +69,8 @@ public class TransactionTokenInfo {
     }
 
     /**
-     * Checks whether the a new token is to be created to be represented by this {@link TransactionTokenInfo} object
+     * Checks whether the a new token is to be created to be represented by this
+     * {@link TransactionTokenInfo} object
      * @return true if needs to be created. false otherwise
      */
     public boolean needCreate() {
@@ -75,8 +78,8 @@ public class TransactionTokenInfo {
     }
 
     /**
-     * Check whether the {@link TransactionToken} represented by this {@link TransactionTokenInfo} object needs to be taken
-     * over.
+     * Check whether the {@link TransactionToken} represented by this {@link TransactionTokenInfo}
+     * object needs to be taken over.
      * @return {@code true} if need to be taken over token. {@code false} otherwise
      */
     public boolean needKeep() {
@@ -88,8 +91,8 @@ public class TransactionTokenInfo {
      */
     @Override
     public String toString() {
-        return "TransactionTokenInfo [tokenName=" + tokenName
-                + ", transitionType=" + tokenType + "]";
+        return "TransactionTokenInfo [tokenName=" + tokenName + ", transitionType=" + tokenType
+                + "]";
     }
 
 }

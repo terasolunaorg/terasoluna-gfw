@@ -23,22 +23,21 @@ import javax.servlet.http.HttpServletRequest;
 import org.terasoluna.gfw.web.mvc.support.RequestDataValueProcessorAdaptor;
 
 /**
- * A {@code RequestDataValueProcessor} implementation class which returns a map containing the {@link TransactionToken} received
- * in the request. <br>
+ * A {@code RequestDataValueProcessor} implementation class which returns a map containing the
+ * {@link TransactionToken} received in the request. <br>
  */
-public class TransactionTokenRequestDataValueProcessor extends
-                                                       RequestDataValueProcessorAdaptor {
+public class TransactionTokenRequestDataValueProcessor extends RequestDataValueProcessorAdaptor {
 
     /**
      * Returns a map containing the {@link TransactionToken} received in the request. <br>
-     * Request attribute containing the token string is {@link TransactionTokenInterceptor#NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME}
+     * Request attribute containing the token string is
+     * {@link TransactionTokenInterceptor#NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME}
      * @see org.terasoluna.gfw.web.mvc.support.RequestDataValueProcessorAdaptor#getExtraHiddenFields(javax.servlet.http.HttpServletRequest)
      */
     @Override
-    public Map<String, String> getExtraHiddenFields(
-            HttpServletRequest request) {
-        TransactionToken nextToken = (TransactionToken) request.getAttribute(
-                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
+    public Map<String, String> getExtraHiddenFields(HttpServletRequest request) {
+        TransactionToken nextToken = (TransactionToken) request
+                .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
         if (nextToken != null) {
             Map<String, String> map = new HashMap<String, String>(2);
             map.put(TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER,

@@ -4,7 +4,7 @@
 DEFAULT_GOALS="clean install"
 
 commandArgs=${DEFAULT_GOALS}
-if test $# -ne 0 ; then
+if test $# -ne 0; then
     commandArgs=$@
 fi
 
@@ -14,7 +14,7 @@ echo "[DEBUG] Command arguments : \"${commandArgs}\""
 
 mvn -U ${commandArgs}
 buildResult=$?
-if test ${buildResult} -ne 0 ; then
+if test ${buildResult} -ne 0; then
     echo "[ERROR] Failed a build."
     exit ${buildResult}
 fi

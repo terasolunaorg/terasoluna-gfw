@@ -31,8 +31,7 @@ public class DateConvertUtilsTest {
     @Test
     public void testDateConvertUtils() throws Exception {
         // set up
-        Constructor<DateConvertUtils> constructor = DateConvertUtils.class
-                .getDeclaredConstructor();
+        Constructor<DateConvertUtils> constructor = DateConvertUtils.class.getDeclaredConstructor();
         assertThat(constructor.isAccessible(), is(false));
         constructor.setAccessible(true);
 
@@ -48,8 +47,7 @@ public class DateConvertUtilsTest {
         DateTime date = new DateTime(2012, 9, 3, 23, 7, 11, 100);
 
         // testing
-        Timestamp timestamp = DateConvertUtils.convertToTimestamp(date
-                .toDate());
+        Timestamp timestamp = DateConvertUtils.convertToTimestamp(date.toDate());
 
         // assertions
         DateTime result = new DateTime(timestamp.getTime());
@@ -76,8 +74,7 @@ public class DateConvertUtilsTest {
         DateTime date = new DateTime(2012, 9, 3, 23, 7, 11, 100);
 
         // testing
-        java.sql.Date sqlDate = DateConvertUtils.convertToSqlDate(date
-                .toDate());
+        java.sql.Date sqlDate = DateConvertUtils.convertToSqlDate(date.toDate());
 
         // assertion
         DateTime result = new DateTime(sqlDate.getTime());

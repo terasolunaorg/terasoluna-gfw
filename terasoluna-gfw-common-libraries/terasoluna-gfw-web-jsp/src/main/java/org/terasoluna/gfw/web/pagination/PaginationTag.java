@@ -162,7 +162,8 @@ public class PaginationTag extends RequestContextAwareTag {
 
             TagWriter tagWriter = createTagWriter();
 
-            PaginationInfo info = new PaginationInfo(p, pathTmpl, queryTmpl, criteriaQuery, disableHtmlEscapeOfCriteriaQuery, maxDisplayCount);
+            PaginationInfo info = new PaginationInfo(p, pathTmpl, queryTmpl, criteriaQuery,
+                    disableHtmlEscapeOfCriteriaQuery, maxDisplayCount);
 
             BeginAndEnd be = info.getBeginAndEnd();
 
@@ -180,18 +181,17 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Renders a anchor.<br>
-     * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP page
+     * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP
+     *        page
      * @param href url of anchor
      * @param value text of anchor
      * @throws JspException If fail a tag writing
      */
-    protected void writeAnchor(TagWriter tagWriter, String href,
-            String value) throws JspException {
+    protected void writeAnchor(TagWriter tagWriter, String href, String value) throws JspException {
         if (StringUtils.hasText(href)) {
             tagWriter.startTag(PaginationInfo.A_ELM);
             if (StringUtils.hasText(anchorClass)) {
-                tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
-                        anchorClass);
+                tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR, anchorClass);
             }
             tagWriter.writeAttribute(PaginationInfo.HREF_ATTR, href);
             tagWriter.appendValue(value);
@@ -203,7 +203,8 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Renders start tag.
-     * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP page
+     * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP
+     *        page
      * @throws JspException If fail a tag writing
      */
     protected void startOuterElement(TagWriter tagWriter) throws JspException {
@@ -211,15 +212,15 @@ public class PaginationTag extends RequestContextAwareTag {
             tagWriter.startTag(outerElement);
 
             if (StringUtils.hasText(outerElementClass)) {
-                tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR,
-                        outerElementClass);
+                tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR, outerElementClass);
             }
         }
     }
 
     /**
      * Renders end tag.<br>
-     * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP page
+     * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP
+     *        page
      * @throws JspException If fail a tag writing
      */
     protected void endOuterElement(TagWriter tagWriter) throws JspException {
@@ -230,89 +231,91 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Renders page link.<br>
-     * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP page
-     * @param info {@code PaginationInfo} instance the holds all the information required by the {@code PaginationTag}
+     * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP
+     *        page
+     * @param info {@code PaginationInfo} instance the holds all the information required by the
+     *        {@code PaginationTag}
      * @param page page position
      * @throws JspException If fail a tag writing
      */
-    protected void writePageLink(TagWriter tagWriter, PaginationInfo info,
-            int page) throws JspException {
+    protected void writePageLink(TagWriter tagWriter, PaginationInfo info, int page)
+            throws JspException {
         if (info.isCurrent(page)) {
             if (enableLinkOfCurrentPage) {
-                writeListItemAndAnchor(activeClass, tagWriter, info.getPageUrl(
-                        page), String.valueOf(page + 1));
+                writeListItemAndAnchor(activeClass, tagWriter, info.getPageUrl(page),
+                        String.valueOf(page + 1));
             } else {
                 writeListItemAndAnchor(activeClass, tagWriter, disabledHref,
                         String.valueOf(page + 1));
             }
         } else {
-            writeListItemAndAnchor(innerElementClass, tagWriter, info
-                    .getPageUrl(page), String.valueOf(page + 1));
+            writeListItemAndAnchor(innerElementClass, tagWriter, info.getPageUrl(page),
+                    String.valueOf(page + 1));
         }
     }
 
     /**
      * Renders link for going to the first page and previous page.<br>
-     * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP page
-     * @param info {@code PaginationInfo} instance the holds all the information required by the {@code PaginationTag}
+     * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP
+     *        page
+     * @param info {@code PaginationInfo} instance the holds all the information required by the
+     *        {@code PaginationTag}
      * @throws JspException If fail a tag writing
      */
-    protected void writeFirstAndPreviousLink(TagWriter tagWriter,
-            PaginationInfo info) throws JspException {
+    protected void writeFirstAndPreviousLink(TagWriter tagWriter, PaginationInfo info)
+            throws JspException {
         if (info.isFirstPage()) {
             if (StringUtils.hasText(firstLinkText)) {
                 // write first link
-                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref,
-                        firstLinkText);
+                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref, firstLinkText);
             }
             if (StringUtils.hasText(previousLinkText)) {
                 // write previous link
-                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref,
-                        previousLinkText);
+                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref, previousLinkText);
             }
         } else {
             if (StringUtils.hasText(firstLinkText)) {
                 // write first link
-                writeListItemAndAnchor(innerElementClass, tagWriter, info
-                        .getFirstUrl(), firstLinkText);
+                writeListItemAndAnchor(innerElementClass, tagWriter, info.getFirstUrl(),
+                        firstLinkText);
             }
             if (StringUtils.hasText(previousLinkText)) {
                 // write previous link
-                writeListItemAndAnchor(innerElementClass, tagWriter, info
-                        .getPreviousUrl(), previousLinkText);
+                writeListItemAndAnchor(innerElementClass, tagWriter, info.getPreviousUrl(),
+                        previousLinkText);
             }
         }
     }
 
     /**
      * Renders link for going to the next page and last page <br>
-     * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP page
-     * @param info {@code PaginationInfo} instance the holds all the information required by the {@code PaginationTag}
+     * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP
+     *        page
+     * @param info {@code PaginationInfo} instance the holds all the information required by the
+     *        {@code PaginationTag}
      * @throws JspException If fail a tag writing
      */
-    protected void writeNextAndLastLink(TagWriter tagWriter,
-            PaginationInfo info) throws JspException {
+    protected void writeNextAndLastLink(TagWriter tagWriter, PaginationInfo info)
+            throws JspException {
         if (info.isLastPage()) {
             if (StringUtils.hasText(nextLinkText)) {
                 // write next link
-                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref,
-                        nextLinkText);
+                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref, nextLinkText);
             }
             if (StringUtils.hasText(lastLinkText)) {
                 // write last link
-                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref,
-                        lastLinkText);
+                writeListItemAndAnchor(disabledClass, tagWriter, disabledHref, lastLinkText);
             }
         } else {
             if (StringUtils.hasText(nextLinkText)) {
                 // write next link
-                writeListItemAndAnchor(innerElementClass, tagWriter, info
-                        .getNextUrl(), nextLinkText);
+                writeListItemAndAnchor(innerElementClass, tagWriter, info.getNextUrl(),
+                        nextLinkText);
             }
             if (StringUtils.hasText(lastLinkText)) {
                 // write last link
-                writeListItemAndAnchor(innerElementClass, tagWriter, info
-                        .getLastUrl(), lastLinkText);
+                writeListItemAndAnchor(innerElementClass, tagWriter, info.getLastUrl(),
+                        lastLinkText);
             }
         }
     }
@@ -389,11 +392,10 @@ public class PaginationTag extends RequestContextAwareTag {
      * @throws JspException If value that is not true or false is specified.
      * @since 1.0.1
      */
-    public void setDisableHtmlEscapeOfCriteriaQuery(
-            String disableHtmlEscapeOfCriteriaQuery) throws JspException {
+    public void setDisableHtmlEscapeOfCriteriaQuery(String disableHtmlEscapeOfCriteriaQuery)
+            throws JspException {
         this.disableHtmlEscapeOfCriteriaQuery = JspTagUtils.toBoolean(
-                disableHtmlEscapeOfCriteriaQuery, false,
-                "disableHtmlEscapeOfCriteriaQuery");
+                disableHtmlEscapeOfCriteriaQuery, false, "disableHtmlEscapeOfCriteriaQuery");
     }
 
     /**
@@ -406,10 +408,9 @@ public class PaginationTag extends RequestContextAwareTag {
      * @throws JspException If value that is not true or false is specified.
      * @since 5.0.0
      */
-    public void setEnableLinkOfCurrentPage(
-            String enableLinkOfCurrentPage) throws JspException {
-        this.enableLinkOfCurrentPage = JspTagUtils.toBoolean(
-                enableLinkOfCurrentPage, false, "enableLinkOfCurrentPage");
+    public void setEnableLinkOfCurrentPage(String enableLinkOfCurrentPage) throws JspException {
+        this.enableLinkOfCurrentPage =
+                JspTagUtils.toBoolean(enableLinkOfCurrentPage, false, "enableLinkOfCurrentPage");
     }
 
     /**
@@ -535,21 +536,21 @@ public class PaginationTag extends RequestContextAwareTag {
      * @throws ClassNotFoundException {@link java.io.ObjectInputStream#defaultReadObject()}
      * @see java.io.Serializable
      */
-    private void readObject(
-            ObjectInputStream in) throws IOException, ClassNotFoundException {
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
     }
 
     /**
      * Renders a list item and anchor for a given page
      * @param classValue value of "class" attribute of the list item
-     * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP page
+     * @param tagWriter {@code TagWriter} instance that will render the content of the tag to JSP
+     *        page
      * @param href url of anchor
      * @param linkText text of anchor
      * @throws JspException If fail a tag writing
      */
-    private void writeListItemAndAnchor(String classValue, TagWriter tagWriter,
-            String href, String linkText) throws JspException {
+    private void writeListItemAndAnchor(String classValue, TagWriter tagWriter, String href,
+            String linkText) throws JspException {
         tagWriter.startTag(innerElement); // <li>
         if (StringUtils.hasText(classValue)) {
             tagWriter.writeAttribute(PaginationInfo.CLASS_ATTR, classValue);

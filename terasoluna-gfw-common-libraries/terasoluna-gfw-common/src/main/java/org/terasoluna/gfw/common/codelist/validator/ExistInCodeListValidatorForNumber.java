@@ -16,20 +16,20 @@
 package org.terasoluna.gfw.common.codelist.validator;
 
 /**
- * Concrete validation implementation class for {@link org.terasoluna.gfw.common.codelist.ExistInCodeList} custom annotation.
+ * Concrete validation implementation class for
+ * {@link org.terasoluna.gfw.common.codelist.ExistInCodeList} custom annotation.
  * <p>
- * Used if the value of the field for which the custom annotation is used, is of type {@link Number} ({@link Integer},
- * {@link Long}, etc ...) <br>
+ * Used if the value of the field for which the custom annotation is used, is of type {@link Number}
+ * ({@link Integer}, {@link Long}, etc ...) <br>
  * <br>
- * Validates whether the value of field is a valid code existing in the {@link org.terasoluna.gfw.common.codelist.CodeList}
- * specified <br>
+ * Validates whether the value of field is a valid code existing in the
+ * {@link org.terasoluna.gfw.common.codelist.CodeList} specified <br>
  * as a parameter to the {@link org.terasoluna.gfw.common.codelist.ExistInCodeList} annotation.<br>
  * </p>
  * @since 5.4.2
  */
 
-public class ExistInCodeListValidatorForNumber extends
-                                               AbstractExistInCodeListValidator<Number> {
+public class ExistInCodeListValidatorForNumber extends AbstractExistInCodeListValidator<Number> {
 
     /**
      * Fetches the code value which is the target of validation
@@ -38,8 +38,7 @@ public class ExistInCodeListValidatorForNumber extends
     @Override
     protected String getCode(Number value) {
         return value == null ? null
-                : valueFormat == null ? value.toString()
-                        : String.format(valueFormat, value);
+                : valueFormat == null ? value.toString() : String.format(valueFormat, value);
     }
 
 }

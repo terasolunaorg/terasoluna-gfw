@@ -27,14 +27,16 @@ public class TransactionTokenContextImplTest {
     public void TestTransactionTokenContextImpl01() {
 
         // setup parameters
-        TransactionTokenInfo beginTransactionToken = new TransactionTokenInfo("testTokenAttribute1", TransactionTokenType.BEGIN);
+        TransactionTokenInfo beginTransactionToken =
+                new TransactionTokenInfo("testTokenAttribute1", TransactionTokenType.BEGIN);
         TransactionToken receivedToken = new TransactionToken("aaa");
 
         // setup up expected result
         ReserveCommand expectedCommand = ReserveCommand.CREATE_TOKEN;
 
         // run
-        TransactionTokenContextImpl contextImpl = new TransactionTokenContextImpl(beginTransactionToken, receivedToken);
+        TransactionTokenContextImpl contextImpl =
+                new TransactionTokenContextImpl(beginTransactionToken, receivedToken);
 
         // test
         ReserveCommand resultCommand = contextImpl.getReserveCommand();
@@ -48,14 +50,16 @@ public class TransactionTokenContextImplTest {
     public void TestTransactionTokenContextImpl02() {
 
         // setup parameters
-        TransactionTokenInfo beginTransactionToken = new TransactionTokenInfo("testTokenAttribute1", TransactionTokenType.BEGIN);
+        TransactionTokenInfo beginTransactionToken =
+                new TransactionTokenInfo("testTokenAttribute1", TransactionTokenType.BEGIN);
         TransactionToken receivedToken = new TransactionToken("aaa", "key", "value");
 
         // setup up expected result
         ReserveCommand expectedCommand = ReserveCommand.UPDATE_TOKEN;
 
         // run
-        TransactionTokenContextImpl contextImpl = new TransactionTokenContextImpl(beginTransactionToken, receivedToken);
+        TransactionTokenContextImpl contextImpl =
+                new TransactionTokenContextImpl(beginTransactionToken, receivedToken);
 
         // test
         ReserveCommand resultCommand = contextImpl.getReserveCommand();
@@ -69,14 +73,16 @@ public class TransactionTokenContextImplTest {
     public void TestTransactionTokenContextImpl03() {
 
         // setup parameters
-        TransactionTokenInfo inTransactionToken = new TransactionTokenInfo("testTokenAttribute2", TransactionTokenType.IN);
+        TransactionTokenInfo inTransactionToken =
+                new TransactionTokenInfo("testTokenAttribute2", TransactionTokenType.IN);
         TransactionToken receivedToken = new TransactionToken("bbb");
 
         // setup up expected result
         ReserveCommand expectedCommand = ReserveCommand.CREATE_TOKEN;
 
         // run
-        TransactionTokenContextImpl contextImpl = new TransactionTokenContextImpl(inTransactionToken, receivedToken);
+        TransactionTokenContextImpl contextImpl =
+                new TransactionTokenContextImpl(inTransactionToken, receivedToken);
         ReserveCommand resultCommand = contextImpl.getReserveCommand();
 
         // test
@@ -90,14 +96,16 @@ public class TransactionTokenContextImplTest {
     public void TestTransactionTokenContextImpl04() {
 
         // setup parameters
-        TransactionTokenInfo inTransactionToken = new TransactionTokenInfo("testTokenAttribute2", TransactionTokenType.IN);
+        TransactionTokenInfo inTransactionToken =
+                new TransactionTokenInfo("testTokenAttribute2", TransactionTokenType.IN);
         TransactionToken receivedToken = new TransactionToken("bbb", "key", "value");
 
         // setup up expected result
         ReserveCommand expectedCommand = ReserveCommand.UPDATE_TOKEN;
 
         // run
-        TransactionTokenContextImpl contextImpl = new TransactionTokenContextImpl(inTransactionToken, receivedToken);
+        TransactionTokenContextImpl contextImpl =
+                new TransactionTokenContextImpl(inTransactionToken, receivedToken);
         ReserveCommand resultCommand = contextImpl.getReserveCommand();
 
         // test
@@ -111,14 +119,16 @@ public class TransactionTokenContextImplTest {
     public void TestTransactionTokenContextImpl05() {
 
         // setup parameters
-        TransactionTokenInfo endTransactionToken = new TransactionTokenInfo("testTokenAttribute3", TransactionTokenType.END);
+        TransactionTokenInfo endTransactionToken =
+                new TransactionTokenInfo("testTokenAttribute3", TransactionTokenType.END);
         TransactionToken receivedToken = new TransactionToken("ccc");
 
         // setup up expected result
         ReserveCommand expectedCommand = ReserveCommand.NONE;
 
         // run
-        TransactionTokenContextImpl contextImpl = new TransactionTokenContextImpl(endTransactionToken, receivedToken);
+        TransactionTokenContextImpl contextImpl =
+                new TransactionTokenContextImpl(endTransactionToken, receivedToken);
 
         // test
         ReserveCommand resultCommand = contextImpl.getReserveCommand();
@@ -131,14 +141,16 @@ public class TransactionTokenContextImplTest {
     public void TestTransactionTokenContextImpl06() {
 
         // setup parameters
-        TransactionTokenInfo endTransactionToken = new TransactionTokenInfo("testTokenAttribute3", TransactionTokenType.END);
+        TransactionTokenInfo endTransactionToken =
+                new TransactionTokenInfo("testTokenAttribute3", TransactionTokenType.END);
         TransactionToken receivedToken = new TransactionToken("ccc", "key", "value");
 
         // setup up expected result
         ReserveCommand expectedCommand = ReserveCommand.REMOVE_TOKEN;
 
         // run
-        TransactionTokenContextImpl contextImpl = new TransactionTokenContextImpl(endTransactionToken, receivedToken);
+        TransactionTokenContextImpl contextImpl =
+                new TransactionTokenContextImpl(endTransactionToken, receivedToken);
 
         // test
         ReserveCommand resultCommand = contextImpl.getReserveCommand();
@@ -151,14 +163,16 @@ public class TransactionTokenContextImplTest {
     public void testTransactionTokenContextImpl07() {
 
         // setup parameters
-        TransactionTokenInfo checkTransactionToken = new TransactionTokenInfo("checkToken", TransactionTokenType.CHECK);
+        TransactionTokenInfo checkTransactionToken =
+                new TransactionTokenInfo("checkToken", TransactionTokenType.CHECK);
         TransactionToken receivedToken = new TransactionToken("namespace", "key", "value");
 
         // setup up expected result
         ReserveCommand expectedCommand = ReserveCommand.KEEP_TOKEN;
 
         // run
-        TransactionTokenContextImpl contextImpl = new TransactionTokenContextImpl(checkTransactionToken, receivedToken);
+        TransactionTokenContextImpl contextImpl =
+                new TransactionTokenContextImpl(checkTransactionToken, receivedToken);
 
         // test
         ReserveCommand resultCommand = contextImpl.getReserveCommand();
@@ -171,14 +185,16 @@ public class TransactionTokenContextImplTest {
     public void testTransactionTokenContextImpl08() {
 
         // setup parameters
-        TransactionTokenInfo updateTransactionToken = new TransactionTokenInfo("updateToken", TransactionTokenType.CHECK);
+        TransactionTokenInfo updateTransactionToken =
+                new TransactionTokenInfo("updateToken", TransactionTokenType.CHECK);
         TransactionToken receivedToken = new TransactionToken("namespace", "key", "");
 
         // setup up expected result
         ReserveCommand expectedCommand = ReserveCommand.KEEP_TOKEN;
 
         // run
-        TransactionTokenContextImpl contextImpl = new TransactionTokenContextImpl(updateTransactionToken, receivedToken);
+        TransactionTokenContextImpl contextImpl =
+                new TransactionTokenContextImpl(updateTransactionToken, receivedToken);
 
         // test
         ReserveCommand resultCommand = contextImpl.getReserveCommand();

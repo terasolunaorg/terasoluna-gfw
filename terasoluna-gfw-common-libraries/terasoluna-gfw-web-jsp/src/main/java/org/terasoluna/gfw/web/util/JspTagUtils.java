@@ -23,9 +23,10 @@ import org.springframework.util.StringUtils;
  * Utility class about jsp tag.
  * <p>
  * WARNING: <br>
- * This class is not common library, because was created for eliminate duplicated code of common library(JSP Tag class).<br>
- * Therefore, There is a possibility that the modification(delete class or method, change method signature) performed without
- * announcement.<br>
+ * This class is not common library, because was created for eliminate duplicated code of common
+ * library(JSP Tag class).<br>
+ * Therefore, There is a possibility that the modification(delete class or method, change method
+ * signature) performed without announcement.<br>
  * </p>
  * @since 1.0.1
  */
@@ -44,20 +45,22 @@ public final class JspTagUtils {
     /**
      * Convert to the Boolean value.
      * @param attributeValue string value of attribute
-     * @param defaultValue If attribute value is not text(null or blank or whitespace only), apply this value.
-     * @param attributeName attribute name (If attribute value is not true or false, sets in exception message)
+     * @param defaultValue If attribute value is not text(null or blank or whitespace only), apply
+     *        this value.
+     * @param attributeName attribute name (If attribute value is not true or false, sets in
+     *        exception message)
      * @return converted Boolean value
      * @throws JspTagException If value that is not true or false is specified.
      */
     public static boolean toBoolean(String attributeValue, boolean defaultValue,
             String attributeName) throws JspTagException {
         if (StringUtils.hasText(attributeValue)) {
-            if ("true".equalsIgnoreCase(attributeValue) || "false"
-                    .equalsIgnoreCase(attributeValue)) {
+            if ("true".equalsIgnoreCase(attributeValue)
+                    || "false".equalsIgnoreCase(attributeValue)) {
                 return Boolean.parseBoolean(attributeValue);
             } else {
-                throw new JspTagException("The value of " + attributeName
-                        + " must be either true or false.");
+                throw new JspTagException(
+                        "The value of " + attributeName + " must be either true or false.");
             }
         }
         return defaultValue;

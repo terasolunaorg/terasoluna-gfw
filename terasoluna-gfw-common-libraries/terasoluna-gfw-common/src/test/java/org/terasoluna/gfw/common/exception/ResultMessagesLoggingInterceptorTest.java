@@ -50,10 +50,9 @@ import org.terasoluna.gfw.common.message.ResultMessages;
  * TestCase class of ResultMessagesLoggingInterceptor.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:test-context.xml",
-        "classpath:org/terasoluna/gfw/common/exception/ResultMessagesLoggingInterceptorTest.xml" })
-public class ResultMessagesLoggingInterceptorTest extends
-                                                  ApplicationObjectSupport {
+@ContextConfiguration(locations = {"classpath:test-context.xml",
+        "classpath:org/terasoluna/gfw/common/exception/ResultMessagesLoggingInterceptorTest.xml"})
+public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSupport {
 
     /**
      * test target object.
@@ -144,8 +143,8 @@ public class ResultMessagesLoggingInterceptorTest extends
     @Test
     public void testInvokeOccurBusinessexception02() throws Throwable {
         // do setup for test case.
-        BusinessException occurException = new BusinessException(ResultMessages
-                .error().add("e.cm.xxx1", "args1", "args2"));
+        BusinessException occurException =
+                new BusinessException(ResultMessages.error().add("e.cm.xxx1", "args1", "args2"));
         when(mockMethodInvocation.proceed()).thenThrow(occurException);
 
         BusinessException e = assertThrows(BusinessException.class, () -> {
@@ -162,8 +161,8 @@ public class ResultMessagesLoggingInterceptorTest extends
     @Test
     public void testInvokeOccurBusinessexception03() throws Throwable {
         // do setup for test case.
-        BusinessException occurException = new BusinessException(ResultMessages
-                .error().add("e.cm.xxx1", "args1", "args2"), null);
+        BusinessException occurException = new BusinessException(
+                ResultMessages.error().add("e.cm.xxx1", "args1", "args2"), null);
         when(mockMethodInvocation.proceed()).thenThrow(occurException);
 
         BusinessException e = assertThrows(BusinessException.class, () -> {
@@ -180,19 +179,17 @@ public class ResultMessagesLoggingInterceptorTest extends
     @Test
     public void testInvokeOccurResourcenotfoundexceptionInNestedMethod01() throws Throwable {
         // do setup for test case.
-        ResourceNotFoundException occurException = new ResourceNotFoundException("testing resourcenotfoundexception");
+        ResourceNotFoundException occurException =
+                new ResourceNotFoundException("testing resourcenotfoundexception");
 
-        TestService service = getApplicationContext().getBean(
-                TestService.class);
+        TestService service = getApplicationContext().getBean(TestService.class);
         service.setResultMessagesNotificationException(occurException);
 
-        ResourceNotFoundException e = assertThrows(
-                ResourceNotFoundException.class, () -> {
-                    // do test.
-                    TestFacade facade = getApplicationContext().getBean(
-                            TestFacade.class);
-                    facade.getMessage();
-                });
+        ResourceNotFoundException e = assertThrows(ResourceNotFoundException.class, () -> {
+            // do test.
+            TestFacade facade = getApplicationContext().getBean(TestFacade.class);
+            facade.getMessage();
+        });
         // do assert.
         assertThat(e, is(occurException));
         verify(mockExceptionLogger, times(1)).warn(occurException);
@@ -218,20 +215,17 @@ public class ResultMessagesLoggingInterceptorTest extends
     @Test
     public void testInvokeOccurResourcenotfoundexceptionInNestedMethod02() throws Throwable {
         // do setup for test case.
-        ResourceNotFoundException occurException = new ResourceNotFoundException(ResultMessages
-                .error().add("e.cm.xxx1", "args1", "args2"));
+        ResourceNotFoundException occurException = new ResourceNotFoundException(
+                ResultMessages.error().add("e.cm.xxx1", "args1", "args2"));
 
-        TestService service = getApplicationContext().getBean(
-                TestService.class);
+        TestService service = getApplicationContext().getBean(TestService.class);
         service.setResultMessagesNotificationException(occurException);
 
-        ResourceNotFoundException e = assertThrows(
-                ResourceNotFoundException.class, () -> {
-                    // do test.
-                    TestFacade facade = getApplicationContext().getBean(
-                            TestFacade.class);
-                    facade.getMessage();
-                });
+        ResourceNotFoundException e = assertThrows(ResourceNotFoundException.class, () -> {
+            // do test.
+            TestFacade facade = getApplicationContext().getBean(TestFacade.class);
+            facade.getMessage();
+        });
         // do assert.
         assertThat(e, is(occurException));
         verify(mockExceptionLogger, times(1)).warn(occurException);
@@ -242,20 +236,17 @@ public class ResultMessagesLoggingInterceptorTest extends
     @Test
     public void testInvokeOccurResourcenotfoundexceptionInNestedMethod03() throws Throwable {
         // do setup for test case.
-        ResourceNotFoundException occurException = new ResourceNotFoundException(ResultMessages
-                .error().add("e.cm.xxx1", "args1", "args2"), null);
+        ResourceNotFoundException occurException = new ResourceNotFoundException(
+                ResultMessages.error().add("e.cm.xxx1", "args1", "args2"), null);
 
-        TestService service = getApplicationContext().getBean(
-                TestService.class);
+        TestService service = getApplicationContext().getBean(TestService.class);
         service.setResultMessagesNotificationException(occurException);
 
-        ResourceNotFoundException e = assertThrows(
-                ResourceNotFoundException.class, () -> {
-                    // do test.
-                    TestFacade facade = getApplicationContext().getBean(
-                            TestFacade.class);
-                    facade.getMessage();
-                });
+        ResourceNotFoundException e = assertThrows(ResourceNotFoundException.class, () -> {
+            // do test.
+            TestFacade facade = getApplicationContext().getBean(TestFacade.class);
+            facade.getMessage();
+        });
         // do assert.
         assertThat(e, is(occurException));
         verify(mockExceptionLogger, times(1)).warn(occurException);
@@ -277,14 +268,14 @@ public class ResultMessagesLoggingInterceptorTest extends
     public void testInvoke_occur_other_exception() throws Throwable {
 
         // do setup for test case.
-        NullPointerException occurException = new NullPointerException("testInvoke_occur_other_exception");
+        NullPointerException occurException =
+                new NullPointerException("testInvoke_occur_other_exception");
         when(mockMethodInvocation.proceed()).thenThrow(occurException);
 
-        NullPointerException e = assertThrows(NullPointerException.class,
-                () -> {
-                    // do test.
-                    testTarget.invoke(mockMethodInvocation);
-                });
+        NullPointerException e = assertThrows(NullPointerException.class, () -> {
+            // do test.
+            testTarget.invoke(mockMethodInvocation);
+        });
         // do assert.
         assertThat(e, is(occurException));
         verify(mockExceptionLogger, never()).warn(any(Exception.class));
@@ -297,7 +288,8 @@ public class ResultMessagesLoggingInterceptorTest extends
      * [Expected Result]
      * <ol>
      * <li>throws exception.</li>
-     * <li>BusinessException log is output in both interception.(verify ThreadLocal variable is removed.)</li>
+     * <li>BusinessException log is output in both interception.(verify ThreadLocal variable is
+     * removed.)</li>
      * </ol>
      * </p>
      */
@@ -306,8 +298,8 @@ public class ResultMessagesLoggingInterceptorTest extends
         // do setup for test case.
         // nothing.
 
-        BusinessException occurException = new BusinessException(ResultMessages
-                .error().add("e.cm.xxx1", "args1", "args2"));
+        BusinessException occurException =
+                new BusinessException(ResultMessages.error().add("e.cm.xxx1", "args1", "args2"));
         when(mockMethodInvocation.proceed()).thenThrow(occurException);
 
         // do test.
@@ -342,8 +334,7 @@ public class ResultMessagesLoggingInterceptorTest extends
     public void testInvoke_multi_thread_not_occur_exception() throws Throwable {
 
         // do setup for test case.
-        final TestFacade facade = getApplicationContext().getBean(
-                TestFacade.class);
+        final TestFacade facade = getApplicationContext().getBean(TestFacade.class);
         final Map<Thread, String> actualMessage = new HashMap<Thread, String>();
 
         // setup for thread1.
@@ -368,12 +359,10 @@ public class ResultMessagesLoggingInterceptorTest extends
         thread2.join();
 
         // do assert.
-        String expectedBaseMessage = getApplicationContext().getBean(
-                TestRepository.class).toString() + ":";
-        assertThat(actualMessage, hasEntry(thread1, expectedBaseMessage
-                + thread1.getId()));
-        assertThat(actualMessage, hasEntry(thread2, expectedBaseMessage
-                + thread2.getId()));
+        String expectedBaseMessage =
+                getApplicationContext().getBean(TestRepository.class).toString() + ":";
+        assertThat(actualMessage, hasEntry(thread1, expectedBaseMessage + thread1.getId()));
+        assertThat(actualMessage, hasEntry(thread2, expectedBaseMessage + thread2.getId()));
 
         verify(mockExceptionLogger, never()).warn(any(Exception.class));
     }
@@ -393,18 +382,16 @@ public class ResultMessagesLoggingInterceptorTest extends
     public void testInvoke_multi_thread_occur_businessexception_both_thread() throws Throwable {
 
         // do setup for test case.
-        final TestFacade facade = getApplicationContext().getBean(
-                TestFacade.class);
-        final TestService service = getApplicationContext().getBean(
-                TestService.class);
-        final Map<Thread, BusinessException> actualBusinessException = new HashMap<Thread, BusinessException>();
+        final TestFacade facade = getApplicationContext().getBean(TestFacade.class);
+        final TestService service = getApplicationContext().getBean(TestService.class);
+        final Map<Thread, BusinessException> actualBusinessException =
+                new HashMap<Thread, BusinessException>();
 
         // setup for thread1.
-        final BusinessException occurExceptionForThread1 = new BusinessException(ResultMessages
-                .error().add("e.cm.thread1"));
+        final BusinessException occurExceptionForThread1 =
+                new BusinessException(ResultMessages.error().add("e.cm.thread1"));
         Thread thread1 = new Thread(() -> {
-            service.setResultMessagesNotificationException(
-                    occurExceptionForThread1);
+            service.setResultMessagesNotificationException(occurExceptionForThread1);
             facade.setSleepTime(Long.valueOf(2));
             try {
                 facade.getMessage();
@@ -414,11 +401,10 @@ public class ResultMessagesLoggingInterceptorTest extends
         });
 
         // setup for thread2.
-        final BusinessException occurExceptionForThread2 = new BusinessException(ResultMessages
-                .error().add("e.cm.thread2"));
+        final BusinessException occurExceptionForThread2 =
+                new BusinessException(ResultMessages.error().add("e.cm.thread2"));
         Thread thread2 = new Thread(() -> {
-            service.setResultMessagesNotificationException(
-                    occurExceptionForThread2);
+            service.setResultMessagesNotificationException(occurExceptionForThread2);
             facade.setSleepTime(Long.valueOf(0));
             try {
                 facade.getMessage();
@@ -437,10 +423,8 @@ public class ResultMessagesLoggingInterceptorTest extends
         thread2.join();
 
         // do assert
-        assertThat(actualBusinessException, hasEntry(thread1,
-                occurExceptionForThread1));
-        assertThat(actualBusinessException, hasEntry(thread2,
-                occurExceptionForThread2));
+        assertThat(actualBusinessException, hasEntry(thread1, occurExceptionForThread1));
+        assertThat(actualBusinessException, hasEntry(thread2, occurExceptionForThread2));
 
         verify(mockExceptionLogger, times(1)).warn(occurExceptionForThread1);
         verify(mockExceptionLogger, times(1)).warn(occurExceptionForThread2);
@@ -462,11 +446,10 @@ public class ResultMessagesLoggingInterceptorTest extends
     public void testInvoke_multi_thread_occur_businessexception_one_thread() throws Throwable {
 
         // do setup for test case.
-        final TestFacade facade = getApplicationContext().getBean(
-                TestFacade.class);
-        final TestService service = getApplicationContext().getBean(
-                TestService.class);
-        final Map<Thread, BusinessException> actualBusinessException = new HashMap<Thread, BusinessException>();
+        final TestFacade facade = getApplicationContext().getBean(TestFacade.class);
+        final TestService service = getApplicationContext().getBean(TestService.class);
+        final Map<Thread, BusinessException> actualBusinessException =
+                new HashMap<Thread, BusinessException>();
 
         // setup for thread1.
         Thread thread1 = new Thread(() -> {
@@ -479,11 +462,10 @@ public class ResultMessagesLoggingInterceptorTest extends
         });
 
         // setup for thread2.
-        final BusinessException occurExceptionForThread2 = new BusinessException(ResultMessages
-                .error().add("e.cm.thread2"));
+        final BusinessException occurExceptionForThread2 =
+                new BusinessException(ResultMessages.error().add("e.cm.thread2"));
         Thread thread2 = new Thread(() -> {
-            service.setResultMessagesNotificationException(
-                    occurExceptionForThread2);
+            service.setResultMessagesNotificationException(occurExceptionForThread2);
             facade.setSleepTime(Long.valueOf(0));
             try {
                 facade.getMessage();
@@ -503,8 +485,7 @@ public class ResultMessagesLoggingInterceptorTest extends
 
         // do assert
         assertThat(actualBusinessException, not(hasKey(thread1)));
-        assertThat(actualBusinessException, hasEntry(thread2,
-                occurExceptionForThread2));
+        assertThat(actualBusinessException, hasEntry(thread2, occurExceptionForThread2));
 
         verify(mockExceptionLogger, times(1)).warn(occurExceptionForThread2);
         verify(mockExceptionLogger, times(1)).warn(any(Exception.class));

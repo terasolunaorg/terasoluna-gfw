@@ -28,7 +28,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import org.terasoluna.gfw.web.util.HtmlEscapeUtils;
 
 /**
- * Holds all the information required by the {@code PaginationTag} to display pagination functionality. <br>
+ * Holds all the information required by the {@code PaginationTag} to display pagination
+ * functionality. <br>
  */
 public class PaginationInfo {
 
@@ -228,8 +229,7 @@ public class PaginationInfo {
      * @param queryTmpl query template of pagination
      * @param maxDisplayCount max display count
      */
-    public PaginationInfo(Page<?> page, String pathTmpl, String queryTmpl,
-            int maxDisplayCount) {
+    public PaginationInfo(Page<?> page, String pathTmpl, String queryTmpl, int maxDisplayCount) {
         this(page, pathTmpl, queryTmpl, null, false, maxDisplayCount);
     }
 
@@ -239,28 +239,26 @@ public class PaginationInfo {
      * @param pathTmpl path template of pagination
      * @param queryTmpl query template of pagination
      * @param criteriaQuery Query of search criteria
-     * @param disableHtmlEscapeOfCriteriaQuery Flag to indicate whether html escaping of criteriaQuery is to be disabled or
-     *            not.IF set to true, html escaping of criteriaQuery is disabled.
+     * @param disableHtmlEscapeOfCriteriaQuery Flag to indicate whether html escaping of
+     *        criteriaQuery is to be disabled or not.IF set to true, html escaping of criteriaQuery
+     *        is disabled.
      * @param maxDisplayCount max display count
      * @since 1.0.1
      */
-    public PaginationInfo(Page<?> page, String pathTmpl, String queryTmpl,
-            String criteriaQuery, boolean disableHtmlEscapeOfCriteriaQuery,
-            int maxDisplayCount) {
+    public PaginationInfo(Page<?> page, String pathTmpl, String queryTmpl, String criteriaQuery,
+            boolean disableHtmlEscapeOfCriteriaQuery, int maxDisplayCount) {
         this.page = page;
         this.current = page.getNumber();
         this.pathTmpl = pathTmpl;
         this.queryTmpl = queryTmpl;
         if (disableHtmlEscapeOfCriteriaQuery) {
-            this.criteriaQuery = removeHeadDelimiterOfQueryString(
-                    criteriaQuery);
+            this.criteriaQuery = removeHeadDelimiterOfQueryString(criteriaQuery);
         } else {
-            this.criteriaQuery = HtmlEscapeUtils.htmlEscape(
-                    removeHeadDelimiterOfQueryString(criteriaQuery));
+            this.criteriaQuery =
+                    HtmlEscapeUtils.htmlEscape(removeHeadDelimiterOfQueryString(criteriaQuery));
         }
         this.maxDisplayCount = maxDisplayCount;
-        this.pageUri = UriComponentsBuilder.fromPath(pathTmpl).query(queryTmpl)
-                .build();
+        this.pageUri = UriComponentsBuilder.fromPath(pathTmpl).query(queryTmpl).build();
     }
 
     /**
@@ -284,18 +282,19 @@ public class PaginationInfo {
     }
 
     /**
-     * Creates and returns a map of attributes to be used by pagination functionality in displaying the results<br>
+     * Creates and returns a map of attributes to be used by pagination functionality in displaying
+     * the results<br>
      * <p>
-     * Pagination functionality supports only a single sort order. If a {@code Sort} instance containing multiple {@code Order}
-     * elements is passed as argument, the last {@code Order} element will be applicable
+     * Pagination functionality supports only a single sort order. If a {@code Sort} instance
+     * containing multiple {@code Order} elements is passed as argument, the last {@code Order}
+     * element will be applicable
      * </p>
      * @param pageIndex index of page number (page index is start with 0).
      * @param size size of page.
      * @param sort Sort option for queries.
      * @return Map&lt;String, Object&gt; instance of attributes
      */
-    public static Map<String, Object> createAttributeMap(int pageIndex,
-            int size, Sort sort) {
+    public static Map<String, Object> createAttributeMap(int pageIndex, int size, Sort sort) {
         Map<String, Object> attr = new HashMap<String, Object>(3);
         attr.put(PAGE_ATTR, pageIndex);
         attr.put(SIZE_ATTR, size);
@@ -306,8 +305,7 @@ public class PaginationInfo {
                 // support only one order
                 Order order = orders.next();
                 attr.put(SORT_ORDER_PROPERTY_ATTR, order.getProperty());
-                attr.put(SORT_ORDER_DIRECTION_ATTR, order.getDirection()
-                        .toString());
+                attr.put(SORT_ORDER_DIRECTION_ATTR, order.getDirection().toString());
             }
         }
         return attr;
@@ -368,10 +366,9 @@ public class PaginationInfo {
      * @return String Pagination URL with URL page number and display count set to it
      */
     public String getPageUrl(int pageIndex) {
-        Map<String, Object> attr = createAttributeMap(pageIndex, page.getSize(),
-                page.getSort());
-        StringBuilder pageUriBuilder = new StringBuilder(pageUri.expand(attr)
-                .encode().toUriString());
+        Map<String, Object> attr = createAttributeMap(pageIndex, page.getSize(), page.getSort());
+        StringBuilder pageUriBuilder =
+                new StringBuilder(pageUri.expand(attr).encode().toUriString());
         if (StringUtils.hasText(criteriaQuery)) {
             if (pageUri.getQueryParams().isEmpty()) {
                 pageUriBuilder.append("?");
@@ -432,9 +429,11 @@ public class PaginationInfo {
     }
 
     /**
-     * Determines if the page number passed as argument is the currently displayed page number or not <br>
+     * Determines if the page number passed as argument is the currently displayed page number or
+     * not <br>
      * @param page page-number
-     * @return True, if the page number passed as argument is the currently displayed page number. False otherwise.
+     * @return True, if the page number passed as argument is the currently displayed page number.
+     *         False otherwise.
      */
     public boolean isCurrent(int page) {
         return current == page;

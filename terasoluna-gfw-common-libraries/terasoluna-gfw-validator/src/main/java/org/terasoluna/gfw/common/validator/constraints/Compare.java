@@ -33,8 +33,8 @@ import org.terasoluna.gfw.common.validator.constraints.Compare.List;
 import org.terasoluna.gfw.common.validator.constraintvalidators.CompareValidator;
 
 /**
- * The annotated element, the result of comparing the two properties specified, must match the specified operator. Operator can
- * be specified to {@link Operator}
+ * The annotated element, the result of comparing the two properties specified, must match the
+ * specified operator. Operator can be specified to {@link Operator}
  * <p>
  * Supported specified property types are:
  * </p>
@@ -42,17 +42,18 @@ import org.terasoluna.gfw.common.validator.constraintvalidators.CompareValidator
  * <li>{@code Comparable}</li>
  * </ul>
  * <p>
- * {@code null} elements are considered valid. If any of the specified two properties is {@code null}, are considered valid. If
- * specify two properties of different types, are considered invalid. An {@link IllegalArgumentException}(wrapped in
- * {@link ValidationException}) is thrown if specify a property not {@link Comparable}.
+ * {@code null} elements are considered valid. If any of the specified two properties is
+ * {@code null}, are considered valid. If specify two properties of different types, are considered
+ * invalid. An {@link IllegalArgumentException}(wrapped in {@link ValidationException}) is thrown if
+ * specify a property not {@link Comparable}.
  * </p>
  * @since 5.1.0
  * @see CompareValidator
  * @see Operator
  */
 @Documented
-@Constraint(validatedBy = { CompareValidator.class })
-@Target({ TYPE, ANNOTATION_TYPE, TYPE_USE })
+@Constraint(validatedBy = {CompareValidator.class})
+@Target({TYPE, ANNOTATION_TYPE, TYPE_USE})
 @Retention(RUNTIME)
 @Repeatable(List.class)
 public @interface Compare {
@@ -91,9 +92,9 @@ public @interface Compare {
     Operator operator();
 
     /**
-     * @return configure how to treat {@code null} value in given parameters. If true, it is regarded as valid only when both
-     *         left and right are {@code null}. It is regarded as invalid when either is {@code null}. If false, both cases are
-     *         regarded as valid.
+     * @return configure how to treat {@code null} value in given parameters. If true, it is
+     *         regarded as valid only when both left and right are {@code null}. It is regarded as
+     *         invalid when either is {@code null}. If false, both cases are regarded as valid.
      */
     boolean requireBoth() default false;
 
@@ -108,7 +109,7 @@ public @interface Compare {
      * @since 5.1.0
      */
     @Documented
-    @Target({ TYPE, ANNOTATION_TYPE, TYPE_USE })
+    @Target({TYPE, ANNOTATION_TYPE, TYPE_USE})
     @Retention(RUNTIME)
     @interface List {
         /**
@@ -162,7 +163,8 @@ public @interface Compare {
 
         /**
          * Constructor.
-         * @param strategies to assert result of {@code Comparable#compareTo(Object)} as the expected
+         * @param strategies to assert result of {@code Comparable#compareTo(Object)} as the
+         *        expected
          */
         Operator(CompareStrategy... strategies) {
             this.strategies = strategies;
@@ -171,8 +173,8 @@ public @interface Compare {
         /**
          * Assert result of {@code Comparable#compareTo(Object)} as the expected.
          * @param comparisonResult result of {@code Comparable#compareTo(Object)}
-         * @return {@code true} if result of {@code Comparable#compareTo(Object)} as the expected in any of the
-         *         {@code CompareStrategy#isExpected(int)}, otherwise {@code false}.
+         * @return {@code true} if result of {@code Comparable#compareTo(Object)} as the expected in
+         *         any of the {@code CompareStrategy#isExpected(int)}, otherwise {@code false}.
          */
         public boolean isExpected(int comparisonResult) {
             for (CompareStrategy strategy : strategies) {
@@ -245,7 +247,8 @@ public @interface Compare {
             /**
              * Assert result of {@code Comparable#compareTo(Object)} as the expected.
              * @param comparisonResult result of {@code Comparable#compareTo(Object)}
-             * @return {@code true} if result of {@code Comparable#compareTo(Object)} as the expected, otherwise {@code false}.
+             * @return {@code true} if result of {@code Comparable#compareTo(Object)} as the
+             *         expected, otherwise {@code false}.
              */
             protected abstract boolean isExpected(int comparisonResult);
         }

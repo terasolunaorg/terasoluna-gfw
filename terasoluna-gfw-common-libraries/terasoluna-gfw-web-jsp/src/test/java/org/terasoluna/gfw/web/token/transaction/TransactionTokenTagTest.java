@@ -55,8 +55,8 @@ public class TransactionTokenTagTest {
 
         // mock behavior
         when((HttpServletRequest) pageContext.getRequest()).thenReturn(request);
-        when((TransactionToken) request.getAttribute(
-                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
+        when((TransactionToken) request
+                .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
                         .thenReturn(null);
 
         // run
@@ -84,8 +84,8 @@ public class TransactionTokenTagTest {
 
         // mock behavior
         when((HttpServletRequest) pageContext.getRequest()).thenReturn(request);
-        when((TransactionToken) request.getAttribute(
-                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
+        when((TransactionToken) request
+                .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
                         .thenReturn(token);
 
         // run
@@ -93,8 +93,8 @@ public class TransactionTokenTagTest {
 
         // capture
         String expected = "<input type=\"hidden\" name=\""
-                + TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER
-                + "\" value=\"" + token.getTokenString() + "\"/>";
+                + TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER + "\" value=\""
+                + token.getTokenString() + "\"/>";
 
         // assert
         assertThat(sw.getBuffer(), hasToString(expected));
@@ -118,8 +118,8 @@ public class TransactionTokenTagTest {
 
         // mock behavior
         when((HttpServletRequest) pageContext.getRequest()).thenReturn(request);
-        when((TransactionToken) request.getAttribute(
-                TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
+        when((TransactionToken) request
+                .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
                         .thenReturn(token);
 
         doThrow(new JspException()).when(tagWriter).startTag(anyString());

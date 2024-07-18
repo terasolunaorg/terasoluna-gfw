@@ -34,7 +34,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:test-context.xml" })
+@ContextConfiguration(locations = {"classpath:test-context.xml"})
 @Transactional
 @Rollback
 // Changed by SPR-13277
@@ -52,11 +52,10 @@ public class JdbcFixedJodaTimeDateFactoryTest {
     @Test
     public void testNewDateTime01() throws Exception {
         // crate table
-        jdbcTemplate.getJdbcOperations().execute(
-                "CREATE TABLE system_date(now timestamp NOT NULL)");
-        jdbcTemplate.update("INSERT INTO system_date(now) VALUES (:now)",
-                Collections.singletonMap("now",
-                        new DateTime(2012, 9, 11, 2, 25, 15, 100).toDate()));
+        jdbcTemplate.getJdbcOperations()
+                .execute("CREATE TABLE system_date(now timestamp NOT NULL)");
+        jdbcTemplate.update("INSERT INTO system_date(now) VALUES (:now)", Collections
+                .singletonMap("now", new DateTime(2012, 9, 11, 2, 25, 15, 100).toDate()));
 
         JdbcFixedJodaTimeDateFactory dateFactory = new JdbcFixedJodaTimeDateFactory();
         dateFactory.setDataSource(dataSource);
@@ -83,8 +82,7 @@ public class JdbcFixedJodaTimeDateFactoryTest {
     public void testNewDateTime02() throws Exception {
         JdbcFixedJodaTimeDateFactory dateFactory = new JdbcFixedJodaTimeDateFactory();
         dateFactory.setDataSource(dataSource);
-        dateFactory.setCurrentTimestampQuery(
-                "SELECT Timestamp '2012-09-09 2:33:10.222'");
+        dateFactory.setCurrentTimestampQuery("SELECT Timestamp '2012-09-09 2:33:10.222'");
 
         DateTime now = dateFactory.newDateTime();
         assertThat(now.getYear(), is(2012));

@@ -36,10 +36,11 @@ import org.terasoluna.gfw.common.validator.constraints.ByteMin.List;
 import org.terasoluna.gfw.common.validator.constraintvalidators.ByteMinValidator;
 
 /**
- * The annotated element must be a {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte length must
- * be higher or equal to the specified minimum.
+ * The annotated element must be a {@link CharSequence}({@link String}, {@link StringBuilder}, etc
+ * ...) whose byte length must be higher or equal to the specified minimum.
  * <p>
- * If you want to specify not only a minimum length but also a maximum length, it is recommended to use {@link ByteSize}.
+ * If you want to specify not only a minimum length but also a maximum length, it is recommended to
+ * use {@link ByteSize}.
  * </p>
  * <p>
  * Supported types are:
@@ -48,18 +49,19 @@ import org.terasoluna.gfw.common.validator.constraintvalidators.ByteMinValidator
  * <li>{@code CharSequence}</li>
  * </ul>
  * <p>
- * {@code null} elements are considered valid. Determine the byte length By encoding the string in the specified
- * {@link ByteMin#charset()}. If not specify, encode with charset {@code "UTF-8"}. An {@link IllegalArgumentException}(wrapped
- * in {@link ValidationException}) is thrown if specify {@link ByteMin#charset()} that can not be used or specify
- * {@link ByteMin#value()} that is negative value.
+ * {@code null} elements are considered valid. Determine the byte length By encoding the string in
+ * the specified {@link ByteMin#charset()}. If not specify, encode with charset {@code "UTF-8"}. An
+ * {@link IllegalArgumentException}(wrapped in {@link ValidationException}) is thrown if specify
+ * {@link ByteMin#charset()} that can not be used or specify {@link ByteMin#value()} that is
+ * negative value.
  * </p>
  * @since 5.1.0
  * @see ByteMinValidator
  * @see ByteSize
  */
 @Documented
-@Constraint(validatedBy = { ByteMinValidator.class })
-@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
+@Constraint(validatedBy = {ByteMinValidator.class})
+@Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
 @Repeatable(List.class)
 public @interface ByteMin {
@@ -98,8 +100,7 @@ public @interface ByteMin {
      * @since 5.1.0
      */
     @Documented
-    @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER,
-            TYPE_USE })
+    @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
     @Retention(RUNTIME)
     @interface List {
         /**

@@ -58,8 +58,7 @@ public class ConsistOfValidatorJaTest {
     public void testIsValid_message_japanese() throws Exception {
         Name_Simple name = new Name_Simple("abc", "GHI");
 
-        Set<ConstraintViolation<Name_Simple>> violations = validator.validate(
-                name);
+        Set<ConstraintViolation<Name_Simple>> violations = validator.validate(name);
 
         assertThat(violations, containsInAnyOrder( //
                 allOf( //

@@ -26,8 +26,8 @@ import org.junit.Test;
 public class SimpleMapCodeListTest {
 
     /**
-     * check whether the Map returned by asMap is same as the one set through setMap also check whether getCodeListID returns
-     * the same value as the one set through setBeanName
+     * check whether the Map returned by asMap is same as the one set through setMap also check
+     * whether getCodeListID returns the same value as the one set through setBeanName
      */
     @Test
     public void testAsMap01() {
@@ -35,8 +35,7 @@ public class SimpleMapCodeListTest {
 
         Map<String, String> mapInput = new HashMap<String, String>();
         for (int i = 0; i < 10; i++) {
-            mapInput.put(String.format("%03d", i), String.format("label%03d",
-                    i));
+            mapInput.put(String.format("%03d", i), String.format("label%03d", i));
         }
 
         // run
@@ -61,8 +60,7 @@ public class SimpleMapCodeListTest {
 
         Map<String, String> mapInput = new HashMap<String, String>();
         for (int i = 0; i < 10; i++) {
-            mapInput.put(String.format("%03d", i), String.format("label%03d",
-                    i));
+            mapInput.put(String.format("%03d", i), String.format("label%03d", i));
         }
 
         // run

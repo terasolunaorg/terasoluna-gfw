@@ -16,8 +16,8 @@
 package org.terasoluna.gfw.common.fullhalf;
 
 /**
- * Convenient class holding an instance of {@link FullHalfConverter} with default mapping table. Default mapping rule is as
- * follows:
+ * Convenient class holding an instance of {@link FullHalfConverter} with default mapping table.
+ * Default mapping rule is as follows:
  * <table border=1>
  * <caption>default mapping table</caption>
  * <tr>
@@ -769,8 +769,8 @@ package org.terasoluna.gfw.common.fullhalf;
  * <td>&nbsp;</td>
  * </tr>
  * </table>
- * Note that this converter converts full-width string and half-width string each other as much as possible. This rule does not
- * matter JIS X 0201 nor JIS X 0208.
+ * Note that this converter converts full-width string and half-width string each other as much as
+ * possible. This rule does not matter JIS X 0201 nor JIS X 0208.
  * @since 5.1.0
  */
 public final class DefaultFullHalf {

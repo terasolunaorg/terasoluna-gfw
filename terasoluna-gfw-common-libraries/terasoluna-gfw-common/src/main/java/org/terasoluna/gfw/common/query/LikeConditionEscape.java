@@ -47,8 +47,8 @@ public class LikeConditionEscape {
     }
 
     /**
-     * Constructor to escape like condition in a query (<strong>NOT</strong> including full-with wildcards). @return
-     * LikeConditionEscape instance for NOT including full-with wildcards
+     * Constructor to escape like condition in a query (<strong>NOT</strong> including full-with
+     * wildcards). @return LikeConditionEscape instance for NOT including full-with wildcards
      * @return LikeConditionEscape instance for excluding full-with wildcards
      */
     public static LikeConditionEscape withoutFullWidthWildcardsEscape() {
@@ -65,7 +65,8 @@ public class LikeConditionEscape {
      * <ol>
      * <li>Escape {@link #LIKE_ESC_CHAR} using {@link #LIKE_ESC_CHAR}.</li>
      * <li>Escape '%' and '_' using {@link #LIKE_ESC_CHAR}.</li>
-     * <li>Escape '％' and '＿' using {@link #LIKE_ESC_CHAR} if <code>escapeFullWithWildcards</code> is <code>true</code>.</li>
+     * <li>Escape '％' and '＿' using {@link #LIKE_ESC_CHAR} if <code>escapeFullWithWildcards</code>
+     * is <code>true</code>.</li>
      * </ol>
      * <p>
      * For example.<br>
@@ -93,12 +94,13 @@ public class LikeConditionEscape {
      * Returned value is not appended "%" keyword.
      * </p>
      * @param condition search criteria string.
-     * @param likeCondition instance of StringBuilder for storing a converted search criteria string. <br>
-     *            if arguments is null, create new instance of StringBuilder and stored a converted search criteria string.
+     * @param likeCondition instance of StringBuilder for storing a converted search criteria
+     *        string. <br>
+     *        if arguments is null, create new instance of StringBuilder and stored a converted
+     *        search criteria string.
      * @return instance of StringBuilder that are stored a converted search criteria string.
      */
-    public StringBuilder toLikeCondition(String condition,
-            StringBuilder likeCondition) {
+    public StringBuilder toLikeCondition(String condition, StringBuilder likeCondition) {
         StringBuilder storingLikeCondition = likeCondition;
         if (storingLikeCondition == null) {
             storingLikeCondition = new StringBuilder();
@@ -140,7 +142,8 @@ public class LikeConditionEscape {
     }
 
     /**
-     * Convert a search criteria string to the escaped string of LIKE condition ,and append "%" keyword to the front.
+     * Convert a search criteria string to the escaped string of LIKE condition ,and append "%"
+     * keyword to the front.
      * <p>
      * Conversion rules see JavaDoc of {@link #toLikeCondition(String, StringBuilder)}.
      * </p>
@@ -155,12 +158,12 @@ public class LikeConditionEscape {
         if (condition == null) {
             return null;
         }
-        return toLikeCondition(condition, new StringBuilder()).append("%")
-                .toString();
+        return toLikeCondition(condition, new StringBuilder()).append("%").toString();
     }
 
     /**
-     * Convert a search criteria string to the escaped string of LIKE condition ,and append "%" keyword to the backward.
+     * Convert a search criteria string to the escaped string of LIKE condition ,and append "%"
+     * keyword to the backward.
      * <p>
      * Conversion rules see JavaDoc of {@link #toLikeCondition(String, StringBuilder)}.
      * </p>
@@ -179,7 +182,8 @@ public class LikeConditionEscape {
     }
 
     /**
-     * Convert a search criteria string to the escaped string of LIKE condition ,and append "%" keyword to the back and forth.
+     * Convert a search criteria string to the escaped string of LIKE condition ,and append "%"
+     * keyword to the back and forth.
      * <p>
      * Conversion rules see JavaDoc of {@link #toLikeCondition(String, StringBuilder)}.
      * </p>
@@ -194,7 +198,6 @@ public class LikeConditionEscape {
         if (condition == null) {
             return null;
         }
-        return toLikeCondition(condition, new StringBuilder("%")).append("%")
-                .toString();
+        return toLikeCondition(condition, new StringBuilder("%")).append("%").toString();
     }
 }

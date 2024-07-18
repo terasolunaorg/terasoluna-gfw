@@ -1,94 +1,94 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:aop="http://www.springframework.org/schema/aop"
-  xmlns:context="http://www.springframework.org/schema/context" xmlns:jee="http://www.springframework.org/schema/jee"
-  xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:util="http://www.springframework.org/schema/util"
-  xsi:schemaLocation="http://www.springframework.org/schema/jee https://www.springframework.org/schema/jee/spring-jee.xsd
-        http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd
-        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd
-        http://www.springframework.org/schema/data/jpa https://www.springframework.org/schema/data/jpa/spring-jpa.xsd
-        http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd
-        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+    xmlns:context="http://www.springframework.org/schema/context" xmlns:jee="http://www.springframework.org/schema/jee"
+    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/jee https://www.springframework.org/schema/jee/spring-jee.xsd
+                        http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd
+                        http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+                        http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd
+                        http://www.springframework.org/schema/data/jpa https://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+                        http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx.xsd
+                        http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
 
-  <bean id="simpleMapCodeList" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
-  </bean>
+    <bean id="simpleMapCodeList" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+    </bean>
 
-  <bean id="numberRangeCodeList" class="org.terasoluna.gfw.common.codelist.NumberRangeCodeList">
-  </bean>
+    <bean id="numberRangeCodeList" class="org.terasoluna.gfw.common.codelist.NumberRangeCodeList">
+    </bean>
 
-  <bean id="simpleI18nCodeList" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
-    <property name="rows">
-      <util:map>
-        <entry key="en">
-          <map>
-            <entry key="key2" value="value2" />
-          </map>
-        </entry>
-      </util:map>
-    </property>
-    <property name="fallbackTo" value="en" />
-  </bean>
+    <bean id="simpleI18nCodeList" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+        <property name="rows">
+            <util:map>
+                <entry key="en">
+                    <map>
+                        <entry key="key2" value="value2" />
+                    </map>
+                </entry>
+            </util:map>
+        </property>
+        <property name="fallbackTo" value="en" />
+    </bean>
 
-  <bean id="A_simpleMapCodeList" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
-  </bean>
+    <bean id="A_simpleMapCodeList" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+    </bean>
 
-  <bean id="A_numberRangeCodeList" class="org.terasoluna.gfw.common.codelist.NumberRangeCodeList">
-  </bean>
+    <bean id="A_numberRangeCodeList" class="org.terasoluna.gfw.common.codelist.NumberRangeCodeList">
+    </bean>
 
-  <bean id="A_simpleI18nCodeList" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
-    <property name="rows">
-      <util:map>
-        <entry key="en">
-          <map>
-            <entry key="key2" value="value2" />
-          </map>
-        </entry>
-      </util:map>
-    </property>
-    <property name="fallbackTo" value="en" />
-  </bean>
+    <bean id="A_simpleI18nCodeList" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+        <property name="rows">
+            <util:map>
+                <entry key="en">
+                    <map>
+                        <entry key="key2" value="value2" />
+                    </map>
+                </entry>
+            </util:map>
+        </property>
+        <property name="fallbackTo" value="en" />
+    </bean>
 
 
-  <bean id="B_simpleMapCodeList" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
-  </bean>
+    <bean id="B_simpleMapCodeList" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+    </bean>
 
-  <bean id="B_numberRangeCodeList" class="org.terasoluna.gfw.common.codelist.NumberRangeCodeList">
-  </bean>
+    <bean id="B_numberRangeCodeList" class="org.terasoluna.gfw.common.codelist.NumberRangeCodeList">
+    </bean>
 
-  <bean id="B_simpleI18nCodeList" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
-    <property name="rows">
-      <util:map>
-        <entry key="en">
-          <map>
-            <entry key="key2" value="value2" />
-          </map>
-        </entry>
-      </util:map>
-    </property>
-    <property name="fallbackTo" value="en" />
-  </bean>
+    <bean id="B_simpleI18nCodeList" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+        <property name="rows">
+            <util:map>
+                <entry key="en">
+                    <map>
+                        <entry key="key2" value="value2" />
+                    </map>
+                </entry>
+            </util:map>
+        </property>
+        <property name="fallbackTo" value="en" />
+    </bean>
 
-  <bean id="C_simpleMapCodeList" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
-    <property name="map">
-      <map>
-        <entry key="key1" value="value1" />
-      </map>
-    </property>
-  </bean>
+    <bean id="C_simpleMapCodeList" class="org.terasoluna.gfw.common.codelist.SimpleMapCodeList">
+        <property name="map">
+            <map>
+                <entry key="key1" value="value1" />
+            </map>
+        </property>
+    </bean>
 
-  <bean id="C_simpleI18nCodeList" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
-    <property name="rows">
-      <map>
-        <entry key="en">
-          <map>
-            <entry key="key2" value="value2" />
-          </map>
-        </entry>
-      </map>
-    </property>
-    <property name="fallbackTo" value="en" />
-  </bean>
+    <bean id="C_simpleI18nCodeList" class="org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList">
+        <property name="rows">
+            <map>
+                <entry key="en">
+                    <map>
+                        <entry key="key2" value="value2" />
+                    </map>
+                </entry>
+            </map>
+        </property>
+        <property name="fallbackTo" value="en" />
+    </bean>
 
 </beans>
