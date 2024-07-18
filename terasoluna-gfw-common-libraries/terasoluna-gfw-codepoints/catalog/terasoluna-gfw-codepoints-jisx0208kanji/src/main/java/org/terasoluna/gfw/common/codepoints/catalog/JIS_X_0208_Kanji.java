@@ -18,7 +18,8 @@ package org.terasoluna.gfw.common.codepoints.catalog;
 import org.terasoluna.gfw.common.codepoints.CodePoints;
 
 /**
- * Code points which consist of JIS X 0208's level 1 (from row 16 to row 47) and level 2 (from row 48 to row 84) Kanji.
+ * Code points which consist of JIS X 0208's level 1 (from row 16 to row 47) and level 2 (from row
+ * 48 to row 84) Kanji.
  * @since 5.1.0
  */
 public final class JIS_X_0208_Kanji extends CodePoints {

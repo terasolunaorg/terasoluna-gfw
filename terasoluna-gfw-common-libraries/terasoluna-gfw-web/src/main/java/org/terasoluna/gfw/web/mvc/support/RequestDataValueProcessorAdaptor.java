@@ -24,11 +24,11 @@ import jakarta.servlet.http.HttpServletRequest;
 /**
  * Base class for custom implementations of {@link RequestDataValueProcessor} interface. <br>
  */
-public class RequestDataValueProcessorAdaptor implements
-                                              RequestDataValueProcessor {
+public class RequestDataValueProcessorAdaptor implements RequestDataValueProcessor {
 
     /**
-     * returns the action passed as argument as it is. This method is for compatibility with Spring 3.
+     * returns the action passed as argument as it is. This method is for compatibility with Spring
+     * 3.
      * @param request the current request
      * @param action the form action
      * @return the action to use, possibly modified
@@ -38,7 +38,8 @@ public class RequestDataValueProcessorAdaptor implements
     }
 
     /**
-     * returns the action passed as argument as it is. This method is for compatibility with Spring 4.
+     * returns the action passed as argument as it is. This method is for compatibility with Spring
+     * 4.
      * @param request the current request
      * @param action the form action
      * @param method the form HTTP method
@@ -48,8 +49,7 @@ public class RequestDataValueProcessorAdaptor implements
      * @since 1.0.2
      */
     @Override
-    public String processAction(HttpServletRequest request, String action,
-            String method) {
+    public String processAction(HttpServletRequest request, String action, String method) {
         return action;
     }
 
@@ -64,8 +64,8 @@ public class RequestDataValueProcessorAdaptor implements
      *      java.lang.String, java.lang.String, java.lang.String)
      */
     @Override
-    public String processFormFieldValue(HttpServletRequest request, String name,
-            String value, String type) {
+    public String processFormFieldValue(HttpServletRequest request, String name, String value,
+            String type) {
         return value;
     }
 
@@ -76,8 +76,7 @@ public class RequestDataValueProcessorAdaptor implements
      * @see org.springframework.web.servlet.support.RequestDataValueProcessor#getExtraHiddenFields(javax.servlet.http.HttpServletRequest)
      */
     @Override
-    public Map<String, String> getExtraHiddenFields(
-            HttpServletRequest request) {
+    public Map<String, String> getExtraHiddenFields(HttpServletRequest request) {
         return null;
     }
 

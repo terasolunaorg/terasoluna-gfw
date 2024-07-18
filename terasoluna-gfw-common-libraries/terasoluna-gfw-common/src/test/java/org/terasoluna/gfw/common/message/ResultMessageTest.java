@@ -51,8 +51,7 @@ public class ResultMessageTest {
 
     @Test
     public void test03() {
-        ResultMessage message = ResultMessage.fromCode("xxx.yyy.code", "a", 1,
-                "x");
+        ResultMessage message = ResultMessage.fromCode("xxx.yyy.code", "a", 1, "x");
         System.out.println(message);
 
         assertThat(message.getText(), is(nullValue()));
@@ -62,8 +61,7 @@ public class ResultMessageTest {
 
     @Test
     public void test04() {
-        ResultMessage message = ResultMessage.fromCode("xxx.yyy.code",
-                (Object[]) null);
+        ResultMessage message = ResultMessage.fromCode("xxx.yyy.code", (Object[]) null);
 
         assertThat(message.getText(), is(nullValue()));
         assertThat(message.getCode(), is("xxx.yyy.code"));
@@ -86,14 +84,13 @@ public class ResultMessageTest {
     }
 
     /**
-     * This test uses SerializationUtils#deserialize(byte[]) Although this mechanism is deprecated, it is still used because the
-     * data to be deserialized is guaranteed.
+     * This test uses SerializationUtils#deserialize(byte[]) Although this mechanism is deprecated,
+     * it is still used because the data to be deserialized is guaranteed.
      */
     @SuppressWarnings("deprecation")
     @Test(expected = None.class)
     public void test10() {
-        byte[] serialized = SerializationUtils.serialize(ResultMessage.fromText(
-                "foo"));
+        byte[] serialized = SerializationUtils.serialize(ResultMessage.fromText("foo"));
         SerializationUtils.deserialize(serialized);
     }
 

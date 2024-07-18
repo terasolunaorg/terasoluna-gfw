@@ -113,7 +113,8 @@ public class ConfigurableClockFactoryTest {
     @Test
     public void testFormatPattern() throws Exception {
 
-        ClockFactory formatPatternClockFactory = new ConfigurableClockFactory("2012/09/11 02:25:15", "yyyy/MM/dd HH:mm:ss");
+        ClockFactory formatPatternClockFactory =
+                new ConfigurableClockFactory("2012/09/11 02:25:15", "yyyy/MM/dd HH:mm:ss");
         Clock clock = formatPatternClockFactory.fixed();
 
         ZonedDateTime now = ZonedDateTime.now(clock);
@@ -135,7 +136,8 @@ public class ConfigurableClockFactoryTest {
     @Test
     public void testFormatStyle() throws Exception {
 
-        ClockFactory formatStyleClockFactory = new ConfigurableClockFactory("2012/09/11 02:25:15", FormatStyle.MEDIUM, FormatStyle.MEDIUM);
+        ClockFactory formatStyleClockFactory = new ConfigurableClockFactory("2012/09/11 02:25:15",
+                FormatStyle.MEDIUM, FormatStyle.MEDIUM);
         Clock clock = formatStyleClockFactory.fixed();
 
         ZonedDateTime now = ZonedDateTime.now(clock);

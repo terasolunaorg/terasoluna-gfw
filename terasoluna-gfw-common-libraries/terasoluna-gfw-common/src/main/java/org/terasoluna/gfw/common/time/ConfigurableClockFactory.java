@@ -24,7 +24,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
 /**
- * Implementation of {@link ClockFactory} that obtain a clock based on specified date and time as string.
+ * Implementation of {@link ClockFactory} that obtain a clock based on specified date and time as
+ * string.
  * @since 5.8.0
  * @author Atsushi Yoshikawa
  */
@@ -48,8 +49,7 @@ public class ConfigurableClockFactory implements ClockFactory {
      * @param localDateTimeString date and time as string
      * @param pattern format pattern
      */
-    public ConfigurableClockFactory(String localDateTimeString,
-            String pattern) {
+    public ConfigurableClockFactory(String localDateTimeString, String pattern) {
         this.localDateTimeString = localDateTimeString;
         this.formatter = DateTimeFormatter.ofPattern(pattern);
     }
@@ -60,11 +60,10 @@ public class ConfigurableClockFactory implements ClockFactory {
      * @param dateStyle format style of date
      * @param timeStyle format style of time
      */
-    public ConfigurableClockFactory(String localDateTimeString,
-            FormatStyle dateStyle, FormatStyle timeStyle) {
+    public ConfigurableClockFactory(String localDateTimeString, FormatStyle dateStyle,
+            FormatStyle timeStyle) {
         this.localDateTimeString = localDateTimeString;
-        this.formatter = DateTimeFormatter.ofLocalizedDateTime(dateStyle,
-                timeStyle);
+        this.formatter = DateTimeFormatter.ofLocalizedDateTime(dateStyle, timeStyle);
     }
 
     /**
@@ -81,8 +80,7 @@ public class ConfigurableClockFactory implements ClockFactory {
     @Override
     public Clock tick(ZoneId zone) {
         Clock systemClock = Clock.system(zone);
-        return Clock.offset(systemClock, Duration.between(systemClock.instant(),
-                instant(zone)));
+        return Clock.offset(systemClock, Duration.between(systemClock.instant(), instant(zone)));
     }
 
     /**
@@ -91,7 +89,6 @@ public class ConfigurableClockFactory implements ClockFactory {
      * @return instant of date and time
      */
     private Instant instant(ZoneId zone) {
-        return LocalDateTime.parse(localDateTimeString, formatter).atZone(zone)
-                .toInstant();
+        return LocalDateTime.parse(localDateTimeString, formatter).atZone(zone).toInstant();
     }
 }

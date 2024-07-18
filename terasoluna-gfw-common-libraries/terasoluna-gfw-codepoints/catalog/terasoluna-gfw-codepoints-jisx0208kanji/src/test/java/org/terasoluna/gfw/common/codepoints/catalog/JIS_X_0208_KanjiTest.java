@@ -34,7 +34,6 @@ public class JIS_X_0208_KanjiTest {
     @Test
     public void testIsInValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("\uD867\uDE15網代" /* きびなごあじろ */), is(
-                false));
+        assertThat(codePoints.containsAll("\uD867\uDE15網代" /* きびなごあじろ */), is(false));
     }
 }

@@ -25,8 +25,10 @@ import org.springframework.util.ReflectionUtils;
 
 /**
  * Codelist consisting of values/labels in Enum which implements {@link CodeListItem}. <br>
- * The result of {@link CodeListItem#getCodeValue} is used as a value of codelist (means it is used as a key of map). <br>
- * The result of {@link CodeListItem#getCodeLabel} is used as a label of codelist (means it is used as a value of map).
+ * The result of {@link CodeListItem#getCodeValue} is used as a value of codelist (means it is used
+ * as a key of map). <br>
+ * The result of {@link CodeListItem#getCodeLabel} is used as a label of codelist (means it is used
+ * as a value of map).
  * @since 5.0.0
  */
 public class EnumCodeList extends AbstractCodeList {
@@ -56,8 +58,10 @@ public class EnumCodeList extends AbstractCodeList {
 
     /**
      * Constructor.
-     * @param enumClass Enum class of which this codelist consists. Must implement {@link CodeListItem}
-     * @throws java.lang.IllegalArgumentException if the given class does not implement {@link CodeListItem}
+     * @param enumClass Enum class of which this codelist consists. Must implement
+     *        {@link CodeListItem}
+     * @throws java.lang.IllegalArgumentException if the given class does not implement
+     *         {@link CodeListItem}
      */
     public EnumCodeList(Class<? extends Enum<?>> enumClass) {
         Assert.isTrue(CodeListItem.class.isAssignableFrom(enumClass),
@@ -65,8 +69,7 @@ public class EnumCodeList extends AbstractCodeList {
         Map<String, String> codeList = new LinkedHashMap<String, String>();
         Method method = ReflectionUtils.findMethod(enumClass, "values");
 
-        Enum<?>[] result = (Enum<?>[]) ReflectionUtils.invokeMethod(method,
-                enumClass);
+        Enum<?>[] result = (Enum<?>[]) ReflectionUtils.invokeMethod(method, enumClass);
         for (Enum<?> e : result) {
             CodeListItem item = (CodeListItem) e;
             codeList.put(item.getCodeValue(), item.getCodeLabel());

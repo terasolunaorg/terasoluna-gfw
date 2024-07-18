@@ -28,7 +28,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 /**
- * Represents the collection of code point. This class holds immutable code points as {@link java.util.Set} and provides
+ * Represents the collection of code point. This class holds immutable code points as
+ * {@link java.util.Set} and provides
  * <ul>
  * <li>check method if the code points in the given string are included</li>
  * <li>set operations (union, subtract, intersect)</li>
@@ -39,7 +40,8 @@ import java.util.concurrent.ConcurrentMap;
  * <code>CodePoints cp = CodePoints.of(ASCIIPrintableChars.class);</code>
  * </pre>
  *
- * The constructor can be also used. In this case, of course, the set of code points are not cached and created every time.
+ * The constructor can be also used. In this case, of course, the set of code points are not cached
+ * and created every time.
  *
  * <pre>
  * <code>CodePoints cp = new ASCIIPrintableChars();</code>
@@ -72,8 +74,8 @@ import java.util.concurrent.ConcurrentMap;
  * </pre>
  *
  * </li>
- * <li>Pass existing {@link CodePoints}. This type is intended to use for the definition of new code points. The set in the
- * {@link CodePoints} are shared.
+ * <li>Pass existing {@link CodePoints}. This type is intended to use for the definition of new code
+ * points. The set in the {@link CodePoints} are shared.
  *
  * <pre>
  * <code>CodePoints cp = ...;
@@ -82,8 +84,9 @@ import java.util.concurrent.ConcurrentMap;
  *
  * </li>
  * </ol>
- * <h3>How to check strings</h3> {@link #containsAll(String)} returns {@code true} if all code points in the given string are
- * included in the target code points. Otherwise {@code false} is returned.
+ * <h3>How to check strings</h3> {@link #containsAll(String)} returns {@code true} if all code
+ * points in the given string are included in the target code points. Otherwise {@code false} is
+ * returned.
  *
  * <pre>
  * <code>CodePoints cp = new CodePoints(0x0061, 0x0062); // a b
@@ -95,8 +98,8 @@ import java.util.concurrent.ConcurrentMap;
  * </code>
  * </pre>
  *
- * {@link #firstExcludedCodePoint(String)} return the first code point in the given string which is not included in the target
- * code points.
+ * {@link #firstExcludedCodePoint(String)} return the first code point in the given string which is
+ * not included in the target code points.
  *
  * <pre>
  * <code>CodePoints cp = new CodePoints(0x0061, 0x0062); // a b
@@ -106,8 +109,8 @@ import java.util.concurrent.ConcurrentMap;
  * </code>
  * </pre>
  *
- * {@link #allExcludedCodePoints(String)} returns set of code points in the given string which are not not included in the
- * target.
+ * {@link #allExcludedCodePoints(String)} returns set of code points in the given string which are
+ * not not included in the target.
  *
  * <pre>
  * <code>CodePoints cp = new CodePoints(0x0061, 0x0062); // a b
@@ -119,8 +122,8 @@ import java.util.concurrent.ConcurrentMap;
  *
  * <h3>How to compose code points</h3>
  * <p>
- * {@code CodePoints} provides composable APIs. Since a {@code CodePoints} instance is immutable. These API does not effect the
- * state of {@code CodePoints} instances.
+ * {@code CodePoints} provides composable APIs. Since a {@code CodePoints} instance is immutable.
+ * These API does not effect the state of {@code CodePoints} instances.
  * </p>
  * <h4>Union</h4>
  * <p>
@@ -179,9 +182,9 @@ import java.util.concurrent.ConcurrentMap;
  * }</code>
  * </pre>
  * <p>
- * Not that, <code>new</code> is used not to cache temporary code points. If {@code X_JIS_0208_Hiragana} and
- * {@code X_JIS_0208_Hiragana_Katakana} are also intended to be used, use {@link #of(Class)} instead of {@code new} so that
- * these are cached:
+ * Not that, <code>new</code> is used not to cache temporary code points. If
+ * {@code X_JIS_0208_Hiragana} and {@code X_JIS_0208_Hiragana_Katakana} are also intended to be
+ * used, use {@link #of(Class)} instead of {@code new} so that these are cached:
  * </p>
  *
  * <pre>
@@ -199,14 +202,16 @@ public class CodePoints implements Serializable {
     private static final long serialVersionUID = 1L;
 
     /**
-     * shows no code point is found in the given string which is not included in the target code points.
+     * shows no code point is found in the given string which is not included in the target code
+     * points.
      */
     public static final int NOT_FOUND = Integer.MIN_VALUE;
 
     /**
      * {@code CodePoints} cache
      */
-    private static final ConcurrentMap<Class<? extends CodePoints>, CodePoints> cache = new ConcurrentHashMap<Class<? extends CodePoints>, CodePoints>();
+    private static final ConcurrentMap<Class<? extends CodePoints>, CodePoints> cache =
+            new ConcurrentHashMap<Class<? extends CodePoints>, CodePoints>();
 
     /**
      * set for code points.
@@ -250,7 +255,8 @@ public class CodePoints implements Serializable {
     }
 
     /**
-     * Constructor with the given {@code CodePoints}. The {@code java.util.Set} object inside {@code CodePoints} is shared.
+     * Constructor with the given {@code CodePoints}. The {@code java.util.Set} object inside
+     * {@code CodePoints} is shared.
      * @param codePoints actual code points
      */
     public CodePoints(CodePoints codePoints) {
@@ -260,18 +266,20 @@ public class CodePoints implements Serializable {
     /**
      * returns whether all code points in the given string are included in the target code points.
      * @param s target string
-     * @return {@code true} if all code points in the given string are included in the target code points。Otherwise
-     *         {@code false} is returned.
+     * @return {@code true} if all code points in the given string are included in the target code
+     *         points。Otherwise {@code false} is returned.
      */
     public boolean containsAll(String s) {
         return this.firstExcludedCodePoint(s) == NOT_FOUND;
     }
 
     /**
-     * returns the first code point in the given string which is not included in the target code points.
+     * returns the first code point in the given string which is not included in the target code
+     * points.
      * @param s target string
-     * @return first code point in the given string which is not included in the target code points. {@link #NOT_FOUND} is
-     *         returned if all code points in the given string are included in the target code points.
+     * @return first code point in the given string which is not included in the target code points.
+     *         {@link #NOT_FOUND} is returned if all code points in the given string are included in
+     *         the target code points.
      */
     public int firstExcludedCodePoint(String s) {
         if (s == null || s.isEmpty()) {
@@ -292,8 +300,9 @@ public class CodePoints implements Serializable {
     /**
      * returns set of code points in the given string which are not not included in the target.
      * @param s target string
-     * @return set of code points in the given string which are not not included in the target. an empty set is returned if all
-     *         code points in the given string are included in the target code points.
+     * @return set of code points in the given string which are not not included in the target. an
+     *         empty set is returned if all code points in the given string are included in the
+     *         target code points.
      */
     public Set<Integer> allExcludedCodePoints(String s) {
         if (s == null || s.isEmpty()) {
@@ -346,8 +355,8 @@ public class CodePoints implements Serializable {
     }
 
     /**
-     * Produces cached {@link CodePoints}. At first time, a new {@link CodePoints} is created. After second time, same instance
-     * is returned.
+     * Produces cached {@link CodePoints}. At first time, a new {@link CodePoints} is created. After
+     * second time, same instance is returned.
      * @param clazz {@link CodePoints} class to create
      * @param <T> {@link CodePoints} class
      * @return cached instance
@@ -361,7 +370,8 @@ public class CodePoints implements Serializable {
             T codePoints = clazz.getDeclaredConstructor().newInstance();
             cache.put(clazz, codePoints);
             return codePoints;
-        } catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException e) {
+        } catch (NoSuchMethodException | SecurityException | IllegalAccessException
+                | IllegalArgumentException e) {
             throw new IllegalArgumentException("public default constructor not found", e);
         } catch (InstantiationException | InvocationTargetException e) {
             throw new IllegalArgumentException("exception occurred while initializing", e);
@@ -369,14 +379,14 @@ public class CodePoints implements Serializable {
     }
 
     /**
-     * Helper method to check whether all code points in the given string are included in any of the code points list.
+     * Helper method to check whether all code points in the given string are included in any of the
+     * code points list.
      * @param s target string
      * @param codePointsList array of code points
-     * @return {@code true} if all code points in the given string are included in any of the code points list. Otherwise
-     *         {@code false} is returned.
+     * @return {@code true} if all code points in the given string are included in any of the code
+     *         points list. Otherwise {@code false} is returned.
      */
-    public static boolean containsAllInAnyCodePoints(String s,
-            final CodePoints... codePointsList) {
+    public static boolean containsAllInAnyCodePoints(String s, final CodePoints... codePointsList) {
         Map<Integer, Integer> excludedCounts = new HashMap<Integer, Integer>();
         for (CodePoints codePoints : codePointsList) {
             Set<Integer> excluded = codePoints.allExcludedCodePoints(s);
@@ -386,7 +396,8 @@ public class CodePoints implements Serializable {
             }
 
             for (Integer codePoint : excluded) {
-                // count the number of CodePoints in the given list which forbade the given code point
+                // count the number of CodePoints in the given list which forbade the given code
+                // point
                 Integer count = excludedCounts.get(codePoint);
                 if (count != null) {
                     excludedCounts.put(codePoint, count + 1);
@@ -399,7 +410,8 @@ public class CodePoints implements Serializable {
         for (Map.Entry<Integer, Integer> entry : excludedCounts.entrySet()) {
             if (entry.getValue() == codePointsList.length) {
                 // All CodePoints forbade the given code point.
-                // This means there are some code points which are not included in any given CodePoints' list
+                // This means there are some code points which are not included in any given
+                // CodePoints' list
                 return false;
             }
         }

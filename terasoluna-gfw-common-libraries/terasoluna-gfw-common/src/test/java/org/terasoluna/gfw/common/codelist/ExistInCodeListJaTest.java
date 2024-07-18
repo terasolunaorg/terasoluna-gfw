@@ -62,8 +62,7 @@ public class ExistInCodeListJaTest {
         c.gender = 'G';
         c.lang = "JP";
         Set<ConstraintViolation<Customer>> result = validator.validate(c);
-        assertThat(result, containsInAnyOrder(hasProperty("message", is(
-                "CD_GENDER にありません"))));
+        assertThat(result, containsInAnyOrder(hasProperty("message", is("CD_GENDER にありません"))));
     }
 
     private class Customer {

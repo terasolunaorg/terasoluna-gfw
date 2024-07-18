@@ -36,10 +36,11 @@ import jakarta.validation.Payload;
 import jakarta.validation.ValidationException;
 
 /**
- * The annotated element must be a {@link CharSequence}({@link String}, {@link StringBuilder}, etc ...) whose byte length must
- * be lower or equal to the specified maximum.
+ * The annotated element must be a {@link CharSequence}({@link String}, {@link StringBuilder}, etc
+ * ...) whose byte length must be lower or equal to the specified maximum.
  * <p>
- * If you want to specify not only a maximum length but also a minimum length, it is recommended to use {@link ByteSize}.
+ * If you want to specify not only a maximum length but also a minimum length, it is recommended to
+ * use {@link ByteSize}.
  * </p>
  * <p>
  * Supported types are:
@@ -48,18 +49,19 @@ import jakarta.validation.ValidationException;
  * <li>{@code CharSequence}</li>
  * </ul>
  * <p>
- * {@code null} elements are considered valid. Determine the byte length By encoding the string in the specified
- * {@link ByteMax#charset()}. If not specify, encode with charset {@code "UTF-8"}. An {@link IllegalArgumentException}(wrapped
- * in {@link ValidationException}) is thrown if specify {@link ByteMax#charset()} that can not be used or specify
- * {@link ByteMax#value()} that is negative value.
+ * {@code null} elements are considered valid. Determine the byte length By encoding the string in
+ * the specified {@link ByteMax#charset()}. If not specify, encode with charset {@code "UTF-8"}. An
+ * {@link IllegalArgumentException}(wrapped in {@link ValidationException}) is thrown if specify
+ * {@link ByteMax#charset()} that can not be used or specify {@link ByteMax#value()} that is
+ * negative value.
  * </p>
  * @since 5.1.0
  * @see ByteMaxValidator
  * @see ByteSize
  */
 @Documented
-@Constraint(validatedBy = { ByteMaxValidator.class })
-@Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
+@Constraint(validatedBy = {ByteMaxValidator.class})
+@Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
 @Retention(RUNTIME)
 @Repeatable(List.class)
 public @interface ByteMax {
@@ -98,8 +100,7 @@ public @interface ByteMax {
      * @since 5.1.0
      */
     @Documented
-    @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER,
-            TYPE_USE })
+    @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE})
     @Retention(RUNTIME)
     @interface List {
         /**

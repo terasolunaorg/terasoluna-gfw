@@ -25,8 +25,7 @@ import org.junit.Test;
 
 public class EnumCodeListTest {
     public static enum OrderStatus implements EnumCodeList.CodeListItem {
-        RECEIVED("1", "Received"), SENT("2", "Sent"), CANCELLED("3",
-                "Cancelled");
+        RECEIVED("1", "Received"), SENT("2", "Sent"), CANCELLED("3", "Cancelled");
 
         private final String value;
 

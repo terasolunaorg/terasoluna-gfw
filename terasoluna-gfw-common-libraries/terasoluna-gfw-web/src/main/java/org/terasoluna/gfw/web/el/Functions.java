@@ -50,14 +50,13 @@ public final class Functions {
     /**
      * Pattern of URL for replace to the link tag.
      */
-    private static final Pattern URL_PATTERN = Pattern.compile(
-            "(http|https)://[A-Za-z0-9\\._~/:\\-?&=%;]+");
+    private static final Pattern URL_PATTERN =
+            Pattern.compile("(http|https)://[A-Za-z0-9\\._~/:\\-?&=%;]+");
 
     /**
      * Pattern of line break.
      */
-    private static final Pattern LINE_BREAK_PATTERN = Pattern.compile(
-            "(\\r\\n|\\r|\\n)");
+    private static final Pattern LINE_BREAK_PATTERN = Pattern.compile("(\\r\\n|\\r|\\n)");
 
     /**
      * Pattern of plus character.
@@ -72,12 +71,14 @@ public final class Functions {
     /**
      * conversion service for format a value.
      */
-    private static final FormattingConversionService CONVERSION_SERVICE = new DefaultFormattingConversionService();
+    private static final FormattingConversionService CONVERSION_SERVICE =
+            new DefaultFormattingConversionService();
 
     /**
      * converter from object to map
      */
-    private static final ObjectToMapConverter OBJECT_TO_MAP_CONVERTER = new ObjectToMapConverter(CONVERSION_SERVICE);
+    private static final ObjectToMapConverter OBJECT_TO_MAP_CONVERTER =
+            new ObjectToMapConverter(CONVERSION_SERVICE);
 
     /**
      * Default Constructor.
@@ -97,7 +98,8 @@ public final class Functions {
      * ' ====&gt; &amp;#39;<br>
      * </p>
      * @param input string to escape
-     * @return escaped string. returns empty string if <code>value</code> is <code>null</code> or empty string.
+     * @return escaped string. returns empty string if <code>value</code> is <code>null</code> or
+     *         empty string.
      * @see HtmlEscapeUtils#htmlEscape(Object)
      */
     public static String h(Object input) {
@@ -108,8 +110,9 @@ public final class Functions {
      * url encode the given string based on RFC 3986.<br>
      * <p>
      * url is encoded with "UTF-8".<br>
-     * This method is used to encode values in "query" string. In <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>,
-     * "query" part in URI is defined as follows:
+     * This method is used to encode values in "query" string. In
+     * <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986</a>, "query" part in URI is defined as
+     * follows:
      *
      * <pre>
      * <code>
@@ -132,7 +135,8 @@ public final class Functions {
      *      </code>
      * </pre>
      *
-     * In these characters, as a value of query parameter, <strong>"&amp;", "+" , "=" are percent-encoded</strong>.
+     * In these characters, as a value of query parameter, <strong>"&amp;", "+" , "=" are
+     * percent-encoded</strong>.
      * <h3>sample</h3>
      * <ul>
      * <li>/ ====&gt; /</li>
@@ -159,7 +163,8 @@ public final class Functions {
      * Characters not listed above are percent-encoded.
      * </p>
      * @param value string to encode
-     * @return encoded string based on RFC 3986. returns empty string if <code>value</code> is <code>null</code> or empty.
+     * @return encoded string based on RFC 3986. returns empty string if <code>value</code> is
+     *         <code>null</code> or empty.
      * @see <a href="http://www.ietf.org/rfc/rfc3986.txt">RFC 3986 3.4.Query</a>
      */
     public static String u(String value) {
@@ -170,16 +175,17 @@ public final class Functions {
     }
 
     /**
-     * convert <code>&quot;\r\n&quot;</code>,<code>&quot;\r&quot;</code>, <code>&quot;\n&quot;</code> to <code>&lt;br&gt;</code>
+     * convert <code>&quot;\r\n&quot;</code>,<code>&quot;\r&quot;</code>,
+     * <code>&quot;\n&quot;</code> to <code>&lt;br&gt;</code>
      * @param value string to convert
-     * @return converted string. returns empty string if <code>value</code> is <code>null</code> or empty.
+     * @return converted string. returns empty string if <code>value</code> is <code>null</code> or
+     *         empty.
      */
     public static String br(String value) {
         if (!StringUtils.hasLength(value)) {
             return "";
         }
-        String replacedValue = LINE_BREAK_PATTERN.matcher(value).replaceAll(
-                HTML_TAG_OF_LINE_BREAK);
+        String replacedValue = LINE_BREAK_PATTERN.matcher(value).replaceAll(HTML_TAG_OF_LINE_BREAK);
         return replacedValue;
     }
 
@@ -206,7 +212,8 @@ public final class Functions {
     /**
      * convert URL to anchor in the given string.
      * @param value string to convert
-     * @return converted string. returns empty string if <code>value</code> is <code>null</code> or empty.
+     * @return converted string. returns empty string if <code>value</code> is <code>null</code> or
+     *         empty.
      */
     public static String link(String value) {
         if (!StringUtils.hasLength(value)) {
@@ -222,7 +229,8 @@ public final class Functions {
      * </p>
      * @see ObjectToMapConverter
      * @param map map
-     * @return query string. if map is not empty, return query string. ex) name1=value&amp;name2=value&amp;...
+     * @return query string. if map is not empty, return query string. ex)
+     *         name1=value&amp;name2=value&amp;...
      */
     public static String mapToQuery(Map<String, ?> map) {
         if (CollectionUtils.isEmpty(map)) {
@@ -246,21 +254,24 @@ public final class Functions {
      * </p>
      * <p>
      * Note : About a {@link Map} property<br>
-     * In this method, {@code null} and empty element are distinguished explicitly. Conversion rules are as follows:
+     * In this method, {@code null} and empty element are distinguished explicitly. Conversion rules
+     * are as follows:
      * <ul>
-     * <li>If the value of a property is {@code null}, it is converted to empty string and the key is prefixed with {@code "_"}
-     * .(converted to the reset parameter provided by Spring Web MVC)</li>
+     * <li>If the value of a property is {@code null}, it is converted to empty string and the key
+     * is prefixed with {@code "_"} .(converted to the reset parameter provided by Spring Web
+     * MVC)</li>
      * <li>If the value of a {@link Map} property is empty element, it is not converted.</li>
      * </ul>
      * <br>
-     * But if this method is used after the {@code <form:form>} tag provided by Spring Web MVC, {@code null} is converted to
-     * empty element during the processing of {@code <form:form>} tag. As a result, {@code null} value is not converted to a
-     * reset parameter that start with {@code "_"}. In this case, this method does not guarantee the symmetry with the form
-     * binding provided by Spring Web MVC.
+     * But if this method is used after the {@code <form:form>} tag provided by Spring Web MVC,
+     * {@code null} is converted to empty element during the processing of {@code <form:form>} tag.
+     * As a result, {@code null} value is not converted to a reset parameter that start with
+     * {@code "_"}. In this case, this method does not guarantee the symmetry with the form binding
+     * provided by Spring Web MVC.
      * @see ObjectToMapConverter
      * @param params map or bean
-     * @return query string. returns empty string if <code>params</code> is <code>null</code> or empty string or
-     *         {@link Iterable} or {@link BeanUtils#isSimpleValueType(Class)}.
+     * @return query string. returns empty string if <code>params</code> is <code>null</code> or
+     *         empty string or {@link Iterable} or {@link BeanUtils#isSimpleValueType(Class)}.
      */
     public static String query(Object params) {
         if (params == null) {
@@ -296,7 +307,8 @@ public final class Functions {
      * 0x0D ====&gt; \r<br>
      * 0x0A ====&gt; \n<br>
      * @param value string to escape
-     * @return escaped string. returns empty string if <code>value</code> is <code>null</code> or empty.
+     * @return escaped string. returns empty string if <code>value</code> is <code>null</code> or
+     *         empty.
      */
     public static String js(String value) {
         if (!StringUtils.hasLength(value)) {
@@ -307,33 +319,33 @@ public final class Functions {
         for (int i = 0; i < value.length(); i++) {
             char ch = value.charAt(i);
             switch (ch) {
-            case '\'':
-                result.append("\\'");
-                break;
-            case '"':
-                result.append("\\\"");
-                break;
-            case '\\':
-                result.append("\\\\");
-                break;
-            case '/':
-                result.append("\\/");
-                break;
-            case '<':
-                result.append("\\x3c");
-                break;
-            case '>':
-                result.append("\\x3e");
-                break;
-            case '\r':
-                result.append("\\r");
-                break;
-            case '\n':
-                result.append("\\n");
-                break;
-            default:
-                result.append(ch);
-                break;
+                case '\'':
+                    result.append("\\'");
+                    break;
+                case '"':
+                    result.append("\\\"");
+                    break;
+                case '\\':
+                    result.append("\\\\");
+                    break;
+                case '/':
+                    result.append("\\/");
+                    break;
+                case '<':
+                    result.append("\\x3c");
+                    break;
+                case '>':
+                    result.append("\\x3e");
+                    break;
+                case '\r':
+                    result.append("\\r");
+                    break;
+                case '\n':
+                    result.append("\\n");
+                    break;
+                default:
+                    result.append(ch);
+                    break;
             }
         }
         return result.toString();
@@ -342,19 +354,20 @@ public final class Functions {
     /**
      * escape html (by {@link #h}) after escape js (by {@link #js})<br>
      * <p>
-     * This is used to escape event handler (ex. onclick="callback('${f:hjs(xxxx)}')"). This function equals to
-     * ${f:h(f:js(xxx))}.
+     * This is used to escape event handler (ex. onclick="callback('${f:hjs(xxxx)}')"). This
+     * function equals to ${f:h(f:js(xxx))}.
      * </p>
      * @param input string to escape
-     * @return escaped string. returns empty string if <code>value</code> is <code>null</code> or empty.
+     * @return escaped string. returns empty string if <code>value</code> is <code>null</code> or
+     *         empty.
      */
     public static String hjs(String input) {
         return h(js(input));
     }
 
     /**
-     * Percent-encode the "+" character in query string. This method is created for backward compatibility with spring 4.x or
-     * earlier version.
+     * Percent-encode the "+" character in query string. This method is created for backward
+     * compatibility with spring 4.x or earlier version.
      * @param query query string
      * @return encoded query string
      */

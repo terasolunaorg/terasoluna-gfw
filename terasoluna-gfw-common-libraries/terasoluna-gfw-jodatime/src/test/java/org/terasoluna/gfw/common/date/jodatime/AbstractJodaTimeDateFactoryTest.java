@@ -85,6 +85,7 @@ public class AbstractJodaTimeDateFactoryTest {
     }
 }
 
+
 @SuppressWarnings("deprecation")
 class StubDateFactory extends AbstractJodaTimeDateFactory {
     @Override

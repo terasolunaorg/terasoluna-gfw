@@ -28,8 +28,7 @@ public class Name_ConstructorParameter {
         this.lastName = lastName;
     }
 
-    public Name_ConstructorParameter() {
-    }
+    public Name_ConstructorParameter() {}
 
     public String getFirstName() {
         return firstName;

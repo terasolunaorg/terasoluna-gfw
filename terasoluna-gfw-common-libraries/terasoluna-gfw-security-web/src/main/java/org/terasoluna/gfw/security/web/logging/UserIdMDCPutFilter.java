@@ -59,11 +59,11 @@ public class UserIdMDCPutFilter extends AbstractMDCPutFilter {
      * @param request {@link HttpServletRequest}
      * @param response {@link HttpServletResponse}
      * @return Key used for storing authentication user name in {@code MDC}
-     * @see org.terasoluna.gfw.web.logging.mdc.AbstractMDCPutFilter#getMDCKey(HttpServletRequest, HttpServletResponse)
+     * @see org.terasoluna.gfw.web.logging.mdc.AbstractMDCPutFilter#getMDCKey(HttpServletRequest,
+     *      HttpServletResponse)
      */
     @Override
-    protected String getMDCKey(HttpServletRequest request,
-            HttpServletResponse response) {
+    protected String getMDCKey(HttpServletRequest request, HttpServletResponse response) {
         return attributeName;
     }
 
@@ -72,14 +72,13 @@ public class UserIdMDCPutFilter extends AbstractMDCPutFilter {
      * @param request {@link HttpServletRequest}
      * @param response {@link HttpServletResponse}
      * @return username
-     * @see org.terasoluna.gfw.web.logging.mdc.AbstractMDCPutFilter#getMDCValue(HttpServletRequest, HttpServletResponse)
+     * @see org.terasoluna.gfw.web.logging.mdc.AbstractMDCPutFilter#getMDCValue(HttpServletRequest,
+     *      HttpServletResponse)
      */
     @Override
-    protected String getMDCValue(HttpServletRequest request,
-            HttpServletResponse response) {
+    protected String getMDCValue(HttpServletRequest request, HttpServletResponse response) {
 
-        Authentication authentication = SecurityContextHolder.getContext()
-                .getAuthentication();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
         if (authentication != null) {
             Object principal = authentication.getPrincipal();

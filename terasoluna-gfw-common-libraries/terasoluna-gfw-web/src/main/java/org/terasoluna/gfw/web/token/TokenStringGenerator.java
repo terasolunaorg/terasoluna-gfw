@@ -44,7 +44,8 @@ public class TokenStringGenerator {
     }
 
     /**
-     * Constructor. Algorithm to be used for generating the token value can be passed as an argument <br>
+     * Constructor. Algorithm to be used for generating the token value can be passed as an argument
+     * <br>
      * @param algorithm Algorithm to be used for generating the token value (must not be null)
      * @throws IllegalArgumentException algorithm is null or invalid
      */
@@ -55,8 +56,8 @@ public class TokenStringGenerator {
         try {
             MessageDigest.getInstance(algorithm);
         } catch (NoSuchAlgorithmException e) {
-            throw new IllegalArgumentException("The given algorithm is invalid. algorithm="
-                    + algorithm, e);
+            throw new IllegalArgumentException(
+                    "The given algorithm is invalid. algorithm=" + algorithm, e);
         }
         this.algorithm = algorithm;
         this.internalSeed = Long.toHexString(new SecureRandom().nextLong());
@@ -65,8 +66,8 @@ public class TokenStringGenerator {
     /**
      * Generates random token string<br>
      * <p>
-     * Uses {@code MD5} as default algorithm if not externally specified. A seed is to be passed as parameter which will be used
-     * as a base to generate the random token string value.
+     * Uses {@code MD5} as default algorithm if not externally specified. A seed is to be passed as
+     * parameter which will be used as a base to generate the random token string value.
      * </p>
      * @param seed any value to use as base to generate token string value (must not be null)
      * @return token string
@@ -79,8 +80,7 @@ public class TokenStringGenerator {
         long time = System.currentTimeMillis();
 
         StringBuilder sb = new StringBuilder(1000);
-        sb.append(internalSeed).append(seed).append(time).append(counter
-                .getAndIncrement());
+        sb.append(internalSeed).append(seed).append(time).append(counter.getAndIncrement());
 
         MessageDigest md = createMessageDigest();
         md.update(sb.toString().getBytes());

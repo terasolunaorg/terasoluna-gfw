@@ -21,15 +21,16 @@ package org.terasoluna.gfw.web.token.transaction;
 public enum TransactionTokenType {
 
     /**
-     * A {@link TransactionToken} of type {@link #NONE} is created when {@link TransactionTokenCheck} annotation is not found
-     * for a particular handlerMethod. In this case, the token check functionality is not invoked
+     * A {@link TransactionToken} of type {@link #NONE} is created when
+     * {@link TransactionTokenCheck} annotation is not found for a particular handlerMethod. In this
+     * case, the token check functionality is not invoked
      */
     NONE(false, false, false),
     /**
      * Indicate beginning of the boundary of transaction token check. <br>
      * <p>
-     * Transaction token check will not be performed in this type of {@link TransactionToken}. Only a new token will be created
-     * and rendered to the view as a hidden element
+     * Transaction token check will not be performed in this type of {@link TransactionToken}. Only
+     * a new token will be created and rendered to the view as a hidden element
      */
     BEGIN(false, true, false),
     /**
@@ -47,10 +48,11 @@ public enum TransactionTokenType {
     /**
      * Indicate that the corresponding handler method is within the transaction boundary <br>
      * <p>
-     * Transaction token check will be performed in this type of {@link TransactionToken}, but Transaction token is no
-     * update.<br>
+     * Transaction token check will be performed in this type of {@link TransactionToken}, but
+     * Transaction token is no update.<br>
      * To use if you want to take over the same transaction token between the same transaction.<br>
-     * For example,This type is used in the method that does not return a transaction token, such as a file download.
+     * For example,This type is used in the method that does not return a transaction token, such as
+     * a file download.
      */
     CHECK(true, false, true);
 
@@ -70,8 +72,8 @@ public enum TransactionTokenType {
     private boolean needKeep;
 
     /**
-     * depending on type of a {@link TransactionToken} instance decides whether it needs to be checked for correctness or to be
-     * newly created.
+     * depending on type of a {@link TransactionToken} instance decides whether it needs to be
+     * checked for correctness or to be newly created.
      * @param needValidate, whether needs to checked for correctness
      * @param needCreate, whether it needs to be newly created
      * @param needKeep, whether need to take over token
@@ -84,7 +86,8 @@ public enum TransactionTokenType {
     }
 
     /**
-     * Indicate if a {@link TransactionToken} needs to be checked for correctness depending on it type
+     * Indicate if a {@link TransactionToken} needs to be checked for correctness depending on it
+     * type
      * @return {@code true} if it has be to checked for correctness. otherwise, {@code false}
      */
     public boolean needValidate() {

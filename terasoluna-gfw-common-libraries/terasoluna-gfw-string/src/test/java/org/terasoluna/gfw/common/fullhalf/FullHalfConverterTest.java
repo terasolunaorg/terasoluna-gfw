@@ -26,12 +26,9 @@ public class FullHalfConverterTest {
     @Test
     public void unsymmetric() {
         FullHalfConverter converter = new FullHalfConverter(new FullHalfPairsBuilder()
-                .pair("‐" /* HYPHEN U+2010 */, "-").pair(
-                        "—" /* HORIZONTAL BAR U+2015 */, "-").pair(
-                                "ー" /* KATAKANA-HIRAGANA PROLONGED SOUND MARK U+30FC */,
-                                "-").pair(
-                                        "－" /* FULLWIDTH HYPHEN-MINUS U+FF0D */,
-                                        "-").build());
+                .pair("‐" /* HYPHEN U+2010 */, "-").pair("—" /* HORIZONTAL BAR U+2015 */, "-")
+                .pair("ー" /* KATAKANA-HIRAGANA PROLONGED SOUND MARK U+30FC */, "-")
+                .pair("－" /* FULLWIDTH HYPHEN-MINUS U+FF0D */, "-").build());
 
         assertThat(converter.toHalfwidth("‐—ー－"), is("----"));
         assertThat(converter.toFullwidth("----"), is("‐‐‐‐"));
@@ -40,9 +37,8 @@ public class FullHalfConverterTest {
     @Test
     public void unsymmetric_reversed() {
         FullHalfConverter converter = new FullHalfConverter(new FullHalfPairsBuilder()
-                .pair("‐", "-" /* HYPHEN-MINUS U+2010 */).pair("‐",
-                        "—" /* EM DASH U+2014 */).pair("‐",
-                                "ｰ" /* HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK U+FF70 */)
+                .pair("‐", "-" /* HYPHEN-MINUS U+2010 */).pair("‐", "—" /* EM DASH U+2014 */)
+                .pair("‐", "ｰ" /* HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK U+FF70 */)
                 .build());
 
         assertThat(converter.toHalfwidth("‐‐‐"), is("---"));
@@ -51,9 +47,9 @@ public class FullHalfConverterTest {
 
     @Test
     public void testWithCustomAppenadablePredicate() {
-        FullHalfConverter converter = new FullHalfConverter(new FullHalfPairsBuilder()
-                .pair("バ", "ﾊﾞ").pair("ハ", "ﾊ").pair("゛", "ﾞ").pair("゜", "ﾟ")
-                .appendablePredicate(c -> c == 'ﾞ').build());
+        FullHalfConverter converter =
+                new FullHalfConverter(new FullHalfPairsBuilder().pair("バ", "ﾊﾞ").pair("ハ", "ﾊ")
+                        .pair("゛", "ﾞ").pair("゜", "ﾟ").appendablePredicate(c -> c == 'ﾞ').build());
         assertThat(converter.toFullwidth("ﾊﾞ"), is("バ"));
         assertThat(converter.toFullwidth("ﾊﾟ"), is("ハ゜"));
     }

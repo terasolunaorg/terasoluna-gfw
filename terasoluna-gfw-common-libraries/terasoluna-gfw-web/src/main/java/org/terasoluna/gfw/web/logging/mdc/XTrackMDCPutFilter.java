@@ -22,11 +22,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 /**
- * Set random value per request to MDC and HTTP Response Header and HTTP Request Attribute (request scope). <br>
+ * Set random value per request to MDC and HTTP Response Header and HTTP Request Attribute (request
+ * scope). <br>
  * <p>
- * default attribute name is "X-Track". You can change this name by configure. The value of X-Track is retrieved from HTTP
- * Request Header (same attribute name).<br>
- * If the attibute is not set in HTTP Request Header, this filter creates random value as X-Track and use it.
+ * default attribute name is "X-Track". You can change this name by configure. The value of X-Track
+ * is retrieved from HTTP Request Header (same attribute name).<br>
+ * If the attibute is not set in HTTP Request Header, this filter creates random value as X-Track
+ * and use it.
  *
  * <pre>
  * <code>
@@ -67,8 +69,7 @@ public class XTrackMDCPutFilter extends AbstractMDCPutFilter {
      *      javax.servlet.http.HttpServletResponse)
      */
     @Override
-    protected String getMDCKey(HttpServletRequest request,
-            HttpServletResponse response) {
+    protected String getMDCKey(HttpServletRequest request, HttpServletResponse response) {
         return attributeName;
     }
 
@@ -87,15 +88,16 @@ public class XTrackMDCPutFilter extends AbstractMDCPutFilter {
 
     /**
      * <p>
-     * return track ID (X-Track) and set it HTTP Response Header and HTTP Request Attribute (request scope).<br>
-     * If track ID is set in HTTP Request Header, then use it. Unless track ID is created by {@link #createXTrack()}.
+     * return track ID (X-Track) and set it HTTP Response Header and HTTP Request Attribute (request
+     * scope).<br>
+     * If track ID is set in HTTP Request Header, then use it. Unless track ID is created by
+     * {@link #createXTrack()}.
      * </p>
      * @see org.terasoluna.gfw.web.logging.mdc.AbstractMDCPutFilter#getMDCValue(javax.servlet.http.HttpServletRequest,
      *      javax.servlet.http.HttpServletResponse)
      */
     @Override
-    protected String getMDCValue(HttpServletRequest request,
-            HttpServletResponse response) {
+    protected String getMDCValue(HttpServletRequest request, HttpServletResponse response) {
         String xTrack = request.getHeader(attributeName);
         if (xTrack == null) {
             xTrack = createXTrack();

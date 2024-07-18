@@ -25,8 +25,8 @@ import org.springframework.web.method.support.ModelAndViewContainer;
 /**
  * {@code HandlerMethodArgumentResolver} to handke {@code TransactionTokenContext}<br>
  */
-public class TransactionTokenContextHandlerMethodArgumentResolver implements
-                                                                  HandlerMethodArgumentResolver {
+public class TransactionTokenContextHandlerMethodArgumentResolver
+        implements HandlerMethodArgumentResolver {
 
     /**
      * check whether the given parameter type is {@link TransactionTokenContext}.
@@ -34,20 +34,19 @@ public class TransactionTokenContextHandlerMethodArgumentResolver implements
      */
     @Override
     public boolean supportsParameter(final MethodParameter parameter) {
-        return TransactionTokenContext.class.equals(parameter
-                .getParameterType());
+        return TransactionTokenContext.class.equals(parameter.getParameterType());
     }
 
     /**
      * resolve {@link TransactionTokenContext} object
      * @see org.springframework.web.method.support.HandlerMethodArgumentResolver#resolveArgument(org.springframework.core.MethodParameter,
      *      org.springframework.web.method.support.ModelAndViewContainer,
-     *      org.springframework.web.context.request.NativeWebRequest, org.springframework.web.bind.support.WebDataBinderFactory)
+     *      org.springframework.web.context.request.NativeWebRequest,
+     *      org.springframework.web.bind.support.WebDataBinderFactory)
      */
     @Override
-    public Object resolveArgument(MethodParameter parameter,
-            ModelAndViewContainer mavContainer, NativeWebRequest webRequest,
-            WebDataBinderFactory binderFactory) {
+    public Object resolveArgument(MethodParameter parameter, ModelAndViewContainer mavContainer,
+            NativeWebRequest webRequest, WebDataBinderFactory binderFactory) {
 
         return webRequest.getAttribute(
                 TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME,

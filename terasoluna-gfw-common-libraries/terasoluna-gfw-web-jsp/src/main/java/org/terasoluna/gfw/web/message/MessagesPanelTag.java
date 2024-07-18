@@ -35,10 +35,11 @@ import jakarta.servlet.jsp.JspTagException;
 /**
  * Tag for displaying messages in panel format in JSP page<br>
  * <p>
- * Creates display tag, converts the object which is set in {@code pageContext} to String and sets this string inside the tag
- * <br>
- * This tag displays the contents of {@code org.terasoluna.gfw.common.message.ResultMessages} by default. However,
- * {@code String} or {@code List<string>} set in {@code Model} can also be displayed using this tag
+ * Creates display tag, converts the object which is set in {@code pageContext} to String and sets
+ * this string inside the tag <br>
+ * This tag displays the contents of {@code org.terasoluna.gfw.common.message.ResultMessages} by
+ * default. However, {@code String} or {@code List<string>} set in {@code Model} can also be
+ * displayed using this tag
  * </p>
  * <p>
  * <b>when messagesPanel is set to use {@code ResultMessages} (default)</b>
@@ -69,8 +70,8 @@ import jakarta.servlet.jsp.JspTagException;
  * </pre>
  * <p>
  * By default, a combination of, ``alert`` and any one of
- * ``alert-success,alert-info,alert-warn(*1),alert-warning(*2),alert-error`` classes of bootstrap, is used in ``messagesPanel``
- * <br>
+ * ``alert-success,alert-info,alert-warn(*1),alert-warning(*2),alert-error`` classes of bootstrap,
+ * is used in ``messagesPanel`` <br>
  * the suffix after ``alert-`` is specified using ``type`` of ResultMessages
  * </p>
  * <p>
@@ -94,7 +95,8 @@ import jakarta.servlet.jsp.JspTagException;
  * &lt;div class=&quot;alert&quot;&gt;&lt;ul&gt;&lt;li&gt;textMessage&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;
  * </pre>
  * <p>
- * <b>When the message is in {@code String} and {@code messagesPanel} is using non-default values<br>
+ * <b>When the message is in {@code String} and {@code messagesPanel} is using non-default
+ * values<br>
  * </b>
  * </p>
  * <p>
@@ -234,16 +236,17 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * Otherwise, this method write {@link #panelElement} and {@link #outerElement},<br>
      * and call {@link #writeMessages(TagWriter, Object)}.
      * </p>
-     * @throws JspException In case when {@link JspException} is generated later in the chain when tag configured by
-     *             messagesPanel could not be created
+     * @throws JspException In case when {@link JspException} is generated later in the chain when
+     *         tag configured by messagesPanel could not be created
      * @see org.springframework.web.servlet.tags.RequestContextAwareTag#doStartTagInternal()
      */
     @Override
     protected int doStartTagInternal() throws JspException {
 
-        if (!StringUtils.hasText(this.panelElement) && !StringUtils.hasText(
-                this.outerElement) && !StringUtils.hasText(this.innerElement)) {
-            throw new JspTagException("At least one out of panelElement, outerElement, innerElement should be set");
+        if (!StringUtils.hasText(this.panelElement) && !StringUtils.hasText(this.outerElement)
+                && !StringUtils.hasText(this.innerElement)) {
+            throw new JspTagException(
+                    "At least one out of panelElement, outerElement, innerElement should be set");
         }
 
         TagWriter tagWriter = createTagWriter();
@@ -289,8 +292,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * @param className className built by StringBuilder
      * @param type classType
      */
-    private void appendPanelTypeClassPrefix(StringBuilder className,
-            String type) {
+    private void appendPanelTypeClassPrefix(StringBuilder className, String type) {
         if (panelTypeClassPrefix != null && StringUtils.hasText(type)) {
 
             if (StringUtils.hasText(className)) {
@@ -303,17 +305,17 @@ public class MessagesPanelTag extends RequestContextAwareTag {
     /**
      * Writes the messages which have been set in the model
      * <p>
-     * If messages stored in the model is in the form of a class that extends {@code Iterable} or an Array,
-     * {@link #writeMessage(TagWriter, Object)} is called multiple times, to write<br>
+     * If messages stored in the model is in the form of a class that extends {@code Iterable} or an
+     * Array, {@link #writeMessage(TagWriter, Object)} is called multiple times, to write<br>
      * {@link #innerElement} and messages.<br>
-     * If there is only a single message, this method calls {@link #writeMessage(TagWriter, Object)} only once
+     * If there is only a single message, this method calls {@link #writeMessage(TagWriter, Object)}
+     * only once
      * </p>
      * @param tagWriter a TegWriter instance
      * @param messages messages
      * @throws JspException If {@link JspException} occurs in caller writeMessage
      */
-    protected void writeMessages(TagWriter tagWriter,
-            Object messages) throws JspException {
+    protected void writeMessages(TagWriter tagWriter, Object messages) throws JspException {
         Class<?> clazz = messages.getClass();
         if (Iterable.class.isAssignableFrom(clazz)) {
             Iterable<?> col = (Iterable<?>) messages;
@@ -342,15 +344,15 @@ public class MessagesPanelTag extends RequestContextAwareTag {
     /**
      * writes the message tag.
      * <p>
-     * If {@link #innerElement} is specified, the tag specified in it will be applied around the message.<br>
+     * If {@link #innerElement} is specified, the tag specified in it will be applied around the
+     * message.<br>
      * </p>
      * @param tagWriter a TagWriter instance
      * @param message message
-     * @throws JspException Occurs when {@link JspTagException} occurs in case when nothing is set in the configuration of the
-     *             tag that configures messagesPanel using tagWriter.
+     * @throws JspException Occurs when {@link JspTagException} occurs in case when nothing is set
+     *         in the configuration of the tag that configures messagesPanel using tagWriter.
      */
-    protected void writeMessage(TagWriter tagWriter,
-            Object message) throws JspException {
+    protected void writeMessage(TagWriter tagWriter, Object message) throws JspException {
         if (message != null) {
             if (StringUtils.hasText(innerElement)) {
                 tagWriter.startTag(innerElement); // <li>
@@ -358,8 +360,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
             if (disableHtmlEscape) {
                 tagWriter.appendValue(getText(message));
             } else {
-                tagWriter.appendValue(HtmlEscapeUtils.htmlEscape(getText(
-                        message)));
+                tagWriter.appendValue(HtmlEscapeUtils.htmlEscape(getText(message)));
             }
 
             if (StringUtils.hasText(innerElement)) {
@@ -372,9 +373,11 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * Converts the Object received as parameter to string and returns it.
      * <p>
      * Returns the String as it is<br>
-     * {@code ResultMessage} is returned after conversion using {@link #getText(ResultMessage resultMessage)}. {@code Throwable}
-     * is returned after text conversion.<br>
-     * While all other instances of Object are returned after conversion using {@link #getTextInOtherCase}.
+     * {@code ResultMessage} is returned after conversion using
+     * {@link #getText(ResultMessage resultMessage)}. {@code Throwable} is returned after text
+     * conversion.<br>
+     * While all other instances of Object are returned after conversion using
+     * {@link #getTextInOtherCase}.
      * </p>
      * @param message Object
      * @return Message after conversion to String
@@ -397,8 +400,8 @@ public class MessagesPanelTag extends RequestContextAwareTag {
     }
 
     /**
-     * Returns the String after the code set in {@code ResultMessage} undergoes messageSource conversion in line with the
-     * locale.
+     * Returns the String after the code set in {@code ResultMessage} undergoes messageSource
+     * conversion in line with the locale.
      * <p>
      * </p>
      * @param resultMessage ResultMessage
@@ -406,8 +409,7 @@ public class MessagesPanelTag extends RequestContextAwareTag {
     private String getText(ResultMessage resultMessage) {
         Locale locale = getRequestContext().getLocale();
         MessageSource messageSource = getRequestContext().getMessageSource();
-        String text = ResultMessageUtils.resolveMessage(resultMessage,
-                messageSource, locale);
+        String text = ResultMessageUtils.resolveMessage(resultMessage, messageSource, locale);
         return text;
     }
 
@@ -423,13 +425,15 @@ public class MessagesPanelTag extends RequestContextAwareTag {
     /**
      * Returns the type of Message
      * <p>
-     * If {@link #messagesType} is has been set (contains value), then return {@link #messagesType} as it is.<br>
-     * If the data-type of Object passed as parameter is {@code ResultMessages}, then fetches the type set inside
-     * {@code ResultMessages} and returns it. <br>
-     * If {@link #messagesType} is has not been set (doesn't contains value) and data-type of passed parameter is also not
-     * {@code ResultMessages}, then return empty string.
+     * If {@link #messagesType} is has been set (contains value), then return {@link #messagesType}
+     * as it is.<br>
+     * If the data-type of Object passed as parameter is {@code ResultMessages}, then fetches the
+     * type set inside {@code ResultMessages} and returns it. <br>
+     * If {@link #messagesType} is has not been set (doesn't contains value) and data-type of passed
+     * parameter is also not {@code ResultMessages}, then return empty string.
      * </p>
-     * @param messages Object fetched from PageContext using the value of ``messagesAttributeName`` property as attribute name.
+     * @param messages Object fetched from PageContext using the value of ``messagesAttributeName``
+     *        property as attribute name.
      */
     private String getType(Object messages) {
         String type = "";
@@ -478,7 +482,8 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * Sets the tag that configures messagesPanel
      * <p>
      * Points to be careful:<br>
-     * Only the tag name should be set. "&lt;&gt;" used while using the tag in HTML should not be included. For ex: "div"<br>
+     * Only the tag name should be set. "&lt;&gt;" used while using the tag in HTML should not be
+     * included. For ex: "div"<br>
      * Specify the tag which have class property.
      * </p>
      * @param panelElement html tag
@@ -491,7 +496,8 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * Sets the outer tag which configures messagesPanel tag
      * <p>
      * Points to be careful:<br>
-     * Only the tag name should be set. "&lt;&gt;" used while using the tag in HTML should not be included. For ex: "span"<br>
+     * Only the tag name should be set. "&lt;&gt;" used while using the tag in HTML should not be
+     * included. For ex: "span"<br>
      * </p>
      * @param outerElement html tag
      */
@@ -503,7 +509,8 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * Sets the inner tag which configures messagesPanel tag
      * <p>
      * Points to be careful:<br>
-     * Only the tag name should be set. "&lt;&gt;" used while using the tag in HTML should not be included. For ex: "span"<br>
+     * Only the tag name should be set. "&lt;&gt;" used while using the tag in HTML should not be
+     * included. For ex: "span"<br>
      * </p>
      * @param innerElement html tag
      */
@@ -516,8 +523,10 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * <p>
      * Points to be careful:<br>
      * Should be used only when specifying {@code String} and not {@code ResultMessages}<br>
-     * When {@code ResultMessages} is being used, {@link #messagesType} will be fetched from ResultMessages<br>
-     * This method assumes that if {@link #messagesType} is being specified, BootStrap CSS is used<br>
+     * When {@code ResultMessages} is being used, {@link #messagesType} will be fetched from
+     * ResultMessages<br>
+     * This method assumes that if {@link #messagesType} is being specified, BootStrap CSS is
+     * used<br>
      * </p>
      * @param messagesType type of message
      */
@@ -534,10 +543,9 @@ public class MessagesPanelTag extends RequestContextAwareTag {
      * @param disableHtmlEscape value of disableHtmlEscape
      * @throws JspException If value that is not true or false is specified.
      */
-    public void setDisableHtmlEscape(
-            String disableHtmlEscape) throws JspException {
-        this.disableHtmlEscape = JspTagUtils.toBoolean(disableHtmlEscape, false,
-                "disableHtmlEscape");
+    public void setDisableHtmlEscape(String disableHtmlEscape) throws JspException {
+        this.disableHtmlEscape =
+                JspTagUtils.toBoolean(disableHtmlEscape, false, "disableHtmlEscape");
     }
 
 }

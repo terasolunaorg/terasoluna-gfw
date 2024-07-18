@@ -32,8 +32,8 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Abstract View class used for downloading binary files. <br>
  * <p>
- * Writes binary data to the response object. Also, depending on the requirement, the following should be implemented in
- * subclass: <br>
+ * Writes binary data to the response object. Also, depending on the requirement, the following
+ * should be implemented in subclass: <br>
  * a) Fetching the stream that writes to the response body <br>
  * b) Setting the response header information <br>
  * </p>
@@ -50,8 +50,8 @@ import jakarta.servlet.http.HttpServletResponse;
  * &lt;/bean&gt;
  * </pre>
  * <p>
- * Next, {@code viewName} property should be defined in the bean definition of the controller which is responsible for sending
- * binary data to response
+ * Next, {@code viewName} property should be defined in the bean definition of the controller which
+ * is responsible for sending binary data to response
  * </p>
  * <h3>Example of bean definition file</h3>
  *
@@ -62,7 +62,8 @@ import jakarta.servlet.http.HttpServletResponse;
  * &lt;/bean&gt;
  * </pre>
  * <p>
- * Further, the view name should be returned in the corresponding RequestMapping method method in a controller.
+ * Further, the view name should be returned in the corresponding RequestMapping method method in a
+ * controller.
  * </p>
  * <h3>Example of bean definition file</h3>
  *
@@ -79,8 +80,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * }
  * </pre>
  */
-public abstract class AbstractFileDownloadView extends AbstractView implements
-                                               InitializingBean {
+public abstract class AbstractFileDownloadView extends AbstractView implements InitializingBean {
 
     /**
      * logger
@@ -100,8 +100,7 @@ public abstract class AbstractFileDownloadView extends AbstractView implements
      * @throws IOException Input/output exception
      */
     @Override
-    protected void renderMergedOutputModel(Map<String, Object> model,
-            HttpServletRequest request,
+    protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
             HttpServletResponse response) throws IOException {
 
         logger.debug("FileDownload start.");
@@ -114,8 +113,7 @@ public abstract class AbstractFileDownloadView extends AbstractView implements
                 inputStream = getInputStream(model, request);
             } catch (IOException e) {
                 // In case download fails
-                logger.error(
-                        "FileDownload Failed with getInputStream(). cause message is {}.",
+                logger.error("FileDownload Failed with getInputStream(). cause message is {}.",
                         e.getMessage());
                 throw e;
             }
@@ -125,12 +123,10 @@ public abstract class AbstractFileDownloadView extends AbstractView implements
 
             // Writing to output stream of HTTP response
             try {
-                outputStream = new BufferedOutputStream(response
-                        .getOutputStream());
+                outputStream = new BufferedOutputStream(response.getOutputStream());
             } catch (IOException e) {
                 // In case download fails
-                logger.error(
-                        "FileDownload Failed with getOutputStream(). cause message is {}.",
+                logger.error("FileDownload Failed with getOutputStream(). cause message is {}.",
                         e.getMessage());
                 throw e;
             }
@@ -142,8 +138,7 @@ public abstract class AbstractFileDownloadView extends AbstractView implements
                 writeResponseStream(inputStream, outputStream);
             } catch (IOException e) {
                 // In case download fails
-                logger.error(
-                        "FileDownload Failed with writeResponseStream(). cause message is {}.",
+                logger.error("FileDownload Failed with writeResponseStream(). cause message is {}.",
                         e.getMessage());
                 throw e;
             }
@@ -151,8 +146,7 @@ public abstract class AbstractFileDownloadView extends AbstractView implements
                 outputStream.flush();
             } catch (IOException e) {
                 // In case download fails
-                logger.error(
-                        "FileDownload Failed with flush. cause message is {}.",
+                logger.error("FileDownload Failed with flush. cause message is {}.",
                         e.getMessage());
                 throw e;
             }
@@ -181,10 +175,11 @@ public abstract class AbstractFileDownloadView extends AbstractView implements
      * Writes the download file to the stream of HTTP response.
      * @param inputStream InputStream of file data to be downloaded
      * @param outputStream OutputStream of the response
-     * @throws IOException Input/output exception (Exception handling should be done at the caller side)
+     * @throws IOException Input/output exception (Exception handling should be done at the caller
+     *         side)
      */
-    protected void writeResponseStream(InputStream inputStream,
-            OutputStream outputStream) throws IOException {
+    protected void writeResponseStream(InputStream inputStream, OutputStream outputStream)
+            throws IOException {
         if (inputStream == null || outputStream == null) {
             return;
         }
@@ -202,8 +197,8 @@ public abstract class AbstractFileDownloadView extends AbstractView implements
      * @param request current HTTP request
      * @param response current HTTP response
      */
-    protected abstract void addResponseHeader(Map<String, Object> model,
-            HttpServletRequest request, HttpServletResponse response);
+    protected abstract void addResponseHeader(Map<String, Object> model, HttpServletRequest request,
+            HttpServletResponse response);
 
     /**
      * Set a chunk size.
@@ -223,8 +218,8 @@ public abstract class AbstractFileDownloadView extends AbstractView implements
     @Override
     public void afterPropertiesSet() {
         if (chunkSize <= 0) {
-            throw new IllegalArgumentException("chunkSize must be over 1. specified chunkSize is \""
-                    + chunkSize + "\".");
+            throw new IllegalArgumentException(
+                    "chunkSize must be over 1. specified chunkSize is \"" + chunkSize + "\".");
         }
     }
 

@@ -41,8 +41,8 @@ import jakarta.servlet.http.HttpServletResponse;
  * <p>
  * Default behavior is to set all the implementation beans of {@code CodeList} in the attribute of
  * {@link HttpServletRequest}<br>
- * In order to narrow down the target beans, pass the pattern (regular expression) corresponding to codelist ID of target beans
- * <br>
+ * In order to narrow down the target beans, pass the pattern (regular expression) corresponding to
+ * codelist ID of target beans <br>
  * to {@link #setCodeListIdPattern(Pattern)} method.
  * </p>
  * <p>
@@ -50,14 +50,13 @@ import jakarta.servlet.http.HttpServletResponse;
  * </p>
  * @see org.terasoluna.gfw.common.codelist.i18n.I18nCodeList
  */
-public class CodeListInterceptor implements HandlerInterceptor,
-                                 ApplicationContextAware, InitializingBean {
+public class CodeListInterceptor
+        implements HandlerInterceptor, ApplicationContextAware, InitializingBean {
 
     /**
      * logger
      */
-    private static final Logger logger = LoggerFactory.getLogger(
-            CodeListInterceptor.class);
+    private static final Logger logger = LoggerFactory.getLogger(CodeListInterceptor.class);
 
     /**
      * list of {@link CodeList}
@@ -70,22 +69,24 @@ public class CodeListInterceptor implements HandlerInterceptor,
     private ApplicationContext applicationContext;
 
     /**
-     * Pattern of Codelist IDs (Bean IDs) of codelists which are target to be set to attribute of {@link HttpServletRequest}.
+     * Pattern of Codelist IDs (Bean IDs) of codelists which are target to be set to attribute of
+     * {@link HttpServletRequest}.
      */
     private Pattern codeListIdPattern;
 
     /**
      * Sets codelist to the attribute of {@link HttpServletRequest}
      * <p>
-     * Sets codelist to the attribute of {@link HttpServletRequest} after the execution of Controller.
+     * Sets codelist to the attribute of {@link HttpServletRequest} after the execution of
+     * Controller.
      * </p>
      * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#postHandle(javax.servlet.http.HttpServletRequest,
-     *      javax.servlet.http.HttpServletResponse, java.lang.Object, org.springframework.web.servlet.ModelAndView)
+     *      javax.servlet.http.HttpServletResponse, java.lang.Object,
+     *      org.springframework.web.servlet.ModelAndView)
      * @since 5.4.2
      */
     @Override
-    public void postHandle(HttpServletRequest request,
-            HttpServletResponse response, Object handler,
+    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
             ModelAndView modelAndView) throws Exception {
 
         if (codeLists == null) {
@@ -99,9 +100,11 @@ public class CodeListInterceptor implements HandlerInterceptor,
     }
 
     /**
-     * Extracts the {@code CodeList}s which are to be set to the attribute of {@link HttpServletRequest}
+     * Extracts the {@code CodeList}s which are to be set to the attribute of
+     * {@link HttpServletRequest}
      * <p>
-     * Among the Beans which implement {@code CodeList} interface, extract the Codelist IDs(Bean IDs) which match<br>
+     * Among the Beans which implement {@code CodeList} interface, extract the Codelist IDs(Bean
+     * IDs) which match<br>
      * with the regular expression specified in {@link #codeListIdPattern}.
      * </p>
      * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet()
@@ -116,14 +119,12 @@ public class CodeListInterceptor implements HandlerInterceptor,
         }
 
         Map<String, CodeList> definedCodeLists = BeanFactoryUtils
-                .beansOfTypeIncludingAncestors(applicationContext,
-                        CodeList.class, false, false);
+                .beansOfTypeIncludingAncestors(applicationContext, CodeList.class, false, false);
         Map<String, CodeList> targetCodeLists = new HashMap<String, CodeList>();
         for (CodeList codeList : definedCodeLists.values()) {
             String codeListId = codeList.getCodeListId();
             if (codeListId != null) {
-                Matcher codeListIdMatcher = this.codeListIdPattern.matcher(
-                        codeListId);
+                Matcher codeListIdMatcher = this.codeListIdPattern.matcher(codeListId);
                 if (codeListIdMatcher.matches()) {
                     targetCodeLists.put(codeListId, codeList);
                 }
@@ -134,8 +135,7 @@ public class CodeListInterceptor implements HandlerInterceptor,
             logger.debug("registered codeList : {}", targetCodeLists.keySet());
         }
 
-        this.codeLists = Collections.unmodifiableCollection(targetCodeLists
-                .values());
+        this.codeLists = Collections.unmodifiableCollection(targetCodeLists.values());
 
     }
 
@@ -149,8 +149,8 @@ public class CodeListInterceptor implements HandlerInterceptor,
     }
 
     /**
-     * Sets Pattern (regular expression) of Codelist IDs (Bean IDs) of codelists which are target to be set to attribute of
-     * {@link HttpServletRequest}.
+     * Sets Pattern (regular expression) of Codelist IDs (Bean IDs) of codelists which are target to
+     * be set to attribute of {@link HttpServletRequest}.
      * <p>
      * Default behavior is to include all beans
      * </p>

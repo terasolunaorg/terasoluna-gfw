@@ -16,19 +16,21 @@
 package org.terasoluna.gfw.common.codelist.validator;
 
 /**
- * Concrete validation implementation class for {@link org.terasoluna.gfw.common.codelist.ExistInCodeList} custom annotation.
+ * Concrete validation implementation class for
+ * {@link org.terasoluna.gfw.common.codelist.ExistInCodeList} custom annotation.
  * <p>
- * If the value of the field for which the custom annotation is used, is of type {@code Character}, <br>
+ * If the value of the field for which the custom annotation is used, is of type {@code Character},
+ * <br>
  * then it is converted to String. <br>
  * <br>
- * Validates whether the value of field is a valid code existing in the {@link org.terasoluna.gfw.common.codelist.CodeList}
- * specified <br>
+ * Validates whether the value of field is a valid code existing in the
+ * {@link org.terasoluna.gfw.common.codelist.CodeList} specified <br>
  * as a parameter to the {@link org.terasoluna.gfw.common.codelist.ExistInCodeList} annotation.<br>
  * </p>
  */
 
-public class ExistInCodeListValidatorForCharacter extends
-                                                  AbstractExistInCodeListValidator<Character> {
+public class ExistInCodeListValidatorForCharacter
+        extends AbstractExistInCodeListValidator<Character> {
 
     /**
      * Fetches the code value which is the target of validation

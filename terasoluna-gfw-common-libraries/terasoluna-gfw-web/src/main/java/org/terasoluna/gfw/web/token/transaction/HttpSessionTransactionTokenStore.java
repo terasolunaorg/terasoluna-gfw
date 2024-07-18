@@ -31,21 +31,22 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 /**
- * Implementation of {@link TransactionTokenStore} interface which uses HTTP session to store the token <br>
+ * Implementation of {@link TransactionTokenStore} interface which uses HTTP session to store the
+ * token <br>
  */
 public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
 
     /**
      * logger
      */
-    private static final Logger logger = LoggerFactory.getLogger(
-            HttpSessionTransactionTokenStore.class);
+    private static final Logger logger =
+            LoggerFactory.getLogger(HttpSessionTransactionTokenStore.class);
 
     /**
      * attribute name of token holder in the session scope
      */
-    public static final String TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX = HttpSessionTransactionTokenStore.class
-            .getName() + "_TOKEN_";
+    public static final String TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX =
+            HttpSessionTransactionTokenStore.class.getName() + "_TOKEN_";
 
     /**
      * default token size per token name
@@ -69,7 +70,8 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
     /**
      * Default constructor <br>
      * <p>
-     * By default, number of tokenKeys per tokenName is set to 10. And number of retries to create a tokenName is set to 10.
+     * By default, number of tokenKeys per tokenName is set to 10. And number of retries to create a
+     * tokenName is set to 10.
      */
     public HttpSessionTransactionTokenStore() {
         this(new TokenStringGenerator(), NO_OF_TOKENS_PER_TOKEN_NAME,
@@ -79,14 +81,15 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
     /**
      * Constructor. Takes transactionTokensPerTokenName as an argument <br>
      * <p>
-     * transactionTokensPerTokenName indicates the number of transactionTokens that can be stored in the session for each <br>
+     * transactionTokensPerTokenName indicates the number of transactionTokens that can be stored in
+     * the session for each <br>
      * tokenName at a time.
      * </p>
-     * @param transactionTokenSizePerTokenName Allowed number of tokens for each tokenName(must be greater than 0)
+     * @param transactionTokenSizePerTokenName Allowed number of tokens for each tokenName(must be
+     *        greater than 0)
      * @throws IllegalArgumentException sizePerTokenName is (less than or equals 0)
      */
-    public HttpSessionTransactionTokenStore(
-            int transactionTokenSizePerTokenName) {
+    public HttpSessionTransactionTokenStore(int transactionTokenSizePerTokenName) {
         this(new TokenStringGenerator(), transactionTokenSizePerTokenName,
                 DEFAULT_RETRY_CREATE_TOKEN_NAME);
     }
@@ -94,39 +97,40 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
     /**
      * Constructor. Takes transactionTokensPerTokenName and retryCreateTokenName as an argument <br>
      * <p>
-     * transactionTokensPerTokenName indicates the number of transactionTokens that can be stored in the session for each <br>
+     * transactionTokensPerTokenName indicates the number of transactionTokens that can be stored in
+     * the session for each <br>
      * tokenName at a time.<br>
      * <br>
      * retryCreateTokenName indicates the number of times retrys are done to create a token name
      * </p>
-     * @param transactionTokenSizePerTokenName Allowed number of tokens for each tokenName(must be greater than 0)
+     * @param transactionTokenSizePerTokenName Allowed number of tokens for each tokenName(must be
+     *        greater than 0)
      * @param retryCreateTokenName Number of retries for creating tokenName(must be greater than 0)
-     * @throws IllegalArgumentException sizePerTokenName is (less than or equals 0) or retryCreateTokenName is (less than or
-     *             equals 0)
+     * @throws IllegalArgumentException sizePerTokenName is (less than or equals 0) or
+     *         retryCreateTokenName is (less than or equals 0)
      */
-    public HttpSessionTransactionTokenStore(
-            int transactionTokenSizePerTokenName, int retryCreateTokenName) {
-        this(new TokenStringGenerator(), transactionTokenSizePerTokenName,
-                retryCreateTokenName);
+    public HttpSessionTransactionTokenStore(int transactionTokenSizePerTokenName,
+            int retryCreateTokenName) {
+        this(new TokenStringGenerator(), transactionTokenSizePerTokenName, retryCreateTokenName);
     }
 
     /**
      * Constructor. Enables customization of the token store <br>
      * @param generator {@link TokenStringGenerator} instance (must not be null)
-     * @param transactionTokenSizePerTokenName Allowed number of tokens for each tokenName(must be greater than 0)
+     * @param transactionTokenSizePerTokenName Allowed number of tokens for each tokenName(must be
+     *        greater than 0)
      * @param retryCreateTokenName Number of retries for creating tokenName(must be greater than 0)
-     * @throws IllegalArgumentException generator is null or sizePerTokenName is (less than or equals 0) or retryCreateTokenName
-     *             is (less than or equals 0)
+     * @throws IllegalArgumentException generator is null or sizePerTokenName is (less than or
+     *         equals 0) or retryCreateTokenName is (less than or equals 0)
      */
-    public HttpSessionTransactionTokenStore(
-            final TokenStringGenerator generator,
-            final int transactionTokenSizePerTokenName,
-            final int retryCreateTokenName) {
+    public HttpSessionTransactionTokenStore(final TokenStringGenerator generator,
+            final int transactionTokenSizePerTokenName, final int retryCreateTokenName) {
         if (generator == null) {
             throw new IllegalArgumentException("generator must not be null");
         }
         if (transactionTokenSizePerTokenName <= 0) {
-            throw new IllegalArgumentException("transactionTokenSizePerTokenName must be greater than 0");
+            throw new IllegalArgumentException(
+                    "transactionTokenSizePerTokenName must be greater than 0");
         }
         if (retryCreateTokenName <= 0) {
             throw new IllegalArgumentException("retryCreateTokenName must be greater than 0");
@@ -137,12 +141,12 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
     }
 
     /**
-     * Fetches the value stored in session corresponding to the {@link TransactionToken} received as argument to this method.
-     * <br>
+     * Fetches the value stored in session corresponding to the {@link TransactionToken} received as
+     * argument to this method. <br>
      * <p>
-     * This value corresponding to the same transactionToken instance can be fetched only once. Once the value is fetched, its
-     * value is cleared from the session. For all further invocations to this method for the same transactionToken instance,
-     * <code>null</code> will be returned.
+     * This value corresponding to the same transactionToken instance can be fetched only once. Once
+     * the value is fetched, its value is cleared from the session. For all further invocations to
+     * this method for the same transactionToken instance, <code>null</code> will be returned.
      * @see org.terasoluna.gfw.web.token.transaction.TransactionTokenStore#getAndClear(org.terasoluna.gfw.web.token.transaction.TransactionToken)
      * @throws IllegalArgumentException generator is null
      */
@@ -155,8 +159,7 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
         synchronized (mutex) {
             tokenHolder = (TokenHolder) session.getAttribute(key);
             if (tokenHolder != null) {
-                session.setAttribute(key, new TokenHolder(null, System
-                        .currentTimeMillis()));
+                session.setAttribute(key, new TokenHolder(null, System.currentTimeMillis()));
             }
         }
         if (tokenHolder != null) {
@@ -167,7 +170,8 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
     }
 
     /**
-     * Removes the session attribute corresponding to the transactionToken instance passed as argument to this method
+     * Removes the session attribute corresponding to the transactionToken instance passed as
+     * argument to this method
      * @see org.terasoluna.gfw.web.token.transaction.TransactionTokenStore#remove(org.terasoluna.gfw.web.token.transaction.TransactionToken)
      */
     @Override
@@ -186,34 +190,32 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
 
     /**
      * Creates a new Token key and reserve it in the HttpSession<br>
-     * removes oldeset token if token size is greater than or equals {@link #transactionTokensPerTokenName} in the same
-     * namespace.
+     * removes oldeset token if token size is greater than or equals
+     * {@link #transactionTokensPerTokenName} in the same namespace.
      * @see org.terasoluna.gfw.web.token.transaction.TransactionTokenStore#createAndReserveTokenKey(java.lang.String)
      */
     @Override
     public String createAndReserveTokenKey(String tokenName) {
-        String tokenNamePrefix = TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
-                + tokenName;
+        String tokenNamePrefix = TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX + tokenName;
         Set<String> sessionAttributeNames = new HashSet<String>();
         HttpSession session = getSession();
         Object mutex = getMutex(session);
         String tokenKey = null;
         synchronized (mutex) {
-            Enumeration<String> tokenNameEnumeration = session
-                    .getAttributeNames();
+            Enumeration<String> tokenNameEnumeration = session.getAttributeNames();
             while (tokenNameEnumeration.hasMoreElements()) {
                 String name = tokenNameEnumeration.nextElement();
-                // fetch the sessionKeyPrefix (session key with only Token prefix and namespace name) and compare
-                if (tokenNamePrefix.equals(name.split(
-                        TransactionToken.TOKEN_STRING_SEPARATOR)[0])) {
+                // fetch the sessionKeyPrefix (session key with only Token prefix and namespace
+                // name) and compare
+                if (tokenNamePrefix
+                        .equals(name.split(TransactionToken.TOKEN_STRING_SEPARATOR)[0])) {
                     sessionAttributeNames.add(name);
                 }
             }
 
             for (int i = 0, max = sessionAttributeNames.size(); i < max; i++) {
                 // do not use while loop to avoid infinite loop
-                if (sessionAttributeNames
-                        .size() >= transactionTokensPerTokenName) {
+                if (sessionAttributeNames.size() >= transactionTokensPerTokenName) {
                     removeOldTokenName(sessionAttributeNames, session);
                 } else {
                     break;
@@ -222,8 +224,7 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
 
             for (int i = 0; i < retryCreateTokenName; i++) {
                 String str = generator.generate(session.getId());
-                String name = tokenNamePrefix
-                        + TransactionToken.TOKEN_STRING_SEPARATOR + str;
+                String name = tokenNamePrefix + TransactionToken.TOKEN_STRING_SEPARATOR + str;
                 if (!sessionAttributeNames.contains(name)) {
                     tokenKey = str;
                     break;
@@ -231,8 +232,8 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
             }
         }
         if (tokenKey == null) {
-            throw new IllegalStateException("token key generation failed within retry count "
-                    + retryCreateTokenName);
+            throw new IllegalStateException(
+                    "token key generation failed within retry count " + retryCreateTokenName);
         }
 
         return tokenKey;
@@ -243,8 +244,7 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
      * @param sessionAttributeNames set of token names
      * @param session HttpSession
      */
-    private void removeOldTokenName(Set<String> sessionAttributeNames,
-            HttpSession session) {
+    private void removeOldTokenName(Set<String> sessionAttributeNames, HttpSession session) {
         String oldestTokenName = null;
         TokenHolder oldestTokenHolder = new TokenHolder(null, Long.MAX_VALUE);
         for (String name : sessionAttributeNames) {
@@ -261,7 +261,8 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
     /**
      * Stores the token represented by <code>TransactionToken</code> into HTTP session <br>
      * <p>
-     * The session attribute name to store it is prefixed with <code>HttpSessionTransactionTokenStore_TOKEN_</code>.
+     * The session attribute name to store it is prefixed with
+     * <code>HttpSessionTransactionTokenStore_TOKEN_</code>.
      * @see org.terasoluna.gfw.web.token.transaction.TransactionTokenStore#store(org.terasoluna.gfw.web.token.transaction.TransactionToken)
      */
     @Override
@@ -270,8 +271,8 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
         HttpSession session = getSession();
         Object mutex = getMutex(session);
         synchronized (mutex) {
-            session.setAttribute(sessionAttributeKey, new TokenHolder(token
-                    .getTokenValue(), System.currentTimeMillis()));
+            session.setAttribute(sessionAttributeKey,
+                    new TokenHolder(token.getTokenValue(), System.currentTimeMillis()));
         }
     }
 
@@ -297,8 +298,8 @@ public class HttpSessionTransactionTokenStore implements TransactionTokenStore {
      * @return http request in this context
      */
     HttpServletRequest getRequest() {
-        return ((ServletRequestAttributes) RequestContextHolder
-                .currentRequestAttributes()).getRequest();
+        return ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
+                .getRequest();
     }
 
     /**

@@ -34,14 +34,13 @@ import ch.qos.logback.classic.Logger;
 
 public class ResultMessageUtilsTest {
 
-    private Logger logger = (Logger) LoggerFactory.getLogger(
-            ResultMessageUtils.class);
+    private Logger logger = (Logger) LoggerFactory.getLogger(ResultMessageUtils.class);
 
     @Test
     public void testResultMessageUtils() throws Exception {
         // set up
-        Constructor<ResultMessageUtils> constructor = ResultMessageUtils.class
-                .getDeclaredConstructor();
+        Constructor<ResultMessageUtils> constructor =
+                ResultMessageUtils.class.getDeclaredConstructor();
         assertThat(constructor.canAccess(null), is(false));
         constructor.setAccessible(true);
 
@@ -72,11 +71,9 @@ public class ResultMessageUtilsTest {
         Locale locale = Locale.getDefault();
         when(message.getCode()).thenReturn("MSG001");
         when(message.getArgs()).thenReturn(null);
-        when(messageSource.getMessage("MSG001", null, locale)).thenReturn(
-                "MESSAGE_TEXT");
+        when(messageSource.getMessage("MSG001", null, locale)).thenReturn("MESSAGE_TEXT");
 
-        String msg = ResultMessageUtils.resolveMessage(message, messageSource,
-                locale);
+        String msg = ResultMessageUtils.resolveMessage(message, messageSource, locale);
         assertThat(msg, is("MESSAGE_TEXT"));
     }
 
@@ -102,8 +99,8 @@ public class ResultMessageUtilsTest {
         when(message.getArgs()).thenReturn(null);
         when(message.getText()).thenReturn("MESSAGE_TEXT");
 
-        when(messageSource.getMessage("MSG001", null, locale)).thenThrow(
-                new NoSuchMessageException("MSG001"));
+        when(messageSource.getMessage("MSG001", null, locale))
+                .thenThrow(new NoSuchMessageException("MSG001"));
 
         String msg = ResultMessageUtils.resolveMessage(message, messageSource);
         assertThat(msg, is("MESSAGE_TEXT"));
@@ -119,8 +116,8 @@ public class ResultMessageUtilsTest {
         when(message.getArgs()).thenReturn(null);
         when(message.getText()).thenReturn(null);
 
-        when(messageSource.getMessage("MSG001", null, locale)).thenThrow(
-                new NoSuchMessageException("MSG001"));
+        when(messageSource.getMessage("MSG001", null, locale))
+                .thenThrow(new NoSuchMessageException("MSG001"));
 
         ResultMessageUtils.resolveMessage(message, messageSource);
     }
@@ -137,11 +134,10 @@ public class ResultMessageUtilsTest {
         when(message.getCode()).thenReturn("MSG001");
         when(message.getArgs()).thenReturn(null);
         when(message.getText()).thenReturn("MESSAGE_TEXT");
-        when(messageSource.getMessage("MSG001", null, locale)).thenThrow(
-                new NoSuchMessageException("MSG001"));
+        when(messageSource.getMessage("MSG001", null, locale))
+                .thenThrow(new NoSuchMessageException("MSG001"));
 
-        String msg = ResultMessageUtils.resolveMessage(message, messageSource,
-                locale);
+        String msg = ResultMessageUtils.resolveMessage(message, messageSource, locale);
 
         // assert
         assertThat(msg, is("MESSAGE_TEXT"));

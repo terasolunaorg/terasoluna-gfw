@@ -16,7 +16,8 @@
 package org.terasoluna.gfw.common.exception;
 
 /**
- * Provides Functionality to determine the {@link ExceptionLevel} based on the specified {@link Exception} instance <br>
+ * Provides Functionality to determine the {@link ExceptionLevel} based on the specified
+ * {@link Exception} instance <br>
  */
 public interface ExceptionLevelResolver {
 

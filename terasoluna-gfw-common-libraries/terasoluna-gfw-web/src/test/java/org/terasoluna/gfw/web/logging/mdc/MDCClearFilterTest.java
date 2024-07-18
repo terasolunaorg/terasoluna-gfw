@@ -123,14 +123,12 @@ public class MDCClearFilterTest {
     public void testDoFilterInternal_occur_exception() throws ServletException, IOException {
         // do setup.
         ServletException occurException = new ServletException("test");
-        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest,
-                mockResponse);
+        doThrow(occurException).when(mockFilterChain).doFilter(mockRequest, mockResponse);
         MDC.put("key0", "value0");
 
         // do test.
         ServletException e = assertThrows(ServletException.class, () -> {
-            testTarget.doFilterInternal(mockRequest, mockResponse,
-                    mockFilterChain);
+            testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
         });
         // do assert.
         // throws original exception.
@@ -150,8 +148,8 @@ public class MDCClearFilterTest {
         private Map actualMdcContextMap;
 
         @Override
-        public void doFilter(ServletRequest request,
-                ServletResponse response) throws ServletException, IOException {
+        public void doFilter(ServletRequest request, ServletResponse response)
+                throws ServletException, IOException {
             this.actualMdcContextMap = MDC.getCopyOfContextMap();
         }
     }

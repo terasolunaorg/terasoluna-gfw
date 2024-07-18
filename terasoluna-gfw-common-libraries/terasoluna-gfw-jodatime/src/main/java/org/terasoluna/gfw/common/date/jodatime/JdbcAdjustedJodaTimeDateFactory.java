@@ -27,7 +27,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.Assert;
 
 /**
- * Concrete Implementation class of {@link org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory}.
+ * Concrete Implementation class of
+ * {@link org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory}.
  * <P>
  * Adds an adjustment value to current system date. <br>
  * Database is used to store the adjustment value to current system date. <br>
@@ -39,9 +40,9 @@ import org.springframework.util.Assert;
  */
 @Deprecated
 public class JdbcAdjustedJodaTimeDateFactory extends AbstractJodaTimeDateFactory
-                                             implements InitializingBean {
-    private static final Logger logger = LoggerFactory.getLogger(
-            JdbcAdjustedJodaTimeDateFactory.class);
+        implements InitializingBean {
+    private static final Logger logger =
+            LoggerFactory.getLogger(JdbcAdjustedJodaTimeDateFactory.class);
 
     /**
      * JDBC Template used to access the database to fetch the adjustment value.
@@ -90,8 +91,7 @@ public class JdbcAdjustedJodaTimeDateFactory extends AbstractJodaTimeDateFactory
      * @return long adjustment value
      */
     public long reload() {
-        Long adjustedValue = jdbcTemplate.queryForObject(adjustedValueQuery,
-                Long.class);
+        Long adjustedValue = jdbcTemplate.queryForObject(adjustedValueQuery, Long.class);
         if (adjustedValue == null) {
             adjustedValue = cachedAdjustedValue.get();
             logger.warn("adjusted value is null. use {}", adjustedValue);
@@ -111,8 +111,7 @@ public class JdbcAdjustedJodaTimeDateFactory extends AbstractJodaTimeDateFactory
     @Override
     public void afterPropertiesSet() {
         Assert.notNull(jdbcTemplate, "jdbcTemplate must not be null");
-        Assert.hasLength(adjustedValueQuery,
-                "adjustedValueQuery must not be empty");
+        Assert.hasLength(adjustedValueQuery, "adjustedValueQuery must not be empty");
         reload();
     }
 

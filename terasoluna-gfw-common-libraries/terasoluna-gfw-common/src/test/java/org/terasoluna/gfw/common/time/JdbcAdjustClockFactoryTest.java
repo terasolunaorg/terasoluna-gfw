@@ -37,7 +37,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:test-context.xml" })
+@ContextConfiguration(locations = {"classpath:test-context.xml"})
 @Transactional
 public class JdbcAdjustClockFactoryTest {
 
@@ -52,20 +52,18 @@ public class JdbcAdjustClockFactoryTest {
     @Before
     public void before() {
         // crate table
-        jdbcTemplate.getJdbcOperations().execute(
-                "CREATE TABLE system_adjusted_date(diff long)");
-        jdbcTemplate.update(
-                "INSERT INTO system_adjusted_date(diff) VALUES (:diff)",
+        jdbcTemplate.getJdbcOperations().execute("CREATE TABLE system_adjusted_date(diff long)");
+        jdbcTemplate.update("INSERT INTO system_adjusted_date(diff) VALUES (:diff)",
                 Collections.singletonMap("diff", 30)); // plus 30 days
 
-        clockFactory = new JdbcAdjustClockFactory(dataSource, "SELECT diff FROM system_adjusted_date", ChronoUnit.DAYS);
+        clockFactory = new JdbcAdjustClockFactory(dataSource,
+                "SELECT diff FROM system_adjusted_date", ChronoUnit.DAYS);
     }
 
     @After
     public void after() {
         // drop table
-        jdbcTemplate.getJdbcOperations().execute(
-                "DROP TABLE system_adjusted_date");
+        jdbcTemplate.getJdbcOperations().execute("DROP TABLE system_adjusted_date");
     }
 
     @Test

@@ -26,12 +26,15 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 
 /**
- * Concrete Implementation class of {@link org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory}.
+ * Concrete Implementation class of
+ * {@link org.terasoluna.gfw.common.date.jodatime.JodaTimeDateFactory}.
  * <P>
- * The {@link org.joda.time.DateTime} value which is to be returned as current system date is stored in database. <br>
+ * The {@link org.joda.time.DateTime} value which is to be returned as current system date is stored
+ * in database. <br>
  * </P>
  * @since 5.0.0
- * @deprecated It is recommended to migrate to java.time (JSR-310). {@link org.terasoluna.gfw.common.time.JdbcClockFactory}
+ * @deprecated It is recommended to migrate to java.time (JSR-310).
+ *             {@link org.terasoluna.gfw.common.time.JdbcClockFactory}
  */
 @Deprecated
 public class JdbcFixedJodaTimeDateFactory extends AbstractJodaTimeDateFactory {
@@ -47,8 +50,9 @@ public class JdbcFixedJodaTimeDateFactory extends AbstractJodaTimeDateFactory {
     private String currentTimestampQuery;
 
     /**
-     * {@link org.springframework.jdbc.core.RowMapper} implementation maps the {@link java.sql.Timestamp} fetched from database
-     * into a {@link org.joda.time.DateTime} instance
+     * {@link org.springframework.jdbc.core.RowMapper} implementation maps the
+     * {@link java.sql.Timestamp} fetched from database into a {@link org.joda.time.DateTime}
+     * instance
      */
     private static final RowMapper<DateTime> DATE_ROW_MAPPER = new RowMapper<DateTime>() {
         @Override
@@ -63,8 +67,7 @@ public class JdbcFixedJodaTimeDateFactory extends AbstractJodaTimeDateFactory {
      */
     @Override
     public DateTime newDateTime() {
-        DateTime now = jdbcTemplate.queryForObject(currentTimestampQuery,
-                DATE_ROW_MAPPER);
+        DateTime now = jdbcTemplate.queryForObject(currentTimestampQuery, DATE_ROW_MAPPER);
         return now;
     }
 

@@ -32,7 +32,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:test-context.xml" })
+@ContextConfiguration(locations = {"classpath:test-context.xml"})
 @Transactional
 @Rollback
 // Changed by SPR-13277
@@ -45,8 +45,8 @@ public class JdbcSequencerTest {
 
     @Before
     public void before() throws Exception {
-        jdbcTemplate.getJdbcOperations().execute(
-                "CREATE SEQUENCE TEST_SEQ START WITH 1 INCREMENT BY 1");
+        jdbcTemplate.getJdbcOperations()
+                .execute("CREATE SEQUENCE TEST_SEQ START WITH 1 INCREMENT BY 1");
     }
 
     @Test

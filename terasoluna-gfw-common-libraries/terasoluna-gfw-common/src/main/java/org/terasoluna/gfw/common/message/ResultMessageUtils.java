@@ -31,14 +31,12 @@ public final class ResultMessageUtils {
     /**
      * logger
      */
-    private static final Logger logger = LoggerFactory.getLogger(
-            ResultMessageUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(ResultMessageUtils.class);
 
     /**
      * Default Constructor.
      */
-    private ResultMessageUtils() {
-    };
+    private ResultMessageUtils() {};
 
     /**
      * resolve message text of <code>ResultMessage</code><br>
@@ -58,8 +56,7 @@ public final class ResultMessageUtils {
      * @throws NoSuchMessageException if message is not found and no default text is given
      * @throws IllegalArgumentException if message or messageSoruce or locale is <code>null</code>
      */
-    public static String resolveMessage(ResultMessage message,
-            MessageSource messageSource,
+    public static String resolveMessage(ResultMessage message, MessageSource messageSource,
             Locale locale) throws NoSuchMessageException {
         Assert.notNull(messageSource, "messageSource must not be null!");
         Assert.notNull(message, "message must not be null!");
@@ -75,9 +72,8 @@ public final class ResultMessageUtils {
                 String text = message.getText();
                 if (text != null) {
                     if (logger.isDebugEnabled()) {
-                        logger.debug("messege is not found under code '" + code
-                                + "' for '" + locale + "'. use '" + text
-                                + "' instead", e);
+                        logger.debug("messege is not found under code '" + code + "' for '" + locale
+                                + "'. use '" + text + "' instead", e);
                     }
                     // if ResultMessage has a text, then use it.
                     msg = text;
@@ -108,8 +104,7 @@ public final class ResultMessageUtils {
      * @return message text
      * @throws NoSuchMessageException If does not resolve a message
      */
-    public static String resolveMessage(ResultMessage message,
-            MessageSource messageSource) {
+    public static String resolveMessage(ResultMessage message, MessageSource messageSource) {
         return resolveMessage(message, messageSource, Locale.getDefault());
     }
 }

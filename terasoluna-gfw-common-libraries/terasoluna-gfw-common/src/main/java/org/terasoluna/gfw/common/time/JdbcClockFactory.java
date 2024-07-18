@@ -25,7 +25,8 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
- * Implementation of {@link ClockFactory} that obtain a clock based on database column of time stamp.
+ * Implementation of {@link ClockFactory} that obtain a clock based on database column of time
+ * stamp.
  * @since 5.8.0
  * @author Atsushi Yoshikawa
  */
@@ -40,8 +41,7 @@ public class JdbcClockFactory implements ClockFactory {
      * @param dataSource data source used in {@link JdbcTemplate}
      * @param currentTimestampQuery query to get current time stamp
      */
-    public JdbcClockFactory(DataSource dataSource,
-            String currentTimestampQuery) {
+    public JdbcClockFactory(DataSource dataSource, String currentTimestampQuery) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.currentTimestampQuery = currentTimestampQuery;
     }
@@ -60,8 +60,7 @@ public class JdbcClockFactory implements ClockFactory {
     @Override
     public Clock tick(ZoneId zone) {
         Clock systemClock = Clock.system(zone);
-        return Clock.offset(systemClock, Duration.between(systemClock.instant(),
-                instant(zone)));
+        return Clock.offset(systemClock, Duration.between(systemClock.instant(), instant(zone)));
     }
 
     /**
@@ -71,8 +70,7 @@ public class JdbcClockFactory implements ClockFactory {
      */
     private Instant instant(ZoneId zone) {
         return jdbcTemplate.queryForObject(currentTimestampQuery, //
-                (rs, rowNum) -> rs.getTimestamp(1).toLocalDateTime().atZone(
-                        zone)) //
+                (rs, rowNum) -> rs.getTimestamp(1).toLocalDateTime().atZone(zone)) //
                 .toInstant();
     }
 }

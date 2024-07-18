@@ -191,8 +191,7 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
         ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
 
-        ResultMessages messages = ResultMessages.error().add("foo", "aa").add(
-                "bar", "bb");
+        ResultMessages messages = ResultMessages.error().add("foo", "aa").add("bar", "bb");
 
         assertThat(messages.getType(), is(ERROR));
         assertThat(messages.getList(), contains(msg1, msg2));
@@ -203,8 +202,7 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
         ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
 
-        ResultMessages messages = ResultMessages.info().add("foo", "aa").add(
-                "bar", "bb");
+        ResultMessages messages = ResultMessages.info().add("foo", "aa").add("bar", "bb");
 
         assertThat(messages.getType(), is(INFO));
         assertThat(messages.getList(), contains(msg1, msg2));
@@ -215,8 +213,7 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
         ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
 
-        ResultMessages messages = ResultMessages.success().add("foo", "aa").add(
-                "bar", "bb");
+        ResultMessages messages = ResultMessages.success().add("foo", "aa").add("bar", "bb");
 
         assertThat(messages.getType(), is(SUCCESS));
         assertThat(messages.getList(), contains(msg1, msg2));
@@ -227,8 +224,7 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
         ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
 
-        ResultMessages messages = ResultMessages.danger().add("foo", "aa").add(
-                "bar", "bb");
+        ResultMessages messages = ResultMessages.danger().add("foo", "aa").add("bar", "bb");
 
         assertThat(messages.getType(), is(DANGER));
         assertThat(messages.getList(), contains(msg1, msg2));
@@ -239,8 +235,7 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
         ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
 
-        ResultMessages messages = ResultMessages.warning().add("foo", "aa").add(
-                "bar", "bb");
+        ResultMessages messages = ResultMessages.warning().add("foo", "aa").add("bar", "bb");
 
         assertThat(messages.getType(), is(WARNING));
         assertThat(messages.getList(), contains(msg1, msg2));
@@ -251,8 +246,7 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
         ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
 
-        ResultMessages messages = ResultMessages.primary().add("foo", "aa").add(
-                "bar", "bb");
+        ResultMessages messages = ResultMessages.primary().add("foo", "aa").add("bar", "bb");
 
         assertThat(messages.getType(), is(PRIMARY));
         assertThat(messages.getList(), contains(msg1, msg2));
@@ -263,8 +257,7 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
         ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
 
-        ResultMessages messages = ResultMessages.secondary().add("foo", "aa")
-                .add("bar", "bb");
+        ResultMessages messages = ResultMessages.secondary().add("foo", "aa").add("bar", "bb");
 
         assertThat(messages.getType(), is(SECONDARY));
         assertThat(messages.getList(), contains(msg1, msg2));
@@ -275,8 +268,7 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
         ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
 
-        ResultMessages messages = ResultMessages.light().add("foo", "aa").add(
-                "bar", "bb");
+        ResultMessages messages = ResultMessages.light().add("foo", "aa").add("bar", "bb");
 
         assertThat(messages.getType(), is(LIGHT));
         assertThat(messages.getList(), contains(msg1, msg2));
@@ -287,22 +279,20 @@ public class ResultMessagesTest {
         ResultMessage msg1 = ResultMessage.fromCode("foo", "aa");
         ResultMessage msg2 = ResultMessage.fromCode("bar", "bb");
 
-        ResultMessages messages = ResultMessages.dark().add("foo", "aa").add(
-                "bar", "bb");
+        ResultMessages messages = ResultMessages.dark().add("foo", "aa").add("bar", "bb");
 
         assertThat(messages.getType(), is(DARK));
         assertThat(messages.getList(), contains(msg1, msg2));
     }
 
     /**
-     * This test uses SerializationUtils#deserialize(byte[]) Although this mechanism is deprecated, it is still used because the
-     * data to be deserialized is guaranteed.
+     * This test uses SerializationUtils#deserialize(byte[]) Although this mechanism is deprecated,
+     * it is still used because the data to be deserialized is guaranteed.
      */
     @SuppressWarnings("deprecation")
     @Test(expected = None.class)
     public void testSerialization() {
-        byte[] serialized = SerializationUtils.serialize(
-                new ResultMessages(ERROR));
+        byte[] serialized = SerializationUtils.serialize(new ResultMessages(ERROR));
         SerializationUtils.deserialize(serialized);
     }
 }

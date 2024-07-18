@@ -49,8 +49,8 @@ import org.terasoluna.gfw.web.logback.LogLevelChangeUtil;
 import ch.qos.logback.classic.Logger;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:test-context.xml",
-        "classpath:org/terasoluna/gfw/web/codelist/CodeListInterceptorTest.xml" })
+@ContextConfiguration(locations = {"classpath:test-context.xml",
+        "classpath:org/terasoluna/gfw/web/codelist/CodeListInterceptorTest.xml"})
 public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
     private CodeListInterceptor testTarget;
@@ -68,8 +68,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
     @Before
     public void before() {
         this.testTarget = new CodeListInterceptor();
-        testTarget.setApplicationContext(
-                new StaticApplicationContext(getApplicationContext()));
+        testTarget.setApplicationContext(new StaticApplicationContext(getApplicationContext()));
 
         this.mockRequest = new MockHttpServletRequest();
         this.mockResponse = new MockHttpServletResponse();
@@ -96,8 +95,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.postHandle(mockRequest, mockResponse, null, null);
 
         // do assert.
-        assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(
-                false));
+        assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
 
     }
 
@@ -116,10 +114,9 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
         // do setup.
         StaticApplicationContext mockApplicationContext = new StaticApplicationContext();
-        mockApplicationContext.registerSingleton("simpleMapCodeList",
-                SimpleMapCodeList.class);
-        SimpleMapCodeList simpleMapCodeList = mockApplicationContext.getBean(
-                SimpleMapCodeList.class);
+        mockApplicationContext.registerSingleton("simpleMapCodeList", SimpleMapCodeList.class);
+        SimpleMapCodeList simpleMapCodeList =
+                mockApplicationContext.getBean(SimpleMapCodeList.class);
         simpleMapCodeList.setMap(Collections.singletonMap("key", "value"));
 
         testTarget.setApplicationContext(mockApplicationContext);
@@ -129,13 +126,11 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.postHandle(mockRequest, mockResponse, null, null);
 
         // do assert.
-        Enumeration<String> actualAttributeNames = mockRequest
-                .getAttributeNames();
+        Enumeration<String> actualAttributeNames = mockRequest.getAttributeNames();
         assertThat(actualAttributeNames.hasMoreElements(), is(true));
         actualAttributeNames.nextElement();
         assertThat(actualAttributeNames.hasMoreElements(), is(false));
-        assertThat(mockRequest.getAttribute("simpleMapCodeList"), is(
-                simpleMapCodeList.asMap()));
+        assertThat(mockRequest.getAttribute("simpleMapCodeList"), is(simpleMapCodeList.asMap()));
 
     }
 
@@ -154,8 +149,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
         // do setup.
         mockRequest.addPreferredLocale(Locale.ENGLISH);
-        LocaleContextHolder.setLocaleContext(new SimpleLocaleContext(mockRequest
-                .getLocale()));
+        LocaleContextHolder.setLocaleContext(new SimpleLocaleContext(mockRequest.getLocale()));
 
         testTarget.setCodeListIdPattern(Pattern.compile("C_.+"));
         testTarget.afterPropertiesSet();
@@ -164,14 +158,13 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.postHandle(mockRequest, mockResponse, null, null);
 
         // do assert.
-        SimpleMapCodeList simpleMapCodeList = getApplicationContext().getBean(
-                "C_simpleMapCodeList", SimpleMapCodeList.class);
-        SimpleI18nCodeList simpleI18nCodeList = getApplicationContext().getBean(
-                "C_simpleI18nCodeList", SimpleI18nCodeList.class);
-        assertThat(mockRequest.getAttribute("C_simpleMapCodeList"), is(
-                simpleMapCodeList.asMap()));
-        assertThat(mockRequest.getAttribute("C_simpleI18nCodeList"), is(
-                simpleI18nCodeList.asMap(Locale.ENGLISH)));
+        SimpleMapCodeList simpleMapCodeList =
+                getApplicationContext().getBean("C_simpleMapCodeList", SimpleMapCodeList.class);
+        SimpleI18nCodeList simpleI18nCodeList =
+                getApplicationContext().getBean("C_simpleI18nCodeList", SimpleI18nCodeList.class);
+        assertThat(mockRequest.getAttribute("C_simpleMapCodeList"), is(simpleMapCodeList.asMap()));
+        assertThat(mockRequest.getAttribute("C_simpleI18nCodeList"),
+                is(simpleI18nCodeList.asMap(Locale.ENGLISH)));
 
     }
 
@@ -195,8 +188,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.postHandle(mockRequest, mockResponse, null, null);
 
         // do assert.
-        assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(
-                false));
+        assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
 
     }
 
@@ -221,11 +213,10 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do assert.
-        Map<String, CodeList> expectedCodeListMap = new HashMap<String, CodeList>(getApplicationContext()
-                .getBeansOfType(CodeList.class));
+        Map<String, CodeList> expectedCodeListMap = new HashMap<String, CodeList>(
+                getApplicationContext().getBeansOfType(CodeList.class));
 
-        assertThat(testTarget.getCodeLists(), contains(expectedCodeListMap
-                .values().toArray()));
+        assertThat(testTarget.getCodeLists(), contains(expectedCodeListMap.values().toArray()));
 
     }
 
@@ -249,12 +240,11 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do assert.
-        assertThat(testTarget.getCodeLists(), is(containsInAnyOrder(
-                getApplicationContext().getBean("A_simpleI18nCodeList",
-                        CodeList.class), getApplicationContext().getBean(
-                                "A_numberRangeCodeList", CodeList.class),
-                getApplicationContext().getBean("A_simpleMapCodeList",
-                        CodeList.class))));
+        assertThat(testTarget.getCodeLists(),
+                is(containsInAnyOrder(
+                        getApplicationContext().getBean("A_simpleI18nCodeList", CodeList.class),
+                        getApplicationContext().getBean("A_numberRangeCodeList", CodeList.class),
+                        getApplicationContext().getBean("A_simpleMapCodeList", CodeList.class))));
 
     }
 
@@ -295,8 +285,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
     @Test
     public void testAfterPropertiesSet_isDebugEnabled_false() throws Exception {
 
-        Logger logger = (Logger) LoggerFactory.getLogger(
-                CodeListInterceptor.class);
+        Logger logger = (Logger) LoggerFactory.getLogger(CodeListInterceptor.class);
 
         // do setup.
         LogLevelChangeUtil.setLogLevel(LogLevelChangeUtil.LogLevel.INFO);
@@ -329,16 +318,15 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
         // do setup.
         StaticApplicationContext mockApplicationContext = new StaticApplicationContext();
-        mockApplicationContext.registerSingleton("simpleMapCodeList",
-                SimpleMapCodeList.class);
+        mockApplicationContext.registerSingleton("simpleMapCodeList", SimpleMapCodeList.class);
         testTarget.setApplicationContext(mockApplicationContext);
 
         // do test.
         testTarget.afterPropertiesSet();
 
         // do assert.
-        CodeList expectedCodeList = mockApplicationContext.getBean(
-                "simpleMapCodeList", CodeList.class);
+        CodeList expectedCodeList =
+                mockApplicationContext.getBean("simpleMapCodeList", CodeList.class);
 
         assertThat(testTarget.getCodeLists(), contains(expectedCodeList));
 
@@ -361,10 +349,9 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.setApplicationContext(null);
 
         // do test.
-        IllegalArgumentException e = assertThrows(
-                IllegalArgumentException.class, () -> {
-                    testTarget.afterPropertiesSet();
-                });
+        IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
+            testTarget.afterPropertiesSet();
+        });
         // do assert.
         assertThat(e.getMessage(), is("applicationContext is null."));
 

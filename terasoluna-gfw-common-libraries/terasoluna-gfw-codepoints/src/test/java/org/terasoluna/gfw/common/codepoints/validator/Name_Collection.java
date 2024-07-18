@@ -29,8 +29,7 @@ public class Name_Collection {
         this.lastNames = lastNames;
     }
 
-    public Name_Collection() {
-    }
+    public Name_Collection() {}
 
     public List<String> getFirstNames() {
         return firstNames;

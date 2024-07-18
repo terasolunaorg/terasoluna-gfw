@@ -25,8 +25,8 @@ import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
- * Implementation of {@link ClockFactory} that obtain a Clock adjusted specific duration using value of database column and unit
- * from system default clock.
+ * Implementation of {@link ClockFactory} that obtain a Clock adjusted specific duration using value
+ * of database column and unit from system default clock.
  * @since 5.8.0
  * @author Atsushi Yoshikawa
  */
@@ -44,8 +44,8 @@ public class JdbcAdjustClockFactory implements ClockFactory {
      * @param adjustedValueQuery query to get duration value to be adjusted
      * @param adjustedValueUnit estimable duration units of the value to be adjusted
      */
-    public JdbcAdjustClockFactory(DataSource dataSource,
-            String adjustedValueQuery, TemporalUnit adjustedValueUnit) {
+    public JdbcAdjustClockFactory(DataSource dataSource, String adjustedValueQuery,
+            TemporalUnit adjustedValueUnit) {
         this.jdbcTemplate = new JdbcTemplate(dataSource);
         this.adjustedValueQuery = adjustedValueQuery;
         this.adjustedValueUnit = adjustedValueUnit;
@@ -65,8 +65,7 @@ public class JdbcAdjustClockFactory implements ClockFactory {
     @Override
     public Clock tick(ZoneId zone) {
         Clock systemClock = Clock.system(zone);
-        return Clock.offset(systemClock, Duration.of(adjustedValue(),
-                adjustedValueUnit));
+        return Clock.offset(systemClock, Duration.of(adjustedValue(), adjustedValueUnit));
     }
 
     /**
@@ -74,7 +73,6 @@ public class JdbcAdjustClockFactory implements ClockFactory {
      * @return duration value to be adjusted
      */
     private long adjustedValue() {
-        return jdbcTemplate.queryForObject(adjustedValueQuery, (rs,
-                rowNum) -> rs.getLong(1));
+        return jdbcTemplate.queryForObject(adjustedValueQuery, (rs, rowNum) -> rs.getLong(1));
     }
 }

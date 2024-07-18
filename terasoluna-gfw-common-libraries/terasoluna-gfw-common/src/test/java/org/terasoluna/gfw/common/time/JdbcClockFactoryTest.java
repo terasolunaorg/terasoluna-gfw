@@ -39,7 +39,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:test-context.xml" })
+@ContextConfiguration(locations = {"classpath:test-context.xml"})
 @Transactional
 public class JdbcClockFactoryTest {
 
@@ -54,11 +54,10 @@ public class JdbcClockFactoryTest {
     @Before
     public void before() {
         // crate table
-        jdbcTemplate.getJdbcOperations().execute(
-                "CREATE TABLE system_date(now timestamp NOT NULL)");
+        jdbcTemplate.getJdbcOperations()
+                .execute("CREATE TABLE system_date(now timestamp NOT NULL)");
         jdbcTemplate.update("INSERT INTO system_date(now) VALUES (:now)",
-                Collections.singletonMap("now", LocalDateTime.of(2012, 9, 11, 2,
-                        25, 15, 0)));
+                Collections.singletonMap("now", LocalDateTime.of(2012, 9, 11, 2, 25, 15, 0)));
 
         clockFactory = new JdbcClockFactory(dataSource, "SELECT now FROM system_date");
     }

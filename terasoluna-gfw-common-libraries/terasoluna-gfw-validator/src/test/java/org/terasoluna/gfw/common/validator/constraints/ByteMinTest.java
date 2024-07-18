@@ -40,7 +40,8 @@ import jakarta.validation.ValidationException;
  */
 public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
-    private static final String MESSAGE_VALIDATION_ERROR = "must be greater than or equal to %d bytes";
+    private static final String MESSAGE_VALIDATION_ERROR =
+            "must be greater than or equal to %d bytes";
 
     @Before
     public void before() {
@@ -58,7 +59,8 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
     }
 
     /**
-     * specify min value. expected valid if input value encoded in UTF-8 is grater than or equal min value.
+     * specify min value. expected valid if input value encoded in UTF-8 is grater than or equal min
+     * value.
      */
     @Test
     public void testSpecifyMinValue() {
@@ -67,8 +69,8 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             form.setStringProperty("あaa");
 
             violations = validator.validate(form);
-            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
-                    String.format(MESSAGE_VALIDATION_ERROR, 6)))));
+            assertThat(violations, containsInAnyOrder(
+                    hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6)))));
         }
 
         {
@@ -89,8 +91,8 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             form.setStringBuilderProperty(new StringBuilder("あaa"));
 
             violations = validator.validate(form);
-            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
-                    String.format(MESSAGE_VALIDATION_ERROR, 6)))));
+            assertThat(violations, containsInAnyOrder(
+                    hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6)))));
         }
 
         {
@@ -102,7 +104,8 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
     }
 
     /**
-     * specify charset. expected valid if input value encoded in specified charset is grater than or equal min value.
+     * specify charset. expected valid if input value encoded in specified charset is grater than or
+     * equal min value.
      */
     @Test
     public void testSpecifyCharset() {
@@ -111,8 +114,8 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             form.setStringProperty("ああa");
 
             violations = validator.validate(form, SpecifyCharset.class);
-            assertThat(violations, containsInAnyOrder(hasProperty("message", is(
-                    String.format(MESSAGE_VALIDATION_ERROR, 6)))));
+            assertThat(violations, containsInAnyOrder(
+                    hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6)))));
         }
 
         {
@@ -124,7 +127,8 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
     }
 
     /**
-     * specify illegal charset. expected {@code ValidationException} caused by {@code IllegalArgumentException} that message is
+     * specify illegal charset. expected {@code ValidationException} caused by
+     * {@code IllegalArgumentException} that message is
      * {@code failed to initialize validator by invalid argument}.
      */
     @Test
@@ -135,8 +139,10 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
     }
 
     /**
-     * specify negative value. expected {@code ValidationException} caused by {@code IllegalArgumentException} that message is
-     * {@code failed to initialize validator by invalid argument} and nested by {@code IllegalArgumentException} that message is
+     * specify negative value. expected {@code ValidationException} caused by
+     * {@code IllegalArgumentException} that message is
+     * {@code failed to initialize validator by invalid argument} and nested by
+     * {@code IllegalArgumentException} that message is
      * {@code value[-1] must not be negative value.}.
      */
     @Test
@@ -152,8 +158,8 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
      */
     @Test
     public void testAnnotateUnexpectedType() {
-        assertThrows(UnexpectedTypeException.class, () -> validator.validate(
-                form, UnexpectedType.class));
+        assertThrows(UnexpectedTypeException.class,
+                () -> validator.validate(form, UnexpectedType.class));
     }
 
     /**
@@ -175,10 +181,10 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             violations = validator.validate(form);
             assertThat(violations, containsInAnyOrder( //
                     allOf( //
-                            hasProperty("propertyPath", hasToString(
-                                    "listProperty[0].<list element>")), //
-                            hasProperty("message", is(String.format(
-                                    MESSAGE_VALIDATION_ERROR, 6))))));
+                            hasProperty("propertyPath",
+                                    hasToString("listProperty[0].<list element>")), //
+                            hasProperty("message",
+                                    is(String.format(MESSAGE_VALIDATION_ERROR, 6))))));
         }
 
         {
@@ -187,10 +193,10 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             violations = validator.validate(form);
             assertThat(violations, containsInAnyOrder( //
                     allOf( //
-                            hasProperty("propertyPath", hasToString(
-                                    "listProperty[1].<list element>")), //
-                            hasProperty("message", is(String.format(
-                                    MESSAGE_VALIDATION_ERROR, 6))))));
+                            hasProperty("propertyPath",
+                                    hasToString("listProperty[1].<list element>")), //
+                            hasProperty("message",
+                                    is(String.format(MESSAGE_VALIDATION_ERROR, 6))))));
         }
 
         {
@@ -199,15 +205,14 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             violations = validator.validate(form);
             assertThat(violations, containsInAnyOrder( //
                     allOf( //
-                            hasProperty("propertyPath", hasToString(
-                                    "listProperty[0].<list element>")), //
-                            hasProperty("message", is(String.format(
-                                    MESSAGE_VALIDATION_ERROR, 6)))), //
+                            hasProperty("propertyPath",
+                                    hasToString("listProperty[0].<list element>")), //
+                            hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6)))), //
                     allOf( //
-                            hasProperty("propertyPath", hasToString(
-                                    "listProperty[1].<list element>")), //
-                            hasProperty("message", is(String.format(
-                                    MESSAGE_VALIDATION_ERROR, 6))))));
+                            hasProperty("propertyPath",
+                                    hasToString("listProperty[1].<list element>")), //
+                            hasProperty("message",
+                                    is(String.format(MESSAGE_VALIDATION_ERROR, 6))))));
         }
     }
 
@@ -237,17 +242,15 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
 
     public static class ByteMinTestForm {
         @ByteMin(6)
-        @ByteMin(value = 6, charset = "shift-jis", groups = {
-                SpecifyCharset.class })
-        @ByteMin(value = 6, charset = "illegal-charset", groups = {
-                IllegalCharset.class })
-        @ByteMin(value = -1, groups = { NegativeValue.class })
+        @ByteMin(value = 6, charset = "shift-jis", groups = {SpecifyCharset.class})
+        @ByteMin(value = 6, charset = "illegal-charset", groups = {IllegalCharset.class})
+        @ByteMin(value = -1, groups = {NegativeValue.class})
         private String stringProperty;
 
         @ByteMin(6)
         private StringBuilder stringBuilderProperty;
 
-        @ByteMin(value = 6, groups = { UnexpectedType.class })
+        @ByteMin(value = 6, groups = {UnexpectedType.class})
         private Integer intProperty;
 
         private List<@ByteMin(6) String> listProperty;
@@ -264,8 +267,7 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             return stringBuilderProperty;
         }
 
-        public void setStringBuilderProperty(
-                StringBuilder stringBuilderProperty) {
+        public void setStringBuilderProperty(StringBuilder stringBuilderProperty) {
             this.stringBuilderProperty = stringBuilderProperty;
         }
 

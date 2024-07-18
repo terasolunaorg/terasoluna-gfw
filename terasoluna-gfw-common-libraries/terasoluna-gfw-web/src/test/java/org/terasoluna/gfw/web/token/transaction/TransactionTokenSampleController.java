@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @TransactionTokenCheck("testTokenAttr")
 public class TransactionTokenSampleController {
 
-    private static final Logger logger = LoggerFactory.getLogger(
-            TransactionTokenSampleController.class);
+    private static final Logger logger =
+            LoggerFactory.getLogger(TransactionTokenSampleController.class);
 
     @ModelAttribute("transactionTokenSampleForm")
     public SampleForm createForm() {
@@ -44,8 +44,7 @@ public class TransactionTokenSampleController {
 
     @RequestMapping(value = "/second")
     @TransactionTokenCheck
-    public void second(SampleForm form, Model model,
-            TransactionTokenContext ttcontext) {
+    public void second(SampleForm form, Model model, TransactionTokenContext ttcontext) {
         logger.debug("second");
         logger.debug("ttcontext:" + ttcontext);
     }

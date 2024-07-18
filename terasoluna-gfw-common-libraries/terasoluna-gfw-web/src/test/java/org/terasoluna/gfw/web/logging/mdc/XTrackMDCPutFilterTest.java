@@ -75,7 +75,8 @@ public class XTrackMDCPutFilterTest {
     }
 
     @Test
-    public void testGetMDCValue_default_attributeName_set_in_http_request() throws ServletException {
+    public void testGetMDCValue_default_attributeName_set_in_http_request()
+            throws ServletException {
         xTrackMDCPutFilter.init(mockFilterConfig);
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();
@@ -97,25 +98,21 @@ public class XTrackMDCPutFilterTest {
         request.addHeader("X-Hoge", "12345678901234567890123456789012");
         String xTrack = xTrackMDCPutFilter.getMDCValue(request, response);
         assertThat(xTrack, is("12345678901234567890123456789012"));
-        assertThat(response.getHeader("X-Hoge"), is(
-                "12345678901234567890123456789012"));
-        assertThat(request.getAttribute("X-Hoge"), is(
-                "12345678901234567890123456789012"));
+        assertThat(response.getHeader("X-Hoge"), is("12345678901234567890123456789012"));
+        assertThat(request.getAttribute("X-Hoge"), is("12345678901234567890123456789012"));
     }
 
     @Test
-    public void testGetMDCValue_default_attributeName_set_in_http_request_too_long_length() throws ServletException {
+    public void testGetMDCValue_default_attributeName_set_in_http_request_too_long_length()
+            throws ServletException {
         xTrackMDCPutFilter.init(mockFilterConfig);
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();
 
-        request.addHeader("X-Track",
-                "12345678901234567890123456789012345678901234567890");
+        request.addHeader("X-Track", "12345678901234567890123456789012345678901234567890");
         String xTrack = xTrackMDCPutFilter.getMDCValue(request, response);
         assertThat(xTrack, is("12345678901234567890123456789012"));
-        assertThat(response.getHeader("X-Track"), is(
-                "12345678901234567890123456789012"));
-        assertThat(request.getAttribute("X-Track"), is(
-                "12345678901234567890123456789012"));
+        assertThat(response.getHeader("X-Track"), is("12345678901234567890123456789012"));
+        assertThat(request.getAttribute("X-Track"), is("12345678901234567890123456789012"));
     }
 }

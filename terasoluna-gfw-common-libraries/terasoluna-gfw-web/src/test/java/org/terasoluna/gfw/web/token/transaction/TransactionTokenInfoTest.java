@@ -275,8 +275,8 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, beginToken);
         String output = info.toString();
         // assert
-        assertThat(output, is("TransactionTokenInfo [tokenName=" + tokenName
-                + ", transitionType=" + TransactionTokenType.END + "]"));
+        assertThat(output, is("TransactionTokenInfo [tokenName=" + tokenName + ", transitionType="
+                + TransactionTokenType.END + "]"));
     }
 
 }

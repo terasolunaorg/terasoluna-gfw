@@ -46,8 +46,7 @@ public class LogLevelChangeUtil {
      * reload logback configuration
      */
     private static void reloadLogbackConfiguration() throws Exception {
-        LoggerContext context = (LoggerContext) LoggerFactory
-                .getILoggerFactory();
+        LoggerContext context = (LoggerContext) LoggerFactory.getILoggerFactory();
         JoranConfigurator configurator = new JoranConfigurator();
         configurator.setContext(context);
         context.reset();
@@ -59,8 +58,7 @@ public class LogLevelChangeUtil {
      */
     public enum LogLevel {
 
-        TRACE("trace"), DEBUG("debug"), INFO("info"), WARN("warn"), ERROR(
-                "error");
+        TRACE("trace"), DEBUG("debug"), INFO("info"), WARN("warn"), ERROR("error");
 
         private String name;
 

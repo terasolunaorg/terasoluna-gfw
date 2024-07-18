@@ -32,7 +32,8 @@ public class InvalidTransactionTokenException extends RuntimeException {
     }
 
     /**
-     * Single argument constructor that takes the message string to be displayed when this exception is thrown<br>
+     * Single argument constructor that takes the message string to be displayed when this exception
+     * is thrown<br>
      * @param message message string
      */
     public InvalidTransactionTokenException(String message) {

@@ -22,7 +22,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.Assert;
 
 /**
- * Implementation class for the Sequencing Functionality Uses JDBC to query the database to fetch the next value in a sequence
+ * Implementation class for the Sequencing Functionality Uses JDBC to query the database to fetch
+ * the next value in a sequence
  * @param <T> type of sequence value
  */
 public class JdbcSequencer<T> implements Sequencer<T>, InitializingBean {
@@ -43,7 +44,8 @@ public class JdbcSequencer<T> implements Sequencer<T>, InitializingBean {
     private String currentValueQuery;
 
     /**
-     * Type of the class in which the next value of the sequence is to be returned. must not be <code>null</code>
+     * Type of the class in which the next value of the sequence is to be returned. must not be
+     * <code>null</code>
      */
     private Class<T> sequenceClass;
 
@@ -86,7 +88,8 @@ public class JdbcSequencer<T> implements Sequencer<T>, InitializingBean {
     }
 
     /**
-     * Sets the type of the class whose instance is returned as the next value in the sequence. must not be null
+     * Sets the type of the class whose instance is returned as the next value in the sequence. must
+     * not be null
      * @param sequenceClass java type of sequence value
      */
     public void setSequenceClass(Class<T> sequenceClass) {
@@ -94,8 +97,8 @@ public class JdbcSequencer<T> implements Sequencer<T>, InitializingBean {
     }
 
     /**
-     * Sets the DataSource information used for accessing the database for fetching the next value of the sequence. must not be
-     * null
+     * Sets the DataSource information used for accessing the database for fetching the next value
+     * of the sequence. must not be null
      * @param dataSource DataSource instance for fetching a sequence value
      */
     public void setDataSource(DataSource dataSource) {
@@ -126,8 +129,7 @@ public class JdbcSequencer<T> implements Sequencer<T>, InitializingBean {
     public void afterPropertiesSet() throws IllegalArgumentException {
         Assert.notNull(jdbcTemplate, "jdbcTemplate must not be null");
         Assert.hasLength(nextValueQuery, "nextValueQuery must not be empty");
-        Assert.hasLength(currentValueQuery,
-                "currentValueQuery must not be empty");
+        Assert.hasLength(currentValueQuery, "currentValueQuery must not be empty");
         Assert.notNull(sequenceClass, "sequenceClass must not be null");
     }
 }

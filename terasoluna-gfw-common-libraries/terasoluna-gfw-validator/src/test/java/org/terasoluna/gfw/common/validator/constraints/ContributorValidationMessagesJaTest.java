@@ -66,10 +66,9 @@ public class ContributorValidationMessagesJaTest {
         ByteMinTest.ByteMinTestForm form = new ByteMinTest.ByteMinTestForm();
         form.setStringProperty("あaa");
 
-        Set<ConstraintViolation<ByteMinTestForm>> violations = validator
-                .validate(form);
-        assertThat(violations, containsInAnyOrder(hasProperty("message", is(
-                String.format("%d バイト以上のサイズにしてください", 6)))));
+        Set<ConstraintViolation<ByteMinTestForm>> violations = validator.validate(form);
+        assertThat(violations, containsInAnyOrder(
+                hasProperty("message", is(String.format("%d バイト以上のサイズにしてください", 6)))));
     }
 
     /**
@@ -81,10 +80,9 @@ public class ContributorValidationMessagesJaTest {
         ByteMaxTest.ByteMaxTestForm form = new ByteMaxTest.ByteMaxTestForm();
         form.setStringProperty("ああa");
 
-        Set<ConstraintViolation<ByteMaxTestForm>> violations = validator
-                .validate(form);
-        assertThat(violations, containsInAnyOrder(hasProperty("message", is(
-                String.format("%d バイト以下のサイズにしてください", 6)))));
+        Set<ConstraintViolation<ByteMaxTestForm>> violations = validator.validate(form);
+        assertThat(violations, containsInAnyOrder(
+                hasProperty("message", is(String.format("%d バイト以下のサイズにしてください", 6)))));
     }
 
     /**
@@ -96,10 +94,9 @@ public class ContributorValidationMessagesJaTest {
         ByteSizeTest.ByteSizeTestForm form = new ByteSizeTest.ByteSizeTestForm();
         form.setStringProperty("aa");
 
-        Set<ConstraintViolation<ByteSizeTestForm>> violations = validator
-                .validate(form);
-        assertThat(violations, containsInAnyOrder(hasProperty("message", is(
-                String.format("%d から %d バイトの間のサイズにしてください", 3, 6)))));
+        Set<ConstraintViolation<ByteSizeTestForm>> violations = validator.validate(form);
+        assertThat(violations, containsInAnyOrder(
+                hasProperty("message", is(String.format("%d から %d バイトの間のサイズにしてください", 3, 6)))));
     }
 
     /**
@@ -112,10 +109,9 @@ public class ContributorValidationMessagesJaTest {
         form.setLeft(100);
         form.setRight(99);
 
-        Set<ConstraintViolation<CompareTestForm>> violations = validator
-                .validate(form);
-        assertThat(violations, containsInAnyOrder(hasProperty("message", is(
-                String.format("正しくない %s と %s の組合せです", "left", "right")))));
+        Set<ConstraintViolation<CompareTestForm>> violations = validator.validate(form);
+        assertThat(violations, containsInAnyOrder(hasProperty("message",
+                is(String.format("正しくない %s と %s の組合せです", "left", "right")))));
     }
 
 }
