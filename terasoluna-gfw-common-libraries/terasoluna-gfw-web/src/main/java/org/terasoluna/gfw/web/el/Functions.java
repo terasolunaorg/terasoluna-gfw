@@ -51,7 +51,7 @@ public final class Functions {
      * Pattern of URL for replace to the link tag.
      */
     private static final Pattern URL_PATTERN =
-            Pattern.compile("(http|https)://[A-Za-z0-9\\._~/:\\-?&=%;]+");
+            Pattern.compile("(http|https)://[A-Za-z0-9\\-\\._~%:/?#\\[\\]@!$&'\\(\\)*+,;=]+");
 
     /**
      * Pattern of line break.

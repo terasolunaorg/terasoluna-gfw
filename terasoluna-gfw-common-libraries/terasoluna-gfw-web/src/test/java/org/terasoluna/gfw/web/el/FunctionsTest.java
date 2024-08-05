@@ -452,6 +452,51 @@ public class FunctionsTest {
                 is("go to <a href=\"http://www.google.com\">http://www.google.com</a>"));
         assertThat(Functions.link("go to https://www.google.com"),
                 is("go to <a href=\"https://www.google.com\">https://www.google.com</a>"));
+
+        // Schemes not supported
+        assertThat(Functions.link("ftp://test.com/test.txt"), is("ftp://test.com/test.txt"));
+        assertThat(Functions.link("file:///etc/hosts"), is("file:///etc/hosts"));
+
+        // Reserved Characters gen-delims (":" / "/" / "?" / "#" / "[" / "]" / "@")
+        assertThat(Functions.link("http://user@[::1]:8000/?/#"),
+                is("<a href=\"http://user@[::1]:8000/?/#\">http://user@[::1]:8000/?/#</a>"));
+
+        // Reserved Characters sub-delims ("!" / "$" / "&" / "'" / "(" / ")"
+        // / "*" / "+" / "," / ";" / "=")
+        assertThat(Functions.link("http://test.com/!$*+/'aaa'/(bbb)//?a=1&b=2,c=3;d=4"), is(
+                "<a href=\"http://test.com/!$*+/'aaa'/(bbb)//?a=1&b=2,c=3;d=4\">http://test.com/!$*+/'aaa'/(bbb)//?a=1&b=2,c=3;d=4</a>"));
+
+        // Unreserved Characters (ALPHA / DIGIT / "-" / "." / "_" / "~")
+        assertThat(Functions.link("http://test.com:8000/~user/web-aaa/web_bbb/"), is(
+                "<a href=\"http://test.com:8000/~user/web-aaa/web_bbb/\">http://test.com:8000/~user/web-aaa/web_bbb/</a>"));
+
+        // Percent-Encoding ("%" HEXDIG HEXDIG)
+        assertThat(Functions.link("http://test.com/%E3%81%82"),
+                is("<a href=\"http://test.com/%E3%81%82\">http://test.com/%E3%81%82</a>"));
+
+        // Other Characters
+        assertThat(Functions.link("http://test.com/\""),
+                is("<a href=\"http://test.com/\">http://test.com/</a>\""));
+        assertThat(Functions.link("http://test.com/<"),
+                is("<a href=\"http://test.com/\">http://test.com/</a><"));
+        assertThat(Functions.link("http://test.com/>"),
+                is("<a href=\"http://test.com/\">http://test.com/</a>>"));
+        assertThat(Functions.link("http://test.com/\\"),
+                is("<a href=\"http://test.com/\">http://test.com/</a>\\"));
+        assertThat(Functions.link("http://test.com/^"),
+                is("<a href=\"http://test.com/\">http://test.com/</a>^"));
+        assertThat(Functions.link("http://test.com/`"),
+                is("<a href=\"http://test.com/\">http://test.com/</a>`"));
+        assertThat(Functions.link("http://test.com/{"),
+                is("<a href=\"http://test.com/\">http://test.com/</a>{"));
+        assertThat(Functions.link("http://test.com/}"),
+                is("<a href=\"http://test.com/\">http://test.com/</a>}"));
+        assertThat(Functions.link("http://test.com/|"),
+                is("<a href=\"http://test.com/\">http://test.com/</a>|"));
+        assertThat(Functions.link("http://test.com/ｱ"),
+                is("<a href=\"http://test.com/\">http://test.com/</a>ｱ"));
+        assertThat(Functions.link("http://test.com/あ"),
+                is("<a href=\"http://test.com/\">http://test.com/</a>あ"));
     }
 
     @Test
