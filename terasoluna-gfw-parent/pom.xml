@@ -333,6 +333,26 @@
             </dependency>
             <!-- == End Spring Boot == -->
 
+            <!-- == Begin Spring Framework == -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${org.springframework.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- == End Spring Framework == -->
+
+            <!-- == Begin Spring Security == -->
+            <dependency>
+                <groupId>org.springframework.security</groupId>
+                <artifactId>spring-security-bom</artifactId>
+                <version>${org.springframework.security.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- == End Spring Security == -->
+
             <!-- == Begin MyBatis == -->
             <dependency>
                 <groupId>org.mybatis</groupId>
@@ -491,6 +511,32 @@
             </dependency>
             <!-- == End SLF4J == -->
 
+            <!-- == Begin Jetty == -->
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-bom</artifactId>
+                <version>${org.eclipse.jetty.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- == End Jetty == -->
+
+            <!-- == Begin Lombok == -->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${org.projectlombok.version}</version>
+            </dependency>
+            <!-- == End Lombok == -->
+
+            <!-- == Begin FreeMarker == -->
+            <dependency>
+                <groupId>org.freemarker</groupId>
+                <artifactId>freemarker</artifactId>
+                <version>${org.freemarker.version}</version>
+            </dependency>
+            <!-- == End FreeMarker == -->
+
             <!-- == Begin Other == -->
             <dependency>
                 <groupId>jakarta.el</groupId>
@@ -548,6 +594,10 @@
         <terasoluna.gfw.version>5.7.4-SNAPSHOT</terasoluna.gfw.version>
         <!-- == Spring Boot == -->
         <org.springframework.boot.version>2.7.18</org.springframework.boot.version>
+        <!-- == Spring Framework == -->
+        <org.springframework.version>5.3.39</org.springframework.version>
+        <!-- == Spring Security == -->
+        <org.springframework.security.version>5.7.12</org.springframework.security.version>
         <!-- == MyBatis3 == -->
         <org.mybatis.version>3.5.15</org.mybatis.version>
         <org.mybatis.spring.version>2.1.2</org.mybatis.spring.version>
@@ -575,6 +625,12 @@
         <logback.version>1.3.14</logback.version>
         <!-- == SLF4J == -->
         <slf4j.version>2.0.12</slf4j.version>
+        <!-- == Jetty == -->
+        <org.eclipse.jetty.version>9.4.55.v20240627</org.eclipse.jetty.version>
+        <!-- == Lombok == -->
+        <org.projectlombok.version>1.18.34</org.projectlombok.version>
+        <!-- == FreeMarker == -->
+        <org.freemarker.version>2.3.33</org.freemarker.version>
         <!-- == Other == -->
         <jakarta-el.version>3.0.3</jakarta-el.version>
         <jakarta-inject.version>1.0.5</jakarta-inject.version>
@@ -590,7 +646,7 @@
         <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
         <cargo.container.id>tomcat9x</cargo.container.id>
         <cargo.container.url>https://archive.apache.org/dist/tomcat/tomcat-9/v${cargo.tomcat9.version}/bin/apache-tomcat-${cargo.tomcat9.version}.zip</cargo.container.url>
-        <cargo.tomcat9.version>9.0.83</cargo.tomcat9.version>
+        <cargo.tomcat9.version>9.0.93</cargo.tomcat9.version>
     </properties>
     <profiles>
         <profile>
