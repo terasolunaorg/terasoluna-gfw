@@ -323,16 +323,6 @@
             </dependency>
             <!-- == End TERASOLUNA == -->
 
-            <!-- == Begin Spring Boot == -->
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-dependencies</artifactId>
-                <version>${org.springframework.boot.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- == End Spring Boot == -->
-
             <!-- == Begin Spring Framework == -->
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -352,6 +342,26 @@
                 <scope>import</scope>
             </dependency>
             <!-- == End Spring Security == -->
+
+            <!-- == Begin Jetty == -->
+            <dependency>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-bom</artifactId>
+                <version>${org.eclipse.jetty.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- == End Jetty == -->
+
+            <!-- == Begin Spring Boot == -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${org.springframework.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- == End Spring Boot == -->
 
             <!-- == Begin MyBatis == -->
             <dependency>
@@ -511,16 +521,6 @@
             </dependency>
             <!-- == End SLF4J == -->
 
-            <!-- == Begin Jetty == -->
-            <dependency>
-                <groupId>org.eclipse.jetty</groupId>
-                <artifactId>jetty-bom</artifactId>
-                <version>${org.eclipse.jetty.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <!-- == End Jetty == -->
-
             <!-- == Begin Lombok == -->
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -536,6 +536,14 @@
                 <version>${org.freemarker.version}</version>
             </dependency>
             <!-- == End FreeMarker == -->
+
+            <!-- == Begin Apache Tomcat == -->
+            <dependency>
+                <groupId>org.apache.tomcat.embed</groupId>
+                <artifactId>tomcat-embed-el</artifactId>
+                <version>${org.apache.tomcat.version}</version>
+            </dependency>
+            <!-- == End Apache Tomcat == -->
 
             <!-- == Begin Other == -->
             <dependency>
@@ -631,6 +639,8 @@
         <org.projectlombok.version>1.18.34</org.projectlombok.version>
         <!-- == FreeMarker == -->
         <org.freemarker.version>2.3.33</org.freemarker.version>
+        <!-- == Apache Tomcat == -->
+        <org.apache.tomcat.version>9.0.93</org.apache.tomcat.version>
         <!-- == Other == -->
         <jakarta-el.version>3.0.3</jakarta-el.version>
         <jakarta-inject.version>1.0.5</jakarta-inject.version>
