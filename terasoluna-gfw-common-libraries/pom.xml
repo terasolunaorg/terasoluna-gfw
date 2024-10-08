@@ -73,26 +73,6 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <groupId>com.mycila</groupId>
-                    <artifactId>license-maven-plugin</artifactId>
-                    <version>${com.mycila.license-maven-plugin.version}</version>
-                    <configuration>
-                        <licenseSets>
-                            <licenseSet>
-                                <header>${project.root.basedir}/../license/header.txt</header>
-                                <includes>
-                                    <include>src/main/java/**/*.java</include>
-                                    <include>src/test/java/**/*.java</include>
-                                </includes>
-                                <headerDefinitions>
-                                    <headerDefinition>${project.root.basedir}/../license/header-definition.xml</headerDefinition>
-                                </headerDefinitions>
-                            </licenseSet>
-                        </licenseSets>
-                        <encoding>${encoding}</encoding>
-                    </configuration>
-                </plugin>
-                <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>xml-maven-plugin</artifactId>
                     <version>${org.codehaus.mojo.xml-maven-plugin.version}</version>
@@ -134,7 +114,6 @@
         <!-- == Maven Plugin Versions == -->
         <org.apache.maven.plugins.maven-surefire-plugin.version>3.0.0-M5</org.apache.maven.plugins.maven-surefire-plugin.version>
         <org.jacoco.jacoco-maven-plugin.version>0.8.7</org.jacoco.jacoco-maven-plugin.version>
-        <com.mycila.license-maven-plugin.version>4.1</com.mycila.license-maven-plugin.version>
         <org.codehaus.mojo.xml-maven-plugin.version>1.0.2</org.codehaus.mojo.xml-maven-plugin.version>
         <org.eluder.coveralls.coveralls-maven-plugin.version>4.1.0</org.eluder.coveralls.coveralls-maven-plugin.version>
         <!-- == Project Properties == -->

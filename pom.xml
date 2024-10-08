@@ -36,7 +36,6 @@
         <!-- == Maven Plugin Versions == -->
         <org.jacoco.jacoco-maven-plugin.version>0.8.7</org.jacoco.jacoco-maven-plugin.version>
         <org.codehaus.mojo.xml-maven-plugin.version>1.0.2</org.codehaus.mojo.xml-maven-plugin.version>
-        <com.mycila.license-maven-plugin.version>4.1</com.mycila.license-maven-plugin.version>
         <org.eluder.coveralls.coveralls-maven-plugin.version>4.1.0</org.eluder.coveralls.coveralls-maven-plugin.version>
         <org.apache.maven.plugins.maven-gpg-plugin.version>3.0.1</org.apache.maven.plugins.maven-gpg-plugin.version>
         <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.6.8</org.sonatype.plugins.nexus-staging-maven-plugin.version>
@@ -136,11 +135,6 @@
                             <configuration>
                                 <skip>true</skip>
                             </configuration>
-                        </plugin>
-                        <plugin>
-                            <groupId>com.mycila</groupId>
-                            <artifactId>license-maven-plugin</artifactId>
-                            <version>${com.mycila.license-maven-plugin.version}</version>
                         </plugin>
                         <plugin>
                             <groupId>org.eluder.coveralls</groupId>
