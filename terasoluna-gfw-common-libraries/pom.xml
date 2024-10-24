@@ -24,6 +24,11 @@
         <name>terasoluna.org</name>
         <url>http://terasoluna.org</url>
     </organization>
+    <scm>
+        <connection>scm:git:git@github.com:terasolunaorg/terasoluna-gfw.git</connection>
+        <developerConnection>scm:git:git@github.com:terasolunaorg/terasoluna-gfw.git</developerConnection>
+        <url>git@github.com:terasolunaorg/terasoluna-gfw.git</url>
+    </scm>
     <modules>
         <module>terasoluna-gfw-common</module>
         <module>terasoluna-gfw-jodatime</module>
