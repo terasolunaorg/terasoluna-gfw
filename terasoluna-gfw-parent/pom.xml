@@ -484,7 +484,7 @@
         <!-- == TERASOLUNA == -->
         <terasoluna.gfw.version>5.10.0-SNAPSHOT</terasoluna.gfw.version>
         <!-- == Spring Boot == -->
-        <org.springframework.boot.version>3.4.0-M3</org.springframework.boot.version>
+        <org.springframework.boot.version>3.4.0-RC1</org.springframework.boot.version>
         <!-- == MyBatis3 == -->
         <org.mybatis.version>3.5.15</org.mybatis.version>
         <org.mybatis.spring.version>3.0.3</org.mybatis.spring.version>
@@ -527,7 +527,7 @@
         <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
         <cargo.container.id>tomcat10x</cargo.container.id>
         <cargo.container.url>https://archive.apache.org/dist/tomcat/tomcat-10/v${cargo.tomcat10.version}/bin/apache-tomcat-${cargo.tomcat10.version}.zip</cargo.container.url>
-        <cargo.tomcat10.version>10.1.30</cargo.tomcat10.version>
+        <cargo.tomcat10.version>10.1.31</cargo.tomcat10.version>
     </properties>
     <profiles>
         <profile>
