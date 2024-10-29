@@ -28,9 +28,9 @@
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git@github.com:terasolunaorg/terasoluna-gfw.git</connection>
-        <developerConnection>scm:git:git@github.com:terasolunaorg/terasoluna-gfw.git</developerConnection>
-        <url>git@github.com:terasolunaorg/terasoluna-gfw.git</url>
+        <connection>scm:git:git://github.com/terasolunaorg/terasoluna-gfw.git</connection>
+        <developerConnection>scm:git:ssh://github.com/terasolunaorg/terasoluna-gfw.git</developerConnection>
+        <url>https://github.com/terasolunaorg/terasoluna-gfw.git</url>
     </scm>
     <properties>
         <!-- == Maven Plugin Versions == -->
