@@ -30,15 +30,15 @@
     </repositories>
     <developers>
         <developer>
-            <name>NTT DATA</name>
-            <organization>NTT DATA Corporation</organization>
+            <name>NTT DATA Group Corporation</name>
+            <organization>NTT DATA Group Corporation</organization>
             <organizationUrl>http://terasolunaorg.github.io/</organizationUrl>
         </developer>
     </developers>
     <scm>
-        <connection>scm:git:git@github.com:terasolunaorg/terasoluna-gfw.git</connection>
-        <developerConnection>scm:git:git@github.com:terasolunaorg/terasoluna-gfw.git</developerConnection>
-        <url>git@github.com:terasolunaorg/terasoluna-gfw.git</url>
+        <connection>scm:git:git://github.com/terasolunaorg/terasoluna-gfw.git</connection>
+        <developerConnection>scm:git:ssh://github.com/terasolunaorg/terasoluna-gfw.git</developerConnection>
+        <url>https://github.com/terasolunaorg/terasoluna-gfw</url>
     </scm>
     <reporting>
         <plugins>

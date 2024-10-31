@@ -13,6 +13,11 @@
     <description>Useful libraries for jodatime library created by TERASOLUNA Server Framework for Java (5.x)</description>
     <url>http://terasoluna.org</url>
     <packaging>pom</packaging>
+    <scm>
+        <connection>scm:git:git://github.com/terasolunaorg/terasoluna-gfw.git</connection>
+        <developerConnection>scm:git:ssh://github.com/terasolunaorg/terasoluna-gfw.git</developerConnection>
+        <url>https://github.com/terasolunaorg/terasoluna-gfw</url>
+    </scm>
     <dependencies>
         <!-- == Begin TERASOLUNA == -->
         <dependency>

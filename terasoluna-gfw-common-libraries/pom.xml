@@ -38,6 +38,11 @@
         <module>terasoluna-gfw-codepoints/catalog/terasoluna-gfw-codepoints-jisx0208kanji</module>
         <module>terasoluna-gfw-codepoints/catalog/terasoluna-gfw-codepoints-jisx0213kanji</module>
     </modules>
+    <scm>
+        <connection>scm:git:git://github.com/terasolunaorg/terasoluna-gfw.git</connection>
+        <developerConnection>scm:git:ssh://github.com/terasolunaorg/terasoluna-gfw.git</developerConnection>
+        <url>https://github.com/terasolunaorg/terasoluna-gfw</url>
+    </scm>
     <build>
         <pluginManagement>
             <plugins>

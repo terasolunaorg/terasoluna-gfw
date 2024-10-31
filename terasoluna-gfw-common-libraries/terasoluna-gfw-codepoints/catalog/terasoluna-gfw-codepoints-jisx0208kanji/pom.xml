@@ -12,6 +12,12 @@
     <groupId>org.terasoluna.gfw.codepoints</groupId>
     <artifactId>terasoluna-gfw-codepoints-jisx0208kanji</artifactId>
 
+    <scm>
+        <connection>scm:git:git://github.com/terasolunaorg/terasoluna-gfw.git</connection>
+        <developerConnection>scm:git:ssh://github.com/terasolunaorg/terasoluna-gfw.git</developerConnection>
+        <url>https://github.com/terasolunaorg/terasoluna-gfw</url>
+    </scm>
+
     <build>
         <plugins>
             <plugin>

@@ -36,6 +36,11 @@
         <module>terasoluna-gfw-recommended-dependencies</module>
         <module>terasoluna-gfw-recommended-web-dependencies</module>
     </modules>
+    <scm>
+        <connection>scm:git:git://github.com/terasolunaorg/terasoluna-gfw.git</connection>
+        <developerConnection>scm:git:ssh://github.com/terasolunaorg/terasoluna-gfw.git</developerConnection>
+        <url>https://github.com/terasolunaorg/terasoluna-gfw</url>
+    </scm>
     <build>
         <pluginManagement>
             <plugins>
