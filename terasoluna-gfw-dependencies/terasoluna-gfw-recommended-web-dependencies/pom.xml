@@ -12,6 +12,11 @@
     <name>TERASOLUNA Server Framework for Java (5.x) recommended dependencies for web</name>
     <description>Useful libraries for web recommended by TERASOLUNA Server Framework for Java (5.x)</description>
     <url>http://terasoluna.org</url>
+    <scm>
+        <connection>scm:git:git://github.com/terasolunaorg/terasoluna-gfw.git</connection>
+        <developerConnection>scm:git:ssh://github.com/terasolunaorg/terasoluna-gfw.git</developerConnection>
+        <url>https://github.com/terasolunaorg/terasoluna-gfw</url>
+    </scm>
 
     <dependencies>
         <!-- == Begin Tiles == -->
