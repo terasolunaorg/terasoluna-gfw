@@ -19,7 +19,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * DateTime class which imitates org.joda.time
+ * Simple datetime class for test
  */
 public class DateTime {
     private final Calendar calendar;
