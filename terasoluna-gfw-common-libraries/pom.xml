@@ -78,14 +78,6 @@
                     </executions>
                 </plugin>
                 <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>xml-maven-plugin</artifactId>
-                    <version>${org.codehaus.mojo.xml-maven-plugin.version}</version>
-                    <configuration>
-                        <indentSize>2</indentSize>
-                    </configuration>
-                </plugin>
-                <plugin>
                     <groupId>org.eluder.coveralls</groupId>
                     <artifactId>coveralls-maven-plugin</artifactId>
                     <version>${org.eluder.coveralls.coveralls-maven-plugin.version}</version>
@@ -117,9 +109,8 @@
     </build>
     <properties>
         <!-- == Maven Plugin Versions == -->
-        <org.apache.maven.plugins.maven-surefire-plugin.version>3.0.0-M7</org.apache.maven.plugins.maven-surefire-plugin.version>
-        <org.jacoco.jacoco-maven-plugin.version>0.8.11</org.jacoco.jacoco-maven-plugin.version>
-        <org.codehaus.mojo.xml-maven-plugin.version>1.0.2</org.codehaus.mojo.xml-maven-plugin.version>
+        <org.apache.maven.plugins.maven-surefire-plugin.version>3.5.2</org.apache.maven.plugins.maven-surefire-plugin.version>
+        <org.jacoco.jacoco-maven-plugin.version>0.8.12</org.jacoco.jacoco-maven-plugin.version>
         <org.eluder.coveralls.coveralls-maven-plugin.version>4.3.0</org.eluder.coveralls.coveralls-maven-plugin.version>
         <!-- == Project Properties == -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

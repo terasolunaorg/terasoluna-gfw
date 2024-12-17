@@ -41,22 +41,4 @@
         <module>terasoluna-gfw-recommended-dependencies</module>
         <module>terasoluna-gfw-recommended-web-dependencies</module>
     </modules>
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>xml-maven-plugin</artifactId>
-                    <version>${org.codehaus.mojo.xml-maven-plugin.version}</version>
-                    <configuration>
-                        <indentSize>2</indentSize>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
-    <properties>
-        <!-- == Maven Plugin Versions == -->
-        <org.codehaus.mojo.xml-maven-plugin.version>1.0.2</org.codehaus.mojo.xml-maven-plugin.version>
-    </properties>
 </project>
