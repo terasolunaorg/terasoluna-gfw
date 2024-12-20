@@ -34,11 +34,10 @@
     </scm>
     <properties>
         <!-- == Maven Plugin Versions == -->
-        <org.jacoco.jacoco-maven-plugin.version>0.8.8</org.jacoco.jacoco-maven-plugin.version>
-        <org.codehaus.mojo.xml-maven-plugin.version>1.0.2</org.codehaus.mojo.xml-maven-plugin.version>
+        <org.jacoco.jacoco-maven-plugin.version>0.8.12</org.jacoco.jacoco-maven-plugin.version>
         <org.eluder.coveralls.coveralls-maven-plugin.version>4.3.0</org.eluder.coveralls.coveralls-maven-plugin.version>
-        <org.apache.maven.plugins.maven-gpg-plugin.version>3.0.1</org.apache.maven.plugins.maven-gpg-plugin.version>
-        <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.6.13</org.sonatype.plugins.nexus-staging-maven-plugin.version>
+        <org.apache.maven.plugins.maven-gpg-plugin.version>3.2.7</org.apache.maven.plugins.maven-gpg-plugin.version>
+        <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.7.0</org.sonatype.plugins.nexus-staging-maven-plugin.version>
         <!-- == Project Properties == -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.deploy.skip>true</maven.deploy.skip>
@@ -163,35 +162,6 @@
                                     <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-codepoints/src/main/java</sourceDirectory>
                                     <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-string/src/main/java</sourceDirectory>
                                 </sourceDirectories>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>
-        <profile>
-            <id>xml-check-format</id>
-            <modules>
-                <module>terasoluna-gfw-common-libraries</module>
-                <module>terasoluna-gfw-dependencies</module>
-            </modules>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.codehaus.mojo</groupId>
-                            <artifactId>xml-maven-plugin</artifactId>
-                            <version>${org.codehaus.mojo.xml-maven-plugin.version}</version>
-                            <configuration>
-                                <indentSize>2</indentSize>
-                                <formatFileSets>
-                                    <formatFileSet>
-                                        <directory>${project.basedir}/terasoluna-gfw-parent</directory>
-                                        <includes>
-                                            <include>**/*.xml</include>
-                                        </includes>
-                                    </formatFileSet>
-                                </formatFileSets>
                             </configuration>
                         </plugin>
                     </plugins>
