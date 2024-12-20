@@ -21,7 +21,6 @@ import static org.hamcrest.Matchers.hasEntry;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -31,7 +30,6 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.junit.Test;
 import org.springframework.beans.MutablePropertyValues;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -279,7 +277,7 @@ public class ObjectToMapConverterTest {
         assertThat(map, hasEntry("_string", ""));
         assertThat(map, hasEntry("_integer", ""));
         assertThat(map, hasEntry("_date", ""));
-        assertThat(map, hasEntry("_jodaLocalDate", ""));
+        assertThat(map, hasEntry("_localDate", ""));
         assertThat(map, hasEntry("_customEnum", ""));
         assertThat(map, hasEntry("_list", ""));
         assertThat(map, hasEntry("_list2[0]", ""));
@@ -796,7 +794,7 @@ public class ObjectToMapConverterTest {
 
         private Date date;
 
-        private LocalDate jodaLocalDate;
+        private LocalDate localDate;
 
         private CustomEnum9 customEnum;
 
@@ -840,12 +838,12 @@ public class ObjectToMapConverterTest {
             this.date = date;
         }
 
-        public LocalDate getJodaLocalDate() {
-            return jodaLocalDate;
+        public LocalDate getLocalDate() {
+            return localDate;
         }
 
-        public void setJodaLocalDate(LocalDate jodaLocalDate) {
-            this.jodaLocalDate = jodaLocalDate;
+        public void setLocalDate(LocalDate localDate) {
+            this.localDate = localDate;
         }
 
         public CustomEnum9 getCustomEnum() {

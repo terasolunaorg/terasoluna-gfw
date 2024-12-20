@@ -145,7 +145,6 @@
                             <configuration>
                                 <jacocoReports>
                                     <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-common/target/site/jacoco/jacoco.xml</jacocoReport>
-                                    <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-jodatime/target/site/jacoco/jacoco.xml</jacocoReport>
                                     <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-web/target/site/jacoco/jacoco.xml</jacocoReport>
                                     <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-web-jsp/target/site/jacoco/jacoco.xml</jacocoReport>
                                     <jacocoReport>terasoluna-gfw-common-libraries/terasoluna-gfw-security-web/target/site/jacoco/jacoco.xml</jacocoReport>
@@ -155,7 +154,6 @@
                                 </jacocoReports>
                                 <sourceDirectories>
                                     <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-common/src/main/java</sourceDirectory>
-                                    <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-jodatime/src/main/java</sourceDirectory>
                                     <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-web/src/main/java</sourceDirectory>
                                     <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-web-jsp/src/main/java</sourceDirectory>
                                     <sourceDirectory>terasoluna-gfw-common-libraries/terasoluna-gfw-security-web/src/main/java</sourceDirectory>

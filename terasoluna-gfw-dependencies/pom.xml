@@ -32,7 +32,6 @@
     <modules>
         <module>terasoluna-gfw-common-dependencies</module>
         <module>terasoluna-gfw-mybatis3-dependencies</module>
-        <module>terasoluna-gfw-jodatime-dependencies</module>
         <module>terasoluna-gfw-web-dependencies</module>
         <module>terasoluna-gfw-web-jsp-dependencies</module>
         <module>terasoluna-gfw-jpa-dependencies</module>
