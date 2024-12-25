@@ -70,7 +70,7 @@
                             <id>install</id>
                             <phase>install</phase>
                             <goals>
-                                <goal>sources</goal>
+                                <goal>resolve-sources</goal>
                             </goals>
                         </execution>
                     </executions>
@@ -323,21 +323,21 @@
     </dependencyManagement>
     <properties>
         <!-- == Maven Plugin Versions == -->
-        <org.apache.maven.plugins.maven-project-info-reports-plugin.version>3.4.1</org.apache.maven.plugins.maven-project-info-reports-plugin.version>
-        <org.apache.maven.plugins.maven-compiler-plugin.version>3.10.1</org.apache.maven.plugins.maven-compiler-plugin.version>
-        <org.apache.maven.plugins.maven-dependency-plugin.version>3.3.0</org.apache.maven.plugins.maven-dependency-plugin.version>
-        <org.apache.maven.plugins.maven-resources-plugin.version>3.3.0</org.apache.maven.plugins.maven-resources-plugin.version>
-        <org.apache.maven.plugins.maven-source-plugin.version>3.2.1</org.apache.maven.plugins.maven-source-plugin.version>
-        <org.apache.maven.plugins.maven-javadoc-plugin.version>3.4.1</org.apache.maven.plugins.maven-javadoc-plugin.version>
-        <org.apache.maven.plugins.maven-jar-plugin.version>3.2.2</org.apache.maven.plugins.maven-jar-plugin.version>
-        <org.apache.maven.plugins.maven-assembly-plugin.version>3.4.2</org.apache.maven.plugins.maven-assembly-plugin.version>
-        <org.apache.maven.plugins.maven-clean-plugin.version>3.2.0</org.apache.maven.plugins.maven-clean-plugin.version>
-        <org.apache.maven.plugins.maven-install-plugin.version>3.0.1</org.apache.maven.plugins.maven-install-plugin.version>
-        <org.apache.maven.plugins.maven-deploy-plugin.version>3.0.0</org.apache.maven.plugins.maven-deploy-plugin.version>
-        <org.apache.maven.plugins.maven-site-plugin.version>4.0.0-M3</org.apache.maven.plugins.maven-site-plugin.version>
-        <org.codehaus.cargo.cargo-maven3-plugin.version>1.10.11</org.codehaus.cargo.cargo-maven3-plugin.version>
-        <org.apache.maven.plugins.maven-gpg-plugin.version>3.0.1</org.apache.maven.plugins.maven-gpg-plugin.version>
-        <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.6.13</org.sonatype.plugins.nexus-staging-maven-plugin.version>
+        <org.apache.maven.plugins.maven-project-info-reports-plugin.version>3.8.0</org.apache.maven.plugins.maven-project-info-reports-plugin.version>
+        <org.apache.maven.plugins.maven-compiler-plugin.version>3.13.0</org.apache.maven.plugins.maven-compiler-plugin.version>
+        <org.apache.maven.plugins.maven-dependency-plugin.version>3.8.1</org.apache.maven.plugins.maven-dependency-plugin.version>
+        <org.apache.maven.plugins.maven-resources-plugin.version>3.3.1</org.apache.maven.plugins.maven-resources-plugin.version>
+        <org.apache.maven.plugins.maven-source-plugin.version>3.3.1</org.apache.maven.plugins.maven-source-plugin.version>
+        <org.apache.maven.plugins.maven-javadoc-plugin.version>3.11.2</org.apache.maven.plugins.maven-javadoc-plugin.version>
+        <org.apache.maven.plugins.maven-jar-plugin.version>3.4.2</org.apache.maven.plugins.maven-jar-plugin.version>
+        <org.apache.maven.plugins.maven-assembly-plugin.version>3.7.1</org.apache.maven.plugins.maven-assembly-plugin.version>
+        <org.apache.maven.plugins.maven-clean-plugin.version>3.4.0</org.apache.maven.plugins.maven-clean-plugin.version>
+        <org.apache.maven.plugins.maven-install-plugin.version>3.1.3</org.apache.maven.plugins.maven-install-plugin.version>
+        <org.apache.maven.plugins.maven-deploy-plugin.version>3.1.3</org.apache.maven.plugins.maven-deploy-plugin.version>
+        <org.apache.maven.plugins.maven-site-plugin.version>4.0.0-M16</org.apache.maven.plugins.maven-site-plugin.version>
+        <org.codehaus.cargo.cargo-maven3-plugin.version>1.10.15</org.codehaus.cargo.cargo-maven3-plugin.version>
+        <org.apache.maven.plugins.maven-gpg-plugin.version>3.2.7</org.apache.maven.plugins.maven-gpg-plugin.version>
+        <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.7.0</org.sonatype.plugins.nexus-staging-maven-plugin.version>
         <!-- == Dependency Versions == -->
         <!-- == TERASOLUNA == -->
         <terasoluna.gfw.version>5.10.0-SNAPSHOT</terasoluna.gfw.version>
@@ -357,7 +357,7 @@
         <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
         <cargo.container.id>tomcat10x</cargo.container.id>
         <cargo.container.url>https://archive.apache.org/dist/tomcat/tomcat-10/v${cargo.tomcat10.version}/bin/apache-tomcat-${cargo.tomcat10.version}.zip</cargo.container.url>
-        <cargo.tomcat10.version>10.1.33</cargo.tomcat10.version>
+        <cargo.tomcat10.version>10.1.34</cargo.tomcat10.version>
     </properties>
     <profiles>
         <profile>
