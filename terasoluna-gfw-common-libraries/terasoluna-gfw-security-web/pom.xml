@@ -84,14 +84,13 @@
         </dependency>
         <!-- == End Spring == -->
 
-        <!-- == Begin Tomcat == -->
-        <!-- Servlet API 4.0 & JSP API 2.3 -->
+        <!-- Servlet API 4.0 -->
         <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jsp-api</artifactId>
+            <groupId>jakarta.servlet</groupId>
+            <artifactId>jakarta.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- == End Tomcat == -->
+        <!-- == End Servlet == -->
 
         <!-- == Begin Database == -->
         <!-- H2 (for test) -->
