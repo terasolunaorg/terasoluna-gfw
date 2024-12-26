@@ -27,6 +27,11 @@
             <name>Spring Milestone Repository</name>
             <url>https://repo.spring.io/milestone</url>
         </repository>
+        <repository>
+            <id>repository.maven.snapshot</id>
+            <name>Maven Snapshot Repository</name>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
     </repositories>
     <developers>
         <developer>
