@@ -80,14 +80,13 @@
         </dependency>
         <!-- == End Spring == -->
 
-        <!-- == Begin Tomcat == -->
-        <!-- Servlet API 4.0 -->
+        <!-- Servlet API -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- == End Tomcat == -->
+        <!-- == End Servlet == -->
 
         <!-- == Begin Unit Test == -->
         <dependency>
