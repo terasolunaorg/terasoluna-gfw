@@ -269,7 +269,6 @@ Here is an example of adding it to `setting.xml`.
 ``` xml
   <profiles>
     <profile>
-      ...
       <id>snapshotRepository</id>
       <repositories>
         <repository>
@@ -283,7 +282,6 @@ Here is an example of adding it to `setting.xml`.
           <url>https://oss.sonatype.org/content/repositories/snapshots</url>
         </repository>
       </repositories>
-      ...
     </profile>
   </profiles>
 
