@@ -275,6 +275,38 @@ Add the following dependency definitions.
 </dependency>
 ```
 
+### Using SNAPSHOT version
+
+To build a branch of the SNAPSHOT version under development, you need to add the repository to `terasoluna-gfw/terasoluna-gfw-parent/pom.xml` or maven's `setting.xml`.
+
+Here is an example of adding it to `setting.xml`.
+
+``` xml
+  <profiles>
+    <profile>
+      <id>snapshotRepository</id>
+      <repositories>
+        <repository>
+          <id>repository.spring.milestone</id>
+          <name>Spring Milestone Repository</name>
+          <url>https://repo.spring.io/milestone</url>
+        </repository>
+        <repository>
+          <id>repository.maven.snapshot</id>
+          <name>Maven Snapshot Repository</name>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </repository>
+      </repositories>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    ...
+    <activeProfile>snapshotRepository</activeProfile>
+    ...
+  </activeProfiles>
+```
+
 ## How to contribute
 
 **Contributing (bug report, pull request, any comments etc.) is welcome !!** Please see the [contributing guideline](CONTRIBUTING.md) for details.
