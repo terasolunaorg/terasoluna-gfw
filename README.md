@@ -6,7 +6,7 @@ The common library of TERASOLUNA Server Framework for Java (5.x) is a library of
 
 ## Projects of Common Library
 
-All modules included in TERASOLUNA Server Framework for Java (5.x) Common Library are listed up in the [development guideline](https://terasolunaorg.github.io/guideline/5.7.3.RELEASE/ja/Overview/FrameworkStack.html#frameworkstack-common-library).
+All modules included in TERASOLUNA Server Framework for Java (5.x) Common Library are listed up in the [development guideline](https://terasolunaorg.github.io/guideline/5.7.4.RELEASE/ja/Overview/FrameworkStack.html#frameworkstack-common-library).
 
 ## Getting Started
 
@@ -34,7 +34,7 @@ Define parent project in pom file
 <parent>
   <groupId>org.terasoluna.gfw</groupId>
   <artifactId>terasoluna-gfw-parent</artifactId>
-  <version>5.7.4-SNAPSHOT</version>
+  <version>5.7.4.RELEASE</version>
 </parent>
 ```
 
@@ -159,7 +159,7 @@ Add the following dependency definitions.
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-web-dependencies</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
     <type>pom</type>
 </dependency>
 
@@ -167,7 +167,7 @@ Add the following dependency definitions.
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-web-jsp-dependencies</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
     <type>pom</type>
 </dependency>
 
@@ -175,7 +175,7 @@ Add the following dependency definitions.
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-jodatime-dependencies</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
     <type>pom</type>
 </dependency>
 
@@ -183,56 +183,56 @@ Add the following dependency definitions.
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-string</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
 </dependency>
 
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-codepoints</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
 </dependency>
 
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw.codepoints</groupId>
     <artifactId>terasoluna-gfw-codepoints-jisx0201</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
 </dependency>
 
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw.codepoints</groupId>
     <artifactId>terasoluna-gfw-codepoints-jisx0208</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
 </dependency>
 
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw.codepoints</groupId>
     <artifactId>terasoluna-gfw-codepoints-jisx0208kanji</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
 </dependency>
 
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw.codepoints</groupId>
     <artifactId>terasoluna-gfw-codepoints-jisx0213kanji</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
 </dependency>
 
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-validator</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
 </dependency>
 
 <!-- OPTIONAL -->
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-recommended-dependencies</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
     <type>pom</type>
 </dependency>
 
@@ -240,7 +240,7 @@ Add the following dependency definitions.
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-recommended-web-dependencies</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
     <type>pom</type>
 </dependency>
 
@@ -248,13 +248,13 @@ Add the following dependency definitions.
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-security-web-dependencies</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
     <type>pom</type>
 </dependency>
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-security-core-dependencies</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
     <type>pom</type>
 </dependency>
 
@@ -262,7 +262,7 @@ Add the following dependency definitions.
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-mybatis3-dependencies</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
     <type>pom</type>
 </dependency>
 
@@ -270,7 +270,7 @@ Add the following dependency definitions.
 <dependency>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-jpa-dependencies</artifactId>
-    <version>5.7.4-SNAPSHOT</version>
+    <version>5.7.4.RELEASE</version>
     <type>pom</type>
 </dependency>
 ```
