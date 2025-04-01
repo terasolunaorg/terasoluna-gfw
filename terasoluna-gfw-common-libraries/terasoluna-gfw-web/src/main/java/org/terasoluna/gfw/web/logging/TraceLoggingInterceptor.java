@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.MethodParameter;
@@ -28,7 +27,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -44,8 +42,8 @@ import jakarta.servlet.http.HttpServletResponse;
  * 3000000000), then warning log is output.<br>
  * <p>
  * Below is usage example
- * <h3>Example of bean definition which should be loaded by
- * {@code org.springframework.web.servlet.DispatcherServlet}</h3>
+ * <h2>Example of bean definition which should be loaded by
+ * {@code org.springframework.web.servlet.DispatcherServlet}</h2>
  *
  * <pre>
  *  &lt;mvc:interceptors&gt;
@@ -98,8 +96,8 @@ public class TraceLoggingInterceptor implements HandlerInterceptor {
      * <p>
      * Outputs the start log and sets start time (in nano-seconds) in {@code HttpServletRequest}
      * </p>
-     * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#preHandle(javax.servlet.http.HttpServletRequest,
-     *      javax.servlet.http.HttpServletResponse, java.lang.Object)
+     * @see org.springframework.web.servlet.HandlerInterceptor#preHandle(jakarta.servlet.http.HttpServletRequest,
+     *      jakarta.servlet.http.HttpServletResponse, java.lang.Object)
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response,
@@ -126,8 +124,8 @@ public class TraceLoggingInterceptor implements HandlerInterceptor {
      * nano-seconds value<br>
      * set as warning log output timing.
      * </p>
-     * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#postHandle(javax.servlet.http.HttpServletRequest,
-     *      javax.servlet.http.HttpServletResponse, java.lang.Object,
+     * @see org.springframework.web.servlet.HandlerInterceptor#postHandle(jakarta.servlet.http.HttpServletRequest,
+     *      jakarta.servlet.http.HttpServletResponse, java.lang.Object,
      *      org.springframework.web.servlet.ModelAndView)
      */
     @Override

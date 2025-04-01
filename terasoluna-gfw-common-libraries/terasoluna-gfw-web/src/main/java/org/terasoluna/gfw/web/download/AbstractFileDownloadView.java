@@ -20,12 +20,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Map;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.web.servlet.view.AbstractView;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -41,7 +39,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * In case the implementation class of this class is to be used, bean definition of
  * {@code org.springframework.web.servlet.view.BeanNameViewResolver} should be done.
  * </p>
- * <h3>Example of bean definition file</h3>
+ * <h2>Example of bean definition file</h2>
  *
  * <pre>
  * &lt;bean id=&quot;beanNameViewResolver&quot;
@@ -53,7 +51,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * Next, {@code viewName} property should be defined in the bean definition of the controller which
  * is responsible for sending binary data to response
  * </p>
- * <h3>Example of bean definition file</h3>
+ * <h2>Example of bean definition file</h2>
  *
  * <pre>
  * &lt;bean id=<strong style=color:red>&quot;sampleFileDownloadView&quot;</strong>
@@ -65,7 +63,7 @@ import jakarta.servlet.http.HttpServletResponse;
  * Further, the view name should be returned in the corresponding RequestMapping method method in a
  * controller.
  * </p>
- * <h3>Example of bean definition file</h3>
+ * <h2>Example of bean definition file</h2>
  *
  * <pre>
  * {@literal @}Controller

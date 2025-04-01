@@ -22,17 +22,14 @@ import static java.lang.annotation.ElementType.METHOD;
 import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.ElementType.TYPE_USE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.Repeatable;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
-
 import org.terasoluna.gfw.common.codelist.ExistInCodeList.List;
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharSequence;
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForCharacter;
 import org.terasoluna.gfw.common.codelist.validator.ExistInCodeListValidatorForNumber;
-
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
 
@@ -55,7 +52,7 @@ import jakarta.validation.Payload;
  * exists in {@code CD_GENDER} {@link CodeList}. <br>
  * <br>
  * If the the code does not exist in the {@link CodeList}, an instance of
- * {@link javax.validation.ConstraintViolation} is returned with the default error message
+ * {@link jakarta.validation.ConstraintViolation} is returned with the default error message
  * represented by {@code message()} in it.
  */
 @Documented
