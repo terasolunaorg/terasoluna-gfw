@@ -18,7 +18,6 @@ package org.terasoluna.gfw.web.pagination;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Order;
@@ -441,7 +440,6 @@ public class PaginationInfo {
 
     /**
      * Returns the class that sets start and end page of pagination
-     * <p>
      * @return BeginAndEnd class that sets start and end page of pagination
      */
     public BeginAndEnd getBeginAndEnd() {
