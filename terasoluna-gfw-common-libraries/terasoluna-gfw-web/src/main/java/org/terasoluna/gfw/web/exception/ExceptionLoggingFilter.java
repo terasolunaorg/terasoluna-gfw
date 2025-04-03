@@ -16,10 +16,8 @@
 package org.terasoluna.gfw.web.exception;
 
 import java.io.IOException;
-
 import org.springframework.web.filter.GenericFilterBean;
 import org.terasoluna.gfw.common.exception.ExceptionLogger;
-
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
@@ -90,8 +88,8 @@ public class ExceptionLoggingFilter extends GenericFilterBean {
      * @param servletRequest {@link ServletRequest}
      * @param servletResponse {@link ServletResponse}
      * @param filterChain {@link FilterChain}
-     * @see javax.servlet.Filter#doFilter(javax.servlet.ServletRequest,
-     *      javax.servlet.ServletResponse, javax.servlet.FilterChain)
+     * @see jakarta.servlet.Filter#doFilter(jakarta.servlet.ServletRequest,
+     *      jakarta.servlet.ServletResponse, jakarta.servlet.FilterChain)
      */
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,

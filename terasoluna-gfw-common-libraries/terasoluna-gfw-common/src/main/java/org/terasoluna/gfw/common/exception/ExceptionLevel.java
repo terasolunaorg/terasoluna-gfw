@@ -26,5 +26,18 @@ package org.terasoluna.gfw.common.exception;
  * </ul>
  */
 public enum ExceptionLevel {
-    INFO, WARN, ERROR
+    /**
+     * Informational level.
+     */
+    INFO,
+
+    /**
+     * Warning level.
+     */
+    WARN,
+
+    /**
+     * Error level.
+     */
+    ERROR
 }

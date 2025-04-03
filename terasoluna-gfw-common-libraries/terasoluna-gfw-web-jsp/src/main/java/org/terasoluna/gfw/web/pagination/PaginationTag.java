@@ -18,14 +18,12 @@ package org.terasoluna.gfw.web.pagination;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
 import org.springframework.data.domain.Page;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.tags.RequestContextAwareTag;
 import org.springframework.web.servlet.tags.form.TagWriter;
 import org.terasoluna.gfw.web.pagination.PaginationInfo.BeginAndEnd;
 import org.terasoluna.gfw.web.util.JspTagUtils;
-
 import jakarta.servlet.jsp.JspException;
 
 /**
@@ -149,7 +147,7 @@ public class PaginationTag extends RequestContextAwareTag {
 
     /**
      * Renders a pagination link.
-     * @return {@link javax.servlet.jsp.tagext.Tag#EVAL_BODY_INCLUDE}
+     * @return {@link jakarta.servlet.jsp.tagext.Tag#EVAL_BODY_INCLUDE}
      * @throws Exception If fail a tag writing
      */
     @Override

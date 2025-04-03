@@ -25,7 +25,6 @@ import org.terasoluna.gfw.common.exception.ExceptionCodeResolver;
 import org.terasoluna.gfw.common.exception.ResultMessagesNotificationException;
 import org.terasoluna.gfw.common.exception.SimpleMappingExceptionCodeResolver;
 import org.terasoluna.gfw.common.message.ResultMessages;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -150,7 +149,7 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
     /**
      * Sets whether to check for cause when checking for excludedExceptions.
      * <p>
-     * If set to true, causes are also subject to exclusion settings.
+     * If set to true, causes are also subject to exclusion settings. Default value is false.
      * </p>
      * @param checkCause Whether to check for cause.
      */
@@ -162,7 +161,8 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
      * Sets whether to check subclasses when checking for excludedExceptions.
      * <p>
      * If set to true, the instance type is compared when checking for exclusion settings.
-     * Therefore, subclasses of errors that are set to be excluded are also excluded.
+     * Therefore, subclasses of errors that are set to be excluded are also excluded. Default value
+     * is false.
      * </p>
      * @param checkSubClass Whether to check subclasses.
      */
@@ -203,7 +203,7 @@ public class SystemExceptionResolver extends SimpleMappingExceptionResolver {
      * determineViewName.
      * <p>
      * When {@code checkCause} is true, check if causes are also eligible for exclusion.
-     * <p>
+     * </p>
      * @param ex Exception
      * @param request {@link HttpServletRequest}
      * @see org.springframework.web.servlet.handler.SimpleMappingExceptionResolver#determineViewName(Exception
