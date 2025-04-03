@@ -4,7 +4,7 @@
     <parent>
         <groupId>org.terasoluna.gfw</groupId>
         <artifactId>terasoluna-gfw-parent</artifactId>
-        <version>5.7.4-SNAPSHOT</version>
+        <version>5.7.5-SNAPSHOT</version>
         <relativePath>../terasoluna-gfw-parent/pom.xml</relativePath>
     </parent>
     <artifactId>terasoluna-gfw-dependencies</artifactId>
