@@ -15,13 +15,12 @@
  */
 package org.terasoluna.gfw.common.time;
 
+import java.sql.Timestamp;
 import java.time.Clock;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.ZoneId;
-
 import javax.sql.DataSource;
-
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -69,8 +68,11 @@ public class JdbcClockFactory implements ClockFactory {
      * @return instant of date and time
      */
     private Instant instant(ZoneId zone) {
-        return jdbcTemplate.queryForObject(currentTimestampQuery, //
-                (rs, rowNum) -> rs.getTimestamp(1).toLocalDateTime().atZone(zone)) //
-                .toInstant();
+        Timestamp timestamp = jdbcTemplate.queryForObject(currentTimestampQuery,
+                (rs, rowNum) -> rs.getTimestamp(1));
+        if (timestamp == null) {
+            throw new IllegalStateException("Failed to retrieve current timestamp from database");
+        }
+        return timestamp.toLocalDateTime().atZone(zone).toInstant();
     }
 }
