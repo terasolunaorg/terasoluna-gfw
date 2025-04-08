@@ -334,7 +334,7 @@
         <!-- == Dependency Versions == -->
         <!-- == TERASOLUNA == -->
         <terasoluna.gfw.version>5.11.0-SNAPSHOT</terasoluna.gfw.version>
-        <terasoluna.gfw.bom.version>2.0.0-SNAPSHOT</terasoluna.gfw.bom.version>
+        <terasoluna.gfw.bom.version>3.0.0-SNAPSHOT</terasoluna.gfw.bom.version>
         <!-- == MapStrcut== -->
         <mapstruct.version>1.6.3</mapstruct.version>
         <!-- lombok.version is the same as the version managed by Spring Boot. -->
