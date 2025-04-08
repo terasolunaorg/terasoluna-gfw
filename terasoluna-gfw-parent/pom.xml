@@ -345,7 +345,7 @@
         <!-- == Dependency Versions == -->
         <!-- == TERASOLUNA == -->
         <terasoluna.gfw.version>5.7.5-SNAPSHOT</terasoluna.gfw.version>
-        <terasoluna.gfw.bom.version>1.0.0-SNAPSHOT</terasoluna.gfw.bom.version>
+        <terasoluna.gfw.bom.version>1.0.1-SNAPSHOT</terasoluna.gfw.bom.version>
         <!-- == Project Properties == -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <archetype.test.skip>true</archetype.test.skip>
