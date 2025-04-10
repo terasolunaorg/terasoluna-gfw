@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanFactoryUtils;
@@ -32,7 +31,6 @@ import org.springframework.util.Assert;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.terasoluna.gfw.common.codelist.CodeList;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
@@ -80,8 +78,8 @@ public class CodeListInterceptor
      * Sets codelist to the attribute of {@link HttpServletRequest} after the execution of
      * Controller.
      * </p>
-     * @see org.springframework.web.servlet.handler.HandlerInterceptorAdapter#postHandle(javax.servlet.http.HttpServletRequest,
-     *      javax.servlet.http.HttpServletResponse, java.lang.Object,
+     * @see org.springframework.web.servlet.HandlerInterceptor#postHandle(jakarta.servlet.http.HttpServletRequest,
+     *      jakarta.servlet.http.HttpServletResponse, java.lang.Object,
      *      org.springframework.web.servlet.ModelAndView)
      * @since 5.4.2
      */

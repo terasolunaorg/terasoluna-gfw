@@ -17,7 +17,6 @@ package org.terasoluna.gfw.web.logging;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.HttpSessionActivationListener;
 import jakarta.servlet.http.HttpSessionAttributeListener;
@@ -47,7 +46,7 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
      * <p>
      * Session ID and the object that generated the event must be logged.
      * </p>
-     * @see javax.servlet.http.HttpSessionActivationListener#sessionWillPassivate(javax.servlet.http.HttpSessionEvent)
+     * @see jakarta.servlet.http.HttpSessionActivationListener#sessionWillPassivate(jakarta.servlet.http.HttpSessionEvent)
      */
     @Override
     public void sessionWillPassivate(HttpSessionEvent se) {
@@ -62,7 +61,7 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
      * <p>
      * Session ID and the object that generated the event must be logged.
      * </p>
-     * @see javax.servlet.http.HttpSessionActivationListener#sessionDidActivate(javax.servlet.http.HttpSessionEvent)
+     * @see jakarta.servlet.http.HttpSessionActivationListener#sessionDidActivate(jakarta.servlet.http.HttpSessionEvent)
      */
     @Override
     public void sessionDidActivate(HttpSessionEvent se) {
@@ -78,7 +77,7 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
      * Session ID, name of the object in which attribute is added and value of the object gets
      * logged.
      * </p>
-     * @see javax.servlet.http.HttpSessionAttributeListener#attributeAdded(javax.servlet.http.HttpSessionBindingEvent)
+     * @see jakarta.servlet.http.HttpSessionAttributeListener#attributeAdded(jakarta.servlet.http.HttpSessionBindingEvent)
      */
     @Override
     public void attributeAdded(HttpSessionBindingEvent se) {
@@ -95,7 +94,7 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
      * Session ID, name of the object in which attribute is deleted from and value of the object
      * gets logged.
      * </p>
-     * @see javax.servlet.http.HttpSessionAttributeListener#attributeRemoved(javax.servlet.http.HttpSessionBindingEvent)
+     * @see jakarta.servlet.http.HttpSessionAttributeListener#attributeRemoved(jakarta.servlet.http.HttpSessionBindingEvent)
      */
     @Override
     public void attributeRemoved(HttpSessionBindingEvent se) {
@@ -112,7 +111,7 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
      * Session ID, name of the object in which attribute is replaced and value of the object gets
      * logged.
      * </p>
-     * @see javax.servlet.http.HttpSessionAttributeListener#attributeReplaced(javax.servlet.http.HttpSessionBindingEvent)
+     * @see jakarta.servlet.http.HttpSessionAttributeListener#attributeReplaced(jakarta.servlet.http.HttpSessionBindingEvent)
      */
     @Override
     public void attributeReplaced(HttpSessionBindingEvent se) {
@@ -128,7 +127,7 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
      * <p>
      * Session ID and implementation class of {@link HttpSession} is logged.
      * </p>
-     * @see javax.servlet.http.HttpSessionListener#sessionCreated(javax.servlet.http.HttpSessionEvent)
+     * @see jakarta.servlet.http.HttpSessionListener#sessionCreated(jakarta.servlet.http.HttpSessionEvent)
      */
     @Override
     public void sessionCreated(HttpSessionEvent se) {
@@ -143,7 +142,7 @@ public class HttpSessionEventLoggingListener implements HttpSessionListener,
      * <p>
      * Session ID and implementation class of {@link HttpSession} is logged.
      * </p>
-     * @see javax.servlet.http.HttpSessionListener#sessionDestroyed(javax.servlet.http.HttpSessionEvent)
+     * @see jakarta.servlet.http.HttpSessionListener#sessionDestroyed(jakarta.servlet.http.HttpSessionEvent)
      */
     @Override
     public void sessionDestroyed(HttpSessionEvent se) {

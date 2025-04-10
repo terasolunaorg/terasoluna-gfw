@@ -22,7 +22,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.util.WebUtils;
 import org.terasoluna.gfw.web.token.TokenStringGenerator;
-
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -188,6 +187,17 @@ public class TransactionTokenInterceptor implements HandlerInterceptor {
         return true;
     }
 
+    /**
+     * Handles errors related to transaction token validation.
+     * <p>
+     * This method removes the received transaction token from the token store and throws an
+     * {@link InvalidTransactionTokenException}.
+     * </p>
+     * 
+     * @param receivedToken the transaction token that caused the error
+     * @throws InvalidTransactionTokenException always thrown to indicate an invalid transaction
+     *         token
+     */
     protected void processTransactionTokenError(TransactionToken receivedToken) {
         removeToken(receivedToken);
         throw new InvalidTransactionTokenException();
