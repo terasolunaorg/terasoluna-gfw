@@ -18,16 +18,14 @@ package org.terasoluna.gfw.common.time;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-
+import static org.junit.Assert.assertThrows;
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Collections;
-
 import javax.sql.DataSource;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -145,5 +143,14 @@ public class JdbcClockFactoryTest {
 
         ZonedDateTime now2 = ZonedDateTime.now(clock);
         assertThat(now2.isAfter(now), is(true));
+    }
+
+    @Test
+    public void testInstantNull() throws Exception {
+        clockFactory = new JdbcClockFactory(dataSource, "SELECT null FROM system_date");
+        IllegalStateException e = assertThrows(IllegalStateException.class, () -> {
+            clockFactory.fixed();
+        });
+        assertThat(e.getMessage(), is("Failed to retrieve current timestamp from database"));
     }
 }
