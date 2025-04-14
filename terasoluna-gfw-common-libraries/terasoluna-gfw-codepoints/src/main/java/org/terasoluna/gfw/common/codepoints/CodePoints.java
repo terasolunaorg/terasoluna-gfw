@@ -34,7 +34,7 @@ import java.util.concurrent.ConcurrentMap;
  * <li>check method if the code points in the given string are included</li>
  * <li>set operations (union, subtract, intersect)</li>
  * </ul>
- * <h3>How to create an instance</h3> Use Factory method to create a cached instance
+ * <h2>How to create an instance</h2> Use Factory method to create a cached instance
  *
  * <pre>
  * <code>CodePoints cp = CodePoints.of(ASCIIPrintableChars.class);</code>

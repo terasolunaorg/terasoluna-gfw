@@ -17,11 +17,9 @@ package org.terasoluna.gfw.common.validator.constraintvalidators;
 
 import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.getPropertyValue;
 import static org.terasoluna.gfw.common.validator.constraintvalidators.ConstraintValidatorsUtils.reportUnexpectedType;
-
 import org.terasoluna.gfw.common.validator.constraints.Compare;
 import org.terasoluna.gfw.common.validator.constraints.Compare.Node;
 import org.terasoluna.gfw.common.validator.constraints.Compare.Operator;
-
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
@@ -71,7 +69,7 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
     /**
      * Initialize validator.
      * @param constraintAnnotation annotation instance for a given constraint declaration
-     * @see javax.validation.ConstraintValidator#initialize(java.lang.annotation.Annotation)
+     * @see jakarta.validation.ConstraintValidator#initialize(java.lang.annotation.Annotation)
      */
     @Override
     public void initialize(Compare constraintAnnotation) {
@@ -90,8 +88,8 @@ public class CompareValidator implements ConstraintValidator<Compare, Object> {
      * @return {@code true} if result to comparing {@code left} and {@code right} is expected
      *         {@code operator}, or is match conditions that are described in the
      *         {@link CompareValidator#requireBoth} . otherwise {@code false}.
-     * @see javax.validation.ConstraintValidator#isValid(java.lang.Object,
-     *      javax.validation.ConstraintValidatorContext)
+     * @see jakarta.validation.ConstraintValidator#isValid(java.lang.Object,
+     *      jakarta.validation.ConstraintValidatorContext)
      */
     @Override
     public boolean isValid(Object bean, ConstraintValidatorContext context) {

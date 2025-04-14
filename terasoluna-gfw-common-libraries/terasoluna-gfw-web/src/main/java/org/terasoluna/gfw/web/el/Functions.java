@@ -17,7 +17,6 @@ package org.terasoluna.gfw.web.el;
 
 import java.util.Map;
 import java.util.regex.Pattern;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
@@ -137,7 +136,7 @@ public final class Functions {
      *
      * In these characters, as a value of query parameter, <strong>"&amp;", "+" , "=" are
      * percent-encoded</strong>.
-     * <h3>sample</h3>
+     * <h4>sample</h4>
      * <ul>
      * <li>/ ====&gt; /</li>
      * <li>? ====&gt; ?</li>

@@ -41,7 +41,7 @@ import com.google.common.collect.Tables;
  * To build a table of codelist, set a map of the {@link Locale} and the corresponding
  * {@link ReloadableCodeList}.<br>
  * </p>
- * <h3>set by rows with {@link ReloadableCodeList}</h3>
+ * <h2>set by rows with {@link ReloadableCodeList}</h2>
  *
  * <pre>
  * &lt;bean id=&quot;CL_I18N_WEEK&quot;

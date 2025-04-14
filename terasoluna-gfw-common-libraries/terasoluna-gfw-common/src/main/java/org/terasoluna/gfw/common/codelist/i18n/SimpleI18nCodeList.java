@@ -71,7 +71,7 @@ import com.google.common.collect.Tables;
  * <td>土</td>
  * </tr>
  * </table>
- * <h3>(Way 1) set by rows</h3>
+ * <h2>(Way 1) set by rows</h2>
  *
  * <pre>
  * &lt;bean id=&quot;CL_I18N_WEEK&quot;
