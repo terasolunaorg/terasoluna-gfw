@@ -25,6 +25,9 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class TokenStringGenerator {
 
+    /**
+     * Default algorithm used for token generation.
+     */
     public static final String DEFAULT_ALGORITHM = "MD5";
 
     private final AtomicLong counter = new AtomicLong();
@@ -96,6 +99,15 @@ public class TokenStringGenerator {
         }
     }
 
+    /**
+     * Converts a byte array to a hexadecimal string representation.
+     * <p>
+     * Each byte is converted to a two-character hexadecimal string.
+     * </p>
+     * 
+     * @param bytes the byte array to convert (must not be null)
+     * @return the hexadecimal string representation of the byte array
+     */
     protected static String toHexString(final byte[] bytes) {
         StringBuilder sb = new StringBuilder(bytes.length * 2);
         for (byte b : bytes) {
