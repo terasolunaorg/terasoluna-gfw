@@ -18,15 +18,13 @@ package org.terasoluna.gfw.web.pagination;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
 import java.io.StringWriter;
 import java.util.regex.Pattern;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.Test.None;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
@@ -38,7 +36,6 @@ import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.util.SerializationUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.form.TagWriter;
-
 import jakarta.servlet.jsp.tagext.TagSupport;
 
 public class PaginationTagTest {
@@ -62,7 +59,7 @@ public class PaginationTagTest {
     }
 
     @SuppressWarnings({"serial", "unchecked"})
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         this.writer = new StringWriter();
         this.pageContext = createPageContext();
@@ -940,20 +937,24 @@ public class PaginationTagTest {
         assertThat(getOutput(), is(expected.toString()));
     }
 
-    @Test(expected = None.class)
+    @Test
     public void testSetters() throws Exception {
 
         PaginationTag tag1 = new PaginationTag();
-        tag1.setPageContext(pageContext);
 
-        // Just for ensuring coverage
-        tag1.createTagWriter();
-        tag1.setPreviousLinkText("");
-        tag1.setNextLinkText("");
-        tag1.setDisabledHref("");
-        tag1.setActiveClass("");
-        tag1.setDisabledClass("");
-        tag1.setEnableLinkOfCurrentPage("");
+        assertDoesNotThrow(() -> {
+            tag1.setPageContext(pageContext);
+
+            // Just for ensuring coverage
+            tag1.createTagWriter();
+            tag1.setPreviousLinkText("");
+            tag1.setNextLinkText("");
+            tag1.setDisabledHref("");
+            tag1.setActiveClass("");
+            tag1.setDisabledClass("");
+            tag1.setEnableLinkOfCurrentPage("");
+        });
+
     }
 
     /**
@@ -961,10 +962,12 @@ public class PaginationTagTest {
      * it is still used because the data to be deserialized is guaranteed.
      */
     @SuppressWarnings("deprecation")
-    @Test(expected = None.class)
+    @Test
     public void testSerialization() {
         byte[] serialized = SerializationUtils.serialize(new PaginationTag());
-        SerializationUtils.deserialize(serialized);
+        assertDoesNotThrow(() -> {
+            SerializationUtils.deserialize(serialized);
+        });
     }
 
     /**

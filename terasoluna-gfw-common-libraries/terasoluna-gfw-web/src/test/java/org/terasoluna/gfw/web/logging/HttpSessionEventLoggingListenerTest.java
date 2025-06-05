@@ -20,14 +20,12 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import org.springframework.mock.web.MockHttpSession;
 import org.terasoluna.gfw.web.logback.LogLevelChangeUtil;
-
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
@@ -49,7 +47,7 @@ public class HttpSessionEventLoggingListenerTest {
 
     private Logger logger;
 
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         mockHttpSession = new MockHttpSession();
         httpSessionEvent = new HttpSessionEvent(mockHttpSession);
@@ -64,7 +62,7 @@ public class HttpSessionEventLoggingListenerTest {
         logger.addAppender(mockAppender);
     }
 
-    @After
+    @AfterEach
     public void after() throws Exception {
         // init log level
         LogLevelChangeUtil.resetLogLevel();

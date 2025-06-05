@@ -22,7 +22,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ToHalfwidthTest {
     @Test

@@ -17,29 +17,27 @@ package org.terasoluna.gfw.common.codelist.i18n;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasEntry;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.Collections;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.i18n.LocaleContextHolder;
-
 import com.google.common.collect.Sets;
 
 public class AbstractI18nCodeListTest {
 
     private Locale originalLocale;
 
-    @Before
+    @BeforeEach
     public void before() {
         originalLocale = Locale.getDefault();
     }
 
-    @After
+    @AfterEach
     public void after() {
         Locale.setDefault(originalLocale);
     }
@@ -72,7 +70,7 @@ public class AbstractI18nCodeListTest {
         assertThat(impl.asMap(), hasEntry("language", Locale.FRENCH.getLanguage()));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testRegisterAvailableLocalesNull() {
         AbstractI18nCodeList impl = new AbstractI18nCodeList() {
 
@@ -87,6 +85,6 @@ public class AbstractI18nCodeListTest {
             }
         };
 
-        impl.afterPropertiesSet();
+        assertThrows(IllegalArgumentException.class, impl::afterPropertiesSet);
     }
 }

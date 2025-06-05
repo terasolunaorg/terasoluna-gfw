@@ -18,18 +18,17 @@ package org.terasoluna.gfw.web.message;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
 import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Locale;
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockPageContext;
@@ -38,7 +37,6 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.form.TagWriter;
 import org.terasoluna.gfw.common.message.ResultMessage;
 import org.terasoluna.gfw.common.message.ResultMessages;
-
 import jakarta.servlet.jsp.JspTagException;
 import jakarta.servlet.jsp.tagext.TagSupport;
 
@@ -87,7 +85,7 @@ public class MessagesPanelTagTest {
      * setup all test case.
      */
     @SuppressWarnings("serial")
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         this.writer = new StringWriter();
         this.pageContext = createPageContext();
@@ -416,17 +414,18 @@ public class MessagesPanelTagTest {
      * and InnerElement is empty.<br>
      * check JspTagException.
      */
-    @Test(expected = JspTagException.class)
+    @Test
     public void test28() throws Exception {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
                 ResultMessages.info().add(ResultMessage.fromText("foo")));
         tag.setPanelElement("");
         tag.setOuterElement("");
         tag.setInnerElement("");
-        tag.doStartTag();
+
+        assertThrows(JspTagException.class, () -> tag.doStartTag());
     }
 
-    @Test(expected = JspTagException.class)
+    @Test
     public void testDoStartTagInternalElementNull() throws Exception {
         // set up
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
@@ -436,7 +435,7 @@ public class MessagesPanelTagTest {
         tag.setInnerElement(null);
 
         // try
-        tag.doStartTag();
+        assertThrows(JspTagException.class, () -> tag.doStartTag());
     }
 
     /**
@@ -641,11 +640,13 @@ public class MessagesPanelTagTest {
      * Set default messages attribute name & ResultMessages.fromText().<br>
      * check that JspTagException occurs if htmlEscapingEnabled is set to unexpected String.
      */
-    @Test(expected = JspTagException.class)
+    @Test
     public void test33() throws Exception {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME,
                 ResultMessages.error().add(ResultMessage.fromText("<div>")));
-        tag.setDisableHtmlEscape("aaaa");
+
+        assertThrows(JspTagException.class, () -> tag.setDisableHtmlEscape("aaaa"));
+
         tag.doStartTag();
     }
 

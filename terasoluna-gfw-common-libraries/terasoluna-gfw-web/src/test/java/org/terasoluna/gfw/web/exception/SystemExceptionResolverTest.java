@@ -22,12 +22,10 @@ import static org.hamcrest.Matchers.anEmptyMap;
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasEntry;
 import static org.hamcrest.Matchers.hasToString;
-
 import java.util.Enumeration;
 import java.util.Locale;
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.web.servlet.DispatcherServlet;
@@ -40,7 +38,6 @@ import org.terasoluna.gfw.common.exception.BusinessException;
 import org.terasoluna.gfw.common.exception.SimpleMappingExceptionCodeResolver;
 import org.terasoluna.gfw.common.exception.SystemException;
 import org.terasoluna.gfw.common.message.ResultMessages;
-
 import jakarta.servlet.ServletException;
 
 public class SystemExceptionResolverTest {
@@ -59,7 +56,7 @@ public class SystemExceptionResolverTest {
     /**
      * setup all test case.
      */
-    @Before
+    @BeforeEach
     public void before() {
 
         // create test target.

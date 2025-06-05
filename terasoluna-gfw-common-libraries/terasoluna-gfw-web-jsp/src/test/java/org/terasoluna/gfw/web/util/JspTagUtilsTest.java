@@ -18,12 +18,9 @@ package org.terasoluna.gfw.web.util;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertThrows;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.lang.reflect.Constructor;
-
-import org.junit.Test;
-
+import org.junit.jupiter.api.Test;
 import jakarta.servlet.jsp.JspException;
 import jakarta.servlet.jsp.JspTagException;
 

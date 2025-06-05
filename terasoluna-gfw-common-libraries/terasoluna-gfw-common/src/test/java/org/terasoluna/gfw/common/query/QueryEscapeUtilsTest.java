@@ -18,39 +18,37 @@ package org.terasoluna.gfw.common.query;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
-
 import java.lang.reflect.Constructor;
+import java.util.stream.Stream;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 
-import org.junit.Test;
-import org.junit.experimental.theories.DataPoints;
-import org.junit.experimental.theories.Theories;
-import org.junit.experimental.theories.Theory;
-import org.junit.runner.RunWith;
-
-@RunWith(Theories.class)
 public class QueryEscapeUtilsTest {
 
-    @DataPoints
-    public static TestData[] dataSet = {
-            /* input, expectedToLikeCondition, expectedToLikeConditionWithFullWidth */
-            new TestData("a", "a", "a") /* normal */,
-            new TestData("a~", "a~~", "a~~") /* escape character */,
-            new TestData("a%", "a~%", "a~%") /* % wildcard */,
-            new TestData("a_", "a~_", "a~_") /* _ wildcard */,
-            new TestData("_a%", "~_a~%", "~_a~%") /* _ and % */,
-            new TestData("a％", "a％" /* not escaped */,
-                    "a~％" /* escaped */) /* full-width ~ wildcard */,
-            new TestData("a＿", "a＿" /* not escaped */,
-                    "a~＿" /* escaped */) /* full-width _ wildcard */,
-            new TestData(" ", " ", " ") /* blank */, new TestData("", "", "") /* empty */,
-            new TestData(null, null, null) /* null */,
-            new TestData("a~%_％＿b", "a~~~%~_％＿b", "a~~~%~_~％~＿b") /* complex */
-    };
+    public static Stream<TestData> testDataProvider() {
+        return Stream.of(
+                /* input, expectedToLikeCondition, expectedToLikeConditionWithFullWidth */
+                new TestData("a", "a", "a") /* normal */,
+                new TestData("a~", "a~~", "a~~") /* escape character */,
+                new TestData("a%", "a~%", "a~%") /* % wildcard */,
+                new TestData("a_", "a~_", "a~_") /* _ wildcard */,
+                new TestData("_a%", "~_a~%", "~_a~%") /* _ and % */,
+                new TestData("a％", "a％" /* not escaped */,
+                        "a~％" /* escaped */) /* full-width ~ wildcard */,
+                new TestData("a＿", "a＿" /* not escaped */,
+                        "a~＿" /* escaped */) /* full-width _ wildcard */,
+                new TestData(" ", " ", " ") /* blank */, new TestData("", "", "") /* empty */,
+                new TestData(null, null, null) /* null */,
+                new TestData("a~%_％＿b", "a~~~%~_％＿b", "a~~~%~_~％~＿b") /* complex */
+        );
+    }
 
     /**
      * test {@link QueryEscapeUtils#toLikeCondition(String)}
      */
-    @Theory
+    @ParameterizedTest
+    @MethodSource("testDataProvider")
     public void testToLikeCondition(TestData param) {
         String actual = QueryEscapeUtils.toLikeCondition(param.input);
         String expected = param.expectedToLikeCondition;
@@ -63,7 +61,8 @@ public class QueryEscapeUtilsTest {
      * test {@link QueryEscapeUtils#withFullWidth()}
      * {@link LikeConditionEscape#toLikeCondition(String)}
      */
-    @Theory
+    @ParameterizedTest
+    @MethodSource("testDataProvider")
     public void testToLikeConditionWithFullWidth(TestData param) {
         String actual = QueryEscapeUtils.withFullWidth().toLikeCondition(param.input);
         String expected = param.expectedToLikeConditionWithFullWidth;
@@ -75,7 +74,8 @@ public class QueryEscapeUtilsTest {
     /**
      * test {@link QueryEscapeUtils#toLikeCondition(String, StringBuilder)}
      */
-    @Theory
+    @ParameterizedTest
+    @MethodSource("testDataProvider")
     public void testToLikeConditionStringBuilder(TestData param) {
         StringBuilder actual = QueryEscapeUtils.toLikeCondition(param.input, new StringBuilder());
         StringBuilder expected = param.expectedToLikeConditionStringBuilder;
@@ -88,7 +88,8 @@ public class QueryEscapeUtilsTest {
      * test {@link QueryEscapeUtils#withFullWidth()}
      * {@link LikeConditionEscape#toLikeCondition(String, StringBuilder)}
      */
-    @Theory
+    @ParameterizedTest
+    @MethodSource("testDataProvider")
     public void testToLikeConditionWithFullWidthStringBuilder(TestData param) {
         StringBuilder actual =
                 QueryEscapeUtils.withFullWidth().toLikeCondition(param.input, new StringBuilder());
@@ -101,7 +102,8 @@ public class QueryEscapeUtilsTest {
     /**
      * test {@link QueryEscapeUtils#toStartingWithCondition(String)}
      */
-    @Theory
+    @ParameterizedTest
+    @MethodSource("testDataProvider")
     public void testToStartingWithCondition(TestData param) {
         String actual = QueryEscapeUtils.toStartingWithCondition(param.input);
         String expected = param.expectedStartingWithCondition;
@@ -114,7 +116,8 @@ public class QueryEscapeUtilsTest {
      * test {@link QueryEscapeUtils#withFullWidth()}
      * {@link LikeConditionEscape#toStartingWithCondition(String)}
      */
-    @Theory
+    @ParameterizedTest
+    @MethodSource("testDataProvider")
     public void testToStartingWithConditionWithFullWidth(TestData param) {
         String actual = QueryEscapeUtils.withFullWidth().toStartingWithCondition(param.input);
         String expected = param.expectedStartingWithConditionWithFullWidth;
@@ -126,7 +129,8 @@ public class QueryEscapeUtilsTest {
     /**
      * test {@link QueryEscapeUtils#toEndingWithCondition(String)}
      */
-    @Theory
+    @ParameterizedTest
+    @MethodSource("testDataProvider")
     public void testToEndingWithCondition(TestData param) {
         String actual = QueryEscapeUtils.toEndingWithCondition(param.input);
         String expected = param.expectedEndingWithCondition;
@@ -139,7 +143,8 @@ public class QueryEscapeUtilsTest {
      * test {@link QueryEscapeUtils#withFullWidth()}
      * {@link LikeConditionEscape#toEndingWithCondition(String)}
      */
-    @Theory
+    @ParameterizedTest
+    @MethodSource("testDataProvider")
     public void testToEndingWithConditionWithFullWidth(TestData param) {
         String actual = QueryEscapeUtils.withFullWidth().toEndingWithCondition(param.input);
         String expected = param.expectedEndingWithConditionWithFullWidth;
@@ -151,7 +156,8 @@ public class QueryEscapeUtilsTest {
     /**
      * test {@link QueryEscapeUtils#toContainingCondition(String)}
      */
-    @Theory
+    @ParameterizedTest
+    @MethodSource("testDataProvider")
     public void testToContainingCondition(TestData param) {
         String actual = QueryEscapeUtils.toContainingCondition(param.input);
         String expected = param.expectedContainingCondition;
@@ -164,7 +170,8 @@ public class QueryEscapeUtilsTest {
      * test {@link QueryEscapeUtils#withFullWidth()}
      * {@link LikeConditionEscape#toContainingCondition(String)}
      */
-    @Theory
+    @ParameterizedTest
+    @MethodSource("testDataProvider")
     public void testToContainingWithFullWidth(TestData param) {
         String actual = QueryEscapeUtils.withFullWidth().toContainingCondition(param.input);
         String expected = param.expectedContainingConditionWithFullWidth;
@@ -173,7 +180,8 @@ public class QueryEscapeUtilsTest {
         assertThat(errorMessage, actual, is(expected));
     }
 
-    @Theory
+    @ParameterizedTest
+    @MethodSource("testDataProvider")
     public void testToLikeConditionIsNull(TestData param) {
         // set up
         StringBuilder actual = QueryEscapeUtils.toLikeCondition(param.input, null);

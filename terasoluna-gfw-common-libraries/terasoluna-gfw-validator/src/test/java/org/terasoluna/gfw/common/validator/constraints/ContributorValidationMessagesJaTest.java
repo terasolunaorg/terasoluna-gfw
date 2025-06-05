@@ -19,18 +19,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
-
 import java.util.Locale;
 import java.util.Set;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.terasoluna.gfw.common.validator.constraints.ByteMaxTest.ByteMaxTestForm;
 import org.terasoluna.gfw.common.validator.constraints.ByteMinTest.ByteMinTestForm;
 import org.terasoluna.gfw.common.validator.constraints.ByteSizeTest.ByteSizeTestForm;
 import org.terasoluna.gfw.common.validator.constraints.CompareTest.CompareTestForm;
-
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -44,7 +41,7 @@ public class ContributorValidationMessagesJaTest {
 
     private static Locale originalLocale;
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.JAPANESE);
@@ -52,7 +49,7 @@ public class ContributorValidationMessagesJaTest {
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
-    @AfterClass
+    @AfterAll
     public static void afterClass() {
         Locale.setDefault(originalLocale);
     }

@@ -25,34 +25,30 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.LoggerFactory;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.View;
 import org.terasoluna.gfw.web.logback.LogLevelChangeUtil;
-
 import com.google.common.collect.ImmutableList;
-
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Appender;
 
 @ContextConfiguration(locations = "classpath:/test-context.xml")
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 public class TraceLoggingInterceptorTest {
 
     private TraceLoggingInterceptor interceptor;
@@ -72,7 +68,7 @@ public class TraceLoggingInterceptorTest {
     @SuppressWarnings("unchecked")
     private Appender<ILoggingEvent> mockAppender = mock(Appender.class);
 
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         // prepare request object
         request = new MockHttpServletRequest();

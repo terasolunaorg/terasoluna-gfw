@@ -19,28 +19,26 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.anEmptyMap;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
-
 import javax.sql.DataSource;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.BadSqlGrammarException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ReflectionUtils;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath:test-context.xml"})
 @Transactional
 @Rollback
@@ -54,7 +52,7 @@ public class JdbcCodeListTest {
 
     private Map<String, String> mapInput = new HashMap<String, String>();
 
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         jdbcTemplate.getJdbcOperations().execute(
                 "CREATE TABLE codelist(code_id character varying(3) NOT NULL, code_name character varying(50),CONSTRAINT pk_code_id PRIMARY KEY (code_id))");
@@ -68,7 +66,7 @@ public class JdbcCodeListTest {
         }
     }
 
-    @After
+    @AfterEach
     public void after() throws Exception {
         jdbcTemplate.getJdbcOperations().execute("DROP TABLE codelist");
     }
@@ -97,20 +95,20 @@ public class JdbcCodeListTest {
     /**
      * check retrieveMap method in case of Data Access related exception
      */
-    @Test(expected = BadSqlGrammarException.class)
+    @Test
     public void testRetrieveMap02() {
-
         // setup target
         JdbcCodeList jdbcCodeList = new JdbcCodeList();
 
-        // setup parameters\
+        // setup parameters
         jdbcCodeList.setDataSource(dataSource);
         jdbcCodeList.setLabelColumn("code_name");
         jdbcCodeList.setValueColumn("code_id");
         jdbcCodeList.setQuerySql("Select code_id, code_name_temp from codelist");
 
-        jdbcCodeList.retrieveMap();
-
+        assertThrows(BadSqlGrammarException.class, () -> {
+            jdbcCodeList.retrieveMap();
+        });
     }
 
     /**
@@ -253,7 +251,7 @@ public class JdbcCodeListTest {
         assertThat(exposedMapFirstFetch, is(nullValue()));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAfterPropertiesSet_querySqlIsNull() throws Exception {
         // create target
         JdbcCodeList jdbcCodeList = new JdbcCodeList();
@@ -264,11 +262,12 @@ public class JdbcCodeListTest {
         jdbcCodeList.setValueColumn("code_id");
         jdbcCodeList.setQuerySql(null);
 
-        jdbcCodeList.afterPropertiesSet();
-
+        assertThrows(IllegalArgumentException.class, () -> {
+            jdbcCodeList.afterPropertiesSet();
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAfterPropertiesSet_querySqlIsEmpty() throws Exception {
         // create target
         JdbcCodeList jdbcCodeList = new JdbcCodeList();
@@ -279,10 +278,12 @@ public class JdbcCodeListTest {
         jdbcCodeList.setValueColumn("code_id");
         jdbcCodeList.setQuerySql("");
 
-        jdbcCodeList.afterPropertiesSet();
+        assertThrows(IllegalArgumentException.class, () -> {
+            jdbcCodeList.afterPropertiesSet();
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAfterPropertiesSet_labelColumnIsNull() throws Exception {
         // create target
         JdbcCodeList jdbcCodeList = new JdbcCodeList();
@@ -292,11 +293,13 @@ public class JdbcCodeListTest {
         jdbcCodeList.setLabelColumn(null);
         jdbcCodeList.setValueColumn("code_id");
         jdbcCodeList.setQuerySql("select code_id, code_name from codelist");
-        jdbcCodeList.afterPropertiesSet();
 
+        assertThrows(IllegalArgumentException.class, () -> {
+            jdbcCodeList.afterPropertiesSet();
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAfterPropertiesSet_labelColumnIsEmpty() throws Exception {
         // create target
         JdbcCodeList jdbcCodeList = new JdbcCodeList();
@@ -306,11 +309,13 @@ public class JdbcCodeListTest {
         jdbcCodeList.setLabelColumn("");
         jdbcCodeList.setValueColumn("code_id");
         jdbcCodeList.setQuerySql("select code_id, code_name from codelist");
-        jdbcCodeList.afterPropertiesSet();
 
+        assertThrows(IllegalArgumentException.class, () -> {
+            jdbcCodeList.afterPropertiesSet();
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAfterPropertiesSet_valueColumnIsNull() throws Exception {
         // create target
         JdbcCodeList jdbcCodeList = new JdbcCodeList();
@@ -320,11 +325,13 @@ public class JdbcCodeListTest {
         jdbcCodeList.setLabelColumn("code_name");
         jdbcCodeList.setValueColumn(null);
         jdbcCodeList.setQuerySql("select code_id, code_name from codelist");
-        jdbcCodeList.afterPropertiesSet();
 
+        assertThrows(IllegalArgumentException.class, () -> {
+            jdbcCodeList.afterPropertiesSet();
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAfterPropertiesSet_valueColumnIsEmpty() throws Exception {
         // create target
         JdbcCodeList jdbcCodeList = new JdbcCodeList();
@@ -334,11 +341,13 @@ public class JdbcCodeListTest {
         jdbcCodeList.setLabelColumn("code_name");
         jdbcCodeList.setValueColumn("");
         jdbcCodeList.setQuerySql("select code_id, code_name from codelist");
-        jdbcCodeList.afterPropertiesSet();
 
+        assertThrows(IllegalArgumentException.class, () -> {
+            jdbcCodeList.afterPropertiesSet();
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAfterPropertiesSet_dataSourceAndJdbcTemplateAreNull() throws Exception {
         // create target
         JdbcCodeList jdbcCodeList = new JdbcCodeList();
@@ -347,8 +356,10 @@ public class JdbcCodeListTest {
         jdbcCodeList.setLabelColumn("code_name");
         jdbcCodeList.setValueColumn("code_id");
         jdbcCodeList.setQuerySql("select code_id, code_name from codelist");
-        jdbcCodeList.afterPropertiesSet();
 
+        assertThrows(IllegalArgumentException.class, () -> {
+            jdbcCodeList.afterPropertiesSet();
+        });
     }
 
 }

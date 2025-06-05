@@ -18,6 +18,8 @@ package org.terasoluna.gfw.common.message;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.DANGER;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.DARK;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.ERROR;
@@ -27,20 +29,17 @@ import static org.terasoluna.gfw.common.message.StandardResultMessageType.PRIMAR
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.SECONDARY;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.SUCCESS;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.WARNING;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-
-import org.junit.Test;
-import org.junit.Test.None;
+import org.junit.jupiter.api.Test;
 import org.springframework.util.SerializationUtils;
 
 public class ResultMessagesTest {
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testConstructor() {
-        new ResultMessages(null);
+        assertThrows(IllegalArgumentException.class, () -> new ResultMessages(null));
     }
 
     @Test
@@ -68,12 +67,12 @@ public class ResultMessagesTest {
         assertThat(messages.getList(), contains(msg1, msg2));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAdd02_null() {
         ResultMessage msg1 = ResultMessage.fromCode("foo");
 
         ResultMessages messages = new ResultMessages(ERROR, msg1);
-        messages.add((ResultMessage) null);
+        assertThrows(IllegalArgumentException.class, () -> messages.add((ResultMessage) null));
     }
 
     @Test
@@ -98,11 +97,11 @@ public class ResultMessagesTest {
         assertThat(messages.getList(), contains(msg1, msg2));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAdd12_null() {
         ResultMessages messages = new ResultMessages(ERROR);
         messages.add("foo");
-        messages.add((String) null);
+        assertThrows(IllegalArgumentException.class, () -> messages.add((String) null));
     }
 
     @Test
@@ -116,12 +115,11 @@ public class ResultMessagesTest {
         assertThat(messages.getList(), contains(msg1, msg2));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAdd22_null() {
-
         ResultMessages messages = new ResultMessages(ERROR);
         messages.add("foo", "aa");
-        messages.add((String) null, "bb");
+        assertThrows(IllegalArgumentException.class, () -> messages.add((String) null, "bb"));
     }
 
     @Test
@@ -134,11 +132,10 @@ public class ResultMessagesTest {
         assertThat(messages.getList(), contains(msg1, msg2));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAddAll02_null() {
-
         ResultMessages messages = new ResultMessages(ERROR);
-        messages.addAll((ResultMessage[]) null);
+        assertThrows(IllegalArgumentException.class, () -> messages.addAll((ResultMessage[]) null));
     }
 
     @Test
@@ -151,11 +148,11 @@ public class ResultMessagesTest {
         assertThat(messages.getList(), contains(msg1, msg2));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAddAll12_null() {
-
         ResultMessages messages = new ResultMessages(ERROR);
-        messages.addAll((Collection<ResultMessage>) null);
+        assertThrows(IllegalArgumentException.class,
+                () -> messages.addAll((Collection<ResultMessage>) null));
     }
 
     @Test
@@ -290,9 +287,11 @@ public class ResultMessagesTest {
      * it is still used because the data to be deserialized is guaranteed.
      */
     @SuppressWarnings("deprecation")
-    @Test(expected = None.class)
+    @Test
     public void testSerialization() {
         byte[] serialized = SerializationUtils.serialize(new ResultMessages(ERROR));
-        SerializationUtils.deserialize(serialized);
+        assertDoesNotThrow(() -> {
+            SerializationUtils.deserialize(serialized);
+        });
     }
 }

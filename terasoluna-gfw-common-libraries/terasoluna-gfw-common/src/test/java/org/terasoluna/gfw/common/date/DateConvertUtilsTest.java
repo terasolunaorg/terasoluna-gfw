@@ -18,13 +18,11 @@ package org.terasoluna.gfw.common.date;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
-import static org.junit.Assert.assertThrows;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.lang.reflect.Constructor;
 import java.sql.Time;
 import java.sql.Timestamp;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DateConvertUtilsTest {
 

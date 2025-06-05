@@ -22,16 +22,13 @@ import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.hasToString;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThrows;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.Arrays;
 import java.util.List;
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.terasoluna.gfw.common.validator.constraints.ByteMinTest.ByteMinTestForm;
-
 import jakarta.validation.UnexpectedTypeException;
 import jakarta.validation.ValidationException;
 
@@ -43,7 +40,7 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
     private static final String MESSAGE_VALIDATION_ERROR =
             "must be greater than or equal to %d bytes";
 
-    @Before
+    @BeforeEach
     public void before() {
         form = new ByteMinTestForm();
     }

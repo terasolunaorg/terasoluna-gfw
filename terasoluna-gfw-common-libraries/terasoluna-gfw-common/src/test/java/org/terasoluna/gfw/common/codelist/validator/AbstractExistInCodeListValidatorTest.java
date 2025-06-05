@@ -18,16 +18,13 @@ package org.terasoluna.gfw.common.codelist.validator;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
-
 import java.lang.annotation.Annotation;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 import org.terasoluna.gfw.common.codelist.ExistInCodeList;
 import org.terasoluna.gfw.common.logback.LogLevelChangeUtil;
-
 import ch.qos.logback.classic.Logger;
 import jakarta.validation.ConstraintValidatorContext;
 import jakarta.validation.Payload;

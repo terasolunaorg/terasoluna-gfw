@@ -20,13 +20,10 @@ import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.is;
-
 import java.util.Locale;
 import java.util.Set;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.ValidationException;
@@ -51,7 +48,7 @@ abstract public class AbstractConstraintsTest<F> {
 
     private static Locale originalLocale;
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.ENGLISH);
@@ -59,7 +56,7 @@ abstract public class AbstractConstraintsTest<F> {
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
-    @AfterClass
+    @AfterAll
     public static void afterClass() {
         Locale.setDefault(originalLocale);
     }

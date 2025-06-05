@@ -20,12 +20,10 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
 import java.util.Arrays;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.security.core.Authentication;
@@ -46,13 +44,13 @@ public class UserIdMDCPutFilterTest {
 
     MockHttpServletResponse response;
 
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         request = new MockHttpServletRequest();
         response = new MockHttpServletResponse();
     }
 
-    @After
+    @AfterEach
     public void after() throws Exception {
         SecurityContextHolder.clearContext();
     }

@@ -18,13 +18,11 @@ package org.terasoluna.gfw.web.logging.mdc;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.matchesPattern;
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockFilterConfig;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-
 import jakarta.servlet.ServletException;
 
 public class XTrackMDCPutFilterTest {
@@ -32,7 +30,7 @@ public class XTrackMDCPutFilterTest {
 
     private MockFilterConfig mockFilterConfig;
 
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         xTrackMDCPutFilter = new XTrackMDCPutFilter();
         mockFilterConfig = new MockFilterConfig();

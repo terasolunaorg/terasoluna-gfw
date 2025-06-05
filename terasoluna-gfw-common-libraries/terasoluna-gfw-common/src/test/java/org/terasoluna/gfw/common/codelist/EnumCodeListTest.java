@@ -17,11 +17,10 @@ package org.terasoluna.gfw.common.codelist;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class EnumCodeListTest {
     public static enum OrderStatus implements EnumCodeList.CodeListItem {
@@ -63,9 +62,11 @@ public class EnumCodeListTest {
         assertThat(codeList.asMap(), is(expected));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testSetInvalidEnum() {
-        new EnumCodeList(IllegalEnum.class);
+        assertThrows(IllegalArgumentException.class, () -> {
+            new EnumCodeList(IllegalEnum.class);
+        });
     }
 
 }

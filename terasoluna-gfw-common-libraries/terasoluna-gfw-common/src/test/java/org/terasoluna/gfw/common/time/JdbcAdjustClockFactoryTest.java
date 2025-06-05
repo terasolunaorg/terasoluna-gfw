@@ -17,26 +17,23 @@ package org.terasoluna.gfw.common.time;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-
 import java.time.Clock;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Collections;
-
 import javax.sql.DataSource;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath:test-context.xml"})
 @Transactional
 public class JdbcAdjustClockFactoryTest {
@@ -49,7 +46,7 @@ public class JdbcAdjustClockFactoryTest {
 
     ClockFactory clockFactory;
 
-    @Before
+    @BeforeEach
     public void before() {
         // crate table
         jdbcTemplate.getJdbcOperations().execute("CREATE TABLE system_adjusted_date(diff long)");
@@ -60,7 +57,7 @@ public class JdbcAdjustClockFactoryTest {
                 "SELECT diff FROM system_adjusted_date", ChronoUnit.DAYS);
     }
 
-    @After
+    @AfterEach
     public void after() {
         // drop table
         jdbcTemplate.getJdbcOperations().execute("DROP TABLE system_adjusted_date");

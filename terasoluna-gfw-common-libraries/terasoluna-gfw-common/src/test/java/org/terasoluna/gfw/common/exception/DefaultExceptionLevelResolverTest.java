@@ -17,15 +17,14 @@ package org.terasoluna.gfw.common.exception;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class DefaultExceptionLevelResolverTest {
 
     private DefaultExceptionLevelResolver testTarget;
 
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         this.testTarget =
                 new DefaultExceptionLevelResolver(new SimpleMappingExceptionCodeResolver());

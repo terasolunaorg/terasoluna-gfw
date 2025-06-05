@@ -17,11 +17,10 @@ package org.terasoluna.gfw.common.codelist;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class SimpleMapCodeListTest {
 
@@ -54,7 +53,7 @@ public class SimpleMapCodeListTest {
     /**
      * check whether the map returned by SetMap is unmodifiable
      */
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void testSetMap01() {
         SimpleMapCodeList codeList = new SimpleMapCodeList();
 
@@ -68,6 +67,8 @@ public class SimpleMapCodeListTest {
 
         // check whether the map is unmodifiableMap
         Map<String, String> mapOutput = codeList.asMap();
-        mapOutput.put("111", "label111");
+        assertThrows(UnsupportedOperationException.class, () -> {
+            mapOutput.put("111", "label111");
+        });
     }
 }

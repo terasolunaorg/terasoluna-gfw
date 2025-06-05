@@ -17,27 +17,24 @@ package org.terasoluna.gfw.web.download;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.Test.None;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
@@ -101,7 +98,7 @@ public class FileDownloadViewTest {
         }
     }
 
-    @Before
+    @BeforeEach
     public void before() throws FileNotFoundException {
 
         inputStream = this.getClass().getResourceAsStream("test.txt");
@@ -124,64 +121,85 @@ public class FileDownloadViewTest {
         assertThat(response.getHeader("MethodCalled"), is("true"));
     }
 
-    @Test(expected = IOException.class)
-    public void testrenderMergedOutputModelWithNullInputStream() throws IOException {
+    @Test
+    public void testrenderMergedOutputModelWithNullInputStream() {
         fileDownloadView.setInputStream(null);
-        fileDownloadView.renderMergedOutputModel(model, request, response);
+        assertThrows(IOException.class, () -> {
+            fileDownloadView.renderMergedOutputModel(model, request, response);
+        });
     }
 
-    @Test(expected = IOException.class)
-    public void testrenderMergedOutputModelWithInvalidInputStream() throws IOException {
+    @Test
+    public void testrenderMergedOutputModelWithInvalidInputStream() {
         fileDownloadView.setInputStream(null);
         // Set flag so that getInputStream will throw exception in any case
         fileDownloadView.setThrowIOException(true);
-        fileDownloadView.renderMergedOutputModel(model, request, response);
+        assertThrows(IOException.class, () -> {
+            fileDownloadView.renderMergedOutputModel(model, request, response);
+        });
     }
 
-    @Test(expected = IOException.class)
+
+    @Test
     public void testrenderMergedOutputModelWithWriteStreamFailed() throws IOException {
+
+        Logger logger = (Logger) LoggerFactory.getLogger(FileDownloadViewWriteFailed.class);
+        logger.addAppender(mockAppender);
+
         FileDownloadView fdlv = new FileDownloadViewWriteFailed();
         fdlv.setInputStream(inputStream);
         fdlv.setThrowIOException(false);
 
-        fdlv.renderMergedOutputModel(model, request, response);
+        assertThrows(IOException.class, () -> {
+            fdlv.renderMergedOutputModel(model, request, response);
+        });
         verify(mockAppender).doAppend(argThat(argument -> argument.getLevel().equals(Level.ERROR)));
     }
 
-    @Test(expected = IOException.class)
+    @Test
     public void testrenderMergedOutputModelFlushFailed() throws IOException {
         ServletOutputStream sos = mock(ServletOutputStream.class);
         doThrow(new IOException("test intentionally failed")).when(sos).flush();
         response = mock(MockHttpServletResponse.class);
         when(response.getOutputStream()).thenReturn(sos);
 
-        fileDownloadView.renderMergedOutputModel(model, request, response);
+        assertThrows(IOException.class, () -> {
+            fileDownloadView.renderMergedOutputModel(model, request, response);
+        });
         verify(mockAppender).doAppend(argThat(argument -> argument.getLevel().equals(Level.ERROR)));
     }
 
-    @Test(expected = None.class)
+    @Test
     public void testrenderMergedOutputModelCloseFailed() throws IOException {
         InputStream is = mock(InputStream.class);
         doThrow(new IOException("test intentionally failed")).when(is).close();
         fileDownloadView.setInputStream(is);
 
-        fileDownloadView.renderMergedOutputModel(model, request, response);
+        assertDoesNotThrow(() -> {
+            fileDownloadView.renderMergedOutputModel(model, request, response);
+        });
         verify(mockAppender).doAppend(argThat(argument -> argument.getLevel().equals(Level.WARN)));
     }
 
-    @Test(expected = None.class)
+    @Test
     public void testWriteResponseStreamWithBothStreamsNull() throws Exception {
-        fileDownloadView.writeResponseStream(null, null);
+        assertDoesNotThrow(() -> {
+            fileDownloadView.writeResponseStream(null, null);
+        });
     }
 
-    @Test(expected = None.class)
+    @Test
     public void testWriteResponseStreamWithNullOutputStream() throws Exception {
-        fileDownloadView.writeResponseStream(inputStream, null);
+        assertDoesNotThrow(() -> {
+            fileDownloadView.writeResponseStream(inputStream, null);
+        });
     }
 
-    @Test(expected = None.class)
+    @Test
     public void testSetChunkSize() throws Exception {
-        fileDownloadView.setChunkSize(512);
+        assertDoesNotThrow(() -> {
+            fileDownloadView.setChunkSize(512);
+        });
     }
 
     @Test
@@ -218,11 +236,13 @@ public class FileDownloadViewTest {
         assertThat(e.getMessage(), is("chunkSize must be over 1. specified chunkSize is \"-1\"."));
     }
 
-    @Test(expected = None.class)
+    @Test
     public void testAfterPropertiesSet_chunkSize_is1() {
         // Set Mock Behavior
         fileDownloadView.setChunkSize(1);
 
-        fileDownloadView.afterPropertiesSet();
+        assertDoesNotThrow(() -> {
+            fileDownloadView.afterPropertiesSet();
+        });
     }
 }

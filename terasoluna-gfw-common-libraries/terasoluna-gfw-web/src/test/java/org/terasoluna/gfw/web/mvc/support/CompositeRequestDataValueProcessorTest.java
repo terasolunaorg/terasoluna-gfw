@@ -22,14 +22,11 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
-
 import jakarta.servlet.http.HttpServletRequest;
 
 public class CompositeRequestDataValueProcessorTest {
@@ -41,7 +38,7 @@ public class CompositeRequestDataValueProcessorTest {
     RequestDataValueProcessorAdaptor requestDataValueProcessor =
             mock(RequestDataValueProcessorAdaptor.class);
 
-    @Before
+    @BeforeEach
     public void before() {
 
         compositeRequestDataValueProcessor =

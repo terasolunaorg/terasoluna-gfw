@@ -19,32 +19,29 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.aMapWithSize;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
-
 import javax.sql.DataSource;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.util.ReflectionTestUtils;
 import org.springframework.transaction.annotation.Transactional;
 import org.terasoluna.gfw.common.codelist.JdbcCodeList;
 import org.terasoluna.gfw.common.codelist.ReloadableCodeList;
-
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Table;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration(locations = {"classpath:test-context.xml"})
 @Transactional
 @Rollback
@@ -70,7 +67,7 @@ public class SimpleReloadableI18nCodeListTest {
 
     private Locale originalLocale;
 
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.US);
@@ -119,7 +116,7 @@ public class SimpleReloadableI18nCodeListTest {
                 Locale.ENGLISH, codeListEnglish, Locale.JAPANESE, codeListJapanese));
     }
 
-    @After
+    @AfterEach
     public void after() throws Exception {
         jdbcTemplate.getJdbcOperations().execute("DROP TABLE codelist_en");
         jdbcTemplate.getJdbcOperations().execute("DROP TABLE codelist_ja");
@@ -199,11 +196,12 @@ public class SimpleReloadableI18nCodeListTest {
         assertCodeListMap(10);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAfterPropertiesSet() {
-
         reloadableI18nCodeList.setRowsByCodeList(null);
-        afterPropertiesSet();
+        assertThrows(IllegalArgumentException.class, () -> {
+            afterPropertiesSet();
+        });
     }
 
     private void afterPropertiesSet() {
