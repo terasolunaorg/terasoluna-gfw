@@ -33,10 +33,8 @@ import java.util.concurrent.TimeUnit;
 import org.aopalliance.intercept.MethodInvocation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.context.support.ApplicationObjectSupport;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.terasoluna.gfw.common.exception.test.TestFacade;
 import org.terasoluna.gfw.common.exception.test.TestRepository;
 import org.terasoluna.gfw.common.exception.test.TestService;
@@ -46,8 +44,7 @@ import jakarta.inject.Inject;
 /**
  * TestCase class of ResultMessagesLoggingInterceptor.
  */
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath:test-context.xml",
+@SpringJUnitConfig(locations = {"classpath:test-context.xml",
         "classpath:org/terasoluna/gfw/common/exception/ResultMessagesLoggingInterceptorTest.xml"})
 public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSupport {
 

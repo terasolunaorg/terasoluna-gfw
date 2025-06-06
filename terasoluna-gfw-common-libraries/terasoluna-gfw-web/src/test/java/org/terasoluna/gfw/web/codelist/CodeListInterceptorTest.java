@@ -29,7 +29,6 @@ import java.util.Map;
 import java.util.regex.Pattern;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.i18n.SimpleLocaleContext;
@@ -37,16 +36,14 @@ import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.terasoluna.gfw.common.codelist.CodeList;
 import org.terasoluna.gfw.common.codelist.SimpleMapCodeList;
 import org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList;
 import org.terasoluna.gfw.web.logback.LogLevelChangeUtil;
 import ch.qos.logback.classic.Logger;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = {"classpath:test-context.xml",
+@SpringJUnitConfig(locations = {"classpath:test-context.xml",
         "classpath:org/terasoluna/gfw/web/codelist/CodeListInterceptorTest.xml"})
 public class CodeListInterceptorTest extends ApplicationObjectSupport {
 

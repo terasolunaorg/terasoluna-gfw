@@ -24,17 +24,13 @@ import java.util.Set;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 
-
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration("ExistInCodeListTest-context.xml")
+@SpringJUnitConfig(locations = "ExistInCodeListTest-context.xml")
 public class ExistInCodeListJaTest {
 
     @Inject
