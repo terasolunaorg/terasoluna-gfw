@@ -330,7 +330,7 @@
         <org.apache.maven.plugins.maven-site-plugin.version>4.0.0-M16</org.apache.maven.plugins.maven-site-plugin.version>
         <org.codehaus.cargo.cargo-maven3-plugin.version>1.10.15</org.codehaus.cargo.cargo-maven3-plugin.version>
         <org.apache.maven.plugins.maven-gpg-plugin.version>3.2.7</org.apache.maven.plugins.maven-gpg-plugin.version>
-        <org.sonatype.plugins.nexus-staging-maven-plugin.version>1.7.0</org.sonatype.plugins.nexus-staging-maven-plugin.version>
+        <org.sonatype.central.central-publishing-maven-plugin.version>0.8.0</org.sonatype.central.central-publishing-maven-plugin.version>
         <!-- == Dependency Versions == -->
         <!-- == TERASOLUNA == -->
         <terasoluna.gfw.version>5.11.0-SNAPSHOT</terasoluna.gfw.version>
@@ -361,16 +361,6 @@
         </profile>
         <profile>
             <id>central</id>
-            <distributionManagement>
-                <repository>
-                    <id>ossrh</id>
-                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-                </repository>
-                <snapshotRepository>
-                    <id>ossrh</id>
-                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-                </snapshotRepository>
-            </distributionManagement>
             <build>
                 <plugins>
                     <plugin>
@@ -394,14 +384,13 @@
                         </executions>
                     </plugin>
                     <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>${org.sonatype.plugins.nexus-staging-maven-plugin.version}</version>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>${org.sonatype.central.central-publishing-maven-plugin.version}</version>
                         <extensions>true</extensions>
                         <configuration>
-                            <serverId>ossrh</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
                         </configuration>
                     </plugin>
                 </plugins>
