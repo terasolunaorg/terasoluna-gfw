@@ -18,18 +18,16 @@ package org.terasoluna.gfw.web.util;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import java.lang.reflect.Constructor;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.Test.None;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletResponse;
 
 public class ResponseUtilsTest {
     MockHttpServletResponse response;
 
-    @Before
+    @BeforeEach
     public void bfore() throws Exception {
         response = new MockHttpServletResponse();
     }
@@ -45,10 +43,11 @@ public class ResponseUtilsTest {
     }
     // @formatter:on
 
-    @Test(expected = None.class)
+    @Test
     public void testSetPreventionCachingHeadersWithNullResponse() {
-
-        ResponseUtils.setPreventionCachingHeaders(null);
+        assertDoesNotThrow(() -> {
+            ResponseUtils.setPreventionCachingHeaders(null);
+        });
     }
 
     @Test

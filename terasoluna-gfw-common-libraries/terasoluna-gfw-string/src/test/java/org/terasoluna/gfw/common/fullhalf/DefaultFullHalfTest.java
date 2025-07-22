@@ -21,7 +21,7 @@ import static org.hamcrest.core.IsNull.notNullValue;
 
 import java.lang.reflect.Constructor;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class DefaultFullHalfTest {
 

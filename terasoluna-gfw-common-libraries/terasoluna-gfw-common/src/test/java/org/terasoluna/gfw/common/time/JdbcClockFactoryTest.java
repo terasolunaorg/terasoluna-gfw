@@ -18,7 +18,7 @@ package org.terasoluna.gfw.common.time;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -26,18 +26,15 @@ import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Collections;
 import javax.sql.DataSource;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:test-context.xml"})
+@SpringJUnitConfig(locations = {"classpath:test-context.xml"})
 @Transactional
 public class JdbcClockFactoryTest {
 
@@ -49,7 +46,7 @@ public class JdbcClockFactoryTest {
 
     ClockFactory clockFactory;
 
-    @Before
+    @BeforeEach
     public void before() {
         // crate table
         jdbcTemplate.getJdbcOperations()
@@ -60,7 +57,7 @@ public class JdbcClockFactoryTest {
         clockFactory = new JdbcClockFactory(dataSource, "SELECT now FROM system_date");
     }
 
-    @After
+    @AfterEach
     public void after() {
         // drop table
         jdbcTemplate.getJdbcOperations().execute("DROP TABLE system_date");

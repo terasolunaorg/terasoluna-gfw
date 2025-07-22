@@ -18,14 +18,12 @@ package org.terasoluna.gfw.common.time;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-
 import java.time.Clock;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.format.FormatStyle;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ConfigurableClockFactoryTest {
 

@@ -18,13 +18,11 @@ package org.terasoluna.gfw.common.exception;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.LinkedHashMap;
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.terasoluna.gfw.common.message.ResultMessages;
 
 /**
@@ -37,7 +35,7 @@ public class SimpleMappingExceptionCodeResolverTest {
     /**
      * set up.
      */
-    @Before
+    @BeforeEach
     public void before() {
         testTarget = new SimpleMappingExceptionCodeResolver();
     }

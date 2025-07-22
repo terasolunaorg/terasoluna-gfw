@@ -19,14 +19,11 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.aMapWithSize;
 import static org.hamcrest.Matchers.hasEntry;
-
 import java.util.HashMap;
 import java.util.Map;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import org.terasoluna.gfw.common.logback.LogLevelChangeUtil;
-
 import ch.qos.logback.classic.Logger;
 
 /**

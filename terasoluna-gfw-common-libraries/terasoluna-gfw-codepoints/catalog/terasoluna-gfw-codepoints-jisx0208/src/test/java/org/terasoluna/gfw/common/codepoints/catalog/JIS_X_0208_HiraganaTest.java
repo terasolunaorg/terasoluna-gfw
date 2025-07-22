@@ -17,13 +17,11 @@ package org.terasoluna.gfw.common.codepoints.catalog;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-
-import org.junit.Test;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.api.Test;
 import org.terasoluna.gfw.common.codepoints.CodePoints;
 
 public class JIS_X_0208_HiraganaTest {
-    @Parameterized.Parameter(0)
+
     public Class<? extends CodePoints> clazz = JIS_X_0208_Hiragana.class;
 
     @Test

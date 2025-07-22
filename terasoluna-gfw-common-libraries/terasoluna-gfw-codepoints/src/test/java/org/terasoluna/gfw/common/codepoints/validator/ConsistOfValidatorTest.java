@@ -23,15 +23,12 @@ import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.hasToString;
-
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Set;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
@@ -46,13 +43,13 @@ public class ConsistOfValidatorTest {
         validator = Validation.buildDefaultValidatorFactory().getValidator();
     }
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.ENGLISH);
     }
 
-    @AfterClass
+    @AfterAll
     public static void afterClass() {
         Locale.setDefault(originalLocale);
     }

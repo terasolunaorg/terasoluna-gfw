@@ -19,28 +19,25 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.Test.None;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.ui.Model;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.method.HandlerMethod;
 import org.terasoluna.gfw.web.token.TokenStringGenerator;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:test-context.xml"})
+@SpringJUnitConfig(locations = {"classpath:test-context.xml"})
 public class TransactionTokenInterceptorTest {
 
     @Autowired
@@ -52,7 +49,7 @@ public class TransactionTokenInterceptorTest {
 
     MockHttpServletResponse response;
 
-    @Before
+    @BeforeEach
     public void before() throws Exception {
 
         // prepare request object
@@ -113,7 +110,7 @@ public class TransactionTokenInterceptorTest {
                 is(notNullValue()));
     }
 
-    @Test(expected = InvalidTransactionTokenException.class)
+    @Test
     public void testPreHandleWithTokenValidateFail() throws Exception {
 
         HttpSessionTransactionTokenStore tokenStore = new HttpSessionTransactionTokenStore();
@@ -121,10 +118,12 @@ public class TransactionTokenInterceptorTest {
         interceptor = new TransactionTokenInterceptor(new TokenStringGenerator(),
                 new TransactionTokenInfoStore(), tokenStore);
 
-        interceptor.preHandle(request, response,
-                new HandlerMethod(new TransactionTokenSampleController(),
-                        TransactionTokenSampleController.class.getDeclaredMethod("third",
-                                SampleForm.class, Model.class)));
+        assertThrows(InvalidTransactionTokenException.class, () -> {
+            interceptor.preHandle(request, response,
+                    new HandlerMethod(new TransactionTokenSampleController(),
+                            TransactionTokenSampleController.class.getDeclaredMethod("third",
+                                    SampleForm.class, Model.class)));
+        });
     }
 
     @Test
@@ -246,18 +245,22 @@ public class TransactionTokenInterceptorTest {
         assertThat(token.getTokenName(), is("a"));
     }
 
-    @Test(expected = None.class)
+    @Test
     public void testRemoveEmptyToken() {
         // This test case should always pass
         // This will ensure that neither valid/invalid token removal generates exception
-        interceptor.removeToken(new TransactionToken(""));
-        interceptor.removeToken(new TransactionToken("a~b~c"));
+        assertDoesNotThrow(() -> {
+            interceptor.removeToken(new TransactionToken(""));
+            interceptor.removeToken(new TransactionToken("a~b~c"));
+        });
+
     }
 
-    @Test(expected = None.class)
+    @Test
     public void testPostHandleIncorrectHandler() throws Exception {
-
-        interceptor.postHandle(request, response, null, null);
+        assertDoesNotThrow(() -> {
+            interceptor.postHandle(request, response, null, null);
+        });
     }
 
     @Test
@@ -398,7 +401,7 @@ public class TransactionTokenInterceptorTest {
         assertThat(tokenStore.getAndClear(nextToken), is("222"));
     }
 
-    @Test(expected = None.class)
+    @Test
     public void testPostHandleWithNoneOperation() throws Exception {
 
         TransactionTokenContextImpl context = mock(TransactionTokenContextImpl.class);
@@ -409,18 +412,20 @@ public class TransactionTokenInterceptorTest {
         when(context.getReserveCommand())
                 .thenReturn(TransactionTokenContextImpl.ReserveCommand.NONE);
 
-        interceptor.postHandle(request, response,
-                new HandlerMethod(new TransactionTokenSampleController(),
-                        TransactionTokenSampleController.class.getDeclaredMethod("third",
-                                SampleForm.class, Model.class)),
-                null);
-
+        assertDoesNotThrow(() -> {
+            interceptor.postHandle(request, response,
+                    new HandlerMethod(new TransactionTokenSampleController(),
+                            TransactionTokenSampleController.class.getDeclaredMethod("third",
+                                    SampleForm.class, Model.class)),
+                    null);
+        });
     }
 
-    @Test(expected = None.class)
+    @Test
     public void testAfterCompletionWithoutException() {
-
-        interceptor.afterCompletion(request, response, null, null);
+        assertDoesNotThrow(() -> {
+            interceptor.afterCompletion(request, response, null, null);
+        });
     }
 
     @Test
@@ -461,9 +466,10 @@ public class TransactionTokenInterceptorTest {
 
     }
 
-    @Test(expected = None.class)
+    @Test
     public void testAfterCompletionWithExceptionHasNoTransactionTokenContextImpl() {
-
-        interceptor.afterCompletion(request, response, null, new Exception());
+        assertDoesNotThrow(() -> {
+            interceptor.afterCompletion(request, response, null, new Exception());
+        });
     }
 }

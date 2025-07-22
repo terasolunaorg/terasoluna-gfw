@@ -18,7 +18,7 @@ package org.terasoluna.gfw.common.codepoints.catalog;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.terasoluna.gfw.common.codepoints.CodePoints;
 
 public class JIS_X_0208_GreekLettersTest {

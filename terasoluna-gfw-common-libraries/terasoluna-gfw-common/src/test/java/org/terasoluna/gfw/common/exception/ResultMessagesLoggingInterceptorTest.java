@@ -20,37 +20,31 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasEntry;
 import static org.hamcrest.Matchers.hasKey;
 import static org.hamcrest.Matchers.not;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
 import org.aopalliance.intercept.MethodInvocation;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.context.support.ApplicationObjectSupport;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.terasoluna.gfw.common.exception.test.TestFacade;
 import org.terasoluna.gfw.common.exception.test.TestRepository;
 import org.terasoluna.gfw.common.exception.test.TestService;
 import org.terasoluna.gfw.common.message.ResultMessages;
-
 import jakarta.inject.Inject;
 
 /**
  * TestCase class of ResultMessagesLoggingInterceptor.
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:test-context.xml",
+@SpringJUnitConfig(locations = {"classpath:test-context.xml",
         "classpath:org/terasoluna/gfw/common/exception/ResultMessagesLoggingInterceptorTest.xml"})
 public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSupport {
 
@@ -79,7 +73,7 @@ public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSuppo
      * </p>
      * @throws Exception
      */
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         mockMethodInvocation = mock(MethodInvocation.class);
         mockExceptionLogger = mock(ExceptionLogger.class);

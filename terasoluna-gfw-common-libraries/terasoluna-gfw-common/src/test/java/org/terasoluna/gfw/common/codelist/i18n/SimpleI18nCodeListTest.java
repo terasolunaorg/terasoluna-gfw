@@ -21,36 +21,30 @@ import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.aMapWithSize;
 import static org.hamcrest.Matchers.hasEntry;
-import static org.junit.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
-
 import java.util.Locale;
 import java.util.Map;
-
-import org.junit.AfterClass;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.Test.None;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.BeanCreationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.support.ApplicationObjectSupport;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.Appender;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(
+@SpringJUnitConfig(
         locations = {"classpath:org/terasoluna/gfw/common/codelist/i18n/simpleI18nCodeList.xml"})
 public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
     @Autowired
@@ -78,7 +72,7 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
 
     private static Locale originalLocale;
 
-    @BeforeClass
+    @BeforeAll
     public static void beforeClass() {
         Logger logger = (Logger) LoggerFactory.getLogger(SimpleI18nCodeList.class);
         logger.addAppender(mockAppender);
@@ -87,7 +81,7 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
         Locale.setDefault(Locale.US);
     }
 
-    @AfterClass
+    @AfterAll
     public static void afterClass() {
         Locale.setDefault(originalLocale);
     }
@@ -136,9 +130,11 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
         assertThat(row2, hasEntry("6", "土"));
     }
 
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void testAsMapCheckUnmodifiable() {
-        testSetRows.asMap(Locale.ENGLISH).put("0", "Sunday");
+        assertThrows(UnsupportedOperationException.class, () -> {
+            testSetRows.asMap(Locale.ENGLISH).put("0", "Sunday");
+        });
     }
 
     @Test
@@ -173,10 +169,12 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
                 .doAppend(argThat(argument -> argument.getLevel().equals(Level.WARN)));
     }
 
-    @Test(expected = None.class)
+    @Test
     public void testSetFallbackTo() {
         testSetFallbackTo.setFallbackTo(Locale.JAPANESE);
-        testSetFallbackTo.afterPropertiesSet();
+        assertDoesNotThrow(() -> {
+            testSetFallbackTo.afterPropertiesSet();
+        });
     }
 
     @Test

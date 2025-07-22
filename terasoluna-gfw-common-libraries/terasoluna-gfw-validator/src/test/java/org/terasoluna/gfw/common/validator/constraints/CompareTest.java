@@ -23,18 +23,15 @@ import static org.hamcrest.Matchers.emptyString;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.hasToString;
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThrows;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.beans.IntrospectionException;
 import java.util.Arrays;
 import java.util.List;
-
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.terasoluna.gfw.common.validator.constraints.Compare.Node;
 import org.terasoluna.gfw.common.validator.constraints.Compare.Operator;
 import org.terasoluna.gfw.common.validator.constraints.CompareTest.CompareTestForm;
-
 import jakarta.validation.ValidationException;
 
 /**
@@ -44,7 +41,7 @@ public class CompareTest extends AbstractConstraintsTest<CompareTestForm> {
 
     private static final String MESSAGE_VALIDATION_ERROR = "invalid combination of %s and %s";
 
-    @Before
+    @BeforeEach
     public void before() {
         form = new CompareTestForm();
     }

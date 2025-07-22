@@ -21,12 +21,11 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.arrayContaining;
 import static org.hamcrest.Matchers.emptyArray;
-
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.HashSet;
 import java.util.Set;
-
-import org.junit.Test;
-import org.junit.Test.None;
+import org.junit.jupiter.api.Test;
 import org.springframework.util.SerializationUtils;
 
 public class ResultMessageTest {
@@ -68,19 +67,25 @@ public class ResultMessageTest {
         assertThat(message.getArgs(), is(emptyArray()));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void test07() {
-        ResultMessage.fromCode(null);
+        assertThrows(IllegalArgumentException.class, () -> {
+            ResultMessage.fromCode(null);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void test08() {
-        ResultMessage.fromCode(null, (Object[]) null);
+        assertThrows(IllegalArgumentException.class, () -> {
+            ResultMessage.fromCode(null, (Object[]) null);
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void test09() {
-        ResultMessage.fromText(null);
+        assertThrows(IllegalArgumentException.class, () -> {
+            ResultMessage.fromText(null);
+        });
     }
 
     /**
@@ -88,10 +93,12 @@ public class ResultMessageTest {
      * it is still used because the data to be deserialized is guaranteed.
      */
     @SuppressWarnings("deprecation")
-    @Test(expected = None.class)
+    @Test
     public void test10() {
         byte[] serialized = SerializationUtils.serialize(ResultMessage.fromText("foo"));
-        SerializationUtils.deserialize(serialized);
+        assertDoesNotThrow(() -> {
+            SerializationUtils.deserialize(serialized);
+        });
     }
 
     @Test

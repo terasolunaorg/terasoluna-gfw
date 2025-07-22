@@ -19,24 +19,18 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.hasProperty;
-
 import java.util.Locale;
 import java.util.Set;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-
 import jakarta.inject.Inject;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("ExistInCodeListTest-context.xml")
+@SpringJUnitConfig(locations = "ExistInCodeListTest-context.xml")
 public class ExistInCodeListJaTest {
 
     @Inject
@@ -44,14 +38,14 @@ public class ExistInCodeListJaTest {
 
     private Locale originalLocale;
 
-    @Before
+    @BeforeEach
     public void before() {
         ((LocalValidatorFactoryBean) validator).afterPropertiesSet();
         originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.JAPANESE);
     }
 
-    @After
+    @AfterEach
     public void after() {
         Locale.setDefault(originalLocale);
     }

@@ -17,14 +17,12 @@ package org.terasoluna.gfw.common.codelist;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertThrows;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Initializes codelist information with a range of numbers
@@ -64,7 +62,7 @@ public class NumberRangeCodeListTest {
      * Check that the codelist is unmodifiable
      * @throws Exception
      */
-    @Test(expected = UnsupportedOperationException.class)
+    @Test
     public void TestAfterPropertiesSet02() throws Exception {
 
         NumberRangeCodeList numberRangeCodeList = new NumberRangeCodeList();
@@ -76,8 +74,9 @@ public class NumberRangeCodeListTest {
         numberRangeCodeList.afterPropertiesSet();
         Map<String, String> mapResult = numberRangeCodeList.asMap();
 
-        mapResult.put("111", "111");
-
+        assertThrows(UnsupportedOperationException.class, () -> {
+            mapResult.put("111", "111");
+        });
     }
 
     /**

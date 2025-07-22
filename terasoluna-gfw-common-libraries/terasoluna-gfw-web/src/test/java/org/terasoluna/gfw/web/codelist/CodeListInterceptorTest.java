@@ -20,18 +20,15 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.empty;
-import static org.junit.Assert.assertThrows;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.regex.Pattern;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.i18n.SimpleLocaleContext;
@@ -39,17 +36,14 @@ import org.springframework.context.support.ApplicationObjectSupport;
 import org.springframework.context.support.StaticApplicationContext;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.terasoluna.gfw.common.codelist.CodeList;
 import org.terasoluna.gfw.common.codelist.SimpleMapCodeList;
 import org.terasoluna.gfw.common.codelist.i18n.SimpleI18nCodeList;
 import org.terasoluna.gfw.web.logback.LogLevelChangeUtil;
-
 import ch.qos.logback.classic.Logger;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:test-context.xml",
+@SpringJUnitConfig(locations = {"classpath:test-context.xml",
         "classpath:org/terasoluna/gfw/web/codelist/CodeListInterceptorTest.xml"})
 public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
@@ -65,7 +59,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
      */
     private MockHttpServletResponse mockResponse;
 
-    @Before
+    @BeforeEach
     public void before() {
         this.testTarget = new CodeListInterceptor();
         testTarget.setApplicationContext(new StaticApplicationContext(getApplicationContext()));

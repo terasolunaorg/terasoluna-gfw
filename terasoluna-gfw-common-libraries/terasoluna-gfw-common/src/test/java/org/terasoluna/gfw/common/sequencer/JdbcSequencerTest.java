@@ -17,22 +17,18 @@ package org.terasoluna.gfw.common.sequencer;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import javax.sql.DataSource;
-
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.test.annotation.Rollback;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.transaction.annotation.Transactional;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:test-context.xml"})
+@SpringJUnitConfig(locations = {"classpath:test-context.xml"})
 @Transactional
 @Rollback
 // Changed by SPR-13277
@@ -43,7 +39,7 @@ public class JdbcSequencerTest {
     @Autowired
     DataSource dataSource;
 
-    @Before
+    @BeforeEach
     public void before() throws Exception {
         jdbcTemplate.getJdbcOperations()
                 .execute("CREATE SEQUENCE TEST_SEQ START WITH 1 INCREMENT BY 1");
@@ -89,64 +85,84 @@ public class JdbcSequencerTest {
         assertThat(currentVal2, is(String.valueOf(2)));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAfterPropertiesSet_jdbcTemplateIsNullAndDataSourceIsNull() {
         JdbcSequencer<String> jdbcSequencer = new JdbcSequencer<String>();
         jdbcSequencer.setJdbcTemplate(null);
-        jdbcSequencer.setDataSource(null);
+        assertThrows(IllegalArgumentException.class, () -> {
+            jdbcSequencer.setDataSource(null);
+        });
         jdbcSequencer.setNextValueQuery("SELECT nextval('TEST_SEQ')");
         jdbcSequencer.setCurrentValueQuery("SELECT currval('TEST_SEQ')");
         jdbcSequencer.setSequenceClass(String.class);
-        jdbcSequencer.afterPropertiesSet();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            jdbcSequencer.afterPropertiesSet();
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAfterPropertiesSet_sequecnceClasIsNull() {
         JdbcSequencer<String> jdbcSequencer = new JdbcSequencer<String>();
         jdbcSequencer.setJdbcTemplate(new JdbcTemplate(dataSource));
         jdbcSequencer.setNextValueQuery("SELECT nextval('TEST_SEQ')");
         jdbcSequencer.setCurrentValueQuery("SELECT currval('TEST_SEQ')");
         jdbcSequencer.setSequenceClass(null);
-        jdbcSequencer.afterPropertiesSet();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            jdbcSequencer.afterPropertiesSet();
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAfterPropertiesSet_NextValueQueryIsEmpty() {
         JdbcSequencer<String> jdbcSequencer = new JdbcSequencer<String>();
         jdbcSequencer.setJdbcTemplate(new JdbcTemplate(dataSource));
         jdbcSequencer.setNextValueQuery("");
         jdbcSequencer.setCurrentValueQuery("SELECT currval('TEST_SEQ')");
         jdbcSequencer.setSequenceClass(String.class);
-        jdbcSequencer.afterPropertiesSet();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            jdbcSequencer.afterPropertiesSet();
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAfterPropertiesSet_NextValueQueryIsNull() {
         JdbcSequencer<String> jdbcSequencer = new JdbcSequencer<String>();
         jdbcSequencer.setJdbcTemplate(new JdbcTemplate(dataSource));
         jdbcSequencer.setNextValueQuery(null);
         jdbcSequencer.setCurrentValueQuery("SELECT currval('TEST_SEQ')");
         jdbcSequencer.setSequenceClass(String.class);
-        jdbcSequencer.afterPropertiesSet();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            jdbcSequencer.afterPropertiesSet();
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAfterPropertiesSet_CurrentValueQueryIsEmpty() {
         JdbcSequencer<String> jdbcSequencer = new JdbcSequencer<String>();
         jdbcSequencer.setJdbcTemplate(new JdbcTemplate(dataSource));
         jdbcSequencer.setNextValueQuery("SELECT nextval('TEST_SEQ')");
         jdbcSequencer.setCurrentValueQuery("");
         jdbcSequencer.setSequenceClass(String.class);
-        jdbcSequencer.afterPropertiesSet();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            jdbcSequencer.afterPropertiesSet();
+        });
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testAfterPropertiesSet_CurrentValueQueryIsNull() {
         JdbcSequencer<String> jdbcSequencer = new JdbcSequencer<String>();
         jdbcSequencer.setJdbcTemplate(new JdbcTemplate(dataSource));
         jdbcSequencer.setNextValueQuery("SELECT nextval('TEST_SEQ')");
         jdbcSequencer.setCurrentValueQuery(null);
         jdbcSequencer.setSequenceClass(String.class);
-        jdbcSequencer.afterPropertiesSet();
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            jdbcSequencer.afterPropertiesSet();
+        });
     }
 }

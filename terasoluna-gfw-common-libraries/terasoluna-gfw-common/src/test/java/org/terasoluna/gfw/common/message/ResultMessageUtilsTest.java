@@ -18,18 +18,16 @@ package org.terasoluna.gfw.common.message;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.notNullValue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
 import java.lang.reflect.Constructor;
 import java.util.Locale;
-
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.terasoluna.gfw.common.logback.LogLevelChangeUtil;
-
 import ch.qos.logback.classic.Logger;
 
 public class ResultMessageUtilsTest {
@@ -106,7 +104,7 @@ public class ResultMessageUtilsTest {
         assertThat(msg, is("MESSAGE_TEXT"));
     }
 
-    @Test(expected = NoSuchMessageException.class)
+    @Test
     public void testNoSuchMessageException() {
         ResultMessage message = mock(ResultMessage.class);
         MessageSource messageSource = mock(MessageSource.class);
@@ -119,7 +117,9 @@ public class ResultMessageUtilsTest {
         when(messageSource.getMessage("MSG001", null, locale))
                 .thenThrow(new NoSuchMessageException("MSG001"));
 
-        ResultMessageUtils.resolveMessage(message, messageSource);
+        assertThrows(NoSuchMessageException.class, () -> {
+            ResultMessageUtils.resolveMessage(message, messageSource);
+        });
     }
 
     @Test

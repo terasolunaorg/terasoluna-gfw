@@ -17,16 +17,14 @@ package org.terasoluna.gfw.common.time;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-
 import java.time.Clock;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.Locale;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class ConfigurableAdjustClockFactoryTest {
 
@@ -34,13 +32,13 @@ public class ConfigurableAdjustClockFactoryTest {
 
     private Locale originalLocale;
 
-    @Before
+    @BeforeEach
     public void before() {
         originalLocale = Locale.getDefault();
         Locale.setDefault(Locale.JAPAN);
     }
 
-    @After
+    @AfterEach
     public void after() {
         Locale.setDefault(originalLocale);
     }
