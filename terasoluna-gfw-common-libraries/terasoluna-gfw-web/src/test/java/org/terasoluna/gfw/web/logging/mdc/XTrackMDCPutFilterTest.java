@@ -15,15 +15,15 @@
  */
 package org.terasoluna.gfw.web.logging.mdc;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.matchesPattern;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockFilterConfig;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
+
 import jakarta.servlet.ServletException;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class XTrackMDCPutFilterTest {
     private XTrackMDCPutFilter xTrackMDCPutFilter;
@@ -39,14 +39,14 @@ public class XTrackMDCPutFilterTest {
     @Test
     public void testGetMDCKey_default() throws ServletException {
         xTrackMDCPutFilter.init(mockFilterConfig);
-        assertThat(xTrackMDCPutFilter.getMDCKey(null, null), is("X-Track"));
+        assertThat(xTrackMDCPutFilter.getMDCKey(null, null)).isEqualTo("X-Track");
     }
 
     @Test
     public void testGetMDCKey_changed_by_initParam() throws ServletException {
         mockFilterConfig.addInitParameter("attributeName", "X-Hoge");
         xTrackMDCPutFilter.init(mockFilterConfig);
-        assertThat(xTrackMDCPutFilter.getMDCKey(null, null), is("X-Hoge"));
+        assertThat(xTrackMDCPutFilter.getMDCKey(null, null)).isEqualTo("X-Hoge");
     }
 
     @Test
@@ -55,9 +55,9 @@ public class XTrackMDCPutFilterTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();
         String xTrack = xTrackMDCPutFilter.getMDCValue(request, response);
-        assertThat(xTrack, matchesPattern("^[a-f0-9]{32}$"));
-        assertThat(response.getHeader("X-Track"), is(xTrack));
-        assertThat(request.getAttribute("X-Track"), is(xTrack));
+        assertThat(xTrack).matches("^[a-f0-9]{32}$");
+        assertThat(response.getHeader("X-Track")).isEqualTo(xTrack);
+        assertThat(request.getAttribute("X-Track")).isEqualTo(xTrack);
     }
 
     @Test
@@ -67,9 +67,9 @@ public class XTrackMDCPutFilterTest {
         MockHttpServletRequest request = new MockHttpServletRequest();
         MockHttpServletResponse response = new MockHttpServletResponse();
         String xTrack = xTrackMDCPutFilter.getMDCValue(request, response);
-        assertThat(xTrack, matchesPattern("^[a-f0-9]{32}$"));
-        assertThat(response.getHeader("X-Hoge"), is(xTrack));
-        assertThat(request.getAttribute("X-Hoge"), is(xTrack));
+        assertThat(xTrack).matches("^[a-f0-9]{32}$");
+        assertThat(response.getHeader("X-Hoge")).isEqualTo(xTrack);
+        assertThat(request.getAttribute("X-Hoge")).isEqualTo(xTrack);
     }
 
     @Test
@@ -81,9 +81,9 @@ public class XTrackMDCPutFilterTest {
 
         request.addHeader("X-Track", "hoge");
         String xTrack = xTrackMDCPutFilter.getMDCValue(request, response);
-        assertThat(xTrack, is("hoge"));
-        assertThat(response.getHeader("X-Track"), is("hoge"));
-        assertThat(request.getAttribute("X-Track"), is("hoge"));
+        assertThat(xTrack).isEqualTo("hoge");
+        assertThat(response.getHeader("X-Track")).isEqualTo("hoge");
+        assertThat(request.getAttribute("X-Track")).isEqualTo("hoge");
     }
 
     @Test
@@ -95,9 +95,9 @@ public class XTrackMDCPutFilterTest {
 
         request.addHeader("X-Hoge", "12345678901234567890123456789012");
         String xTrack = xTrackMDCPutFilter.getMDCValue(request, response);
-        assertThat(xTrack, is("12345678901234567890123456789012"));
-        assertThat(response.getHeader("X-Hoge"), is("12345678901234567890123456789012"));
-        assertThat(request.getAttribute("X-Hoge"), is("12345678901234567890123456789012"));
+        assertThat(xTrack).isEqualTo("12345678901234567890123456789012");
+        assertThat(response.getHeader("X-Hoge")).isEqualTo("12345678901234567890123456789012");
+        assertThat(request.getAttribute("X-Hoge")).isEqualTo("12345678901234567890123456789012");
     }
 
     @Test
@@ -109,8 +109,8 @@ public class XTrackMDCPutFilterTest {
 
         request.addHeader("X-Track", "12345678901234567890123456789012345678901234567890");
         String xTrack = xTrackMDCPutFilter.getMDCValue(request, response);
-        assertThat(xTrack, is("12345678901234567890123456789012"));
-        assertThat(response.getHeader("X-Track"), is("12345678901234567890123456789012"));
-        assertThat(request.getAttribute("X-Track"), is("12345678901234567890123456789012"));
+        assertThat(xTrack).isEqualTo("12345678901234567890123456789012");
+        assertThat(response.getHeader("X-Track")).isEqualTo("12345678901234567890123456789012");
+        assertThat(request.getAttribute("X-Track")).isEqualTo("12345678901234567890123456789012");
     }
 }

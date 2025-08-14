@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.common.sequencer;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import javax.sql.DataSource;
 import org.junit.jupiter.api.BeforeEach;
@@ -59,8 +58,8 @@ public class JdbcSequencerTest {
         String nextVal1 = jdbcSequencer.getNext();
         String nextVal2 = jdbcSequencer.getNext();
 
-        assertThat(nextVal1, is(String.valueOf(1)));
-        assertThat(nextVal2, is(String.valueOf(2)));
+        assertThat(nextVal1).isEqualTo(String.valueOf(1));
+        assertThat(nextVal2).isEqualTo(String.valueOf(2));
     }
 
     @Test
@@ -79,10 +78,10 @@ public class JdbcSequencerTest {
         String nextVal2 = jdbcSequencer.getNext();
         String currentVal2 = jdbcSequencer.getCurrent();
 
-        assertThat(nextVal1, is(String.valueOf(1)));
-        assertThat(currentVal1, is(String.valueOf(1)));
-        assertThat(nextVal2, is(String.valueOf(2)));
-        assertThat(currentVal2, is(String.valueOf(2)));
+        assertThat(nextVal1).isEqualTo(String.valueOf(1));
+        assertThat(currentVal1).isEqualTo(String.valueOf(1));
+        assertThat(nextVal2).isEqualTo(String.valueOf(2));
+        assertThat(currentVal2).isEqualTo(String.valueOf(2));
     }
 
     @Test

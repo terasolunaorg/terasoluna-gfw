@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.web.token.transaction;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -37,9 +36,9 @@ public class TransactionTokenTest {
         String resultTokenKey = token.getTokenKey();
         String resultTokenValue = token.getTokenValue();
 
-        assertThat(resultTokenName, is(expectedTokenName));
-        assertThat(resultTokenKey, is(expectedTokenKey));
-        assertThat(resultTokenValue, is(expectedTokenValue));
+        assertThat(resultTokenName).isEqualTo(expectedTokenName);
+        assertThat(resultTokenKey).isEqualTo(expectedTokenKey);
+        assertThat(resultTokenValue).isEqualTo(expectedTokenValue);
     }
 
     @Test
@@ -57,9 +56,9 @@ public class TransactionTokenTest {
         String resultTokenKey = token.getTokenKey();
         String resultTokenValue = token.getTokenValue();
 
-        assertThat(resultTokenName, is(expectedTokenName));
-        assertThat(resultTokenKey, is(expectedTokenKey));
-        assertThat(resultTokenValue, is(expectedTokenValue));
+        assertThat(resultTokenName).isEqualTo(expectedTokenName);
+        assertThat(resultTokenKey).isEqualTo(expectedTokenKey);
+        assertThat(resultTokenValue).isEqualTo(expectedTokenValue);
     }
 
     @Test
@@ -69,7 +68,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid, is(true));
+        assertThat(valid).isEqualTo(true);
     }
 
     @Test
@@ -79,7 +78,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid, is(false));
+        assertThat(valid).isEqualTo(false);
     }
 
     @Test
@@ -89,7 +88,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid, is(false));
+        assertThat(valid).isEqualTo(false);
     }
 
     @Test
@@ -99,7 +98,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid, is(false));
+        assertThat(valid).isEqualTo(false);
     }
 
     @Test
@@ -109,7 +108,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid, is(false));
+        assertThat(valid).isEqualTo(false);
     }
 
     @Test
@@ -119,7 +118,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid, is(false));
+        assertThat(valid).isEqualTo(false);
     }
 
     @Test
@@ -129,7 +128,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid, is(false));
+        assertThat(valid).isEqualTo(false);
     }
 
     @Test
@@ -139,7 +138,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid, is(false));
+        assertThat(valid).isEqualTo(false);
     }
 
     @Test
@@ -149,7 +148,6 @@ public class TransactionTokenTest {
         String result = token.getTokenString();
 
         // assert
-        assertThat(result,
-                is(token.getTokenName() + "~" + token.getTokenKey() + "~" + token.getTokenValue()));
+        assertThat(result).isEqualTo(token.getTokenName() + "~" + token.getTokenKey() + "~" + token.getTokenValue());
     }
 }

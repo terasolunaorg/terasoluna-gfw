@@ -15,10 +15,7 @@
  */
 package org.terasoluna.gfw.common.validator.constraintvalidators;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsNull.notNullValue;
-import static org.hamcrest.core.IsNull.nullValue;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.lang.reflect.Constructor;
 
@@ -31,11 +28,11 @@ public class ConstraintValidatorsUtilsTest {
         // set up
         Constructor<ConstraintValidatorsUtils> constructor =
                 ConstraintValidatorsUtils.class.getDeclaredConstructor();
-        assertThat(constructor.canAccess(null), is(false));
+        assertThat(constructor.canAccess(null)).isEqualTo(false);
         constructor.setAccessible(true);
 
         // assert
-        assertThat(constructor.newInstance(), notNullValue());
+        assertThat(constructor.newInstance()).isNotNull();
     }
 
     @Test
@@ -48,7 +45,7 @@ public class ConstraintValidatorsUtilsTest {
         Object o = ConstraintValidatorsUtils.getPropertyValue(foo, "bar");
 
         // assert
-        assertThat(o, notNullValue());
+        assertThat(o).isNotNull();
     }
 
     @Test
@@ -57,7 +54,7 @@ public class ConstraintValidatorsUtilsTest {
         Object o = ConstraintValidatorsUtils.getPropertyValue(null, "bar");
 
         // assert
-        assertThat(o, nullValue());
+        assertThat(o).isNull();
     }
 
     @Test
@@ -66,7 +63,7 @@ public class ConstraintValidatorsUtilsTest {
         Object o = ConstraintValidatorsUtils.getPropertyValue(new FooBean(), null);
 
         // assert
-        assertThat(o, nullValue());
+        assertThat(o).isNull();
     }
 
     @Test
@@ -75,7 +72,7 @@ public class ConstraintValidatorsUtilsTest {
         boolean b = ConstraintValidatorsUtils.isEmpty(null);
 
         // assert
-        assertThat(b, is(true));
+        assertThat(b).isEqualTo(true);
     }
 
     @Test
@@ -84,7 +81,7 @@ public class ConstraintValidatorsUtilsTest {
         boolean b = ConstraintValidatorsUtils.isEmpty("");
 
         // assert
-        assertThat(b, is(true));
+        assertThat(b).isEqualTo(true);
     }
 
     @Test
@@ -93,7 +90,7 @@ public class ConstraintValidatorsUtilsTest {
         boolean b = ConstraintValidatorsUtils.isEmpty("test");
 
         // assert
-        assertThat(b, is(false));
+        assertThat(b).isEqualTo(false);
     }
 
     class FooBean {

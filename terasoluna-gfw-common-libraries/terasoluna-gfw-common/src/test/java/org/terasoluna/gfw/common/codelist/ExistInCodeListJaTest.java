@@ -15,9 +15,8 @@
  */
 package org.terasoluna.gfw.common.codelist;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.hasProperty;
 import java.util.Locale;
 import java.util.Set;
@@ -56,7 +55,7 @@ public class ExistInCodeListJaTest {
         c.gender = 'G';
         c.lang = "JP";
         Set<ConstraintViolation<Customer>> result = validator.validate(c);
-        assertThat(result, containsInAnyOrder(hasProperty("message", is("CD_GENDER にありません"))));
+        assertThat(result).containsExactlyInAnyOrder(hasProperty("message", is("CD_GENDER にありません")));
     }
 
     private class Customer {

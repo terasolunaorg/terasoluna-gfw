@@ -15,9 +15,7 @@
  */
 package org.terasoluna.gfw.web.token.transaction;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -48,7 +46,7 @@ public class TransactionTokenContextHandlerMethodArgumentResolverTest {
 
         boolean result = resolver.supportsParameter(parameter);
 
-        assertThat(result, is(true));
+        assertThat(result).isEqualTo(true);
     }
 
     /**
@@ -64,7 +62,7 @@ public class TransactionTokenContextHandlerMethodArgumentResolverTest {
 
         boolean result = resolver.supportsParameter(parameter);
 
-        assertThat(result, is(false));
+        assertThat(result).isEqualTo(false);
     }
 
     /**
@@ -87,6 +85,6 @@ public class TransactionTokenContextHandlerMethodArgumentResolverTest {
         Object result = null;
         result = resolver.resolveArgument(parameter, mavContainer, webRequest, binderFactory);
 
-        assertThat(result, is(instanceOf(String.class)));
+        assertThat(result).isInstanceOf(String.class);
     }
 }

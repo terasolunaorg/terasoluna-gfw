@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.common.validator.constraints;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.is;
 import java.util.Locale;
@@ -64,8 +63,7 @@ public class ContributorValidationMessagesJaTest {
         form.setStringProperty("あaa");
 
         Set<ConstraintViolation<ByteMinTestForm>> violations = validator.validate(form);
-        assertThat(violations, containsInAnyOrder(
-                hasProperty("message", is(String.format("%d バイト以上のサイズにしてください", 6)))));
+        assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format("%d バイト以上のサイズにしてください", 6))));
     }
 
     /**
@@ -78,8 +76,7 @@ public class ContributorValidationMessagesJaTest {
         form.setStringProperty("ああa");
 
         Set<ConstraintViolation<ByteMaxTestForm>> violations = validator.validate(form);
-        assertThat(violations, containsInAnyOrder(
-                hasProperty("message", is(String.format("%d バイト以下のサイズにしてください", 6)))));
+        assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format("%d バイト以下のサイズにしてください", 6))));
     }
 
     /**
@@ -92,8 +89,7 @@ public class ContributorValidationMessagesJaTest {
         form.setStringProperty("aa");
 
         Set<ConstraintViolation<ByteSizeTestForm>> violations = validator.validate(form);
-        assertThat(violations, containsInAnyOrder(
-                hasProperty("message", is(String.format("%d から %d バイトの間のサイズにしてください", 3, 6)))));
+        assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format("%d から %d バイトの間のサイズにしてください", 3, 6))));
     }
 
     /**
@@ -107,8 +103,8 @@ public class ContributorValidationMessagesJaTest {
         form.setRight(99);
 
         Set<ConstraintViolation<CompareTestForm>> violations = validator.validate(form);
-        assertThat(violations, containsInAnyOrder(hasProperty("message",
-                is(String.format("正しくない %s と %s の組合せです", "left", "right")))));
+        assertThat(violations).containsExactlyInAnyOrder(hasProperty("message",
+                is(String.format("正しくない %s と %s の組合せです", "left", "right"))));
     }
 
 }

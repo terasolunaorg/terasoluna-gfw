@@ -15,9 +15,8 @@
  */
 package org.terasoluna.gfw.common.exception;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.io.FileNotFoundException;
 import java.text.ParseException;
 import java.util.LinkedHashMap;
@@ -62,8 +61,8 @@ public class SimpleMappingExceptionCodeResolverTest {
                 .resolveExceptionCode(new SystemException("testcode002", "testmessage002"));
 
         // do assert.
-        assertThat(actualExceptionCode1, is("testcode001"));
-        assertThat(actualExceptionCode2, is("testcode002"));
+        assertThat(actualExceptionCode1).isEqualTo("testcode001");
+        assertThat(actualExceptionCode2).isEqualTo("testcode002");
     }
 
     /**
@@ -89,7 +88,7 @@ public class SimpleMappingExceptionCodeResolverTest {
                 testTarget.resolveExceptionCode(new SystemException(null, "testmessage001"));
 
         // do assert.
-        assertThat(actualExceptionCode, is("sys001"));
+        assertThat(actualExceptionCode).isEqualTo("sys001");
     }
 
     /**
@@ -114,7 +113,7 @@ public class SimpleMappingExceptionCodeResolverTest {
         String actualExceptionCode =
                 testTarget.resolveExceptionCode(new BusinessException(ResultMessages.error()));
         // do assert.
-        assertThat(actualExceptionCode, is("bus001"));
+        assertThat(actualExceptionCode).isEqualTo("bus001");
     }
 
     /**
@@ -141,7 +140,7 @@ public class SimpleMappingExceptionCodeResolverTest {
                 testTarget.resolveExceptionCode(new BusinessException(ResultMessages.error()));
 
         // do assert.
-        assertThat(actualExceptionCode, is("runtime001"));
+        assertThat(actualExceptionCode).isEqualTo("runtime001");
 
     }
 
@@ -169,7 +168,7 @@ public class SimpleMappingExceptionCodeResolverTest {
                 testTarget.resolveExceptionCode(new BusinessException(ResultMessages.error()));
 
         // do assert.
-        assertThat(actualExceptionCode, is("throwable001"));
+        assertThat(actualExceptionCode).isEqualTo("throwable001");
 
     }
 
@@ -196,7 +195,7 @@ public class SimpleMappingExceptionCodeResolverTest {
                 testTarget.resolveExceptionCode(new BusinessException(ResultMessages.error()));
 
         // do assert.
-        assertThat(actualExceptionCode, is("defaultExceptionCode001"));
+        assertThat(actualExceptionCode).isEqualTo("defaultExceptionCode001");
 
     }
 
@@ -232,10 +231,10 @@ public class SimpleMappingExceptionCodeResolverTest {
                 testTarget.resolveExceptionCode(new ParseException("parseerror", 0));
 
         // do assert.
-        assertThat(actualExceptionCode1, is("systemexception"));
-        assertThat(actualExceptionCode2, is("ioexception"));
-        assertThat(actualExceptionCode3, is("runtimeexception"));
-        assertThat(actualExceptionCode4, is("default"));
+        assertThat(actualExceptionCode1).isEqualTo("systemexception");
+        assertThat(actualExceptionCode2).isEqualTo("ioexception");
+        assertThat(actualExceptionCode3).isEqualTo("runtimeexception");
+        assertThat(actualExceptionCode4).isEqualTo("default");
 
     }
 
@@ -264,9 +263,9 @@ public class SimpleMappingExceptionCodeResolverTest {
                 testTarget.resolveExceptionCode(new NullPointerException("nullpointer"));
 
         // do assert.
-        assertThat(actualExceptionCode1, is("tera001"));
-        assertThat(actualExceptionCode2, is("tera001"));
-        assertThat(actualExceptionCode3, is(nullValue()));
+        assertThat(actualExceptionCode1).isEqualTo("tera001");
+        assertThat(actualExceptionCode2).isEqualTo("tera001");
+        assertThat(actualExceptionCode3).isNull();
     }
 
     /**
@@ -291,7 +290,7 @@ public class SimpleMappingExceptionCodeResolverTest {
                 testTarget.resolveExceptionCode(new BusinessException(ResultMessages.error()));
 
         // do assert.
-        assertThat(actualExceptionCode, is("teracommon001"));
+        assertThat(actualExceptionCode).isEqualTo("teracommon001");
 
     }
 
@@ -317,7 +316,7 @@ public class SimpleMappingExceptionCodeResolverTest {
                 testTarget.resolveExceptionCode(new BusinessException(ResultMessages.error()));
 
         // do assert.
-        assertThat(actualExceptionCode, is("exception001"));
+        assertThat(actualExceptionCode).isEqualTo("exception001");
 
     }
 
@@ -341,7 +340,7 @@ public class SimpleMappingExceptionCodeResolverTest {
                 testTarget.resolveExceptionCode(new NullPointerException("testMessage"));
 
         // do assert.
-        assertThat(actualExceptionCode, is("defaultExceptionCode002"));
+        assertThat(actualExceptionCode).isEqualTo("defaultExceptionCode002");
 
     }
 
@@ -366,7 +365,7 @@ public class SimpleMappingExceptionCodeResolverTest {
                 testTarget.resolveExceptionCode(new NullPointerException("testMessage"));
 
         // do assert.
-        assertThat(actualExceptionCode, is("defaultExceptionCode003"));
+        assertThat(actualExceptionCode).isEqualTo("defaultExceptionCode003");
 
     }
 
@@ -392,7 +391,7 @@ public class SimpleMappingExceptionCodeResolverTest {
         String actualExceptionCode = testTarget.resolveExceptionCode(null);
 
         // do assert.
-        assertThat(actualExceptionCode, is("default001"));
+        assertThat(actualExceptionCode).isEqualTo("default001");
     }
 
     /**

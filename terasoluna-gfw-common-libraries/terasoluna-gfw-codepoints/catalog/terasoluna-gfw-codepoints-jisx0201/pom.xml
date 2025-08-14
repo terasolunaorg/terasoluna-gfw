@@ -59,6 +59,11 @@
             <groupId>org.terasoluna.gfw</groupId>
             <artifactId>terasoluna-gfw-codepoints</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
         <!-- == Begin Unit Test == -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>

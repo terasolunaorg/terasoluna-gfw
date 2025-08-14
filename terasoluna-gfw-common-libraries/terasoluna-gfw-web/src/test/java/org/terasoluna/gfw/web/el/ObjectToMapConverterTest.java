@@ -15,12 +15,8 @@
  */
 package org.terasoluna.gfw.web.el;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.aMapWithSize;
-import static org.hamcrest.Matchers.hasEntry;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
@@ -43,43 +39,43 @@ public class ObjectToMapConverterTest {
     @Test
     public void testConvert0_SimpleJavaBean() throws Exception {
         Map<String, String> map = converter.convert(new SearchUserForm0("yamada", 20));
-        assertThat(map, aMapWithSize(2));
-        assertThat(map, hasEntry("name", "yamada"));
-        assertThat(map, hasEntry("age", "20"));
+        assertThat(map).hasSize(2);
+        assertThat(map).containsEntry("name", "yamada");
+        assertThat(map).containsEntry("age", "20");
 
         // check reverse conversion
         SearchUserForm0 form = new SearchUserForm0();
         WebDataBinder binder = new WebDataBinder(form);
         binder.bind(new MutablePropertyValues(map));
-        assertThat(form.getName(), is("yamada"));
-        assertThat(form.getAge(), is(20));
+        assertThat(form.getName()).isEqualTo("yamada");
+        assertThat(form.getAge()).isEqualTo(20);
     }
 
     @Test
     public void testConvert0_With_Prefix() throws Exception {
         Map<String, String> map = converter.convert("pre", new SearchUserForm0("yamada", 20));
-        assertThat(map, aMapWithSize(2));
-        assertThat(map, hasEntry("pre.name", "yamada"));
-        assertThat(map, hasEntry("pre.age", "20"));
+        assertThat(map).hasSize(2);
+        assertThat(map).containsEntry("pre.name", "yamada");
+        assertThat(map).containsEntry("pre.age", "20");
     }
 
     @Test
     public void testConvert1_NestedJavaBean() throws Exception {
         Map<String, String> map = converter
                 .convert(new SearchUserForm1(new SearchUserCriteriaForm1("yamada", 20), true));
-        assertThat(map, aMapWithSize(3));
-        assertThat(map, hasEntry("criteria.name", "yamada"));
-        assertThat(map, hasEntry("criteria.age", "20"));
-        assertThat(map, hasEntry("rememberCriteria", "true"));
+        assertThat(map).hasSize(3);
+        assertThat(map).containsEntry("criteria.name", "yamada");
+        assertThat(map).containsEntry("criteria.age", "20");
+        assertThat(map).containsEntry("rememberCriteria", "true");
 
         // check reverse conversion
         SearchUserForm1 form = new SearchUserForm1();
         WebDataBinder binder = new WebDataBinder(form);
         binder.bind(new MutablePropertyValues(map));
-        assertThat(form.getCriteria(), is(notNullValue()));
-        assertThat(form.getCriteria().getName(), is("yamada"));
-        assertThat(form.getCriteria().getAge(), is(20));
-        assertThat(form.isRememberCriteria(), is(true));
+        assertThat(form.getCriteria()).isNotNull();
+        assertThat(form.getCriteria().getName()).isEqualTo("yamada");
+        assertThat(form.getCriteria().getAge()).isEqualTo(20);
+        assertThat(form.isRememberCriteria()).isEqualTo(true);
     }
 
     @Test
@@ -90,24 +86,24 @@ public class ObjectToMapConverterTest {
                                 Arrays.asList(new UpdateUserCriteriaForm2("yamada", 20),
                                         new UpdateUserCriteriaForm2("tanaka", 50)),
                                 LogicalOperator2.AND));
-        assertThat(map, aMapWithSize(5));
-        assertThat(map, hasEntry("criteria[0].name", "yamada"));
-        assertThat(map, hasEntry("criteria[0].age", "20"));
-        assertThat(map, hasEntry("criteria[1].name", "tanaka"));
-        assertThat(map, hasEntry("criteria[1].age", "50"));
-        assertThat(map, hasEntry("operator", "AND"));
+        assertThat(map).hasSize(5);
+        assertThat(map).containsEntry("criteria[0].name", "yamada");
+        assertThat(map).containsEntry("criteria[0].age", "20");
+        assertThat(map).containsEntry("criteria[1].name", "tanaka");
+        assertThat(map).containsEntry("criteria[1].age", "50");
+        assertThat(map).containsEntry("operator", "AND");
 
         // check reverse conversion
         BatchUpdateUserForm2 form = new BatchUpdateUserForm2();
         WebDataBinder binder = new WebDataBinder(form);
         binder.bind(new MutablePropertyValues(map));
-        assertThat(form.getCriteria(), is(notNullValue()));
-        assertThat(form.getCriteria(), hasSize(2));
-        assertThat(form.getCriteria().get(0).getName(), is("yamada"));
-        assertThat(form.getCriteria().get(0).getAge(), is(20));
-        assertThat(form.getCriteria().get(1).getName(), is("tanaka"));
-        assertThat(form.getCriteria().get(1).getAge(), is(50));
-        assertThat(form.getOperator(), is(LogicalOperator2.AND));
+        assertThat(form.getCriteria()).isNotNull();
+        assertThat(form.getCriteria()).hasSize(2);
+        assertThat(form.getCriteria().get(0).getName()).isEqualTo("yamada");
+        assertThat(form.getCriteria().get(0).getAge()).isEqualTo(20);
+        assertThat(form.getCriteria().get(1).getName()).isEqualTo("tanaka");
+        assertThat(form.getCriteria().get(1).getAge()).isEqualTo(50);
+        assertThat(form.getOperator()).isEqualTo(LogicalOperator2.AND);
     }
 
     @Test
@@ -115,27 +111,27 @@ public class ObjectToMapConverterTest {
         Map<String, String> map = converter.convert(
                 new SearchAndBatchUpdateUserForm3(new SearchUserCriteriaForm3("suzuki", 30),
                         Arrays.asList(new User3("yamada", 20), new User3("tanaka", 50))));
-        assertThat(map, aMapWithSize(6));
-        assertThat(map, hasEntry("criteria.name", "suzuki"));
-        assertThat(map, hasEntry("criteria.age", "30"));
-        assertThat(map, hasEntry("users[0].name", "yamada"));
-        assertThat(map, hasEntry("users[0].age", "20"));
-        assertThat(map, hasEntry("users[1].name", "tanaka"));
-        assertThat(map, hasEntry("users[1].age", "50"));
+        assertThat(map).hasSize(6);
+        assertThat(map).containsEntry("criteria.name", "suzuki");
+        assertThat(map).containsEntry("criteria.age", "30");
+        assertThat(map).containsEntry("users[0].name", "yamada");
+        assertThat(map).containsEntry("users[0].age", "20");
+        assertThat(map).containsEntry("users[1].name", "tanaka");
+        assertThat(map).containsEntry("users[1].age", "50");
 
         // check reverse conversion
         SearchAndBatchUpdateUserForm3 form = new SearchAndBatchUpdateUserForm3();
         WebDataBinder binder = new WebDataBinder(form);
         binder.bind(new MutablePropertyValues(map));
-        assertThat(form.getCriteria(), is(notNullValue()));
-        assertThat(form.getCriteria().getName(), is("suzuki"));
-        assertThat(form.getCriteria().getAge(), is(30));
-        assertThat(form.getUsers(), is(notNullValue()));
-        assertThat(form.getUsers(), hasSize(2));
-        assertThat(form.getUsers().get(0).getName(), is("yamada"));
-        assertThat(form.getUsers().get(0).getAge(), is(20));
-        assertThat(form.getUsers().get(1).getName(), is("tanaka"));
-        assertThat(form.getUsers().get(1).getAge(), is(50));
+        assertThat(form.getCriteria()).isNotNull();
+        assertThat(form.getCriteria().getName()).isEqualTo("suzuki");
+        assertThat(form.getCriteria().getAge()).isEqualTo(30);
+        assertThat(form.getUsers()).isNotNull();
+        assertThat(form.getUsers()).hasSize(2);
+        assertThat(form.getUsers().get(0).getName()).isEqualTo("yamada");
+        assertThat(form.getUsers().get(0).getAge()).isEqualTo(20);
+        assertThat(form.getUsers().get(1).getName()).isEqualTo("tanaka");
+        assertThat(form.getUsers().get(1).getAge()).isEqualTo(50);
     }
 
     @Test
@@ -146,20 +142,20 @@ public class ObjectToMapConverterTest {
         source.put("ccc", "333");
         Map<String, String> map = converter.convert(new SearchForm4(source));
 
-        assertThat(map, aMapWithSize(3));
-        assertThat(map, hasEntry("etc[aaa]", "111"));
-        assertThat(map, hasEntry("etc[bbb]", "222"));
-        assertThat(map, hasEntry("etc[ccc]", "333"));
+        assertThat(map).hasSize(3);
+        assertThat(map).containsEntry("etc[aaa]", "111");
+        assertThat(map).containsEntry("etc[bbb]", "222");
+        assertThat(map).containsEntry("etc[ccc]", "333");
 
         // check reverse conversion
         SearchForm4 form = new SearchForm4();
         WebDataBinder binder = new WebDataBinder(form);
         binder.bind(new MutablePropertyValues(map));
-        assertThat(form.getEtc(), is(notNullValue()));
-        assertThat(form.getEtc(), aMapWithSize(3));
-        assertThat(form.getEtc(), hasEntry("aaa", "111"));
-        assertThat(form.getEtc(), hasEntry("bbb", "222"));
-        assertThat(form.getEtc(), hasEntry("ccc", "333"));
+        assertThat(form.getEtc()).isNotNull();
+        assertThat(form.getEtc()).hasSize(3);
+        assertThat(form.getEtc()).containsEntry("aaa", "111");
+        assertThat(form.getEtc()).containsEntry("bbb", "222");
+        assertThat(form.getEtc()).containsEntry("ccc", "333");
     }
 
     @Test
@@ -171,20 +167,20 @@ public class ObjectToMapConverterTest {
 
         Map<String, String> map = converter
                 .convert(new DateForm5(date1, localDate1, new DateFormItem5(date2, localDate2)));
-        assertThat(map, aMapWithSize(4));
-        assertThat(map, hasEntry("date", "2015-04-01"));
-        assertThat(map, hasEntry("localDate", "2015-06-10"));
-        assertThat(map, hasEntry("item.date", "2015-05-01"));
-        assertThat(map, hasEntry("item.localDate", "2015-07-10"));
+        assertThat(map).hasSize(4);
+        assertThat(map).containsEntry("date", "2015-04-01");
+        assertThat(map).containsEntry("localDate", "2015-06-10");
+        assertThat(map).containsEntry("item.date", "2015-05-01");
+        assertThat(map).containsEntry("item.localDate", "2015-07-10");
 
         DateForm5 form = new DateForm5();
         WebDataBinder binder = new WebDataBinder(form);
         binder.setConversionService(new DefaultFormattingConversionService());
         binder.bind(new MutablePropertyValues(map));
-        assertThat(form.getDate(), is(date1));
-        assertThat(form.getLocalDate(), is(localDate1));
-        assertThat(form.getItem().getDate(), is(date2));
-        assertThat(form.getItem().getLocalDate(), is(localDate2));
+        assertThat(form.getDate()).isEqualTo(date1);
+        assertThat(form.getLocalDate()).isEqualTo(localDate1);
+        assertThat(form.getItem().getDate()).isEqualTo(date2);
+        assertThat(form.getItem().getLocalDate()).isEqualTo(localDate2);
     }
 
     @Test
@@ -193,77 +189,76 @@ public class ObjectToMapConverterTest {
                 new double[] {1.1, 1.2}, new byte[] {4, 5, 6}, new String[] {"a", "b", "c"},
                 new ArrayFormItem6(new int[] {11, 12, 13}, new double[] {11.1, 11.2},
                         new byte[] {14, 15, 16}, new String[] {"d", "e", "f"})));
-        assertThat(map, aMapWithSize(22));
-        assertThat(map, hasEntry("array1[0]", "1"));
-        assertThat(map, hasEntry("array1[1]", "2"));
-        assertThat(map, hasEntry("array1[2]", "3"));
-        assertThat(map, hasEntry("array2[0]", "1.1"));
-        assertThat(map, hasEntry("array2[1]", "1.2"));
-        assertThat(map, hasEntry("array3[0]", "4"));
-        assertThat(map, hasEntry("array3[1]", "5"));
-        assertThat(map, hasEntry("array3[2]", "6"));
-        assertThat(map, hasEntry("array4[0]", "a"));
-        assertThat(map, hasEntry("array4[1]", "b"));
-        assertThat(map, hasEntry("array4[2]", "c"));
-        assertThat(map, hasEntry("item.array1[0]", "11"));
-        assertThat(map, hasEntry("item.array1[1]", "12"));
-        assertThat(map, hasEntry("item.array1[2]", "13"));
-        assertThat(map, hasEntry("item.array2[0]", "11.1"));
-        assertThat(map, hasEntry("item.array2[1]", "11.2"));
-        assertThat(map, hasEntry("item.array3[0]", "14"));
-        assertThat(map, hasEntry("item.array3[1]", "15"));
-        assertThat(map, hasEntry("item.array3[2]", "16"));
-        assertThat(map, hasEntry("item.array4[0]", "d"));
-        assertThat(map, hasEntry("item.array4[1]", "e"));
-        assertThat(map, hasEntry("item.array4[2]", "f"));
+        assertThat(map).hasSize(22);
+        assertThat(map).containsEntry("array1[0]", "1");
+        assertThat(map).containsEntry("array1[1]", "2");
+        assertThat(map).containsEntry("array1[2]", "3");
+        assertThat(map).containsEntry("array2[0]", "1.1");
+        assertThat(map).containsEntry("array2[1]", "1.2");
+        assertThat(map).containsEntry("array3[0]", "4");
+        assertThat(map).containsEntry("array3[1]", "5");
+        assertThat(map).containsEntry("array3[2]", "6");
+        assertThat(map).containsEntry("array4[0]", "a");
+        assertThat(map).containsEntry("array4[1]", "b");
+        assertThat(map).containsEntry("array4[2]", "c");
+        assertThat(map).containsEntry("item.array1[0]", "11");
+        assertThat(map).containsEntry("item.array1[1]", "12");
+        assertThat(map).containsEntry("item.array1[2]", "13");
+        assertThat(map).containsEntry("item.array2[0]", "11.1");
+        assertThat(map).containsEntry("item.array2[1]", "11.2");
+        assertThat(map).containsEntry("item.array3[0]", "14");
+        assertThat(map).containsEntry("item.array3[1]", "15");
+        assertThat(map).containsEntry("item.array3[2]", "16");
+        assertThat(map).containsEntry("item.array4[0]", "d");
+        assertThat(map).containsEntry("item.array4[1]", "e");
+        assertThat(map).containsEntry("item.array4[2]", "f");
 
         ArrayForm6 form = new ArrayForm6();
         WebDataBinder binder = new WebDataBinder(form);
         binder.setConversionService(new DefaultFormattingConversionService());
         binder.bind(new MutablePropertyValues(map));
-        assertThat(form.getArray1().length, is(3));
-        assertThat(form.getArray1()[0], is(1));
-        assertThat(form.getArray1()[1], is(2));
-        assertThat(form.getArray1()[2], is(3));
-        assertThat(form.getArray2().length, is(2));
-        assertThat(form.getArray2()[0], is(1.1));
-        assertThat(form.getArray2()[1], is(1.2));
-        assertThat(form.getArray3().length, is(3));
-        assertThat(form.getArray3()[0], is((byte) 4));
-        assertThat(form.getArray3()[1], is((byte) 5));
-        assertThat(form.getArray3()[2], is((byte) 6));
-        assertThat(form.getArray4().length, is(3));
-        assertThat(form.getArray4()[0], is("a"));
-        assertThat(form.getArray4()[1], is("b"));
-        assertThat(form.getArray4()[2], is("c"));
-        assertThat(form.getItem(), is(notNullValue()));
-        assertThat(form.getItem().getArray1().length, is(3));
-        assertThat(form.getItem().getArray1()[0], is(11));
-        assertThat(form.getItem().getArray1()[1], is(12));
-        assertThat(form.getItem().getArray1()[2], is(13));
-        assertThat(form.getItem().getArray2().length, is(2));
-        assertThat(form.getItem().getArray2()[0], is(11.1));
-        assertThat(form.getItem().getArray2()[1], is(11.2));
-        assertThat(form.getItem().getArray3().length, is(3));
-        assertThat(form.getItem().getArray3()[0], is((byte) 14));
-        assertThat(form.getItem().getArray3()[1], is((byte) 15));
-        assertThat(form.getItem().getArray3()[2], is((byte) 16));
-        assertThat(form.getItem().getArray4().length, is(3));
-        assertThat(form.getItem().getArray4()[0], is("d"));
-        assertThat(form.getItem().getArray4()[1], is("e"));
-        assertThat(form.getItem().getArray4()[2], is("f"));
+        assertThat(form.getArray1().length).isEqualTo(3);
+        assertThat(form.getArray1()[0]).isEqualTo(1);
+        assertThat(form.getArray1()[1]).isEqualTo(2);
+        assertThat(form.getArray1()[2]).isEqualTo(3);
+        assertThat(form.getArray2().length).isEqualTo(2);
+        assertThat(form.getArray2()[0]).isEqualTo(1.1);
+        assertThat(form.getArray2()[1]).isEqualTo(1.2);
+        assertThat(form.getArray3().length).isEqualTo(3);
+        assertThat(form.getArray3()[0]).isEqualTo((byte) 4);
+        assertThat(form.getArray3()[1]).isEqualTo((byte) 5);
+        assertThat(form.getArray3()[2]).isEqualTo((byte) 6);
+        assertThat(form.getArray4().length).isEqualTo(3);
+        assertThat(form.getArray4()[0]).isEqualTo("a");
+        assertThat(form.getArray4()[1]).isEqualTo("b");
+        assertThat(form.getArray4()[2]).isEqualTo("c");
+        assertThat(form.getItem()).isNotNull();
+        assertThat(form.getItem().getArray1().length).isEqualTo(3);
+        assertThat(form.getItem().getArray1()[0]).isEqualTo(11);
+        assertThat(form.getItem().getArray1()[1]).isEqualTo(12);
+        assertThat(form.getItem().getArray1()[2]).isEqualTo(13);
+        assertThat(form.getItem().getArray2().length).isEqualTo(2);
+        assertThat(form.getItem().getArray2()[0]).isEqualTo(11.1);
+        assertThat(form.getItem().getArray2()[1]).isEqualTo(11.2);
+        assertThat(form.getItem().getArray3().length).isEqualTo(3);
+        assertThat(form.getItem().getArray3()[0]).isEqualTo((byte) 14);
+        assertThat(form.getItem().getArray3()[1]).isEqualTo((byte) 15);
+        assertThat(form.getItem().getArray3()[2]).isEqualTo((byte) 16);
+        assertThat(form.getItem().getArray4().length).isEqualTo(3);
+        assertThat(form.getItem().getArray4()[0]).isEqualTo("d");
+        assertThat(form.getItem().getArray4()[1]).isEqualTo("e");
+        assertThat(form.getItem().getArray4()[2]).isEqualTo("f");
     }
 
     @SuppressWarnings("unchecked")
     @Test
     public void test7_Null() {
-        assertThat(converter.convert(null), is((Map<String, String>) Collections.EMPTY_MAP));
+        assertThat(converter.convert(null)).isEqualTo((Map<String, String>) Collections.EMPTY_MAP);
     }
 
     @Test
     public void test8_LackingGetter() {
-        assertThat(converter.convert(new LackingGetterForm8("aaa", "bbb")),
-                is(Collections.singletonMap("value1", "aaa")));
+        assertThat(converter.convert(new LackingGetterForm8("aaa", "bbb"))).isEqualTo(Collections.singletonMap("value1", "aaa"));
     }
 
     @Test
@@ -273,27 +268,27 @@ public class ObjectToMapConverterTest {
         form.setNestedForm2(nestedForm);
         Map<String, String> map = converter.convert(form);
 
-        assertThat(map, aMapWithSize(20));
-        assertThat(map, hasEntry("_string", ""));
-        assertThat(map, hasEntry("_integer", ""));
-        assertThat(map, hasEntry("_date", ""));
-        assertThat(map, hasEntry("_localDate", ""));
-        assertThat(map, hasEntry("_customEnum", ""));
-        assertThat(map, hasEntry("_list", ""));
-        assertThat(map, hasEntry("_list2[0]", ""));
-        assertThat(map, hasEntry("_map", ""));
-        assertThat(map, hasEntry("_map2[key]", ""));
-        assertThat(map, hasEntry("_array", ""));
-        assertThat(map, hasEntry("_array2[0]", ""));
-        assertThat(map, hasEntry("_nestedForm1", ""));
-        assertThat(map, hasEntry("_nestedForm2.string", ""));
-        assertThat(map, hasEntry("_nestedForm2.integer", ""));
-        assertThat(map, hasEntry("_nestedForm2.list", ""));
-        assertThat(map, hasEntry("_nestedForm2.list2[0]", ""));
-        assertThat(map, hasEntry("_nestedForm2.map", ""));
-        assertThat(map, hasEntry("_nestedForm2.map2[key]", ""));
-        assertThat(map, hasEntry("_nestedForm2.array", ""));
-        assertThat(map, hasEntry("_nestedForm2.array2[0]", ""));
+        assertThat(map).hasSize(20);
+        assertThat(map).containsEntry("_string", "");
+        assertThat(map).containsEntry("_integer", "");
+        assertThat(map).containsEntry("_date", "");
+        assertThat(map).containsEntry("_localDate", "");
+        assertThat(map).containsEntry("_customEnum", "");
+        assertThat(map).containsEntry("_list", "");
+        assertThat(map).containsEntry("_list2[0]", "");
+        assertThat(map).containsEntry("_map", "");
+        assertThat(map).containsEntry("_map2[key]", "");
+        assertThat(map).containsEntry("_array", "");
+        assertThat(map).containsEntry("_array2[0]", "");
+        assertThat(map).containsEntry("_nestedForm1", "");
+        assertThat(map).containsEntry("_nestedForm2.string", "");
+        assertThat(map).containsEntry("_nestedForm2.integer", "");
+        assertThat(map).containsEntry("_nestedForm2.list", "");
+        assertThat(map).containsEntry("_nestedForm2.list2[0]", "");
+        assertThat(map).containsEntry("_nestedForm2.map", "");
+        assertThat(map).containsEntry("_nestedForm2.map2[key]", "");
+        assertThat(map).containsEntry("_nestedForm2.array", "");
+        assertThat(map).containsEntry("_nestedForm2.array2[0]", "");
     }
 
     @Test
@@ -301,11 +296,11 @@ public class ObjectToMapConverterTest {
         EmptyElementForm10 form = new EmptyElementForm10();
         Map<String, String> map = converter.convert(form);
 
-        assertThat(map, aMapWithSize(4));
-        assertThat(map, hasEntry("list", ""));
-        assertThat(map, hasEntry("array", ""));
-        assertThat(map, hasEntry("nestedForm.list", ""));
-        assertThat(map, hasEntry("nestedForm.array", ""));
+        assertThat(map).hasSize(4);
+        assertThat(map).containsEntry("list", "");
+        assertThat(map).containsEntry("array", "");
+        assertThat(map).containsEntry("nestedForm.list", "");
+        assertThat(map).containsEntry("nestedForm.array", "");
     }
 
     @Test
@@ -313,10 +308,10 @@ public class ObjectToMapConverterTest {
         BooleanForm11 form = new BooleanForm11(true, false, null);
         Map<String, String> map = converter.convert(form);
 
-        assertThat(map, aMapWithSize(3));
-        assertThat(map, hasEntry("bool1", "true"));
-        assertThat(map, hasEntry("bool2", "false"));
-        assertThat(map, hasEntry("bool3", ""));
+        assertThat(map).hasSize(3);
+        assertThat(map).containsEntry("bool1", "true");
+        assertThat(map).containsEntry("bool2", "false");
+        assertThat(map).containsEntry("bool3", "");
     }
 
     public static class SearchUserForm0 {

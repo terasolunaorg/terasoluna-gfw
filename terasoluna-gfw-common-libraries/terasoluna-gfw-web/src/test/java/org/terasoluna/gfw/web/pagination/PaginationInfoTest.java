@@ -15,10 +15,8 @@
  */
 package org.terasoluna.gfw.web.pagination;
 
-import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasEntry;
 import static org.hamcrest.Matchers.hasKey;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -91,8 +89,8 @@ public class PaginationInfoTest {
         Map<String, Object> attributesMap = PaginationInfo.createAttributeMap(page, size, null);
 
         // assert
-        assertThat(attributesMap, hasEntry("page", page));
-        assertThat(attributesMap, hasEntry("size", size));
+        org.assertj.core.api.Assertions.assertThat(attributesMap).containsEntry("page", page);
+        org.assertj.core.api.Assertions.assertThat(attributesMap).containsEntry("size", size);
         assertThat(attributesMap, not(hasKey("sortOrderProperty")));
         assertThat(attributesMap, not(hasKey("sortOrderDirection")));
     }
@@ -112,10 +110,10 @@ public class PaginationInfoTest {
                 PaginationInfo.createAttributeMap(page, size, mockedSort);
 
         // assert
-        assertThat(attributesMap, hasEntry("page", page));
-        assertThat(attributesMap, hasEntry("size", size));
-        assertThat(attributesMap, hasEntry("sortOrderProperty", "id"));
-        assertThat(attributesMap, hasEntry("sortOrderDirection", "DESC"));
+        org.assertj.core.api.Assertions.assertThat(attributesMap).containsEntry("page", page);
+        org.assertj.core.api.Assertions.assertThat(attributesMap).containsEntry("size", size);
+        org.assertj.core.api.Assertions.assertThat(attributesMap).containsEntry("sortOrderProperty", "id");
+        org.assertj.core.api.Assertions.assertThat(attributesMap).containsEntry("sortOrderDirection", "DESC");
     }
 
     @Test
@@ -134,8 +132,8 @@ public class PaginationInfoTest {
         Map<String, Object> attributesMap = PaginationInfo.createAttributeMap(page, size, sort);
 
         // assert
-        assertThat(attributesMap, hasEntry("page", page));
-        assertThat(attributesMap, hasEntry("size", size));
+        org.assertj.core.api.Assertions.assertThat(attributesMap).containsEntry("page", page);
+        org.assertj.core.api.Assertions.assertThat(attributesMap).containsEntry("size", size);
         assertThat(attributesMap, not(hasKey("sortOrderProperty")));
         assertThat(attributesMap, not(hasKey("sortOrderDirection")));
     }
@@ -148,7 +146,7 @@ public class PaginationInfoTest {
         int currentNum = info.getCurrent();
 
         // assert
-        assertThat(currentNum, is(5));
+        org.assertj.core.api.Assertions.assertThat(currentNum).isEqualTo(5);
     }
 
     @Test
@@ -159,7 +157,7 @@ public class PaginationInfoTest {
         String path = info.getPathTmpl();
 
         // assert
-        assertThat(path, is(pathTmpl));
+        org.assertj.core.api.Assertions.assertThat(path).isEqualTo(pathTmpl);
 
     }
 
@@ -171,7 +169,7 @@ public class PaginationInfoTest {
         String query = info.getQueryTmpl();
 
         // assert
-        assertThat(query, is(queryTmpl));
+        org.assertj.core.api.Assertions.assertThat(query).isEqualTo(queryTmpl);
     }
 
     @Test
@@ -185,7 +183,7 @@ public class PaginationInfoTest {
         int getMaxCountNum = info.getMaxDisplayCount();
 
         // assert
-        assertThat(getMaxCountNum, is(maxDisplayCount));
+        org.assertj.core.api.Assertions.assertThat(getMaxCountNum).isEqualTo(maxDisplayCount);
     }
 
     @Test
@@ -199,7 +197,7 @@ public class PaginationInfoTest {
         String expectedUri = pathTmpl + "?" + queryTmpl;
 
         // assert
-        assertThat(pathQueryStr.toUriString(), is(expectedUri));
+        org.assertj.core.api.Assertions.assertThat(pathQueryStr.toUriString()).isEqualTo(expectedUri);
     }
 
     @Test
@@ -213,7 +211,7 @@ public class PaginationInfoTest {
         String firstURL = info.getFirstUrl();
 
         // assert
-        assertThat(firstURL, is(expectedURL));
+        org.assertj.core.api.Assertions.assertThat(firstURL).isEqualTo(expectedURL);
     }
 
     @Test
@@ -231,7 +229,7 @@ public class PaginationInfoTest {
         String lastURL = info.getLastUrl();
 
         // assert
-        assertThat(lastURL, is(expectedURL));
+        org.assertj.core.api.Assertions.assertThat(lastURL).isEqualTo(expectedURL);
     }
 
     @Test
@@ -245,7 +243,7 @@ public class PaginationInfoTest {
         String previousURL = info.getPreviousUrl();
 
         // assert
-        assertThat(previousURL, is(expectedURL));
+        org.assertj.core.api.Assertions.assertThat(previousURL).isEqualTo(expectedURL);
     }
 
     @Test
@@ -259,7 +257,7 @@ public class PaginationInfoTest {
         String nextURL = info.getNextUrl();
 
         // assert
-        assertThat(nextURL, is(expectedURL));
+        org.assertj.core.api.Assertions.assertThat(nextURL).isEqualTo(expectedURL);
     }
 
     /**
@@ -273,7 +271,7 @@ public class PaginationInfoTest {
         boolean result = info.isFirstPage();
 
         // assert
-        assertThat(result, is(false));
+        org.assertj.core.api.Assertions.assertThat(result).isEqualTo(false);
     }
 
     /**
@@ -290,7 +288,7 @@ public class PaginationInfoTest {
         boolean result = info.isFirstPage();
 
         // assert
-        assertThat(result, is(true));
+        org.assertj.core.api.Assertions.assertThat(result).isEqualTo(true);
     }
 
     /**
@@ -304,7 +302,7 @@ public class PaginationInfoTest {
         boolean result = info.isLastPage();
 
         // assert
-        assertThat(result, is(false));
+        org.assertj.core.api.Assertions.assertThat(result).isEqualTo(false);
     }
 
     /**
@@ -322,7 +320,7 @@ public class PaginationInfoTest {
         boolean result = info.isLastPage();
 
         // assert
-        assertThat(result, is(true));
+        org.assertj.core.api.Assertions.assertThat(result).isEqualTo(true);
     }
 
     /**
@@ -336,7 +334,7 @@ public class PaginationInfoTest {
         boolean result = info.isCurrent(5);
 
         // assert
-        assertThat(result, is(true));
+        org.assertj.core.api.Assertions.assertThat(result).isEqualTo(true);
     }
 
     /**
@@ -350,7 +348,7 @@ public class PaginationInfoTest {
         boolean result = info.isCurrent(1);
 
         // assert
-        assertThat(result, is(false));
+        org.assertj.core.api.Assertions.assertThat(result).isEqualTo(false);
     }
 
     /**
@@ -367,8 +365,8 @@ public class PaginationInfoTest {
         BeginAndEnd endNumBig = info.getBeginAndEnd();
 
         // assert
-        assertThat(endNumBig.getBegin(), is(0));
-        assertThat(endNumBig.getEnd(), is(6));
+        org.assertj.core.api.Assertions.assertThat(endNumBig.getBegin()).isEqualTo(0);
+        org.assertj.core.api.Assertions.assertThat(endNumBig.getEnd()).isEqualTo(6);
     }
 
     /**
@@ -385,8 +383,8 @@ public class PaginationInfoTest {
         BeginAndEnd endNumBig = info.getBeginAndEnd();
 
         // assert
-        assertThat(endNumBig.getBegin(), is(4));
-        assertThat(endNumBig.getEnd(), is(6));
+        org.assertj.core.api.Assertions.assertThat(endNumBig.getBegin()).isEqualTo(4);
+        org.assertj.core.api.Assertions.assertThat(endNumBig.getEnd()).isEqualTo(6);
     }
 
     /**
@@ -403,8 +401,8 @@ public class PaginationInfoTest {
         BeginAndEnd endNumBig = info.getBeginAndEnd();
 
         // assert
-        assertThat(endNumBig.getBegin(), is(5));
-        assertThat(endNumBig.getEnd(), is(4));
+        org.assertj.core.api.Assertions.assertThat(endNumBig.getBegin()).isEqualTo(5);
+        org.assertj.core.api.Assertions.assertThat(endNumBig.getEnd()).isEqualTo(4);
     }
 
     @Test
@@ -416,7 +414,7 @@ public class PaginationInfoTest {
 
         // assert
         // That the criteria query is not append
-        assertThat(info.getPageUrl(0), is(expectedURL));
+        org.assertj.core.api.Assertions.assertThat(info.getPageUrl(0)).isEqualTo(expectedURL);
     }
 
     @Test
@@ -428,7 +426,7 @@ public class PaginationInfoTest {
 
         // assert
         // That the criteria query is append
-        assertThat(info.getPageUrl(0), is(expectedURL));
+        org.assertj.core.api.Assertions.assertThat(info.getPageUrl(0)).isEqualTo(expectedURL);
     }
 
     @Test
@@ -440,8 +438,8 @@ public class PaginationInfoTest {
 
         // assert
         // That the question-mark(?) is remove
-        assertThat(info.getPageUrl(1), is(expectedURL));
-        assertThat(info.getCriteriaQuery(), is("a=%2B"));
+        org.assertj.core.api.Assertions.assertThat(info.getPageUrl(1)).isEqualTo(expectedURL);
+        org.assertj.core.api.Assertions.assertThat(info.getCriteriaQuery()).isEqualTo("a=%2B");
     }
 
     @Test
@@ -453,8 +451,8 @@ public class PaginationInfoTest {
 
         // assert
         // That the and-mark(&) is remove
-        assertThat(info.getPageUrl(2), is(expectedURL));
-        assertThat(info.getCriteriaQuery(), is("a=%2B"));
+        org.assertj.core.api.Assertions.assertThat(info.getPageUrl(2)).isEqualTo(expectedURL);
+        org.assertj.core.api.Assertions.assertThat(info.getCriteriaQuery()).isEqualTo("a=%2B");
     }
 
     @Test
@@ -467,7 +465,7 @@ public class PaginationInfoTest {
 
         // assert
         // That the question-mark(?) is append
-        assertThat(info.getPageUrl(3), is(expectedURL));
+        org.assertj.core.api.Assertions.assertThat(info.getPageUrl(3)).isEqualTo(expectedURL);
     }
 
     @Test
@@ -480,7 +478,7 @@ public class PaginationInfoTest {
 
         // assert
         // That the question-mark(?) is append
-        assertThat(info.getPageUrl(3), is(expectedURL));
+        org.assertj.core.api.Assertions.assertThat(info.getPageUrl(3)).isEqualTo(expectedURL);
     }
 
 }

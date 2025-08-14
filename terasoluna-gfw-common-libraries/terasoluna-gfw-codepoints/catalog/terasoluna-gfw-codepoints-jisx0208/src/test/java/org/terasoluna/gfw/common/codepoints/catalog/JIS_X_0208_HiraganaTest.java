@@ -15,8 +15,8 @@
  */
 package org.terasoluna.gfw.common.codepoints.catalog;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 import org.terasoluna.gfw.common.codepoints.CodePoints;
 
@@ -27,12 +27,12 @@ public class JIS_X_0208_HiraganaTest {
     @Test
     public void testIsValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("あいうえお"), is(true));
+        assertThat(codePoints.containsAll("あいうえお")).isEqualTo(true);
     }
 
     @Test
     public void testIsInValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("あいうえオ"), is(false));
+        assertThat(codePoints.containsAll("あいうえオ")).isEqualTo(false);
     }
 }

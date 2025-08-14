@@ -15,9 +15,7 @@
  */
 package org.terasoluna.gfw.web.util;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsNull.notNullValue;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.lang.reflect.Constructor;
 import org.junit.jupiter.api.Test;
@@ -30,33 +28,33 @@ public class JspTagUtilsTest {
     public void testJspTagUtils() throws Exception {
         // set up
         Constructor<JspTagUtils> constructor = JspTagUtils.class.getDeclaredConstructor();
-        assertThat(constructor.canAccess(null), is(false));
+        assertThat(constructor.canAccess(null)).isEqualTo(false);
         constructor.setAccessible(true);
 
         // assert
-        assertThat(constructor.newInstance(), notNullValue());
+        assertThat(constructor.newInstance()).isNotNull();
 
         constructor.setAccessible(false);
     }
 
     @Test
     public void toBoolean_valueIsTrue() throws JspException {
-        assertThat(JspTagUtils.toBoolean("true", false, null), is(true));
-        assertThat(JspTagUtils.toBoolean("TRUE", false, null), is(true));
-        assertThat(JspTagUtils.toBoolean("TrUe", false, null), is(true));
+        assertThat(JspTagUtils.toBoolean("true", false, null)).isEqualTo(true);
+        assertThat(JspTagUtils.toBoolean("TRUE", false, null)).isEqualTo(true);
+        assertThat(JspTagUtils.toBoolean("TrUe", false, null)).isEqualTo(true);
     }
 
     @Test
     public void toBoolean_valueIsFalse() throws JspException {
-        assertThat(JspTagUtils.toBoolean("false", true, null), is(false));
-        assertThat(JspTagUtils.toBoolean("FALSE", true, null), is(false));
-        assertThat(JspTagUtils.toBoolean("FaLsE", true, null), is(false));
+        assertThat(JspTagUtils.toBoolean("false", true, null)).isEqualTo(false);
+        assertThat(JspTagUtils.toBoolean("FALSE", true, null)).isEqualTo(false);
+        assertThat(JspTagUtils.toBoolean("FaLsE", true, null)).isEqualTo(false);
     }
 
     @Test
     public void toBoolean_valueIsNullOrBlankOrWhitespace() throws JspException {
-        assertThat(JspTagUtils.toBoolean(null, Boolean.TRUE, null), is(true));
-        assertThat(JspTagUtils.toBoolean("", Boolean.FALSE, null), is(false));
+        assertThat(JspTagUtils.toBoolean(null, Boolean.TRUE, null)).isEqualTo(true);
+        assertThat(JspTagUtils.toBoolean("", Boolean.FALSE, null)).isEqualTo(false);
     }
 
     @Test
@@ -65,11 +63,11 @@ public class JspTagUtilsTest {
         JspTagException e = assertThrows(JspTagException.class, () -> {
             JspTagUtils.toBoolean("on", true, "field1");
         });
-        assertThat(e.getMessage(), is("The value of field1 must be either true or false."));
+        assertThat(e.getMessage()).isEqualTo("The value of field1 must be either true or false.");
 
         e = assertThrows(JspTagException.class, () -> {
             JspTagUtils.toBoolean("off", false, "field2");
         });
-        assertThat(e.getMessage(), is("The value of field2 must be either true or false."));
+        assertThat(e.getMessage()).isEqualTo("The value of field2 must be either true or false.");
     }
 }

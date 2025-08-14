@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.common.codelist;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,11 +42,11 @@ public class SimpleMapCodeListTest {
         Map<String, String> mapOutput = codeList.asMap();
 
         // assert
-        assertThat(mapOutput.size(), is(mapInput.size()));
+        assertThat(mapOutput.size()).isEqualTo(mapInput.size());
         for (int i = 0; i < 10; i++) {
-            assertThat(mapOutput.get("%03d"), is(mapInput.get("%03d")));
+            assertThat(mapOutput.get("%03d")).isEqualTo(mapInput.get("%03d"));
         }
-        assertThat(codeList.getCodeListId(), is("CL001"));
+        assertThat(codeList.getCodeListId()).isEqualTo("CL001");
     }
 
     /**

@@ -15,10 +15,8 @@
  */
 package org.terasoluna.gfw.common.validator.constraints;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.allOf;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasProperty;
 import static org.hamcrest.Matchers.hasToString;
 import static org.hamcrest.Matchers.is;
@@ -52,7 +50,7 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
     public void testInputNull() {
 
         violations = validator.validate(form);
-        assertThat(violations, is(empty()));
+        assertThat(violations).isEmpty();
     }
 
     /**
@@ -66,15 +64,14 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             form.setStringProperty("あaa");
 
             violations = validator.validate(form);
-            assertThat(violations, containsInAnyOrder(
-                    hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6)))));
+            assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6))));
         }
 
         {
             form.setStringProperty("ああ");
 
             violations = validator.validate(form);
-            assertThat(violations, is(empty()));
+            assertThat(violations).isEmpty();
         }
     }
 
@@ -88,15 +85,14 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             form.setStringBuilderProperty(new StringBuilder("あaa"));
 
             violations = validator.validate(form);
-            assertThat(violations, containsInAnyOrder(
-                    hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6)))));
+            assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6))));
         }
 
         {
             form.setStringBuilderProperty(new StringBuilder("ああ"));
 
             violations = validator.validate(form);
-            assertThat(violations, is(empty()));
+            assertThat(violations).isEmpty();
         }
     }
 
@@ -111,15 +107,14 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             form.setStringProperty("ああa");
 
             violations = validator.validate(form, SpecifyCharset.class);
-            assertThat(violations, containsInAnyOrder(
-                    hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6)))));
+            assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6))));
         }
 
         {
             form.setStringProperty("あああ");
 
             violations = validator.validate(form, SpecifyCharset.class);
-            assertThat(violations, is(empty()));
+            assertThat(violations).isEmpty();
         }
     }
 
@@ -169,47 +164,43 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             form.setListProperty(Arrays.asList("ああ", "ああ"));
 
             violations = validator.validate(form);
-            assertThat(violations, is(empty()));
+            assertThat(violations).isEmpty();
         }
 
         {
             form.setListProperty(Arrays.asList("あaa", "ああ"));
 
             violations = validator.validate(form);
-            assertThat(violations, containsInAnyOrder( //
-                    allOf( //
-                            hasProperty("propertyPath",
-                                    hasToString("listProperty[0].<list element>")), //
-                            hasProperty("message",
-                                    is(String.format(MESSAGE_VALIDATION_ERROR, 6))))));
+            assertThat(violations).containsExactlyInAnyOrder(allOf( //
+                    hasProperty("propertyPath",
+                            hasToString("listProperty[0].<list element>")), //
+                    hasProperty("message",
+                            is(String.format(MESSAGE_VALIDATION_ERROR, 6)))));
         }
 
         {
             form.setListProperty(Arrays.asList("ああ", "あaa"));
 
             violations = validator.validate(form);
-            assertThat(violations, containsInAnyOrder( //
-                    allOf( //
-                            hasProperty("propertyPath",
-                                    hasToString("listProperty[1].<list element>")), //
-                            hasProperty("message",
-                                    is(String.format(MESSAGE_VALIDATION_ERROR, 6))))));
+            assertThat(violations).containsExactlyInAnyOrder(allOf( //
+                    hasProperty("propertyPath",
+                            hasToString("listProperty[1].<list element>")), //
+                    hasProperty("message",
+                            is(String.format(MESSAGE_VALIDATION_ERROR, 6)))));
         }
 
         {
             form.setListProperty(Arrays.asList("あaa", "あaa"));
 
             violations = validator.validate(form);
-            assertThat(violations, containsInAnyOrder( //
-                    allOf( //
-                            hasProperty("propertyPath",
-                                    hasToString("listProperty[0].<list element>")), //
-                            hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6)))), //
-                    allOf( //
-                            hasProperty("propertyPath",
-                                    hasToString("listProperty[1].<list element>")), //
-                            hasProperty("message",
-                                    is(String.format(MESSAGE_VALIDATION_ERROR, 6))))));
+            assertThat(violations).containsExactlyInAnyOrder(allOf( //
+                    hasProperty("propertyPath",
+                            hasToString("listProperty[0].<list element>")), //
+                    hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6)))), allOf( //
+                    hasProperty("propertyPath",
+                            hasToString("listProperty[1].<list element>")), //
+                    hasProperty("message",
+                            is(String.format(MESSAGE_VALIDATION_ERROR, 6)))));
         }
     }
 

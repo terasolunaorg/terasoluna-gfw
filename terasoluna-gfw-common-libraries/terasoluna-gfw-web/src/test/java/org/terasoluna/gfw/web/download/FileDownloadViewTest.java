@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.web.download;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.argThat;
@@ -118,7 +117,7 @@ public class FileDownloadViewTest {
     @Test
     public void testrenderMergedOutputModel() throws IOException {
         fileDownloadView.renderMergedOutputModel(model, request, response);
-        assertThat(response.getHeader("MethodCalled"), is("true"));
+        assertThat(response.getHeader("MethodCalled")).isEqualTo("true");
     }
 
     @Test
@@ -222,7 +221,7 @@ public class FileDownloadViewTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             fileDownloadView.afterPropertiesSet();
         });
-        assertThat(e.getMessage(), is("chunkSize must be over 1. specified chunkSize is \"0\"."));
+        assertThat(e.getMessage()).isEqualTo("chunkSize must be over 1. specified chunkSize is \"0\".");
     }
 
     @Test
@@ -233,7 +232,7 @@ public class FileDownloadViewTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             fileDownloadView.afterPropertiesSet();
         });
-        assertThat(e.getMessage(), is("chunkSize must be over 1. specified chunkSize is \"-1\"."));
+        assertThat(e.getMessage()).isEqualTo("chunkSize must be over 1. specified chunkSize is \"-1\".");
     }
 
     @Test

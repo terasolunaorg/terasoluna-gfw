@@ -15,9 +15,7 @@
  */
 package org.terasoluna.gfw.web.util;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import java.lang.reflect.Constructor;
 import org.junit.jupiter.api.BeforeEach;
@@ -36,10 +34,9 @@ public class ResponseUtilsTest {
     @Test
     public void testSetPreventionCachingHeaders() {
         ResponseUtils.setPreventionCachingHeaders(response);
-        assertThat(response.getHeader("Cache-Control"),
-                is("private,no-store,no-cache,must-revalidate"));
-        assertThat(response.getHeader("Pragma"), is("no-cache"));
-        assertThat(response.getHeader("Expires"), is("Thu, 01 Jan 1970 00:00:00 GMT")); // Changed by SPR-11912
+        assertThat(response.getHeader("Cache-Control")).isEqualTo("private,no-store,no-cache,must-revalidate");
+        assertThat(response.getHeader("Pragma")).isEqualTo("no-cache");
+        assertThat(response.getHeader("Expires")).isEqualTo("Thu, 01 Jan 1970 00:00:00 GMT"); // Changed by SPR-11912
     }
     // @formatter:on
 
@@ -54,6 +51,6 @@ public class ResponseUtilsTest {
     public void testPrivateConstructor() throws Exception {
         Constructor<ResponseUtils> c = ResponseUtils.class.getDeclaredConstructor();
         c.setAccessible(true);
-        assertThat(c.newInstance(), is(notNullValue()));
+        assertThat(c.newInstance()).isNotNull();
     }
 }

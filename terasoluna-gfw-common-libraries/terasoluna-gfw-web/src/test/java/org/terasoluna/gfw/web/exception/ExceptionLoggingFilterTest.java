@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.web.exception;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doThrow;
@@ -100,7 +99,7 @@ public class ExceptionLoggingFilterTest {
         IOException e = assertThrows(IOException.class, () -> {
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
         });
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
 
         verify(mockExceptionLogger, times(1)).error(occurException);
 
@@ -116,7 +115,7 @@ public class ExceptionLoggingFilterTest {
         ServletException e = assertThrows(ServletException.class, () -> {
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
         });
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
 
         verify(mockExceptionLogger, times(1)).error(occurException);
 
@@ -131,7 +130,7 @@ public class ExceptionLoggingFilterTest {
             doThrow(occurException).when(mockFilterChain).doFilter(mockRequest, mockResponse);
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
         });
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
 
         verify(mockExceptionLogger, times(1)).error(occurException);
 
@@ -148,7 +147,7 @@ public class ExceptionLoggingFilterTest {
             doThrow(occurError).when(mockFilterChain).doFilter(mockRequest, mockResponse);
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
         });
-        assertThat(e, is(occurError));
+        assertThat(e).isEqualTo(occurError);
 
         verify(mockExceptionLogger, times(0)).error((Exception) any());
 
@@ -170,7 +169,7 @@ public class ExceptionLoggingFilterTest {
         IOException e = assertThrows(IOException.class, () -> {
             testTarget.doFilter(mockRequest, mockResponse, mockFilterChain);
         });
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
 
         verify(mockExceptionLogger, times(1)).error(occurException);
 

@@ -15,10 +15,7 @@
  */
 package org.terasoluna.gfw.web.logging.mdc;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.aMapWithSize;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.spy;
@@ -119,16 +116,16 @@ public class AbstractMDCPutFilterTest {
 
         // do assert.
         // put value to MDC.
-        assertThat((Map<?, ?>) mockFilterChain.actualMdcContextMap, aMapWithSize(2));
-        assertThat(mockFilterChain.actualMdcPutValue, is("value"));
+        assertThat((Map<?, ?>) mockFilterChain.actualMdcContextMap).hasSize(2);
+        assertThat(mockFilterChain.actualMdcPutValue).isEqualTo("value");
 
         // call filter chain.
         verify(mockFilterChain, times(1)).doFilter(mockRequest, mockResponse);
 
         // remove value in MDC.
         // not remove other value from MDC.
-        assertThat(MDC.getCopyOfContextMap(), aMapWithSize(1));
-        assertThat(MDC.get("dummyKey"), is("dummyValue"));
+        assertThat(MDC.getCopyOfContextMap()).hasSize(1);
+        assertThat(MDC.get("dummyKey")).isEqualTo("dummyValue");
 
     }
 
@@ -160,13 +157,13 @@ public class AbstractMDCPutFilterTest {
         });
         // do assert.
         // throws original exception.
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
 
         // do assert.
         // remove value in MDC.
         // not remove other value from MDC.
-        assertThat(MDC.getCopyOfContextMap(), aMapWithSize(1));
-        assertThat(MDC.get("dummyKey"), is("dummyValue"));
+        assertThat(MDC.getCopyOfContextMap()).hasSize(1);
+        assertThat(MDC.get("dummyKey")).isEqualTo("dummyValue");
 
     }
 
@@ -192,9 +189,9 @@ public class AbstractMDCPutFilterTest {
 
         // do assert.
         // not remove other value from MDC.
-        assertThat(MDC.getCopyOfContextMap(), aMapWithSize(2));
-        assertThat(MDC.get("dummyKey"), is("dummyValue"));
-        assertThat(MDC.get("key"), is("value"));
+        assertThat(MDC.getCopyOfContextMap()).hasSize(2);
+        assertThat(MDC.get("dummyKey")).isEqualTo("dummyValue");
+        assertThat(MDC.get("key")).isEqualTo("value");
 
     }
 
@@ -226,13 +223,13 @@ public class AbstractMDCPutFilterTest {
         });
         // do assert.
         // throws original io exception.
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
 
         // do assert.
         // not remove other value from MDC.
-        assertThat(MDC.getCopyOfContextMap(), aMapWithSize(2));
-        assertThat(MDC.get("dummyKey"), is("dummyValue"));
-        assertThat(MDC.get("key"), is("value"));
+        assertThat(MDC.getCopyOfContextMap()).hasSize(2);
+        assertThat(MDC.get("dummyKey")).isEqualTo("dummyValue");
+        assertThat(MDC.get("key")).isEqualTo("value");
 
     }
 
@@ -254,7 +251,7 @@ public class AbstractMDCPutFilterTest {
 
         testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
 
-        assertThat(mockFilterChain.actualMdcPutValue, is("12345678901234567890123456789012"));
+        assertThat(mockFilterChain.actualMdcPutValue).isEqualTo("12345678901234567890123456789012");
 
     }
 
@@ -278,7 +275,7 @@ public class AbstractMDCPutFilterTest {
 
         testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
 
-        assertThat(mockFilterChain.actualMdcPutValue, is("123456789012345678901234567890123"));
+        assertThat(mockFilterChain.actualMdcPutValue).isEqualTo("123456789012345678901234567890123");
 
     }
 
@@ -302,7 +299,7 @@ public class AbstractMDCPutFilterTest {
 
         testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
 
-        assertThat(mockFilterChain.actualMdcPutValue, is(""));
+        assertThat(mockFilterChain.actualMdcPutValue).isEqualTo("");
 
     }
 
@@ -326,7 +323,7 @@ public class AbstractMDCPutFilterTest {
 
         testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
 
-        assertThat(mockFilterChain.actualMdcPutValue, is("123456789012345678901234567890123a"));
+        assertThat(mockFilterChain.actualMdcPutValue).isEqualTo("123456789012345678901234567890123a");
 
     }
 
@@ -347,7 +344,7 @@ public class AbstractMDCPutFilterTest {
         };
 
         // assert
-        assertThat(testTarget.cutValue(null), is(nullValue()));
+        assertThat(testTarget.cutValue(null)).isNull();
     }
 
     /**

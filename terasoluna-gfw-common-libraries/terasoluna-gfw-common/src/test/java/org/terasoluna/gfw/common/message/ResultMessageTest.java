@@ -15,12 +15,7 @@
  */
 package org.terasoluna.gfw.common.message;
 
-import static org.hamcrest.CoreMatchers.hasItem;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.arrayContaining;
-import static org.hamcrest.Matchers.emptyArray;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.HashSet;
@@ -34,18 +29,18 @@ public class ResultMessageTest {
     public void test01() {
         ResultMessage message = ResultMessage.fromText("text");
 
-        assertThat(message.getText(), is("text"));
-        assertThat(message.getCode(), is(nullValue()));
-        assertThat(message.getArgs(), is(emptyArray()));
+        assertThat(message.getText()).isEqualTo("text");
+        assertThat(message.getCode()).isNull();
+        assertThat(message.getArgs()).isEmpty();
     }
 
     @Test
     public void test02() {
         ResultMessage message = ResultMessage.fromCode("xxx.yyy.code");
 
-        assertThat(message.getText(), is(nullValue()));
-        assertThat(message.getCode(), is("xxx.yyy.code"));
-        assertThat(message.getArgs(), is(emptyArray()));
+        assertThat(message.getText()).isNull();
+        assertThat(message.getCode()).isEqualTo("xxx.yyy.code");
+        assertThat(message.getArgs()).isEmpty();
     }
 
     @Test
@@ -53,18 +48,18 @@ public class ResultMessageTest {
         ResultMessage message = ResultMessage.fromCode("xxx.yyy.code", "a", 1, "x");
         System.out.println(message);
 
-        assertThat(message.getText(), is(nullValue()));
-        assertThat(message.getCode(), is("xxx.yyy.code"));
-        assertThat(message.getArgs(), arrayContaining("a", 1, "x"));
+        assertThat(message.getText()).isNull();
+        assertThat(message.getCode()).isEqualTo("xxx.yyy.code");
+        assertThat(message.getArgs()).containsExactly("a", 1, "x");
     }
 
     @Test
     public void test04() {
         ResultMessage message = ResultMessage.fromCode("xxx.yyy.code", (Object[]) null);
 
-        assertThat(message.getText(), is(nullValue()));
-        assertThat(message.getCode(), is("xxx.yyy.code"));
-        assertThat(message.getArgs(), is(emptyArray()));
+        assertThat(message.getText()).isNull();
+        assertThat(message.getCode()).isEqualTo("xxx.yyy.code");
+        assertThat(message.getArgs()).isEmpty();
     }
 
     @Test
@@ -114,23 +109,23 @@ public class ResultMessageTest {
         ResultMessage msg5 = new ResultMessage("foo", object, "foo");
 
         // assert
-        assertThat(msg1.equals(msg1), is(true));
-        assertThat(msg1.equals(null), is(false));
-        assertThat(msg1.equals("a"), is(false));
-        assertThat(msg2.equals(msg3), is(false));
-        assertThat(msg1.equals(ResultMessage.fromText("bar")), is(false));
-        assertThat(msg1.equals(msg2), is(false));
-        assertThat(msg2.equals(ResultMessage.fromCode("hoo")), is(false));
-        assertThat(msg4.equals(msg5), is(false));
+        assertThat(msg1.equals(msg1)).isEqualTo(true);
+        assertThat(msg1.equals(null)).isEqualTo(false);
+        assertThat(msg1.equals("a")).isEqualTo(false);
+        assertThat(msg2.equals(msg3)).isEqualTo(false);
+        assertThat(msg1.equals(ResultMessage.fromText("bar"))).isEqualTo(false);
+        assertThat(msg1.equals(msg2)).isEqualTo(false);
+        assertThat(msg2.equals(ResultMessage.fromCode("hoo"))).isEqualTo(false);
+        assertThat(msg4.equals(msg5)).isEqualTo(false);
 
         Set<ResultMessage> set = new HashSet<ResultMessage>();
         set.add(msg1);
         set.add(msg2);
         set.add(msg3);
-        assertThat(set, hasItem(msg1));
-        assertThat(set, hasItem(ResultMessage.fromText("foo")));
-        assertThat(set, hasItem(ResultMessage.fromCode("foo")));
-        assertThat(set, hasItem(ResultMessage.fromCode("foo", "a")));
+        assertThat(set).contains(msg1);
+        assertThat(set).contains(ResultMessage.fromText("foo"));
+        assertThat(set).contains(ResultMessage.fromCode("foo"));
+        assertThat(set).contains(ResultMessage.fromCode("foo", "a"));
     }
 
 }

@@ -68,11 +68,12 @@ abstract public class AbstractConstraintsTest<F> {
      */
     protected void assertFailedToInitialize(ValidationException ex,
             Class<? extends Throwable> causeType) {
-        assertThat(ex.getCause(), allOf( //
-                instanceOf(IllegalArgumentException.class), //
-                hasProperty("message", is(MESSAGE_INITIALIZE_ERROR)), //
-                hasProperty("cause", instanceOf(causeType)) //
-        ));
+        org.assertj.core.api.Assertions.assertThat(ex.getCause())
+                .satisfies(
+                        arg -> org.assertj.core.api.Assertions.assertThat(arg).isInstanceOf(IllegalArgumentException.class),
+                        arg -> assertThat(arg, hasProperty("message", is(MESSAGE_INITIALIZE_ERROR))),
+                        arg -> assertThat(arg, hasProperty("cause", instanceOf(causeType)))
+                );
     }
 
     /**
@@ -83,14 +84,15 @@ abstract public class AbstractConstraintsTest<F> {
      */
     protected void assertFailedToInitialize(ValidationException ex,
             Class<? extends Throwable> causeType, String message) {
-        assertThat(ex.getCause(), allOf( //
-                instanceOf(IllegalArgumentException.class), //
-                hasProperty("message", is(MESSAGE_INITIALIZE_ERROR)), //
-                hasProperty("cause", allOf( //
-                        instanceOf(causeType), //
-                        hasProperty("message", is(message)) //
-                )) //
-        ));
+        org.assertj.core.api.Assertions.assertThat(ex.getCause())
+                .satisfies(
+                        arg -> org.assertj.core.api.Assertions.assertThat(arg).isInstanceOf(IllegalArgumentException.class),
+                        arg -> assertThat(arg, hasProperty("message", is(MESSAGE_INITIALIZE_ERROR))),
+                        arg -> assertThat(arg, hasProperty("cause", allOf( //
+                                instanceOf(causeType), //
+                                hasProperty("message", is(message)) //
+                        )))
+                );
     }
 
     /**
@@ -99,10 +101,11 @@ abstract public class AbstractConstraintsTest<F> {
      * @param type expected not support type.
      */
     protected void assertTypeNotSupport(ValidationException ex, Class<?> type) {
-        assertThat(ex.getCause(), allOf( //
-                instanceOf(IllegalArgumentException.class), //
-                hasProperty("message", is(String.format(MESSAGE_NOTSUPPORT_ERROR, type.getName()))) //
-        ));
+        org.assertj.core.api.Assertions.assertThat(ex.getCause())
+                .satisfies(
+                        arg -> org.assertj.core.api.Assertions.assertThat(arg).isInstanceOf(IllegalArgumentException.class),
+                        arg -> assertThat(arg, hasProperty("message", is(String.format(MESSAGE_NOTSUPPORT_ERROR, type.getName()))))
+                );
     }
 
 }

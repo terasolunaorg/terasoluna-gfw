@@ -15,9 +15,7 @@
  */
 package org.terasoluna.gfw.security.web.logging;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import java.util.Arrays;
@@ -63,7 +61,7 @@ public class UserIdMDCPutFilterTest {
         String mdcKeyStr = mdcPutFilter.getMDCKey(request, response);
 
         // assert
-        assertThat(mdcKeyStr, is("USER"));
+        assertThat(mdcKeyStr).isEqualTo("USER");
 
     }
 
@@ -76,7 +74,7 @@ public class UserIdMDCPutFilterTest {
         String mdcKeyStr = mdcPutFilter.getMDCKey(request, response);
 
         // assert
-        assertThat(mdcKeyStr, is("LOGIN_USER_ID"));
+        assertThat(mdcKeyStr).isEqualTo("LOGIN_USER_ID");
 
     }
 
@@ -100,7 +98,7 @@ public class UserIdMDCPutFilterTest {
         String mdcValueStr = mdcPutFilter.getMDCValue(request, response);
 
         // assert
-        assertThat(mdcValueStr, is(userName));
+        assertThat(mdcValueStr).isEqualTo(userName);
 
     }
 
@@ -108,7 +106,7 @@ public class UserIdMDCPutFilterTest {
     public void testGetMDCValueNullAuthentication() {
         UserIdMDCPutFilter mdcPutFilter = new UserIdMDCPutFilter();
         String mdcValueStr = mdcPutFilter.getMDCValue(request, response);
-        assertThat(mdcValueStr, is(nullValue()));
+        assertThat(mdcValueStr).isNull();
     }
 
     @Test
@@ -127,7 +125,7 @@ public class UserIdMDCPutFilterTest {
 
         String mdcValueStr = mdcPutFilter.getMDCValue(request, response);
         // assert
-        assertThat(mdcValueStr, is(userName));
+        assertThat(mdcValueStr).isEqualTo(userName);
     }
 
     // @Test

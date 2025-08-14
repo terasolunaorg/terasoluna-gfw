@@ -15,9 +15,8 @@
  */
 package org.terasoluna.gfw.web.util;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.lang.reflect.Constructor;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,20 +35,20 @@ public class RequestUtilsTest {
     public void testIsAjaxRequest() {
         request.addHeader("X-Requested-With", "XMLHttpRequest");
 
-        assertThat(RequestUtils.isAjaxRequest(request), is(true));
+        assertThat(RequestUtils.isAjaxRequest(request)).isEqualTo(true);
     }
 
     @Test
     public void testNotAjaxRequest() {
 
-        assertThat(RequestUtils.isAjaxRequest(request), is(false));
+        assertThat(RequestUtils.isAjaxRequest(request)).isEqualTo(false);
     }
 
     @Test
     public void testPrivateConstructor() throws Exception {
         Constructor<RequestUtils> c = RequestUtils.class.getDeclaredConstructor();
         c.setAccessible(true);
-        assertThat(c.newInstance(), is(notNullValue()));
+        assertThat(c.newInstance()).isNotNull();
     }
 
 }

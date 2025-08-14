@@ -15,9 +15,8 @@
  */
 package org.terasoluna.gfw.common.time;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.time.Clock;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
@@ -35,19 +34,19 @@ public class ConfigurableClockFactoryTest {
         Clock clock = clockFactory.fixed();
 
         ZonedDateTime now = ZonedDateTime.now(clock);
-        assertThat(now.getYear(), is(2012));
-        assertThat(now.getMonthValue(), is(9));
-        assertThat(now.getDayOfMonth(), is(11));
-        assertThat(now.getHour(), is(2));
-        assertThat(now.getMinute(), is(25));
-        assertThat(now.getSecond(), is(15));
-        assertThat(now.getNano(), is(0));
-        assertThat(now.getZone(), is(ZoneId.systemDefault()));
+        assertThat(now.getYear()).isEqualTo(2012);
+        assertThat(now.getMonthValue()).isEqualTo(9);
+        assertThat(now.getDayOfMonth()).isEqualTo(11);
+        assertThat(now.getHour()).isEqualTo(2);
+        assertThat(now.getMinute()).isEqualTo(25);
+        assertThat(now.getSecond()).isEqualTo(15);
+        assertThat(now.getNano()).isEqualTo(0);
+        assertThat(now.getZone()).isEqualTo(ZoneId.systemDefault());
 
         Thread.sleep(100);
 
         ZonedDateTime now2 = ZonedDateTime.now(clock);
-        assertThat(now2.isEqual(now), is(true));
+        assertThat(now2.isEqual(now)).isEqualTo(true);
     }
 
     @Test
@@ -56,14 +55,14 @@ public class ConfigurableClockFactoryTest {
         Clock clock = clockFactory.fixed(ZoneOffset.UTC);
 
         ZonedDateTime now = ZonedDateTime.now(clock);
-        assertThat(now.getYear(), is(2012));
-        assertThat(now.getMonthValue(), is(9));
-        assertThat(now.getDayOfMonth(), is(11));
-        assertThat(now.getHour(), is(2));
-        assertThat(now.getMinute(), is(25));
-        assertThat(now.getSecond(), is(15));
-        assertThat(now.getNano(), is(0));
-        assertThat(now.getZone(), is(ZoneOffset.UTC));
+        assertThat(now.getYear()).isEqualTo(2012);
+        assertThat(now.getMonthValue()).isEqualTo(9);
+        assertThat(now.getDayOfMonth()).isEqualTo(11);
+        assertThat(now.getHour()).isEqualTo(2);
+        assertThat(now.getMinute()).isEqualTo(25);
+        assertThat(now.getSecond()).isEqualTo(15);
+        assertThat(now.getNano()).isEqualTo(0);
+        assertThat(now.getZone()).isEqualTo(ZoneOffset.UTC);
     }
 
     @Test
@@ -72,19 +71,19 @@ public class ConfigurableClockFactoryTest {
         Clock clock = clockFactory.tick();
 
         ZonedDateTime now = ZonedDateTime.now(clock);
-        assertThat(now.getYear(), is(2012));
-        assertThat(now.getMonthValue(), is(9));
-        assertThat(now.getDayOfMonth(), is(11));
-        assertThat(now.getHour(), is(2));
-        assertThat(now.getMinute(), is(25));
-        assertThat(now.getSecond(), is(15));
-        assertThat(now.getNano(), greaterThanOrEqualTo(0));
-        assertThat(now.getZone(), is(ZoneId.systemDefault()));
+        assertThat(now.getYear()).isEqualTo(2012);
+        assertThat(now.getMonthValue()).isEqualTo(9);
+        assertThat(now.getDayOfMonth()).isEqualTo(11);
+        assertThat(now.getHour()).isEqualTo(2);
+        assertThat(now.getMinute()).isEqualTo(25);
+        assertThat(now.getSecond()).isEqualTo(15);
+        assertThat(now.getNano()).isGreaterThanOrEqualTo(0);
+        assertThat(now.getZone()).isEqualTo(ZoneId.systemDefault());
 
         Thread.sleep(100);
 
         ZonedDateTime now2 = ZonedDateTime.now(clock);
-        assertThat(now2.isAfter(now), is(true));
+        assertThat(now2.isAfter(now)).isEqualTo(true);
     }
 
     @Test
@@ -93,19 +92,19 @@ public class ConfigurableClockFactoryTest {
         Clock clock = clockFactory.tick(ZoneOffset.UTC);
 
         ZonedDateTime now = ZonedDateTime.now(clock);
-        assertThat(now.getYear(), is(2012));
-        assertThat(now.getMonthValue(), is(9));
-        assertThat(now.getDayOfMonth(), is(11));
-        assertThat(now.getHour(), is(2));
-        assertThat(now.getMinute(), is(25));
-        assertThat(now.getSecond(), is(15));
-        assertThat(now.getNano(), greaterThanOrEqualTo(0));
-        assertThat(now.getZone(), is(ZoneOffset.UTC));
+        assertThat(now.getYear()).isEqualTo(2012);
+        assertThat(now.getMonthValue()).isEqualTo(9);
+        assertThat(now.getDayOfMonth()).isEqualTo(11);
+        assertThat(now.getHour()).isEqualTo(2);
+        assertThat(now.getMinute()).isEqualTo(25);
+        assertThat(now.getSecond()).isEqualTo(15);
+        assertThat(now.getNano()).isGreaterThanOrEqualTo(0);
+        assertThat(now.getZone()).isEqualTo(ZoneOffset.UTC);
 
         Thread.sleep(100);
 
         ZonedDateTime now2 = ZonedDateTime.now(clock);
-        assertThat(now2.isAfter(now), is(true));
+        assertThat(now2.isAfter(now)).isEqualTo(true);
     }
 
     @Test
@@ -116,19 +115,19 @@ public class ConfigurableClockFactoryTest {
         Clock clock = formatPatternClockFactory.fixed();
 
         ZonedDateTime now = ZonedDateTime.now(clock);
-        assertThat(now.getYear(), is(2012));
-        assertThat(now.getMonthValue(), is(9));
-        assertThat(now.getDayOfMonth(), is(11));
-        assertThat(now.getHour(), is(2));
-        assertThat(now.getMinute(), is(25));
-        assertThat(now.getSecond(), is(15));
-        assertThat(now.getNano(), is(0));
-        assertThat(now.getZone(), is(ZoneId.systemDefault()));
+        assertThat(now.getYear()).isEqualTo(2012);
+        assertThat(now.getMonthValue()).isEqualTo(9);
+        assertThat(now.getDayOfMonth()).isEqualTo(11);
+        assertThat(now.getHour()).isEqualTo(2);
+        assertThat(now.getMinute()).isEqualTo(25);
+        assertThat(now.getSecond()).isEqualTo(15);
+        assertThat(now.getNano()).isEqualTo(0);
+        assertThat(now.getZone()).isEqualTo(ZoneId.systemDefault());
 
         Thread.sleep(100);
 
         ZonedDateTime now2 = ZonedDateTime.now(clock);
-        assertThat(now2.isEqual(now), is(true));
+        assertThat(now2.isEqual(now)).isEqualTo(true);
     }
 
     @Test
@@ -139,18 +138,18 @@ public class ConfigurableClockFactoryTest {
         Clock clock = formatStyleClockFactory.fixed();
 
         ZonedDateTime now = ZonedDateTime.now(clock);
-        assertThat(now.getYear(), is(2012));
-        assertThat(now.getMonthValue(), is(9));
-        assertThat(now.getDayOfMonth(), is(11));
-        assertThat(now.getHour(), is(2));
-        assertThat(now.getMinute(), is(25));
-        assertThat(now.getSecond(), is(15));
-        assertThat(now.getNano(), is(0));
-        assertThat(now.getZone(), is(ZoneId.systemDefault()));
+        assertThat(now.getYear()).isEqualTo(2012);
+        assertThat(now.getMonthValue()).isEqualTo(9);
+        assertThat(now.getDayOfMonth()).isEqualTo(11);
+        assertThat(now.getHour()).isEqualTo(2);
+        assertThat(now.getMinute()).isEqualTo(25);
+        assertThat(now.getSecond()).isEqualTo(15);
+        assertThat(now.getNano()).isEqualTo(0);
+        assertThat(now.getZone()).isEqualTo(ZoneId.systemDefault());
 
         Thread.sleep(100);
 
         ZonedDateTime now2 = ZonedDateTime.now(clock);
-        assertThat(now2.isEqual(now), is(true));
+        assertThat(now2.isEqual(now)).isEqualTo(true);
     }
 }

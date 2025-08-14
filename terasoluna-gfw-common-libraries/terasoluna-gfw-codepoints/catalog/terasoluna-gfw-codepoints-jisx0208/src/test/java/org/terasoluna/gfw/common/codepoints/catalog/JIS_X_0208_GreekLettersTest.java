@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.common.codepoints.catalog;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.terasoluna.gfw.common.codepoints.CodePoints;
@@ -27,12 +26,12 @@ public class JIS_X_0208_GreekLettersTest {
     @Test
     public void testIsValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("αβγ"), is(true));
+        assertThat(codePoints.containsAll("αβγ")).isEqualTo(true);
     }
 
     @Test
     public void testIsInValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("αBγ"), is(false));
+        assertThat(codePoints.containsAll("αBγ")).isEqualTo(false);
     }
 }

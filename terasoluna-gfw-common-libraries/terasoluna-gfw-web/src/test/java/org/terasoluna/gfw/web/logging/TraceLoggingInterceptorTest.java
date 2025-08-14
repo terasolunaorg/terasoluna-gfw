@@ -15,10 +15,7 @@
  */
 package org.terasoluna.gfw.web.logging;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.mock;
@@ -109,7 +106,7 @@ public class TraceLoggingInterceptorTest {
 
         // assert
         verifyLogging(expectedLogStr, ImmutableList.of(Level.TRACE), 1);
-        assertThat(startTime, notNullValue());
+        assertThat(startTime).isNotNull();
     }
 
     /**
@@ -130,7 +127,7 @@ public class TraceLoggingInterceptorTest {
                 (Long) request.getAttribute(TraceLoggingInterceptor.class.getName() + ".startTime");
 
         // assert
-        assertThat(startTime, nullValue());
+        assertThat(startTime).isNull();
         verify(mockAppender, times(0)).doAppend(any());
     }
 
@@ -150,9 +147,9 @@ public class TraceLoggingInterceptorTest {
                 (Long) request.getAttribute(TraceLoggingInterceptor.class.getName() + ".startTime");
 
         // assert
-        assertThat(startTime, nullValue());
+        assertThat(startTime).isNull();
         verify(mockAppender, times(0)).doAppend(any());
-        assertThat(logger.isDebugEnabled(), is(false));
+        assertThat(logger.isDebugEnabled()).isEqualTo(false);
 
         // init log level
         LogLevelChangeUtil.resetLogLevel();
@@ -341,7 +338,7 @@ public class TraceLoggingInterceptorTest {
         interceptor.postHandle(request, response, paramHandler, model);
 
         // assert
-        assertThat(logger.isDebugEnabled(), is(false));
+        assertThat(logger.isDebugEnabled()).isEqualTo(false);
 
         // init log level
         LogLevelChangeUtil.resetLogLevel();
@@ -361,7 +358,7 @@ public class TraceLoggingInterceptorTest {
         interceptor.postHandle(request, response, paramHandler, model);
 
         // assert
-        assertThat(logger.isDebugEnabled(), is(false));
+        assertThat(logger.isDebugEnabled()).isEqualTo(false);
 
         // init log level
         LogLevelChangeUtil.resetLogLevel();

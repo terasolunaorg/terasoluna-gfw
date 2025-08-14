@@ -15,13 +15,6 @@
  */
 package org.terasoluna.gfw.web.exception;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.anEmptyMap;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.hasEntry;
-import static org.hamcrest.Matchers.hasToString;
 import java.util.Enumeration;
 import java.util.Locale;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,7 +31,10 @@ import org.terasoluna.gfw.common.exception.BusinessException;
 import org.terasoluna.gfw.common.exception.SimpleMappingExceptionCodeResolver;
 import org.terasoluna.gfw.common.exception.SystemException;
 import org.terasoluna.gfw.common.message.ResultMessages;
+
 import jakarta.servlet.ServletException;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class SystemExceptionResolverTest {
     private SystemExceptionResolver testTarget;
@@ -75,8 +71,8 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
-        assertThat(mockResponse.getHeaderNames(), is(empty()));
+        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isEqualTo(false);
+        assertThat(mockResponse.getHeaderNames()).isEmpty();
 
     }
 
@@ -91,10 +87,10 @@ public class SystemExceptionResolverTest {
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
         Enumeration<String> attributeNames = mockRequest.getAttributeNames();
-        assertThat(attributeNames.nextElement(), is(DispatcherServlet.OUTPUT_FLASH_MAP_ATTRIBUTE));
-        assertThat(attributeNames.hasMoreElements(), is(false));
-        assertThat(mockResponse.getHeaderNames(), is(empty()));
-        assertThat(flashMap, is(anEmptyMap()));
+        assertThat(attributeNames.nextElement()).isEqualTo(DispatcherServlet.OUTPUT_FLASH_MAP_ATTRIBUTE);
+        assertThat(attributeNames.hasMoreElements()).isEqualTo(false);
+        assertThat(mockResponse.getHeaderNames()).isEmpty();
+        assertThat(flashMap).isEmpty();
 
     }
 
@@ -108,10 +104,10 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttribute("exceptionCode"), hasToString("code001"));
-        assertThat(mockResponse.getHeader("X-Exception-Code"), is("code001"));
+        assertThat(mockRequest.getAttribute("exceptionCode")).hasToString("code001");
+        assertThat(mockResponse.getHeader("X-Exception-Code")).isEqualTo("code001");
 
-        assertThat(flashMap, hasEntry("exceptionCode", "code001"));
+        assertThat(flashMap).containsEntry("exceptionCode", "code001");
 
     }
 
@@ -125,8 +121,8 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
-        assertThat(mockResponse.getHeaderNames(), is(empty()));
+        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isEqualTo(false);
+        assertThat(mockResponse.getHeaderNames()).isEmpty();
 
     }
 
@@ -140,8 +136,8 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
-        assertThat(mockResponse.getHeaderNames(), is(empty()));
+        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isEqualTo(false);
+        assertThat(mockResponse.getHeaderNames()).isEmpty();
 
     }
 
@@ -154,8 +150,8 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
-        assertThat(mockResponse.getHeader("X-Exception-Code"), is("code001"));
+        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isEqualTo(false);
+        assertThat(mockResponse.getHeader("X-Exception-Code")).isEqualTo("code001");
 
     }
 
@@ -168,8 +164,8 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttributeNames().hasMoreElements(), is(false));
-        assertThat(mockResponse.getHeader("X-Exception-Code"), is("code001"));
+        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isEqualTo(false);
+        assertThat(mockResponse.getHeader("X-Exception-Code")).isEqualTo("code001");
 
     }
 
@@ -182,8 +178,8 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttribute("exceptionCode"), hasToString("code001"));
-        assertThat(mockResponse.getHeaderNames(), is(empty()));
+        assertThat(mockRequest.getAttribute("exceptionCode")).hasToString("code001");
+        assertThat(mockResponse.getHeaderNames()).isEmpty();
 
     }
 
@@ -196,8 +192,8 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttribute("exceptionCode"), hasToString("code001"));
-        assertThat(mockResponse.getHeaderNames(), is(empty()));
+        assertThat(mockRequest.getAttribute("exceptionCode")).hasToString("code001");
+        assertThat(mockResponse.getHeaderNames()).isEmpty();
 
     }
 
@@ -211,7 +207,7 @@ public class SystemExceptionResolverTest {
 
         FlashMap flashMap = RequestContextUtils.getOutputFlashMap(mockRequest);
 
-        assertThat(flashMap, is(nullValue()));
+        assertThat(flashMap).isNull();
 
     }
 
@@ -226,8 +222,7 @@ public class SystemExceptionResolverTest {
 
         testTarget.setResultMessages(occurException, mockRequest);
 
-        assertThat(resultMessages,
-                is(flashMap.get(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME)));
+        assertThat(resultMessages).isEqualTo(flashMap.get(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME));
 
     }
 
@@ -241,7 +236,7 @@ public class SystemExceptionResolverTest {
 
         testTarget.setResultMessages(occurException, mockRequest);
 
-        assertThat(flashMap, is(anEmptyMap()));
+        assertThat(flashMap).isEmpty();
 
     }
 
@@ -258,7 +253,7 @@ public class SystemExceptionResolverTest {
 
         testTarget.setResultMessages(occurException, mockRequest);
 
-        assertThat(flashMap, is(anEmptyMap()));
+        assertThat(flashMap).isEmpty();
 
     }
 
@@ -275,7 +270,7 @@ public class SystemExceptionResolverTest {
 
         testTarget.setResultMessages(occurException, mockRequest);
 
-        assertThat(flashMap, is(anEmptyMap()));
+        assertThat(flashMap).isEmpty();
 
     }
 
@@ -298,10 +293,9 @@ public class SystemExceptionResolverTest {
         testTarget.setExceptionInfo(occurException, mockRequest, mockResponse);
 
         // do assert.
-        assertThat(mockRequest.getAttribute("exceptionCode"), hasToString("defaultCode"));
-        assertThat(mockResponse.getHeader("X-Exception-Code"), is("defaultCode"));
-        assertThat(resultMessages,
-                is(flashMap.get(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME)));
+        assertThat(mockRequest.getAttribute("exceptionCode")).hasToString("defaultCode");
+        assertThat(mockResponse.getHeader("X-Exception-Code")).isEqualTo("defaultCode");
+        assertThat(resultMessages).isEqualTo(flashMap.get(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME));
 
     }
 
@@ -315,7 +309,7 @@ public class SystemExceptionResolverTest {
                 testTarget.doResolveException(mockRequest, mockResponse, null, new Exception());
 
         // do assert.
-        assertThat(actualModleAndView, is(nullValue()));
+        assertThat(actualModleAndView).isNull();
     }
 
     @Test
@@ -349,18 +343,16 @@ public class SystemExceptionResolverTest {
                 testTarget.doResolveException(mockRequest, mockResponse, null, occurException);
 
         // do assert.
-        assertThat(mockResponse.getStatus(), is(444));
-        assertThat((Integer) mockRequest.getAttribute(WebUtils.ERROR_STATUS_CODE_ATTRIBUTE),
-                is(444));
+        assertThat(mockResponse.getStatus()).isEqualTo(444);
+        assertThat((Integer) mockRequest.getAttribute(WebUtils.ERROR_STATUS_CODE_ATTRIBUTE)).isEqualTo(444);
 
-        assertThat(occurException, is(actualModleAndView.getModel()
-                .get(SimpleMappingExceptionResolver.DEFAULT_EXCEPTION_ATTRIBUTE)));
+        assertThat(occurException).isEqualTo(actualModleAndView.getModel()
+                .get(SimpleMappingExceptionResolver.DEFAULT_EXCEPTION_ATTRIBUTE));
 
-        assertThat(mockRequest.getAttribute("exceptionCode"), hasToString("defaultExceptionCode"));
-        assertThat(mockResponse.getHeader("X-Exception-Code"), is("defaultExceptionCode"));
+        assertThat(mockRequest.getAttribute("exceptionCode")).hasToString("defaultExceptionCode");
+        assertThat(mockResponse.getHeader("X-Exception-Code")).isEqualTo("defaultExceptionCode");
 
-        assertThat(resultMessages,
-                is(flashMap.get(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME)));
+        assertThat(resultMessages).isEqualTo(flashMap.get(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME));
 
     }
 
@@ -380,7 +372,7 @@ public class SystemExceptionResolverTest {
         String ViewName = testTarget.determineViewName(wrappingException, mockRequest);
 
         // do assert.
-        assertThat(ViewName, is("defaultErrorView"));
+        assertThat(ViewName).isEqualTo("defaultErrorView");
 
         testTarget.setCheckCause(true);
 
@@ -388,7 +380,7 @@ public class SystemExceptionResolverTest {
         ViewName = testTarget.determineViewName(wrappingException, mockRequest);
 
         // do assert.
-        assertThat(ViewName, is(nullValue()));
+        assertThat(ViewName).isNull();
     }
 
     @Test
@@ -407,7 +399,7 @@ public class SystemExceptionResolverTest {
         String ViewName = testTarget.determineViewName(occurException, mockRequest);
 
         // do assert.
-        assertThat(ViewName, is("defaultErrorView"));
+        assertThat(ViewName).isEqualTo("defaultErrorView");
 
         testTarget.setCheckSubClass(true);
 
@@ -415,7 +407,7 @@ public class SystemExceptionResolverTest {
         ViewName = testTarget.determineViewName(occurException, mockRequest);
 
         // do assert.
-        assertThat(ViewName, is(nullValue()));
+        assertThat(ViewName).isNull();
     }
 
     @Test
@@ -434,7 +426,7 @@ public class SystemExceptionResolverTest {
         String ViewName = testTarget.determineViewName(wrappingException, mockRequest);
 
         // do assert.
-        assertThat(ViewName, is("defaultErrorView"));
+        assertThat(ViewName).isEqualTo("defaultErrorView");
 
         testTarget.setCheckCause(true);
         testTarget.setCheckSubClass(true);
@@ -443,7 +435,7 @@ public class SystemExceptionResolverTest {
         ViewName = testTarget.determineViewName(wrappingException, mockRequest);
 
         // do assert.
-        assertThat(ViewName, is(nullValue()));
+        assertThat(ViewName).isNull();
     }
 
     public class TestAjaxController {

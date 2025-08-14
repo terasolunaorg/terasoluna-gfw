@@ -15,16 +15,14 @@
  */
 package org.terasoluna.gfw.web.mvc.support;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-
 import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 
 import jakarta.servlet.http.HttpServletRequest;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class RequestDataValueProcessorAdaptorTest {
 
@@ -36,7 +34,7 @@ public class RequestDataValueProcessorAdaptorTest {
     @Test
     public void testProcessAction01() {
         String action = requestDataValueProcessorAdaptor.processAction(request, "action");
-        assertThat(action, is("action"));
+        assertThat(action).isEqualTo("action");
     }
 
     @Test
@@ -45,27 +43,27 @@ public class RequestDataValueProcessorAdaptorTest {
         String action = requestDataValueProcessorAdaptor.processAction(request, "action", "method");
 
         // assert
-        assertThat(action, is("action"));
+        assertThat(action).isEqualTo("action");
     }
 
     @Test
     public void testProcessFormFieldValue() {
         String value =
                 requestDataValueProcessorAdaptor.processFormFieldValue(request, "", "value", "");
-        assertThat(value, is("value"));
+        assertThat(value).isEqualTo("value");
     }
 
     @Test
     public void testGetExtraHiddenFields() {
         Map<String, String> map = requestDataValueProcessorAdaptor.getExtraHiddenFields(request);
-        assertThat(map, is(nullValue()));
+        assertThat(map).isNull();
     }
 
     @Test
     public void testProcessUrl() {
         String url =
                 requestDataValueProcessorAdaptor.processUrl(request, "http://localhost:8080/test");
-        assertThat(url, is("http://localhost:8080/test"));
+        assertThat(url).isEqualTo("http://localhost:8080/test");
     }
 
 }

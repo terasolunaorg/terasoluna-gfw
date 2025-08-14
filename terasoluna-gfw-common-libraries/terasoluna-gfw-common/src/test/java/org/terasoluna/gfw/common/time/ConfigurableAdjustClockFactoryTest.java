@@ -15,8 +15,8 @@
  */
 package org.terasoluna.gfw.common.time;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.time.Clock;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
@@ -50,13 +50,13 @@ public class ConfigurableAdjustClockFactoryTest {
 
         ZonedDateTime standard = ZonedDateTime.now().plusDays(30);
         ZonedDateTime now = ZonedDateTime.now(clock);
-        assertThat(now.withNano(0).isEqual(standard.withNano(0)), is(true));
-        assertThat(now.getZone(), is(standard.getZone()));
+        assertThat(now.withNano(0).isEqual(standard.withNano(0))).isEqualTo(true);
+        assertThat(now.getZone()).isEqualTo(standard.getZone());
 
         Thread.sleep(100);
 
         ZonedDateTime now2 = ZonedDateTime.now(clock);
-        assertThat(now2.isEqual(now), is(true));
+        assertThat(now2.isEqual(now)).isEqualTo(true);
     }
 
     @Test
@@ -66,8 +66,8 @@ public class ConfigurableAdjustClockFactoryTest {
 
         ZonedDateTime standard = ZonedDateTime.now(ZoneOffset.UTC).plusDays(30);
         ZonedDateTime now = ZonedDateTime.now(clock);
-        assertThat(now.withNano(0).isEqual(standard.withNano(0)), is(true));
-        assertThat(now.getZone(), is(standard.getZone()));
+        assertThat(now.withNano(0).isEqual(standard.withNano(0))).isEqualTo(true);
+        assertThat(now.getZone()).isEqualTo(standard.getZone());
     }
 
     @Test
@@ -77,13 +77,13 @@ public class ConfigurableAdjustClockFactoryTest {
 
         ZonedDateTime standard = ZonedDateTime.now().plusDays(30);
         ZonedDateTime now = ZonedDateTime.now(clock);
-        assertThat(now.withNano(0).isEqual(standard.withNano(0)), is(true));
-        assertThat(now.getZone(), is(standard.getZone()));
+        assertThat(now.withNano(0).isEqual(standard.withNano(0))).isEqualTo(true);
+        assertThat(now.getZone()).isEqualTo(standard.getZone());
 
         Thread.sleep(100);
 
         ZonedDateTime now2 = ZonedDateTime.now(clock);
-        assertThat(now2.isAfter(now), is(true));
+        assertThat(now2.isAfter(now)).isEqualTo(true);
     }
 
     @Test
@@ -93,7 +93,7 @@ public class ConfigurableAdjustClockFactoryTest {
 
         ZonedDateTime standard = ZonedDateTime.now(ZoneOffset.UTC).plusDays(30);
         ZonedDateTime now = ZonedDateTime.now(clock);
-        assertThat(now.withNano(0).isEqual(standard.withNano(0)), is(true));
-        assertThat(now.getZone(), is(standard.getZone()));
+        assertThat(now.withNano(0).isEqual(standard.withNano(0))).isEqualTo(true);
+        assertThat(now.getZone()).isEqualTo(standard.getZone());
     }
 }

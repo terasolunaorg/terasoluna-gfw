@@ -15,12 +15,7 @@
  */
 package org.terasoluna.gfw.common.codelist.i18n;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.aMapWithSize;
-import static org.hamcrest.Matchers.hasEntry;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.argThat;
@@ -90,44 +85,44 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
     public void testAsMap() {
 
         Map<String, String> row1 = testSetRows.asMap();
-        assertThat(row1, is(notNullValue()));
-        assertThat(row1, aMapWithSize(7));
+        assertThat(row1).isNotNull();
+        assertThat(row1).hasSize(7);
 
-        assertThat(row1, hasEntry("0", "Sun."));
-        assertThat(row1, hasEntry("1", "Mon."));
-        assertThat(row1, hasEntry("2", "Tue."));
-        assertThat(row1, hasEntry("3", "Wed."));
-        assertThat(row1, hasEntry("4", "Thu."));
-        assertThat(row1, hasEntry("5", "Fri."));
-        assertThat(row1, hasEntry("6", "Sat."));
+        assertThat(row1).containsEntry("0", "Sun.");
+        assertThat(row1).containsEntry("1", "Mon.");
+        assertThat(row1).containsEntry("2", "Tue.");
+        assertThat(row1).containsEntry("3", "Wed.");
+        assertThat(row1).containsEntry("4", "Thu.");
+        assertThat(row1).containsEntry("5", "Fri.");
+        assertThat(row1).containsEntry("6", "Sat.");
     }
 
     @Test
     public void testAsMapLocaleSpecification() {
 
         Map<String, String> row1 = testSetRows.asMap(Locale.ENGLISH);
-        assertThat(row1, is(notNullValue()));
-        assertThat(row1, aMapWithSize(7));
+        assertThat(row1).isNotNull();
+        assertThat(row1).hasSize(7);
 
-        assertThat(row1, hasEntry("0", "Sun."));
-        assertThat(row1, hasEntry("1", "Mon."));
-        assertThat(row1, hasEntry("2", "Tue."));
-        assertThat(row1, hasEntry("3", "Wed."));
-        assertThat(row1, hasEntry("4", "Thu."));
-        assertThat(row1, hasEntry("5", "Fri."));
-        assertThat(row1, hasEntry("6", "Sat."));
+        assertThat(row1).containsEntry("0", "Sun.");
+        assertThat(row1).containsEntry("1", "Mon.");
+        assertThat(row1).containsEntry("2", "Tue.");
+        assertThat(row1).containsEntry("3", "Wed.");
+        assertThat(row1).containsEntry("4", "Thu.");
+        assertThat(row1).containsEntry("5", "Fri.");
+        assertThat(row1).containsEntry("6", "Sat.");
 
         Map<String, String> row2 = testSetRows.asMap(Locale.JAPANESE);
-        assertThat(row2, is(notNullValue()));
-        assertThat(row2, aMapWithSize(7));
+        assertThat(row2).isNotNull();
+        assertThat(row2).hasSize(7);
 
-        assertThat(row2, hasEntry("0", "日"));
-        assertThat(row2, hasEntry("1", "月"));
-        assertThat(row2, hasEntry("2", "火"));
-        assertThat(row2, hasEntry("3", "水"));
-        assertThat(row2, hasEntry("4", "木"));
-        assertThat(row2, hasEntry("5", "金"));
-        assertThat(row2, hasEntry("6", "土"));
+        assertThat(row2).containsEntry("0", "日");
+        assertThat(row2).containsEntry("1", "月");
+        assertThat(row2).containsEntry("2", "火");
+        assertThat(row2).containsEntry("3", "水");
+        assertThat(row2).containsEntry("4", "木");
+        assertThat(row2).containsEntry("5", "金");
+        assertThat(row2).containsEntry("6", "土");
     }
 
     @Test
@@ -139,19 +134,19 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
 
     @Test
     public void testSetRows() {
-        assertThat(testSetRows.codeListTable.size(), is(14)); // 2 rows x 7
+        assertThat(testSetRows.codeListTable.size()).isEqualTo(14); // 2 rows x 7
                                                               // columns
     }
 
     @Test
     public void testSetRowsByCodeList() {
-        assertThat(testSetRowsByCodeList.codeListTable.size(), is(14)); // 2 rows x 7
+        assertThat(testSetRowsByCodeList.codeListTable.size()).isEqualTo(14); // 2 rows x 7
                                                                         // columns
     }
 
     @Test
     public void testSetColumns() {
-        assertThat(testSetColumns.codeListTable.size(), is(14)); // 2 rows x 7
+        assertThat(testSetColumns.codeListTable.size()).isEqualTo(14); // 2 rows x 7
                                                                  // columns
     }
 
@@ -163,7 +158,7 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
         // load lazy-init bean.
         SimpleI18nCodeList testDuplicateCodeListTable = getApplicationContext()
                 .getBean("CL_testDuplicateCodeListTable", SimpleI18nCodeList.class);
-        assertThat(testDuplicateCodeListTable.codeListTable.size(), is(14)); // 2 rows x 7
+        assertThat(testDuplicateCodeListTable.codeListTable.size()).isEqualTo(14); // 2 rows x 7
                                                                              // columns
         verify(mockAppender, times(2))
                 .doAppend(argThat(argument -> argument.getLevel().equals(Level.WARN)));
@@ -184,7 +179,7 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             codeList.setFallbackTo(null);
         });
-        assertThat(e.getMessage(), is("fallbackTo must not be null"));
+        assertThat(e.getMessage()).isEqualTo("fallbackTo must not be null");
     }
 
     @Test
@@ -193,9 +188,8 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
             super.getApplicationContext().getBean("CL_testFallbackToInvalidLanguage");
         });
         Throwable cause = e.getCause();
-        assertThat(cause, instanceOf(IllegalArgumentException.class));
-        assertThat(cause.getMessage(),
-                is("No codelist found for fallback locale 'fr', it must be defined."));
+        assertThat(cause).isInstanceOf(IllegalArgumentException.class);
+        assertThat(cause.getMessage()).isEqualTo("No codelist found for fallback locale 'fr', it must be defined.");
     }
 
     @Test
@@ -204,9 +198,8 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
             super.getApplicationContext().getBean("CL_testFallbackToInvalidLanguageMatchingNation");
         });
         Throwable cause = e.getCause();
-        assertThat(cause, instanceOf(IllegalArgumentException.class));
-        assertThat(cause.getMessage(),
-                is("No codelist found for fallback locale 'en_US', it must be defined."));
+        assertThat(cause).isInstanceOf(IllegalArgumentException.class);
+        assertThat(cause.getMessage()).isEqualTo("No codelist found for fallback locale 'en_US', it must be defined.");
     }
 
     @Test
@@ -216,7 +209,7 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             codeList.afterPropertiesSet();
         });
-        assertThat(e.getMessage(), is("codeListTable is not initialized!"));
+        assertThat(e.getMessage()).isEqualTo("codeListTable is not initialized!");
 
     }
 
@@ -227,34 +220,34 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
                     .getBean("CL_testAfterPropertiesSetInvalidResolveDefaultLocale");
         });
         Throwable cause = e.getCause();
-        assertThat(cause, instanceOf(IllegalArgumentException.class));
-        assertThat(cause.getMessage(), is("No codelist for default locale ('en_US' and 'en'). "
-                + "Please define codelist for default locale or set locale already defined in codelist to fallbackTo."));
+        assertThat(cause).isInstanceOf(IllegalArgumentException.class);
+        assertThat(cause.getMessage()).isEqualTo("No codelist for default locale ('en_US' and 'en'). "
+                + "Please define codelist for default locale or set locale already defined in codelist to fallbackTo.");
     }
 
     @Test
     public void testResolveLocale() {
-        assertThat(testResolveLocale.resolveLocale(Locale.FRENCH), is(Locale.FRENCH));
+        assertThat(testResolveLocale.resolveLocale(Locale.FRENCH)).isEqualTo(Locale.FRENCH);
     }
 
     @Test
     public void testResolveLocalePrioritizeExactMatch() {
-        assertThat(testResolveLocale.resolveLocale(Locale.CANADA_FRENCH), is(Locale.CANADA_FRENCH));
+        assertThat(testResolveLocale.resolveLocale(Locale.CANADA_FRENCH)).isEqualTo(Locale.CANADA_FRENCH);
     }
 
     @Test
     public void testResolveLocaleMatchLanguage() {
-        assertThat(testResolveLocale.resolveLocale(Locale.JAPAN), is(Locale.JAPANESE));
+        assertThat(testResolveLocale.resolveLocale(Locale.JAPAN)).isEqualTo(Locale.JAPANESE);
     }
 
     @Test
     public void testResolveLocaleUseFallbackTo() {
-        assertThat(testResolveLocale.resolveLocale(Locale.ENGLISH), is(Locale.GERMAN));
+        assertThat(testResolveLocale.resolveLocale(Locale.ENGLISH)).isEqualTo(Locale.GERMAN);
     }
 
     @Test
     public void testResolveLocaleUnmatchNation() {
-        assertThat(testResolveLocale.resolveLocale(Locale.CANADA), is(Locale.GERMAN));
+        assertThat(testResolveLocale.resolveLocale(Locale.CANADA)).isEqualTo(Locale.GERMAN);
     }
 
 }
