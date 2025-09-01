@@ -53,9 +53,6 @@ public class ConsistOfValidatorJaTest {
 
         Set<ConstraintViolation<Name_Simple>> violations = validator.validate(name);
 
-        // assertThat(violations).containsExactlyInAnyOrder(allOf( //
-        // hasProperty("propertyPath", hasToString("firstName")), //
-        // hasProperty("message", is("指定されたコードポイントで構成されていません"))));
         assertThat(violations)
                 .extracting(violation -> violation.getPropertyPath().toString(),
                         ConstraintViolation::getMessage)
