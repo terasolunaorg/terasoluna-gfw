@@ -179,7 +179,7 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             codeList.setFallbackTo(null);
         });
-        assertThat(e.getMessage()).isEqualTo("fallbackTo must not be null");
+        assertThat(e).hasMessage("fallbackTo must not be null");
     }
 
     @Test
@@ -187,10 +187,8 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
         BeanCreationException e = assertThrows(BeanCreationException.class, () -> {
             super.getApplicationContext().getBean("CL_testFallbackToInvalidLanguage");
         });
-        Throwable cause = e.getCause();
-        assertThat(cause).isInstanceOf(IllegalArgumentException.class);
-        assertThat(cause.getMessage())
-                .isEqualTo("No codelist found for fallback locale 'fr', it must be defined.");
+        assertThat(e).cause().isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("No codelist found for fallback locale 'fr', it must be defined.");
     }
 
     @Test
@@ -198,10 +196,8 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
         BeanCreationException e = assertThrows(BeanCreationException.class, () -> {
             super.getApplicationContext().getBean("CL_testFallbackToInvalidLanguageMatchingNation");
         });
-        Throwable cause = e.getCause();
-        assertThat(cause).isInstanceOf(IllegalArgumentException.class);
-        assertThat(cause.getMessage())
-                .isEqualTo("No codelist found for fallback locale 'en_US', it must be defined.");
+        assertThat(e).cause().isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("No codelist found for fallback locale 'en_US', it must be defined.");
     }
 
     @Test
@@ -211,7 +207,7 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             codeList.afterPropertiesSet();
         });
-        assertThat(e.getMessage()).isEqualTo("codeListTable is not initialized!");
+        assertThat(e).hasMessage("codeListTable is not initialized!");
 
     }
 
@@ -221,10 +217,8 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
             super.getApplicationContext()
                     .getBean("CL_testAfterPropertiesSetInvalidResolveDefaultLocale");
         });
-        Throwable cause = e.getCause();
-        assertThat(cause).isInstanceOf(IllegalArgumentException.class);
-        assertThat(cause.getMessage())
-                .isEqualTo("No codelist for default locale ('en_US' and 'en'). "
+        assertThat(e).cause().isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("No codelist for default locale ('en_US' and 'en'). "
                         + "Please define codelist for default locale or set locale already defined in codelist to fallbackTo.");
     }
 

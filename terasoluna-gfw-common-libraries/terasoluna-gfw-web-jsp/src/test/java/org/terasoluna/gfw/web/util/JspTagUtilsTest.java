@@ -63,11 +63,11 @@ public class JspTagUtilsTest {
         JspTagException e = assertThrows(JspTagException.class, () -> {
             JspTagUtils.toBoolean("on", true, "field1");
         });
-        assertThat(e.getMessage()).isEqualTo("The value of field1 must be either true or false.");
+        assertThat(e).hasMessage("The value of field1 must be either true or false.");
 
         e = assertThrows(JspTagException.class, () -> {
             JspTagUtils.toBoolean("off", false, "field2");
         });
-        assertThat(e.getMessage()).isEqualTo("The value of field2 must be either true or false.");
+        assertThat(e).hasMessage("The value of field2 must be either true or false.");
     }
 }

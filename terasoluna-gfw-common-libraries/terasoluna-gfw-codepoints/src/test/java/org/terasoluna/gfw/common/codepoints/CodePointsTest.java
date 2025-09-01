@@ -560,14 +560,14 @@ public class CodePointsTest {
     public void testOf_illegal_access() throws Exception {
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> CodePoints.of(IllegalCodePoints.class));
-        assertThat(ex.getMessage()).isEqualTo("public default constructor not found");
+        assertThat(ex).hasMessage("public default constructor not found");
     }
 
     @Test
     public void testOf_instantiation_fail() {
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> CodePoints.of(AbstractCodePoints.class));
-        assertThat(ex.getMessage()).isEqualTo("exception occurred while initializing");
+        assertThat(ex).hasMessage("exception occurred while initializing");
     }
 
     @Test

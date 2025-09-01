@@ -26,14 +26,14 @@ public class FullHalfPairsTest {
     public void testNullPairs() {
         Exception ex =
                 assertThrows(IllegalArgumentException.class, () -> new FullHalfPairs(null, null));
-        assertThat(ex.getMessage()).isEqualTo("pairs must not be null");
+        assertThat(ex).hasMessage("pairs must not be null");
     }
 
     @Test
     public void testEmptyPairs() {
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> new FullHalfPairs(Collections.<FullHalfPair>emptySet(), null));
-        assertThat(ex.getMessage()).isEqualTo("pairs must not be empty");
+        assertThat(ex).hasMessage("pairs must not be empty");
     }
 
 }

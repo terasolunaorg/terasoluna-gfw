@@ -31,15 +31,14 @@ public class SystemExceptionTest {
     public void testSystemExceptionStringStringThrowable() {
         SystemException ex = new SystemException(code, msg, cause);
         assertThat(ex.getCode()).isEqualTo(code);
-        assertThat(ex.getMessage()).isEqualTo(msg);
-        assertThat(ex.getCause()).isEqualTo(cause);
+        assertThat(ex).hasMessage(msg).hasCause(cause);
     }
 
     @Test
     public void testSystemExceptionStringString() {
         SystemException ex = new SystemException(code, msg);
         assertThat(ex.getCode()).isEqualTo(code);
-        assertThat(ex.getMessage()).isEqualTo(msg);
+        assertThat(ex).hasMessage(msg);
 
     }
 
@@ -47,7 +46,7 @@ public class SystemExceptionTest {
     public void testSystemExceptionStringThrowable() {
         SystemException ex = new SystemException(code, cause);
         assertThat(ex.getCode()).isEqualTo(code);
-        assertThat(ex.getCause()).isEqualTo(cause);
+        assertThat(ex).hasCause(cause);
     }
 
 }

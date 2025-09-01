@@ -28,9 +28,8 @@ public class TokenStringGeneratorTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             new TokenStringGenerator("InvalidAlgorithm");
         });
-        assertThat(e.getCause()).isInstanceOf(NoSuchAlgorithmException.class);
-        assertThat(e.getMessage())
-                .isEqualTo("The given algorithm is invalid. algorithm=InvalidAlgorithm");
+        assertThat(e).hasMessage("The given algorithm is invalid. algorithm=InvalidAlgorithm")
+                .cause().isInstanceOf(NoSuchAlgorithmException.class);
     }
 
     @Test
@@ -38,7 +37,7 @@ public class TokenStringGeneratorTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             new TokenStringGenerator(null);
         });
-        assertThat(e.getMessage()).isEqualTo("algorithm must not be null");
+        assertThat(e).hasMessage("algorithm must not be null");
     }
 
     @Test
@@ -72,7 +71,7 @@ public class TokenStringGeneratorTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             generator.generate(null);
         });
-        assertThat(e.getMessage()).isEqualTo("seed must not be null");
+        assertThat(e).hasMessage("seed must not be null");
     }
 
     @Test

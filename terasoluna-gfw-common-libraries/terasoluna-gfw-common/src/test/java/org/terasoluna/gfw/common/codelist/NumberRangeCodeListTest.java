@@ -217,7 +217,7 @@ public class NumberRangeCodeListTest {
 
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> numberRangeCodeList.afterPropertiesSet());
-        assertThat(ex.getMessage()).isEqualTo("interval should be greater than 0");
+        assertThat(ex).hasMessage("interval should be greater than 0");
     }
 
     /*
@@ -235,7 +235,7 @@ public class NumberRangeCodeListTest {
 
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> numberRangeCodeList.afterPropertiesSet());
-        assertThat(ex.getMessage()).isEqualTo("valueFormat must not be empty");
+        assertThat(ex).hasMessage("valueFormat must not be empty");
     }
 
     /*
@@ -253,7 +253,7 @@ public class NumberRangeCodeListTest {
 
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> numberRangeCodeList.afterPropertiesSet());
-        assertThat(ex.getMessage()).isEqualTo("valueFormat must not be empty");
+        assertThat(ex).hasMessage("valueFormat must not be empty");
     }
 
     /*
@@ -271,7 +271,7 @@ public class NumberRangeCodeListTest {
 
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> numberRangeCodeList.afterPropertiesSet());
-        assertThat(ex.getMessage()).isEqualTo("labelFormat must not be empty");
+        assertThat(ex).hasMessage("labelFormat must not be empty");
     }
 
     /*
@@ -289,6 +289,6 @@ public class NumberRangeCodeListTest {
 
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> numberRangeCodeList.afterPropertiesSet());
-        assertThat(ex.getMessage()).isEqualTo("labelFormat must not be empty");
+        assertThat(ex).hasMessage("labelFormat must not be empty");
     }
 }

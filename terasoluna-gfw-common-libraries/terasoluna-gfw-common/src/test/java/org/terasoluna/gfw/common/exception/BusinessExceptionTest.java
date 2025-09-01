@@ -30,7 +30,7 @@ public class BusinessExceptionTest {
         // throw & assert
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> new BusinessException(null, null));
-        assertThat(ex.getMessage()).isEqualTo("messages must not be null");
+        assertThat(ex).hasMessage("messages must not be null");
     }
 
     @Test
@@ -47,8 +47,7 @@ public class BusinessExceptionTest {
             throw exception;
         });
         assertThat(ex.getResultMessages()).isEqualTo(resultMessages);
-        assertThat(ex.getMessage()).isEqualTo(resultMessages.toString());
-        assertThat(ex.getCause()).isNull();
+        assertThat(ex).hasMessage(resultMessages.toString()).hasNoCause();
     }
 
     @Test
@@ -66,8 +65,8 @@ public class BusinessExceptionTest {
             throw exception;
         });
         assertThat(ex.getResultMessages()).isEqualTo(resultMessages);
-        assertThat(ex.getMessage()).isEqualTo(resultMessages.toString());
-        assertThat(ex.getCause()).isInstanceOf(IllegalArgumentException.class);
+        assertThat(ex).hasMessage(resultMessages.toString())
+                .hasCauseInstanceOf(IllegalArgumentException.class);
     }
 
 }

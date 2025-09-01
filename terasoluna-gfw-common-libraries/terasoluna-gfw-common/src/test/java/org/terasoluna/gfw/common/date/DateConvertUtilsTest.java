@@ -61,7 +61,7 @@ public class DateConvertUtilsTest {
         // testing
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> DateConvertUtils.convertToTimestamp(null));
-        assertThat(ex.getMessage()).isEqualTo("date must not be null");
+        assertThat(ex).hasMessage("date must not be null");
     }
 
     @Test
@@ -88,7 +88,7 @@ public class DateConvertUtilsTest {
         // testing
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> DateConvertUtils.convertToSqlDate(null));
-        assertThat(ex.getMessage()).isEqualTo("date must not be null");
+        assertThat(ex).hasMessage("date must not be null");
     }
 
     @Test
@@ -115,7 +115,7 @@ public class DateConvertUtilsTest {
         // testing
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> DateConvertUtils.convertToTime(null));
-        assertThat(ex.getMessage()).isEqualTo("date must not be null");
+        assertThat(ex).hasMessage("date must not be null");
     }
 
 }

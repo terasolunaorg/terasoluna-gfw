@@ -57,6 +57,6 @@ public class FullHalfConverterTest {
         Exception ex = assertThrows(IllegalArgumentException.class, () -> {
             new FullHalfConverter(null);
         });
-        assertThat(ex.getMessage()).isEqualTo("pairs must not be null.");
+        assertThat(ex).hasMessage("pairs must not be null.");
     }
 }

@@ -345,7 +345,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
             testTarget.afterPropertiesSet();
         });
         // do assert.
-        assertThat(e.getMessage()).isEqualTo("applicationContext is null.");
+        assertThat(e).hasMessage("applicationContext is null.");
 
     }
 

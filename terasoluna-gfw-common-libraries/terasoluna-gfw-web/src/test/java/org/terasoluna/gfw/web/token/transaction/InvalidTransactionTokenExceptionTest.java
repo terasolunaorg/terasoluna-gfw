@@ -28,7 +28,7 @@ public class InvalidTransactionTokenExceptionTest {
                 assertThrows(InvalidTransactionTokenException.class, () -> {
                     throw new InvalidTransactionTokenException();
                 });
-        assertThat(e.getMessage()).isEqualTo("Invalid Transaction Token Exception !!!");
+        assertThat(e).hasMessage("Invalid Transaction Token Exception !!!");
     }
 
     @Test
@@ -38,7 +38,7 @@ public class InvalidTransactionTokenExceptionTest {
                 assertThrows(InvalidTransactionTokenException.class, () -> {
                     throw new InvalidTransactionTokenException("Custom Message");
                 });
-        assertThat(e.getMessage()).isEqualTo("Custom Message");
+        assertThat(e).hasMessage("Custom Message");
     }
 
 }

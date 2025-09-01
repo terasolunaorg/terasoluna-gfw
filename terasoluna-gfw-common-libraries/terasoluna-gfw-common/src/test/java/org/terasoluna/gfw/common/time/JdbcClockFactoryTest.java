@@ -146,6 +146,6 @@ public class JdbcClockFactoryTest {
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> {
             clockFactory.fixed();
         });
-        assertThat(e.getMessage()).isEqualTo("Failed to retrieve current timestamp from database");
+        assertThat(e).hasMessage("Failed to retrieve current timestamp from database");
     }
 }
