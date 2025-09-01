@@ -120,7 +120,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         assertThat(actualAttributeNames.hasMoreElements()).isEqualTo(true);
         actualAttributeNames.nextElement();
         assertThat(actualAttributeNames.hasMoreElements()).isEqualTo(false);
-        assertThat(mockRequest.getAttribute("simpleMapCodeList")).isEqualTo(simpleMapCodeList.asMap());
+        assertThat(mockRequest.getAttribute("simpleMapCodeList"))
+                .isEqualTo(simpleMapCodeList.asMap());
 
     }
 
@@ -152,8 +153,10 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
                 getApplicationContext().getBean("C_simpleMapCodeList", SimpleMapCodeList.class);
         SimpleI18nCodeList simpleI18nCodeList =
                 getApplicationContext().getBean("C_simpleI18nCodeList", SimpleI18nCodeList.class);
-        assertThat(mockRequest.getAttribute("C_simpleMapCodeList")).isEqualTo(simpleMapCodeList.asMap());
-        assertThat(mockRequest.getAttribute("C_simpleI18nCodeList")).isEqualTo(simpleI18nCodeList.asMap(Locale.ENGLISH));
+        assertThat(mockRequest.getAttribute("C_simpleMapCodeList"))
+                .isEqualTo(simpleMapCodeList.asMap());
+        assertThat(mockRequest.getAttribute("C_simpleI18nCodeList"))
+                .isEqualTo(simpleI18nCodeList.asMap(Locale.ENGLISH));
 
     }
 
@@ -205,7 +208,8 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         Map<String, CodeList> expectedCodeListMap = new HashMap<String, CodeList>(
                 getApplicationContext().getBeansOfType(CodeList.class));
 
-        assertThat(testTarget.getCodeLists()).containsExactly(expectedCodeListMap.values().toArray());
+        assertThat(testTarget.getCodeLists())
+                .containsExactly(expectedCodeListMap.values().toArray(new CodeList[0]));
 
     }
 
@@ -229,7 +233,10 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.afterPropertiesSet();
 
         // do assert.
-        assertThat(testTarget.getCodeLists()).containsExactlyInAnyOrder(getApplicationContext().getBean("A_simpleI18nCodeList", CodeList.class), getApplicationContext().getBean("A_numberRangeCodeList", CodeList.class), getApplicationContext().getBean("A_simpleMapCodeList", CodeList.class));
+        assertThat(testTarget.getCodeLists()).containsExactlyInAnyOrder(
+                getApplicationContext().getBean("A_simpleI18nCodeList", CodeList.class),
+                getApplicationContext().getBean("A_numberRangeCodeList", CodeList.class),
+                getApplicationContext().getBean("A_simpleMapCodeList", CodeList.class));
 
     }
 

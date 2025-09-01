@@ -16,10 +16,7 @@
 package org.terasoluna.gfw.common.validator.constraints;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.allOf;
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.hasToString;
-import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.Assertions.tuple;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.Arrays;
@@ -28,6 +25,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.terasoluna.gfw.common.validator.constraints.ByteSizeTest.ByteSizeTestForm;
+import jakarta.validation.ConstraintViolation;
 import jakarta.validation.UnexpectedTypeException;
 import jakarta.validation.ValidationException;
 
@@ -64,7 +62,8 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
             form.setStringProperty("aa");
 
             violations = validator.validate(form);
-            assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 3, 6))));
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(String.format(MESSAGE_VALIDATION_ERROR, 3, 6));
         }
 
         {
@@ -85,7 +84,8 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
             form.setStringProperty("ああa");
 
             violations = validator.validate(form);
-            assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 3, 6))));
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(String.format(MESSAGE_VALIDATION_ERROR, 3, 6));
         }
     }
 
@@ -99,7 +99,8 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
             form.setStringBuilderProperty(new StringBuilder("aa"));
 
             violations = validator.validate(form);
-            assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 3, 6))));
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(String.format(MESSAGE_VALIDATION_ERROR, 3, 6));
         }
 
         {
@@ -120,7 +121,8 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
             form.setStringBuilderProperty(new StringBuilder("ああa"));
 
             violations = validator.validate(form);
-            assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 3, 6))));
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(String.format(MESSAGE_VALIDATION_ERROR, 3, 6));
         }
     }
 
@@ -135,7 +137,8 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
             form.setStringProperty("あ");
 
             violations = validator.validate(form, SpecifyCharset.class);
-            assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 3, 6))));
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(String.format(MESSAGE_VALIDATION_ERROR, 3, 6));
         }
 
         {
@@ -156,7 +159,8 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
             form.setStringProperty("あああa");
 
             violations = validator.validate(form, SpecifyCharset.class);
-            assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 3, 6))));
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(String.format(MESSAGE_VALIDATION_ERROR, 3, 6));
         }
     }
 
@@ -234,7 +238,8 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
             form.setStringProperty("aa");
 
             violations = validator.validate(form, MaxEqualsToMin.class);
-            assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 3, 3))));
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(String.format(MESSAGE_VALIDATION_ERROR, 3, 3));
         }
 
         {
@@ -248,7 +253,8 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
             form.setStringProperty("あa");
 
             violations = validator.validate(form, MaxEqualsToMin.class);
-            assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 3, 3))));
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(String.format(MESSAGE_VALIDATION_ERROR, 3, 3));
         }
     }
 
@@ -293,37 +299,36 @@ public class ByteSizeTest extends AbstractConstraintsTest<ByteSizeTestForm> {
             form.setListProperty(Arrays.asList("aa", "あ"));
 
             violations = validator.validate(form);
-            assertThat(violations).containsExactlyInAnyOrder(allOf( //
-                    hasProperty("propertyPath",
-                            hasToString("listProperty[0].<list element>")), //
-                    hasProperty("message",
-                            is(String.format(MESSAGE_VALIDATION_ERROR, 3, 6)))));
+            assertThat(violations)
+                    .extracting(violation -> violation.getPropertyPath().toString(),
+                            ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(tuple("listProperty[0].<list element>",
+                            String.format(MESSAGE_VALIDATION_ERROR, 3, 6)));
         }
 
         {
             form.setListProperty(Arrays.asList("ああ", "ああa"));
 
             violations = validator.validate(form);
-            assertThat(violations).containsExactlyInAnyOrder(allOf( //
-                    hasProperty("propertyPath",
-                            hasToString("listProperty[1].<list element>")), //
-                    hasProperty("message",
-                            is(String.format(MESSAGE_VALIDATION_ERROR, 3, 6)))));
+            assertThat(violations)
+                    .extracting(violation -> violation.getPropertyPath().toString(),
+                            ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(tuple("listProperty[1].<list element>",
+                            String.format(MESSAGE_VALIDATION_ERROR, 3, 6)));
         }
 
         {
             form.setListProperty(Arrays.asList("aa", "ああa"));
 
             violations = validator.validate(form);
-            assertThat(violations).containsExactlyInAnyOrder(allOf( //
-                    hasProperty("propertyPath",
-                            hasToString("listProperty[0].<list element>")), //
-                    hasProperty("message",
-                            is(String.format(MESSAGE_VALIDATION_ERROR, 3, 6)))), allOf( //
-                    hasProperty("propertyPath",
-                            hasToString("listProperty[1].<list element>")), //
-                    hasProperty("message",
-                            is(String.format(MESSAGE_VALIDATION_ERROR, 3, 6)))));
+            assertThat(violations)
+                    .extracting(violation -> violation.getPropertyPath().toString(),
+                            ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(
+                            tuple("listProperty[0].<list element>",
+                                    String.format(MESSAGE_VALIDATION_ERROR, 3, 6)),
+                            tuple("listProperty[1].<list element>",
+                                    String.format(MESSAGE_VALIDATION_ERROR, 3, 6)));
         }
     }
 

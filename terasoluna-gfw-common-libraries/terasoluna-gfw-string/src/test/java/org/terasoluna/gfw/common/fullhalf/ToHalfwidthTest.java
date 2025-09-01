@@ -27,7 +27,8 @@ public class ToHalfwidthTest {
     public void testToFull() throws Exception {
         Map<String, String> fullHalfs = new DefaultFullHalfCodePointsMap();
         for (Entry<String, String> fullHalf : fullHalfs.entrySet()) {
-            assertThat(DefaultFullHalf.INSTANCE.toHalfwidth(fullHalf.getKey())).isEqualTo(fullHalf.getValue());
+            assertThat(DefaultFullHalf.INSTANCE.toHalfwidth(fullHalf.getKey()))
+                    .isEqualTo(fullHalf.getValue());
         }
     }
 

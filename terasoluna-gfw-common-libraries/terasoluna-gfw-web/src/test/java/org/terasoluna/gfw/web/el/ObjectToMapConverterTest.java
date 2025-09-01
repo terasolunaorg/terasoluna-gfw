@@ -258,7 +258,8 @@ public class ObjectToMapConverterTest {
 
     @Test
     public void test8_LackingGetter() {
-        assertThat(converter.convert(new LackingGetterForm8("aaa", "bbb"))).isEqualTo(Collections.singletonMap("value1", "aaa"));
+        assertThat(converter.convert(new LackingGetterForm8("aaa", "bbb")))
+                .isEqualTo(Collections.singletonMap("value1", "aaa"));
     }
 
     @Test

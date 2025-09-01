@@ -426,7 +426,8 @@ public class HttpSessionTransactionTokenStoreTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             new HttpSessionTransactionTokenStore(new TokenStringGenerator(), 0, 1);
         });
-        assertThat(e.getMessage()).isEqualTo("transactionTokenSizePerTokenName must be greater than 0");
+        assertThat(e.getMessage())
+                .isEqualTo("transactionTokenSizePerTokenName must be greater than 0");
     }
 
     @Test
@@ -434,7 +435,8 @@ public class HttpSessionTransactionTokenStoreTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             new HttpSessionTransactionTokenStore(new TokenStringGenerator(), -1, 0);
         });
-        assertThat(e.getMessage()).isEqualTo("transactionTokenSizePerTokenName must be greater than 0");
+        assertThat(e.getMessage())
+                .isEqualTo("transactionTokenSizePerTokenName must be greater than 0");
     }
 
     @Test

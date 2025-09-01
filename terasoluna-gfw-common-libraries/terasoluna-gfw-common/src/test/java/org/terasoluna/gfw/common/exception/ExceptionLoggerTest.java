@@ -585,7 +585,8 @@ public class ExceptionLoggerTest {
     public void testExceptionLogger_default() {
         // do assert.
         assertThat(applicationLogger.getName()).isEqualTo(testTarget.getClass().getName());
-        assertThat(monitoringLogger.getName()).isEqualTo(testTarget.getClass().getName() + ".Monitoring");
+        assertThat(monitoringLogger.getName())
+                .isEqualTo(testTarget.getClass().getName() + ".Monitoring");
     }
 
     @Test
@@ -616,7 +617,8 @@ public class ExceptionLoggerTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             testTarget.afterPropertiesSet();
         });
-        assertThat(e.getMessage()).isEqualTo("logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"null\".");
+        assertThat(e.getMessage()).isEqualTo(
+                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"null\".");
 
     }
 
@@ -628,7 +630,8 @@ public class ExceptionLoggerTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             testTarget.afterPropertiesSet();
         });
-        assertThat(e.getMessage()).isEqualTo("logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"\".");
+        assertThat(e.getMessage()).isEqualTo(
+                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"\".");
 
     }
 
@@ -640,7 +643,8 @@ public class ExceptionLoggerTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             testTarget.afterPropertiesSet();
         });
-        assertThat(e.getMessage()).isEqualTo("logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"{1}\".");
+        assertThat(e.getMessage()).isEqualTo(
+                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"{1}\".");
 
     }
 
@@ -652,7 +656,8 @@ public class ExceptionLoggerTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             testTarget.afterPropertiesSet();
         });
-        assertThat(e.getMessage()).isEqualTo("logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"{0}\".");
+        assertThat(e.getMessage()).isEqualTo(
+                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"{0}\".");
 
     }
 

@@ -135,19 +135,19 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
     @Test
     public void testSetRows() {
         assertThat(testSetRows.codeListTable.size()).isEqualTo(14); // 2 rows x 7
-                                                              // columns
+        // columns
     }
 
     @Test
     public void testSetRowsByCodeList() {
         assertThat(testSetRowsByCodeList.codeListTable.size()).isEqualTo(14); // 2 rows x 7
-                                                                        // columns
+        // columns
     }
 
     @Test
     public void testSetColumns() {
         assertThat(testSetColumns.codeListTable.size()).isEqualTo(14); // 2 rows x 7
-                                                                 // columns
+        // columns
     }
 
     @Test
@@ -159,7 +159,7 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
         SimpleI18nCodeList testDuplicateCodeListTable = getApplicationContext()
                 .getBean("CL_testDuplicateCodeListTable", SimpleI18nCodeList.class);
         assertThat(testDuplicateCodeListTable.codeListTable.size()).isEqualTo(14); // 2 rows x 7
-                                                                             // columns
+        // columns
         verify(mockAppender, times(2))
                 .doAppend(argThat(argument -> argument.getLevel().equals(Level.WARN)));
     }
@@ -189,7 +189,8 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
         });
         Throwable cause = e.getCause();
         assertThat(cause).isInstanceOf(IllegalArgumentException.class);
-        assertThat(cause.getMessage()).isEqualTo("No codelist found for fallback locale 'fr', it must be defined.");
+        assertThat(cause.getMessage())
+                .isEqualTo("No codelist found for fallback locale 'fr', it must be defined.");
     }
 
     @Test
@@ -199,7 +200,8 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
         });
         Throwable cause = e.getCause();
         assertThat(cause).isInstanceOf(IllegalArgumentException.class);
-        assertThat(cause.getMessage()).isEqualTo("No codelist found for fallback locale 'en_US', it must be defined.");
+        assertThat(cause.getMessage())
+                .isEqualTo("No codelist found for fallback locale 'en_US', it must be defined.");
     }
 
     @Test
@@ -221,8 +223,9 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
         });
         Throwable cause = e.getCause();
         assertThat(cause).isInstanceOf(IllegalArgumentException.class);
-        assertThat(cause.getMessage()).isEqualTo("No codelist for default locale ('en_US' and 'en'). "
-                + "Please define codelist for default locale or set locale already defined in codelist to fallbackTo.");
+        assertThat(cause.getMessage())
+                .isEqualTo("No codelist for default locale ('en_US' and 'en'). "
+                        + "Please define codelist for default locale or set locale already defined in codelist to fallbackTo.");
     }
 
     @Test
@@ -232,7 +235,8 @@ public class SimpleI18nCodeListTest extends ApplicationObjectSupport {
 
     @Test
     public void testResolveLocalePrioritizeExactMatch() {
-        assertThat(testResolveLocale.resolveLocale(Locale.CANADA_FRENCH)).isEqualTo(Locale.CANADA_FRENCH);
+        assertThat(testResolveLocale.resolveLocale(Locale.CANADA_FRENCH))
+                .isEqualTo(Locale.CANADA_FRENCH);
     }
 
     @Test

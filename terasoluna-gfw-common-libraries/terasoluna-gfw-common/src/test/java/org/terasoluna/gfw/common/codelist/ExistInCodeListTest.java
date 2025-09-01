@@ -16,8 +16,6 @@
 package org.terasoluna.gfw.common.codelist;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.hasProperty;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.Arrays;
 import java.util.List;
@@ -173,8 +171,9 @@ public class ExistInCodeListTest {
         Customer c = new Customer();
         c.gender = 'G';
         c.lang = "JP";
-        Set<ConstraintViolation<Customer>> result = validator.validate(c);
-        assertThat(result).containsExactlyInAnyOrder(hasProperty("message", is("Does not exist in CD_GENDER")));
+        Set<ConstraintViolation<Customer>> violations = validator.validate(c);
+        assertThat(violations).extracting(ConstraintViolation::getMessage)
+                .containsExactlyInAnyOrder("Does not exist in CD_GENDER");
     }
 
     @Test
@@ -237,54 +236,69 @@ public class ExistInCodeListTest {
     public void test_invalidMultipleExistInCodeList() {
         {
             Order order = new Order(1);
-            Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result).containsExactlyInAnyOrder(hasProperty("message", is("number must be even")), hasProperty("message", is("number must be multiples of 3")));
+            Set<ConstraintViolation<Order>> violations = validator.validate(order);
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder("number must be even",
+                            "number must be multiples of 3");
         }
         {
             Order order = new Order(2);
-            Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result).containsExactlyInAnyOrder(hasProperty("message", is("number must be multiples of 3")));
+            Set<ConstraintViolation<Order>> violations = validator.validate(order);
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder("number must be multiples of 3");
         }
         {
             Order order = new Order(4);
-            Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result).containsExactlyInAnyOrder(hasProperty("message", is("number must be multiples of 3")));
+            Set<ConstraintViolation<Order>> violations = validator.validate(order);
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder("number must be multiples of 3");
         }
         {
             Order order = new Order(5);
-            Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result).containsExactlyInAnyOrder(hasProperty("message", is("number must be even")), hasProperty("message", is("number must be multiples of 3")));
+            Set<ConstraintViolation<Order>> violations = validator.validate(order);
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder("number must be even",
+                            "number must be multiples of 3");
         }
         {
             Order order = new Order(7);
-            Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result).containsExactlyInAnyOrder(hasProperty("message", is("number must be even")), hasProperty("message", is("number must be multiples of 3")));
+            Set<ConstraintViolation<Order>> violations = validator.validate(order);
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder("number must be even",
+                            "number must be multiples of 3");
         }
         {
             Order order = new Order(8);
-            Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result).containsExactlyInAnyOrder(hasProperty("message", is("number must be multiples of 3")));
+            Set<ConstraintViolation<Order>> violations = validator.validate(order);
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder("number must be multiples of 3");
         }
         {
             Order order = new Order(9);
-            Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result).containsExactlyInAnyOrder(hasProperty("message", is("number must be even")));
+            Set<ConstraintViolation<Order>> violations = validator.validate(order);
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder("number must be even");
         }
         {
             Order order = new Order(10);
-            Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result).containsExactlyInAnyOrder(hasProperty("message", is("number must be multiples of 3")));
+            Set<ConstraintViolation<Order>> violations = validator.validate(order);
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder("number must be multiples of 3");
         }
         {
             Order order = new Order(11);
-            Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result).containsExactlyInAnyOrder(hasProperty("message", is("number must be even")), hasProperty("message", is("number must be multiples of 3")));
+            Set<ConstraintViolation<Order>> violations = validator.validate(order);
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder("number must be even",
+                            "number must be multiples of 3");
         }
         {
             // out of range!
             Order order = new Order(18);
-            Set<ConstraintViolation<Order>> result = validator.validate(order);
-            assertThat(result).containsExactlyInAnyOrder(hasProperty("message", is("number must be even")), hasProperty("message", is("number must be multiples of 3")));
+            Set<ConstraintViolation<Order>> violations = validator.validate(order);
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder("number must be even",
+                            "number must be multiples of 3");
         }
     }
 
@@ -296,7 +310,8 @@ public class ExistInCodeListTest {
         Set<ConstraintViolation<Person>> result = validator.validate(p);
         assertThat(result).hasSize(1);
         ConstraintViolation<Person> error = result.iterator().next();
-        assertThat(error.getMessageTemplate()).isEqualTo("{org.terasoluna.gfw.common.codelist.ExistInCodeList.message}");
+        assertThat(error.getMessageTemplate())
+                .isEqualTo("{org.terasoluna.gfw.common.codelist.ExistInCodeList.message}");
         assertThat(error.getMessage()).isEqualTo("Does not exist in CD_GENDER");
     }
 
@@ -312,7 +327,8 @@ public class ExistInCodeListTest {
         ConstraintViolationException e = assertThrows(ConstraintViolationException.class, () -> {
             codeService.getGenderLabel("U"); // call a method using invalid code value
         });
-        assertThat(e.getConstraintViolations()).containsExactlyInAnyOrder(hasProperty("message", is("Does not exist in CD_GENDER")));
+        assertThat(e.getConstraintViolations()).extracting(ConstraintViolation::getMessage)
+                .containsExactlyInAnyOrder("Does not exist in CD_GENDER");
     }
 
     @Test

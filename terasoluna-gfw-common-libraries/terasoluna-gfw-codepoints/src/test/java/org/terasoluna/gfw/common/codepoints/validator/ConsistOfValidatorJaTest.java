@@ -16,10 +16,7 @@
 package org.terasoluna.gfw.common.codepoints.validator;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.hasToString;
+import static org.assertj.core.api.Assertions.tuple;
 import java.util.Locale;
 import java.util.Set;
 import org.junit.jupiter.api.AfterEach;
@@ -56,9 +53,13 @@ public class ConsistOfValidatorJaTest {
 
         Set<ConstraintViolation<Name_Simple>> violations = validator.validate(name);
 
-        assertThat(violations).containsExactlyInAnyOrder(allOf( //
-                hasProperty("propertyPath", hasToString("firstName")), //
-                hasProperty("message", is("指定されたコードポイントで構成されていません"))));
+        // assertThat(violations).containsExactlyInAnyOrder(allOf( //
+        // hasProperty("propertyPath", hasToString("firstName")), //
+        // hasProperty("message", is("指定されたコードポイントで構成されていません"))));
+        assertThat(violations)
+                .extracting(violation -> violation.getPropertyPath().toString(),
+                        ConstraintViolation::getMessage)
+                .containsExactlyInAnyOrder(tuple("firstName", "指定されたコードポイントで構成されていません"));
     }
 
 }

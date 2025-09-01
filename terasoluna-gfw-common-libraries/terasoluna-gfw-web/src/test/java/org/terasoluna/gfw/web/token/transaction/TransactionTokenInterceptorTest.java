@@ -101,8 +101,9 @@ public class TransactionTokenInterceptorTest {
         // Confirm return value
         assertThat(result).isEqualTo(true);
         // Confirm that TokenContext is stored in the request
-        assertThat(request.getAttribute(
-                TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME)).isNotNull();
+        assertThat(request
+                .getAttribute(TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME))
+                        .isNotNull();
     }
 
     @Test
@@ -128,8 +129,8 @@ public class TransactionTokenInterceptorTest {
         TransactionToken inputToken = new TransactionToken("tokenName1", "111", "222");
         tokenStore.store(inputToken);
 
-        assertThat(tokenStore.getSession().getAttribute(
-                tokenStore.createSessionAttributeName(inputToken))).isNotNull();
+        assertThat(tokenStore.getSession()
+                .getAttribute(tokenStore.createSessionAttributeName(inputToken))).isNotNull();
 
         request.setParameter(TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER,
                 "tokenName1~111~222");
@@ -154,8 +155,8 @@ public class TransactionTokenInterceptorTest {
         TransactionToken inputToken = new TransactionToken("testTokenAttr", "111", "222");
         tokenStore.store(inputToken);
 
-        assertThat(tokenStore.getSession().getAttribute(
-                tokenStore.createSessionAttributeName(inputToken))).isNotNull();
+        assertThat(tokenStore.getSession()
+                .getAttribute(tokenStore.createSessionAttributeName(inputToken))).isNotNull();
 
         request.setParameter(TransactionTokenInterceptor.TOKEN_REQUEST_PARAMETER,
                 "testTokenAttr~111~222");
@@ -313,7 +314,9 @@ public class TransactionTokenInterceptorTest {
                 null);
 
         // Next token is stored in request object
-        assertThat(request.getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME)).isNotNull();
+        assertThat(
+                request.getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
+                        .isNotNull();
 
         TransactionToken nextToken = (TransactionToken) request
                 .getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME);
@@ -353,7 +356,9 @@ public class TransactionTokenInterceptorTest {
                 .getAttribute(HttpSessionTransactionTokenStore.TOKEN_HOLDER_SESSION_ATTRIBUTE_PREFIX
                         + inputToken.getTokenName() + "~" + inputToken.getTokenKey())).isNotNull();
         // Next token is also stored in request object
-        assertThat(request.getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME)).isNotNull();
+        assertThat(
+                request.getAttribute(TransactionTokenInterceptor.NEXT_TOKEN_REQUEST_ATTRIBUTE_NAME))
+                        .isNotNull();
     }
 
     @Test

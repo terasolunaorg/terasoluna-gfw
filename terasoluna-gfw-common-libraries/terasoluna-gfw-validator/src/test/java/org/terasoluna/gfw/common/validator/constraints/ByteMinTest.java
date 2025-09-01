@@ -16,10 +16,7 @@
 package org.terasoluna.gfw.common.validator.constraints;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.allOf;
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.hasToString;
-import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.Assertions.tuple;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.nio.charset.UnsupportedCharsetException;
 import java.util.Arrays;
@@ -27,6 +24,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.terasoluna.gfw.common.validator.constraints.ByteMinTest.ByteMinTestForm;
+import jakarta.validation.ConstraintViolation;
 import jakarta.validation.UnexpectedTypeException;
 import jakarta.validation.ValidationException;
 
@@ -64,7 +62,8 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             form.setStringProperty("あaa");
 
             violations = validator.validate(form);
-            assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6))));
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(String.format(MESSAGE_VALIDATION_ERROR, 6));
         }
 
         {
@@ -85,7 +84,8 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             form.setStringBuilderProperty(new StringBuilder("あaa"));
 
             violations = validator.validate(form);
-            assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6))));
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(String.format(MESSAGE_VALIDATION_ERROR, 6));
         }
 
         {
@@ -107,7 +107,8 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             form.setStringProperty("ああa");
 
             violations = validator.validate(form, SpecifyCharset.class);
-            assertThat(violations).containsExactlyInAnyOrder(hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6))));
+            assertThat(violations).extracting(ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(String.format(MESSAGE_VALIDATION_ERROR, 6));
         }
 
         {
@@ -171,36 +172,36 @@ public class ByteMinTest extends AbstractConstraintsTest<ByteMinTestForm> {
             form.setListProperty(Arrays.asList("あaa", "ああ"));
 
             violations = validator.validate(form);
-            assertThat(violations).containsExactlyInAnyOrder(allOf( //
-                    hasProperty("propertyPath",
-                            hasToString("listProperty[0].<list element>")), //
-                    hasProperty("message",
-                            is(String.format(MESSAGE_VALIDATION_ERROR, 6)))));
+            assertThat(violations)
+                    .extracting(violation -> violation.getPropertyPath().toString(),
+                            ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(tuple("listProperty[0].<list element>",
+                            String.format(MESSAGE_VALIDATION_ERROR, 6)));
         }
 
         {
             form.setListProperty(Arrays.asList("ああ", "あaa"));
 
             violations = validator.validate(form);
-            assertThat(violations).containsExactlyInAnyOrder(allOf( //
-                    hasProperty("propertyPath",
-                            hasToString("listProperty[1].<list element>")), //
-                    hasProperty("message",
-                            is(String.format(MESSAGE_VALIDATION_ERROR, 6)))));
+            assertThat(violations)
+                    .extracting(violation -> violation.getPropertyPath().toString(),
+                            ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(tuple("listProperty[1].<list element>",
+                            String.format(MESSAGE_VALIDATION_ERROR, 6)));
         }
 
         {
             form.setListProperty(Arrays.asList("あaa", "あaa"));
 
             violations = validator.validate(form);
-            assertThat(violations).containsExactlyInAnyOrder(allOf( //
-                    hasProperty("propertyPath",
-                            hasToString("listProperty[0].<list element>")), //
-                    hasProperty("message", is(String.format(MESSAGE_VALIDATION_ERROR, 6)))), allOf( //
-                    hasProperty("propertyPath",
-                            hasToString("listProperty[1].<list element>")), //
-                    hasProperty("message",
-                            is(String.format(MESSAGE_VALIDATION_ERROR, 6)))));
+            assertThat(violations)
+                    .extracting(violation -> violation.getPropertyPath().toString(),
+                            ConstraintViolation::getMessage)
+                    .containsExactlyInAnyOrder(
+                            tuple("listProperty[0].<list element>",
+                                    String.format(MESSAGE_VALIDATION_ERROR, 6)),
+                            tuple("listProperty[1].<list element>",
+                                    String.format(MESSAGE_VALIDATION_ERROR, 6)));
         }
     }
 

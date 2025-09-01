@@ -148,6 +148,7 @@ public class TransactionTokenTest {
         String result = token.getTokenString();
 
         // assert
-        assertThat(result).isEqualTo(token.getTokenName() + "~" + token.getTokenKey() + "~" + token.getTokenValue());
+        assertThat(result).isEqualTo(
+                token.getTokenName() + "~" + token.getTokenKey() + "~" + token.getTokenValue());
     }
 }

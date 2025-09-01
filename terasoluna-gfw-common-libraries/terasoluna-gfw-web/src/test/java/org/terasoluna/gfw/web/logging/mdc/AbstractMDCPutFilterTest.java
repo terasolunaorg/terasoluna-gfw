@@ -275,7 +275,8 @@ public class AbstractMDCPutFilterTest {
 
         testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
 
-        assertThat(mockFilterChain.actualMdcPutValue).isEqualTo("123456789012345678901234567890123");
+        assertThat(mockFilterChain.actualMdcPutValue)
+                .isEqualTo("123456789012345678901234567890123");
 
     }
 
@@ -323,7 +324,8 @@ public class AbstractMDCPutFilterTest {
 
         testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
 
-        assertThat(mockFilterChain.actualMdcPutValue).isEqualTo("123456789012345678901234567890123a");
+        assertThat(mockFilterChain.actualMdcPutValue)
+                .isEqualTo("123456789012345678901234567890123a");
 
     }
 

@@ -221,7 +221,8 @@ public class FileDownloadViewTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             fileDownloadView.afterPropertiesSet();
         });
-        assertThat(e.getMessage()).isEqualTo("chunkSize must be over 1. specified chunkSize is \"0\".");
+        assertThat(e.getMessage())
+                .isEqualTo("chunkSize must be over 1. specified chunkSize is \"0\".");
     }
 
     @Test
@@ -232,7 +233,8 @@ public class FileDownloadViewTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             fileDownloadView.afterPropertiesSet();
         });
-        assertThat(e.getMessage()).isEqualTo("chunkSize must be over 1. specified chunkSize is \"-1\".");
+        assertThat(e.getMessage())
+                .isEqualTo("chunkSize must be over 1. specified chunkSize is \"-1\".");
     }
 
     @Test

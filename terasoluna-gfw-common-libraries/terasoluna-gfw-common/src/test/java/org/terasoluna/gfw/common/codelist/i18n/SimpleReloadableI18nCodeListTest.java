@@ -212,7 +212,8 @@ public class SimpleReloadableI18nCodeListTest {
             Map<String, String> mapOutput = reloadableI18nCodeList.asMap(locale);
             assertThat(mapOutput).hasSize(mapSize);
             for (int i = 0; i < mapSize; i++) {
-                assertThat(mapOutput.get(String.format("%03d", i))).isEqualTo(mapInput.get(String.format("%03d", i)));
+                assertThat(mapOutput.get(String.format("%03d", i)))
+                        .isEqualTo(mapInput.get(String.format("%03d", i)));
             }
         }
     }
