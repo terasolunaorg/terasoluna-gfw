@@ -26,12 +26,12 @@ public class JIS_X_0208_SpecialCharsTest {
     @Test
     public void testIsValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("？？？")).isEqualTo(true);
+        assertThat(codePoints.containsAll("？？？")).isTrue();
     }
 
     @Test
     public void testIsInValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("？？?")).isEqualTo(false);
+        assertThat(codePoints.containsAll("？？?")).isFalse();
     }
 }

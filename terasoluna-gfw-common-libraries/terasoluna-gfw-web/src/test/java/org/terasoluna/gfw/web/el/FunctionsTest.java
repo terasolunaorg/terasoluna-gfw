@@ -40,7 +40,7 @@ public class FunctionsTest {
     public void testFunctions() throws Exception {
         // set up
         Constructor<Functions> constructor = Functions.class.getDeclaredConstructor();
-        assertThat(constructor.canAccess(null)).isEqualTo(false);
+        assertThat(constructor.canAccess(null)).isFalse();
         constructor.setAccessible(true);
 
         // assert

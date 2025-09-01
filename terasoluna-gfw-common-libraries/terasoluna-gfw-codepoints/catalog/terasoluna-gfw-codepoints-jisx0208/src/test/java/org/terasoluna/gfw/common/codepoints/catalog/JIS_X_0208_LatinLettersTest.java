@@ -26,12 +26,12 @@ public class JIS_X_0208_LatinLettersTest {
     @Test
     public void testIsValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("０１２３４５６７８９")).isEqualTo(true);
+        assertThat(codePoints.containsAll("０１２３４５６７８９")).isTrue();
     }
 
     @Test
     public void testIsInValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("０１２３4５６７８９")).isEqualTo(false);
+        assertThat(codePoints.containsAll("０１２３4５６７８９")).isFalse();
     }
 }

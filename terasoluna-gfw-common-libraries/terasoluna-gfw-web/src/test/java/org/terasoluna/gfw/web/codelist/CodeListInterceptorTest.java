@@ -85,7 +85,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.postHandle(mockRequest, mockResponse, null, null);
 
         // do assert.
-        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isEqualTo(false);
+        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isFalse();
 
     }
 
@@ -117,9 +117,9 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
         // do assert.
         Enumeration<String> actualAttributeNames = mockRequest.getAttributeNames();
-        assertThat(actualAttributeNames.hasMoreElements()).isEqualTo(true);
+        assertThat(actualAttributeNames.hasMoreElements()).isTrue();
         actualAttributeNames.nextElement();
-        assertThat(actualAttributeNames.hasMoreElements()).isEqualTo(false);
+        assertThat(actualAttributeNames.hasMoreElements()).isFalse();
         assertThat(mockRequest.getAttribute("simpleMapCodeList"))
                 .isEqualTo(simpleMapCodeList.asMap());
 
@@ -180,7 +180,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
         testTarget.postHandle(mockRequest, mockResponse, null, null);
 
         // do assert.
-        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isEqualTo(false);
+        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isFalse();
 
     }
 
@@ -288,7 +288,7 @@ public class CodeListInterceptorTest extends ApplicationObjectSupport {
 
         // do assert.
         assertThat(testTarget.getCodeLists()).isEmpty();
-        assertThat(logger.isDebugEnabled()).isEqualTo(false);
+        assertThat(logger.isDebugEnabled()).isFalse();
 
         // init log level.
         LogLevelChangeUtil.resetLogLevel();

@@ -46,7 +46,7 @@ public class ConfigurableClockFactoryTest {
         Thread.sleep(100);
 
         ZonedDateTime now2 = ZonedDateTime.now(clock);
-        assertThat(now2.isEqual(now)).isEqualTo(true);
+        assertThat(now2.isEqual(now)).isTrue();
     }
 
     @Test
@@ -83,7 +83,7 @@ public class ConfigurableClockFactoryTest {
         Thread.sleep(100);
 
         ZonedDateTime now2 = ZonedDateTime.now(clock);
-        assertThat(now2.isAfter(now)).isEqualTo(true);
+        assertThat(now2.isAfter(now)).isTrue();
     }
 
     @Test
@@ -104,7 +104,7 @@ public class ConfigurableClockFactoryTest {
         Thread.sleep(100);
 
         ZonedDateTime now2 = ZonedDateTime.now(clock);
-        assertThat(now2.isAfter(now)).isEqualTo(true);
+        assertThat(now2.isAfter(now)).isTrue();
     }
 
     @Test
@@ -127,7 +127,7 @@ public class ConfigurableClockFactoryTest {
         Thread.sleep(100);
 
         ZonedDateTime now2 = ZonedDateTime.now(clock);
-        assertThat(now2.isEqual(now)).isEqualTo(true);
+        assertThat(now2.isEqual(now)).isTrue();
     }
 
     @Test
@@ -150,6 +150,6 @@ public class ConfigurableClockFactoryTest {
         Thread.sleep(100);
 
         ZonedDateTime now2 = ZonedDateTime.now(clock);
-        assertThat(now2.isEqual(now)).isEqualTo(true);
+        assertThat(now2.isEqual(now)).isTrue();
     }
 }

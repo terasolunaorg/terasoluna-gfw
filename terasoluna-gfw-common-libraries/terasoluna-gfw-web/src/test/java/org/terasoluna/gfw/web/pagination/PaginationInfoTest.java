@@ -269,7 +269,7 @@ public class PaginationInfoTest {
         boolean result = info.isFirstPage();
 
         // assert
-        assertThat(result).isEqualTo(false);
+        assertThat(result).isFalse();
     }
 
     /**
@@ -286,7 +286,7 @@ public class PaginationInfoTest {
         boolean result = info.isFirstPage();
 
         // assert
-        assertThat(result).isEqualTo(true);
+        assertThat(result).isTrue();
     }
 
     /**
@@ -300,7 +300,7 @@ public class PaginationInfoTest {
         boolean result = info.isLastPage();
 
         // assert
-        assertThat(result).isEqualTo(false);
+        assertThat(result).isFalse();
     }
 
     /**
@@ -318,7 +318,7 @@ public class PaginationInfoTest {
         boolean result = info.isLastPage();
 
         // assert
-        assertThat(result).isEqualTo(true);
+        assertThat(result).isTrue();
     }
 
     /**
@@ -332,7 +332,7 @@ public class PaginationInfoTest {
         boolean result = info.isCurrent(5);
 
         // assert
-        assertThat(result).isEqualTo(true);
+        assertThat(result).isTrue();
     }
 
     /**
@@ -346,7 +346,7 @@ public class PaginationInfoTest {
         boolean result = info.isCurrent(1);
 
         // assert
-        assertThat(result).isEqualTo(false);
+        assertThat(result).isFalse();
     }
 
     /**

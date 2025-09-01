@@ -26,12 +26,12 @@ public class JIS_X_0208_CyrillicLettersTest {
     @Test
     public void testIsValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("АВС")).isEqualTo(true);
+        assertThat(codePoints.containsAll("АВС")).isTrue();
     }
 
     @Test
     public void testIsInValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("ABC")).isEqualTo(false);
+        assertThat(codePoints.containsAll("ABC")).isFalse();
     }
 }

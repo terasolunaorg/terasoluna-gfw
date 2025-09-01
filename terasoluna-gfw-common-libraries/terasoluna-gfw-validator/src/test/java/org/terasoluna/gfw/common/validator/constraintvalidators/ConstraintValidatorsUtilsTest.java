@@ -28,7 +28,7 @@ public class ConstraintValidatorsUtilsTest {
         // set up
         Constructor<ConstraintValidatorsUtils> constructor =
                 ConstraintValidatorsUtils.class.getDeclaredConstructor();
-        assertThat(constructor.canAccess(null)).isEqualTo(false);
+        assertThat(constructor.canAccess(null)).isFalse();
         constructor.setAccessible(true);
 
         // assert
@@ -72,7 +72,7 @@ public class ConstraintValidatorsUtilsTest {
         boolean b = ConstraintValidatorsUtils.isEmpty(null);
 
         // assert
-        assertThat(b).isEqualTo(true);
+        assertThat(b).isTrue();
     }
 
     @Test
@@ -81,7 +81,7 @@ public class ConstraintValidatorsUtilsTest {
         boolean b = ConstraintValidatorsUtils.isEmpty("");
 
         // assert
-        assertThat(b).isEqualTo(true);
+        assertThat(b).isTrue();
     }
 
     @Test
@@ -90,7 +90,7 @@ public class ConstraintValidatorsUtilsTest {
         boolean b = ConstraintValidatorsUtils.isEmpty("test");
 
         // assert
-        assertThat(b).isEqualTo(false);
+        assertThat(b).isFalse();
     }
 
     class FooBean {

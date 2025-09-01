@@ -53,7 +53,7 @@ public class NumberRangeCodeListTest {
         assertThat(mapResult).isEqualTo(mapTest);
 
         // check the order of range of numbers
-        assertThat(mapResult.equals(mapTest)).isEqualTo(true);
+        assertThat(mapResult.equals(mapTest)).isTrue();
 
     }
 

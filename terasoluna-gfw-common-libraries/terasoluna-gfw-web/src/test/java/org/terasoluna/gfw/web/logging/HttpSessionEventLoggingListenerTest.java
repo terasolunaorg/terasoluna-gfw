@@ -92,7 +92,7 @@ public class HttpSessionEventLoggingListenerTest {
         listener.sessionWillPassivate(httpSessionEvent);
 
         // assert
-        assertThat(logger.isDebugEnabled()).isEqualTo(false);
+        assertThat(logger.isDebugEnabled()).isFalse();
     }
 
     /**
@@ -119,7 +119,7 @@ public class HttpSessionEventLoggingListenerTest {
         listener.sessionDidActivate(httpSessionEvent);
 
         // assert
-        assertThat(logger.isDebugEnabled()).isEqualTo(false);
+        assertThat(logger.isDebugEnabled()).isFalse();
     }
 
     /**
@@ -147,7 +147,7 @@ public class HttpSessionEventLoggingListenerTest {
         listener.attributeAdded(sessionBindingEvent);
 
         // assert
-        assertThat(logger.isDebugEnabled()).isEqualTo(false);
+        assertThat(logger.isDebugEnabled()).isFalse();
     }
 
     /**
@@ -175,7 +175,7 @@ public class HttpSessionEventLoggingListenerTest {
         listener.attributeRemoved(sessionBindingEvent);
 
         // assert
-        assertThat(logger.isDebugEnabled()).isEqualTo(false);
+        assertThat(logger.isDebugEnabled()).isFalse();
     }
 
     /**
@@ -203,7 +203,7 @@ public class HttpSessionEventLoggingListenerTest {
         listener.attributeReplaced(sessionBindingEvent);
 
         // assert
-        assertThat(logger.isDebugEnabled()).isEqualTo(false);
+        assertThat(logger.isDebugEnabled()).isFalse();
     }
 
     /**
@@ -231,7 +231,7 @@ public class HttpSessionEventLoggingListenerTest {
         listener.sessionCreated(httpSessionEvent);
 
         // assert
-        assertThat(logger.isDebugEnabled()).isEqualTo(false);
+        assertThat(logger.isDebugEnabled()).isFalse();
     }
 
     /**
@@ -259,7 +259,7 @@ public class HttpSessionEventLoggingListenerTest {
         listener.sessionDestroyed(httpSessionEvent);
 
         // assert
-        assertThat(logger.isDebugEnabled()).isEqualTo(false);
+        assertThat(logger.isDebugEnabled()).isFalse();
     }
 
     /**

@@ -26,12 +26,12 @@ public class JIS_X_0208_KatakanaTest {
     @Test
     public void testIsValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("アイウエオ")).isEqualTo(true);
+        assertThat(codePoints.containsAll("アイウエオ")).isTrue();
     }
 
     @Test
     public void testIsInValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("アイウエお")).isEqualTo(false);
+        assertThat(codePoints.containsAll("アイウエお")).isFalse();
     }
 }

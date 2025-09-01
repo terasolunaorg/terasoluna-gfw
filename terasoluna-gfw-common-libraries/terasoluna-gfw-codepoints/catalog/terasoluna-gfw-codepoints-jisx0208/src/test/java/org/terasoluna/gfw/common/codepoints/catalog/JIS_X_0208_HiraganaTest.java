@@ -27,12 +27,12 @@ public class JIS_X_0208_HiraganaTest {
     @Test
     public void testIsValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("あいうえお")).isEqualTo(true);
+        assertThat(codePoints.containsAll("あいうえお")).isTrue();
     }
 
     @Test
     public void testIsInValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("あいうえオ")).isEqualTo(false);
+        assertThat(codePoints.containsAll("あいうえオ")).isFalse();
     }
 }

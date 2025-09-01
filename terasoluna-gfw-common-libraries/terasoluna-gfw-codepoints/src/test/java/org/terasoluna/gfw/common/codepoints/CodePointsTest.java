@@ -32,14 +32,14 @@ public class CodePointsTest {
     public void testContainsAll() {
         CodePoints codePoints = new CodePoints("あ", "い", "う");
 
-        assertThat(codePoints.containsAll("あ")).isEqualTo(true);
-        assertThat(codePoints.containsAll("い")).isEqualTo(true);
-        assertThat(codePoints.containsAll("う")).isEqualTo(true);
-        assertThat(codePoints.containsAll("あい")).isEqualTo(true);
-        assertThat(codePoints.containsAll("いう")).isEqualTo(true);
-        assertThat(codePoints.containsAll("うあ")).isEqualTo(true);
-        assertThat(codePoints.containsAll("あいう")).isEqualTo(true);
-        assertThat(codePoints.containsAll("あいうえ")).isEqualTo(false);
+        assertThat(codePoints.containsAll("あ")).isTrue();
+        assertThat(codePoints.containsAll("い")).isTrue();
+        assertThat(codePoints.containsAll("う")).isTrue();
+        assertThat(codePoints.containsAll("あい")).isTrue();
+        assertThat(codePoints.containsAll("いう")).isTrue();
+        assertThat(codePoints.containsAll("うあ")).isTrue();
+        assertThat(codePoints.containsAll("あいう")).isTrue();
+        assertThat(codePoints.containsAll("あいうえ")).isFalse();
     }
 
     /**
@@ -70,12 +70,12 @@ public class CodePointsTest {
         CodePoints result = new CodePoints(materialSet0).intersect(new CodePoints(materialSet1))
                 .intersect(new CodePoints(materialSet2));
 
-        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isEqualTo(true);
-        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isEqualTo(true);
-        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isEqualTo(false);
+        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isTrue();
+        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isTrue();
+        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isFalse();
     }
 
     /**
@@ -108,12 +108,12 @@ public class CodePointsTest {
         CodePoints result = new CodePoints(materialSet0).intersect(new CodePoints(materialSet1))
                 .intersect(new CodePoints(materialSet2)).intersect(new CodePoints(materialSet3));
 
-        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isEqualTo(false);
+        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isFalse();
     }
 
     /**
@@ -146,12 +146,12 @@ public class CodePointsTest {
         CodePoints result = new CodePoints(materialSet0).intersect(new CodePoints(materialSet1))
                 .intersect(new CodePoints(materialSet2)).intersect(new CodePoints(materialSet3));
 
-        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isEqualTo(false);
+        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isFalse();
     }
 
     /**
@@ -182,12 +182,12 @@ public class CodePointsTest {
         CodePoints result = new CodePoints(materialSet0).union(new CodePoints(materialSet1))
                 .union(new CodePoints(materialSet2));
 
-        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isEqualTo(true);
-        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isEqualTo(true);
-        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isEqualTo(true);
-        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isEqualTo(true);
-        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isEqualTo(true);
-        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isEqualTo(true);
+        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isTrue();
+        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isTrue();
+        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isTrue();
+        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isTrue();
+        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isTrue();
+        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isTrue();
     }
 
     /**
@@ -220,12 +220,12 @@ public class CodePointsTest {
         CodePoints result = new CodePoints(materialSet0).union(new CodePoints(materialSet1))
                 .union(new CodePoints(materialSet2)).union(new CodePoints(materialSet3));
 
-        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isEqualTo(true);
-        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isEqualTo(true);
-        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isEqualTo(true);
-        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isEqualTo(true);
-        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isEqualTo(true);
-        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isEqualTo(true);
+        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isTrue();
+        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isTrue();
+        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isTrue();
+        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isTrue();
+        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isTrue();
+        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isTrue();
     }
 
     /**
@@ -256,12 +256,12 @@ public class CodePointsTest {
         CodePoints result = new CodePoints(materialSet0).subtract(new CodePoints(materialSet1))
                 .subtract(new CodePoints(materialSet2));
 
-        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isEqualTo(true);
-        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isEqualTo(true);
+        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isTrue();
+        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isTrue();
     }
 
     /**
@@ -286,12 +286,12 @@ public class CodePointsTest {
         CodePoints result = new CodePoints(materialSet0).subtract(new CodePoints(materialSet1))
                 .subtract(new CodePoints(materialSet2));
 
-        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isEqualTo(false);
+        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isFalse();
     }
 
     /**
@@ -324,12 +324,12 @@ public class CodePointsTest {
         CodePoints result = new CodePoints(materialSet0).subtract(new CodePoints(materialSet1))
                 .subtract(new CodePoints(materialSet2)).subtract(new CodePoints(materialSet3));
 
-        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isEqualTo(true);
-        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isEqualTo(false);
-        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isEqualTo(true);
+        assertThat(result.containsAll(new String(new int[] {1}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {2}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {3}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {4}, 0, 1))).isTrue();
+        assertThat(result.containsAll(new String(new int[] {5}, 0, 1))).isFalse();
+        assertThat(result.containsAll(new String(new int[] {6}, 0, 1))).isTrue();
     }
 
     /**
@@ -349,7 +349,7 @@ public class CodePointsTest {
 
         boolean result = new CodePoints(allowedCodePointSet).containsAll(testStr);
 
-        assertThat(result).isEqualTo(true);
+        assertThat(result).isTrue();
     }
 
     @Test
@@ -359,7 +359,7 @@ public class CodePointsTest {
 
         boolean result = new CodePoints(allowedCodePointSet).containsAll(testStr);
 
-        assertThat(result).isEqualTo(true);
+        assertThat(result).isTrue();
     }
 
     @Test
@@ -375,7 +375,7 @@ public class CodePointsTest {
 
         boolean result = new CodePoints(allowedCodePointSet).containsAll(testStr);
 
-        assertThat(result).isEqualTo(true);
+        assertThat(result).isTrue();
     }
 
     @Test
@@ -391,7 +391,7 @@ public class CodePointsTest {
 
         boolean result = new CodePoints(allowedCodePointSet).containsAll(testStr);
 
-        assertThat(result).isEqualTo(false);
+        assertThat(result).isFalse();
     }
 
     @Test
@@ -399,7 +399,7 @@ public class CodePointsTest {
         String testStr = SURROGATE_PAIR_CHAR_2000B + "あいうあ" + SURROGATE_PAIR_CHAR_2000B;
         boolean result = new CodePoints("あいうえお").containsAll(testStr);
 
-        assertThat(result).isEqualTo(false);
+        assertThat(result).isFalse();
     }
 
     @Test
@@ -415,7 +415,7 @@ public class CodePointsTest {
 
         boolean result = new CodePoints(allowedCodePointSet).containsAll(testStr);
 
-        assertThat(result).isEqualTo(false);
+        assertThat(result).isFalse();
     }
 
     @Test
@@ -578,22 +578,22 @@ public class CodePointsTest {
         ABCD cp3 = cp1;
 
         // assert
-        assertThat(cp1.equals(cp2)).isEqualTo(true);
-        assertThat(cp1.equals(cp3)).isEqualTo(true);
+        assertThat(cp1.equals(cp2)).isTrue();
+        assertThat(cp1.equals(cp3)).isTrue();
     }
 
     @Test
     public void testEquals_different_codepoints() {
         CodePoints cp1 = new CodePoints("abcd");
         CodePoints cp2 = new CodePoints("ABCD");
-        assertThat(cp1.equals(cp2)).isEqualTo(false);
+        assertThat(cp1.equals(cp2)).isFalse();
     }
 
     @Test
     public void testEquals_same_codepoints_other_class() {
         CodePoints cp1 = new ABCD();
         CodePoints cp2 = new CodePoints("ABCD");
-        assertThat(cp1.equals(cp2)).isEqualTo(false);
+        assertThat(cp1.equals(cp2)).isFalse();
     }
 
     @Test
@@ -603,7 +603,7 @@ public class CodePointsTest {
         CodePoints cp2 = null;
 
         // assert
-        assertThat(cp1.equals(cp2)).isEqualTo(false);
+        assertThat(cp1.equals(cp2)).isFalse();
     }
 
     @Test

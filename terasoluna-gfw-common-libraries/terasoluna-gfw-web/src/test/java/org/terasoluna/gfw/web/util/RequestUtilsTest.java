@@ -35,13 +35,13 @@ public class RequestUtilsTest {
     public void testIsAjaxRequest() {
         request.addHeader("X-Requested-With", "XMLHttpRequest");
 
-        assertThat(RequestUtils.isAjaxRequest(request)).isEqualTo(true);
+        assertThat(RequestUtils.isAjaxRequest(request)).isTrue();
     }
 
     @Test
     public void testNotAjaxRequest() {
 
-        assertThat(RequestUtils.isAjaxRequest(request)).isEqualTo(false);
+        assertThat(RequestUtils.isAjaxRequest(request)).isFalse();
     }
 
     @Test

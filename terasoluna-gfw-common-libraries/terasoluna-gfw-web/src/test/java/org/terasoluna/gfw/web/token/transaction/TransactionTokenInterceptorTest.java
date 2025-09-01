@@ -68,7 +68,7 @@ public class TransactionTokenInterceptorTest {
     @Test
     public void testPreHandleIncorrectHandler() throws Exception {
         boolean result = interceptor.preHandle(request, response, null);
-        assertThat(result).isEqualTo(true);
+        assertThat(result).isTrue();
     }
 
     @Test
@@ -77,7 +77,7 @@ public class TransactionTokenInterceptorTest {
                 new HandlerMethod(new TransactionTokenSampleController(),
                         TransactionTokenSampleController.class.getDeclaredMethod("first",
                                 SampleForm.class, Model.class)));
-        assertThat(result).isEqualTo(true);
+        assertThat(result).isTrue();
     }
 
     @Test
@@ -99,7 +99,7 @@ public class TransactionTokenInterceptorTest {
                                 SampleForm.class, Model.class)));
 
         // Confirm return value
-        assertThat(result).isEqualTo(true);
+        assertThat(result).isTrue();
         // Confirm that TokenContext is stored in the request
         assertThat(request
                 .getAttribute(TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME))
@@ -169,7 +169,7 @@ public class TransactionTokenInterceptorTest {
                         TransactionTokenSampleController.class.getDeclaredMethod("fifth",
                                 SampleForm.class, Model.class)));
 
-        assertThat(result).isEqualTo(true);
+        assertThat(result).isTrue();
 
         TransactionTokenContext transactionTokenCtx = (TransactionTokenContext) request
                 .getAttribute(TransactionTokenInterceptor.TOKEN_CONTEXT_REQUEST_ATTRIBUTE_NAME);
@@ -191,11 +191,11 @@ public class TransactionTokenInterceptorTest {
 
         boolean result = interceptor.validateToken(inputToken, tokenStore, tokenInfo);
 
-        assertThat(result).isEqualTo(true);
+        assertThat(result).isTrue();
 
         result = interceptor.validateToken(inputToken, tokenStore, tokenInfo);
 
-        assertThat(result).isEqualTo(false);
+        assertThat(result).isFalse();
 
     }
 
@@ -212,7 +212,7 @@ public class TransactionTokenInterceptorTest {
         when(tokenStore.getAndClear(any(TransactionToken.class))).thenReturn("differentValue");
 
         boolean result = interceptor.validateToken(inputToken, tokenStore, tokenInfo);
-        assertThat(result).isEqualTo(false);
+        assertThat(result).isFalse();
     }
 
     // ---------------Constructor related---------------

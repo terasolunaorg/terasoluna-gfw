@@ -46,7 +46,7 @@ public class TransactionTokenContextHandlerMethodArgumentResolverTest {
 
         boolean result = resolver.supportsParameter(parameter);
 
-        assertThat(result).isEqualTo(true);
+        assertThat(result).isTrue();
     }
 
     /**
@@ -62,7 +62,7 @@ public class TransactionTokenContextHandlerMethodArgumentResolverTest {
 
         boolean result = resolver.supportsParameter(parameter);
 
-        assertThat(result).isEqualTo(false);
+        assertThat(result).isFalse();
     }
 
     /**

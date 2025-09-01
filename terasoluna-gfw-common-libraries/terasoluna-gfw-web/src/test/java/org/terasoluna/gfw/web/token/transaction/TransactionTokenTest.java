@@ -68,7 +68,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid).isEqualTo(true);
+        assertThat(valid).isTrue();
     }
 
     @Test
@@ -78,7 +78,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid).isEqualTo(false);
+        assertThat(valid).isFalse();
     }
 
     @Test
@@ -88,7 +88,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid).isEqualTo(false);
+        assertThat(valid).isFalse();
     }
 
     @Test
@@ -98,7 +98,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid).isEqualTo(false);
+        assertThat(valid).isFalse();
     }
 
     @Test
@@ -108,7 +108,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid).isEqualTo(false);
+        assertThat(valid).isFalse();
     }
 
     @Test
@@ -118,7 +118,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid).isEqualTo(false);
+        assertThat(valid).isFalse();
     }
 
     @Test
@@ -128,7 +128,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid).isEqualTo(false);
+        assertThat(valid).isFalse();
     }
 
     @Test
@@ -138,7 +138,7 @@ public class TransactionTokenTest {
         boolean valid = token.valid();
 
         // assert
-        assertThat(valid).isEqualTo(false);
+        assertThat(valid).isFalse();
     }
 
     @Test

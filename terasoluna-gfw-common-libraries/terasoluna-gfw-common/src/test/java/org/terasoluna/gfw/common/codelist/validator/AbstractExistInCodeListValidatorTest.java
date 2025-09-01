@@ -77,8 +77,8 @@ public class AbstractExistInCodeListValidatorTest {
         boolean isValid = existInCodeListValidator.isValid("Male", constraintValidatorContext);
 
         // assert
-        assertThat(isValid).isEqualTo(true);
-        assertThat(logger.isTraceEnabled()).isEqualTo(false);
+        assertThat(isValid).isTrue();
+        assertThat(logger.isTraceEnabled()).isFalse();
 
         // init log level
         LogLevelChangeUtil.resetLogLevel();

@@ -75,7 +75,7 @@ public class ObjectToMapConverterTest {
         assertThat(form.getCriteria()).isNotNull();
         assertThat(form.getCriteria().getName()).isEqualTo("yamada");
         assertThat(form.getCriteria().getAge()).isEqualTo(20);
-        assertThat(form.isRememberCriteria()).isEqualTo(true);
+        assertThat(form.isRememberCriteria()).isTrue();
     }
 
     @Test

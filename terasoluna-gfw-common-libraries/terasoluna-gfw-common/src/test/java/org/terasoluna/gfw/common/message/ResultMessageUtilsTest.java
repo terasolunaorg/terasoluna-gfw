@@ -37,7 +37,7 @@ public class ResultMessageUtilsTest {
         // set up
         Constructor<ResultMessageUtils> constructor =
                 ResultMessageUtils.class.getDeclaredConstructor();
-        assertThat(constructor.canAccess(null)).isEqualTo(false);
+        assertThat(constructor.canAccess(null)).isFalse();
         constructor.setAccessible(true);
 
         // assert
@@ -139,7 +139,7 @@ public class ResultMessageUtilsTest {
 
         // assert
         assertThat(msg).isEqualTo("MESSAGE_TEXT");
-        assertThat(logger.isDebugEnabled()).isEqualTo(false);
+        assertThat(logger.isDebugEnabled()).isFalse();
 
         // init log level
         LogLevelChangeUtil.resetLogLevel();

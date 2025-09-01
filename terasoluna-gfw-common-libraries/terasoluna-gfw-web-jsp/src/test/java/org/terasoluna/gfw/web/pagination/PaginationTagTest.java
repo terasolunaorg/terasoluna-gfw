@@ -81,9 +81,9 @@ public class PaginationTagTest {
         assertThat(ReflectionTestUtils.getField(tag, "queryTmpl")).isNull();
         assertThat(ReflectionTestUtils.getField(tag, "criteriaQuery")).isNull();
         assertThat((boolean) ReflectionTestUtils.getField(tag, "disableHtmlEscapeOfCriteriaQuery"))
-                .isEqualTo(false);
+                .isFalse();
         assertThat((boolean) ReflectionTestUtils.getField(tag, "enableLinkOfCurrentPage"))
-                .isEqualTo(false);
+                .isFalse();
         assertThat(ReflectionTestUtils.getField(tag, "outerElement")).isNull();
         assertThat(ReflectionTestUtils.getField(tag, "outerElementClass")).isNull();
         assertThat(ReflectionTestUtils.getField(tag, "innerElement")).isNull();

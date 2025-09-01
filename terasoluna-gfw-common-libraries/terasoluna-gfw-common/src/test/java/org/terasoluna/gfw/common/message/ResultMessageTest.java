@@ -109,14 +109,14 @@ public class ResultMessageTest {
         ResultMessage msg5 = new ResultMessage("foo", object, "foo");
 
         // assert
-        assertThat(msg1.equals(msg1)).isEqualTo(true);
-        assertThat(msg1.equals(null)).isEqualTo(false);
-        assertThat(msg1.equals("a")).isEqualTo(false);
-        assertThat(msg2.equals(msg3)).isEqualTo(false);
-        assertThat(msg1.equals(ResultMessage.fromText("bar"))).isEqualTo(false);
-        assertThat(msg1.equals(msg2)).isEqualTo(false);
-        assertThat(msg2.equals(ResultMessage.fromCode("hoo"))).isEqualTo(false);
-        assertThat(msg4.equals(msg5)).isEqualTo(false);
+        assertThat(msg1.equals(msg1)).isTrue();
+        assertThat(msg1.equals(null)).isFalse();
+        assertThat(msg1.equals("a")).isFalse();
+        assertThat(msg2.equals(msg3)).isFalse();
+        assertThat(msg1.equals(ResultMessage.fromText("bar"))).isFalse();
+        assertThat(msg1.equals(msg2)).isFalse();
+        assertThat(msg2.equals(ResultMessage.fromCode("hoo"))).isFalse();
+        assertThat(msg4.equals(msg5)).isFalse();
 
         Set<ResultMessage> set = new HashSet<ResultMessage>();
         set.add(msg1);

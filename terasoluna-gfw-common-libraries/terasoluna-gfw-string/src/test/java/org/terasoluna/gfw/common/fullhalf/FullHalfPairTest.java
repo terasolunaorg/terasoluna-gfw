@@ -29,8 +29,8 @@ public class FullHalfPairTest {
         FullHalfPair FullHalfPair3 = FullHalfPair1;
 
         // assert
-        assertThat(FullHalfPair1.equals(FullHalfPair2)).isEqualTo(true);
-        assertThat(FullHalfPair1.equals(FullHalfPair3)).isEqualTo(true);
+        assertThat(FullHalfPair1.equals(FullHalfPair2)).isTrue();
+        assertThat(FullHalfPair1.equals(FullHalfPair3)).isTrue();
     }
 
     @Test
@@ -41,7 +41,7 @@ public class FullHalfPairTest {
         String str = null;
 
         // assert
-        assertThat(FullHalfPair.equals(str)).isEqualTo(false);
+        assertThat(FullHalfPair.equals(str)).isFalse();
     }
 
     @Test
@@ -52,7 +52,7 @@ public class FullHalfPairTest {
         String str = "a";
 
         // assert
-        assertThat(FullHalfPair.equals(str)).isEqualTo(false);
+        assertThat(FullHalfPair.equals(str)).isFalse();
     }
 
     @Test
@@ -62,7 +62,7 @@ public class FullHalfPairTest {
         FullHalfPair FullHalfPair2 = new FullHalfPair("b", "b");
 
         // assert
-        assertThat(FullHalfPair1.equals(FullHalfPair2)).isEqualTo(false);
+        assertThat(FullHalfPair1.equals(FullHalfPair2)).isFalse();
     }
 
     @Test
@@ -72,7 +72,7 @@ public class FullHalfPairTest {
         FullHalfPair FullHalfPair2 = new FullHalfPair("ａ", "b");
 
         // assert
-        assertThat(FullHalfPair1.equals(FullHalfPair2)).isEqualTo(false);
+        assertThat(FullHalfPair1.equals(FullHalfPair2)).isFalse();
     }
 
 }

@@ -196,7 +196,7 @@ public class QueryEscapeUtilsTest {
     public void testQueryEscapeUtils() throws Exception {
         // set up
         Constructor<QueryEscapeUtils> constructor = QueryEscapeUtils.class.getDeclaredConstructor();
-        assertThat(constructor.canAccess(null)).isEqualTo(false);
+        assertThat(constructor.canAccess(null)).isFalse();
         constructor.setAccessible(true);
 
         // assert

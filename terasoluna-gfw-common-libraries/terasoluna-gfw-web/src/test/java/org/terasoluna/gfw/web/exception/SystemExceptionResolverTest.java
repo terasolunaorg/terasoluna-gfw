@@ -70,7 +70,7 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isEqualTo(false);
+        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isFalse();
         assertThat(mockResponse.getHeaderNames()).isEmpty();
 
     }
@@ -88,7 +88,7 @@ public class SystemExceptionResolverTest {
         Enumeration<String> attributeNames = mockRequest.getAttributeNames();
         assertThat(attributeNames.nextElement())
                 .isEqualTo(DispatcherServlet.OUTPUT_FLASH_MAP_ATTRIBUTE);
-        assertThat(attributeNames.hasMoreElements()).isEqualTo(false);
+        assertThat(attributeNames.hasMoreElements()).isFalse();
         assertThat(mockResponse.getHeaderNames()).isEmpty();
         assertThat((Map<String, Object>) flashMap).isEmpty();
 
@@ -121,7 +121,7 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isEqualTo(false);
+        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isFalse();
         assertThat(mockResponse.getHeaderNames()).isEmpty();
 
     }
@@ -136,7 +136,7 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isEqualTo(false);
+        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isFalse();
         assertThat(mockResponse.getHeaderNames()).isEmpty();
 
     }
@@ -150,7 +150,7 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isEqualTo(false);
+        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isFalse();
         assertThat(mockResponse.getHeader("X-Exception-Code")).isEqualTo("code001");
 
     }
@@ -164,7 +164,7 @@ public class SystemExceptionResolverTest {
 
         testTarget.setExceptionCode(occurException, mockRequest, mockResponse);
 
-        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isEqualTo(false);
+        assertThat(mockRequest.getAttributeNames().hasMoreElements()).isFalse();
         assertThat(mockResponse.getHeader("X-Exception-Code")).isEqualTo("code001");
 
     }

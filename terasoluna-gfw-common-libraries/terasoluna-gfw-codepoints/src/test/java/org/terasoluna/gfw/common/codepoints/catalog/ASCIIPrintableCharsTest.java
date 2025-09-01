@@ -27,14 +27,14 @@ public class ASCIIPrintableCharsTest {
     @Test
     public void testIsValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("Hello~")).isEqualTo(true);
-        assertThat(codePoints.containsAll("\\100")).isEqualTo(true);
+        assertThat(codePoints.containsAll("Hello~")).isTrue();
+        assertThat(codePoints.containsAll("\\100")).isTrue();
     }
 
     @Test
     public void testIsInValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("Hello‾")).isEqualTo(false);
-        assertThat(codePoints.containsAll("¥100")).isEqualTo(false);
+        assertThat(codePoints.containsAll("Hello‾")).isFalse();
+        assertThat(codePoints.containsAll("¥100")).isFalse();
     }
 }

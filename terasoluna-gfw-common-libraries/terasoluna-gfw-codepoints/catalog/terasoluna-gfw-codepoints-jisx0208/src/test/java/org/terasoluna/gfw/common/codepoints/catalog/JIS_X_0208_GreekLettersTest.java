@@ -26,12 +26,12 @@ public class JIS_X_0208_GreekLettersTest {
     @Test
     public void testIsValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("αβγ")).isEqualTo(true);
+        assertThat(codePoints.containsAll("αβγ")).isTrue();
     }
 
     @Test
     public void testIsInValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("αBγ")).isEqualTo(false);
+        assertThat(codePoints.containsAll("αBγ")).isFalse();
     }
 }

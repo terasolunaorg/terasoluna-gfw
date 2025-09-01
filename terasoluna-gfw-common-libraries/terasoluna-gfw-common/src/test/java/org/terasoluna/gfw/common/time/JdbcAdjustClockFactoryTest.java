@@ -67,13 +67,13 @@ public class JdbcAdjustClockFactoryTest {
 
         ZonedDateTime standard = ZonedDateTime.now().plusDays(30);
         ZonedDateTime now = ZonedDateTime.now(clock);
-        assertThat(now.withNano(0).isEqual(standard.withNano(0))).isEqualTo(true);
+        assertThat(now.withNano(0).isEqual(standard.withNano(0))).isTrue();
         assertThat(now.getZone()).isEqualTo(standard.getZone());
 
         Thread.sleep(100);
 
         ZonedDateTime now2 = ZonedDateTime.now(clock);
-        assertThat(now2.isEqual(now)).isEqualTo(true);
+        assertThat(now2.isEqual(now)).isTrue();
     }
 
     @Test
@@ -83,7 +83,7 @@ public class JdbcAdjustClockFactoryTest {
 
         ZonedDateTime standard = ZonedDateTime.now(ZoneOffset.UTC).plusDays(30);
         ZonedDateTime now = ZonedDateTime.now(clock);
-        assertThat(now.withNano(0).isEqual(standard.withNano(0))).isEqualTo(true);
+        assertThat(now.withNano(0).isEqual(standard.withNano(0))).isTrue();
         assertThat(now.getZone()).isEqualTo(standard.getZone());
     }
 
@@ -94,13 +94,13 @@ public class JdbcAdjustClockFactoryTest {
 
         ZonedDateTime standard = ZonedDateTime.now().plusDays(30);
         ZonedDateTime now = ZonedDateTime.now(clock);
-        assertThat(now.withNano(0).isEqual(standard.withNano(0))).isEqualTo(true);
+        assertThat(now.withNano(0).isEqual(standard.withNano(0))).isTrue();
         assertThat(now.getZone()).isEqualTo(standard.getZone());
 
         Thread.sleep(100);
 
         ZonedDateTime now2 = ZonedDateTime.now(clock);
-        assertThat(now2.isAfter(now)).isEqualTo(true);
+        assertThat(now2.isAfter(now)).isTrue();
     }
 
     @Test
@@ -110,7 +110,7 @@ public class JdbcAdjustClockFactoryTest {
 
         ZonedDateTime standard = ZonedDateTime.now(ZoneOffset.UTC).plusDays(30);
         ZonedDateTime now = ZonedDateTime.now(clock);
-        assertThat(now.withNano(0).isEqual(standard.withNano(0))).isEqualTo(true);
+        assertThat(now.withNano(0).isEqual(standard.withNano(0))).isTrue();
         assertThat(now.getZone()).isEqualTo(standard.getZone());
     }
 }

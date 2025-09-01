@@ -28,7 +28,7 @@ public class JspTagUtilsTest {
     public void testJspTagUtils() throws Exception {
         // set up
         Constructor<JspTagUtils> constructor = JspTagUtils.class.getDeclaredConstructor();
-        assertThat(constructor.canAccess(null)).isEqualTo(false);
+        assertThat(constructor.canAccess(null)).isFalse();
         constructor.setAccessible(true);
 
         // assert
@@ -39,22 +39,22 @@ public class JspTagUtilsTest {
 
     @Test
     public void toBoolean_valueIsTrue() throws JspException {
-        assertThat(JspTagUtils.toBoolean("true", false, null)).isEqualTo(true);
-        assertThat(JspTagUtils.toBoolean("TRUE", false, null)).isEqualTo(true);
-        assertThat(JspTagUtils.toBoolean("TrUe", false, null)).isEqualTo(true);
+        assertThat(JspTagUtils.toBoolean("true", false, null)).isTrue();
+        assertThat(JspTagUtils.toBoolean("TRUE", false, null)).isTrue();
+        assertThat(JspTagUtils.toBoolean("TrUe", false, null)).isTrue();
     }
 
     @Test
     public void toBoolean_valueIsFalse() throws JspException {
-        assertThat(JspTagUtils.toBoolean("false", true, null)).isEqualTo(false);
-        assertThat(JspTagUtils.toBoolean("FALSE", true, null)).isEqualTo(false);
-        assertThat(JspTagUtils.toBoolean("FaLsE", true, null)).isEqualTo(false);
+        assertThat(JspTagUtils.toBoolean("false", true, null)).isFalse();
+        assertThat(JspTagUtils.toBoolean("FALSE", true, null)).isFalse();
+        assertThat(JspTagUtils.toBoolean("FaLsE", true, null)).isFalse();
     }
 
     @Test
     public void toBoolean_valueIsNullOrBlankOrWhitespace() throws JspException {
-        assertThat(JspTagUtils.toBoolean(null, Boolean.TRUE, null)).isEqualTo(true);
-        assertThat(JspTagUtils.toBoolean("", Boolean.FALSE, null)).isEqualTo(false);
+        assertThat(JspTagUtils.toBoolean(null, Boolean.TRUE, null)).isTrue();
+        assertThat(JspTagUtils.toBoolean("", Boolean.FALSE, null)).isFalse();
     }
 
     @Test

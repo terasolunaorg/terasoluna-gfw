@@ -132,7 +132,7 @@ public class AbstractReloadableCodeListTest {
 
         // assert
         assertThat(mapResult1).isEqualTo(mapExpectedFirstFetch);
-        assertThat(logger.isDebugEnabled()).isEqualTo(false);
+        assertThat(logger.isDebugEnabled()).isFalse();
 
         // fetch codelist map for the first time
         reloadableCodeList.afterPropertiesSet();

@@ -149,7 +149,7 @@ public class TraceLoggingInterceptorTest {
         // assert
         assertThat(startTime).isNull();
         verify(mockAppender, times(0)).doAppend(any());
-        assertThat(logger.isDebugEnabled()).isEqualTo(false);
+        assertThat(logger.isDebugEnabled()).isFalse();
 
         // init log level
         LogLevelChangeUtil.resetLogLevel();
@@ -338,7 +338,7 @@ public class TraceLoggingInterceptorTest {
         interceptor.postHandle(request, response, paramHandler, model);
 
         // assert
-        assertThat(logger.isDebugEnabled()).isEqualTo(false);
+        assertThat(logger.isDebugEnabled()).isFalse();
 
         // init log level
         LogLevelChangeUtil.resetLogLevel();
@@ -358,7 +358,7 @@ public class TraceLoggingInterceptorTest {
         interceptor.postHandle(request, response, paramHandler, model);
 
         // assert
-        assertThat(logger.isDebugEnabled()).isEqualTo(false);
+        assertThat(logger.isDebugEnabled()).isFalse();
 
         // init log level
         LogLevelChangeUtil.resetLogLevel();

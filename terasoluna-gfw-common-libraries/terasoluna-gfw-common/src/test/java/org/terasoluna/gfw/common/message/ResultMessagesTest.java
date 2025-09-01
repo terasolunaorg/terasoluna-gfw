@@ -156,13 +156,13 @@ public class ResultMessagesTest {
     @Test
     public void testIsNotEmpty01() {
         ResultMessages messages = new ResultMessages(ERROR).add("foo");
-        assertThat(messages.isNotEmpty()).isEqualTo(true);
+        assertThat(messages.isNotEmpty()).isTrue();
     }
 
     @Test
     public void testIsNotEmpty02() {
         ResultMessages messages = new ResultMessages(ERROR);
-        assertThat(messages.isNotEmpty()).isEqualTo(false);
+        assertThat(messages.isNotEmpty()).isFalse();
     }
 
     @Test

@@ -26,12 +26,12 @@ public class CRLFTest {
     @Test
     public void testIsValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("\n")).isEqualTo(true);
+        assertThat(codePoints.containsAll("\n")).isTrue();
     }
 
     @Test
     public void testIsInValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("あ\n")).isEqualTo(false);
+        assertThat(codePoints.containsAll("あ\n")).isFalse();
     }
 }
