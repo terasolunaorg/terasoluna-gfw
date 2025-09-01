@@ -116,7 +116,7 @@ public class AbstractMDCPutFilterTest {
 
         // do assert.
         // put value to MDC.
-        assertThat((Map<?, ?>) mockFilterChain.actualMdcContextMap).hasSize(2);
+        assertThat((Map<String, String>) mockFilterChain.actualMdcContextMap).hasSize(2);
         assertThat(mockFilterChain.actualMdcPutValue).isEqualTo("value");
 
         // call filter chain.
@@ -355,8 +355,7 @@ public class AbstractMDCPutFilterTest {
     private class MockFilterChainForAbstractMDCPutFilterTest implements FilterChain {
         private String actualMdcPutValue;
 
-        @SuppressWarnings("rawtypes")
-        private Map actualMdcContextMap;
+        private Map<String, String> actualMdcContextMap;
 
         @Override
         public void doFilter(ServletRequest request, ServletResponse response)
