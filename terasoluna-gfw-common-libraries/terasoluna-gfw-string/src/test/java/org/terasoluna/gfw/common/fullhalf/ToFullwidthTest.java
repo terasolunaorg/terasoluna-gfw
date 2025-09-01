@@ -174,7 +174,7 @@ public class ToFullwidthTest {
 
     @Test
     public void testToFull23_置換対象文字列が空文字の時空文字を戻り値とし処理を終了すること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("")).isEqualTo("");
+        assertThat(DefaultFullHalf.INSTANCE.toFullwidth("")).isEmpty();
     }
 
     @Test

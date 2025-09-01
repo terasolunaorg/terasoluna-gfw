@@ -51,8 +51,8 @@ public class FunctionsTest {
 
     @Test
     public void testH() {
-        assertThat(Functions.h(null)).isEqualTo("");
-        assertThat(Functions.h("")).isEqualTo("");
+        assertThat(Functions.h(null)).isEmpty();
+        assertThat(Functions.h("")).isEmpty();
         assertThat(Functions.h("<a href=\"\">")).isEqualTo("&lt;a href=&quot;&quot;&gt;");
         assertThat(Functions.h("<a href=''>")).isEqualTo("&lt;a href=&#39;&#39;&gt;");
         assertThat(Functions.h("&lt;")).isEqualTo("&amp;lt;");
@@ -79,7 +79,7 @@ public class FunctionsTest {
         String result = Functions.h(input);
 
         // assert
-        assertThat(result).isEqualTo("");
+        assertThat(result).isEmpty();
     }
 
     /**
@@ -282,8 +282,8 @@ public class FunctionsTest {
 
     @Test
     public void testU() {
-        assertThat(Functions.u(null)).isEqualTo("");
-        assertThat(Functions.u("")).isEqualTo("");
+        assertThat(Functions.u(null)).isEmpty();
+        assertThat(Functions.u("")).isEmpty();
         assertThat(Functions.u("あいうえお")).isEqualTo("%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A");
         assertThat(Functions.u("http://localhost:8080/spring"))
                 .isEqualTo("http://localhost:8080/spring");
@@ -391,8 +391,8 @@ public class FunctionsTest {
 
     @Test
     public void testBr() {
-        assertThat(Functions.br(null)).isEqualTo("");
-        assertThat(Functions.br("")).isEqualTo("");
+        assertThat(Functions.br(null)).isEmpty();
+        assertThat(Functions.br("")).isEmpty();
         assertThat(Functions.br("abcde\nabcdf")).isEqualTo("abcde<br />abcdf");
     }
 
@@ -435,18 +435,18 @@ public class FunctionsTest {
 
     @Test
     public void testCut() {
-        assertThat(Functions.cut(null, 1)).isEqualTo("");
-        assertThat(Functions.cut("", 1)).isEqualTo("");
+        assertThat(Functions.cut(null, 1)).isEmpty();
+        assertThat(Functions.cut("", 1)).isEmpty();
         assertThat(Functions.cut("abcdef", 3)).isEqualTo("abc");
         assertThat(Functions.cut("abcdef", 7)).isEqualTo("abcdef");
-        assertThat(Functions.cut("abcdef", 0)).isEqualTo("");
-        assertThat(Functions.cut("abcdef", -1)).isEqualTo("");
+        assertThat(Functions.cut("abcdef", 0)).isEmpty();
+        assertThat(Functions.cut("abcdef", -1)).isEmpty();
     }
 
     @Test
     public void testLink() {
-        assertThat(Functions.link(null)).isEqualTo("");
-        assertThat(Functions.link("")).isEqualTo("");
+        assertThat(Functions.link(null)).isEmpty();
+        assertThat(Functions.link("")).isEmpty();
         assertThat(Functions.link("go to http://www.google.com"))
                 .isEqualTo("go to <a href=\"http://www.google.com\">http://www.google.com</a>");
         assertThat(Functions.link("go to https://www.google.com"))
@@ -500,18 +500,18 @@ public class FunctionsTest {
 
     @Test
     public void testQuery01() throws Exception {
-        assertThat(Functions.query(null)).isEqualTo("");
-        assertThat(Functions.query("")).isEqualTo("");
-        assertThat(Functions.query("aaaa")).isEqualTo("");
-        assertThat(Functions.query(1)).isEqualTo("");
-        assertThat(Functions.query(1.0)).isEqualTo("");
-        assertThat(Functions.query(1L)).isEqualTo("");
-        assertThat(Functions.query(new Date())).isEqualTo("");
-        assertThat(Functions.query(Locale.getDefault())).isEqualTo("");
-        assertThat(Functions.query(new URL("http://google.com"))).isEqualTo("");
-        assertThat(Functions.query(new Object[] {"1", "2", "3"})).isEqualTo("");
-        assertThat(Functions.query(new int[] {1, 2, 3})).isEqualTo("");
-        assertThat(Functions.query(Arrays.asList("a", "b", "c"))).isEqualTo("");
+        assertThat(Functions.query(null)).isEmpty();
+        assertThat(Functions.query("")).isEmpty();
+        assertThat(Functions.query("aaaa")).isEmpty();
+        assertThat(Functions.query(1)).isEmpty();
+        assertThat(Functions.query(1.0)).isEmpty();
+        assertThat(Functions.query(1L)).isEmpty();
+        assertThat(Functions.query(new Date())).isEmpty();
+        assertThat(Functions.query(Locale.getDefault())).isEmpty();
+        assertThat(Functions.query(new URL("http://google.com"))).isEmpty();
+        assertThat(Functions.query(new Object[] {"1", "2", "3"})).isEmpty();
+        assertThat(Functions.query(new int[] {1, 2, 3})).isEmpty();
+        assertThat(Functions.query(Arrays.asList("a", "b", "c"))).isEmpty();
     }
 
     @Test
@@ -527,7 +527,7 @@ public class FunctionsTest {
         // Either can be populated as { "xxx", "yyy" }
         assertThat(query).isEqualTo(
                 "name=Ichiro%20Suzuki&ja=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86&arr%5B0%5D=xxx&arr%5B1%5D=yyy");
-        assertThat(Functions.query(new LinkedHashMap<String, Object>())).isEqualTo("");
+        assertThat(Functions.query(new LinkedHashMap<String, Object>())).isEmpty();
     }
 
     @Test
@@ -607,8 +607,8 @@ public class FunctionsTest {
 
     @Test
     public void testJs() {
-        assertThat(Functions.js(null)).isEqualTo("");
-        assertThat(Functions.js("")).isEqualTo("");
+        assertThat(Functions.js(null)).isEmpty();
+        assertThat(Functions.js("")).isEmpty();
         assertThat(Functions.js("a")).isEqualTo("a");
         assertThat(Functions.js("'")).isEqualTo("\\'");
         assertThat(Functions.js("\"")).isEqualTo("\\\"");
@@ -623,8 +623,8 @@ public class FunctionsTest {
 
     @Test
     public void testHjs() {
-        assertThat(Functions.hjs(null)).isEqualTo("");
-        assertThat(Functions.hjs("")).isEqualTo("");
+        assertThat(Functions.hjs(null)).isEmpty();
+        assertThat(Functions.hjs("")).isEmpty();
         assertThat(Functions.hjs("a")).isEqualTo("a");
         assertThat(Functions.hjs("'")).isEqualTo("\\&#39;");
         assertThat(Functions.hjs("\"")).isEqualTo("\\&quot;");

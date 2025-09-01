@@ -57,7 +57,7 @@ public class TransactionTokenTagTest {
         int result = tag.writeTagContent(tagWriter);
 
         // assert
-        assertThat(sw.getBuffer()).hasSize(0);
+        assertThat(sw.getBuffer()).isEmpty();
         assertThat(result).isEqualTo(0);
     }
 

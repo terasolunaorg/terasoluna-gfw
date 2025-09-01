@@ -300,7 +300,7 @@ public class AbstractMDCPutFilterTest {
 
         testTarget.doFilterInternal(mockRequest, mockResponse, mockFilterChain);
 
-        assertThat(mockFilterChain.actualMdcPutValue).isEqualTo("");
+        assertThat(mockFilterChain.actualMdcPutValue).isEmpty();
 
     }
 
