@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.common.exception;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.argThat;
@@ -77,7 +76,7 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[" + code + "] " + message;
-        assertThat(actualLogMessage, is(expectedLogMessage));
+        assertThat(actualLogMessage).isEqualTo(expectedLogMessage);
     }
 
     @Test
@@ -92,7 +91,7 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[UNDEFINED-CODE] " + message;
-        assertThat(actualLogMessage, is(expectedLogMessage));
+        assertThat(actualLogMessage).isEqualTo(expectedLogMessage);
     }
 
     @Test
@@ -107,7 +106,7 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[UNDEFINED-CODE] " + message;
-        assertThat(actualLogMessage, is(expectedLogMessage));
+        assertThat(actualLogMessage).isEqualTo(expectedLogMessage);
     }
 
     @Test
@@ -122,7 +121,7 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[" + code + "] UNDEFINED-MESSAGE";
-        assertThat(actualLogMessage, is(expectedLogMessage));
+        assertThat(actualLogMessage).isEqualTo(expectedLogMessage);
     }
 
     @Test
@@ -137,7 +136,7 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[" + code + "] UNDEFINED-MESSAGE";
-        assertThat(actualLogMessage, is(expectedLogMessage));
+        assertThat(actualLogMessage).isEqualTo(expectedLogMessage);
     }
 
     @Test
@@ -152,7 +151,7 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[UNDEFINED-CODE] UNDEFINED-MESSAGE";
-        assertThat(actualLogMessage, is(expectedLogMessage));
+        assertThat(actualLogMessage).isEqualTo(expectedLogMessage);
     }
 
     @Test
@@ -168,7 +167,7 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[UNDEFINED-CODE]";
-        assertThat(actualLogMessage, is(expectedLogMessage));
+        assertThat(actualLogMessage).isEqualTo(expectedLogMessage);
     }
 
     @Test
@@ -185,7 +184,7 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[UNDEFINED-CODE] ";
-        assertThat(actualLogMessage, is(expectedLogMessage));
+        assertThat(actualLogMessage).isEqualTo(expectedLogMessage);
     }
 
     @Test
@@ -201,7 +200,7 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "logId:exceptionCode\tlogMessage:exceptionMessage";
-        assertThat(actualLogMessage, is(expectedLogMessage));
+        assertThat(actualLogMessage).isEqualTo(expectedLogMessage);
     }
 
     @Test
@@ -218,7 +217,7 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[DEFAULT-CODE] DEFAULT-MESSAGE";
-        assertThat(actualLogMessage, is(expectedLogMessage));
+        assertThat(actualLogMessage).isEqualTo(expectedLogMessage);
     }
 
     @Test
@@ -235,7 +234,7 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[code2] occur file not found exception.";
-        assertThat(actualLogMessage, is(expectedLogMessage));
+        assertThat(actualLogMessage).isEqualTo(expectedLogMessage);
 
     }
 
@@ -250,7 +249,7 @@ public class ExceptionLoggerTest {
 
         // do assert.
         String expectedLogMessage = "[UNDEFINED-CODE] occur file not found exception.";
-        assertThat(actualLogMessage, is(expectedLogMessage));
+        assertThat(actualLogMessage).isEqualTo(expectedLogMessage);
 
     }
 
@@ -585,8 +584,9 @@ public class ExceptionLoggerTest {
     @Test
     public void testExceptionLogger_default() {
         // do assert.
-        assertThat(applicationLogger.getName(), is(testTarget.getClass().getName()));
-        assertThat(monitoringLogger.getName(), is(testTarget.getClass().getName() + ".Monitoring"));
+        assertThat(applicationLogger.getName()).isEqualTo(testTarget.getClass().getName());
+        assertThat(monitoringLogger.getName())
+                .isEqualTo(testTarget.getClass().getName() + ".Monitoring");
     }
 
     @Test
@@ -617,8 +617,8 @@ public class ExceptionLoggerTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             testTarget.afterPropertiesSet();
         });
-        assertThat(e.getMessage(), is(
-                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"null\"."));
+        assertThat(e).hasMessage(
+                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"null\".");
 
     }
 
@@ -630,8 +630,8 @@ public class ExceptionLoggerTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             testTarget.afterPropertiesSet();
         });
-        assertThat(e.getMessage(), is(
-                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"\"."));
+        assertThat(e).hasMessage(
+                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"\".");
 
     }
 
@@ -643,8 +643,8 @@ public class ExceptionLoggerTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             testTarget.afterPropertiesSet();
         });
-        assertThat(e.getMessage(), is(
-                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"{1}\"."));
+        assertThat(e).hasMessage(
+                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"{1}\".");
 
     }
 
@@ -656,8 +656,8 @@ public class ExceptionLoggerTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             testTarget.afterPropertiesSet();
         });
-        assertThat(e.getMessage(), is(
-                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"{0}\"."));
+        assertThat(e).hasMessage(
+                "logMessageFormat must have placeholder({0} and {1}). {0} is replaced with exception code. {1} is replaced with exception message. current logMessageFormat is \"{0}\".");
 
     }
 
@@ -667,8 +667,8 @@ public class ExceptionLoggerTest {
         // do test.
         testTarget = new ExceptionLogger("test");
         // do assert.
-        assertThat(testTarget.getApplicationLogger().getName(), is("test"));
-        assertThat(testTarget.getMonitoringLogger().getName(), is("test.Monitoring"));
+        assertThat(testTarget.getApplicationLogger().getName()).isEqualTo("test");
+        assertThat(testTarget.getMonitoringLogger().getName()).isEqualTo("test.Monitoring");
     }
 
     /**

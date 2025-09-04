@@ -15,10 +15,7 @@
  */
 package org.terasoluna.gfw.common.exception;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 import org.terasoluna.gfw.common.message.ResultMessage;
@@ -33,7 +30,7 @@ public class BusinessExceptionTest {
         // throw & assert
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> new BusinessException(null, null));
-        assertThat(ex.getMessage(), is("messages must not be null"));
+        assertThat(ex).hasMessage("messages must not be null");
     }
 
     @Test
@@ -49,9 +46,8 @@ public class BusinessExceptionTest {
         BusinessException ex = assertThrows(BusinessException.class, () -> {
             throw exception;
         });
-        assertThat(ex.getResultMessages(), is(resultMessages));
-        assertThat(ex.getMessage(), is(resultMessages.toString()));
-        assertThat(ex.getCause(), is(nullValue()));
+        assertThat(ex.getResultMessages()).isEqualTo(resultMessages);
+        assertThat(ex).hasMessage(resultMessages.toString()).hasNoCause();
     }
 
     @Test
@@ -68,9 +64,9 @@ public class BusinessExceptionTest {
         BusinessException ex = assertThrows(BusinessException.class, () -> {
             throw exception;
         });
-        assertThat(ex.getResultMessages(), is(resultMessages));
-        assertThat(ex.getMessage(), is(resultMessages.toString()));
-        assertThat(ex.getCause(), is(instanceOf(IllegalArgumentException.class)));
+        assertThat(ex.getResultMessages()).isEqualTo(resultMessages);
+        assertThat(ex).hasMessage(resultMessages.toString())
+                .hasCauseInstanceOf(IllegalArgumentException.class);
     }
 
 }

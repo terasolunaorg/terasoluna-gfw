@@ -15,9 +15,7 @@
  */
 package org.terasoluna.gfw.web.mvc.support;
 
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.Is.is;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
@@ -55,7 +53,7 @@ public class CompositeRequestDataValueProcessorTest {
                 compositeRequestDataValueProcessor.processAction(request, "action", "method");
 
         // assert
-        assertThat(result, is("action"));
+        assertThat(result).isEqualTo("action");
     }
 
     @Test
@@ -67,7 +65,7 @@ public class CompositeRequestDataValueProcessorTest {
                 compositeRequestDataValueProcessor.processAction(request, "action", "method");
 
         // assert
-        assertThat(result, is("other_action"));
+        assertThat(result).isEqualTo("other_action");
     }
 
     @Test
@@ -78,7 +76,7 @@ public class CompositeRequestDataValueProcessorTest {
                 compositeRequestDataValueProcessor.processAction(request, "action", "method");
 
         // assert
-        assertThat(result, is("action"));
+        assertThat(result).isEqualTo("action");
     }
 
     @Test
@@ -89,7 +87,7 @@ public class CompositeRequestDataValueProcessorTest {
 
         String result =
                 compositeRequestDataValueProcessor.processFormFieldValue(request, "", "value", "");
-        assertThat(result, is("value"));
+        assertThat(result).isEqualTo("value");
     }
 
     @Test
@@ -100,7 +98,7 @@ public class CompositeRequestDataValueProcessorTest {
 
         String result =
                 compositeRequestDataValueProcessor.processFormFieldValue(request, "", "value", "");
-        assertThat(result, is("other_value"));
+        assertThat(result).isEqualTo("other_value");
     }
 
     @Test
@@ -109,7 +107,7 @@ public class CompositeRequestDataValueProcessorTest {
         compositeRequestDataValueProcessor = new CompositeRequestDataValueProcessor();
         String result =
                 compositeRequestDataValueProcessor.processFormFieldValue(request, "", "value", "");
-        assertThat(result, is("value"));
+        assertThat(result).isEqualTo("value");
     }
 
     @Test
@@ -120,7 +118,7 @@ public class CompositeRequestDataValueProcessorTest {
                 .thenReturn(null);
 
         Map<String, String> map = compositeRequestDataValueProcessor.getExtraHiddenFields(request);
-        assertThat(map, is(notNullValue()));
+        assertThat(map).isNotNull();
     }
 
     @Test
@@ -131,7 +129,7 @@ public class CompositeRequestDataValueProcessorTest {
                 .thenReturn(new HashMap<String, String>());
 
         Map<String, String> map = compositeRequestDataValueProcessor.getExtraHiddenFields(request);
-        assertThat(map, is(notNullValue()));
+        assertThat(map).isNotNull();
     }
 
     @Test
@@ -139,7 +137,7 @@ public class CompositeRequestDataValueProcessorTest {
         // No processors assigned
         compositeRequestDataValueProcessor = new CompositeRequestDataValueProcessor();
         Map<String, String> map = compositeRequestDataValueProcessor.getExtraHiddenFields(request);
-        assertThat(map, is(notNullValue()));
+        assertThat(map).isNotNull();
     }
 
     @Test
@@ -150,7 +148,7 @@ public class CompositeRequestDataValueProcessorTest {
                 .thenReturn("http://localhost:8080/test");
         String result = compositeRequestDataValueProcessor.processUrl(request,
                 "http://localhost:8080/test");
-        assertThat(result, is("http://localhost:8080/test"));
+        assertThat(result).isEqualTo("http://localhost:8080/test");
     }
 
     @Test
@@ -162,7 +160,7 @@ public class CompositeRequestDataValueProcessorTest {
 
         String result = compositeRequestDataValueProcessor.processUrl(request,
                 "http://localhost:8080/test");
-        assertThat(result, is("http://localhost:9999/test"));
+        assertThat(result).isEqualTo("http://localhost:9999/test");
     }
 
     @Test
@@ -171,7 +169,7 @@ public class CompositeRequestDataValueProcessorTest {
         compositeRequestDataValueProcessor = new CompositeRequestDataValueProcessor();
         String result = compositeRequestDataValueProcessor.processUrl(request,
                 "http://localhost:8080/test");
-        assertThat(result, is("http://localhost:8080/test"));
+        assertThat(result).isEqualTo("http://localhost:8080/test");
     }
 
 }

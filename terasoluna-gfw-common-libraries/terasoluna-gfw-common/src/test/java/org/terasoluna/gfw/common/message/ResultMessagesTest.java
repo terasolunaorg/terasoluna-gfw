@@ -15,9 +15,7 @@
  */
 package org.terasoluna.gfw.common.message;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.terasoluna.gfw.common.message.StandardResultMessageType.DANGER;
@@ -45,7 +43,7 @@ public class ResultMessagesTest {
     @Test
     public void testGetType() {
         ResultMessages messages = new ResultMessages(ERROR);
-        assertThat(messages.getType(), is(ERROR));
+        assertThat(messages.getType()).isEqualTo(ERROR);
     }
 
     @Test
@@ -54,7 +52,7 @@ public class ResultMessagesTest {
         ResultMessage msg2 = ResultMessage.fromCode("bar");
 
         ResultMessages messages = new ResultMessages(ERROR, msg1, msg2);
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
     }
 
     @Test
@@ -64,7 +62,7 @@ public class ResultMessagesTest {
 
         ResultMessages messages = new ResultMessages(ERROR, msg1);
         messages.add(msg2);
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
     }
 
     @Test
@@ -82,7 +80,7 @@ public class ResultMessagesTest {
 
         ResultMessages messages = new ResultMessages(ERROR, msg1);
         messages.add(msg2);
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
         System.out.println(messages);
     }
 
@@ -94,7 +92,7 @@ public class ResultMessagesTest {
         ResultMessages messages = new ResultMessages(ERROR);
         messages.add("foo");
         messages.add("bar");
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
     }
 
     @Test
@@ -112,7 +110,7 @@ public class ResultMessagesTest {
         ResultMessages messages = new ResultMessages(ERROR);
         messages.add("foo", "aa");
         messages.add("bar", "bb");
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
     }
 
     @Test
@@ -129,7 +127,7 @@ public class ResultMessagesTest {
 
         ResultMessages messages = new ResultMessages(ERROR);
         messages.addAll(msg1, msg2);
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
     }
 
     @Test
@@ -145,7 +143,7 @@ public class ResultMessagesTest {
 
         ResultMessages messages = new ResultMessages(ERROR);
         messages.addAll(Arrays.asList(msg1, msg2));
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
     }
 
     @Test
@@ -158,13 +156,13 @@ public class ResultMessagesTest {
     @Test
     public void testIsNotEmpty01() {
         ResultMessages messages = new ResultMessages(ERROR).add("foo");
-        assertThat(messages.isNotEmpty(), is(true));
+        assertThat(messages.isNotEmpty()).isTrue();
     }
 
     @Test
     public void testIsNotEmpty02() {
         ResultMessages messages = new ResultMessages(ERROR);
-        assertThat(messages.isNotEmpty(), is(false));
+        assertThat(messages.isNotEmpty()).isFalse();
     }
 
     @Test
@@ -180,7 +178,7 @@ public class ResultMessagesTest {
             result.add(message);
         }
 
-        assertThat(result, contains(msg1, msg2));
+        assertThat(result).containsExactly(msg1, msg2);
     }
 
     @Test
@@ -190,8 +188,8 @@ public class ResultMessagesTest {
 
         ResultMessages messages = ResultMessages.error().add("foo", "aa").add("bar", "bb");
 
-        assertThat(messages.getType(), is(ERROR));
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getType()).isEqualTo(ERROR);
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
     }
 
     @Test
@@ -201,8 +199,8 @@ public class ResultMessagesTest {
 
         ResultMessages messages = ResultMessages.info().add("foo", "aa").add("bar", "bb");
 
-        assertThat(messages.getType(), is(INFO));
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getType()).isEqualTo(INFO);
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
     }
 
     @Test
@@ -212,8 +210,8 @@ public class ResultMessagesTest {
 
         ResultMessages messages = ResultMessages.success().add("foo", "aa").add("bar", "bb");
 
-        assertThat(messages.getType(), is(SUCCESS));
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getType()).isEqualTo(SUCCESS);
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
     }
 
     @Test
@@ -223,8 +221,8 @@ public class ResultMessagesTest {
 
         ResultMessages messages = ResultMessages.danger().add("foo", "aa").add("bar", "bb");
 
-        assertThat(messages.getType(), is(DANGER));
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getType()).isEqualTo(DANGER);
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
     }
 
     @Test
@@ -234,8 +232,8 @@ public class ResultMessagesTest {
 
         ResultMessages messages = ResultMessages.warning().add("foo", "aa").add("bar", "bb");
 
-        assertThat(messages.getType(), is(WARNING));
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getType()).isEqualTo(WARNING);
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
     }
 
     @Test
@@ -245,8 +243,8 @@ public class ResultMessagesTest {
 
         ResultMessages messages = ResultMessages.primary().add("foo", "aa").add("bar", "bb");
 
-        assertThat(messages.getType(), is(PRIMARY));
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getType()).isEqualTo(PRIMARY);
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
     }
 
     @Test
@@ -256,8 +254,8 @@ public class ResultMessagesTest {
 
         ResultMessages messages = ResultMessages.secondary().add("foo", "aa").add("bar", "bb");
 
-        assertThat(messages.getType(), is(SECONDARY));
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getType()).isEqualTo(SECONDARY);
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
     }
 
     @Test
@@ -267,8 +265,8 @@ public class ResultMessagesTest {
 
         ResultMessages messages = ResultMessages.light().add("foo", "aa").add("bar", "bb");
 
-        assertThat(messages.getType(), is(LIGHT));
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getType()).isEqualTo(LIGHT);
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
     }
 
     @Test
@@ -278,8 +276,8 @@ public class ResultMessagesTest {
 
         ResultMessages messages = ResultMessages.dark().add("foo", "aa").add("bar", "bb");
 
-        assertThat(messages.getType(), is(DARK));
-        assertThat(messages.getList(), contains(msg1, msg2));
+        assertThat(messages.getType()).isEqualTo(DARK);
+        assertThat(messages.getList()).containsExactly(msg1, msg2);
     }
 
     /**

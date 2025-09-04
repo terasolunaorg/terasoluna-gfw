@@ -15,11 +15,7 @@
  */
 package org.terasoluna.gfw.common.exception;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasEntry;
-import static org.hamcrest.Matchers.hasKey;
-import static org.hamcrest.Matchers.not;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
@@ -117,7 +113,7 @@ public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSuppo
             testTarget.invoke(mockMethodInvocation);
         });
         // do assert.
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
         verify(mockExceptionLogger, times(1)).warn(occurException);
         verify(mockExceptionLogger, times(1)).warn(any(Exception.class));
 
@@ -146,7 +142,7 @@ public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSuppo
             testTarget.invoke(mockMethodInvocation);
         });
         // do assert.
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
         verify(mockExceptionLogger, times(1)).warn(occurException);
         verify(mockExceptionLogger, times(1)).warn(any(Exception.class));
 
@@ -164,7 +160,7 @@ public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSuppo
             testTarget.invoke(mockMethodInvocation);
         });
         // do assert.
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
         verify(mockExceptionLogger, times(1)).warn(occurException);
         verify(mockExceptionLogger, times(1)).warn(any(Exception.class));
 
@@ -185,7 +181,7 @@ public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSuppo
             facade.getMessage();
         });
         // do assert.
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
         verify(mockExceptionLogger, times(1)).warn(occurException);
         verify(mockExceptionLogger, times(1)).warn(any(Exception.class));
 
@@ -221,7 +217,7 @@ public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSuppo
             facade.getMessage();
         });
         // do assert.
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
         verify(mockExceptionLogger, times(1)).warn(occurException);
         verify(mockExceptionLogger, times(1)).warn(any(Exception.class));
 
@@ -242,7 +238,7 @@ public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSuppo
             facade.getMessage();
         });
         // do assert.
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
         verify(mockExceptionLogger, times(1)).warn(occurException);
         verify(mockExceptionLogger, times(1)).warn(any(Exception.class));
 
@@ -271,7 +267,7 @@ public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSuppo
             testTarget.invoke(mockMethodInvocation);
         });
         // do assert.
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
         verify(mockExceptionLogger, never()).warn(any(Exception.class));
 
     }
@@ -301,12 +297,12 @@ public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSuppo
         BusinessException e = assertThrows(BusinessException.class, () -> {
             testTarget.invoke(mockMethodInvocation);
         });
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
         // 2nd intercept.
         e = assertThrows(BusinessException.class, () -> {
             testTarget.invoke(mockMethodInvocation);
         });
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
 
         // do assert.
         verify(mockExceptionLogger, times(2)).warn(occurException);
@@ -355,8 +351,8 @@ public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSuppo
         // do assert.
         String expectedBaseMessage =
                 getApplicationContext().getBean(TestRepository.class).toString() + ":";
-        assertThat(actualMessage, hasEntry(thread1, expectedBaseMessage + thread1.getId()));
-        assertThat(actualMessage, hasEntry(thread2, expectedBaseMessage + thread2.getId()));
+        assertThat(actualMessage).containsEntry(thread1, expectedBaseMessage + thread1.getId());
+        assertThat(actualMessage).containsEntry(thread2, expectedBaseMessage + thread2.getId());
 
         verify(mockExceptionLogger, never()).warn(any(Exception.class));
     }
@@ -417,8 +413,8 @@ public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSuppo
         thread2.join();
 
         // do assert
-        assertThat(actualBusinessException, hasEntry(thread1, occurExceptionForThread1));
-        assertThat(actualBusinessException, hasEntry(thread2, occurExceptionForThread2));
+        assertThat(actualBusinessException).containsEntry(thread1, occurExceptionForThread1);
+        assertThat(actualBusinessException).containsEntry(thread2, occurExceptionForThread2);
 
         verify(mockExceptionLogger, times(1)).warn(occurExceptionForThread1);
         verify(mockExceptionLogger, times(1)).warn(occurExceptionForThread2);
@@ -478,8 +474,8 @@ public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSuppo
         thread2.join();
 
         // do assert
-        assertThat(actualBusinessException, not(hasKey(thread1)));
-        assertThat(actualBusinessException, hasEntry(thread2, occurExceptionForThread2));
+        assertThat(actualBusinessException).doesNotContainKey(thread1);
+        assertThat(actualBusinessException).containsEntry(thread2, occurExceptionForThread2);
 
         verify(mockExceptionLogger, times(1)).warn(occurExceptionForThread2);
         verify(mockExceptionLogger, times(1)).warn(any(Exception.class));
@@ -496,7 +492,7 @@ public class ResultMessagesLoggingInterceptorTest extends ApplicationObjectSuppo
      */
     @Test
     public void testGetExceptionLogger() throws Throwable {
-        assertThat(testTarget.getExceptionLogger(), is(mockExceptionLogger));
+        assertThat(testTarget.getExceptionLogger()).isEqualTo(mockExceptionLogger);
     }
 
 }

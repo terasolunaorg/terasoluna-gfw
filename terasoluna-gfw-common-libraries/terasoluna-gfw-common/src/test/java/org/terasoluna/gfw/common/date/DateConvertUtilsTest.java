@@ -15,9 +15,7 @@
  */
 package org.terasoluna.gfw.common.date;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsNull.notNullValue;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.lang.reflect.Constructor;
 import java.sql.Time;
@@ -30,11 +28,11 @@ public class DateConvertUtilsTest {
     public void testDateConvertUtils() throws Exception {
         // set up
         Constructor<DateConvertUtils> constructor = DateConvertUtils.class.getDeclaredConstructor();
-        assertThat(constructor.canAccess(null), is(false));
+        assertThat(constructor.canAccess(null)).isFalse();
         constructor.setAccessible(true);
 
         // assert
-        assertThat(constructor.newInstance(), notNullValue());
+        assertThat(constructor.newInstance()).isNotNull();
 
         constructor.setAccessible(false);
     }
@@ -49,13 +47,13 @@ public class DateConvertUtilsTest {
 
         // assertions
         DateTime result = new DateTime(timestamp.getTime());
-        assertThat(result.getYear(), is(2012));
-        assertThat(result.getMonthOfYear(), is(9));
-        assertThat(result.getDayOfMonth(), is(3));
-        assertThat(result.getHourOfDay(), is(23));
-        assertThat(result.getMinuteOfHour(), is(7));
-        assertThat(result.getSecondOfMinute(), is(11));
-        assertThat(result.getMillisOfSecond(), is(100));
+        assertThat(result.getYear()).isEqualTo(2012);
+        assertThat(result.getMonthOfYear()).isEqualTo(9);
+        assertThat(result.getDayOfMonth()).isEqualTo(3);
+        assertThat(result.getHourOfDay()).isEqualTo(23);
+        assertThat(result.getMinuteOfHour()).isEqualTo(7);
+        assertThat(result.getSecondOfMinute()).isEqualTo(11);
+        assertThat(result.getMillisOfSecond()).isEqualTo(100);
     }
 
     @Test
@@ -63,7 +61,7 @@ public class DateConvertUtilsTest {
         // testing
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> DateConvertUtils.convertToTimestamp(null));
-        assertThat(ex.getMessage(), is("date must not be null"));
+        assertThat(ex).hasMessage("date must not be null");
     }
 
     @Test
@@ -76,13 +74,13 @@ public class DateConvertUtilsTest {
 
         // assertion
         DateTime result = new DateTime(sqlDate.getTime());
-        assertThat(result.getYear(), is(2012));
-        assertThat(result.getMonthOfYear(), is(9));
-        assertThat(result.getDayOfMonth(), is(3));
-        assertThat(result.getHourOfDay(), is(0));
-        assertThat(result.getMinuteOfHour(), is(0));
-        assertThat(result.getSecondOfMinute(), is(0));
-        assertThat(result.getMillisOfSecond(), is(0));
+        assertThat(result.getYear()).isEqualTo(2012);
+        assertThat(result.getMonthOfYear()).isEqualTo(9);
+        assertThat(result.getDayOfMonth()).isEqualTo(3);
+        assertThat(result.getHourOfDay()).isEqualTo(0);
+        assertThat(result.getMinuteOfHour()).isEqualTo(0);
+        assertThat(result.getSecondOfMinute()).isEqualTo(0);
+        assertThat(result.getMillisOfSecond()).isEqualTo(0);
     }
 
     @Test
@@ -90,7 +88,7 @@ public class DateConvertUtilsTest {
         // testing
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> DateConvertUtils.convertToSqlDate(null));
-        assertThat(ex.getMessage(), is("date must not be null"));
+        assertThat(ex).hasMessage("date must not be null");
     }
 
     @Test
@@ -103,13 +101,13 @@ public class DateConvertUtilsTest {
 
         // assertion
         DateTime result = new DateTime(time.getTime());
-        assertThat(result.getYear(), is(1970));
-        assertThat(result.getMonthOfYear(), is(1));
-        assertThat(result.getDayOfMonth(), is(1));
-        assertThat(result.getHourOfDay(), is(23));
-        assertThat(result.getMinuteOfHour(), is(7));
-        assertThat(result.getSecondOfMinute(), is(11));
-        assertThat(result.getMillisOfSecond(), is(100));
+        assertThat(result.getYear()).isEqualTo(1970);
+        assertThat(result.getMonthOfYear()).isEqualTo(1);
+        assertThat(result.getDayOfMonth()).isEqualTo(1);
+        assertThat(result.getHourOfDay()).isEqualTo(23);
+        assertThat(result.getMinuteOfHour()).isEqualTo(7);
+        assertThat(result.getSecondOfMinute()).isEqualTo(11);
+        assertThat(result.getMillisOfSecond()).isEqualTo(100);
     }
 
     @Test
@@ -117,7 +115,7 @@ public class DateConvertUtilsTest {
         // testing
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> DateConvertUtils.convertToTime(null));
-        assertThat(ex.getMessage(), is("date must not be null"));
+        assertThat(ex).hasMessage("date must not be null");
     }
 
 }

@@ -15,11 +15,7 @@
  */
 package org.terasoluna.gfw.web.token;
 
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasLength;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.security.NoSuchAlgorithmException;
 import org.junit.jupiter.api.Test;
@@ -32,9 +28,8 @@ public class TokenStringGeneratorTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             new TokenStringGenerator("InvalidAlgorithm");
         });
-        assertThat(e.getCause(), is(instanceOf(NoSuchAlgorithmException.class)));
-        assertThat(e.getMessage(),
-                is("The given algorithm is invalid. algorithm=InvalidAlgorithm"));
+        assertThat(e).hasMessage("The given algorithm is invalid. algorithm=InvalidAlgorithm")
+                .cause().isInstanceOf(NoSuchAlgorithmException.class);
     }
 
     @Test
@@ -42,31 +37,31 @@ public class TokenStringGeneratorTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             new TokenStringGenerator(null);
         });
-        assertThat(e.getMessage(), is("algorithm must not be null"));
+        assertThat(e).hasMessage("algorithm must not be null");
     }
 
     @Test
     public void testGenerate_defaultMD5() {
         TokenStringGenerator generator = new TokenStringGenerator();
         String value = generator.generate("hoge");
-        assertThat(value, is(notNullValue()));
-        assertThat(value, hasLength(32));
+        assertThat(value).isNotNull();
+        assertThat(value).hasSize(32);
     }
 
     @Test
     public void testGenerate_defaultMD5_empty() {
         TokenStringGenerator generator = new TokenStringGenerator();
         String value = generator.generate("");
-        assertThat(value, is(notNullValue()));
-        assertThat(value, hasLength(32));
+        assertThat(value).isNotNull();
+        assertThat(value).hasSize(32);
     }
 
     @Test
     public void testGenerate_SHA256() {
         TokenStringGenerator generator = new TokenStringGenerator("SHA-256");
         String value = generator.generate("hoge");
-        assertThat(value, is(notNullValue()));
-        assertThat(value, hasLength(64));
+        assertThat(value).isNotNull();
+        assertThat(value).hasSize(64);
     }
 
     @Test
@@ -76,7 +71,7 @@ public class TokenStringGeneratorTest {
         IllegalArgumentException e = assertThrows(IllegalArgumentException.class, () -> {
             generator.generate(null);
         });
-        assertThat(e.getMessage(), is("seed must not be null"));
+        assertThat(e).hasMessage("seed must not be null");
     }
 
     @Test

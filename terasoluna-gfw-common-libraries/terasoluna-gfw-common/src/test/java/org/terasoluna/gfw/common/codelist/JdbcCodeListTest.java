@@ -15,10 +15,7 @@
  */
 package org.terasoluna.gfw.common.codelist;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.anEmptyMap;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -85,7 +82,7 @@ public class JdbcCodeListTest {
 
         Map<String, String> mapOutput = jdbcCodeList.retrieveMap();
 
-        assertThat(mapOutput, is(mapInput));
+        assertThat(mapOutput).isEqualTo(mapInput);
 
     }
 
@@ -125,7 +122,7 @@ public class JdbcCodeListTest {
 
         Map<String, String> mapOutput = jdbcCodeList.retrieveMap();
 
-        assertThat(mapOutput, is(mapInput));
+        assertThat(mapOutput).isEqualTo(mapInput);
 
     }
 
@@ -143,7 +140,7 @@ public class JdbcCodeListTest {
         Map<String, String> mapOutput = jdbcCodeList.retrieveMap();
 
         // assert
-        assertThat(mapOutput, is(anEmptyMap()));
+        assertThat(mapOutput).isEmpty();
 
     }
 
@@ -161,7 +158,7 @@ public class JdbcCodeListTest {
         Map<String, String> mapOutput = jdbcCodeList.retrieveMap();
 
         // assert
-        assertThat(mapOutput, is(anEmptyMap()));
+        assertThat(mapOutput).isEmpty();
 
     }
 
@@ -179,7 +176,7 @@ public class JdbcCodeListTest {
         Map<String, String> mapOutput = jdbcCodeList.retrieveMap();
 
         // assert
-        assertThat(mapOutput, is(anEmptyMap()));
+        assertThat(mapOutput).isEmpty();
 
     }
 
@@ -206,13 +203,13 @@ public class JdbcCodeListTest {
         Map<String, String> exposedMapFirstFetch = (Map<String, String>) f.get(jdbcCodeList);
 
         // assert
-        assertThat(exposedMapFirstFetch, is(nullValue()));
+        assertThat(exposedMapFirstFetch).isNull();
 
         jdbcCodeList.afterPropertiesSet();
 
         Map<String, String> exposedMapSecondFetch = (Map<String, String>) f.get(jdbcCodeList);
         // assert
-        assertThat(exposedMapSecondFetch, is(mapInput));
+        assertThat(exposedMapSecondFetch).isEqualTo(mapInput);
     }
 
     /**
@@ -239,13 +236,13 @@ public class JdbcCodeListTest {
         Map<String, String> exposedMapFirstFetch = (Map<String, String>) f.get(jdbcCodeList);
 
         // assert
-        assertThat(exposedMapFirstFetch, is(nullValue()));
+        assertThat(exposedMapFirstFetch).isNull();
 
         // run
         jdbcCodeList.afterPropertiesSet();
 
         // assert again
-        assertThat(exposedMapFirstFetch, is(nullValue()));
+        assertThat(exposedMapFirstFetch).isNull();
     }
 
     @Test

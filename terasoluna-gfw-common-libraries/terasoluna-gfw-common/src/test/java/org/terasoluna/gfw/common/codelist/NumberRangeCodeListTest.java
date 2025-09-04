@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.common.codelist;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -51,10 +50,10 @@ public class NumberRangeCodeListTest {
         Map<String, String> mapResult = numberRangeCodeList.asMap();
 
         // check that the codelist is initialized with range of numbers
-        assertThat(mapResult, is(mapTest));
+        assertThat(mapResult).isEqualTo(mapTest);
 
         // check the order of range of numbers
-        assertThat(mapResult.equals(mapTest), is(true));
+        assertThat(mapResult.equals(mapTest)).isTrue();
 
     }
 
@@ -105,8 +104,8 @@ public class NumberRangeCodeListTest {
         resultList.addAll(mapResult.values());
 
         // check the order of range of numbers
-        assertThat(mapResult, is(mapTest));
-        assertThat(resultList, is(testList));
+        assertThat(mapResult).isEqualTo(mapTest);
+        assertThat(resultList).isEqualTo(testList);
     }
 
     /**
@@ -132,8 +131,8 @@ public class NumberRangeCodeListTest {
         resultList.addAll(mapResult.values());
 
         // check the order of range of numbers
-        assertThat(mapResult, is(mapTest));
-        assertThat(resultList, is(testList));
+        assertThat(mapResult).isEqualTo(mapTest);
+        assertThat(resultList).isEqualTo(testList);
     }
 
     /**
@@ -165,8 +164,8 @@ public class NumberRangeCodeListTest {
         resultList.addAll(mapResult.values());
 
         // check the order of range of numbers
-        assertThat(mapResult, is(mapTest));
-        assertThat(resultList, is(testList));
+        assertThat(mapResult).isEqualTo(mapTest);
+        assertThat(resultList).isEqualTo(testList);
     }
 
     /**
@@ -198,8 +197,8 @@ public class NumberRangeCodeListTest {
         resultList.addAll(mapResult.values());
 
         // check the order of range of numbers
-        assertThat(mapResult, is(mapTest));
-        assertThat(resultList, is(testList));
+        assertThat(mapResult).isEqualTo(mapTest);
+        assertThat(resultList).isEqualTo(testList);
     }
 
     /**
@@ -218,7 +217,7 @@ public class NumberRangeCodeListTest {
 
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> numberRangeCodeList.afterPropertiesSet());
-        assertThat(ex.getMessage(), is("interval should be greater than 0"));
+        assertThat(ex).hasMessage("interval should be greater than 0");
     }
 
     /*
@@ -236,7 +235,7 @@ public class NumberRangeCodeListTest {
 
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> numberRangeCodeList.afterPropertiesSet());
-        assertThat(ex.getMessage(), is("valueFormat must not be empty"));
+        assertThat(ex).hasMessage("valueFormat must not be empty");
     }
 
     /*
@@ -254,7 +253,7 @@ public class NumberRangeCodeListTest {
 
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> numberRangeCodeList.afterPropertiesSet());
-        assertThat(ex.getMessage(), is("valueFormat must not be empty"));
+        assertThat(ex).hasMessage("valueFormat must not be empty");
     }
 
     /*
@@ -272,7 +271,7 @@ public class NumberRangeCodeListTest {
 
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> numberRangeCodeList.afterPropertiesSet());
-        assertThat(ex.getMessage(), is("labelFormat must not be empty"));
+        assertThat(ex).hasMessage("labelFormat must not be empty");
     }
 
     /*
@@ -290,6 +289,6 @@ public class NumberRangeCodeListTest {
 
         Exception ex = assertThrows(IllegalArgumentException.class,
                 () -> numberRangeCodeList.afterPropertiesSet());
-        assertThat(ex.getMessage(), is("labelFormat must not be empty"));
+        assertThat(ex).hasMessage("labelFormat must not be empty");
     }
 }

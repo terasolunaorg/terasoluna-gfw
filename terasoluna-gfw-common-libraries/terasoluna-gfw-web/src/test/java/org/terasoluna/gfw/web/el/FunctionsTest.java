@@ -15,9 +15,8 @@
  */
 package org.terasoluna.gfw.web.el;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsNull.notNullValue;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.lang.reflect.Constructor;
 import java.net.URL;
 import java.text.SimpleDateFormat;
@@ -41,31 +40,31 @@ public class FunctionsTest {
     public void testFunctions() throws Exception {
         // set up
         Constructor<Functions> constructor = Functions.class.getDeclaredConstructor();
-        assertThat(constructor.canAccess(null), is(false));
+        assertThat(constructor.canAccess(null)).isFalse();
         constructor.setAccessible(true);
 
         // assert
-        assertThat(constructor.newInstance(), notNullValue());
+        assertThat(constructor.newInstance()).isNotNull();
 
         constructor.setAccessible(false);
     }
 
     @Test
     public void testH() {
-        assertThat(Functions.h(null), is(""));
-        assertThat(Functions.h(""), is(""));
-        assertThat(Functions.h("<a href=\"\">"), is("&lt;a href=&quot;&quot;&gt;"));
-        assertThat(Functions.h("<a href=''>"), is("&lt;a href=&#39;&#39;&gt;"));
-        assertThat(Functions.h("&lt;"), is("&amp;lt;"));
-        assertThat(Functions.h(new boolean[] {true, false}), is("[true, false]"));
-        assertThat(Functions.h(new int[] {1, 2, 3}), is("[1, 2, 3]"));
-        assertThat(Functions.h(new short[] {1, 2, 3}), is("[1, 2, 3]"));
-        assertThat(Functions.h(new long[] {1, 2, 3}), is("[1, 2, 3]"));
-        assertThat(Functions.h(new byte[] {1, 2, 3}), is("[1, 2, 3]"));
-        assertThat(Functions.h(new double[] {1, 2, 3}), is("[1.0, 2.0, 3.0]"));
-        assertThat(Functions.h(new float[] {1, 2, 3}), is("[1.0, 2.0, 3.0]"));
-        assertThat(Functions.h(new char[] {'a', 'b', 'c'}), is("[a, b, c]"));
-        assertThat(Functions.h(new String[] {"a", "b", "c"}), is("[a, b, c]"));
+        assertThat(Functions.h(null)).isEmpty();
+        assertThat(Functions.h("")).isEmpty();
+        assertThat(Functions.h("<a href=\"\">")).isEqualTo("&lt;a href=&quot;&quot;&gt;");
+        assertThat(Functions.h("<a href=''>")).isEqualTo("&lt;a href=&#39;&#39;&gt;");
+        assertThat(Functions.h("&lt;")).isEqualTo("&amp;lt;");
+        assertThat(Functions.h(new boolean[] {true, false})).isEqualTo("[true, false]");
+        assertThat(Functions.h(new int[] {1, 2, 3})).isEqualTo("[1, 2, 3]");
+        assertThat(Functions.h(new short[] {1, 2, 3})).isEqualTo("[1, 2, 3]");
+        assertThat(Functions.h(new long[] {1, 2, 3})).isEqualTo("[1, 2, 3]");
+        assertThat(Functions.h(new byte[] {1, 2, 3})).isEqualTo("[1, 2, 3]");
+        assertThat(Functions.h(new double[] {1, 2, 3})).isEqualTo("[1.0, 2.0, 3.0]");
+        assertThat(Functions.h(new float[] {1, 2, 3})).isEqualTo("[1.0, 2.0, 3.0]");
+        assertThat(Functions.h(new char[] {'a', 'b', 'c'})).isEqualTo("[a, b, c]");
+        assertThat(Functions.h(new String[] {"a", "b", "c"})).isEqualTo("[a, b, c]");
     }
 
     /**
@@ -80,7 +79,7 @@ public class FunctionsTest {
         String result = Functions.h(input);
 
         // assert
-        assertThat(result, is(""));
+        assertThat(result).isEmpty();
     }
 
     /**
@@ -95,7 +94,7 @@ public class FunctionsTest {
         String result = Functions.h(input);
 
         // assert
-        assertThat(result, is(Arrays.toString((String[]) input)));
+        assertThat(result).isEqualTo(Arrays.toString((String[]) input));
     }
 
     /**
@@ -110,7 +109,7 @@ public class FunctionsTest {
         String result = Functions.h(input);
 
         // assert
-        assertThat(result, is(Arrays.toString((boolean[]) input)));
+        assertThat(result).isEqualTo(Arrays.toString((boolean[]) input));
     }
 
     /**
@@ -125,7 +124,7 @@ public class FunctionsTest {
         String result = Functions.h(input);
 
         // assert
-        assertThat(result, is(Arrays.toString((char[]) input)));
+        assertThat(result).isEqualTo(Arrays.toString((char[]) input));
     }
 
     /**
@@ -140,7 +139,7 @@ public class FunctionsTest {
         String result = Functions.h(input);
 
         // assert
-        assertThat(result, is(Arrays.toString((int[]) input)));
+        assertThat(result).isEqualTo(Arrays.toString((int[]) input));
     }
 
     /**
@@ -155,7 +154,7 @@ public class FunctionsTest {
         String result = Functions.h(input);
 
         // assert
-        assertThat(result, is(Arrays.toString((long[]) input)));
+        assertThat(result).isEqualTo(Arrays.toString((long[]) input));
     }
 
     /**
@@ -170,7 +169,7 @@ public class FunctionsTest {
         String result = Functions.h(input);
 
         // assert
-        assertThat(result, is(Arrays.toString((byte[]) input)));
+        assertThat(result).isEqualTo(Arrays.toString((byte[]) input));
     }
 
     /**
@@ -185,7 +184,7 @@ public class FunctionsTest {
         String result = Functions.h(input);
 
         // assert
-        assertThat(result, is(Arrays.toString((short[]) input)));
+        assertThat(result).isEqualTo(Arrays.toString((short[]) input));
     }
 
     /**
@@ -200,7 +199,7 @@ public class FunctionsTest {
         String result = Functions.h(input);
 
         // assert
-        assertThat(result, is(Arrays.toString((float[]) input)));
+        assertThat(result).isEqualTo(Arrays.toString((float[]) input));
     }
 
     /**
@@ -215,7 +214,7 @@ public class FunctionsTest {
         String result = Functions.h(input);
 
         // assert
-        assertThat(result, is(Arrays.toString((double[]) input)));
+        assertThat(result).isEqualTo(Arrays.toString((double[]) input));
     }
 
     /**
@@ -230,7 +229,7 @@ public class FunctionsTest {
         String result = Functions.h(input);
 
         // assert
-        assertThat(result, is(Arrays.toString((Object[]) input)));
+        assertThat(result).isEqualTo(Arrays.toString((Object[]) input));
     }
 
     /**
@@ -246,7 +245,7 @@ public class FunctionsTest {
         String result = Functions.h(input);
 
         // assert
-        assertThat(result, is(expct));
+        assertThat(result).isEqualTo(expct);
     }
 
     /**
@@ -262,7 +261,7 @@ public class FunctionsTest {
         String result = Functions.h(input);
 
         // assert
-        assertThat(result, is(expct));
+        assertThat(result).isEqualTo(expct);
     }
 
     /**
@@ -278,51 +277,52 @@ public class FunctionsTest {
         String result = Functions.h(input);
 
         // assert
-        assertThat(result, is(expct));
+        assertThat(result).isEqualTo(expct);
     }
 
     @Test
     public void testU() {
-        assertThat(Functions.u(null), is(""));
-        assertThat(Functions.u(""), is(""));
-        assertThat(Functions.u("あいうえお"), is("%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
-        assertThat(Functions.u("http://localhost:8080/spring"), is("http://localhost:8080/spring"));
-        assertThat(Functions.u("http://localhost:8080/あいうえお"),
-                is("http://localhost:8080/%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A"));
+        assertThat(Functions.u(null)).isEmpty();
+        assertThat(Functions.u("")).isEmpty();
+        assertThat(Functions.u("あいうえお")).isEqualTo("%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A");
+        assertThat(Functions.u("http://localhost:8080/spring"))
+                .isEqualTo("http://localhost:8080/spring");
+        assertThat(Functions.u("http://localhost:8080/あいうえお"))
+                .isEqualTo("http://localhost:8080/%E3%81%82%E3%81%84%E3%81%86%E3%81%88%E3%81%8A");
     }
 
     @Test
     public void testU_NoEncodingSymb() {
-        assertThat(Functions.u("/?:@-._~!$'()*,;"), is("/?:@-._~!$'()*,;"));
+        assertThat(Functions.u("/?:@-._~!$'()*,;")).isEqualTo("/?:@-._~!$'()*,;");
     }
 
     @Test
     public void testU_ALPHA() {
-        assertThat(Functions.u("a"), is("a"));
+        assertThat(Functions.u("a")).isEqualTo("a");
     }
 
     @Test
     public void testU_DIGIT() {
-        assertThat(Functions.u("0"), is("0"));
+        assertThat(Functions.u("0")).isEqualTo("0");
     }
 
     @Test
     public void testU_EncodingDelimiter() {
-        assertThat(Functions.u("+"), is("%2B"));
-        assertThat(Functions.u("="), is("%3D"));
-        assertThat(Functions.u("&"), is("%26"));
+        assertThat(Functions.u("+")).isEqualTo("%2B");
+        assertThat(Functions.u("=")).isEqualTo("%3D");
+        assertThat(Functions.u("&")).isEqualTo("%26");
     }
 
     @Test
     public void testU_EncodingChar() {
-        assertThat(Functions.u("%"), is("%25"));
-        assertThat(Functions.u("あ"), is("%E3%81%82"));
-        assertThat(Functions.u("\n"), is("%0A"));
+        assertThat(Functions.u("%")).isEqualTo("%25");
+        assertThat(Functions.u("あ")).isEqualTo("%E3%81%82");
+        assertThat(Functions.u("\n")).isEqualTo("%0A");
     }
 
     @Test
     public void testU_Space() {
-        assertThat(Functions.u(" "), is("%20"));
+        assertThat(Functions.u(" ")).isEqualTo("%20");
     }
 
     @Test
@@ -332,7 +332,7 @@ public class FunctionsTest {
         Map<String, Object> map = new LinkedHashMap<String, Object>();
         map.put("name", inputStr);
         String actual = Functions.query(map);
-        assertThat(actual, is(matcher));
+        assertThat(actual).isEqualTo(matcher);
     }
 
     @Test
@@ -342,7 +342,7 @@ public class FunctionsTest {
         Map<String, Object> map = new LinkedHashMap<String, Object>();
         map.put("name", inputStr);
         String actual = Functions.query(map);
-        assertThat(actual, is(matcher));
+        assertThat(actual).isEqualTo(matcher);
     }
 
     @Test
@@ -352,7 +352,7 @@ public class FunctionsTest {
         Map<String, Object> map = new LinkedHashMap<String, Object>();
         map.put("name", inputStr);
         String actual = Functions.query(map);
-        assertThat(actual, is(matcher));
+        assertThat(actual).isEqualTo(matcher);
     }
 
     @Test
@@ -363,7 +363,7 @@ public class FunctionsTest {
             Map<String, Object> map = new LinkedHashMap<String, Object>();
             map.put("name", str);
             String actual = Functions.query(map);
-            assertThat(actual, is(matcher));
+            assertThat(actual).isEqualTo(matcher);
         }
     }
 
@@ -375,7 +375,7 @@ public class FunctionsTest {
             Map<String, Object> map = new LinkedHashMap<String, Object>();
             map.put("name", str);
             String actual = Functions.query(map);
-            assertThat(actual, is(matcher));
+            assertThat(actual).isEqualTo(matcher);
         }
     }
 
@@ -386,132 +386,132 @@ public class FunctionsTest {
         String matcher = "name=" + Functions.u(inputStr);
         map.put("name", inputStr);
         String actual = Functions.query(map);
-        assertThat(actual, is(matcher));
+        assertThat(actual).isEqualTo(matcher);
     }
 
     @Test
     public void testBr() {
-        assertThat(Functions.br(null), is(""));
-        assertThat(Functions.br(""), is(""));
-        assertThat(Functions.br("abcde\nabcdf"), is("abcde<br />abcdf"));
+        assertThat(Functions.br(null)).isEmpty();
+        assertThat(Functions.br("")).isEmpty();
+        assertThat(Functions.br("abcde\nabcdf")).isEqualTo("abcde<br />abcdf");
     }
 
     @Test
     public void testBr_CrOnly() {
-        assertThat(Functions.br("\r"), is("<br />"));
-        assertThat(Functions.br("a\r"), is("a<br />"));
-        assertThat(Functions.br("\ra"), is("<br />a"));
-        assertThat(Functions.br("\r\r"), is("<br /><br />"));
-        assertThat(Functions.br("<br />\r\r<br />"), is("<br /><br /><br /><br />"));
+        assertThat(Functions.br("\r")).isEqualTo("<br />");
+        assertThat(Functions.br("a\r")).isEqualTo("a<br />");
+        assertThat(Functions.br("\ra")).isEqualTo("<br />a");
+        assertThat(Functions.br("\r\r")).isEqualTo("<br /><br />");
+        assertThat(Functions.br("<br />\r\r<br />")).isEqualTo("<br /><br /><br /><br />");
     }
 
     @Test
     public void testBr_LfOnly() {
-        assertThat(Functions.br("\n"), is("<br />"));
-        assertThat(Functions.br("a\n"), is("a<br />"));
-        assertThat(Functions.br("\na"), is("<br />a"));
-        assertThat(Functions.br("\n\n"), is("<br /><br />"));
-        assertThat(Functions.br("<br />\n\n<br />"), is("<br /><br /><br /><br />"));
+        assertThat(Functions.br("\n")).isEqualTo("<br />");
+        assertThat(Functions.br("a\n")).isEqualTo("a<br />");
+        assertThat(Functions.br("\na")).isEqualTo("<br />a");
+        assertThat(Functions.br("\n\n")).isEqualTo("<br /><br />");
+        assertThat(Functions.br("<br />\n\n<br />")).isEqualTo("<br /><br /><br /><br />");
     }
 
     @Test
     public void testBr_CrLfOnly() {
-        assertThat(Functions.br("\r\n"), is("<br />"));
-        assertThat(Functions.br("a\r\n"), is("a<br />"));
-        assertThat(Functions.br("\r\na"), is("<br />a"));
-        assertThat(Functions.br("\r\n\r\n"), is("<br /><br />"));
-        assertThat(Functions.br("<br />\r\n\r\n<br />"), is("<br /><br /><br /><br />"));
+        assertThat(Functions.br("\r\n")).isEqualTo("<br />");
+        assertThat(Functions.br("a\r\n")).isEqualTo("a<br />");
+        assertThat(Functions.br("\r\na")).isEqualTo("<br />a");
+        assertThat(Functions.br("\r\n\r\n")).isEqualTo("<br /><br />");
+        assertThat(Functions.br("<br />\r\n\r\n<br />")).isEqualTo("<br /><br /><br /><br />");
     }
 
     @Test
     public void testBr_multi() {
         // \r -> \n -> \r\n
-        assertThat(Functions.br("a\rb\nc\r\nd"), is("a<br />b<br />c<br />d"));
+        assertThat(Functions.br("a\rb\nc\r\nd")).isEqualTo("a<br />b<br />c<br />d");
         // \n -> \r\n -> \r
-        assertThat(Functions.br("a\nb\r\nc\rd"), is("a<br />b<br />c<br />d"));
+        assertThat(Functions.br("a\nb\r\nc\rd")).isEqualTo("a<br />b<br />c<br />d");
         // \r\n -> \r -> \n
-        assertThat(Functions.br("a\r\nb\rc\nd"), is("a<br />b<br />c<br />d"));
+        assertThat(Functions.br("a\r\nb\rc\nd")).isEqualTo("a<br />b<br />c<br />d");
     }
 
     @Test
     public void testCut() {
-        assertThat(Functions.cut(null, 1), is(""));
-        assertThat(Functions.cut("", 1), is(""));
-        assertThat(Functions.cut("abcdef", 3), is("abc"));
-        assertThat(Functions.cut("abcdef", 7), is("abcdef"));
-        assertThat(Functions.cut("abcdef", 0), is(""));
-        assertThat(Functions.cut("abcdef", -1), is(""));
+        assertThat(Functions.cut(null, 1)).isEmpty();
+        assertThat(Functions.cut("", 1)).isEmpty();
+        assertThat(Functions.cut("abcdef", 3)).isEqualTo("abc");
+        assertThat(Functions.cut("abcdef", 7)).isEqualTo("abcdef");
+        assertThat(Functions.cut("abcdef", 0)).isEmpty();
+        assertThat(Functions.cut("abcdef", -1)).isEmpty();
     }
 
     @Test
     public void testLink() {
-        assertThat(Functions.link(null), is(""));
-        assertThat(Functions.link(""), is(""));
-        assertThat(Functions.link("go to http://www.google.com"),
-                is("go to <a href=\"http://www.google.com\">http://www.google.com</a>"));
-        assertThat(Functions.link("go to https://www.google.com"),
-                is("go to <a href=\"https://www.google.com\">https://www.google.com</a>"));
+        assertThat(Functions.link(null)).isEmpty();
+        assertThat(Functions.link("")).isEmpty();
+        assertThat(Functions.link("go to http://www.google.com"))
+                .isEqualTo("go to <a href=\"http://www.google.com\">http://www.google.com</a>");
+        assertThat(Functions.link("go to https://www.google.com"))
+                .isEqualTo("go to <a href=\"https://www.google.com\">https://www.google.com</a>");
 
         // Schemes not supported
-        assertThat(Functions.link("ftp://test.com/test.txt"), is("ftp://test.com/test.txt"));
-        assertThat(Functions.link("file:///etc/hosts"), is("file:///etc/hosts"));
+        assertThat(Functions.link("ftp://test.com/test.txt")).isEqualTo("ftp://test.com/test.txt");
+        assertThat(Functions.link("file:///etc/hosts")).isEqualTo("file:///etc/hosts");
 
         // Reserved Characters gen-delims (":" / "/" / "?" / "#" / "[" / "]" / "@")
-        assertThat(Functions.link("http://user@[::1]:8000/?/#"),
-                is("<a href=\"http://user@[::1]:8000/?/#\">http://user@[::1]:8000/?/#</a>"));
+        assertThat(Functions.link("http://user@[::1]:8000/?/#"))
+                .isEqualTo("<a href=\"http://user@[::1]:8000/?/#\">http://user@[::1]:8000/?/#</a>");
 
         // Reserved Characters sub-delims ("!" / "$" / "&" / "'" / "(" / ")"
         // / "*" / "+" / "," / ";" / "=")
-        assertThat(Functions.link("http://test.com/!$*+/'aaa'/(bbb)//?a=1&b=2,c=3;d=4"), is(
-                "<a href=\"http://test.com/!$*+/'aaa'/(bbb)//?a=1&b=2,c=3;d=4\">http://test.com/!$*+/'aaa'/(bbb)//?a=1&b=2,c=3;d=4</a>"));
+        assertThat(Functions.link("http://test.com/!$*+/'aaa'/(bbb)//?a=1&b=2,c=3;d=4")).isEqualTo(
+                "<a href=\"http://test.com/!$*+/'aaa'/(bbb)//?a=1&b=2,c=3;d=4\">http://test.com/!$*+/'aaa'/(bbb)//?a=1&b=2,c=3;d=4</a>");
 
         // Unreserved Characters (ALPHA / DIGIT / "-" / "." / "_" / "~")
-        assertThat(Functions.link("http://test.com:8000/~user/web-aaa/web_bbb/"), is(
-                "<a href=\"http://test.com:8000/~user/web-aaa/web_bbb/\">http://test.com:8000/~user/web-aaa/web_bbb/</a>"));
+        assertThat(Functions.link("http://test.com:8000/~user/web-aaa/web_bbb/")).isEqualTo(
+                "<a href=\"http://test.com:8000/~user/web-aaa/web_bbb/\">http://test.com:8000/~user/web-aaa/web_bbb/</a>");
 
         // Percent-Encoding ("%" HEXDIG HEXDIG)
-        assertThat(Functions.link("http://test.com/%E3%81%82"),
-                is("<a href=\"http://test.com/%E3%81%82\">http://test.com/%E3%81%82</a>"));
+        assertThat(Functions.link("http://test.com/%E3%81%82"))
+                .isEqualTo("<a href=\"http://test.com/%E3%81%82\">http://test.com/%E3%81%82</a>");
 
         // Other Characters
-        assertThat(Functions.link("http://test.com/\""),
-                is("<a href=\"http://test.com/\">http://test.com/</a>\""));
-        assertThat(Functions.link("http://test.com/<"),
-                is("<a href=\"http://test.com/\">http://test.com/</a><"));
-        assertThat(Functions.link("http://test.com/>"),
-                is("<a href=\"http://test.com/\">http://test.com/</a>>"));
-        assertThat(Functions.link("http://test.com/\\"),
-                is("<a href=\"http://test.com/\">http://test.com/</a>\\"));
-        assertThat(Functions.link("http://test.com/^"),
-                is("<a href=\"http://test.com/\">http://test.com/</a>^"));
-        assertThat(Functions.link("http://test.com/`"),
-                is("<a href=\"http://test.com/\">http://test.com/</a>`"));
-        assertThat(Functions.link("http://test.com/{"),
-                is("<a href=\"http://test.com/\">http://test.com/</a>{"));
-        assertThat(Functions.link("http://test.com/}"),
-                is("<a href=\"http://test.com/\">http://test.com/</a>}"));
-        assertThat(Functions.link("http://test.com/|"),
-                is("<a href=\"http://test.com/\">http://test.com/</a>|"));
-        assertThat(Functions.link("http://test.com/ｱ"),
-                is("<a href=\"http://test.com/\">http://test.com/</a>ｱ"));
-        assertThat(Functions.link("http://test.com/あ"),
-                is("<a href=\"http://test.com/\">http://test.com/</a>あ"));
+        assertThat(Functions.link("http://test.com/\""))
+                .isEqualTo("<a href=\"http://test.com/\">http://test.com/</a>\"");
+        assertThat(Functions.link("http://test.com/<"))
+                .isEqualTo("<a href=\"http://test.com/\">http://test.com/</a><");
+        assertThat(Functions.link("http://test.com/>"))
+                .isEqualTo("<a href=\"http://test.com/\">http://test.com/</a>>");
+        assertThat(Functions.link("http://test.com/\\"))
+                .isEqualTo("<a href=\"http://test.com/\">http://test.com/</a>\\");
+        assertThat(Functions.link("http://test.com/^"))
+                .isEqualTo("<a href=\"http://test.com/\">http://test.com/</a>^");
+        assertThat(Functions.link("http://test.com/`"))
+                .isEqualTo("<a href=\"http://test.com/\">http://test.com/</a>`");
+        assertThat(Functions.link("http://test.com/{"))
+                .isEqualTo("<a href=\"http://test.com/\">http://test.com/</a>{");
+        assertThat(Functions.link("http://test.com/}"))
+                .isEqualTo("<a href=\"http://test.com/\">http://test.com/</a>}");
+        assertThat(Functions.link("http://test.com/|"))
+                .isEqualTo("<a href=\"http://test.com/\">http://test.com/</a>|");
+        assertThat(Functions.link("http://test.com/ｱ"))
+                .isEqualTo("<a href=\"http://test.com/\">http://test.com/</a>ｱ");
+        assertThat(Functions.link("http://test.com/あ"))
+                .isEqualTo("<a href=\"http://test.com/\">http://test.com/</a>あ");
     }
 
     @Test
     public void testQuery01() throws Exception {
-        assertThat(Functions.query(null), is(""));
-        assertThat(Functions.query(""), is(""));
-        assertThat(Functions.query("aaaa"), is(""));
-        assertThat(Functions.query(1), is(""));
-        assertThat(Functions.query(1.0), is(""));
-        assertThat(Functions.query(1L), is(""));
-        assertThat(Functions.query(new Date()), is(""));
-        assertThat(Functions.query(Locale.getDefault()), is(""));
-        assertThat(Functions.query(new URL("http://google.com")), is(""));
-        assertThat(Functions.query(new Object[] {"1", "2", "3"}), is(""));
-        assertThat(Functions.query(new int[] {1, 2, 3}), is(""));
-        assertThat(Functions.query(Arrays.asList("a", "b", "c")), is(""));
+        assertThat(Functions.query(null)).isEmpty();
+        assertThat(Functions.query("")).isEmpty();
+        assertThat(Functions.query("aaaa")).isEmpty();
+        assertThat(Functions.query(1)).isEmpty();
+        assertThat(Functions.query(1.0)).isEmpty();
+        assertThat(Functions.query(1L)).isEmpty();
+        assertThat(Functions.query(new Date())).isEmpty();
+        assertThat(Functions.query(Locale.getDefault())).isEmpty();
+        assertThat(Functions.query(new URL("http://google.com"))).isEmpty();
+        assertThat(Functions.query(new Object[] {"1", "2", "3"})).isEmpty();
+        assertThat(Functions.query(new int[] {1, 2, 3})).isEmpty();
+        assertThat(Functions.query(Arrays.asList("a", "b", "c"))).isEmpty();
     }
 
     @Test
@@ -525,9 +525,9 @@ public class FunctionsTest {
         // 5.0.0 ... arr=xxx,yyy
         // 5.0.1 ... arr[0]=xxx&arr[1]=yyy
         // Either can be populated as { "xxx", "yyy" }
-        assertThat(query, is(
-                "name=Ichiro%20Suzuki&ja=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86&arr%5B0%5D=xxx&arr%5B1%5D=yyy"));
-        assertThat(Functions.query(new LinkedHashMap<String, Object>()), is(""));
+        assertThat(query).isEqualTo(
+                "name=Ichiro%20Suzuki&ja=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86&arr%5B0%5D=xxx&arr%5B1%5D=yyy");
+        assertThat(Functions.query(new LinkedHashMap<String, Object>())).isEmpty();
     }
 
     @Test
@@ -542,18 +542,18 @@ public class FunctionsTest {
         // 5.0.0 ... list=a,b,あ
         // 5.0.1 ... list[0]=a&list[1]=b&list[2]=あ
         // Either can be populated as { "a", "b", "あ" }
-        assertThat(query, is(
-                "age=10&date=2000-01-01&list%5B0%5D=a&list%5B1%5D=b&list%5B2%5D=%E3%81%82&name=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86"));
+        assertThat(query).isEqualTo(
+                "age=10&date=2000-01-01&list%5B0%5D=a&list%5B1%5D=b&list%5B2%5D=%E3%81%82&name=%E3%81%99%E3%81%9A%E3%81%8D%20%E3%81%84%E3%81%A1%E3%82%8D%E3%81%86");
         // Spec has been changed betwee 5.0.0 and 5.0.1
         // 5.0.0 ... age=&date=&list=&name=
         // 5.0.1 ... _age=&_date=&_list=&_name=
-        assertThat(Functions.query(new Person()), is("_age=&_date=&_list=&_name=")); // null
-                                                                                     // property
-                                                                                     // should show
-                                                                                     // reset
-                                                                                     // parameter
-                                                                                     // that start
-                                                                                     // with "_"
+        assertThat(Functions.query(new Person())).isEqualTo("_age=&_date=&_list=&_name="); // null
+        // property
+        // should show
+        // reset
+        // parameter
+        // that start
+        // with "_"
     }
 
     @Test
@@ -579,7 +579,7 @@ public class FunctionsTest {
         expectedQuery.append("&").append("key%3D5=value%3D5"); // =
         expectedQuery.append("&").append("key%2B6=value%2B6"); // +
 
-        assertThat(actualQuery, is(expectedQuery.toString()));
+        assertThat(actualQuery).isEqualTo(expectedQuery.toString());
     }
 
     @Test
@@ -598,43 +598,43 @@ public class FunctionsTest {
         form.setMeetingId(10);
         form.setParticipants(Arrays.asList(p1, p2));
         String q = Functions.query(form);
-        assertThat(q, is("meetingId=10" + "&participants%5B0%5D.age=20"
+        assertThat(q).isEqualTo("meetingId=10" + "&participants%5B0%5D.age=20"
                 + "&participants%5B0%5D.date=2001-01-01" + "&_participants%5B0%5D.list="
                 + "&participants%5B0%5D.name=%E5%B1%B1%E7%94%B0" + "&participants%5B1%5D.age=30"
                 + "&participants%5B1%5D.date=1991-01-01" + "&_participants%5B1%5D.list="
-                + "&participants%5B1%5D.name=%E9%88%B4%E6%9C%A8"));
+                + "&participants%5B1%5D.name=%E9%88%B4%E6%9C%A8");
     }
 
     @Test
     public void testJs() {
-        assertThat(Functions.js(null), is(""));
-        assertThat(Functions.js(""), is(""));
-        assertThat(Functions.js("a"), is("a"));
-        assertThat(Functions.js("'"), is("\\'"));
-        assertThat(Functions.js("\""), is("\\\""));
-        assertThat(Functions.js("\\"), is("\\\\"));
-        assertThat(Functions.js("/"), is("\\/"));
-        assertThat(Functions.js("<"), is("\\x3c"));
-        assertThat(Functions.js(">"), is("\\x3e"));
-        assertThat(Functions.js("\r"), is("\\r"));
-        assertThat(Functions.js("\n"), is("\\n"));
-        assertThat(Functions.js("b"), is("b"));
+        assertThat(Functions.js(null)).isEmpty();
+        assertThat(Functions.js("")).isEmpty();
+        assertThat(Functions.js("a")).isEqualTo("a");
+        assertThat(Functions.js("'")).isEqualTo("\\'");
+        assertThat(Functions.js("\"")).isEqualTo("\\\"");
+        assertThat(Functions.js("\\")).isEqualTo("\\\\");
+        assertThat(Functions.js("/")).isEqualTo("\\/");
+        assertThat(Functions.js("<")).isEqualTo("\\x3c");
+        assertThat(Functions.js(">")).isEqualTo("\\x3e");
+        assertThat(Functions.js("\r")).isEqualTo("\\r");
+        assertThat(Functions.js("\n")).isEqualTo("\\n");
+        assertThat(Functions.js("b")).isEqualTo("b");
     }
 
     @Test
     public void testHjs() {
-        assertThat(Functions.hjs(null), is(""));
-        assertThat(Functions.hjs(""), is(""));
-        assertThat(Functions.hjs("a"), is("a"));
-        assertThat(Functions.hjs("'"), is("\\&#39;"));
-        assertThat(Functions.hjs("\""), is("\\&quot;"));
-        assertThat(Functions.hjs("\\"), is("\\\\"));
-        assertThat(Functions.hjs("/"), is("\\/"));
-        assertThat(Functions.hjs("<"), is("\\x3c"));
-        assertThat(Functions.hjs(">"), is("\\x3e"));
-        assertThat(Functions.hjs("\r"), is("\\r"));
-        assertThat(Functions.hjs("\n"), is("\\n"));
-        assertThat(Functions.hjs("b"), is("b"));
+        assertThat(Functions.hjs(null)).isEmpty();
+        assertThat(Functions.hjs("")).isEmpty();
+        assertThat(Functions.hjs("a")).isEqualTo("a");
+        assertThat(Functions.hjs("'")).isEqualTo("\\&#39;");
+        assertThat(Functions.hjs("\"")).isEqualTo("\\&quot;");
+        assertThat(Functions.hjs("\\")).isEqualTo("\\\\");
+        assertThat(Functions.hjs("/")).isEqualTo("\\/");
+        assertThat(Functions.hjs("<")).isEqualTo("\\x3c");
+        assertThat(Functions.hjs(">")).isEqualTo("\\x3e");
+        assertThat(Functions.hjs("\r")).isEqualTo("\\r");
+        assertThat(Functions.hjs("\n")).isEqualTo("\\n");
+        assertThat(Functions.hjs("b")).isEqualTo("b");
     }
 
 }

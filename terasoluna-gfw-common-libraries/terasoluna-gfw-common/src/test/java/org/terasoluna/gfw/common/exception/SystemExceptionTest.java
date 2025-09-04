@@ -15,8 +15,8 @@
  */
 package org.terasoluna.gfw.common.exception;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 
 public class SystemExceptionTest {
@@ -30,24 +30,23 @@ public class SystemExceptionTest {
     @Test
     public void testSystemExceptionStringStringThrowable() {
         SystemException ex = new SystemException(code, msg, cause);
-        assertThat(ex.getCode(), is(code));
-        assertThat(ex.getMessage(), is(msg));
-        assertThat(ex.getCause(), is(cause));
+        assertThat(ex.getCode()).isEqualTo(code);
+        assertThat(ex).hasMessage(msg).hasCause(cause);
     }
 
     @Test
     public void testSystemExceptionStringString() {
         SystemException ex = new SystemException(code, msg);
-        assertThat(ex.getCode(), is(code));
-        assertThat(ex.getMessage(), is(msg));
+        assertThat(ex.getCode()).isEqualTo(code);
+        assertThat(ex).hasMessage(msg);
 
     }
 
     @Test
     public void testSystemExceptionStringThrowable() {
         SystemException ex = new SystemException(code, cause);
-        assertThat(ex.getCode(), is(code));
-        assertThat(ex.getCause(), is(cause));
+        assertThat(ex.getCode()).isEqualTo(code);
+        assertThat(ex).hasCause(cause);
     }
 
 }

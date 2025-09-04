@@ -15,9 +15,7 @@
  */
 package org.terasoluna.gfw.web.pagination;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -78,26 +76,26 @@ public class PaginationTagTest {
 
         tag.release();
 
-        assertThat(ReflectionTestUtils.getField(tag, "page"), is(nullValue()));
-        assertThat(ReflectionTestUtils.getField(tag, "pathTmpl"), is(nullValue()));
-        assertThat(ReflectionTestUtils.getField(tag, "queryTmpl"), is(nullValue()));
-        assertThat(ReflectionTestUtils.getField(tag, "criteriaQuery"), is(nullValue()));
-        assertThat((boolean) ReflectionTestUtils.getField(tag, "disableHtmlEscapeOfCriteriaQuery"),
-                is(false));
-        assertThat((boolean) ReflectionTestUtils.getField(tag, "enableLinkOfCurrentPage"),
-                is(false));
-        assertThat(ReflectionTestUtils.getField(tag, "outerElement"), is(nullValue()));
-        assertThat(ReflectionTestUtils.getField(tag, "outerElementClass"), is(nullValue()));
-        assertThat(ReflectionTestUtils.getField(tag, "innerElement"), is(nullValue()));
-        assertThat(ReflectionTestUtils.getField(tag, "innerElementClass"), is(nullValue()));
-        assertThat(ReflectionTestUtils.getField(tag, "anchorClass"), is(nullValue()));
-        assertThat(ReflectionTestUtils.getField(tag, "firstLinkText"), is(nullValue()));
-        assertThat(ReflectionTestUtils.getField(tag, "previousLinkText"), is(nullValue()));
-        assertThat(ReflectionTestUtils.getField(tag, "nextLinkText"), is(nullValue()));
-        assertThat(ReflectionTestUtils.getField(tag, "lastLinkText"), is(nullValue()));
-        assertThat(ReflectionTestUtils.getField(tag, "disabledHref"), is(nullValue()));
-        assertThat(ReflectionTestUtils.getField(tag, "activeClass"), is(nullValue()));
-        assertThat(ReflectionTestUtils.getField(tag, "disabledClass"), is(nullValue()));
+        assertThat(ReflectionTestUtils.getField(tag, "page")).isNull();
+        assertThat(ReflectionTestUtils.getField(tag, "pathTmpl")).isNull();
+        assertThat(ReflectionTestUtils.getField(tag, "queryTmpl")).isNull();
+        assertThat(ReflectionTestUtils.getField(tag, "criteriaQuery")).isNull();
+        assertThat((boolean) ReflectionTestUtils.getField(tag, "disableHtmlEscapeOfCriteriaQuery"))
+                .isFalse();
+        assertThat((boolean) ReflectionTestUtils.getField(tag, "enableLinkOfCurrentPage"))
+                .isFalse();
+        assertThat(ReflectionTestUtils.getField(tag, "outerElement")).isNull();
+        assertThat(ReflectionTestUtils.getField(tag, "outerElementClass")).isNull();
+        assertThat(ReflectionTestUtils.getField(tag, "innerElement")).isNull();
+        assertThat(ReflectionTestUtils.getField(tag, "innerElementClass")).isNull();
+        assertThat(ReflectionTestUtils.getField(tag, "anchorClass")).isNull();
+        assertThat(ReflectionTestUtils.getField(tag, "firstLinkText")).isNull();
+        assertThat(ReflectionTestUtils.getField(tag, "previousLinkText")).isNull();
+        assertThat(ReflectionTestUtils.getField(tag, "nextLinkText")).isNull();
+        assertThat(ReflectionTestUtils.getField(tag, "lastLinkText")).isNull();
+        assertThat(ReflectionTestUtils.getField(tag, "disabledHref")).isNull();
+        assertThat(ReflectionTestUtils.getField(tag, "activeClass")).isNull();
+        assertThat(ReflectionTestUtils.getField(tag, "disabledClass")).isNull();
     }
 
     /**
@@ -123,10 +121,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<ul><li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;&lt;</a></li><li class=\"disabled\"><a href=\"javascript:void(0)\">&lt;</a></li><li class=\"active\"><a href=\"javascript:void(0)\">1</a></li><li><a href=\"?page=1&size=10\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li><a href=\"?page=5&size=10\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=1&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -152,10 +150,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=0&size=10\">&lt;</a></li><li><a href=\"?page=0&size=10\">1</a></li><li class=\"active\"><a href=\"javascript:void(0)\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li><a href=\"?page=5&size=10\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=2&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -181,10 +179,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=4&size=10\">&lt;</a></li><li><a href=\"?page=0&size=10\">1</a></li><li><a href=\"?page=1&size=10\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li class=\"active\"><a href=\"javascript:void(0)\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=6&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -210,10 +208,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=19&size=10\">&lt;</a></li><li><a href=\"?page=15&size=10\">16</a></li><li><a href=\"?page=16&size=10\">17</a></li><li><a href=\"?page=17&size=10\">18</a></li><li><a href=\"?page=18&size=10\">19</a></li><li><a href=\"?page=19&size=10\">20</a></li><li class=\"active\"><a href=\"javascript:void(0)\">21</a></li><li><a href=\"?page=21&size=10\">22</a></li><li><a href=\"?page=22&size=10\">23</a></li><li><a href=\"?page=23&size=10\">24</a></li><li><a href=\"?page=24&size=10\">25</a></li><li><a href=\"?page=21&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -239,10 +237,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=94&size=10\">&lt;</a></li><li><a href=\"?page=90&size=10\">91</a></li><li><a href=\"?page=91&size=10\">92</a></li><li><a href=\"?page=92&size=10\">93</a></li><li><a href=\"?page=93&size=10\">94</a></li><li><a href=\"?page=94&size=10\">95</a></li><li class=\"active\"><a href=\"javascript:void(0)\">96</a></li><li><a href=\"?page=96&size=10\">97</a></li><li><a href=\"?page=97&size=10\">98</a></li><li><a href=\"?page=98&size=10\">99</a></li><li><a href=\"?page=99&size=10\">100</a></li><li><a href=\"?page=96&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -268,10 +266,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=98&size=10\">&lt;</a></li><li><a href=\"?page=90&size=10\">91</a></li><li><a href=\"?page=91&size=10\">92</a></li><li><a href=\"?page=92&size=10\">93</a></li><li><a href=\"?page=93&size=10\">94</a></li><li><a href=\"?page=94&size=10\">95</a></li><li><a href=\"?page=95&size=10\">96</a></li><li><a href=\"?page=96&size=10\">97</a></li><li><a href=\"?page=97&size=10\">98</a></li><li><a href=\"?page=98&size=10\">99</a></li><li class=\"active\"><a href=\"javascript:void(0)\">100</a></li><li class=\"disabled\"><a href=\"javascript:void(0)\">&gt;</a></li><li class=\"disabled\"><a href=\"javascript:void(0)\">&gt;&gt;</a></li></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -297,10 +295,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=99&size=10\">&lt;</a></li><li><a href=\"?page=90&size=10\">91</a></li><li><a href=\"?page=91&size=10\">92</a></li><li><a href=\"?page=92&size=10\">93</a></li><li><a href=\"?page=93&size=10\">94</a></li><li><a href=\"?page=94&size=10\">95</a></li><li><a href=\"?page=95&size=10\">96</a></li><li><a href=\"?page=96&size=10\">97</a></li><li><a href=\"?page=97&size=10\">98</a></li><li><a href=\"?page=98&size=10\">99</a></li><li><a href=\"?page=99&size=10\">100</a></li><li><a href=\"?page=101&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -323,9 +321,9 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected = "";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -344,9 +342,9 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected = "";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -372,10 +370,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<ul><li><a href=\"?p=0&s=10\">&lt;&lt;</a></li><li><a href=\"?p=19&s=10\">&lt;</a></li><li><a href=\"?p=15&s=10\">16</a></li><li><a href=\"?p=16&s=10\">17</a></li><li><a href=\"?p=17&s=10\">18</a></li><li><a href=\"?p=18&s=10\">19</a></li><li><a href=\"?p=19&s=10\">20</a></li><li class=\"active\"><a href=\"javascript:void(0)\">21</a></li><li><a href=\"?p=21&s=10\">22</a></li><li><a href=\"?p=22&s=10\">23</a></li><li><a href=\"?p=23&s=10\">24</a></li><li><a href=\"?p=24&s=10\">25</a></li><li><a href=\"?p=21&s=10\">&gt;</a></li><li><a href=\"?p=99&s=10\">&gt;&gt;</a></li></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -402,10 +400,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<ul><li><a href=\"p/0/10/\">&lt;&lt;</a></li><li><a href=\"p/19/10/\">&lt;</a></li><li><a href=\"p/15/10/\">16</a></li><li><a href=\"p/16/10/\">17</a></li><li><a href=\"p/17/10/\">18</a></li><li><a href=\"p/18/10/\">19</a></li><li><a href=\"p/19/10/\">20</a></li><li class=\"active\"><a href=\"javascript:void(0)\">21</a></li><li><a href=\"p/21/10/\">22</a></li><li><a href=\"p/22/10/\">23</a></li><li><a href=\"p/23/10/\">24</a></li><li><a href=\"p/24/10/\">25</a></li><li><a href=\"p/21/10/\">&gt;</a></li><li><a href=\"p/99/10/\">&gt;&gt;</a></li></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -433,10 +431,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<ul><li><a href=\"?page=0&size=10&sort=id&desc=DESC\">&lt;&lt;</a></li><li><a href=\"?page=19&size=10&sort=id&desc=DESC\">&lt;</a></li><li><a href=\"?page=15&size=10&sort=id&desc=DESC\">16</a></li><li><a href=\"?page=16&size=10&sort=id&desc=DESC\">17</a></li><li><a href=\"?page=17&size=10&sort=id&desc=DESC\">18</a></li><li><a href=\"?page=18&size=10&sort=id&desc=DESC\">19</a></li><li><a href=\"?page=19&size=10&sort=id&desc=DESC\">20</a></li><li class=\"active\"><a href=\"javascript:void(0)\">21</a></li><li><a href=\"?page=21&size=10&sort=id&desc=DESC\">22</a></li><li><a href=\"?page=22&size=10&sort=id&desc=DESC\">23</a></li><li><a href=\"?page=23&size=10&sort=id&desc=DESC\">24</a></li><li><a href=\"?page=24&size=10&sort=id&desc=DESC\">25</a></li><li><a href=\"?page=21&size=10&sort=id&desc=DESC\">&gt;</a></li><li><a href=\"?page=99&size=10&sort=id&desc=DESC\">&gt;&gt;</a></li></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -462,10 +460,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<ul><li><a href=\"?page=0&size=10\">&lt;&lt;</a></li><li><a href=\"?page=19&size=10\">&lt;</a></li><li><a href=\"?page=18&size=10\">19</a></li><li><a href=\"?page=19&size=10\">20</a></li><li class=\"active\"><a href=\"javascript:void(0)\">21</a></li><li><a href=\"?page=21&size=10\">22</a></li><li><a href=\"?page=22&size=10\">23</a></li><li><a href=\"?page=21&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -493,10 +491,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<span><a href=\"?page=0&size=10\">&lt;&lt;</a></span><span><a href=\"?page=19&size=10\">&lt;</a></span><span><a href=\"?page=15&size=10\">16</a></span><span><a href=\"?page=16&size=10\">17</a></span><span><a href=\"?page=17&size=10\">18</a></span><span><a href=\"?page=18&size=10\">19</a></span><span><a href=\"?page=19&size=10\">20</a></span><span class=\"active\"><a href=\"javascript:void(0)\">21</a></span><span><a href=\"?page=21&size=10\">22</a></span><span><a href=\"?page=22&size=10\">23</a></span><span><a href=\"?page=23&size=10\">24</a></span><span><a href=\"?page=24&size=10\">25</a></span><span><a href=\"?page=21&size=10\">&gt;</a></span><span><a href=\"?page=99&size=10\">&gt;&gt;</a></span>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -525,10 +523,10 @@ public class PaginationTagTest {
 
         System.out.println(getOutput().replaceAll(Pattern.quote("\""), "\\\\\""));
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<p><span><a href=\"?page=0&size=10\">&lt;&lt;</a></span><span><a href=\"?page=19&size=10\">&lt;</a></span><span><a href=\"?page=15&size=10\">16</a></span><span><a href=\"?page=16&size=10\">17</a></span><span><a href=\"?page=17&size=10\">18</a></span><span><a href=\"?page=18&size=10\">19</a></span><span><a href=\"?page=19&size=10\">20</a></span><span class=\"active\"><a href=\"javascript:void(0)\">21</a></span><span><a href=\"?page=21&size=10\">22</a></span><span><a href=\"?page=22&size=10\">23</a></span><span><a href=\"?page=23&size=10\">24</a></span><span><a href=\"?page=24&size=10\">25</a></span><span><a href=\"?page=21&size=10\">&gt;</a></span><span><a href=\"?page=99&size=10\">&gt;&gt;</a></span></p>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -556,10 +554,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<ul><li><a href=\"?page=19&size=10\">&lt;</a></li><li><a href=\"?page=21&size=10\">&gt;</a></li></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -589,10 +587,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<ul class=\"all\"><li class=\"disabled\"><a class=\"link\" href=\"javascript:void(0)\">&lt;&lt;</a></li><li class=\"disabled\"><a class=\"link\" href=\"javascript:void(0)\">&lt;</a></li><li class=\"active\"><a class=\"link\" href=\"javascript:void(0)\">1</a></li><li class=\"item\"><a class=\"link\" href=\"?page=1&size=10\">2</a></li><li class=\"item\"><a class=\"link\" href=\"?page=2&size=10\">3</a></li><li class=\"item\"><a class=\"link\" href=\"?page=3&size=10\">4</a></li><li class=\"item\"><a class=\"link\" href=\"?page=4&size=10\">5</a></li><li class=\"item\"><a class=\"link\" href=\"?page=5&size=10\">6</a></li><li class=\"item\"><a class=\"link\" href=\"?page=6&size=10\">7</a></li><li class=\"item\"><a class=\"link\" href=\"?page=7&size=10\">8</a></li><li class=\"item\"><a class=\"link\" href=\"?page=8&size=10\">9</a></li><li class=\"item\"><a class=\"link\" href=\"?page=9&size=10\">10</a></li><li class=\"item\"><a class=\"link\" href=\"?page=1&size=10\">&gt;</a></li><li class=\"item\"><a class=\"link\" href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -622,10 +620,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<ul class=\"all\"><li class=\"item\"><a class=\"link\" href=\"?page=0&size=10\">&lt;&lt;</a></li><li class=\"item\"><a class=\"link\" href=\"?page=98&size=10\">&lt;</a></li><li class=\"item\"><a class=\"link\" href=\"?page=90&size=10\">91</a></li><li class=\"item\"><a class=\"link\" href=\"?page=91&size=10\">92</a></li><li class=\"item\"><a class=\"link\" href=\"?page=92&size=10\">93</a></li><li class=\"item\"><a class=\"link\" href=\"?page=93&size=10\">94</a></li><li class=\"item\"><a class=\"link\" href=\"?page=94&size=10\">95</a></li><li class=\"item\"><a class=\"link\" href=\"?page=95&size=10\">96</a></li><li class=\"item\"><a class=\"link\" href=\"?page=96&size=10\">97</a></li><li class=\"item\"><a class=\"link\" href=\"?page=97&size=10\">98</a></li><li class=\"item\"><a class=\"link\" href=\"?page=98&size=10\">99</a></li><li class=\"active\"><a class=\"link\" href=\"javascript:void(0)\">100</a></li><li class=\"disabled\"><a class=\"link\" href=\"javascript:void(0)\">&gt;</a></li><li class=\"disabled\"><a class=\"link\" href=\"javascript:void(0)\">&gt;&gt;</a></li></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     @Test
@@ -642,10 +640,10 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected =
                 "<ul><li class=\"disabled\">&lt;&lt;</li><li class=\"disabled\">&lt;</li><li class=\"active\">1</li><li><a href=\"?page=1&size=10\">2</a></li><li><a href=\"?page=2&size=10\">3</a></li><li><a href=\"?page=3&size=10\">4</a></li><li><a href=\"?page=4&size=10\">5</a></li><li><a href=\"?page=5&size=10\">6</a></li><li><a href=\"?page=6&size=10\">7</a></li><li><a href=\"?page=7&size=10\">8</a></li><li><a href=\"?page=8&size=10\">9</a></li><li><a href=\"?page=9&size=10\">10</a></li><li><a href=\"?page=1&size=10\">&gt;</a></li><li><a href=\"?page=99&size=10\">&gt;&gt;</a></li></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     @Test
@@ -664,7 +662,7 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
 
         StringBuilder expected = new StringBuilder();
         String expectedCriteriaQuery = "&a=%2B&amp;b=+&amp;c=%3D&amp;d=%26";
@@ -682,7 +680,7 @@ public class PaginationTagTest {
 
         // That the and-mark(&) is add
         // That the criteria query is not encode
-        assertThat(getOutput(), is(expected.toString()));
+        assertThat(getOutput()).isEqualTo(expected.toString());
     }
 
     @Test
@@ -702,7 +700,7 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
 
         StringBuilder expected = new StringBuilder();
         String expectedCriteriaQuery = "&a=%2B&amp;b=+&amp;c=%3D&amp;d=%26";
@@ -719,7 +717,7 @@ public class PaginationTagTest {
         expected.append("</ul>");
 
         // That the question-mark(?) is remove
-        assertThat(getOutput(), is(expected.toString()));
+        assertThat(getOutput()).isEqualTo(expected.toString());
     }
 
     @Test
@@ -739,7 +737,7 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
 
         StringBuilder expected = new StringBuilder();
         String expectedCriteriaQuery = "&a=%2B&b=+&c=%3D&d=%26&e=<>\"'";
@@ -756,7 +754,7 @@ public class PaginationTagTest {
         expected.append("</ul>");
 
         // That the and-mark(&) is remove
-        assertThat(getOutput(), is(expected.toString()));
+        assertThat(getOutput()).isEqualTo(expected.toString());
     }
 
     @Test
@@ -777,7 +775,7 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
 
         StringBuilder expected = new StringBuilder();
         expected.append("<ul>");
@@ -791,7 +789,7 @@ public class PaginationTagTest {
         expected.append("</ul>");
 
         // That the question-mark(?) is add
-        assertThat(getOutput(), is(expected.toString()));
+        assertThat(getOutput()).isEqualTo(expected.toString());
     }
 
     @Test
@@ -813,7 +811,7 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
 
         StringBuilder expected = new StringBuilder();
         expected.append("<ul>");
@@ -827,7 +825,7 @@ public class PaginationTagTest {
         expected.append("</ul>");
 
         // That the current link is enabled
-        assertThat(getOutput(), is(expected.toString()));
+        assertThat(getOutput()).isEqualTo(expected.toString());
     }
 
     @Test
@@ -849,7 +847,7 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
 
         StringBuilder expected = new StringBuilder();
         expected.append("<ul>");
@@ -863,7 +861,7 @@ public class PaginationTagTest {
         expected.append("</ul>");
 
         // That the current link is enabled
-        assertThat(getOutput(), is(expected.toString()));
+        assertThat(getOutput()).isEqualTo(expected.toString());
     }
 
     @Test
@@ -884,7 +882,7 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
 
         StringBuilder expected = new StringBuilder();
         expected.append("<ul>");
@@ -898,7 +896,7 @@ public class PaginationTagTest {
         expected.append("</ul>");
 
         // That the current link is enabled
-        assertThat(getOutput(), is(expected.toString()));
+        assertThat(getOutput()).isEqualTo(expected.toString());
     }
 
     @Test
@@ -917,7 +915,7 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
 
         StringBuilder expected = new StringBuilder();
         String expectedCriteriaQuery = "&a=%2B&amp;b=+&amp;c=%3D&amp;d=%26";
@@ -934,7 +932,7 @@ public class PaginationTagTest {
         expected.append("</ul>");
 
         // That the and-mark(&) is remove
-        assertThat(getOutput(), is(expected.toString()));
+        assertThat(getOutput()).isEqualTo(expected.toString());
     }
 
     @Test
@@ -978,7 +976,7 @@ public class PaginationTagTest {
 
         tag.writeAnchor(tag.createTagWriter(), PaginationInfo.DEFAULT_DISABLED_HREF, "");
         String expected = "<a href=\"javascript:void(0)\"></a>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     /**
@@ -1001,9 +999,9 @@ public class PaginationTagTest {
 
         int ret = tag.doStartTagInternal();
 
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
         String expected = "<ul></ul>";
-        assertThat(getOutput(), is(expected));
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     @Test
@@ -1027,8 +1025,8 @@ public class PaginationTagTest {
                 "<ul><li><a href=\"?page=0&size=0\">1</a></li><li class=\"active\"><a href=\"javascript:void(0)\">2</a></li></ul>";
 
         // assert
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
-        assertThat(getOutput(), is(expected));
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
+        assertThat(getOutput()).isEqualTo(expected);
     }
 
     protected String getOutput() {

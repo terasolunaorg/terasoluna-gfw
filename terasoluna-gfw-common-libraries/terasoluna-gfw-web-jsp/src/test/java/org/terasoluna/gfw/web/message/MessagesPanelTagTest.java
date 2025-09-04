@@ -15,9 +15,7 @@
  */
 package org.terasoluna.gfw.web.message;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
@@ -102,7 +100,7 @@ public class MessagesPanelTagTest {
     public void testCreateTagWriter() {
         MessagesPanelTag tag = new MessagesPanelTag();
         tag.setPageContext(pageContext);
-        assertThat(tag.createTagWriter(), is(notNullValue()));
+        assertThat(tag.createTagWriter()).isNotNull();
     }
 
     /**
@@ -115,8 +113,8 @@ public class MessagesPanelTagTest {
                 ResultMessages.error().add(ResultMessage.fromText("hello world!")));
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-error\"><ul><li>hello world!</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -131,8 +129,8 @@ public class MessagesPanelTagTest {
         // System.out.println(getOutput()
         // .replaceAll(Pattern.quote("\""), "\\\\\""));
         String expected = "<div class=\"alert alert-error\"><ul><li>hello world!</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -144,8 +142,8 @@ public class MessagesPanelTagTest {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, "hello world!");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li>hello world!</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -158,8 +156,8 @@ public class MessagesPanelTagTest {
                 ResultMessage.fromText("hello world!"));
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li>hello world!</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -172,8 +170,8 @@ public class MessagesPanelTagTest {
                 ResultMessage.fromCode("hello.world"));
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li>hello world!</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -185,8 +183,8 @@ public class MessagesPanelTagTest {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, null);
         int ret = tag.doStartTag();
         String expected = "";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -199,8 +197,8 @@ public class MessagesPanelTagTest {
                 new String[] {"hello", "world"});
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li>hello</li><li>world</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -213,8 +211,8 @@ public class MessagesPanelTagTest {
                 Arrays.asList("hello", "world"));
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li>hello</li><li>world</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -229,8 +227,8 @@ public class MessagesPanelTagTest {
         int ret = tag.doStartTag();
         String expected =
                 "<div class=\"alert alert-warning\"><ul><li>hello</li><li>world</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -244,8 +242,8 @@ public class MessagesPanelTagTest {
         int ret = tag.doStartTag();
         String expected =
                 "<div class=\"alert alert-success\"><ul><li>hello world!</li><li>foo1 and bar2</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -258,8 +256,8 @@ public class MessagesPanelTagTest {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, now);
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li>" + now + "</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -276,8 +274,8 @@ public class MessagesPanelTagTest {
         tag.setInnerElement("span");
         int ret = tag.doStartTag();
         String expected = "<p class=\"alert alert-info\"><span>hello!</span><span>foo</span></p>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -291,8 +289,8 @@ public class MessagesPanelTagTest {
         tag.setPanelClassName("");
         int ret = tag.doStartTag();
         String expected = "<div><ul><li>foo</li><li>bar</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -307,8 +305,8 @@ public class MessagesPanelTagTest {
         tag.setPanelClassName("");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert-info\"><ul><li>foo</li><li>bar</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -324,8 +322,8 @@ public class MessagesPanelTagTest {
         tag.setPanelTypeClassPrefix("");
         int ret = tag.doStartTag();
         String expected = "<div class=\"info\"><ul><li>foo</li><li>bar</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -341,8 +339,8 @@ public class MessagesPanelTagTest {
         tag.setPanelTypeClassPrefix("");
         int ret = tag.doStartTag();
         String expected = "<div class=\"info\"><ul><li>foo</li><li>bar</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -359,8 +357,8 @@ public class MessagesPanelTagTest {
         tag.setMessagesType("");
         int ret = tag.doStartTag();
         String expected = "<div><ul><li>foo</li><li>bar</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -376,8 +374,8 @@ public class MessagesPanelTagTest {
         tag.setInnerElement("");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-info\">foo</div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     @Test
@@ -391,8 +389,8 @@ public class MessagesPanelTagTest {
         String expected = "<li>foo</li>";
 
         // assert
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     @Test
@@ -405,8 +403,8 @@ public class MessagesPanelTagTest {
         String expected = "<ul><li>foo</li></ul>";
 
         // assert
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -449,8 +447,8 @@ public class MessagesPanelTagTest {
         tag.setPanelClassName("");
         int ret = tag.doStartTag();
         String expected = "<div><ul><li>foo</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -464,8 +462,8 @@ public class MessagesPanelTagTest {
         tag.setMessagesAttributeName("result");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-error\"><ul><li>hello world!</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -478,8 +476,8 @@ public class MessagesPanelTagTest {
         tag.setPanelClassName("");
         int ret = tag.doStartTag();
         String expected = "<div><ul><li>1</li><li>2</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -492,8 +490,8 @@ public class MessagesPanelTagTest {
         tag.setMessagesType("");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li>hello world!</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -506,8 +504,8 @@ public class MessagesPanelTagTest {
         tag.setMessagesType("error");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-error\"><ul><li>hello world!</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -523,8 +521,8 @@ public class MessagesPanelTagTest {
         tag.setMessagesType("error");
         int ret = tag.doStartTag();
         String expected = "<div class=\"error\"><ul><li>hello world!</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -538,8 +536,8 @@ public class MessagesPanelTagTest {
         tag.setMessagesType("");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li>foo</li><li>bar</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -554,8 +552,8 @@ public class MessagesPanelTagTest {
         int ret = tag.doStartTag();
         String expected =
                 "<div class=\"alert alert-error\"><ul><li>foo</li><li>bar</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -572,8 +570,8 @@ public class MessagesPanelTagTest {
         tag.setMessagesType("error");
         int ret = tag.doStartTag();
         String expected = "<div class=\"error\"><ul><li>foo</li><li>bar</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -587,8 +585,8 @@ public class MessagesPanelTagTest {
         tag.setDisableHtmlEscape("true");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-error\"><ul><li><div></li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -602,8 +600,8 @@ public class MessagesPanelTagTest {
         tag.setDisableHtmlEscape("false");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-error\"><ul><li>&lt;div&gt;</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -617,8 +615,8 @@ public class MessagesPanelTagTest {
         tag.setDisableHtmlEscape(null);
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-error\"><ul><li>&lt;div&gt;</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -632,8 +630,8 @@ public class MessagesPanelTagTest {
         tag.setDisableHtmlEscape("");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert alert-error\"><ul><li>&lt;div&gt;</li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -659,8 +657,8 @@ public class MessagesPanelTagTest {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, new String[] {});
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     /**
@@ -672,8 +670,8 @@ public class MessagesPanelTagTest {
         request.setAttribute(ResultMessages.DEFAULT_MESSAGES_ATTRIBUTE_NAME, "");
         int ret = tag.doStartTag();
         String expected = "<div class=\"alert\"><ul><li></li></ul></div>";
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     protected String getOutput() {
@@ -690,8 +688,8 @@ public class MessagesPanelTagTest {
         String expected = "<div class=\"alerterror\"><ul><li>foo</li></ul></div>";
 
         // assert
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 
     @Test
@@ -702,7 +700,7 @@ public class MessagesPanelTagTest {
         String expected = "<div class=\"alert\"><ul><li></li></ul></div>";
 
         // assert
-        assertThat(getOutput(), is(expected));
-        assertThat(ret, is(TagSupport.EVAL_BODY_INCLUDE));
+        assertThat(getOutput()).isEqualTo(expected);
+        assertThat(ret).isEqualTo(TagSupport.EVAL_BODY_INCLUDE);
     }
 }

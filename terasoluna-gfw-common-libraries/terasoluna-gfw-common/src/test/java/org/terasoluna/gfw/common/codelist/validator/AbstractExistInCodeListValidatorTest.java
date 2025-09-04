@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.common.codelist.validator;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import java.lang.annotation.Annotation;
 import org.junit.jupiter.api.Test;
@@ -78,8 +77,8 @@ public class AbstractExistInCodeListValidatorTest {
         boolean isValid = existInCodeListValidator.isValid("Male", constraintValidatorContext);
 
         // assert
-        assertThat(isValid, is(true));
-        assertThat(logger.isTraceEnabled(), is(false));
+        assertThat(isValid).isTrue();
+        assertThat(logger.isTraceEnabled()).isFalse();
 
         // init log level
         LogLevelChangeUtil.resetLogLevel();

@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.common.codepoints.catalog;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.terasoluna.gfw.common.codepoints.CodePoints;
@@ -28,12 +27,12 @@ public class JIS_X_0213_KanjiTest {
     @Test
     public void testIsValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("\uD842\uDF9F" /* 口へんに"七" */), is(true));
+        assertThat(codePoints.containsAll("\uD842\uDF9F" /* 口へんに"七" */)).isTrue();
     }
 
     @Test
     public void testIsInValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("あ"), is(false));
+        assertThat(codePoints.containsAll("あ")).isFalse();
     }
 }

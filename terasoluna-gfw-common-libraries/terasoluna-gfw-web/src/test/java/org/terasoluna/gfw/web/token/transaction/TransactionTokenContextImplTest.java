@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.web.token.transaction;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.terasoluna.gfw.web.token.transaction.TransactionTokenContextImpl.ReserveCommand;
@@ -41,9 +40,9 @@ public class TransactionTokenContextImplTest {
         // test
         ReserveCommand resultCommand = contextImpl.getReserveCommand();
 
-        assertThat(resultCommand, is(expectedCommand));
-        assertThat(contextImpl.getReceivedToken(), is(receivedToken));
-        assertThat(contextImpl.getTokenInfo(), is(beginTransactionToken));
+        assertThat(resultCommand).isEqualTo(expectedCommand);
+        assertThat(contextImpl.getReceivedToken()).isEqualTo(receivedToken);
+        assertThat(contextImpl.getTokenInfo()).isEqualTo(beginTransactionToken);
     }
 
     @Test
@@ -64,9 +63,9 @@ public class TransactionTokenContextImplTest {
         // test
         ReserveCommand resultCommand = contextImpl.getReserveCommand();
 
-        assertThat(resultCommand, is(expectedCommand));
-        assertThat(contextImpl.getReceivedToken(), is(receivedToken));
-        assertThat(contextImpl.getTokenInfo(), is(beginTransactionToken));
+        assertThat(resultCommand).isEqualTo(expectedCommand);
+        assertThat(contextImpl.getReceivedToken()).isEqualTo(receivedToken);
+        assertThat(contextImpl.getTokenInfo()).isEqualTo(beginTransactionToken);
     }
 
     @Test
@@ -86,9 +85,9 @@ public class TransactionTokenContextImplTest {
         ReserveCommand resultCommand = contextImpl.getReserveCommand();
 
         // test
-        assertThat(resultCommand, is(expectedCommand));
-        assertThat(contextImpl.getReceivedToken(), is(receivedToken));
-        assertThat(contextImpl.getTokenInfo(), is(inTransactionToken));
+        assertThat(resultCommand).isEqualTo(expectedCommand);
+        assertThat(contextImpl.getReceivedToken()).isEqualTo(receivedToken);
+        assertThat(contextImpl.getTokenInfo()).isEqualTo(inTransactionToken);
 
     }
 
@@ -109,9 +108,9 @@ public class TransactionTokenContextImplTest {
         ReserveCommand resultCommand = contextImpl.getReserveCommand();
 
         // test
-        assertThat(resultCommand, is(expectedCommand));
-        assertThat(contextImpl.getReceivedToken(), is(receivedToken));
-        assertThat(contextImpl.getTokenInfo(), is(inTransactionToken));
+        assertThat(resultCommand).isEqualTo(expectedCommand);
+        assertThat(contextImpl.getReceivedToken()).isEqualTo(receivedToken);
+        assertThat(contextImpl.getTokenInfo()).isEqualTo(inTransactionToken);
 
     }
 
@@ -132,9 +131,9 @@ public class TransactionTokenContextImplTest {
 
         // test
         ReserveCommand resultCommand = contextImpl.getReserveCommand();
-        assertThat(resultCommand, is(expectedCommand));
-        assertThat(contextImpl.getReceivedToken(), is(receivedToken));
-        assertThat(contextImpl.getTokenInfo(), is(endTransactionToken));
+        assertThat(resultCommand).isEqualTo(expectedCommand);
+        assertThat(contextImpl.getReceivedToken()).isEqualTo(receivedToken);
+        assertThat(contextImpl.getTokenInfo()).isEqualTo(endTransactionToken);
     }
 
     @Test
@@ -154,9 +153,9 @@ public class TransactionTokenContextImplTest {
 
         // test
         ReserveCommand resultCommand = contextImpl.getReserveCommand();
-        assertThat(resultCommand, is(expectedCommand));
-        assertThat(contextImpl.getReceivedToken(), is(receivedToken));
-        assertThat(contextImpl.getTokenInfo(), is(endTransactionToken));
+        assertThat(resultCommand).isEqualTo(expectedCommand);
+        assertThat(contextImpl.getReceivedToken()).isEqualTo(receivedToken);
+        assertThat(contextImpl.getTokenInfo()).isEqualTo(endTransactionToken);
     }
 
     @Test
@@ -176,9 +175,9 @@ public class TransactionTokenContextImplTest {
 
         // test
         ReserveCommand resultCommand = contextImpl.getReserveCommand();
-        assertThat(resultCommand, is(expectedCommand));
-        assertThat(contextImpl.getReceivedToken(), is(receivedToken));
-        assertThat(contextImpl.getTokenInfo(), is(checkTransactionToken));
+        assertThat(resultCommand).isEqualTo(expectedCommand);
+        assertThat(contextImpl.getReceivedToken()).isEqualTo(receivedToken);
+        assertThat(contextImpl.getTokenInfo()).isEqualTo(checkTransactionToken);
     }
 
     @Test
@@ -198,8 +197,8 @@ public class TransactionTokenContextImplTest {
 
         // test
         ReserveCommand resultCommand = contextImpl.getReserveCommand();
-        assertThat(resultCommand, is(expectedCommand));
-        assertThat(contextImpl.getReceivedToken(), is(receivedToken));
-        assertThat(contextImpl.getTokenInfo(), is(updateTransactionToken));
+        assertThat(resultCommand).isEqualTo(expectedCommand);
+        assertThat(contextImpl.getReceivedToken()).isEqualTo(receivedToken);
+        assertThat(contextImpl.getTokenInfo()).isEqualTo(updateTransactionToken);
     }
 }

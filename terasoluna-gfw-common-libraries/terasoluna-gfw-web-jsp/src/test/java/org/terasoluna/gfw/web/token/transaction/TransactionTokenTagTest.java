@@ -15,10 +15,7 @@
  */
 package org.terasoluna.gfw.web.token.transaction;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasLength;
-import static org.hamcrest.Matchers.hasToString;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doThrow;
@@ -60,8 +57,8 @@ public class TransactionTokenTagTest {
         int result = tag.writeTagContent(tagWriter);
 
         // assert
-        assertThat(sw.getBuffer(), hasLength(0));
-        assertThat(result, is(0));
+        assertThat(sw.getBuffer()).isEmpty();
+        assertThat(result).isEqualTo(0);
     }
 
     /**
@@ -94,8 +91,8 @@ public class TransactionTokenTagTest {
                 + token.getTokenString() + "\"/>";
 
         // assert
-        assertThat(sw.getBuffer(), hasToString(expected));
-        assertThat(result, is(0));
+        assertThat(sw.getBuffer()).hasToString(expected);
+        assertThat(result).isEqualTo(0);
     }
 
     /**

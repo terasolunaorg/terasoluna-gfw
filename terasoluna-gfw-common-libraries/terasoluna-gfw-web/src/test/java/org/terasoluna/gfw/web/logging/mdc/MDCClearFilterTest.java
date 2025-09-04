@@ -15,11 +15,7 @@
  */
 package org.terasoluna.gfw.web.logging.mdc;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.aMapWithSize;
-import static org.hamcrest.Matchers.hasKey;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.spy;
@@ -98,11 +94,11 @@ public class MDCClearFilterTest {
 
         // do assert.
         // not remove existing values from MDC on before chain.
-        Map<?, ?> actualMdcContextMap = mockFilterChain.actualMdcContextMap;
-        assertThat(actualMdcContextMap, aMapWithSize(1));
-        assertThat(actualMdcContextMap, hasKey("key0"));
+        Map<String, String> actualMdcContextMap = mockFilterChain.actualMdcContextMap;
+        assertThat(actualMdcContextMap).hasSize(1);
+        assertThat(actualMdcContextMap).containsKey("key0");
         // remove all values from MDC on after chain.
-        assertThat(MDC.getCopyOfContextMap(), is(nullValue()));
+        assertThat(MDC.getCopyOfContextMap()).isNull();
     }
 
     /**
@@ -129,11 +125,11 @@ public class MDCClearFilterTest {
         });
         // do assert.
         // throws original exception.
-        assertThat(e, is(occurException));
+        assertThat(e).isEqualTo(occurException);
 
         // do assert.
         // remove all values from MDC on after chain.
-        assertThat(MDC.getCopyOfContextMap(), is(nullValue()));
+        assertThat(MDC.getCopyOfContextMap()).isNull();
 
     }
 
@@ -141,8 +137,7 @@ public class MDCClearFilterTest {
      * Mock class of FilterChain.
      */
     private class MockFilterChainForMDCClearFilterTest implements FilterChain {
-        @SuppressWarnings("rawtypes")
-        private Map actualMdcContextMap;
+        private Map<String, String> actualMdcContextMap;
 
         @Override
         public void doFilter(ServletRequest request, ServletResponse response)

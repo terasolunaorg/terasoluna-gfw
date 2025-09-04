@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.common.fullhalf;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -30,8 +29,8 @@ public class FullHalfPairTest {
         FullHalfPair FullHalfPair3 = FullHalfPair1;
 
         // assert
-        assertThat(FullHalfPair1.equals(FullHalfPair2), is(true));
-        assertThat(FullHalfPair1.equals(FullHalfPair3), is(true));
+        assertThat(FullHalfPair1.equals(FullHalfPair2)).isTrue();
+        assertThat(FullHalfPair1.equals(FullHalfPair3)).isTrue();
     }
 
     @Test
@@ -42,7 +41,7 @@ public class FullHalfPairTest {
         String str = null;
 
         // assert
-        assertThat(FullHalfPair.equals(str), is(false));
+        assertThat(FullHalfPair.equals(str)).isFalse();
     }
 
     @Test
@@ -53,7 +52,7 @@ public class FullHalfPairTest {
         String str = "a";
 
         // assert
-        assertThat(FullHalfPair.equals(str), is(false));
+        assertThat(FullHalfPair.equals(str)).isFalse();
     }
 
     @Test
@@ -63,7 +62,7 @@ public class FullHalfPairTest {
         FullHalfPair FullHalfPair2 = new FullHalfPair("b", "b");
 
         // assert
-        assertThat(FullHalfPair1.equals(FullHalfPair2), is(false));
+        assertThat(FullHalfPair1.equals(FullHalfPair2)).isFalse();
     }
 
     @Test
@@ -73,7 +72,7 @@ public class FullHalfPairTest {
         FullHalfPair FullHalfPair2 = new FullHalfPair("ａ", "b");
 
         // assert
-        assertThat(FullHalfPair1.equals(FullHalfPair2), is(false));
+        assertThat(FullHalfPair1.equals(FullHalfPair2)).isFalse();
     }
 
 }

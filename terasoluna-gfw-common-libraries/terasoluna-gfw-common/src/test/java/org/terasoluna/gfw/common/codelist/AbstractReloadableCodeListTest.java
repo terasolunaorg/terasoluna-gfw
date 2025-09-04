@@ -15,16 +15,15 @@
  */
 package org.terasoluna.gfw.common.codelist;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.aMapWithSize;
-import static org.hamcrest.Matchers.hasEntry;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.jupiter.api.Test;
 import org.slf4j.LoggerFactory;
 import org.terasoluna.gfw.common.logback.LogLevelChangeUtil;
+
 import ch.qos.logback.classic.Logger;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Abstract class for the reloadable codelist functionality
@@ -57,9 +56,9 @@ public class AbstractReloadableCodeListTest {
         Map<String, String> mapResult1 = reloadableCodeList.asMap();
 
         // assert
-        assertThat(mapResult1, aMapWithSize(mapExpectedFirstFetch.size()));
+        assertThat(mapResult1).hasSize(mapExpectedFirstFetch.size());
         for (String key : mapResult1.keySet()) {
-            assertThat(mapResult1, hasEntry(key, mapExpectedFirstFetch.get(key)));
+            assertThat(mapResult1).containsEntry(key, mapExpectedFirstFetch.get(key));
         }
 
         // fetch codelist map for the first time
@@ -67,9 +66,9 @@ public class AbstractReloadableCodeListTest {
 
         // fetch codelist map again immediately
         Map<String, String> mapResult2 = reloadableCodeList.asMap();
-        assertThat(mapResult2, aMapWithSize(mapExpectedSecondFetch.size()));
+        assertThat(mapResult2).hasSize(mapExpectedSecondFetch.size());
         for (String key : mapResult2.keySet()) {
-            assertThat(mapResult2, hasEntry(key, mapExpectedSecondFetch.get(key)));
+            assertThat(mapResult2).containsEntry(key, mapExpectedSecondFetch.get(key));
         }
     }
 
@@ -99,14 +98,14 @@ public class AbstractReloadableCodeListTest {
         Map<String, String> mapResult1 = abstractReloadableCodeList.asMap();
 
         // assert
-        assertThat(mapResult1, is(mapExpectedFirstFetch));
+        assertThat(mapResult1).isEqualTo(mapExpectedFirstFetch);
 
         // fetch codelist map for the first time
         abstractReloadableCodeList.afterPropertiesSet();
 
         // fetch codelist map again immediately
         Map<String, String> mapResult2 = abstractReloadableCodeList.asMap();
-        assertThat(mapResult2, is(mapExpectedFirstFetch));
+        assertThat(mapResult2).isEqualTo(mapExpectedFirstFetch);
     }
 
     @Test
@@ -132,15 +131,15 @@ public class AbstractReloadableCodeListTest {
         Map<String, String> mapResult1 = reloadableCodeList.asMap();
 
         // assert
-        assertThat(mapResult1, is(mapExpectedFirstFetch));
-        assertThat(logger.isDebugEnabled(), is(false));
+        assertThat(mapResult1).isEqualTo(mapExpectedFirstFetch);
+        assertThat(logger.isDebugEnabled()).isFalse();
 
         // fetch codelist map for the first time
         reloadableCodeList.afterPropertiesSet();
 
         // fetch codelist map again immediately
         Map<String, String> mapResult2 = reloadableCodeList.asMap();
-        assertThat(mapResult2, is(mapExpectedSecondFetch));
+        assertThat(mapResult2).isEqualTo(mapExpectedSecondFetch);
 
         // init log level
         LogLevelChangeUtil.resetLogLevel();

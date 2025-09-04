@@ -15,8 +15,8 @@
  */
 package org.terasoluna.gfw.common.exception;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +40,7 @@ public class DefaultExceptionLevelResolverTest {
 
         // do assert.
         ExceptionLevel expectedExceptionLevel = ExceptionLevel.INFO;
-        assertThat(actualExceptionLevel, is(expectedExceptionLevel));
+        assertThat(actualExceptionLevel).isEqualTo(expectedExceptionLevel);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class DefaultExceptionLevelResolverTest {
 
         // do assert.
         ExceptionLevel expectedExceptionLevel = ExceptionLevel.WARN;
-        assertThat(actualExceptionLevel, is(expectedExceptionLevel));
+        assertThat(actualExceptionLevel).isEqualTo(expectedExceptionLevel);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class DefaultExceptionLevelResolverTest {
 
         // do assert.
         ExceptionLevel expectedExceptionLevel = ExceptionLevel.ERROR;
-        assertThat(actualExceptionLevel, is(expectedExceptionLevel));
+        assertThat(actualExceptionLevel).isEqualTo(expectedExceptionLevel);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class DefaultExceptionLevelResolverTest {
 
         // do assert.
         ExceptionLevel expectedExceptionLevel = ExceptionLevel.ERROR;
-        assertThat(actualExceptionLevel, is(expectedExceptionLevel));
+        assertThat(actualExceptionLevel).isEqualTo(expectedExceptionLevel);
     }
 
     @Test
@@ -92,7 +92,7 @@ public class DefaultExceptionLevelResolverTest {
 
         // do assert.
         ExceptionLevel expectedExceptionLevel = ExceptionLevel.ERROR;
-        assertThat(actualExceptionLevel, is(expectedExceptionLevel));
+        assertThat(actualExceptionLevel).isEqualTo(expectedExceptionLevel);
     }
 
     @Test
@@ -105,7 +105,7 @@ public class DefaultExceptionLevelResolverTest {
 
         // do assert.
         ExceptionLevel expectedExceptionLevel = ExceptionLevel.ERROR;
-        assertThat(actualExceptionLevel, is(expectedExceptionLevel));
+        assertThat(actualExceptionLevel).isEqualTo(expectedExceptionLevel);
     }
 
     @Test
@@ -119,7 +119,7 @@ public class DefaultExceptionLevelResolverTest {
 
         // do assert.
         ExceptionLevel expectedExceptionLevel = ExceptionLevel.ERROR;
-        assertThat(actualExceptionLevel, is(expectedExceptionLevel));
+        assertThat(actualExceptionLevel).isEqualTo(expectedExceptionLevel);
     }
 
 }

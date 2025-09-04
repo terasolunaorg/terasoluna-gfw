@@ -18,9 +18,7 @@
  */
 package org.terasoluna.gfw.web.token.transaction;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -57,7 +55,7 @@ public class TransactionTokenRequestDataValueProcessorTest {
         Map<String, String> result = processor.getExtraHiddenFields(request);
 
         // assert
-        assertThat(result, nullValue());
+        assertThat(result).isNull();
     }
 
     /**
@@ -86,7 +84,7 @@ public class TransactionTokenRequestDataValueProcessorTest {
         expected.put("_TRANSACTION_TOKEN", token.getTokenString());
 
         // assert
-        assertThat(result, is(expected));
+        assertThat(result).isEqualTo(expected);
     }
 
 }

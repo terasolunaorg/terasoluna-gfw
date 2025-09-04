@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.web.logging;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -93,7 +92,7 @@ public class HttpSessionEventLoggingListenerTest {
         listener.sessionWillPassivate(httpSessionEvent);
 
         // assert
-        assertThat(logger.isDebugEnabled(), is(false));
+        assertThat(logger.isDebugEnabled()).isFalse();
     }
 
     /**
@@ -120,7 +119,7 @@ public class HttpSessionEventLoggingListenerTest {
         listener.sessionDidActivate(httpSessionEvent);
 
         // assert
-        assertThat(logger.isDebugEnabled(), is(false));
+        assertThat(logger.isDebugEnabled()).isFalse();
     }
 
     /**
@@ -148,7 +147,7 @@ public class HttpSessionEventLoggingListenerTest {
         listener.attributeAdded(sessionBindingEvent);
 
         // assert
-        assertThat(logger.isDebugEnabled(), is(false));
+        assertThat(logger.isDebugEnabled()).isFalse();
     }
 
     /**
@@ -176,7 +175,7 @@ public class HttpSessionEventLoggingListenerTest {
         listener.attributeRemoved(sessionBindingEvent);
 
         // assert
-        assertThat(logger.isDebugEnabled(), is(false));
+        assertThat(logger.isDebugEnabled()).isFalse();
     }
 
     /**
@@ -204,7 +203,7 @@ public class HttpSessionEventLoggingListenerTest {
         listener.attributeReplaced(sessionBindingEvent);
 
         // assert
-        assertThat(logger.isDebugEnabled(), is(false));
+        assertThat(logger.isDebugEnabled()).isFalse();
     }
 
     /**
@@ -232,7 +231,7 @@ public class HttpSessionEventLoggingListenerTest {
         listener.sessionCreated(httpSessionEvent);
 
         // assert
-        assertThat(logger.isDebugEnabled(), is(false));
+        assertThat(logger.isDebugEnabled()).isFalse();
     }
 
     /**
@@ -260,7 +259,7 @@ public class HttpSessionEventLoggingListenerTest {
         listener.sessionDestroyed(httpSessionEvent);
 
         // assert
-        assertThat(logger.isDebugEnabled(), is(false));
+        assertThat(logger.isDebugEnabled()).isFalse();
     }
 
     /**

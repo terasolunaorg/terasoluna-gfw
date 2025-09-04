@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.common.fullhalf;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
@@ -29,8 +28,8 @@ public class FullHalfConverterTest {
                 .pair("ー" /* KATAKANA-HIRAGANA PROLONGED SOUND MARK U+30FC */, "-")
                 .pair("－" /* FULLWIDTH HYPHEN-MINUS U+FF0D */, "-").build());
 
-        assertThat(converter.toHalfwidth("‐—ー－"), is("----"));
-        assertThat(converter.toFullwidth("----"), is("‐‐‐‐"));
+        assertThat(converter.toHalfwidth("‐—ー－")).isEqualTo("----");
+        assertThat(converter.toFullwidth("----")).isEqualTo("‐‐‐‐");
     }
 
     @Test
@@ -40,8 +39,8 @@ public class FullHalfConverterTest {
                 .pair("‐", "ｰ" /* HALFWIDTH KATAKANA-HIRAGANA PROLONGED SOUND MARK U+FF70 */)
                 .build());
 
-        assertThat(converter.toHalfwidth("‐‐‐"), is("---"));
-        assertThat(converter.toFullwidth("-—ｰ"), is("‐‐‐"));
+        assertThat(converter.toHalfwidth("‐‐‐")).isEqualTo("---");
+        assertThat(converter.toFullwidth("-—ｰ")).isEqualTo("‐‐‐");
     }
 
     @Test
@@ -49,8 +48,8 @@ public class FullHalfConverterTest {
         FullHalfConverter converter =
                 new FullHalfConverter(new FullHalfPairsBuilder().pair("バ", "ﾊﾞ").pair("ハ", "ﾊ")
                         .pair("゛", "ﾞ").pair("゜", "ﾟ").appendablePredicate(c -> c == 'ﾞ').build());
-        assertThat(converter.toFullwidth("ﾊﾞ"), is("バ"));
-        assertThat(converter.toFullwidth("ﾊﾟ"), is("ハ゜"));
+        assertThat(converter.toFullwidth("ﾊﾞ")).isEqualTo("バ");
+        assertThat(converter.toFullwidth("ﾊﾟ")).isEqualTo("ハ゜");
     }
 
     @Test
@@ -58,6 +57,6 @@ public class FullHalfConverterTest {
         Exception ex = assertThrows(IllegalArgumentException.class, () -> {
             new FullHalfConverter(null);
         });
-        assertThat(ex.getMessage(), is("pairs must not be null."));
+        assertThat(ex).hasMessage("pairs must not be null.");
     }
 }

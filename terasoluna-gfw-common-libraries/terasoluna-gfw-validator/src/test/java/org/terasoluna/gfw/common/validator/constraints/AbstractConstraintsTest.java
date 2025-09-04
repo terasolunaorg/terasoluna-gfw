@@ -15,11 +15,7 @@
  */
 package org.terasoluna.gfw.common.validator.constraints;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.instanceOf;
-import static org.hamcrest.Matchers.is;
+import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Locale;
 import java.util.Set;
 import org.junit.jupiter.api.AfterAll;
@@ -68,11 +64,8 @@ abstract public class AbstractConstraintsTest<F> {
      */
     protected void assertFailedToInitialize(ValidationException ex,
             Class<? extends Throwable> causeType) {
-        assertThat(ex.getCause(), allOf( //
-                instanceOf(IllegalArgumentException.class), //
-                hasProperty("message", is(MESSAGE_INITIALIZE_ERROR)), //
-                hasProperty("cause", instanceOf(causeType)) //
-        ));
+        assertThat(ex).cause().isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(MESSAGE_INITIALIZE_ERROR).cause().isInstanceOf(causeType);
     }
 
     /**
@@ -83,14 +76,9 @@ abstract public class AbstractConstraintsTest<F> {
      */
     protected void assertFailedToInitialize(ValidationException ex,
             Class<? extends Throwable> causeType, String message) {
-        assertThat(ex.getCause(), allOf( //
-                instanceOf(IllegalArgumentException.class), //
-                hasProperty("message", is(MESSAGE_INITIALIZE_ERROR)), //
-                hasProperty("cause", allOf( //
-                        instanceOf(causeType), //
-                        hasProperty("message", is(message)) //
-                )) //
-        ));
+        assertThat(ex).cause().isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(MESSAGE_INITIALIZE_ERROR).cause().isInstanceOf(causeType)
+                .hasMessage(message);
     }
 
     /**
@@ -99,10 +87,8 @@ abstract public class AbstractConstraintsTest<F> {
      * @param type expected not support type.
      */
     protected void assertTypeNotSupport(ValidationException ex, Class<?> type) {
-        assertThat(ex.getCause(), allOf( //
-                instanceOf(IllegalArgumentException.class), //
-                hasProperty("message", is(String.format(MESSAGE_NOTSUPPORT_ERROR, type.getName()))) //
-        ));
+        assertThat(ex).cause().isInstanceOf(IllegalArgumentException.class)
+                .hasMessage(String.format(MESSAGE_NOTSUPPORT_ERROR, type.getName()));
     }
 
 }

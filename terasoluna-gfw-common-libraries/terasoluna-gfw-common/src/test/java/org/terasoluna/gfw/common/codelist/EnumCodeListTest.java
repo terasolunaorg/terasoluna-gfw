@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.common.codelist;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -59,7 +58,7 @@ public class EnumCodeListTest {
         expected.put("2", "Sent");
         expected.put("3", "Cancelled");
 
-        assertThat(codeList.asMap(), is(expected));
+        assertThat(codeList.asMap()).isEqualTo(expected);
     }
 
     @Test

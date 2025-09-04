@@ -15,9 +15,7 @@
  */
 package org.terasoluna.gfw.common.message;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsNull.notNullValue;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -39,11 +37,11 @@ public class ResultMessageUtilsTest {
         // set up
         Constructor<ResultMessageUtils> constructor =
                 ResultMessageUtils.class.getDeclaredConstructor();
-        assertThat(constructor.canAccess(null), is(false));
+        assertThat(constructor.canAccess(null)).isFalse();
         constructor.setAccessible(true);
 
         // assert
-        assertThat(constructor.newInstance(), notNullValue());
+        assertThat(constructor.newInstance()).isNotNull();
 
         constructor.setAccessible(false);
     }
@@ -59,7 +57,7 @@ public class ResultMessageUtilsTest {
                 .thenReturn("MESSAGE_TEXT");
 
         String msg = ResultMessageUtils.resolveMessage(message, messageSource);
-        assertThat(msg, is("MESSAGE_TEXT"));
+        assertThat(msg).isEqualTo("MESSAGE_TEXT");
     }
 
     @Test
@@ -72,7 +70,7 @@ public class ResultMessageUtilsTest {
         when(messageSource.getMessage("MSG001", null, locale)).thenReturn("MESSAGE_TEXT");
 
         String msg = ResultMessageUtils.resolveMessage(message, messageSource, locale);
-        assertThat(msg, is("MESSAGE_TEXT"));
+        assertThat(msg).isEqualTo("MESSAGE_TEXT");
     }
 
     @Test
@@ -84,7 +82,7 @@ public class ResultMessageUtilsTest {
         when(message.getText()).thenReturn("MESSAGE_TEXT");
 
         String msg = ResultMessageUtils.resolveMessage(message, messageSource);
-        assertThat(msg, is("MESSAGE_TEXT"));
+        assertThat(msg).isEqualTo("MESSAGE_TEXT");
     }
 
     @Test
@@ -101,7 +99,7 @@ public class ResultMessageUtilsTest {
                 .thenThrow(new NoSuchMessageException("MSG001"));
 
         String msg = ResultMessageUtils.resolveMessage(message, messageSource);
-        assertThat(msg, is("MESSAGE_TEXT"));
+        assertThat(msg).isEqualTo("MESSAGE_TEXT");
     }
 
     @Test
@@ -140,8 +138,8 @@ public class ResultMessageUtilsTest {
         String msg = ResultMessageUtils.resolveMessage(message, messageSource, locale);
 
         // assert
-        assertThat(msg, is("MESSAGE_TEXT"));
-        assertThat(logger.isDebugEnabled(), is(false));
+        assertThat(msg).isEqualTo("MESSAGE_TEXT");
+        assertThat(logger.isDebugEnabled()).isFalse();
 
         // init log level
         LogLevelChangeUtil.resetLogLevel();

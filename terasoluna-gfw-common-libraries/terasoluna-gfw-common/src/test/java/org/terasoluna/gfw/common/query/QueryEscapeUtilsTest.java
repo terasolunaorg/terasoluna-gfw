@@ -15,9 +15,8 @@
  */
 package org.terasoluna.gfw.common.query;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsNull.notNullValue;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.lang.reflect.Constructor;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
@@ -54,7 +53,7 @@ public class QueryEscapeUtilsTest {
         String expected = param.expectedToLikeCondition;
         String errorMessage =
                 "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
-        assertThat(errorMessage, actual, is(expected));
+        assertThat(actual).as(errorMessage).isEqualTo(expected);
     }
 
     /**
@@ -68,7 +67,7 @@ public class QueryEscapeUtilsTest {
         String expected = param.expectedToLikeConditionWithFullWidth;
         String errorMessage =
                 "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
-        assertThat(errorMessage, actual, is(expected));
+        assertThat(actual).as(errorMessage).isEqualTo(expected);
     }
 
     /**
@@ -81,7 +80,7 @@ public class QueryEscapeUtilsTest {
         StringBuilder expected = param.expectedToLikeConditionStringBuilder;
         String errorMessage =
                 "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
-        assertThat(errorMessage, actual.toString(), is(expected.toString()));
+        assertThat(actual.toString()).as(errorMessage).isEqualTo(expected.toString());
     }
 
     /**
@@ -96,7 +95,7 @@ public class QueryEscapeUtilsTest {
         StringBuilder expected = param.expectedToLikeConditionWithFullWidthStringBuilder;
         String errorMessage =
                 "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
-        assertThat(errorMessage, actual.toString(), is(expected.toString()));
+        assertThat(actual.toString()).as(errorMessage).isEqualTo(expected.toString());
     }
 
     /**
@@ -109,7 +108,7 @@ public class QueryEscapeUtilsTest {
         String expected = param.expectedStartingWithCondition;
         String errorMessage =
                 "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
-        assertThat(errorMessage, actual, is(expected));
+        assertThat(actual).as(errorMessage).isEqualTo(expected);
     }
 
     /**
@@ -123,7 +122,7 @@ public class QueryEscapeUtilsTest {
         String expected = param.expectedStartingWithConditionWithFullWidth;
         String errorMessage =
                 "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
-        assertThat(errorMessage, actual, is(expected));
+        assertThat(actual).as(errorMessage).isEqualTo(expected);
     }
 
     /**
@@ -136,7 +135,7 @@ public class QueryEscapeUtilsTest {
         String expected = param.expectedEndingWithCondition;
         String errorMessage =
                 "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
-        assertThat(errorMessage, actual, is(expected));
+        assertThat(actual).as(errorMessage).isEqualTo(expected);
     }
 
     /**
@@ -150,7 +149,7 @@ public class QueryEscapeUtilsTest {
         String expected = param.expectedEndingWithConditionWithFullWidth;
         String errorMessage =
                 "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
-        assertThat(errorMessage, actual, is(expected));
+        assertThat(actual).as(errorMessage).isEqualTo(expected);
     }
 
     /**
@@ -163,7 +162,7 @@ public class QueryEscapeUtilsTest {
         String expected = param.expectedContainingCondition;
         String errorMessage =
                 "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
-        assertThat(errorMessage, actual, is(expected));
+        assertThat(actual).as(errorMessage).isEqualTo(expected);
     }
 
     /**
@@ -177,7 +176,7 @@ public class QueryEscapeUtilsTest {
         String expected = param.expectedContainingConditionWithFullWidth;
         String errorMessage =
                 "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
-        assertThat(errorMessage, actual, is(expected));
+        assertThat(actual).as(errorMessage).isEqualTo(expected);
     }
 
     @ParameterizedTest
@@ -190,18 +189,18 @@ public class QueryEscapeUtilsTest {
                 "Input:" + param.input + ", Expected: " + expected + ", Actual: " + actual;
 
         // assert
-        assertThat(errorMessage, actual.toString(), is(expected.toString()));
+        assertThat(actual.toString()).as(errorMessage).isEqualTo(expected.toString());
     }
 
     @Test
     public void testQueryEscapeUtils() throws Exception {
         // set up
         Constructor<QueryEscapeUtils> constructor = QueryEscapeUtils.class.getDeclaredConstructor();
-        assertThat(constructor.canAccess(null), is(false));
+        assertThat(constructor.canAccess(null)).isFalse();
         constructor.setAccessible(true);
 
         // assert
-        assertThat(constructor.newInstance(), notNullValue());
+        assertThat(constructor.newInstance()).isNotNull();
 
         constructor.setAccessible(false);
     }

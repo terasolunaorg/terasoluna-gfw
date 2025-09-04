@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.web.token.transaction;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,8 +33,8 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, beginToken);
 
         // assert
-        assertThat(tokenName, is(info.getTokenName()));
-        assertThat(beginToken, is(info.getTransactionTokenType()));
+        assertThat(tokenName).isEqualTo(info.getTokenName());
+        assertThat(beginToken).isEqualTo(info.getTransactionTokenType());
     }
 
     @Test
@@ -50,7 +49,7 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, beginToken);
         boolean output = info.needCreate();
         // assert
-        assertThat(output, is(true));
+        assertThat(output).isTrue();
     }
 
     @Test
@@ -65,7 +64,7 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, beginToken);
         boolean output = info.needCreate();
         // assert
-        assertThat(output, is(true));
+        assertThat(output).isTrue();
     }
 
     @Test
@@ -80,7 +79,7 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, beginToken);
         boolean output = info.needCreate();
         // assert
-        assertThat(output, is(false));
+        assertThat(output).isFalse();
     }
 
     @Test
@@ -95,7 +94,7 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, beginToken);
         boolean output = info.needValidate();
         // assert
-        assertThat(output, is(false));
+        assertThat(output).isFalse();
     }
 
     @Test
@@ -110,7 +109,7 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, beginToken);
         boolean output = info.needValidate();
         // assert
-        assertThat(output, is(true));
+        assertThat(output).isTrue();
     }
 
     @Test
@@ -125,7 +124,7 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, beginToken);
         boolean output = info.needValidate();
         // assert
-        assertThat(output, is(true));
+        assertThat(output).isTrue();
     }
 
     @Test
@@ -140,7 +139,7 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, beginToken);
         boolean output = info.needCreate();
         // assert
-        assertThat(output, is(false));
+        assertThat(output).isFalse();
     }
 
     @Test
@@ -155,7 +154,7 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, beginToken);
         boolean output = info.needCreate();
         // assert
-        assertThat(output, is(false));
+        assertThat(output).isFalse();
     }
 
     @Test
@@ -170,7 +169,7 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo tokenInfo = new TransactionTokenInfo(tokenName, tokenType);
         boolean output = tokenInfo.needCreate();
         // assert
-        assertThat(output, is(false));
+        assertThat(output).isFalse();
     }
 
     @Test
@@ -185,7 +184,7 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, tokenType);
         boolean output = info.needValidate();
         // assert
-        assertThat(output, is(true));
+        assertThat(output).isTrue();
     }
 
     @Test
@@ -200,7 +199,7 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, tokenType);
         boolean output = info.needKeep();
         // assert
-        assertThat(output, is(false));
+        assertThat(output).isFalse();
     }
 
     @Test
@@ -215,7 +214,7 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, tokenType);
         boolean output = info.needKeep();
         // assert
-        assertThat(output, is(false));
+        assertThat(output).isFalse();
     }
 
     @Test
@@ -230,7 +229,7 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, tokenType);
         boolean output = info.needKeep();
         // assert
-        assertThat(output, is(false));
+        assertThat(output).isFalse();
     }
 
     @Test
@@ -245,7 +244,7 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, tokenType);
         boolean output = info.needKeep();
         // assert
-        assertThat(output, is(false));
+        assertThat(output).isFalse();
     }
 
     @Test
@@ -260,7 +259,7 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, tokenType);
         boolean output = info.needKeep();
         // assert
-        assertThat(output, is(true));
+        assertThat(output).isTrue();
     }
 
     @Test
@@ -275,8 +274,8 @@ public class TransactionTokenInfoTest {
         TransactionTokenInfo info = new TransactionTokenInfo(tokenName, beginToken);
         String output = info.toString();
         // assert
-        assertThat(output, is("TransactionTokenInfo [tokenName=" + tokenName + ", transitionType="
-                + TransactionTokenType.END + "]"));
+        assertThat(output).isEqualTo("TransactionTokenInfo [tokenName=" + tokenName
+                + ", transitionType=" + TransactionTokenType.END + "]");
     }
 
 }

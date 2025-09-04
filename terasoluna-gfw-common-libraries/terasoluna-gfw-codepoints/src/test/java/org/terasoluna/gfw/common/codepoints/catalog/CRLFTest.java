@@ -15,8 +15,7 @@
  */
 package org.terasoluna.gfw.common.codepoints.catalog;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 import org.terasoluna.gfw.common.codepoints.CodePoints;
@@ -27,12 +26,12 @@ public class CRLFTest {
     @Test
     public void testIsValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("\n"), is(true));
+        assertThat(codePoints.containsAll("\n")).isTrue();
     }
 
     @Test
     public void testIsInValid() {
         CodePoints codePoints = CodePoints.of(clazz);
-        assertThat(codePoints.containsAll("あ\n"), is(false));
+        assertThat(codePoints.containsAll("あ\n")).isFalse();
     }
 }

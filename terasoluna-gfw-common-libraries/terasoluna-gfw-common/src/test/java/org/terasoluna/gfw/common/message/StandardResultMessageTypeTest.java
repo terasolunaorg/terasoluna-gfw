@@ -15,64 +15,64 @@
  */
 package org.terasoluna.gfw.common.message;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.Test;
 
 public class StandardResultMessageTypeTest {
 
     @Test
     public void testError() {
-        assertThat(StandardResultMessageType.ERROR.getType(), is("error"));
-        assertThat(StandardResultMessageType.ERROR.toString(), is("error"));
+        assertThat(StandardResultMessageType.ERROR.getType()).isEqualTo("error");
+        assertThat(StandardResultMessageType.ERROR.toString()).isEqualTo("error");
     }
 
     @Test
     public void testDanger() {
-        assertThat(StandardResultMessageType.DANGER.getType(), is("danger"));
-        assertThat(StandardResultMessageType.DANGER.toString(), is("danger"));
+        assertThat(StandardResultMessageType.DANGER.getType()).isEqualTo("danger");
+        assertThat(StandardResultMessageType.DANGER.toString()).isEqualTo("danger");
     }
 
     @Test
     public void testInfo() {
-        assertThat(StandardResultMessageType.INFO.getType(), is("info"));
-        assertThat(StandardResultMessageType.INFO.toString(), is("info"));
+        assertThat(StandardResultMessageType.INFO.getType()).isEqualTo("info");
+        assertThat(StandardResultMessageType.INFO.toString()).isEqualTo("info");
     }
 
     @Test
     public void testSuccess() {
-        assertThat(StandardResultMessageType.SUCCESS.getType(), is("success"));
-        assertThat(StandardResultMessageType.SUCCESS.toString(), is("success"));
+        assertThat(StandardResultMessageType.SUCCESS.getType()).isEqualTo("success");
+        assertThat(StandardResultMessageType.SUCCESS.toString()).isEqualTo("success");
     }
 
     @Test
     public void issue24_testWarning() {
-        assertThat(StandardResultMessageType.WARNING.getType(), is("warning"));
-        assertThat(StandardResultMessageType.WARNING.toString(), is("warning"));
+        assertThat(StandardResultMessageType.WARNING.getType()).isEqualTo("warning");
+        assertThat(StandardResultMessageType.WARNING.toString()).isEqualTo("warning");
     }
 
     @Test
     public void testPrimary() {
-        assertThat(StandardResultMessageType.PRIMARY.getType(), is("primary"));
-        assertThat(StandardResultMessageType.PRIMARY.toString(), is("primary"));
+        assertThat(StandardResultMessageType.PRIMARY.getType()).isEqualTo("primary");
+        assertThat(StandardResultMessageType.PRIMARY.toString()).isEqualTo("primary");
     }
 
     @Test
     public void testSecondary() {
-        assertThat(StandardResultMessageType.SECONDARY.getType(), is("secondary"));
-        assertThat(StandardResultMessageType.SECONDARY.toString(), is("secondary"));
+        assertThat(StandardResultMessageType.SECONDARY.getType()).isEqualTo("secondary");
+        assertThat(StandardResultMessageType.SECONDARY.toString()).isEqualTo("secondary");
     }
 
     @Test
     public void testLight() {
-        assertThat(StandardResultMessageType.LIGHT.getType(), is("light"));
-        assertThat(StandardResultMessageType.LIGHT.toString(), is("light"));
+        assertThat(StandardResultMessageType.LIGHT.getType()).isEqualTo("light");
+        assertThat(StandardResultMessageType.LIGHT.toString()).isEqualTo("light");
     }
 
     @Test
     public void testDark() {
-        assertThat(StandardResultMessageType.DARK.getType(), is("dark"));
-        assertThat(StandardResultMessageType.DARK.toString(), is("dark"));
+        assertThat(StandardResultMessageType.DARK.getType()).isEqualTo("dark");
+        assertThat(StandardResultMessageType.DARK.toString()).isEqualTo("dark");
     }
 
 }

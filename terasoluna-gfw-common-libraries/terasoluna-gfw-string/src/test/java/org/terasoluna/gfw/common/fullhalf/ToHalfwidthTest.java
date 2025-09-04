@@ -15,9 +15,7 @@
  */
 package org.terasoluna.gfw.common.fullhalf;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Map;
 import java.util.Map.Entry;
@@ -29,92 +27,92 @@ public class ToHalfwidthTest {
     public void testToFull() throws Exception {
         Map<String, String> fullHalfs = new DefaultFullHalfCodePointsMap();
         for (Entry<String, String> fullHalf : fullHalfs.entrySet()) {
-            assertThat(DefaultFullHalf.INSTANCE.toHalfwidth(fullHalf.getKey()),
-                    is(fullHalf.getValue()));
+            assertThat(DefaultFullHalf.INSTANCE.toHalfwidth(fullHalf.getKey()))
+                    .isEqualTo(fullHalf.getValue());
         }
     }
 
     @Test
     public void testToFull_NotMapped() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("あ"), is("あ"));
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("一"), is("一"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("あ")).isEqualTo("あ");
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("一")).isEqualTo("一");
     }
 
     @Test
     public void testToFull_MappedString() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("メロン"), is("ﾒﾛﾝ"));
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("Ｈｅｌｌｏ　Ｗｏｒｌｄ！"), is("Hello World!"));
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("ハローワールド！"), is("ﾊﾛｰﾜｰﾙﾄﾞ!"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("メロン")).isEqualTo("ﾒﾛﾝ");
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("Ｈｅｌｌｏ　Ｗｏｒｌｄ！")).isEqualTo("Hello World!");
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("ハローワールド！")).isEqualTo("ﾊﾛｰﾜｰﾙﾄﾞ!");
     }
 
     @Test
     public void testToFull_NotMappedAndMappedString() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("完熟メロンパン"), is("完熟ﾒﾛﾝﾊﾟﾝ"));
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("マチュピチュ遺跡"), is("ﾏﾁｭﾋﾟﾁｭ遺跡"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("完熟メロンパン")).isEqualTo("完熟ﾒﾛﾝﾊﾟﾝ");
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("マチュピチュ遺跡")).isEqualTo("ﾏﾁｭﾋﾟﾁｭ遺跡");
     }
 
     @Test
     public void testToHalf01_全角文字が半角文字に複数文字変換されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("Ａ！ア"), is("A!ｱ"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("Ａ！ア")).isEqualTo("A!ｱ");
     }
 
     @Test
     public void testToHalf02_全角文字に対して半角文字に一文字変換されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("Ａ"), is("A"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("Ａ")).isEqualTo("A");
     }
 
     @Test
     public void testToHalf03_全角カサタハが半角カサタハに変換されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("カサタハ"), is("ｶｻﾀﾊ"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("カサタハ")).isEqualTo("ｶｻﾀﾊ");
     }
 
     @Test
     public void testToHalf04_全角濁点文字が二文字に分解されて表示されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("ガザダ"), is("ｶﾞｻﾞﾀﾞ"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("ガザダ")).isEqualTo("ｶﾞｻﾞﾀﾞ");
     }
 
     @Test
     public void testToHalf05_全角濁点半濁点文字が二文字に分解されて表示されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("パポ"), is("ﾊﾟﾎﾟ"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("パポ")).isEqualTo("ﾊﾟﾎﾟ");
     }
 
     @Test
     public void testToHalf06_全角ワが半角ワに変換されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("Ａワ"), is("Aﾜ"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("Ａワ")).isEqualTo("Aﾜ");
     }
 
     @Test
     public void testToHalf07_全角ヲが半角ヲに変換されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("Ａヲ"), is("Aｦ"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("Ａヲ")).isEqualTo("Aｦ");
     }
 
     @Test
     public void testToHalf08_全角濁点ワが半角濁点ﾜに変換されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("ア\u30f7"), is("ｱﾜﾞ"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("ア\u30f7")).isEqualTo("ｱﾜﾞ");
     }
 
     @Test
     public void testToHalf09_全角濁点ヲが半角濁点ｦに変換されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("\u30faヴ"), is("ｦﾞｳﾞ"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("\u30faヴ")).isEqualTo("ｦﾞｳﾞ");
     }
 
     @Test
     public void testToHalf10_半角全角混合文字が全て半角に変換されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("サ\u30faｲAピ"), is("ｻｦﾞｲAﾋﾟ"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("サ\u30faｲAピ")).isEqualTo("ｻｦﾞｲAﾋﾟ");
     }
 
     @Test
     public void testToHalf11_置換対象文字列が空文字の時空文字を戻り値とし処理を終了すること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth(""), is(""));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("")).isEmpty();
     }
 
     @Test
     public void testToHalf12_置換対象文字列がnullの時nullを戻り値とし処理を終了すること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth(null), is(nullValue()));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth(null)).isNull();
     }
 
     @Test
     public void testToHalf13_半角化不可能な文字列がそのまま全角文字列で出力されること() throws Exception {
-        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("入力値"), is("入力値"));
+        assertThat(DefaultFullHalf.INSTANCE.toHalfwidth("入力値")).isEqualTo("入力値");
     }
 }

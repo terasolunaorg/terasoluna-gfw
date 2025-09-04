@@ -15,10 +15,7 @@
  */
 package org.terasoluna.gfw.common.codelist.i18n;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.aMapWithSize;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import java.util.Locale;
 import java.util.Map;
@@ -188,8 +185,7 @@ public class SimpleReloadableI18nCodeListTest {
         reloadableI18nCodeList.setLazyInit(true);
         afterPropertiesSet();
 
-        assertThat(ReflectionTestUtils.getField(reloadableI18nCodeList, "codeListTable"),
-                nullValue());
+        assertThat(ReflectionTestUtils.getField(reloadableI18nCodeList, "codeListTable")).isNull();
         assertCodeListMap(10);
     }
 
@@ -214,10 +210,10 @@ public class SimpleReloadableI18nCodeListTest {
 
             Map<String, String> mapInput = tableInput.row(locale);
             Map<String, String> mapOutput = reloadableI18nCodeList.asMap(locale);
-            assertThat(mapOutput, aMapWithSize(mapSize));
+            assertThat(mapOutput).hasSize(mapSize);
             for (int i = 0; i < mapSize; i++) {
-                assertThat(mapOutput.get(String.format("%03d", i)),
-                        is(mapInput.get(String.format("%03d", i))));
+                assertThat(mapOutput.get(String.format("%03d", i)))
+                        .isEqualTo(mapInput.get(String.format("%03d", i)));
             }
         }
     }

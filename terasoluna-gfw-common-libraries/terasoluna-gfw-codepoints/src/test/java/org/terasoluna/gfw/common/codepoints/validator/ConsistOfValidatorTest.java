@@ -15,14 +15,8 @@
  */
 package org.terasoluna.gfw.common.codepoints.validator;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.allOf;
-import static org.hamcrest.Matchers.containsInAnyOrder;
-import static org.hamcrest.Matchers.empty;
-import static org.hamcrest.Matchers.hasProperty;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.hasToString;
+import static org.assertj.core.api.Assertions.tuple;
+import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Arrays;
 import java.util.Locale;
 import java.util.Set;
@@ -60,7 +54,7 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Simple>> violations = validator.validate(name);
 
-        assertThat(violations, is(empty()));
+        assertThat(violations).isEmpty();
     }
 
     @Test
@@ -69,7 +63,7 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Simple>> violations = validator.validate(name);
 
-        assertThat(violations, is(empty()));
+        assertThat(violations).isEmpty();
     }
 
     @Test
@@ -78,10 +72,9 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Simple>> violations = validator.validate(name);
 
-        assertThat(violations, containsInAnyOrder( //
-                allOf( //
-                        hasProperty("propertyPath", hasToString("firstName")), //
-                        hasProperty("message", is("not consist of specified code points")))));
+        assertThat(violations).extracting(violation -> violation.getPropertyPath().toString(),
+                ConstraintViolation::getMessage).containsExactlyInAnyOrder(
+                        tuple("firstName", "not consist of specified code points"));
     }
 
     @Test
@@ -90,10 +83,9 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Simple>> violations = validator.validate(name);
 
-        assertThat(violations, containsInAnyOrder( //
-                allOf( //
-                        hasProperty("propertyPath", hasToString("lastName")), //
-                        hasProperty("message", is("not consist of specified code points")))));
+        assertThat(violations).extracting(violation -> violation.getPropertyPath().toString(),
+                ConstraintViolation::getMessage).containsExactlyInAnyOrder(
+                        tuple("lastName", "not consist of specified code points"));
     }
 
     @Test
@@ -102,13 +94,10 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Simple>> violations = validator.validate(name);
 
-        assertThat(violations, containsInAnyOrder( //
-                allOf( //
-                        hasProperty("propertyPath", hasToString("firstName")), //
-                        hasProperty("message", is("not consist of specified code points"))), //
-                allOf( //
-                        hasProperty("propertyPath", hasToString("lastName")), //
-                        hasProperty("message", is("not consist of specified code points")))));
+        assertThat(violations).extracting(violation -> violation.getPropertyPath().toString(),
+                ConstraintViolation::getMessage).containsExactlyInAnyOrder(
+                        tuple("firstName", "not consist of specified code points"),
+                        tuple("lastName", "not consist of specified code points"));
     }
 
     @Test
@@ -117,7 +106,7 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Multi>> violations = validator.validate(name);
 
-        assertThat(violations, is(empty()));
+        assertThat(violations).isEmpty();
     }
 
     @Test
@@ -126,7 +115,7 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Multi>> violations = validator.validate(name);
 
-        assertThat(violations, hasSize(1));
+        assertThat(violations).hasSize(1);
     }
 
     @Test
@@ -135,7 +124,7 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Composite>> violations = validator.validate(name);
 
-        assertThat(violations, is(empty()));
+        assertThat(violations).isEmpty();
     }
 
     @Test
@@ -144,7 +133,7 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Composite>> violations = validator.validate(name);
 
-        assertThat(violations, hasSize(1));
+        assertThat(violations).hasSize(1);
     }
 
     @Test
@@ -153,7 +142,7 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Getter>> violations = validator.validate(name);
 
-        assertThat(violations, is(empty()));
+        assertThat(violations).isEmpty();
     }
 
     @Test
@@ -162,10 +151,9 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Getter>> violations = validator.validate(name);
 
-        assertThat(violations, containsInAnyOrder( //
-                allOf( //
-                        hasProperty("propertyPath", hasToString("firstName")), //
-                        hasProperty("message", is("not consist of specified code points")))));
+        assertThat(violations).extracting(violation -> violation.getPropertyPath().toString(),
+                ConstraintViolation::getMessage).containsExactlyInAnyOrder(
+                        tuple("firstName", "not consist of specified code points"));
     }
 
     @Test
@@ -174,10 +162,9 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Getter>> violations = validator.validate(name);
 
-        assertThat(violations, containsInAnyOrder( //
-                allOf( //
-                        hasProperty("propertyPath", hasToString("lastName")), //
-                        hasProperty("message", is("not consist of specified code points")))));
+        assertThat(violations).extracting(violation -> violation.getPropertyPath().toString(),
+                ConstraintViolation::getMessage).containsExactlyInAnyOrder(
+                        tuple("lastName", "not consist of specified code points"));
     }
 
     @Test
@@ -188,7 +175,7 @@ public class ConsistOfValidatorTest {
                         Name_ConstructorParameter.class.getConstructor(String.class, String.class),
                         new Object[] {"ABC", "GHI"});
 
-        assertThat(violations, is(empty()));
+        assertThat(violations).isEmpty();
     }
 
     @Test
@@ -199,10 +186,11 @@ public class ConsistOfValidatorTest {
                         Name_ConstructorParameter.class.getConstructor(String.class, String.class),
                         new Object[] {"abc", "GHI"});
 
-        assertThat(violations, containsInAnyOrder( //
-                allOf( //
-                        hasProperty("propertyPath", hasToString("Name_ConstructorParameter.arg0")), //
-                        hasProperty("message", is("not consist of specified code points")))));
+        assertThat(violations)
+                .extracting(violation -> violation.getPropertyPath().toString(),
+                        ConstraintViolation::getMessage)
+                .containsExactlyInAnyOrder(tuple("Name_ConstructorParameter.arg0",
+                        "not consist of specified code points"));
     }
 
     @Test
@@ -213,10 +201,11 @@ public class ConsistOfValidatorTest {
                         Name_ConstructorParameter.class.getConstructor(String.class, String.class),
                         new Object[] {"ABC", "ghi"});
 
-        assertThat(violations, containsInAnyOrder( //
-                allOf( //
-                        hasProperty("propertyPath", hasToString("Name_ConstructorParameter.arg1")), //
-                        hasProperty("message", is("not consist of specified code points")))));
+        assertThat(violations)
+                .extracting(violation -> violation.getPropertyPath().toString(),
+                        ConstraintViolation::getMessage)
+                .containsExactlyInAnyOrder(tuple("Name_ConstructorParameter.arg1",
+                        "not consist of specified code points"));
     }
 
     @Test
@@ -227,7 +216,7 @@ public class ConsistOfValidatorTest {
                         Name_ConstructorParameter.class.getConstructor(String.class, String.class),
                         new Object[] {"ABC", "GHI"});
 
-        assertThat(violations, is(empty()));
+        assertThat(violations).isEmpty();
     }
 
     @Test
@@ -236,7 +225,7 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Annotation>> violations = validator.validate(name);
 
-        assertThat(violations, is(empty()));
+        assertThat(violations).isEmpty();
     }
 
     @Test
@@ -245,10 +234,10 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Annotation>> violations = validator.validate(name);
 
-        assertThat(violations, containsInAnyOrder( //
-                allOf( //
-                        hasProperty("propertyPath", hasToString("firstName")), //
-                        hasProperty("message", is("not ascii printable!")))));
+        assertThat(violations)
+                .extracting(violation -> violation.getPropertyPath().toString(),
+                        ConstraintViolation::getMessage)
+                .containsExactlyInAnyOrder(tuple("firstName", "not ascii printable!"));
     }
 
     @Test
@@ -257,10 +246,10 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Annotation>> violations = validator.validate(name);
 
-        assertThat(violations, containsInAnyOrder( //
-                allOf( //
-                        hasProperty("propertyPath", hasToString("lastName")), //
-                        hasProperty("message", is("not ascii printable!")))));
+        assertThat(violations)
+                .extracting(violation -> violation.getPropertyPath().toString(),
+                        ConstraintViolation::getMessage)
+                .containsExactlyInAnyOrder(tuple("lastName", "not ascii printable!"));
     }
 
     @Test
@@ -270,7 +259,7 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Collection>> violations = validator.validate(name);
 
-        assertThat(violations, is(empty()));
+        assertThat(violations).isEmpty();
     }
 
     @Test
@@ -280,10 +269,11 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Collection>> violations = validator.validate(name);
 
-        assertThat(violations, containsInAnyOrder( //
-                allOf( //
-                        hasProperty("propertyPath", hasToString("firstNames[0].<list element>")), //
-                        hasProperty("message", is("not consist of specified code points")))));
+        assertThat(violations)
+                .extracting(violation -> violation.getPropertyPath().toString(),
+                        ConstraintViolation::getMessage)
+                .containsExactlyInAnyOrder(tuple("firstNames[0].<list element>",
+                        "not consist of specified code points"));
     }
 
     @Test
@@ -293,10 +283,11 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Collection>> violations = validator.validate(name);
 
-        assertThat(violations, containsInAnyOrder( //
-                allOf( //
-                        hasProperty("propertyPath", hasToString("lastNames[0].<list element>")), //
-                        hasProperty("message", is("not consist of specified code points")))));
+        assertThat(violations)
+                .extracting(violation -> violation.getPropertyPath().toString(),
+                        ConstraintViolation::getMessage)
+                .containsExactlyInAnyOrder(tuple("lastNames[0].<list element>",
+                        "not consist of specified code points"));
     }
 
     @Test
@@ -306,14 +297,14 @@ public class ConsistOfValidatorTest {
 
         Set<ConstraintViolation<Name_Collection>> violations = validator.validate(name);
 
-        assertThat(violations, containsInAnyOrder( //
-                allOf( //
-                        hasProperty("propertyPath", hasToString("firstNames[0].<list element>")), //
-                        hasProperty("message", is("not consist of specified code points"))), //
-                allOf( //
-                        hasProperty("propertyPath", hasToString("lastNames[1].<list element>")), //
-                        hasProperty("message", is("not consist of specified code points")))));
-
+        assertThat(violations)
+                .extracting(violation -> violation.getPropertyPath().toString(),
+                        ConstraintViolation::getMessage)
+                .containsExactlyInAnyOrder(
+                        tuple("firstNames[0].<list element>",
+                                "not consist of specified code points"),
+                        tuple("lastNames[1].<list element>",
+                                "not consist of specified code points"));
     }
 
 }

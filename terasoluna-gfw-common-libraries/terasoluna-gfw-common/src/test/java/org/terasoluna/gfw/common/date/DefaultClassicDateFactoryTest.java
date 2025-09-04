@@ -15,8 +15,8 @@
  */
 package org.terasoluna.gfw.common.date;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -45,58 +45,58 @@ public class DefaultClassicDateFactoryTest {
     public void testNewDate() {
         Date now = factory.newDate();
         DateTime result = new DateTime(now.getTime());
-        assertThat(result.getYear(), is(2012));
-        assertThat(result.getMonthOfYear(), is(9));
-        assertThat(result.getDayOfMonth(), is(3));
-        assertThat(result.getHourOfDay(), is(23));
-        assertThat(result.getMinuteOfHour(), is(7));
-        assertThat(result.getSecondOfMinute(), is(11));
-        assertThat(result.getMillisOfSecond(), is(100));
+        assertThat(result.getYear()).isEqualTo(2012);
+        assertThat(result.getMonthOfYear()).isEqualTo(9);
+        assertThat(result.getDayOfMonth()).isEqualTo(3);
+        assertThat(result.getHourOfDay()).isEqualTo(23);
+        assertThat(result.getMinuteOfHour()).isEqualTo(7);
+        assertThat(result.getSecondOfMinute()).isEqualTo(11);
+        assertThat(result.getMillisOfSecond()).isEqualTo(100);
 
         // use actual #newDate().
         DefaultClassicDateFactory actualFactory = new DefaultClassicDateFactory();
         Date actualNow = actualFactory.newDate();
         LocalDateTime actualResult =
                 actualNow.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-        assertThat(actualResult.isAfter(LocalDateTime.now().minusDays(1)), is(true));
+        assertThat(actualResult.isAfter(LocalDateTime.now().minusDays(1))).isTrue();
     }
 
     @Test
     public void testNewTimeStamp() {
         Timestamp now = factory.newTimestamp();
         DateTime result = new DateTime(now.getTime());
-        assertThat(result.getYear(), is(2012));
-        assertThat(result.getMonthOfYear(), is(9));
-        assertThat(result.getDayOfMonth(), is(3));
-        assertThat(result.getHourOfDay(), is(23));
-        assertThat(result.getMinuteOfHour(), is(7));
-        assertThat(result.getSecondOfMinute(), is(11));
-        assertThat(result.getMillisOfSecond(), is(100));
+        assertThat(result.getYear()).isEqualTo(2012);
+        assertThat(result.getMonthOfYear()).isEqualTo(9);
+        assertThat(result.getDayOfMonth()).isEqualTo(3);
+        assertThat(result.getHourOfDay()).isEqualTo(23);
+        assertThat(result.getMinuteOfHour()).isEqualTo(7);
+        assertThat(result.getSecondOfMinute()).isEqualTo(11);
+        assertThat(result.getMillisOfSecond()).isEqualTo(100);
     }
 
     @Test
     public void testNewSqlDate() {
         java.sql.Date now = factory.newSqlDate();
         DateTime result = new DateTime(now.getTime());
-        assertThat(result.getYear(), is(2012));
-        assertThat(result.getMonthOfYear(), is(9));
-        assertThat(result.getDayOfMonth(), is(3));
-        assertThat(result.getHourOfDay(), is(0));
-        assertThat(result.getMinuteOfHour(), is(0));
-        assertThat(result.getSecondOfMinute(), is(0));
-        assertThat(result.getMillisOfSecond(), is(0));
+        assertThat(result.getYear()).isEqualTo(2012);
+        assertThat(result.getMonthOfYear()).isEqualTo(9);
+        assertThat(result.getDayOfMonth()).isEqualTo(3);
+        assertThat(result.getHourOfDay()).isEqualTo(0);
+        assertThat(result.getMinuteOfHour()).isEqualTo(0);
+        assertThat(result.getSecondOfMinute()).isEqualTo(0);
+        assertThat(result.getMillisOfSecond()).isEqualTo(0);
     }
 
     @Test
     public void testNewTime() {
         Time now = factory.newTime();
         DateTime result = new DateTime(now.getTime());
-        assertThat(result.getYear(), is(1970));
-        assertThat(result.getMonthOfYear(), is(1));
-        assertThat(result.getDayOfMonth(), is(1));
-        assertThat(result.getHourOfDay(), is(23));
-        assertThat(result.getMinuteOfHour(), is(7));
-        assertThat(result.getSecondOfMinute(), is(11));
-        assertThat(result.getMillisOfSecond(), is(100));
+        assertThat(result.getYear()).isEqualTo(1970);
+        assertThat(result.getMonthOfYear()).isEqualTo(1);
+        assertThat(result.getDayOfMonth()).isEqualTo(1);
+        assertThat(result.getHourOfDay()).isEqualTo(23);
+        assertThat(result.getMinuteOfHour()).isEqualTo(7);
+        assertThat(result.getSecondOfMinute()).isEqualTo(11);
+        assertThat(result.getMillisOfSecond()).isEqualTo(100);
     }
 }
