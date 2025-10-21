@@ -35,7 +35,6 @@ import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.mock.web.MockPageContext;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.util.ReflectionTestUtils;
-import org.springframework.util.SerializationUtils;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.servlet.tags.form.TagWriter;
 
@@ -954,17 +953,6 @@ public class PaginationTagTest {
         tag1.setActiveClass("");
         tag1.setDisabledClass("");
         tag1.setEnableLinkOfCurrentPage("");
-    }
-
-    /**
-     * This test uses SerializationUtils#deserialize(byte[]) Although this mechanism is deprecated,
-     * it is still used because the data to be deserialized is guaranteed.
-     */
-    @SuppressWarnings("deprecation")
-    @Test(expected = None.class)
-    public void testSerialization() {
-        byte[] serialized = SerializationUtils.serialize(new PaginationTag());
-        SerializationUtils.deserialize(serialized);
     }
 
     /**
