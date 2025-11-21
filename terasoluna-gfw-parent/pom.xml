@@ -338,7 +338,7 @@
         <!-- == MapStrcut== -->
         <mapstruct.version>1.6.3</mapstruct.version>
         <!-- lombok.version is the same as the version managed by Spring Boot. -->
-        <lombok.version>1.18.36</lombok.version>
+        <lombok.version>1.18.42</lombok.version>
         <lombok-mapstruct-binding.version>0.2.0</lombok-mapstruct-binding.version>
         <!-- == Project Properties == -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -350,7 +350,7 @@
         <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
         <cargo.container.id>tomcat11x</cargo.container.id>
         <cargo.container.url>https://archive.apache.org/dist/tomcat/tomcat-11/v${cargo.tomcat11.version}/bin/apache-tomcat-${cargo.tomcat11.version}.zip</cargo.container.url>
-        <cargo.tomcat11.version>11.0.9</cargo.tomcat11.version>
+        <cargo.tomcat11.version>11.0.14</cargo.tomcat11.version>
     </properties>
     <profiles>
         <profile>
