@@ -350,7 +350,7 @@
         <cargo.daemon.url>http://localhost:18000</cargo.daemon.url>
         <cargo.container.id>tomcat11x</cargo.container.id>
         <cargo.container.url>https://archive.apache.org/dist/tomcat/tomcat-11/v${cargo.tomcat11.version}/bin/apache-tomcat-${cargo.tomcat11.version}.zip</cargo.container.url>
-        <cargo.tomcat11.version>11.0.14</cargo.tomcat11.version>
+        <cargo.tomcat11.version>11.0.15</cargo.tomcat11.version>
     </properties>
     <profiles>
         <profile>
