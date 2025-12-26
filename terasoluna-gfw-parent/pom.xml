@@ -157,6 +157,26 @@
                     <version>${org.apache.maven.plugins.maven-site-plugin.version}</version>
                 </plugin>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-failsafe-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-surefire-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-war-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-gpg-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.maven-gpg-plugin.version}</version>
+                </plugin>
+                <plugin>
                     <groupId>org.codehaus.cargo</groupId>
                     <artifactId>cargo-maven3-plugin</artifactId>
                     <version>${org.codehaus.cargo.cargo-maven3-plugin.version}</version>
@@ -186,6 +206,31 @@
                             </deployable>
                         </deployables>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>build-helper-maven-plugin</artifactId>
+                    <version>${org.codehaus.mojo.build-helper-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>sql-maven-plugin</artifactId>
+                    <version>${org.codehaus.mojo.sql-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.eluder.coveralls</groupId>
+                    <artifactId>coveralls-maven-plugin</artifactId>
+                    <version>${org.eluder.coveralls.coveralls-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>${org.jacoco.jacoco-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.sonatype.central</groupId>
+                    <artifactId>central-publishing-maven-plugin</artifactId>
+                    <version>${org.sonatype.central.central-publishing-maven-plugin.version}</version>
                 </plugin>
             </plugins>
         </pluginManagement>
@@ -316,21 +361,28 @@
     </dependencyManagement>
     <properties>
         <!-- == Maven Plugin Versions == -->
-        <org.apache.maven.plugins.maven-project-info-reports-plugin.version>3.8.0</org.apache.maven.plugins.maven-project-info-reports-plugin.version>
-        <org.apache.maven.plugins.maven-compiler-plugin.version>3.13.0</org.apache.maven.plugins.maven-compiler-plugin.version>
-        <org.apache.maven.plugins.maven-dependency-plugin.version>3.8.1</org.apache.maven.plugins.maven-dependency-plugin.version>
+        <org.apache.maven.plugins.maven-project-info-reports-plugin.version>3.9.0</org.apache.maven.plugins.maven-project-info-reports-plugin.version>
+        <org.apache.maven.plugins.maven-compiler-plugin.version>3.14.1</org.apache.maven.plugins.maven-compiler-plugin.version>
+        <org.apache.maven.plugins.maven-dependency-plugin.version>3.9.0</org.apache.maven.plugins.maven-dependency-plugin.version>
         <org.apache.maven.plugins.maven-resources-plugin.version>3.3.1</org.apache.maven.plugins.maven-resources-plugin.version>
         <org.apache.maven.plugins.maven-source-plugin.version>3.3.1</org.apache.maven.plugins.maven-source-plugin.version>
-        <org.apache.maven.plugins.maven-javadoc-plugin.version>3.11.2</org.apache.maven.plugins.maven-javadoc-plugin.version>
-        <org.apache.maven.plugins.maven-jar-plugin.version>3.4.2</org.apache.maven.plugins.maven-jar-plugin.version>
+        <org.apache.maven.plugins.maven-javadoc-plugin.version>3.12.0</org.apache.maven.plugins.maven-javadoc-plugin.version>
+        <org.apache.maven.plugins.maven-jar-plugin.version>3.5.0</org.apache.maven.plugins.maven-jar-plugin.version>
         <org.apache.maven.plugins.maven-assembly-plugin.version>3.7.1</org.apache.maven.plugins.maven-assembly-plugin.version>
-        <org.apache.maven.plugins.maven-clean-plugin.version>3.4.0</org.apache.maven.plugins.maven-clean-plugin.version>
-        <org.apache.maven.plugins.maven-install-plugin.version>3.1.3</org.apache.maven.plugins.maven-install-plugin.version>
-        <org.apache.maven.plugins.maven-deploy-plugin.version>3.1.3</org.apache.maven.plugins.maven-deploy-plugin.version>
+        <org.apache.maven.plugins.maven-clean-plugin.version>3.5.0</org.apache.maven.plugins.maven-clean-plugin.version>
+        <org.apache.maven.plugins.maven-install-plugin.version>3.1.4</org.apache.maven.plugins.maven-install-plugin.version>
+        <org.apache.maven.plugins.maven-deploy-plugin.version>3.1.4</org.apache.maven.plugins.maven-deploy-plugin.version>
         <org.apache.maven.plugins.maven-site-plugin.version>4.0.0-M16</org.apache.maven.plugins.maven-site-plugin.version>
-        <org.codehaus.cargo.cargo-maven3-plugin.version>1.10.15</org.codehaus.cargo.cargo-maven3-plugin.version>
-        <org.apache.maven.plugins.maven-gpg-plugin.version>3.2.7</org.apache.maven.plugins.maven-gpg-plugin.version>
-        <org.sonatype.central.central-publishing-maven-plugin.version>0.8.0</org.sonatype.central.central-publishing-maven-plugin.version>
+        <org.apache.maven.plugins.maven-failsafe-plugin.version>3.5.4</org.apache.maven.plugins.maven-failsafe-plugin.version>
+        <org.apache.maven.plugins.maven-surefire-plugin.version>3.5.4</org.apache.maven.plugins.maven-surefire-plugin.version>
+        <org.apache.maven.plugins.maven-war-plugin.version>3.5.0</org.apache.maven.plugins.maven-war-plugin.version>
+        <org.apache.maven.plugins.maven-gpg-plugin.version>3.2.8</org.apache.maven.plugins.maven-gpg-plugin.version>
+        <org.codehaus.cargo.cargo-maven3-plugin.version>1.10.25</org.codehaus.cargo.cargo-maven3-plugin.version>
+        <org.codehaus.mojo.build-helper-maven-plugin.version>3.6.1</org.codehaus.mojo.build-helper-maven-plugin.version>
+        <org.codehaus.mojo.sql-maven-plugin.version>3.0.0</org.codehaus.mojo.sql-maven-plugin.version>
+        <org.eluder.coveralls.coveralls-maven-plugin.version>4.3.0</org.eluder.coveralls.coveralls-maven-plugin.version>
+        <org.jacoco.jacoco-maven-plugin.version>0.8.14</org.jacoco.jacoco-maven-plugin.version>
+        <org.sonatype.central.central-publishing-maven-plugin.version>0.9.0</org.sonatype.central.central-publishing-maven-plugin.version>
         <!-- == Dependency Versions == -->
         <!-- == TERASOLUNA == -->
         <terasoluna.gfw.version>5.11.0-SNAPSHOT</terasoluna.gfw.version>
