@@ -26,6 +26,12 @@
         </dependency>
         <!-- == End TERASOLUNA == -->
         <!-- == Begin Jackson == -->
+        <!-- jackson 3.x -->
+        <dependency>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+        </dependency>
+        <!-- jackson 2.x -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
