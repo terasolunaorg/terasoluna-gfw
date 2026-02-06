@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.terasoluna.gfw</groupId>
     <artifactId>terasoluna-gfw-parent</artifactId>
-    <version>5.11.0-SNAPSHOT</version>
+    <version>5.11.0.M1</version>
     <packaging>pom</packaging>
     <name>TERASOLUNA Server Framework for Java (5.x) Parent</name>
     <description>The parent of TERASOLUNA Server Framework for Java (5.x)</description>
@@ -385,8 +385,8 @@
         <org.sonatype.central.central-publishing-maven-plugin.version>0.9.0</org.sonatype.central.central-publishing-maven-plugin.version>
         <!-- == Dependency Versions == -->
         <!-- == TERASOLUNA == -->
-        <terasoluna.gfw.version>5.11.0-SNAPSHOT</terasoluna.gfw.version>
-        <terasoluna.gfw.bom.version>3.0.0-SNAPSHOT</terasoluna.gfw.bom.version>
+        <terasoluna.gfw.version>5.11.0.M1</terasoluna.gfw.version>
+        <terasoluna.gfw.bom.version>3.0.0.M1</terasoluna.gfw.bom.version>
         <!-- == MapStrcut== -->
         <mapstruct.version>1.6.3</mapstruct.version>
         <!-- lombok.version is the same as the version managed by Spring Boot. -->
