@@ -8,6 +8,7 @@
         <relativePath>../../../../terasoluna-gfw-common-libraries/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <name>TERASOLUNA Server Framework for Java (5.x) CodePoints Library for JIS X 0208 Kanji</name>
 
     <groupId>org.terasoluna.gfw.codepoints</groupId>
     <artifactId>terasoluna-gfw-codepoints-jisx0208kanji</artifactId>
