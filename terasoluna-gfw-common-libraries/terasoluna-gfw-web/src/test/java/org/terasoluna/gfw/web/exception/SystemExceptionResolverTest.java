@@ -443,11 +443,4 @@ public class SystemExceptionResolverTest {
         assertThat(ViewName).isNull();
     }
 
-    public class TestAjaxController {
-        public void method1(String arg) {
-
-        }
-
-    }
-
 }
