@@ -449,11 +449,4 @@ public class SystemExceptionResolverTest {
         assertThat(ViewName, is(nullValue()));
     }
 
-    public class TestAjaxController {
-        public void method1(String arg) {
-
-        }
-
-    }
-
 }
