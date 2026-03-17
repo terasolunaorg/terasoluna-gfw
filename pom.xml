@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>terasoluna-gfw</artifactId>
     <groupId>org.terasoluna.gfw</groupId>
-    <version>5.10.1-SNAPSHOT</version>
+    <version>5.10.1.M2</version>
     <packaging>pom</packaging>
     <name>TERASOLUNA Server Framework for Java (5.x) Build</name>
     <description>TERASOLUNA Server Framework for Java (5.x) Build</description>
@@ -94,7 +94,7 @@
                         <extensions>true</extensions>
                         <configuration>
                             <publishingServerId>central</publishingServerId>
-                            <autoPublish>true</autoPublish>
+                            <autoPublish>false</autoPublish>
                         </configuration>
                     </plugin>
                 </plugins>
