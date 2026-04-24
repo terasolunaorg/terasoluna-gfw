@@ -1,0 +1,61 @@
+# By file extension
+# Text files
+# Line endings are LF
+*.MF text eol=lf
+*.adoc text eol=lf
+*.conf text eol=lf
+*.crt text eol=lf
+*.css text eol=lf
+*.csv text eol=lf
+*.dio text eol=lf
+*.drawio text eol=lf
+*.ftl text eol=lf
+*.html text eol=lf
+*.java text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.jsp text eol=lf
+*.key text eol=lf
+*.md text eol=lf
+*.pem text eol=lf
+*.properties text eol=lf
+*.pu text eol=lf
+*.py text eol=lf
+*.rst text eol=lf
+*.sh text eol=lf
+*.sql text eol=lf
+*.svg text eol=lf
+*.template text eol=lf
+*.tld text eol=lf
+*.txt text eol=lf
+*.wsdl text eol=lf
+*.xml text eol=lf
+
+# By file extension
+# Text files
+# Line endings are CRLF
+*.bat text eol=crlf
+
+# By file extension
+# Binary files
+*.asta binary
+*.cer binary
+*.class binary
+*.der binary
+*.docx binary
+*.eot binary
+*.gif binary
+*.jpg binary
+*.ks binary
+*.pdf binary
+*.pk8 binary
+*.png binary
+*.pptx binary
+*.ttf binary
+*.woff binary
+*.xlsx binary
+
+# by filename
+.gitattributes text eol=lf
+.gitignore text eol=lf
+.gitkeep text eol=lf
