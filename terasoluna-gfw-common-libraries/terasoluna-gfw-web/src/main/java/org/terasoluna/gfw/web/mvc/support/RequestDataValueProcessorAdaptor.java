@@ -16,9 +16,8 @@
 package org.terasoluna.gfw.web.mvc.support;
 
 import java.util.Map;
-
+import org.jspecify.annotations.Nullable;
 import org.springframework.web.servlet.support.RequestDataValueProcessor;
-
 import jakarta.servlet.http.HttpServletRequest;
 
 /**
@@ -76,7 +75,7 @@ public class RequestDataValueProcessorAdaptor implements RequestDataValueProcess
      * @see org.springframework.web.servlet.support.RequestDataValueProcessor#getExtraHiddenFields(javax.servlet.http.HttpServletRequest)
      */
     @Override
-    public Map<String, String> getExtraHiddenFields(HttpServletRequest request) {
+    public @Nullable Map<String, String> getExtraHiddenFields(HttpServletRequest request) {
         return null;
     }
 
