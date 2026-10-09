@@ -18,9 +18,11 @@ package org.terasoluna.gfw.common.time;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.time.Clock;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 import org.junit.jupiter.api.Test;
 
@@ -133,8 +135,12 @@ public class ConfigurableClockFactoryTest {
     @Test
     public void testFormatStyle() throws Exception {
 
-        ClockFactory formatStyleClockFactory = new ConfigurableClockFactory("2012/09/11 02:25:15",
+        LocalDateTime localDateTime = LocalDateTime.of(2012, 9, 11, 2, 25, 15);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofLocalizedDateTime(
                 FormatStyle.MEDIUM, FormatStyle.MEDIUM);
+        String formattedDateTime = localDateTime.format(dateTimeFormatter);
+        ClockFactory formatStyleClockFactory = new ConfigurableClockFactory(
+                formattedDateTime, FormatStyle.MEDIUM, FormatStyle.MEDIUM);
         Clock clock = formatStyleClockFactory.fixed();
 
         ZonedDateTime now = ZonedDateTime.now(clock);
