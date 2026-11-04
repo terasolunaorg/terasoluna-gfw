@@ -72,7 +72,7 @@ public final class ResultMessageUtils {
                 String text = message.getText();
                 if (text != null) {
                     if (logger.isDebugEnabled()) {
-                        logger.debug("messege is not found under code '" + code + "' for '" + locale
+                        logger.debug("message is not found under code '" + code + "' for '" + locale
                                 + "'. use '" + text + "' instead", e);
                     }
                     // if ResultMessage has a text, then use it.
